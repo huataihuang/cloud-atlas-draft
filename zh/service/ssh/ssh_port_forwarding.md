@@ -16,7 +16,7 @@ ssh端口转发提供了强大的天然安全加密通道（tunnel），甚至�
 
 这样就可以通过`ssh -p 2201 localhost`直接ssh访问到`web-1`系统。
 
-[TextMate 2使用Tips](/develop/mac/textmate2_tips.md)中介绍了通过`ssh`端口转发方式将远程文件传递到本地桌面由TextMate2编辑并回传保存到服务器，同样使用了类似的配置方法。
+[TextMate 2使用Tips](/develop/mac/textmate2_tips.html)中介绍了通过`ssh`端口转发方式将远程文件传递到本地桌面由TextMate2编辑并回传保存到服务器，同样使用了类似的配置方法。
 
 > 甚至再复杂一些，可以结合TextMate rmate的远程文件编辑实现跳板机转内部服务器文件编辑？
 
