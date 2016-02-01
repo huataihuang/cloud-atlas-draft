@@ -5,7 +5,7 @@
         
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>LACP的ad_select参数 | 云图</title>
+        <title>RubyGems安装和使用 | 云图</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.5">
@@ -41,10 +41,10 @@
         
     
     
-    <link rel="next" href="../../../network/link_aggregation/lacp/network_lacp_tcpdump.html" />
+    <link rel="next" href="../../../develop/mac/index.html" />
     
     
-    <link rel="prev" href="../../../network/link_aggregation/lacp/index.html" />
+    <link rel="prev" href="../../../develop/ruby/index.html" />
     
 
         
@@ -53,9 +53,9 @@
         
         
     <div class="book"
-        data-level="2.1.1.2"
-        data-chapter-title="LACP的ad_select参数"
-        data-filepath="network/link_aggregation/lacp/network_lacp_ad_select.md"
+        data-level="8.3.1.1"
+        data-chapter-title="RubyGems安装和使用"
+        data-filepath="develop/ruby/startup/rubygems_install_and_usage.md"
         data-basepath="../../.."
         data-revision="Mon Feb 01 2016 15:44:59 GMT+0800 (CST)"
         data-innerlanguage="zh">
@@ -148,7 +148,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.1.1.2" data-path="network/link_aggregation/lacp/network_lacp_ad_select.html">
+        <li class="chapter " data-level="2.1.1.2" data-path="network/link_aggregation/lacp/network_lacp_ad_select.html">
             
                 
                     <a href="../../../network/link_aggregation/lacp/network_lacp_ad_select.html">
@@ -742,7 +742,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="8.3.1.1" data-path="develop/ruby/startup/rubygems_install_and_usage.html">
+        <li class="chapter active" data-level="8.3.1.1" data-path="develop/ruby/startup/rubygems_install_and_usage.html">
             
                 
                     <a href="../../../develop/ruby/startup/rubygems_install_and_usage.html">
@@ -841,40 +841,36 @@
                 
                     <section class="normal" id="section-">
                     
-                        <h1 id="adselect&#x6982;&#x8FF0;"><code>ad_select</code>&#x6982;&#x8FF0;</h1>
-<p>&#x5728;Bonding&#x9A71;&#x52A8;v3.4.0&#xFF0C;&#x589E;&#x52A0;&#x4E86;&#x4E00;&#x4E2A;802.3AD&#x6A21;&#x5F0F;&#xFF08;mode 4&#xFF09;&#x7684;&#x53C2;&#x6570;&#x6765;&#x5B9E;&#x73B0;aggreator&#x9009;&#x62E9;&#x3002;</p>
-<p>&#x521D;&#x59CB;&#x6A21;&#x5F0F;&#x6216;&#x4EE5;&#x524D;&#x7248;&#x672C;&#x6A21;&#x5F0F;&#x73B0;&#x5728;&#x79F0;&#x4E3A;<code>Stable</code>&#x6A21;&#x5F0F;&#x4F5C;&#x4E3A;&#x9ED8;&#x8BA4;&#x9009;&#x9879;&#x3002;&#x65B0;&#x589E;&#x4E86;2&#x4E2A;&#x7B56;&#x7565;&#xFF0C;<code>Bandwidth</code>&#xFF08;&#x5E26;&#x5BBD;&#xFF09;&#x548C;<code>Count</code>&#xFF08;&#x8BA1;&#x6570;&#xFF09;&#x88AB;&#x589E;&#x52A0;&#xFF0C;&#x901A;&#x8FC7;&#x5168;&#x90E8;&#x8D37;&#x6B3E;&#x6765;&#x9009;&#x62E9;&#x6FC0;&#x6D3B;&#x7684;aggregator&#x6216;&#x8005;&#x901A;&#x8FC7;aggregator&#x7684;&#x7AEF;&#x53E3;&#x6570;&#x91CF;&#x6765;&#x9009;&#x62E9;&#x3002;&#x8FD9;&#x4E24;&#x4E2A;&#x7B56;&#x7565;&#x548C;stable&#x7B56;&#x7565;&#x4E0D;&#x540C;&#xFF0C;&#x5B83;&#x4EEC;&#x662F;&#x5728;bond&#x53D1;&#x751F;&#x53EF;&#x7528;&#x6027;&#x76F8;&#x5173;&#x53D8;&#x5316;&#x65F6;&#x5019;&#x91CD;&#x65B0;&#x9009;&#x62E9;active aggregator&#x65F6;&#x5019;&#x4F7F;&#x7528;&#xFF08;&#x4F8B;&#x5982;&#xFF0C;&#x8FDE;&#x63A5;&#x72B6;&#x6001;&#x53D1;&#x751F;&#x53D8;&#x5316;&#xFF09;&#x3002;</p>
-<p><code>Bandwith</code>&#x548C;<code>Count</code>&#x9009;&#x62E9;&#x7B56;&#x7565;&#x5141;&#x8BB8;802.3ad&#x805A;&#x5408;&#x5728;&#x6FC0;&#x6D3B;&#x805A;&#x5408;&#x53D1;&#x751F;&#x90E8;&#x5206;&#x5931;&#x6548;&#x65F6;&#x5B9E;&#x73B0;failover&#xFF0C;&#x8FD9;&#x4F7F;&#x5F97;aggregator&#x80FD;&#x591F;&#x5728;&#x4EFB;&#x4F55;&#x65F6;&#x5019;&#x5B9E;&#x73B0;&#x6700;&#x9AD8;&#x7684;&#x9AD8;&#x53EF;&#x7528;&#xFF08;&#x6216;&#x8005;&#x662F;&#x5E26;&#x5BBD;&#x6216;&#x8005;&#x662F;&#x7AEF;&#x53E3;&#x6570;&#x91CF;&#xFF09;&#x3002;</p>
-<h1 id="adselect&#x8BE6;&#x7EC6;&#x63CF;&#x8FF0;"><code>ad_select</code>&#x8BE6;&#x7EC6;&#x63CF;&#x8FF0;</h1>
-<p><code>ad_select</code>&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;<code>BONDING_OPTS</code>&#x53C2;&#x6570;&#x6DFB;&#x52A0;&#x5230;<code>/etc/sysconfig/network-scripts</code>&#x76EE;&#x5F55;&#x4E0B;&#x7684;<code>ifcfg_bond*</code>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x53C2;&#x6570;&#x503C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;3&#x4E2A;&#x503C;&#x4E4B;&#x4E00;&#xFF1A;</p>
+                        <h1 id="rubygems&#x7B80;&#x4ECB;">RubyGems&#x7B80;&#x4ECB;</h1>
+<p><a href="https://rubygems.org/" target="_blank">RubyGems</a>&#x662F;Ruby&#x5F00;&#x53D1;&#x8BED;&#x8A00;&#x7684;&#x5305;&#x7BA1;&#x7406;&#x5668;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x5206;&#x53D1;Ruby&#x7A0B;&#x5E8F;&#x548C;&#x5E93;&#x7684;&#x6807;&#x51C6;&#x683C;&#x5F0F;&#x3002;&#x8FD9;&#x4E2A;&#x5DE5;&#x5177;&#x88AB;&#x8BBE;&#x8BA1;&#x6210;&#x6613;&#x4E8E;&#x5B89;&#x88C5;gem&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x670D;&#x52A1;&#x5668;&#x6765;&#x5206;&#x53D1;&#x3002;RubyGems&#x521B;&#x5EFA;&#x4E8E;2003&#x5E74;&#xFF0C;&#x4ECE;Ruby 1.9&#x5F00;&#x59CB;&#x6210;&#x4E3A;&#x6807;&#x51C6;&#x5E93;&#x3002;</p>
+<h1 id="&#x5B89;&#x88C5;">&#x5B89;&#x88C5;</h1>
+<p>&#x5728;CentoOS 7.x&#x4E0A;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x5B89;&#x88C5;<code>ruby</code>(&#x5F53;&#x524D;&#x662F;ruby 2.0)&#x5C31;&#x53EF;&#x4EE5;&#x540C;&#x65F6;&#x5B89;&#x88C5;<code>rubygems</code></p>
+<pre><code>yum install ruby
+</code></pre><p>&#x8BBE;&#x7F6E;RubyGems&#x6E90;&#xFF1A;&#x5C06;gem&#x6E90;&#x66FF;&#x6362;&#x6210;taobao&#xFF08;&#x5B98;&#x65B9;&#x7F51;&#x7AD9;&#x5728;&#x666F;&#x5FB7;&#x9547;&#x8BBF;&#x95EE;&#x975E;&#x5E38;&#x7F13;&#x6162;&#xFF0C;&#x751A;&#x81F3;&#x65E0;&#x6CD5;&#x8BBF;&#x95EE;&#xFF09;</p>
+<pre><code>gem sources --remove https://rubygems.org/
+gem sources -a https://ruby.taobao.org/
+gem sources -l
+</code></pre><h1 id="&#x4F7F;&#x7528;">&#x4F7F;&#x7528;</h1>
+<p>RubyGems&#x4F7F;&#x7528;&#x975E;&#x5E38;&#x7C7B;&#x4F3C;<code>apt-get</code>&#x548C;<code>yum</code></p>
+<p>&#x5B89;&#x88C5;&#x8F6F;&#x4EF6;&#x5305;</p>
+<pre><code>gem install mygem
+</code></pre><p>&#x5378;&#x8F7D;&#x8F6F;&#x4EF6;&#x5305;</p>
+<pre><code>gem uninstall mygem
+</code></pre><p>&#x5217;&#x51FA;&#x5DF2;&#x7ECF;&#x5B89;&#x88C5;&#x7684;gems</p>
+<pre><code>gem list --local
+</code></pre><p>&#x663E;&#x793A;&#x53EF;&#x7528;&#x7684;gems</p>
+<pre><code>gem list --remote
+</code></pre><p>&#x521B;&#x5EFA;&#x6240;&#x6709;gems&#x7684;RDoc&#x6587;&#x6863;</p>
+<pre><code>gem rdoc --all
+</code></pre><p>&#x4E0B;&#x8F7D;gem&#x4F46;&#x4E0D;&#x5B89;&#x88C5;</p>
+<pre><code>gem fetch mygem
+</code></pre><p>&#x6240;&#x6709;&#x53EF;&#x7528;&#x7684;gems</p>
+<pre><code>gem search STRING --remote
+</code></pre><p>gem&#x547D;&#x4EE4;&#x8FD8;&#x53EF;&#x4EE5;&#x7528;&#x6765;&#x521B;&#x5EFA;&#x548C;&#x7EF4;&#x62A4;<code>.gemspec</code>&#x548C;<code>.gem</code>&#x6587;&#x4EF6;&#xFF1A;&#x4ECE;<code>.gemspec</code>&#x6587;&#x4EF6;&#x521B;&#x5EFA;<code>.gem</code></p>
+<pre><code>gem build mygem.gemspec
+</code></pre><h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
 <ul>
-<li><code>Stable</code>&#x6216;<code>0</code></li>
-</ul>
-<p>&#x8FD9;&#x662F;&#x539F;&#x59CB;&#x7279;&#x6027;&#x4E5F;&#x662F;&#x9ED8;&#x8BA4;&#x8BBE;&#x7F6E;</p>
-<p>&#x6FC0;&#x6D3B;&#x7684;&#x805A;&#x5408;&#x662F;&#x901A;&#x8FC7;&#x6700;&#x5927;&#x805A;&#x5408;&#x5E26;&#x5BBD;&#x6765;&#x9009;&#x62E9;&#x7684;&#x3002;&#x53EA;&#x5728;&#x6FC0;&#x6D3B;&#x7684;&#x805A;&#x5408;&#x7684;&#x6240;&#x6709;slave&#x63A5;&#x53E3;&#x90FD;down&#x6389;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x6216;&#x8005;&#x6FC0;&#x6D3B;&#x7684;&#x805A;&#x5408;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;slave&#x63A5;&#x53E3;&#x7684;&#x65F6;&#x5019;&#x624D;&#x4F1A;&#x91CD;&#x65B0;&#x9009;&#x62E9;&#x6FC0;&#x6D3B;&#x7684;&#x805A;&#x5408;&#x3002;</p>
-<ul>
-<li><code>Bandwith</code>&#x6216;&#x8005;<code>1</code></li>
-</ul>
-<p>&#x8FD9;&#x4E2A;&#x7B56;&#x7565;&#x662F;&#x901A;&#x8FC7;&#x6700;&#x5927;&#x805A;&#x5408;&#x5E26;&#x5BBD;&#x6765;&#x9009;&#x62E9;&#x805A;&#x5408;&#x3002;&#x5982;&#x679C;&#x53D1;&#x751F;&#x4EE5;&#x4E0B;&#x60C5;&#x51B5;&#x5219;&#x5F00;&#x59CB;&#x91CD;&#x65B0;&#x9009;&#x62E9;&#x6FC0;&#x6D3B;&#x7684;&#x805A;&#x5408;&#xFF1A;</p>
-<pre><code>* &#x5F53;&#x6709;&#x4E00;&#x4E2A;slave&#x88AB;&#x6DFB;&#x52A0;&#x5230;bond&#x6216;&#x8005;&#x4ECE;bond&#x4E2D;&#x79FB;&#x9664;
-* &#x4EFB;&#x4F55;slave&#x94FE;&#x8DEF;&#x72B6;&#x6001;&#x53D8;&#x5316;
-* &#x4EFB;&#x4F55;slave&#x7684;802.3ad&#x76F8;&#x5173;&#x72B6;&#x6001;&#x53D8;&#x5316;
-* bond&#x7684;&#x7BA1;&#x7406;&#x72B6;&#x6001;&#x53D8;&#x66F4;&#x6210;up
-</code></pre><ul>
-<li><code>Count</code>&#x6216;&#x8005;<code>2</code></li>
-</ul>
-<p>&#x901A;&#x8FC7;slave&#x7684;&#x6700;&#x5927;&#x7AEF;&#x53E3;&#x6570;&#x91CF;&#x6765;&#x9009;&#x62E9;&#x6D3B;&#x8DC3;&#x7684;aggregator&#x3002;&#x53D1;&#x751F;&#x91CD;&#x65B0;&#x9009;&#x62E9;&#x7684;&#x6761;&#x4EF6;&#x548C;&#x4E0A;&#x8FF0;<code>Bandwidth</code>&#x8BBE;&#x7F6E;&#x76F8;&#x540C;&#x3002;</p>
-<h1 id="&#x6848;&#x4F8B;">&#x6848;&#x4F8B;</h1>
-<p>&#x4F7F;&#x7528;1&#x4E2A;10GB&#x7F51;&#x5361;&#x548C;4&#x4E2A;1GB&#x7F51;&#x5361;&#x7684;&#x805A;&#x5408;&#x5B9E;&#x73B0;&#x4E00;&#x4E2A;802.3ad&#x7684;failvoer &#xFF0D; <a href="http://sourceforge.net/p/bonding/discussion/77913/thread/d44ec9cc/" target="_blank">bonding over bonding</a></p>
-<p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5E26;&#x6709;<code>ad_select=bandwidth</code>&#x53C2;&#x6570;&#x7684;802.3ad&#x6A21;&#x5F0F;&#xFF0C;&#x5728;&#x4EA4;&#x6362;&#x673A;&#x4E0A;&#x521B;&#x5EFA;2&#x4E2A;LACP&#x7EC4;&#xFF0C;&#x4E00;&#x4E2A;&#x662F;&#x9488;&#x5BF9;<code>10G</code>&#xFF0C;&#x4E00;&#x4E2A;&#x662F;&#x9488;&#x5BF9;<code>1G</code>&#xFF0C;&#x6B64;&#x65F6;linux bonding 802.3ad&#x5C31;&#x4F1A;&#x4F7F;&#x7528;&#x4E24;&#x4E2A;&#x4E0D;&#x540C;&#x7684;aggregator&#xFF08;&#x5C06;5&#x4E2A;&#x63A5;&#x53E3;&#x8BBE;&#x7F6E;&#x6210;&#x4E00;&#x4E2A;bond&#xFF09;&#xFF0C;&#x5E76;&#x901A;&#x8FC7;<code>ad_select</code>&#x9009;&#x9879;&#x9009;&#x62E9;&#x6700;&#x4F73;&#x7684;aggreator&#xFF08;&#x4F8B;&#x5982;&#x8FD9;&#x91CC;&#x662F;&#x5E26;&#x5BBD;&#xFF09;&#x3002;</p>
-<p><strong>&#x6CE8;&#x610F;&#xFF1A;&#x9700;&#x8981;&#x4F7F;&#x7528;bonding&#x7684;&#x9A71;&#x52A8;&#x662F;3.5.0&#x624D;&#x652F;&#x6301;<code>ad_select</code></strong> - &#x53EF;&#x4EE5;&#x770B;&#x5230; <a href="#&#x670D;&#x52A1;&#x5668;bonding&#x5931;&#x8D25;">&#x670D;&#x52A1;&#x5668;bonding&#x5931;&#x8D25;</a> &#x4F7F;&#x7528;&#x7684;RHEL 5.4&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x5185;&#x6838; <code>2.6.18-164</code> &#xFF0C;&#x542F;&#x52A8;&#x7684;bonding driver &#x4E5F;&#x662F; <code>3.4.0</code> &#x53EF;&#x80FD;&#x4E5F;&#x5B58;&#x5728;&#x7C7B;&#x4F3C;&#x95EE;&#x9898;&#x3002;</p>
-<p>&#x53C2;&#x8003; <a href="http://ubuntuforums.org/showthread.php?t=1595177" target="_blank">Ubuntu 10.10 Bonding changed?</a> &#x63D0;&#x51FA;&#x7684;bonding&#x53C2;&#x6570;</p>
-<pre><code>options bonding mode=4 miimon=100 lacp_rate=1 downdelay=200 updelay=200
-</code></pre><p>&#x4E0A;&#x8FF0;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x501F;&#x9274;&#xFF08;&#x4E5F;&#x8BB8;&#x548C;delay&#x53C2;&#x6570;&#x6709;&#x5173;&#xFF09;</p>
-<h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
-<ul>
-<li><a href="http://support.hp.com/hk-en/document/c02695247" target="_blank">Red Hat Linux Enterprise 6 - What Is the Bonding Paramater ad_select?</a></li>
-<li><a href="#&#x83B7;&#x53D6;Linux&#x7F51;&#x5361;&#x4FE1;&#x606F;">&#x83B7;&#x53D6;Linux&#x7F51;&#x5361;&#x4FE1;&#x606F;</a></li>
+<li><a href="https://en.wikipedia.org/wiki/RubyGems" target="_blank">Wikipedia:RubyGems</a></li>
 </ul>
 
                     
@@ -886,10 +882,10 @@
         </div>
 
         
-        <a href="../../../network/link_aggregation/lacp/index.html" class="navigation navigation-prev " aria-label="Previous page: LACP"><i class="fa fa-angle-left"></i></a>
+        <a href="../../../develop/ruby/index.html" class="navigation navigation-prev " aria-label="Previous page: Ruby"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../../network/link_aggregation/lacp/network_lacp_tcpdump.html" class="navigation navigation-next " aria-label="Next page: LACP数据包分析"><i class="fa fa-angle-right"></i></a>
+        <a href="../../../develop/mac/index.html" class="navigation navigation-next " aria-label="Next page: Mac"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
