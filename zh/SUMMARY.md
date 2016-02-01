@@ -10,6 +10,7 @@
 * [存储](storage/README.md)
     * [服务器直连存储DAS](storage/das/README.md)
         * [RAID](storage/das/raid.md)
+		* [mpt2sas驱动](storage/das/mpt2sas_driver.md)
     * [GlusterFS](storage/glusterfs/README.md)
         * [GlusterFS服务器端Quorum](storage/glusterfs/glusterfs_server_quorum.md)
 * [服务技术](service/README.md)
@@ -47,6 +48,10 @@
 ----
 * [开发](develop/README.md)
     * [Git](develop/git/README.md)
+	* [Android](develop/android/README.md)
+		* [Nexus 5系统升级](develop/android/nexus_5_update.md)
+		* [Android文件传输](develop/android/transfer_file_to_android.md)
+		* [Android开发环境准备](develop/android/prepare_android_develop_environment.md)
     * [Python](develop/python/README.md)
 	* [Ruby](develop/ruby/README.md)
 		* [Ruby快速起步](develop/ruby/startup/READMD.md)

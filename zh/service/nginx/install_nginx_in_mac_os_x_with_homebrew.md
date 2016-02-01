@@ -20,6 +20,13 @@
 	Or, if you don't want/need launchctl, you can just run:
 	  nginx
 
+启动
+
+	nginx
+
+> 将文件复制到`/usr/local/var/www`可提供文件web访问下载
+
+
 # 参考
 
 * [Install Nginx, PHP-FPM, MySQL and phpMyAdmin on OS X Mavericks or Yosemite](http://blog.frd.mn/install-nginx-php-fpm-mysql-and-phpmyadmin-on-os-x-mavericks-using-homebrew/)

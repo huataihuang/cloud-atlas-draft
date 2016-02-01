@@ -6,7 +6,7 @@
 
 这里记录的是我近期实践的开源监控，并希望在半年以后，对比和总结出可靠的经验:
 
-* [Skinken](skinken/README.md) - modern re-implementation of Nagios in Python
+* [Skinken](http://www.shinken-monitoring.org) - modern re-implementation of Nagios in Python
 * [sensu](https://sensuapp.org) - 可扩展的综合了多个开源软件的解决方案
 
 ----

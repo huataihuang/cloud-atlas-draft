@@ -101,5 +101,4 @@ chmod a+x ~/bin/rmate
 
 # 参考
 
-
 * [textmate/rmate](https://github.com/textmate/rmate/)
