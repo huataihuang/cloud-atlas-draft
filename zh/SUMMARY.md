@@ -51,6 +51,8 @@
 	* [Android](develop/android/README.md)
 		* [Nexus 5系统升级](develop/android/nexus_5_update.md)
 		* [Android文件传输](develop/android/transfer_file_to_android.md)
+		* [Android文件管理和apk安装](develop/android/android_file_manage_and_install_apk.md)
+		* [Android截屏和录屏](develop/android/take_screenshot_in_android.md)
 		* [Android开发环境准备](develop/android/prepare_android_develop_environment.md)
     * [Python](develop/python/README.md)
 	* [Ruby](develop/ruby/README.md)

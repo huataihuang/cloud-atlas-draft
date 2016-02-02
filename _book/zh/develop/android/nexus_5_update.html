@@ -57,7 +57,7 @@
         data-chapter-title="Nexus 5系统升级"
         data-filepath="develop/android/nexus_5_update.md"
         data-basepath="../.."
-        data-revision="Tue Feb 02 2016 07:41:58 GMT+0800 (CST)"
+        data-revision="Tue Feb 02 2016 14:06:45 GMT+0800 (CST)"
         data-innerlanguage="zh">
     
 
@@ -764,14 +764,44 @@
             
         </li>
     
-        <li class="chapter " data-level="8.2.3" data-path="develop/android/prepare_android_develop_environment.html">
+        <li class="chapter " data-level="8.2.3" data-path="develop/android/android_file_manage_and_install_apk.html">
+            
+                
+                    <a href="../../develop/android/android_file_manage_and_install_apk.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.3.</b>
+                        
+                        Android文件管理和apk安装
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2.4" data-path="develop/android/take_screenshot_in_android.html">
+            
+                
+                    <a href="../../develop/android/take_screenshot_in_android.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.2.4.</b>
+                        
+                        Android截屏和录屏
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2.5" data-path="develop/android/prepare_android_develop_environment.html">
             
                 
                     <a href="../../develop/android/prepare_android_develop_environment.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>8.2.3.</b>
+                            <b>8.2.5.</b>
                         
                         Android开发环境准备
                     </a>
@@ -980,7 +1010,8 @@ Last checked for update on 1/1/1970
 <p><img src="../../img/develop/android/intellij_android_sdk_location.png" alt="Intellij&#x4E2D;&#x8BBE;&#x7F6E;Android SDK&#x4F4D;&#x7F6E;"></p>
 <p>&#x5728;&#x4E0B;&#x4E00;&#x6B65;&#x9009;&#x62E9;<code>Launch SDK Manager</code></p>
 <p><img src="../../img/develop/android/intellij_launch_sdk_manager.png" alt="Intellij&#x4E2D;launch SDK Manager"></p>
-<p>&#x5728;<code>SDK Manager</code>&#x4E2D;&#xFF0C;&#x9ED8;&#x8BA4;&#x9009;&#x62E9;&#x5B89;&#x88C5;SDK 6&#xFF0C;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x5B89;&#x88C5;&#x7684;&#x8F6F;&#x4EF6;&#x5305;&#x5C31;&#x53EF;&#x4EE5;&#x5F00;&#x53D1;Android 6&#x7684;&#x5E94;&#x7528;&#x8F6F;&#x4EF6;&#x4E86;&#xFF0C;&#x5176;&#x4E2D;&#x4E5F;&#x5305;&#x542B;&#x4E86;<code>Android SDK Platform-tools</code>&#x3002;</p>
+<p>&#x5728;<code>SDK Manager</code>&#x4E2D;&#xFF0C;&#x9ED8;&#x8BA4;&#x9009;&#x62E9;&#x5B89;&#x88C5;SDK 6&#xFF0C;&#x4F7F;&#x7528;&#x9ED8;&#x8BA4;&#x5B89;&#x88C5;&#x7684;&#x8F6F;&#x4EF6;&#x5305;&#x5C31;&#x53EF;&#x4EE5;&#x5F00;&#x53D1;Android 6&#x7684;&#x5E94;&#x7528;&#x8F6F;&#x4EF6;&#x4E86;&#xFF0C;&#x5176;&#x4E2D;&#x4E5F;&#x5305;&#x542B;&#x4E86;<code>Android SDK Platform-tools</code></p>
+<p><img src="../../img/develop/android/sdk_manager_platform-tools.png" alt="Android SDK Platform-tools"></p>
 <blockquote>
 <p>&#x4E0A;&#x8FF0;&#x5B89;&#x88C5;&#x8FC7;&#x7A0B;&#x5373;&#x6EE1;&#x8DB3;&#x4E86;&#x5237;&#x65B0;Android Image&#x9700;&#x6C42;&#xFF0C;&#x540C;&#x65F6;&#x4E5F;&#x662F;<a href="prepare_android_develop_environment.html">&#x51C6;&#x5907;Android&#x5F00;&#x53D1;&#x73AF;&#x5883;</a>&#x7684;&#x8FC7;&#x7A0B;</p>
 </blockquote>
@@ -1065,6 +1096,12 @@ LOCK STATE - locked
 <pre><code>  fastboot oem lock
 </code></pre></li>
 </ul>
+<h1 id="&#x542F;&#x52A8;&#x65E0;&#x6CD5;&#x901A;&#x8FC7;checking-connection">&#x542F;&#x52A8;&#x65E0;&#x6CD5;&#x901A;&#x8FC7;<code>Checking connection...</code></h1>
+<p>&#x5237;&#x673A;&#x540E;&#x542F;&#x52A8;&#xFF0C;&#x5728;&#x9996;&#x6B21;&#x542F;&#x52A8;&#x65F6;&#xFF0C;&#x9700;&#x8981;&#x8FDE;&#x63A5;Google&#x670D;&#x52A1;&#x8FDB;&#x884C;&#x6CE8;&#x518C;&#x3002;&#x4F46;&#x662F;&#x7531;&#x4E8E;&#x5728;&#x666F;&#x5FB7;&#x9547;&#xFF0C;<code>Checking connection...</code>&#x9875;&#x9762;&#x4F1A;&#x4E00;&#x76F4;&#x5361;&#x4F4F;&#x65E0;&#x6CD5;&#x8DF3;&#x8FC7;&#x3002;&#x53C2;&#x8003;<a href="http://forum.xda-developers.com/nexus-7/help/past-lollipop-tap-setup-screen-t2937814" target="_blank">Can&apos;t get past Lollipop Tap &amp; Go setup screen</a></p>
+<pre><code>From Lollipop, Google wants user has a working net connection to boot up. 
+Prob 1, Your wifi has an active firewall to prevent accessing google servers.
+Prob 2, You don&apos;t have a sim card or data plan.
+</code></pre><p>&#x89E3;&#x51B3;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#xFF1A;&#x63D2;&#x5165;&#x4E00;&#x5F20;SIM&#x5361;&#xFF0C;&#x5373;&#x4F7F;&#x8FD9;&#x5F20;SIM&#x5361;&#x65E0;&#x6CD5;&#x4F7F;&#x7528;&#xFF08;&#x4F8B;&#x5982;&#xFF0C;&#x6211;&#x53D1;&#x73B0;&#x7535;&#x4FE1;&#x7684;4G&#x5361;&#x65E0;&#x6CD5;&#x4F7F;&#x7528;&#xFF0C;&#x626B;&#x63CF;&#x4E0D;&#x5230;2G/3G/4G&#x7F51;&#x7EDC;&#xFF09;&#xFF0C;&#x53EA;&#x8981;Nexus&#x8BC6;&#x522B;&#x5230;&#x6709;SIM&#x5361;&#xFF0C;&#x5C31;&#x4F1A;&#x5141;&#x8BB8;&#x8DF3;&#x8FC7;WIFI&#x65B9;&#x5F0F;&#x8FDE;&#x63A5;Google&#x670D;&#x52A1;&#xFF0C;&#x8FD9;&#x6837;&#x4E5F;&#x5C31;&#x907F;&#x514D;&#x4E86;&#x6700;&#x521D;&#x8BBE;&#x5907;&#x521D;&#x59CB;&#x5316;&#x65F6;&#x5019;&#x5C34;&#x5C2C;&#x7684;&#x9875;&#x9762;&#x3002;</p>
 <h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
 <ul>
 <li><a href="http://www.techfleece.com/2013/02/16/how-to-force-your-nexus-4-to-update-to-jelly-bean-4-2-2/" target="_blank">How To Force Your Nexus 4 or Android Device To Update To Jelly Bean 4.2.2</a></li>

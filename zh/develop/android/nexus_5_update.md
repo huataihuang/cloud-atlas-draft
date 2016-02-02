@@ -72,7 +72,9 @@
 
 ![Intellij中launch SDK Manager](/img/develop/android/intellij_launch_sdk_manager.png)
 
-在`SDK Manager`中，默认选择安装SDK 6，使用默认安装的软件包就可以开发Android 6的应用软件了，其中也包含了`Android SDK Platform-tools`。
+在`SDK Manager`中，默认选择安装SDK 6，使用默认安装的软件包就可以开发Android 6的应用软件了，其中也包含了`Android SDK Platform-tools`
+
+![Android SDK Platform-tools](/img/develop/android/sdk_manager_platform-tools.png)
 
 > 上述安装过程即满足了刷新Android Image需求，同时也是[准备Android开发环境](prepare_android_develop_environment.md)的过程
 
@@ -168,6 +170,16 @@
 * 设备重启后，处于安全原因，可以重新锁定`bootloader`
 
 		fastboot oem lock
+
+# 启动无法通过`Checking connection...`
+
+刷机后启动，在首次启动时，需要连接Google服务进行注册。但是由于在景德镇，`Checking connection...`页面会一直卡住无法跳过。参考[Can't get past Lollipop Tap & Go setup screen](http://forum.xda-developers.com/nexus-7/help/past-lollipop-tap-setup-screen-t2937814)
+
+    From Lollipop, Google wants user has a working net connection to boot up. 
+    Prob 1, Your wifi has an active firewall to prevent accessing google servers.
+    Prob 2, You don't have a sim card or data plan.
+
+解决的方法是：插入一张SIM卡，即使这张SIM卡无法使用（例如，我发现电信的4G卡无法使用，扫描不到2G/3G/4G网络），只要Nexus识别到有SIM卡，就会允许跳过WIFI方式连接Google服务，这样也就避免了最初设备初始化时候尴尬的页面。
 
 # 参考
 
