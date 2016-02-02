@@ -11,6 +11,7 @@
     * [服务器直连存储DAS](storage/das/README.md)
         * [RAID](storage/das/raid.md)
 		* [mpt2sas驱动](storage/das/mpt2sas_driver.md)
+		* [S.M.A.R.T.](storage/das/smart.md)
     * [GlusterFS](storage/glusterfs/README.md)
         * [GlusterFS服务器端Quorum](storage/glusterfs/glusterfs_server_quorum.md)
 * [服务技术](service/README.md)
