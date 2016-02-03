@@ -1,6 +1,10 @@
 # Summary
 
 * [服务器](server/README.md)
+* [操作系统](os/README.md)
+	* [Linux](os/linux/README.md)
+		* [内核](os/linux/kernel/README.md)
+			* [Linux内核模式设置KMS](os/linux/kernel/kms.md)
 * [网络](network/README.md)
     * [链路聚合](network/link_aggregation/README.md)
         * [LACP](network/link_aggregation/lacp/README.md)
@@ -66,4 +70,4 @@
 			* [RubyGems安装和使用](develop/ruby/startup/rubygems_install_and_usage.md)
 	* [Mac](develop/mac/README.md)
 		* [TextMate 2使用Tips](develop/mac/textmate2_tips.md)
-	
+* [DevOps](devops)	
