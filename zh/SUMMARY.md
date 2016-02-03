@@ -70,4 +70,22 @@
 			* [RubyGems安装和使用](develop/ruby/startup/rubygems_install_and_usage.md)
 	* [Mac](develop/mac/README.md)
 		* [TextMate 2使用Tips](develop/mac/textmate2_tips.md)
-* [DevOps](devops)	
+* [DevOps](devops/README.md)
+	* [Git](devops/git/README.md)
+	* [Gerrit](devops/gerrit/README.md)
+	* [Gitlab](devops/gitlab/README.md)
+	* [Jenkins](devops/jenkins/README.md)
+	* [Ansible](devops/ansible/README.md)
+	* [Puppet](devops/puppet/README.md)
+
+# Git
+
+# Gerrit
+
+# GitLab
+
+# Jenkins
+
+# Ansible
+
+# Puppet

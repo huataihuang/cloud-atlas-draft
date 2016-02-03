@@ -1,0 +1,1 @@
+[GitLab](https://gitlab.com)是开源的模仿[GitHub](https://github.com)的一个代码管理、测试、部署平台，并且得到了越来越多的支持，已经成为很多企业内部私有代码控制管理平台。
