@@ -70,6 +70,7 @@
 			* [RubyGems安装和使用](develop/ruby/startup/rubygems_install_and_usage.md)
 	* [Mac](develop/mac/README.md)
 		* [TextMate 2使用Tips](develop/mac/textmate2_tips.md)
+		* [使用MacBook键盘在移动设备输入](develop/mac/mac_bluetooth_keyboard_for_mobile_device.md)
 * [DevOps](devops/README.md)
 	* [Git](devops/git/README.md)
 	* [Gerrit](devops/gerrit/README.md)
