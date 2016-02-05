@@ -1,0 +1,1595 @@
+<!DOCTYPE HTML>
+<html lang="zh-tw" >
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>进程 | 云图</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.5">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-disqus/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../../../os/linux/process/selinux/index.html" />
+    
+    
+    <link rel="prev" href="../../../os/linux/boot/index.html" />
+    
+
+        
+    </head>
+    <body>
+        
+        
+    <div class="book"
+        data-level="2.1.2"
+        data-chapter-title="进程"
+        data-filepath="os/linux/process/README.md"
+        data-basepath="../../.."
+        data-revision="Fri Feb 05 2016 23:25:45 GMT+0800 (CST)"
+        data-innerlanguage="zh">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        介紹
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="server/index.html">
+            
+                
+                    <a href="../../../server/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        服务器
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="os/index.html">
+            
+                
+                    <a href="../../../os/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        操作系统
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="os/linux/index.html">
+            
+                
+                    <a href="../../../os/linux/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Linux
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="os/linux/boot/index.html">
+            
+                
+                    <a href="../../../os/linux/boot/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        启动
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="2.1.2" data-path="os/linux/process/index.html">
+            
+                
+                    <a href="../../../os/linux/process/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        进程
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.2.1" data-path="os/linux/process/selinux/index.html">
+            
+                
+                    <a href="../../../os/linux/process/selinux/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.1.</b>
+                        
+                        SELinux
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="os/linux/log/index.html">
+            
+                
+                    <a href="../../../os/linux/log/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.3.</b>
+                        
+                        日志
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.3.1" data-path="os/linux/log/logrotate.html">
+            
+                
+                    <a href="../../../os/linux/log/logrotate.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.3.1.</b>
+                        
+                        logrotate日志轮转工具
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="os/linux/kernel/index.html">
+            
+                
+                    <a href="../../../os/linux/kernel/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.</b>
+                        
+                        内核
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.4.1" data-path="os/linux/kernel/kms.html">
+            
+                
+                    <a href="../../../os/linux/kernel/kms.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.1.</b>
+                        
+                        Linux内核模式设置KMS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4.2" data-path="os/linux/kernel/process_stat_indicates.html">
+            
+                
+                    <a href="../../../os/linux/kernel/process_stat_indicates.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.2.</b>
+                        
+                        进程状态标志的含义
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="network/index.html">
+            
+            <span><b>3.</b> 网络</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="network/link_aggregation/index.html">
+            
+                
+                    <a href="../../../network/link_aggregation/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        链路聚合
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="network/link_aggregation/lacp/index.html">
+            
+                
+                    <a href="../../../network/link_aggregation/lacp/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.1.</b>
+                        
+                        LACP
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1.1" data-path="network/link_aggregation/lacp/network_lacp_infrastructure.html">
+            
+            <span><b>3.1.1.1.</b> LACP原理</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.2" data-path="network/link_aggregation/lacp/network_lacp_ad_select.html">
+            
+                
+                    <a href="../../../network/link_aggregation/lacp/network_lacp_ad_select.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.1.2.</b>
+                        
+                        LACP的ad_select参数
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.3" data-path="network/link_aggregation/lacp/network_lacp_tcpdump.html">
+            
+                
+                    <a href="../../../network/link_aggregation/lacp/network_lacp_tcpdump.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.1.3.</b>
+                        
+                        LACP数据包分析
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="storage/index.html">
+            
+            <span><b>4.</b> 存储</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="storage/das/index.html">
+            
+                
+                    <a href="../../../storage/das/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        服务器直连存储DAS
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="storage/das/raid.html">
+            
+            <span><b>4.1.1.</b> RAID</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2" data-path="storage/das/mpt2sas_driver.html">
+            
+                
+                    <a href="../../../storage/das/mpt2sas_driver.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.2.</b>
+                        
+                        mpt2sas驱动
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.3" data-path="storage/das/smart.html">
+            
+                
+                    <a href="../../../storage/das/smart.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.3.</b>
+                        
+                        S.M.A.R.T.
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="storage/glusterfs/index.html">
+            
+                
+                    <a href="../../../storage/glusterfs/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        GlusterFS
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.1" data-path="storage/glusterfs/glusterfs_server_quorum.html">
+            
+                
+                    <a href="../../../storage/glusterfs/glusterfs_server_quorum.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.1.</b>
+                        
+                        GlusterFS服务器端Quorum
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="service/index.html">
+            
+                
+                    <a href="../../../service/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        服务技术
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="service/ssh/index.html">
+            
+                
+                    <a href="../../../service/ssh/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        ssh
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.1" data-path="service/ssh/ssh_port_forwarding.html">
+            
+                
+                    <a href="../../../service/ssh/ssh_port_forwarding.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.1.</b>
+                        
+                        ssh端口转发
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="service/nginx/index.html">
+            
+                
+                    <a href="../../../service/nginx/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        Nginx
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.2.1" data-path="service/nginx/install_nginx_in_mac_os_x_with_homebrew.html">
+            
+                
+                    <a href="../../../service/nginx/install_nginx_in_mac_os_x_with_homebrew.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.1.</b>
+                        
+                        在Mac OS X环境使用HomeBrew安装Nginx
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="service/openresty/index.html">
+            
+                
+                    <a href="../../../service/openresty/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        OpenResty
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.3.1" data-path="service/openresty/server_openresty_install.html">
+            
+                
+                    <a href="../../../service/openresty/server_openresty_install.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.1.</b>
+                        
+                        OpenResty安装
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3.2" data-path="service/openresty/server_openresty_startup.html">
+            
+                
+                    <a href="../../../service/openresty/server_openresty_startup.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.2.</b>
+                        
+                        OpenResty快速起步
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="security/index.html">
+            
+                
+                    <a href="../../../security/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        安全
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="security/vpn/index.html">
+            
+                
+                    <a href="../../../security/vpn/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        VPN
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1.1" data-path="security/vpn/use_openconnect_to_ocserv_in_android.html">
+            
+                
+                    <a href="../../../security/vpn/use_openconnect_to_ocserv_in_android.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.1.</b>
+                        
+                        在Android上使用OpenConnect连接ocserv
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="virtual/index.html">
+            
+                
+                    <a href="../../../virtual/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        虚拟化
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="virtual/kvm/virtual_kvm_intro.html">
+            
+            <span><b>7.1.</b> kvm</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1.1" data-path="virtual/kvm/virtual_kvm_infrastructure.html">
+            
+            <span><b>7.1.1.</b> kvm架构</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.1.2" data-path="virtual/kvm/install/virtual_kvm_install_intro.html">
+            
+            <span><b>7.1.2.</b> kvm安装</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1.2.1" data-path="virtual/kvm/install/virtual_kvm_install_in_gentoo.html">
+            
+            <span><b>7.1.2.1.</b> 在Gentoo上部署kvm</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.1.2.2" data-path="virtual/kvm/install/virtual_kvm_install_in_centos_rhel.html">
+            
+            <span><b>7.1.2.2.</b> 在CentOS/RHEL上部署kvm</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="virtual/xen/index.html">
+            
+                
+                    <a href="../../../virtual/xen/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        xen
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.2.1" data-path="virtual/xen/xen_infrastructure.html">
+            
+            <span><b>7.2.1.</b> xen架构</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="virtual/docker/index.html">
+            
+            <span><b>7.3.</b> docker</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.3.1" data-path="virtual/docker/startup/index.html">
+            
+                
+                    <a href="../../../virtual/docker/startup/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.1.</b>
+                        
+                        Docker快速起步
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.3.1.1" data-path="virtual/docker/startup/install_and_run.html">
+            
+            <span><b>7.3.1.1.</b> 安装和运行第一个Docker软件栈</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3.1.2" data-path="virtual/docker/startup/run_a_docker_registry.html">
+            
+            <span><b>7.3.1.2.</b> 仓库初探</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3.2" data-path="virtual/docker/infrastruction/index.html">
+            
+            <span><b>7.3.2.</b> Docker架构</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.3.2.1" data-path="virtual/docker/infrastruction/docker_core.html">
+            
+            <span><b>7.3.2.1.</b> Docker的核心</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="virtual_network/index.html">
+            
+            <span><b>8.</b> 虚拟化网络</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="virtual_network/vxlan/index.html">
+            
+            <span><b>8.1.</b> VXLAN</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="virtual_network/monitor/index.html">
+            
+            <span><b>8.2.</b> 虚拟化网络监控</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="monitor/index.html">
+            
+                
+                    <a href="../../../monitor/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        监控
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="monitor/core/index.html">
+            
+            <span><b>9.1.</b> 监控的核心技术</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1.1" data-path="monitor/core/smart.html">
+            
+            <span><b>9.1.1.</b> SMART</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.2" data-path="monitor/core/lm_sensors.html">
+            
+            <span><b>9.1.2.</b> lm_sensors</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="monitor/iaas/index.html">
+            
+                
+                    <a href="../../../monitor/iaas/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        IaaS类监控
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.2.1" data-path="monitor/skinken/index.html">
+            
+            <span><b>9.2.1.</b> skinken</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2.2" data-path="monitor/sensu/index.html">
+            
+            <span><b>9.2.2.</b> sensu</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="develop/index.html">
+            
+                
+                    <a href="../../../develop/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        开发
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.1" data-path="develop/git/index.html">
+            
+            <span><b>10.1.</b> Git</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.2" data-path="develop/android/index.html">
+            
+                
+                    <a href="../../../develop/android/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.</b>
+                        
+                        Android
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.2.1" data-path="develop/android/startup/index.html">
+            
+                
+                    <a href="../../../develop/android/startup/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.1.</b>
+                        
+                        Android起步
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.2.1.1" data-path="develop/android/startup/nexus_5_update.html">
+            
+                
+                    <a href="../../../develop/android/startup/nexus_5_update.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.1.1.</b>
+                        
+                        Nexus 5系统升级
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.2.1.2" data-path="develop/android/startup/transfer_file_to_android.html">
+            
+                
+                    <a href="../../../develop/android/startup/transfer_file_to_android.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.1.2.</b>
+                        
+                        Android文件传输
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.2.1.3" data-path="develop/android/startup/android_file_manage_and_install_apk.html">
+            
+                
+                    <a href="../../../develop/android/startup/android_file_manage_and_install_apk.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.1.3.</b>
+                        
+                        Android文件管理和apk安装
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.2.1.4" data-path="develop/android/startup/take_screenshot_in_android.html">
+            
+                
+                    <a href="../../../develop/android/startup/take_screenshot_in_android.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.1.4.</b>
+                        
+                        Android截屏和录屏
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.2.1.5" data-path="develop/android/startup/buy_in_google_play.html">
+            
+                
+                    <a href="../../../develop/android/startup/buy_in_google_play.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.1.5.</b>
+                        
+                        在Google Play购买软件
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.2.1.6" data-path="develop/android/startup/prepare_android_develop_environment.html">
+            
+                
+                    <a href="../../../develop/android/startup/prepare_android_develop_environment.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.1.6.</b>
+                        
+                        Android开发环境准备
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10.3" data-path="develop/python/index.html">
+            
+                
+                    <a href="../../../develop/python/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.3.</b>
+                        
+                        Python
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.4" data-path="develop/ruby/index.html">
+            
+                
+                    <a href="../../../develop/ruby/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.4.</b>
+                        
+                        Ruby
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.4.1" data-path="develop/ruby/startup/READMD.html">
+            
+            <span><b>10.4.1.</b> Ruby快速起步</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.4.1.1" data-path="develop/ruby/startup/rubygems_install_and_usage.html">
+            
+                
+                    <a href="../../../develop/ruby/startup/rubygems_install_and_usage.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.4.1.1.</b>
+                        
+                        RubyGems安装和使用
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10.5" data-path="develop/mac/index.html">
+            
+                
+                    <a href="../../../develop/mac/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.5.</b>
+                        
+                        Mac
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.5.1" data-path="develop/mac/textmate2_tips.html">
+            
+                
+                    <a href="../../../develop/mac/textmate2_tips.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.5.1.</b>
+                        
+                        TextMate 2使用Tips
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.5.2" data-path="develop/mac/mac_bluetooth_keyboard_for_mobile_device.html">
+            
+                
+                    <a href="../../../develop/mac/mac_bluetooth_keyboard_for_mobile_device.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.5.2.</b>
+                        
+                        使用MacBook键盘在移动设备输入
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10.6" data-path="develop/doc/index.html">
+            
+                
+                    <a href="../../../develop/doc/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.6.</b>
+                        
+                        文档
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.6.1" data-path="develop/doc/gitbook/index.html">
+            
+                
+                    <a href="../../../develop/doc/gitbook/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.6.1.</b>
+                        
+                        GitBook
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.6.1.1" data-path="develop/doc/gitbook/using_gitbook_write_book.html">
+            
+                
+                    <a href="../../../develop/doc/gitbook/using_gitbook_write_book.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.6.1.1.</b>
+                        
+                        使用GitBook撰写书籍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.6.1.2" data-path="develop/doc/gitbook/run_multi_gitbook_in_one_host.html">
+            
+                
+                    <a href="../../../develop/doc/gitbook/run_multi_gitbook_in_one_host.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.6.1.2.</b>
+                        
+                        如何在一台主机同时运行多个GitBook
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.6.1.3" data-path="develop/doc/gitbook/gitbook_discussions.html">
+            
+                
+                    <a href="../../../develop/doc/gitbook/gitbook_discussions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.6.1.3.</b>
+                        
+                        GitBook评论插件
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.6.1.4" data-path="develop/doc/gitbook/gitbook_multi_language.html">
+            
+                
+                    <a href="../../../develop/doc/gitbook/gitbook_multi_language.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.6.1.4.</b>
+                        
+                        GitBook多国语言
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.6.1.5" data-path="develop/doc/gitbook/gitbook_video.html">
+            
+                
+                    <a href="../../../develop/doc/gitbook/gitbook_video.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.6.1.5.</b>
+                        
+                        GitBook嵌入视频
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="devops/index.html">
+            
+                
+                    <a href="../../../devops/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        DevOps
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1" data-path="devops/git/index.html">
+            
+                
+                    <a href="../../../devops/git/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.</b>
+                        
+                        Git
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2" data-path="devops/gerrit/index.html">
+            
+                
+                    <a href="../../../devops/gerrit/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.</b>
+                        
+                        Gerrit
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.3" data-path="devops/gitlab/index.html">
+            
+                
+                    <a href="../../../devops/gitlab/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.3.</b>
+                        
+                        Gitlab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.4" data-path="devops/jenkins/index.html">
+            
+                
+                    <a href="../../../devops/jenkins/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.4.</b>
+                        
+                        Jenkins
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.5" data-path="devops/ansible/index.html">
+            
+                
+                    <a href="../../../devops/ansible/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.</b>
+                        
+                        Ansible
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.5.1" data-path="devops/ansible/startup/index.html">
+            
+                
+                    <a href="../../../devops/ansible/startup/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.1.</b>
+                        
+                        起步
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.5.1.1" data-path="devops/ansible/startup/install.html">
+            
+                
+                    <a href="../../../devops/ansible/startup/install.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.1.1.</b>
+                        
+                        安装
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="11.6" data-path="devops/puppet/index.html">
+            
+                
+                    <a href="../../../devops/puppet/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.6.</b>
+                        
+                        Puppet
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    本書使用 GitBook 釋出
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../../" >云图</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../../os/linux/boot/index.html" class="navigation navigation-prev " aria-label="Previous page: 启动"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../../os/linux/process/selinux/index.html" class="navigation navigation-next " aria-label="Next page: SELinux"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../../gitbook/app.js"></script>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+    
+
+    
+    <script src="../../../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
+    
+
+    
+    <script src="../../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+    
+    <script src="../../../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"disqus":{"shortName":"huatai","useIdentifier":false},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>

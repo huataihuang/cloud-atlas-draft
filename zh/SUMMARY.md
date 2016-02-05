@@ -3,8 +3,14 @@
 * [服务器](server/README.md)
 * [操作系统](os/README.md)
 	* [Linux](os/linux/README.md)
+		* [启动](os/linux/boot/README.md)
+		* [进程](os/linux/process/README.md)
+			* [SELinux](os/linux/process/selinux/README.md)
+		* [日志](os/linux/log/README.md)
+			* [logrotate日志轮转工具](os/linux/log/logrotate.md)
 		* [内核](os/linux/kernel/README.md)
 			* [Linux内核模式设置KMS](os/linux/kernel/kms.md)
+			* [进程状态标志的含义](os/linux/kernel/process_stat_indicates.md)
 * [网络](network/README.md)
     * [链路聚合](network/link_aggregation/README.md)
         * [LACP](network/link_aggregation/lacp/README.md)
@@ -71,6 +77,13 @@
 	* [Mac](develop/mac/README.md)
 		* [TextMate 2使用Tips](develop/mac/textmate2_tips.md)
 		* [使用MacBook键盘在移动设备输入](develop/mac/mac_bluetooth_keyboard_for_mobile_device.md)
+	* [文档](develop/doc/README.md)
+		* [GitBook](develop/doc/gitbook/README.md)
+			* [使用GitBook撰写书籍](develop/doc/gitbook/using_gitbook_write_book.md)
+			* [如何在一台主机同时运行多个GitBook](develop/doc/gitbook/run_multi_gitbook_in_one_host.md)
+			* [GitBook评论插件](develop/doc/gitbook/gitbook_discussions.md)
+			* [GitBook多国语言](develop/doc/gitbook/gitbook_multi_language.md)
+			* [GitBook嵌入视频](develop/doc/gitbook/gitbook_video.md)
 * [DevOps](devops/README.md)
 	* [Git](devops/git/README.md)
 	* [Gerrit](devops/gerrit/README.md)
@@ -80,15 +93,3 @@
 		* [起步](devops/ansible/startup/README.md)
 			* [安装](devops/ansible/startup/install.md)
 	* [Puppet](devops/puppet/README.md)
-
-# Git
-
-# Gerrit
-
-# GitLab
-
-# Jenkins
-
-# Ansible
-
-# Puppet
