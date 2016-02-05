@@ -29,7 +29,7 @@
 * [安全](security/README.md)
 	* [VPN](security/vpn/README.md)
 		* [在Android上使用OpenConnect连接ocserv](security/vpn/use_openconnect_to_ocserv_in_android.md)
-* [虚拟化](virtual/virtual_tech_intro.md)
+* [虚拟化](virtual/README.md)
     * [kvm](virtual/kvm/virtual_kvm_intro.md)
         * [kvm架构](virtual/kvm/virtual_kvm_infrastructure.md)
         * [kvm安装](virtual/kvm/install/virtual_kvm_install_intro.md)
@@ -77,6 +77,8 @@
 	* [Gitlab](devops/gitlab/README.md)
 	* [Jenkins](devops/jenkins/README.md)
 	* [Ansible](devops/ansible/README.md)
+		* [起步](devops/ansible/startup/README.md)
+			* [安装](devops/ansible/startup/install.md)
 	* [Puppet](devops/puppet/README.md)
 
 # Git

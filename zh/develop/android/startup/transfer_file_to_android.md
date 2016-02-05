@@ -14,6 +14,9 @@
 
 > 最高支持4GB文件传输
 
+![Android File Transfer](/img/develop/android/android_file_transfer.png)
+
+
 # 参考
 
 * [Transfer music from a computer to a device](https://support.google.com/googleplay/answer/1101500?hl=en)

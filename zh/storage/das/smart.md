@@ -14,6 +14,18 @@ S.M.A.R.T.（Self-Monitoring, Analysis and Reporting Technology）意思是自�
 
 设备必须支持SMART功能并且激活每个存储设备的SMART，这样才能有效使用工具。可以使用`smartctl`来检查是否激活了SMART支持，然后运行测试和检查测试结果。另外，可以使用`smartd`在自动运行测试和进行email通知。
 
+## 安装smartmontools
+
+* Debian
+
+		apt-get install smartmontools
+
+* CentOS/RHEL
+
+		yum install smartmontools
+
+
+
 ## smartctl
 
 `smartctl`是一个命令行工具"控制大多数ATA/SATA和SCSI/SAS硬盘和固态存储内建的SMART"。
@@ -135,6 +147,15 @@ S.M.A.R.T.（Self-Monitoring, Analysis and Reporting Technology）意思是自�
 	# 1  Short offline       Completed without error       00%     14591         -
 	# 2  Short offline       Completed without error       00%     14591         -
 	# 3  Extended offline    Completed without error       00%         8         -
+
+直接查看磁盘的健康状况
+
+	smartctl --health /dev/sda
+
+显示
+
+	=== START OF READ SMART DATA SECTION ===
+	SMART Health Status: OK
 
 输出详细的设备信息
 
@@ -343,6 +364,14 @@ DEVICESCAN (smartd scans for disks and monitors all it finds)
 
 > 这个配置非常完善，可参考
 
+# GSmartControl图形管理工具
+
+`GSmartControl`是smartctl的的图形前端，显示所有的SMART数值，并且高亮显示那些旧值或者即将故障，可以按照需要运行测试
+
+	GSmartControl main window
+
+
+
 # 参考
 
 * [Wikipedia: S.M.A.R.T.](https://en.wikipedia.org/wiki/S.M.A.R.T.)
@@ -350,6 +379,6 @@ DEVICESCAN (smartd scans for disks and monitors all it finds)
 * [Monitoring Hard Disks with SMART](http://www.linuxjournal.com/magazine/monitoring-hard-disks-smart)
 * [Get the disk health status with SMART monitor tools on Debian and Ubuntu Linux](http://www.linuxjournal.com/magazine/monitoring-hard-disks-smart)
 * [Using smartctl to get SMART status information on your hard drives](http://www.techrepublic.com/blog/linux-and-open-source/using-smartctl-to-get-smart-status-information-on-your-hard-drives/)
-* [ubuntu: Smartmontools](https://help.ubuntu.com/community/Smartmontools)
+* [ubuntu: Smartmontools](https://help.ubuntu.com/community/Smartmontools) - 本文主要参考，提供了监控个人电脑和服务器的脚本以及处理经验
 * [SMART tests with smartctl](https://www.thomas-krenn.com/en/wiki/SMART_tests_with_smartctl)
 * [Monitoring Hard Drive Health on Linux with smartmontools](https://blog.shadypixel.com/monitoring-hard-drive-health-on-linux-with-smartmontools/)

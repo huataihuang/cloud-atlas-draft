@@ -57,7 +57,7 @@
         data-chapter-title="S.M.A.R.T."
         data-filepath="storage/das/smart.md"
         data-basepath="../.."
-        data-revision="Thu Feb 04 2016 10:01:12 GMT+0800 (CST)"
+        data-revision="Fri Feb 05 2016 18:10:35 GMT+0800 (CST)"
         data-innerlanguage="zh">
     
 
@@ -579,9 +579,17 @@
             
         </li>
     
-        <li class="chapter " data-level="7" data-path="virtual/virtual_tech_intro.html">
+        <li class="chapter " data-level="7" data-path="virtual/index.html">
             
-            <span><b>7.</b> 虚拟化</span>
+                
+                    <a href="../../virtual/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        虚拟化
+                    </a>
             
             
             <ul class="articles">
@@ -636,7 +644,15 @@
     
         <li class="chapter " data-level="7.2" data-path="virtual/xen/index.html">
             
-            <span><b>7.2.</b> xen</span>
+                
+                    <a href="../../virtual/xen/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        xen
+                    </a>
             
             
             <ul class="articles">
@@ -1201,6 +1217,48 @@
                     </a>
             
             
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.5.1" data-path="devops/ansible/startup/index.html">
+            
+                
+                    <a href="../../devops/ansible/startup/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.1.</b>
+                        
+                        起步
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.5.1.1" data-path="devops/ansible/startup/install.html">
+            
+                
+                    <a href="../../devops/ansible/startup/install.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.1.1.</b>
+                        
+                        安装
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
         </li>
     
         <li class="chapter " data-level="11.6" data-path="devops/puppet/index.html">
@@ -1266,6 +1324,15 @@
 <h1 id="smartmontools">smartmontools</h1>
 <p><code>smartmontools</code>&#x8F6F;&#x4EF6;&#x5305;&#x5305;&#x542B;&#x4E86;2&#x4E2A;&#x5DE5;&#x5177;&#x7A0B;&#x5E8F;&#x6765;&#x5206;&#x6790;&#x548C;&#x76D1;&#x63A7;&#x5B58;&#x50A8;&#x8BBE;&#x5907;&#xFF1A;<code>smartctl</code>&#x548C;<code>smartd</code>&#x3002;</p>
 <p>&#x8BBE;&#x5907;&#x5FC5;&#x987B;&#x652F;&#x6301;SMART&#x529F;&#x80FD;&#x5E76;&#x4E14;&#x6FC0;&#x6D3B;&#x6BCF;&#x4E2A;&#x5B58;&#x50A8;&#x8BBE;&#x5907;&#x7684;SMART&#xFF0C;&#x8FD9;&#x6837;&#x624D;&#x80FD;&#x6709;&#x6548;&#x4F7F;&#x7528;&#x5DE5;&#x5177;&#x3002;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>smartctl</code>&#x6765;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x6FC0;&#x6D3B;&#x4E86;SMART&#x652F;&#x6301;&#xFF0C;&#x7136;&#x540E;&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;&#x548C;&#x68C0;&#x67E5;&#x6D4B;&#x8BD5;&#x7ED3;&#x679C;&#x3002;&#x53E6;&#x5916;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>smartd</code>&#x5728;&#x81EA;&#x52A8;&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;&#x548C;&#x8FDB;&#x884C;email&#x901A;&#x77E5;&#x3002;</p>
+<h2 id="&#x5B89;&#x88C5;smartmontools">&#x5B89;&#x88C5;smartmontools</h2>
+<ul>
+<li><p>Debian</p>
+<pre><code>  apt-get install smartmontools
+</code></pre></li>
+<li><p>CentOS/RHEL</p>
+<pre><code>  yum install smartmontools
+</code></pre></li>
+</ul>
 <h2 id="smartctl">smartctl</h2>
 <p><code>smartctl</code>&#x662F;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#x884C;&#x5DE5;&#x5177;&quot;&#x63A7;&#x5236;&#x5927;&#x591A;&#x6570;ATA/SATA&#x548C;SCSI/SAS&#x786C;&#x76D8;&#x548C;&#x56FA;&#x6001;&#x5B58;&#x50A8;&#x5185;&#x5EFA;&#x7684;SMART&quot;&#x3002;</p>
 <p><code>--info</code>&#x6216;<code>-i</code>&#x53C2;&#x6570;&#x5C06;&#x6253;&#x5370;&#x4E00;&#x4E2A;&#x8BBE;&#x5907;&#x7684;&#x4FE1;&#x606F;&#x53C2;&#x6570;&#xFF0C;&#x5305;&#x62EC;&#x662F;&#x5426;&#x652F;&#x6301;SMART&#x4EE5;&#x53CA;&#x662F;&#x5426;&#x6FC0;&#x6D3B;&#x4E86;&#x8BE5;&#x529F;&#x80FD;&#x3002;</p>
@@ -1360,6 +1427,11 @@ Num  Test_Description    Status                  Remaining  LifeTime(hours)  LBA
 # 1  Short offline       Completed without error       00%     14591         -
 # 2  Short offline       Completed without error       00%     14591         -
 # 3  Extended offline    Completed without error       00%         8         -
+</code></pre><p>&#x76F4;&#x63A5;&#x67E5;&#x770B;&#x78C1;&#x76D8;&#x7684;&#x5065;&#x5EB7;&#x72B6;&#x51B5;</p>
+<pre><code>smartctl --health /dev/sda
+</code></pre><p>&#x663E;&#x793A;</p>
+<pre><code>=== START OF READ SMART DATA SECTION ===
+SMART Health Status: OK
 </code></pre><p>&#x8F93;&#x51FA;&#x8BE6;&#x7EC6;&#x7684;&#x8BBE;&#x5907;&#x4FE1;&#x606F;</p>
 <pre><code>smartctl -a /dev/sda
 </code></pre><p>&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x7C7B;&#x4F3C;</p>
@@ -1529,14 +1601,17 @@ done
 </code></pre><blockquote>
 <p>&#x8FD9;&#x4E2A;&#x914D;&#x7F6E;&#x975E;&#x5E38;&#x5B8C;&#x5584;&#xFF0C;&#x53EF;&#x53C2;&#x8003;</p>
 </blockquote>
-<h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
+<h1 id="gsmartcontrol&#x56FE;&#x5F62;&#x7BA1;&#x7406;&#x5DE5;&#x5177;">GSmartControl&#x56FE;&#x5F62;&#x7BA1;&#x7406;&#x5DE5;&#x5177;</h1>
+<p><code>GSmartControl</code>&#x662F;smartctl&#x7684;&#x7684;&#x56FE;&#x5F62;&#x524D;&#x7AEF;&#xFF0C;&#x663E;&#x793A;&#x6240;&#x6709;&#x7684;SMART&#x6570;&#x503C;&#xFF0C;&#x5E76;&#x4E14;&#x9AD8;&#x4EAE;&#x663E;&#x793A;&#x90A3;&#x4E9B;&#x65E7;&#x503C;&#x6216;&#x8005;&#x5373;&#x5C06;&#x6545;&#x969C;&#xFF0C;&#x53EF;&#x4EE5;&#x6309;&#x7167;&#x9700;&#x8981;&#x8FD0;&#x884C;&#x6D4B;&#x8BD5;</p>
+<pre><code>GSmartControl main window
+</code></pre><h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
 <ul>
 <li><a href="https://en.wikipedia.org/wiki/S.M.A.R.T." target="_blank">Wikipedia: S.M.A.R.T.</a></li>
 <li><a href="https://wiki.archlinux.org/index.php/S.M.A.R.T." target="_blank">archlinux: S.M.A.R.T.</a> - &#x672C;&#x6587;&#x4E3B;&#x8981;&#x53C2;&#x8003;</li>
 <li><a href="http://www.linuxjournal.com/magazine/monitoring-hard-disks-smart" target="_blank">Monitoring Hard Disks with SMART</a></li>
 <li><a href="http://www.linuxjournal.com/magazine/monitoring-hard-disks-smart" target="_blank">Get the disk health status with SMART monitor tools on Debian and Ubuntu Linux</a></li>
 <li><a href="http://www.techrepublic.com/blog/linux-and-open-source/using-smartctl-to-get-smart-status-information-on-your-hard-drives/" target="_blank">Using smartctl to get SMART status information on your hard drives</a></li>
-<li><a href="https://help.ubuntu.com/community/Smartmontools" target="_blank">ubuntu: Smartmontools</a></li>
+<li><a href="https://help.ubuntu.com/community/Smartmontools" target="_blank">ubuntu: Smartmontools</a> - &#x672C;&#x6587;&#x4E3B;&#x8981;&#x53C2;&#x8003;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x76D1;&#x63A7;&#x4E2A;&#x4EBA;&#x7535;&#x8111;&#x548C;&#x670D;&#x52A1;&#x5668;&#x7684;&#x811A;&#x672C;&#x4EE5;&#x53CA;&#x5904;&#x7406;&#x7ECF;&#x9A8C;</li>
 <li><a href="https://www.thomas-krenn.com/en/wiki/SMART_tests_with_smartctl" target="_blank">SMART tests with smartctl</a></li>
 <li><a href="https://blog.shadypixel.com/monitoring-hard-drive-health-on-linux-with-smartmontools/" target="_blank">Monitoring Hard Drive Health on Linux with smartmontools</a></li>
 </ul>
