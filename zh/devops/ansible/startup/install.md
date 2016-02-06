@@ -63,3 +63,59 @@ Ansible也使用如下模块，需要安装
 	echo "127.0.0.1" > ~/ansible_hosts
 	export ANSIBLE_INVENTORY=~/ansible_hosts
 
+按照上述步骤完成Ansible之后，可以通过`ping`命令测试
+
+	ansible all -m ping --ask-pass
+
+# 通过Yum安装
+
+[EPEL](http://fedoraproject.org/wiki/EPEL) 6,7 提供了RPM包，也支持Fedora发行版。
+
+在CentOS 7上安装EPEL
+
+	yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+安装Ansible
+
+	yum install ansible
+
+也可以自己构建`rpm`包，在Ansible的源代码中使用如下方法构建：
+
+	git clone git://github.com/ansible/ansible.git --recursive
+	cd ./ansible
+	make rpm
+	sudo rpm -Uvh ./rpm-build/ansible-*.noarch.rpm
+
+# 通过Apt安装（Ubuntu）
+
+Ubuntu的发行包通过[PPA](https://launchpad.net/~ansible/+archive/ansible)安装
+
+	sudo apt-get install software-properties-common
+	sudo apt-add-repository ppa:ansible/ansible
+	sudo apt-get update
+	sudo apt-get install ansible
+
+同样，也可以在源代码上构建`deb`
+
+	make deb
+
+# 通过Portage安装(Gentoo)
+
+	emerge -av app-admin/ansible
+
+要安装最新版本，可能需要unmask
+
+	echo 'app-admin/ansible' >> /etc/portage/package.accept_keywords
+
+# 在Mac OS X上安装
+
+> 我的个人工作平台是Mac OS X 10.11，以下实践记录
+
+在Mac OS X平台，请使用`pip`进行安装
+
+	sudo easy_install pip
+
+然后就可以安装Ansible
+
+	sudo pip install ansible
+
