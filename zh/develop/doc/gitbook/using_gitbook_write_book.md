@@ -16,7 +16,7 @@
 
     npm install gitbook -g
 
-> 我在Mac上使用上述命令显示访问目录存在权限问题，所以改成`sudo npm install gitbook -g`
+> 请使用`nvm`来安装node，这样可以在自己的用户目录下安装和管理各种版本node，就可以避免安装系统目录node，也就不需要使用`sudo`命令。如果使用系统范围的`node.js`，需要使用命令`sudo npm install gitbook -g`
 
 安装完成后，使用以下命令验证是否安装成功
 
@@ -30,8 +30,8 @@
 
 所以重新安装一遍
 
-    sudo npm uninstall -g gitbook
-    sudo npm install -g gitbook-cli
+    npm uninstall -g gitbook
+    npm install -g gitbook-cli
 
 # 使用GitBook
 

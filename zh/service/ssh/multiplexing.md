@@ -4,7 +4,19 @@ multiplexing（多路传输）是在一根线或者一个连接上发送多个�
 
 SSH multiplexing的一个优点是克服了创建一个新的TCP连接的消耗。对于一个主机可以接受的连接数量是有限的，并且对于一些主机限制更为明显，这和主机的负载有关。并且开启一个新的连接会有明显的延迟。当使用multiplexing的是欧，重用一个已经开启的连接可以明显加速。
 
-multiplexing和独立会话的区别是，在服务器和客户端，都只看到一个进程（即使多次连接会话）。并且，在服务器和客户机上，可以看到只打开了一个TCP连接；只不过，在客户端，后建立的会话都是通过`stream`实现的。
+multiplexing和独立会话的区别是，在服务器和客户端，都只看到一个进程（即使多次连接会话）。并且，在服务器和客户机上，可以看到只打开了一个TCP连接；只不过，在客户端，后建立的会话都是通过`stream`的本地套接字来访问的。OpenSSH使用现有的TCP连接来实现多个SSH会话，这种方式降低了新建TCP连接的负载。
+
+Multiplexing的创建过程：
+
+* 设置`ControlMaster`开启一个本地Unix domain socket
+* 其余的所有的ssh命令连接都通过Unix domain socket连接到`ControlMaster`
+
+`ControlMaster`提供了以下优点：
+
+* 使用已经存在的unix socket
+* 没有新增的TCP/IP连接
+* 不再需要密钥交换
+* 不再需要认证等
 
 以下是在一个Mac OS X客户端，登陆过Linux服务器之后，关闭终端，然后又发起4次ssh登陆（没有退出）情况下的检查：
 
@@ -47,7 +59,12 @@ OpenSSH通过`ControlMaster`，`ControlPath`和`ControlPersist`配置来实现mu
 	  ControlMaster auto
 	  ControlPersist 10m
 
-上述配置，就会在`~/.ssh/controlmasters/`目录下创建控制套接字，并且`ControlMaster`设置成`auto`则会无条件接受新的连接，如果这个参数设置成`10`就只能接受10个多路会话。
+上述配置，就会在`~/.ssh/controlmasters/`目录下创建控制套接字
+
+* `Host machine1`也如果配置成`Host *`则表示匹配所有的主机，则不需要设置`HostName`
+* `ControlPath ~/.ssh/controlmasters/%r@%h:%p`设置用于共享连接的控制unix套接字路径。变量`%r`，`%h`和`%p`表示远程ssh连接的用户名，主机名和端口。
+* `ControlMaster`设置成`auto`则会无条件接受新的连接，如果这个参数设置成`10`就只能接受10个多路会话。
+* `ControlPersist 10m`设置主连接保持在后台打开的时间是10分钟。如果没有客户端连接，这个后台master连接将自动终止。
 
 > 从OpenSSH 6.7开始 `%r@%h:%p`可以合并成`%C`，这个参数会自动生成`%l%h%p%r`的哈希，优点是可以唯一标识连接并且可以
 
