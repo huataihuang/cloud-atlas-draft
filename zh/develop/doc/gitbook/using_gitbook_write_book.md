@@ -133,6 +133,19 @@ GitBook使用 `SUMMARY.md`来定义章节和子章节
         * [We love feedback](part2/feedback_please.md)
         * [Better tools for authors](part2/better_tools.md)
 
+## MarkDown
+
+[GitBook使用GitHub favorited markdown格式](http://help.gitbook.com/format/markdown.html)
+
+* 链接
+  * 可以直接引用URL `[Google官网](https://www.google.com)`
+  * 也可以引用本网站的文档，如 `[内核进程状态参考](../../../../os/linux/kernel/process_stat_indicates.md)`
+  * 或者将超链接都集中到文档末尾（假如有多个相同的链接倒是比较方便，不过我没使用这个格式）
+  
+    [You can use numbers for reference-style link definitions][1]
+	
+	[1]: http://slashdot.org
+
 # 发布
 
 * 首先在[gitbook](https://www.gitbook.com) 注册一个账号

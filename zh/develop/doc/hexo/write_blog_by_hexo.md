@@ -87,3 +87,7 @@ hexo内置支持了disqus评论功能，只需要在 `_config.yml` 配置中添�
 
 	npm update -g
 
+# 文档撰写
+
+文档采用GitHub favored Markdown格式，可以支持[表格、代码着色、高级引用](https://help.github.com/articles/working-with-advanced-formatting/)等功能，非常适合代码分享。
+

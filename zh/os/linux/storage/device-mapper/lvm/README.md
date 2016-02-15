@@ -1,0 +1,1 @@
+Linux的逻辑卷管理器（Logical Volume Manager）简称为LVM，是一个设备映射器（device mapper），目的是为Linux内核提供逻辑卷管理。LVM允许管理员在文件系统和物理存储之间创建一个元设备（meta device）来提供一个抽象层。这个元设备（也就是文件系统建立的地方）就是一个逻辑卷（logical volume），使用称为卷组（volume group）的存储池。卷组使用了一个或多个物理卷（实际的存储设备）来存储数据。

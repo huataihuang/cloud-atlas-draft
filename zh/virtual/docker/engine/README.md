@@ -1,0 +1,1 @@
+Docker Engine提供了创建Docker映像和运行Docker容器的核心功能。
