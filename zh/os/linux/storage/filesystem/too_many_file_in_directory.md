@@ -38,3 +38,5 @@ drwx------ 2 root   mail       4096 Nov 28  2006 mqueue
 Filesystem            Inodes   IUsed   IFree IUse% Mounted on
 /dev/sda3            38404096  163426 38240670    1% /
 ```
+
+[kernelnewbies](http://kernelnewbies.org)网站提供了[Ext4](http://kernelnewbies.org/Ext4)文件系统的子昊是
