@@ -15,6 +15,10 @@
 		* [存储](os/linux/storage/README.md)
 			* [LVM](os/linux/storage/lvm/README.md)
 				* [在Gentoo上使用LVM](os/linux/storage/lvm/using_lvm_on_gentoo.md)
+			* [文件系统](os/linux/storage/filesystem/README.md)
+				* [EXT文件系统文件数](os/linux/storage/filesystem/ext_filesystem_file_limit.md)
+		* [备份](os/linux/backup/READMD.md)
+			* [使用tar备份完整Linux操作系统](os/linux/backup/full_system_backup_with_tar.md)
 		* [Red Hat](os/linux/redhat/README.md)
 			* [软件包管理](os/linux/redhat/package/README.md)
 				* ["无法获得metalink"错误](os/linux/redhat/package/cannot_retrieve_metalink_for_repository.md)
@@ -61,6 +65,7 @@
             * [安装](virtual/docker/engine/install/README.md)
             	* [在RedHat安装Docker](virtual/docker/engine/install/deploy_docker_in_redhat.md)
 				* [在Gentoo安装Docker](virtual/docker/engine/install/deploy_docker_in_gentoo.md)
+					* [Docker内核支持参数说明](virtual/docker/engine/install/docker_kernel.md)
 				* [在OS X安装Docker](virtual/docker/engine/install/deploy_docker_in_osx.md)
 	* [VirtualBox](virtual/virtualbox/README.md)
 		* [Vagrant]

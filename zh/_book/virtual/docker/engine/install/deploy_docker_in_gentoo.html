@@ -37,7 +37,7 @@
         
     
     
-    <link rel="next" href="../../../../virtual/docker/engine/install/deploy_docker_in_osx.html" />
+    <link rel="next" href="../../../../virtual/docker/engine/install/docker_kernel.html" />
     
     
     <link rel="prev" href="../../../../virtual/docker/engine/install/deploy_docker_in_redhat.html" />
@@ -53,7 +53,7 @@
         data-chapter-title="在Gentoo安装Docker"
         data-filepath="virtual/docker/engine/install/deploy_docker_in_gentoo.md"
         data-basepath="../../../.."
-        data-revision="Tue Feb 16 2016 01:07:04 GMT+0800 (CST)"
+        data-revision="Tue Feb 16 2016 22:27:43 GMT+0800 (CST)"
         data-innerlanguage="">
     
 
@@ -318,19 +318,83 @@
             
         </li>
     
+        <li class="chapter " data-level="2.1.5.2" data-path="os/linux/storage/filesystem/index.html">
+            
+                
+                    <a href="../../../../os/linux/storage/filesystem/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.2.</b>
+                        
+                        文件系统
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.5.2.1" data-path="os/linux/storage/filesystem/ext_filesystem_file_limit.html">
+            
+                
+                    <a href="../../../../os/linux/storage/filesystem/ext_filesystem_file_limit.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.2.1.</b>
+                        
+                        EXT文件系统文件数
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
         </li>
     
-        <li class="chapter " data-level="2.1.6" data-path="os/linux/redhat/index.html">
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="os/linux/backup/READMD.html">
+            
+            <span><b>2.1.6.</b> 备份</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.6.1" data-path="os/linux/backup/full_system_backup_with_tar.html">
+            
+                
+                    <a href="../../../../os/linux/backup/full_system_backup_with_tar.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.6.1.</b>
+                        
+                        使用tar备份完整Linux操作系统
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.7" data-path="os/linux/redhat/index.html">
             
                 
                     <a href="../../../../os/linux/redhat/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>2.1.6.</b>
+                            <b>2.1.7.</b>
                         
                         Red Hat
                     </a>
@@ -339,14 +403,14 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1.6.1" data-path="os/linux/redhat/package/index.html">
+        <li class="chapter " data-level="2.1.7.1" data-path="os/linux/redhat/package/index.html">
             
                 
                     <a href="../../../../os/linux/redhat/package/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>2.1.6.1.</b>
+                            <b>2.1.7.1.</b>
                         
                         软件包管理
                     </a>
@@ -355,14 +419,14 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1.6.1.1" data-path="os/linux/redhat/package/cannot_retrieve_metalink_for_repository.html">
+        <li class="chapter " data-level="2.1.7.1.1" data-path="os/linux/redhat/package/cannot_retrieve_metalink_for_repository.html">
             
                 
                     <a href="../../../../os/linux/redhat/package/cannot_retrieve_metalink_for_repository.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>2.1.6.1.1.</b>
+                            <b>2.1.7.1.1.</b>
                         
                         &quot;无法获得metalink&quot;错误
                     </a>
@@ -375,14 +439,14 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.6.2" data-path="os/linux/redhat/daemon_tips.html">
+        <li class="chapter " data-level="2.1.7.2" data-path="os/linux/redhat/daemon_tips.html">
             
                 
                     <a href="../../../../os/linux/redhat/daemon_tips.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>2.1.6.2.</b>
+                            <b>2.1.7.2.</b>
                         
                         RHEL/CentOS启动服务Tips
                     </a>
@@ -1044,6 +1108,27 @@
                         在Gentoo安装Docker
                     </a>
             
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.3.1.1.2.1" data-path="virtual/docker/engine/install/docker_kernel.html">
+            
+                
+                    <a href="../../../../virtual/docker/engine/install/docker_kernel.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.1.1.2.1.</b>
+                        
+                        Docker内核支持参数说明
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -2010,6 +2095,7 @@
         [*]   Device controller for cgroups
         [*]   Cpuset support
         [*]   Simple CPU accounting cgroup subsystem
+        [*]   HugeTLB Resource Controller for Control Groups
         [*]   Enable perf_event per-cpu per-container group (cgroup) monitoring
         [*]   Group CPU scheduler  ---&gt;
             [*]   Group scheduling for SCHED_OTHER
@@ -2035,18 +2121,23 @@
             &lt;*&gt;   IPv4 NAT
             &lt;*&gt;     MASQUERADE target support
         &lt;*&gt; 802.1d Ethernet Bridging
+        [*] QoS and/or fair queueing  ---&gt;
+            &lt;M&gt;   Control Group Classifier
+        [*] Network priority cgroup
 Device Drivers  ---&gt;
     [*] Multiple devices driver support (RAID and LVM)  ---&gt;
         &lt;*&gt;   Device mapper support
         &lt;*&gt;     Thin provisioning target
     [*] Network device support  ---&gt;
         [*]   Network core driver support
+        &lt;*&gt;     MAC-VLAN support
         &lt;*&gt;     Virtual ethernet pair device
        Character devices  ---&gt;
         -*- Enable TTY
         -*-   Unix98 PTY support
         [*]     Support multiple instances of devpts
-</code></pre><pre><code>*   CONFIG_MACVLAN
+</code></pre><p><strong>&#x6CE8;&#x610F;&#xFF1A;&#x5728;<code>emerge app-emulation/docker</code>&#x4F1A;&#x63D0;&#x793A;&#x5185;&#x6838;&#x53C2;&#x6570;&#x662F;&#x5426;&#x6EE1;&#x8DB3;&#x8981;&#x6C42;</strong></p>
+<pre><code>*   CONFIG_MACVLAN
 *   CONFIG_VETH
 *   CONFIG_BRIDGE
 *   CONFIG_BRIDGE_NETFILTER
@@ -2057,11 +2148,45 @@ Device Drivers  ---&gt;
 *   CONFIG_CGROUP_NET_PRIO
 *   CONFIG_BLK_DEV_DM
 *   CONFIG_DM_THIN_PROVISIONING
-</code></pre><h1 id="&#x542F;&#x52A8;docker">&#x542F;&#x52A8;Docker</h1>
+</code></pre><blockquote>
+<p>&#x6709;&#x5173;&#x5185;&#x6838;&#x53C2;&#x6570;&#x53C2;&#x8003; <a href="docker_kernel.html">Docker&#x5185;&#x6838;&#x652F;&#x6301;&#x53C2;&#x6570;&#x8BF4;&#x660E;</a></p>
+</blockquote>
+<h1 id="&#x7F16;&#x8BD1;&#x5B89;&#x88C5;docker">&#x7F16;&#x8BD1;&#x5B89;&#x88C5;Docker</h1>
+<pre><code class="lang-bash">emerge --ask app-emulation/docker
+</code></pre>
+<h1 id="&#x542F;&#x52A8;docker">&#x542F;&#x52A8;Docker</h1>
 <p>&#x786E;&#x4FDD;&#x5185;&#x6838;&#x5DF2;&#x7ECF;&#x5305;&#x542B;&#x4E86;&#x5FC5;&#x8981;&#x7684;&#x6A21;&#x5757;&#x548C;&#x914D;&#x7F6E;&#xFF08;&#x5982;&#x53EF;&#x9009;&#x7684;&#x7684;<code>device-mapper</code>&#xFF0C;<code>AUFS</code>&#x6216;<code>Btrfs</code>&#xFF09;</p>
 <p>&#x8981;&#x4F7F;&#x7528;Docker&#xFF0C;&#x9700;&#x8981;&#x4EE5; <strong>root</strong> &#x8EAB;&#x4EFD;&#x8FD0;&#x884C;<code>docker</code>&#x670D;&#x52A1;&#x3002;&#x8981;&#x4EE5; <strong>non-root</strong> &#x7528;&#x6237;&#x8EAB;&#x4EFD;&#x8FD0;&#x884C;Docker&#xFF0C;&#x5219;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x5982;&#x4E0B;&#x547D;&#x4EE4;&#x5C06;&#x81EA;&#x5DF1;&#x52A0;&#x5165;&#x5230;<code>docker</code>&#x7EC4;</p>
-<pre><code>sudo usermod -a -G docker USER
-</code></pre><h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
+<pre><code class="lang-bash">sudo usermod <span class="hljs-operator">-a</span> -G docker USER
+</code></pre>
+<h2 id="openrc">OpenRC</h2>
+<p>&#x5982;&#x679C;&#x4F7F;&#x7528;OpenRC&#x7BA1;&#x7406;&#x542F;&#x52A8;&#x670D;&#x52A1;&#xFF0C;&#x5219;&#x4F7F;&#x7528;&#x5982;&#x4E0B;&#x547D;&#x4EE4;&#x542F;&#x52A8;<code>docker</code> deamon</p>
+<pre><code class="lang-bash">sudo /etc/init.d/docker start
+</code></pre>
+<p>&#x5E76;&#x8BBE;&#x7F6E;&#x7CFB;&#x7EDF;&#x542F;&#x52A8;&#x65F6;&#x542F;&#x52A8;<code>docker</code></p>
+<pre><code class="lang-bash">sudo rc-update add docker
+</code></pre>
+<h2 id="systemd">systemd</h2>
+<p>&#x4F7F;&#x7528;<code>systemd</code>&#x7BA1;&#x7406;&#x670D;&#x52A1;&#xFF0C;&#x5219;&#x4F7F;&#x7528;&#x5982;&#x4E0B;&#x547D;&#x4EE4;</p>
+<pre><code class="lang-bash">sudo systemctl start docker
+</code></pre>
+<p>&#x8BBE;&#x7F6E;&#x542F;&#x52A8;&#x65F6;&#x542F;&#x52A8;</p>
+<pre><code class="lang-bash">sudo systemctl <span class="hljs-built_in">enable</span> docker
+</code></pre>
+<p>&#x542F;&#x52A8;&#x540E;&#x68C0;&#x67E5;&#x670D;&#x52A1;&#x8FDB;&#x7A0B; <code>ps aux | grep docker</code> &#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5982;&#x4E0B;&#x8FDB;&#x7A0B;</p>
+<pre><code class="lang-bash">root      <span class="hljs-number">1914</span>  <span class="hljs-number">2.2</span>  <span class="hljs-number">0.8</span> <span class="hljs-number">328408</span> <span class="hljs-number">31220</span> ?        Ssl  <span class="hljs-number">22</span>:<span class="hljs-number">26</span>   <span class="hljs-number">0</span>:<span class="hljs-number">00</span> /usr/bin/docker daemon -H fd://
+</code></pre>
+<h1 id="&#x5378;&#x8F7D;docker">&#x5378;&#x8F7D;docker</h1>
+<p>Gentoo Linux&#x5378;&#x8F7D;docker</p>
+<pre><code class="lang-bash">sudo emerge -cav app-emulation/docker
+</code></pre>
+<p>&#x8981;&#x5B8C;&#x6574;&#x5378;&#x8F7D;Docker&#x8F6F;&#x4EF6;&#x5305;&#x548C;&#x76F8;&#x5173;&#x4E0D;&#x518D;&#x9700;&#x8981;&#x7684;&#x4F9D;&#x8D56;&#x8F6F;&#x4EF6;&#x5305;</p>
+<pre><code class="lang-bash">sudo emerge -C app-emulation/docker
+</code></pre>
+<p>&#x4E0A;&#x8FF0;&#x547D;&#x4EE4;&#x4E0D;&#x4F1A;&#x5220;&#x9664;&#x6620;&#x50CF;&#x3001;&#x5BB9;&#x5668;&#x3001;&#x5377;&#x6216;&#x8005;&#x7528;&#x6237;&#x521B;&#x5EFA;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x3002;&#x5982;&#x679C;&#x9700;&#x8981;&#x5220;&#x9664;&#x6240;&#x6709;&#x7684;&#x6620;&#x50CF;&#x3001;&#x5BB9;&#x5668;&#x548C;&#x5377;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5982;&#x4E0B;&#x547D;&#x4EE4;</p>
+<pre><code class="lang-bash">rm -rf /var/lib/docker
+</code></pre>
+<h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
 <ul>
 <li><a href="https://docs.docker.com/engine/installation/linux/gentoolinux/" target="_blank">Docker Docs - Installation on Gentoo</a></li>
 <li><a href="https://wiki.gentoo.org/wiki/Docker" target="_blank">Gentoo Linux wiki: Docker</a></li>
@@ -2079,7 +2204,7 @@ Device Drivers  ---&gt;
         <a href="../../../../virtual/docker/engine/install/deploy_docker_in_redhat.html" class="navigation navigation-prev " aria-label="Previous page: 在RedHat安装Docker"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../../../virtual/docker/engine/install/deploy_docker_in_osx.html" class="navigation navigation-next " aria-label="Next page: 在OS X安装Docker"><i class="fa fa-angle-right"></i></a>
+        <a href="../../../../virtual/docker/engine/install/docker_kernel.html" class="navigation navigation-next " aria-label="Next page: Docker内核支持参数说明"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

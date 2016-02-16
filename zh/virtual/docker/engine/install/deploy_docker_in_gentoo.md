@@ -34,6 +34,7 @@ General setup  --->
         [*]   Device controller for cgroups
         [*]   Cpuset support
         [*]   Simple CPU accounting cgroup subsystem
+		[*]   HugeTLB Resource Controller for Control Groups
         [*]   Enable perf_event per-cpu per-container group (cgroup) monitoring
         [*]   Group CPU scheduler  --->
             [*]   Group scheduling for SCHED_OTHER
@@ -59,12 +60,16 @@ General setup  --->
             <*>   IPv4 NAT
             <*>     MASQUERADE target support
         <*> 802.1d Ethernet Bridging
+		[*] QoS and/or fair queueing  --->
+			<M>   Control Group Classifier
+		[*] Network priority cgroup
 Device Drivers  --->
     [*] Multiple devices driver support (RAID and LVM)  --->
         <*>   Device mapper support
         <*>     Thin provisioning target
     [*] Network device support  --->
         [*]   Network core driver support
+		<*>     MAC-VLAN support
         <*>     Virtual ethernet pair device
        Character devices  --->
         -*- Enable TTY
@@ -72,6 +77,7 @@ Device Drivers  --->
         [*]     Support multiple instances of devpts
 ```
 
+**注意：在`emerge app-emulation/docker`会提示内核参数是否满足要求**
 
     *   CONFIG_MACVLAN
     *   CONFIG_VETH
@@ -85,14 +91,77 @@ Device Drivers  --->
     *   CONFIG_BLK_DEV_DM
     *   CONFIG_DM_THIN_PROVISIONING
 
+> 有关内核参数参考 [Docker内核支持参数说明](docker_kernel.md)
+
+# 编译安装Docker
+
+```bash
+emerge --ask app-emulation/docker
+```
+
 # 启动Docker
 
 确保内核已经包含了必要的模块和配置（如可选的的`device-mapper`，`AUFS`或`Btrfs`）
 
 要使用Docker，需要以 **root** 身份运行`docker`服务。要以 **non-root** 用户身份运行Docker，则需要使用如下命令将自己加入到`docker`组
 
-	sudo usermod -a -G docker USER
+```bash
+sudo usermod -a -G docker USER
+```
 
+## OpenRC
+
+如果使用OpenRC管理启动服务，则使用如下命令启动`docker` deamon
+
+```bash
+sudo /etc/init.d/docker start
+```
+
+并设置系统启动时启动`docker`
+
+```bash
+sudo rc-update add docker
+```
+
+## systemd
+
+使用`systemd`管理服务，则使用如下命令
+
+```bash
+sudo systemctl start docker
+```
+
+设置启动时启动
+
+```bash
+sudo systemctl enable docker
+```
+
+启动后检查服务进程 `ps aux | grep docker` 可以看到如下进程
+
+```bash
+root      1914  2.2  0.8 328408 31220 ?        Ssl  22:26   0:00 /usr/bin/docker daemon -H fd://
+```
+
+# 卸载docker
+
+Gentoo Linux卸载docker
+
+```bash
+sudo emerge -cav app-emulation/docker
+```
+
+要完整卸载Docker软件包和相关不再需要的依赖软件包
+
+```bash
+sudo emerge -C app-emulation/docker
+```
+
+上述命令不会删除映像、容器、卷或者用户创建的配置文件。如果需要删除所有的映像、容器和卷，可以使用如下命令
+
+```bash
+rm -rf /var/lib/docker
+```
 
 # 参考
 
