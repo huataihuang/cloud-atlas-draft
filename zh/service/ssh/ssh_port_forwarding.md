@@ -16,6 +16,32 @@ ssh端口转发提供了强大的天然安全加密通道（tunnel），甚至�
 
 这样就可以通过`ssh -p 2201 localhost`直接ssh访问到`web-1`系统。
 
+# ssh动态端口转发
+
+```bash
+ssh -C -D 8123 SERVER_IP
+```
+
+`-D`参数提供了动态转发，也就是连接了服务器之后，本地`localhost`会监听`8123`端口，所有通过socket方式访问本地`8123`端口的流量都会转发到远程服务器，通过远程服务器访问Internet。
+
+# 设置操作系统网络通过socks代理
+
+通过[ssh -D动态端口转发](../../../service/ssh/ssh_port_forwarding.md)可以让firefox这样的浏览器通过socket代理自由访问internet，那么`npm`是否也能这样呢？
+
+然而`npm`不支持socket代理，需要使用第三方的工具，如`dsocks`（BSD/Mac OS X）或者`tsocks`（Linux）
+
+	git clone https://github.com/dugsong/dsocks
+	cd dsocks
+	make -f GNUMakefile
+
+> 不过，在最新的MacOSX10.11无法完成编译
+
+[proxifiler](https://www.proxifier.com/)提供了在Windows和Mac下的proxy client，价格比较昂贵，需要$39.95。不过，这个软件提供了1个月的试用期，临时使用也足够了。
+
+> `proxifiler`非常好用，提供了每个访问代理的服务进程的监控，可以看到自己客户端每个访问连接和数据流量。此外，提供了一个规则编辑器，可以设置哪些需要代理，哪些不需要代理，确实非常方便使用。
+
+如果简单的代理方式，其实可以使用Mac OS X自己内建代理设置（在网络设置中有个Proxy设置），只是是设置方法不是很清晰。
+
 # 参考
 
 * [SSH: More than secure shell](http://matt.might.net/articles/ssh-hacks/)
