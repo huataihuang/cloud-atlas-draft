@@ -53,7 +53,7 @@
         data-chapter-title="在OS X安装Docker"
         data-filepath="virtual/docker/engine/install/deploy_docker_in_osx.md"
         data-basepath="../../../.."
-        data-revision="Wed Feb 17 2016 23:48:54 GMT+0800 (CST)"
+        data-revision="Thu Feb 18 2016 10:13:30 GMT+0800 (CST)"
         data-innerlanguage="">
     
 
@@ -2143,6 +2143,54 @@
 <h1 id="mac-os-x&#x8FD0;&#x884C;docker&#x7684;&#x67B6;&#x6784;">Mac OS X&#x8FD0;&#x884C;Docker&#x7684;&#x67B6;&#x6784;</h1>
 <p>&#x5728;OS X&#x4E2D;&#xFF0C;<code>docker</code>&#x670D;&#x52A1;&#x5E76;&#x4E0D;&#x662F;&#x76F4;&#x63A5;&#x8FD0;&#x884C;&#x5728;&#x539F;&#x751F;&#x72B6;&#x6001;&#xFF08;&#x4F8B;&#x5982;Linux&#x4E2D;&#x662F;&#x76F4;&#x63A5;&#x8FD0;&#x884C;&#x5728;&#x7269;&#x7406;&#x4E3B;&#x673A;Linux&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF09;&#xFF0C;&#x800C;&#x662F;&#x8FD0;&#x884C;&#x5728;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;<code>default</code>&#x7684;Linux&#x865A;&#x62DF;&#x673A;&#x3002;&#x8FD9;&#x4E2A;<code>default</code>&#x865A;&#x62DF;&#x673A;&#x662F;&#x4E00;&#x4E2A;&#x5728;Mac OS X&#x4E2D;&#x53EA;&#x8FD0;&#x884C;Docker&#x670D;&#x52A1;&#x7684;&#x8F7B;&#x91CF;&#x7EA7;Linux&#x865A;&#x62DF;&#x673A;&#x3002;&#x8FD9;&#x4E2A;&#x865A;&#x62DF;&#x673A;&#x5B8C;&#x5168;&#x8FD0;&#x884C;&#x5728;&#x5185;&#x5B58;&#x4E2D;&#xFF0C;&#x4E0B;&#x8F7D;&#x5927;&#x5C0F;&#x53EA;&#x6709;24MB&#xFF0C;&#x542F;&#x52A8;&#x53EA;&#x9700;&#x8981;5&#x79D2;&#x949F;&#x3002;</p>
 <p><img src="../../../../img/virtual/docker/mac_docker_host.svg" alt="OS X&#x4E2D;&#x8FD0;&#x884C;Docker"></p>
+<p>&#x8FD9;&#x4E2A;&#x8FD0;&#x884C;&#x5728;OS X&#x4E2D;&#x7684;Docker&#x4E3B;&#x673A;&#x5730;&#x5740;&#x5C31;&#x662F;Linux&#x865A;&#x62DF;&#x673A;&#x7684;&#x5730;&#x5740;&#x3002;&#x5F53;&#x4F7F;&#x7528;<code>docker-machine</code>&#x542F;&#x52A8;&#x865A;&#x62DF;&#x673A;&#xFF0C;&#x8FD9;&#x4E2A;&#x865A;&#x62DF;&#x673A;&#x88AB;&#x5206;&#x914D;&#x4E00;&#x4E2A;IP&#x5730;&#x5740;&#x3002;&#x5F53;&#x8FD9;&#x4E2A;&#x865A;&#x62DF;&#x673A;&#x4E2D;&#x8FD0;&#x884C;&#x7684;&#x5BB9;&#x5668;&#x542F;&#x52A8;&#x65F6;&#xFF0C;&#x8FD9;&#x4E2A;&#x5BB9;&#x5668;&#x7684;&#x7AEF;&#x53E3;&#x88AB;&#x5F71;&#x5C04;&#x5230;&#x865A;&#x62DF;&#x673A;&#x7684;&#x5BF9;&#x5916;&#x7AEF;&#x53E3;&#x3002;&#x8FD9;&#x6837;&#xFF0C;&#x7528;&#x6237;&#x5C31;&#x80FD;&#x591F;&#x901A;&#x8FC7;&#x8BBF;&#x95EE;&#x865A;&#x62DF;&#x673A;&#x7684;&#x5BF9;&#x5916;&#x7AEF;&#x53E3;&#x8BBF;&#x95EE;&#x5230;&#x5BB9;&#x5668;&#x4E2D;&#x7684;&#x670D;&#x52A1;&#x3002;</p>
+<h1 id="&#x5B89;&#x88C5;">&#x5B89;&#x88C5;</h1>
+<p>&#x5982;&#x679C;&#x5DF2;&#x7ECF;&#x8FD0;&#x884C;&#x4E86;VirtualBox&#xFF0C;&#x5FC5;&#x987B;&#x5728;&#x8FD0;&#x884C;Docker Toolbox&#x5B89;&#x88C5;&#x524D;&#x5173;&#x95ED;&#x8FD9;&#x4E2A;Virtualbox</p>
+<ul>
+<li>&#x4ECE;<a href="https://www.docker.com/products/docker-toolbox" target="_blank">Docker Toolbox</a>&#x7F51;&#x7AD9;&#x4E0B;&#x8F7D;&#x5B89;&#x88C5;&#x5305;</li>
+<li>&#x542F;&#x52A8;Docker Toolbox&#x5B89;&#x88C5;</li>
+</ul>
+<p><img src="../../../../img/virtual/docker/docker_toolbox_install_1.png" alt="Docker Toolbox&#x5B89;&#x88C5;"></p>
+<ul>
+<li>&#x5B89;&#x88C5;&#x6700;&#x540E;&#x6B65;&#x9AA4;&#x662F;<code>Quick Start</code>&#x6B65;&#x9AA4;&#xFF0C;&#x53EF;&#x4EE5;&#x9009;&#x62E9;&#x542F;&#x52A8;Docker&#x7684;&#x65B9;&#x5F0F;&#x3002;&#x8FD9;&#x91CC;&#x9009;&#x62E9;<code>Kitmatic</code>&#x56FE;&#x5F62;&#x7BA1;&#x7406;&#x5668;</li>
+</ul>
+<p><img src="../../../../img/virtual/docker/docker_toolbox_install_2.png" alt="Docker Toolbox&#x5B89;&#x88C5;"></p>
+<blockquote>
+<p><a href="https://docs.docker.com/kitematic/userguide/" target="_blank">Kitematic</a>&#x662F;&#x8FD0;&#x884C;&#x5728;Mac&#x548C;Windows&#x5E73;&#x53F0;&#x7684;Docker GUI&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x65B9;&#x4FBF;&#x7BA1;&#x7406;&#x548C;&#x4F7F;&#x7528;Docker&#x7684;&#x64CD;&#x4F5C;&#x754C;&#x9762;&#x3002;</p>
+</blockquote>
+<p>&#x70B9;&#x51FB;&#x9009;&#x62E9;<code>Kitematic</code>&#x5219;&#x5F00;&#x59CB;&#x4E0B;&#x8F7D;&#x548C;&#x521D;&#x59CB;&#x5316;&#x6700;&#x5C0F;&#x5316;&#x7684;<code>docker-machine</code>&#x865A;&#x62DF;&#x673A;</p>
+<p><img src="../../../../img/virtual/docker/docker_toolbox_install_3.png" alt="Docker Toolbox&#x5B89;&#x88C5;"></p>
+<ul>
+<li>&#x9009;&#x62E9;&#x767B;&#x5F55;&#xFF0C;&#x767B;&#x5F55;&#x5230;Docker&#x516C;&#x5171;&#x7684;&#x8F6F;&#x4EF6;&#x4ED3;&#x5E93;&#xFF08;&#x6216;&#x5728;&#x7EBF;&#x6CE8;&#x518C;&#xFF09;&#xFF0C;&#x767B;&#x5F55;&#x4EE5;&#x540E;&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;<code>Kitematic</code>&#x63D0;&#x4F9B;&#x4E86;&#x5F88;&#x591A;&#x6D41;&#x884C;&#x7684;docker&#x5BB9;&#x5668;&#xFF0C;&#x76F4;&#x63A5;&#x53EF;&#x4EE5;&#x5B89;&#x88C5;&#xFF0C;&#x65B9;&#x4FBF;&#x8FDB;&#x884C;&#x5F00;&#x53D1;&#x73AF;&#x5883;&#x90E8;&#x7F72;</li>
+</ul>
+<p><img src="../../../../img/virtual/docker/browse-images.png" alt="Docker Toolbox&#x5B89;&#x88C5;"></p>
+<blockquote>
+<p>&#x8FD9;&#x91CC;&#x70B9;&#x51FB;<code>hello-world-nginx</code>&#x5B89;&#x88C5;&#x4E00;&#x4E2A;&#x6848;&#x4F8B;&#x5BB9;&#x5668;</p>
+</blockquote>
+<h1 id="&#x5FEB;&#x901F;&#x8D77;&#x6B65;">&#x5FEB;&#x901F;&#x8D77;&#x6B65;</h1>
+<ul>
+<li>&#x70B9;&#x51FB;&#x65B0;&#x521B;&#x5EFA;&#x7684;<code>hello-world-nginx</code>&#x5BB9;&#x5668;&#x7684;&#x5377;</li>
+</ul>
+<p><img src="../../../../img/virtual/docker/hello-world-nginx.png" alt="Docker Toolbox&#x5B89;&#x88C5;"></p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x8FD9;&#x4E2A;&#x5377;&#x5C31;&#x662F;&#x672C;&#x5730;&#x76EE;&#x5F55;<code>~/Documents/Kitematic/hello-world-nginx/website_files</code>&#x76EE;&#x5F55;&#x3002;&#x6240;&#x6709;&#x5728;&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x4E0B;&#x6DFB;&#x52A0;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x90FD;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8FD9;&#x4E2A;&#x5BB9;&#x5668;&#x4E2D;&#x8FD0;&#x884C;&#x7684;nginx&#x8BBF;&#x95EE;&#x3002;</p>
+<ul>
+<li>&#x67E5;&#x770B;&#x5BB9;&#x5668;&#x7AEF;&#x53E3;&#x6620;&#x5C04;</li>
+</ul>
+<p>&#x70B9;&#x51FB;<code>hello-world-nginx</code>&#x5BB9;&#x5668;&#x7684;<code>Settings</code></p>
+<p><img src="../../../../img/virtual/docker/hello-world-nginx_setting.png" alt="Docker Toolbox&#x5B89;&#x88C5;"></p>
+<p>&#x7136;&#x540E;&#x70B9;&#x51FB;<code>Ports</code>&#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;Docker Toolbox&#x5DF2;&#x7ECF;&#x6620;&#x5C04;&#x597D;&#x8BBF;&#x95EE;&#x5BB9;&#x5668;&#x4E2D;nginx&#x670D;&#x52A1;&#x7684;IP&#x5730;&#x5740;&#x548C;&#x7AEF;&#x53E3;<code>192.168.99.100:32769</code></p>
+<p><img src="../../../../img/virtual/docker/hello-world-nginx_setting_port.png" alt="Docker Toolbox&#x5B89;&#x88C5;"></p>
+<p>&#x6B64;&#x65F6;&#x6253;&#x5F00;&#x6D4F;&#x89C8;&#x5668;&#xFF0C;&#x8BBF;&#x95EE; <a href="http://192.168.99.100:32769" target="_blank">http://192.168.99.100:32769</a> &#x5C31;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x521D;&#x59CB;&#x9875;&#x9762;</p>
+<p><img src="../../../../img/virtual/docker/hello-world-nginx_view.png" alt="Docker Toolbox&#x5B89;&#x88C5;"></p>
+<h1 id="&#x80CC;&#x540E;&#x7684;virtualbox">&#x80CC;&#x540E;&#x7684;VirtualBox</h1>
+<p>&#x5982;&#x4E0A;&#x6240;&#x8FF0;&#xFF0C;Docker&#x5BB9;&#x5668;&#x662F;&#x8FD0;&#x884C;&#x5728;VirtualBox&#x865A;&#x62DF;&#x673A;&#x4E2D;&#x7684;&#xFF0C;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x6253;&#x5F00;VirtualBox&#x7BA1;&#x7406;&#x5668;&#x6765;&#x770B;&#x770B;&#x8FD9;&#x4E2A;&#x865A;&#x62DF;&#x673A;&#x7684;&#x8FD0;&#x884C;&#x3002;</p>
+<p><img src="../../../../img/virtual/docker/hello-world-nginx_virtualbox.png" alt="Docker Toolbox&#x5B89;&#x88C5;"></p>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x8FD9;&#x662F;&#x4E00;&#x4E2A;&#x540D;&#x4E3A;<code>default</code>&#x7684;Linux&#x865A;&#x62DF;&#x673A;&#x3002;&#x53CC;&#x51FB;&#x8FD9;&#x4E2A;<code>default</code>&#x865A;&#x62DF;&#x673A;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x8FD9;&#x4E2A;&#x865A;&#x62DF;&#x673A;&#x7684;&#x63A7;&#x5236;&#x53F0;&#x754C;&#x9762;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5982;&#x540C;&#x666E;&#x901A;&#x7684;VirtualBox&#x865A;&#x62DF;&#x4E8E;&#x884C;&#x7684;Linux&#x4E00;&#x6837;&#x8FDB;&#x884C;&#x64CD;&#x4F5C;&#x3002;</p>
+<p><img src="../../../../img/virtual/docker/hello-world-nginx_linux.png" alt="Docker Toolbox&#x5B89;&#x88C5;"></p>
+<h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
+<ul>
+<li><a href="https://docs.docker.com/engine/installation/mac/" target="_blank">Installation on Mac OS X</a></li>
+</ul>
 
                     
                     </section>
