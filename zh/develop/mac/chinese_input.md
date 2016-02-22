@@ -21,8 +21,6 @@ Mac OS X虽然是非常优雅，但是不知道为什么，这么多年，中文
 * 词频选择非常好，对于IT技术工作者非常适用
 * 默认对于`iTerm`这样的终端程序关闭中文输入，这对Linux维护工作非常方便
 
-> 详细的特性介绍和对比参考[]
-
 # 使用Tips
 
 第一个推荐的Tips，就是上手如何将默认的繁体输入切换为简体输入：
@@ -31,7 +29,7 @@ Mac OS X虽然是非常优雅，但是不知道为什么，这么多年，中文
 
 ![鼠须管输入简体中文](/img/develop/mac/squirrel_input_simple_chinese.png)
 
-详细的设置请参考 [安装及配置 Mac 上的 Rime 输入法——鼠鬚管 (Squirrel)](http://www.dreamxu.com/install-config-squirrel/)
+> 详细的特性介绍和对比参考[安装及配置 Mac 上的 Rime 输入法——鼠鬚管 (Squirrel)](http://www.dreamxu.com/install-config-squirrel/)
 
 # 图形化的配置工具SCU
 

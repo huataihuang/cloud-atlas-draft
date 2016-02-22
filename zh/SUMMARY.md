@@ -66,6 +66,7 @@
         * [Docker Engine](virtual/docker/engine/README.md)
             * [安装](virtual/docker/engine/install/README.md)
             	* [在RedHat安装Docker](virtual/docker/engine/install/deploy_docker_in_redhat.md)
+				* [在Docker中运行CentOS](virtual/docker/engine/install/docker_run_centos.md)
 				* [在Gentoo安装Docker](virtual/docker/engine/install/deploy_docker_in_gentoo.md)
 					* [Docker内核支持参数说明](virtual/docker/engine/install/docker_kernel.md)
 				* [在OS X安装Docker](virtual/docker/engine/install/deploy_docker_in_osx.md)

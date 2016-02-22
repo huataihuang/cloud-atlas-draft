@@ -28,7 +28,7 @@
 
 在`SDK Manager`中，默认选择安装SDK 6，使用默认安装的软件包就可以开发Android 6的应用软件了，其中也包含了`Android SDK Platform-tools`。
 
-> 上述安装过程即满足了刷新Android Image需求，同时也是[准备Android开发环境](prepare_android_develop_environment.md)的过程
+> 上述安装过程即满足了刷新Android Image需求，同时也是准备Android开发环境。
 
 
 # 参考

@@ -6,7 +6,7 @@
 
 # 强制升级
 
-开机以后，因为网络没发就绪（在公司内网需要安装802.1x认证的安全软件），所以跳过了Google注册。网络就绪以后，通过[VPN翻墙连接到Goolge注册账号](prepare_android_develop_environment.md)，完成后依然发现在`Setting => About phone => System updates`中显示
+开机以后，因为网络没发就绪（在公司内网需要安装802.1x认证的安全软件），所以跳过了Google注册。网络就绪以后，通过[VPN翻墙连接到Goolge注册账号](android_develop_environment.md)，完成后依然发现在`Setting => About phone => System updates`中显示
 
 	Your system is up to date.
 	Last checked for update on 1/1/1970
@@ -76,7 +76,7 @@
 
 ![Android SDK Platform-tools](/img/develop/android/sdk_manager_platform-tools.png)
 
-> 上述安装过程即满足了刷新Android Image需求，同时也是[准备Android开发环境](prepare_android_develop_environment.md)的过程
+> 上述安装过程即满足了刷新Android Image需求，同时也是[准备Android开发环境](android_develop_environment.md)的过程
 
 如果使用Mac(如我)在 `~/.bash_profile` 配置中添加
 

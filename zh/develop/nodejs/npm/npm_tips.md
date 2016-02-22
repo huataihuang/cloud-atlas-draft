@@ -19,7 +19,7 @@ Error: connect ECONNREFUSED 131.103.20.167:443
 
 不过，可以看到其目标是希望将 `phantomjs-1.9.8-macosx.zip` 下载到 `/var/folders/7y/g54fp5257d12brnrq3zccwth0000gn/T/phantomjs` 目录下处理。所以一个取巧的方法，是通过翻墙方式，将`phantomjs-1.9.8-macosx.zip`存放到这个目录下，再执行安装命令就可以完成。
 
-> 另外一种方式是通过[ssh端口转发](service/ssh/ssh_port_forwarding.md)通过socks代理方式自由访问internet。
+> 另外一种方式是通过[ssh端口转发](../../../service/ssh/ssh_port_forwarding.md)通过socks代理方式自由访问internet。
 
 # 参考
 

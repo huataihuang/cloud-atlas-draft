@@ -262,8 +262,7 @@ docker ps
 
 # 命令行从头开始创建和运行新容器
 
-> 创建[CentOS容器](docker_run_centos.md)涉及到通过docker file来定制systemd服务，步骤略微复杂。
-
+创建[CentOS容器](../../../../virtual/docker/engine/install/docker_run_centos.md)涉及到通过docker file来定制systemd服务，步骤略微复杂。
 
 # 参考
 

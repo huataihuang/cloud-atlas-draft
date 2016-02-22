@@ -26,7 +26,7 @@ ssh -C -D 8123 SERVER_IP
 
 # 设置操作系统网络通过socks代理
 
-通过[ssh -D动态端口转发](../../../service/ssh/ssh_port_forwarding.md)可以让firefox这样的浏览器通过socket代理自由访问internet，那么`npm`是否也能这样呢？
+通过`ssh动态端口转发`可以让firefox这样的浏览器通过socket代理自由访问internet，那么`npm`是否也能这样呢？
 
 然而`npm`不支持socket代理，需要使用第三方的工具，如`dsocks`（BSD/Mac OS X）或者`tsocks`（Linux）
 
