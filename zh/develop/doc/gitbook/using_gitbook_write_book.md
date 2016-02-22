@@ -163,7 +163,9 @@ GitBook使用 `SUMMARY.md`来定义章节和子章节
 
 [gitbook插件](https://plugins.gitbook.com/)可以给你的电子书带来更多的功能，请尝试吧！
 
-* [GitBook + PlantUML 以 Markdown 快速製作 UML 教材](http://blog.lyhdev.com/2014/12/gitbook-plantuml-markdown-uml.html)
+* [PlantUML in GitBook](https://plugins.gitbook.com/plugin/puml)
+
+[GitBook + PlantUML 以 Markdown 快速製作 UML 教材](http://blog.lyhdev.com/2014/12/gitbook-plantuml-markdown-uml.html)
 
 # 参考
 

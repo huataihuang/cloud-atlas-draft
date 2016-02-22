@@ -2,7 +2,7 @@
   "plugins": ["disqus","codeblock-filename","toggle-chapters"],
   "pluginsConfig": {
     "disqus": {
-      "shortName": "huatai"
+      "shortName": "huatai-gitbooks"
     }
   }
 }
