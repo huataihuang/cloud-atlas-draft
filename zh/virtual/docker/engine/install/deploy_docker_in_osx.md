@@ -76,6 +76,195 @@ Docker Toolbox包括了以下Docker工具：
 
 ![Docker Toolbox安装](/img/virtual/docker/hello-world-nginx_linux.png)
 
+# 在shell中操作
+
+## 准备docker容器操作
+
+```bash
+docker-machine ls
+```
+
+显示
+
+```bash
+NAME      ACTIVE   DRIVER       STATE     URL   SWARM   DOCKER    ERRORS
+default   -        virtualbox   Stopped                 Unknown
+```
+
+> 这个容器我前面通过`Kitmatic`关闭了，现在使用命令行来启动它
+
+```bash
+docker-machine start default
+```
+
+> 这个命令将启动VirtualBox虚拟机，并准备好Docker环境
+
+显示
+
+```bash
+Starting "default"...
+(default) Resuming VM ...
+(default) Waiting for an IP...
+Machine "default" was started.
+Waiting for SSH to be available...
+Detecting the provisioner...
+Started machines may have new IP addresses. You may need to re-run the `docker-machine env` command.
+```
+
+按照提示，我们现在检查一下环境
+
+```bash
+docker-machine env
+```
+
+显示
+
+```bash
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.99.100:2376"
+export DOCKER_CERT_PATH="/Users/huatai/.docker/machine/machines/default"
+export DOCKER_MACHINE_NAME="default"
+# Run this command to configure your shell:
+# eval $(docker-machine env)
+```
+
+好了，我们现在执行命令来配置当前shell环境
+
+```bash
+eval $(docker-machine env)
+```
+
+此时，当前shell就已经连接到VirtualBox中的Docker环境，现在再执行`docker`命令就是直接操作VirtualBox中的docker服务了。后面的操作和在Linux上运行`docker`是一样的体验。
+
+例如，我们现在在`shell`中可以执行`docker`命令，来控制容器了
+
+```bash
+docker ps
+docker image
+```
+
+> 在`Kitematic`的图形管理界面中，点击左下角的`DOCKER CLI`按钮，也可以同样启动一个终端shell，并且这个shell会自动执行上述命令准备好环境，可以直接使用，更为方便。
+
+## docker容器操作
+
+* 查看当前已经下载的镜像，这些镜像就是我们可以快速创建容器的基础
+
+```bash
+docker images
+```
+
+显示输出
+
+```bash
+REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
+kitematic/hello-world-nginx   latest              03b4557ad7b9        8 months ago        7.913 MB
+```
+
+* 检查容器
+
+  * 首先检查是否有docker容器在运行
+
+```bash
+docker ps
+```
+
+显示输出
+
+```bash
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+```
+
+表明当前还没有在运行的容器。
+
+  * 检查已经部署的容器
+  
+```bash
+docker ps -a
+```
+
+显示输出
+
+```bash
+CONTAINER ID        IMAGE                                COMMAND             CREATED             STATUS                     PORTS               NAMES
+ebd7e112e317        kitematic/hello-world-nginx:latest   "sh /start.sh"      6 hours ago         Exited (137) 6 hours ago                       hello-world-nginx
+```
+
+这个容器就是我们前面使用`Kitematic`安装的第一个测试容器，现在我们用命令行来启动这个容器
+
+  * 启动容器`hello-world-nginx`
+  
+```bash
+docker start hello-world-nginx
+```
+
+  * 检查容器`hello-world-nginx`
+  
+```bash
+docker ps
+```
+
+可以看到
+
+```bash
+CONTAINER ID        IMAGE                                COMMAND             CREATED             STATUS              PORTS                   NAMES
+ebd7e112e317        kitematic/hello-world-nginx:latest   "sh /start.sh"      6 hours ago         Up 4 seconds        0.0.0.0:32768->80/tcp   hello-world-nginx
+```
+
+注意，其中有一个`PORTS`字段，显示了端口映射
+
+```bash
+0.0.0.0:32768->80/tcp
+```
+
+现在我们又可以通过 http://192.168.99.100:32768 访问这个服务了。
+
+> 注意：这个`192.168.99.100`IP地址是VirtualBox运行的虚拟机的HOST类型网络，也就是只在本地主机可以访问的地址，并不是对外服务的IP地址。这种环境适合做本地开发测试。
+
+# 使用`Kitematic`创建和运行新容器
+
+图形界面，操作非常直观，点击`+ NEW`按钮，然后在搜索页面搜索需要的镜像就可以创建了，例如，我们要创建`redis`容器，直接搜索到`redis`（推荐）映像，点击`CREATE`按钮就可以创建了。
+
+![Docker Toolbox安装](/img/virtual/docker/kitematic_create_docker_container.png)
+
+# Docker在Mac OS X的案例
+
+到这里，应该有了一个运行着虚拟机并且可以通过shell链接。使用以下命令验证
+
+```bash
+docker-machine ls
+```
+
+显示
+
+```bash
+NAME      ACTIVE   DRIVER       STATE     URL                         SWARM   DOCKER    ERRORS
+default   *        virtualbox   Running   tcp://192.168.99.100:2376           v1.10.1
+```
+访问容器端口
+
+* 在`DOCKER_HOST`上启动一个NGINX容器
+
+```bash
+docker run -d -P --name web nginx
+```
+
+通常情况下`docker run`命令会启动一个容器，运行它，然后退出。这里`-d`参数使得容器在`docker run`命令完成后始终运行在后台。`-P`参数将容器的端口暴露给本地主机；这样就可以从Mac上访问容器。
+
+* 显示容器
+
+```bash
+docker ps
+```
+
+```bash
+
+```
+
+# 命令行从头开始创建和运行新容器
+
+> 创建[CentOS容器](docker_run_centos.md)涉及到通过docker file来定制systemd服务，步骤略微复杂。
+
+
 # 参考
 
 * [Installation on Mac OS X](https://docs.docker.com/engine/installation/mac/)
