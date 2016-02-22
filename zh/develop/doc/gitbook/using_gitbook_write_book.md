@@ -140,6 +140,7 @@ GitBook使用 `SUMMARY.md`来定义章节和子章节
 * 链接
   * 可以直接引用URL `[Google官网](https://www.google.com)`
   * 也可以引用本网站的文档，如 `[内核进程状态参考](../../../../os/linux/kernel/process_stat_indicates.md)`
+  * 可以直接引用相同目录下的文档，如 `[ssh portfording设置](ssh_portfording.md)`：不过需要注意，所引用的文档必须在`summary.md`中已经定义，这样才能够创建html文件，并正确引用
   * 或者将超链接都集中到文档末尾（假如有多个相同的链接倒是比较方便，不过我没使用这个格式）
   
     [You can use numbers for reference-style link definitions][1]
@@ -161,6 +162,8 @@ GitBook使用 `SUMMARY.md`来定义章节和子章节
 # 插件
 
 [gitbook插件](https://plugins.gitbook.com/)可以给你的电子书带来更多的功能，请尝试吧！
+
+* [GitBook + PlantUML 以 Markdown 快速製作 UML 教材](http://blog.lyhdev.com/2014/12/gitbook-plantuml-markdown-uml.html)
 
 # 参考
 

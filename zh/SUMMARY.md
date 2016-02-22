@@ -116,6 +116,8 @@
 			* [使用GitBook撰写书籍](develop/doc/gitbook/using_gitbook_write_book.md)
 			* [如何在一台主机同时运行多个GitBook](develop/doc/gitbook/run_multi_gitbook_in_one_host.md)
 			* [GitBook评论插件](develop/doc/gitbook/gitbook_discussions.md)
+			* [GitBook单章节展开插件](develop/doc/gitbook/gitbook_toggle_chapters.md)
+			* [GitBook代码段添加文件名](develop/doc/gitbook/gitbook_codeblock_filename.md)
 			* [GitBook多国语言](develop/doc/gitbook/gitbook_multi_language.md)
 			* [GitBook嵌入视频](develop/doc/gitbook/gitbook_video.md)
 		* [Hexo](develop/doc/hexo/README.md)
