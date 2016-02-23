@@ -1,0 +1,2979 @@
+<!DOCTYPE HTML>
+<html lang="zh-tw" >
+    <!-- Start book 云图 -->
+    <head>
+        <!-- head:start -->
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <title>部署ocserv VPN服务器 | 云图</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 2.6.5">
+        
+        
+        <meta name="HandheldFriendly" content="true"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    <link rel="stylesheet" href="../../gitbook/style.css">
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-disqus/plugin.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-codeblock-filename/block.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        
+    
+    
+
+        
+    
+    
+    <link rel="next" href="../../virtual/index.html" />
+    
+    
+    <link rel="prev" href="../../security/vpn/use_openconnect_to_ocserv_in_android.html" />
+    
+
+        <!-- head:end -->
+    </head>
+    <body>
+        <!-- body:start -->
+        
+    <div class="book"
+        data-level="6.1.2"
+        data-chapter-title="部署ocserv VPN服务器"
+        data-filepath="security/vpn/deploy_ocserv_vpn_server.md"
+        data-basepath="../.."
+        data-revision="Tue Feb 23 2016 14:59:07 GMT+0800 (CST)"
+        data-innerlanguage="zh">
+    
+
+<div class="book-summary">
+    <nav role="navigation">
+        <ul class="summary">
+            
+            
+            
+            
+
+            
+
+            
+    
+        <li class="chapter " data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                        介紹
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="1" data-path="server/index.html">
+            
+                
+                    <a href="../../server/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                        服务器
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2" data-path="os/index.html">
+            
+                
+                    <a href="../../os/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                        操作系统
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1" data-path="os/linux/index.html">
+            
+                
+                    <a href="../../os/linux/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.</b>
+                        
+                        Linux
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1" data-path="os/linux/boot/index.html">
+            
+                
+                    <a href="../../os/linux/boot/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.</b>
+                        
+                        启动
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2" data-path="os/linux/process/index.html">
+            
+                
+                    <a href="../../os/linux/process/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.</b>
+                        
+                        进程
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.2.1" data-path="os/linux/process/selinux/index.html">
+            
+                
+                    <a href="../../os/linux/process/selinux/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.1.</b>
+                        
+                        SELinux
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3" data-path="os/linux/log/index.html">
+            
+                
+                    <a href="../../os/linux/log/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.3.</b>
+                        
+                        日志
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.3.1" data-path="os/linux/log/logrotate.html">
+            
+                
+                    <a href="../../os/linux/log/logrotate.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.3.1.</b>
+                        
+                        logrotate日志轮转工具
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.3.2" data-path="os/linux/log/mcelog.html">
+            
+                
+                    <a href="../../os/linux/log/mcelog.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.3.2.</b>
+                        
+                        mcelog系统硬件诊断日志搜集工具
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4" data-path="os/linux/kernel/index.html">
+            
+                
+                    <a href="../../os/linux/kernel/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.</b>
+                        
+                        内核
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.4.1" data-path="os/linux/kernel/kms.html">
+            
+                
+                    <a href="../../os/linux/kernel/kms.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.1.</b>
+                        
+                        Linux内核模式设置KMS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4.2" data-path="os/linux/kernel/process_stat_indicates.html">
+            
+                
+                    <a href="../../os/linux/kernel/process_stat_indicates.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.2.</b>
+                        
+                        进程状态标志的含义
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5" data-path="os/linux/storage/index.html">
+            
+                
+                    <a href="../../os/linux/storage/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.</b>
+                        
+                        存储
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.5.1" data-path="os/linux/storage/lvm/index.html">
+            
+            <span><b>2.1.5.1.</b> LVM</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.5.1.1" data-path="os/linux/storage/lvm/using_lvm_on_gentoo.html">
+            
+            <span><b>2.1.5.1.1.</b> 在Gentoo上使用LVM</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.5.2" data-path="os/linux/storage/filesystem/index.html">
+            
+                
+                    <a href="../../os/linux/storage/filesystem/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.2.</b>
+                        
+                        文件系统
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.5.2.1" data-path="os/linux/storage/filesystem/ext_filesystem_file_limit.html">
+            
+                
+                    <a href="../../os/linux/storage/filesystem/ext_filesystem_file_limit.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.5.2.1.</b>
+                        
+                        EXT文件系统文件数
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6" data-path="os/linux/backup/READMD.html">
+            
+            <span><b>2.1.6.</b> 备份</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.6.1" data-path="os/linux/backup/full_system_backup_with_tar.html">
+            
+                
+                    <a href="../../os/linux/backup/full_system_backup_with_tar.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.6.1.</b>
+                        
+                        使用tar备份完整Linux操作系统
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.7" data-path="os/linux/redhat/index.html">
+            
+                
+                    <a href="../../os/linux/redhat/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.7.</b>
+                        
+                        Red Hat
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.7.1" data-path="os/linux/redhat/package/index.html">
+            
+                
+                    <a href="../../os/linux/redhat/package/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.7.1.</b>
+                        
+                        软件包管理
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.7.1.1" data-path="os/linux/redhat/package/cannot_retrieve_metalink_for_repository.html">
+            
+                
+                    <a href="../../os/linux/redhat/package/cannot_retrieve_metalink_for_repository.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.7.1.1.</b>
+                        
+                        &quot;无法获得metalink&quot;错误
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.7.2" data-path="os/linux/redhat/daemon_tips.html">
+            
+                
+                    <a href="../../os/linux/redhat/daemon_tips.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.7.2.</b>
+                        
+                        RHEL/CentOS启动服务Tips
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.8" data-path="os/linux/gentoo/index.html">
+            
+                
+                    <a href="../../os/linux/gentoo/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.8.</b>
+                        
+                        Gentoo
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.8.1" data-path="os/linux/gentoo/portage.html">
+            
+                
+                    <a href="../../os/linux/gentoo/portage.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.8.1.</b>
+                        
+                        Portage包管理
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3" data-path="network/index.html">
+            
+                
+                    <a href="../../network/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                        网络
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1" data-path="network/link_aggregation/index.html">
+            
+                
+                    <a href="../../network/link_aggregation/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                        链路聚合
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="network/link_aggregation/lacp/index.html">
+            
+                
+                    <a href="../../network/link_aggregation/lacp/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.1.</b>
+                        
+                        LACP
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1.1" data-path="network/link_aggregation/lacp/network_lacp_infrastructure.html">
+            
+                
+                    <a href="../../network/link_aggregation/lacp/network_lacp_infrastructure.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.1.1.</b>
+                        
+                        LACP原理
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.2" data-path="network/link_aggregation/lacp/network_lacp_ad_select.html">
+            
+                
+                    <a href="../../network/link_aggregation/lacp/network_lacp_ad_select.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.1.2.</b>
+                        
+                        LACP的ad_select参数
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.1.3" data-path="network/link_aggregation/lacp/network_lacp_tcpdump.html">
+            
+                
+                    <a href="../../network/link_aggregation/lacp/network_lacp_tcpdump.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.1.3.</b>
+                        
+                        LACP数据包分析
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4" data-path="storage/index.html">
+            
+            <span><b>4.</b> 存储</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1" data-path="storage/das/index.html">
+            
+                
+                    <a href="../../storage/das/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                        服务器直连存储DAS
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.1.1" data-path="storage/das/raid.html">
+            
+            <span><b>4.1.1.</b> RAID</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.2" data-path="storage/das/mpt2sas_driver.html">
+            
+                
+                    <a href="../../storage/das/mpt2sas_driver.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.2.</b>
+                        
+                        mpt2sas驱动
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.3" data-path="storage/das/mpt2sas_offline_fail_disk.html">
+            
+                
+                    <a href="../../storage/das/mpt2sas_offline_fail_disk.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.3.</b>
+                        
+                        mpt2sas故障磁盘剔除
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="4.1.4" data-path="storage/das/smart.html">
+            
+                
+                    <a href="../../storage/das/smart.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.4.</b>
+                        
+                        S.M.A.R.T.
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="4.2" data-path="storage/glusterfs/index.html">
+            
+                
+                    <a href="../../storage/glusterfs/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                        GlusterFS
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="4.2.1" data-path="storage/glusterfs/glusterfs_server_quorum.html">
+            
+                
+                    <a href="../../storage/glusterfs/glusterfs_server_quorum.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.1.</b>
+                        
+                        GlusterFS服务器端Quorum
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5" data-path="service/index.html">
+            
+                
+                    <a href="../../service/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                        服务技术
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1" data-path="service/sendmail/index.html">
+            
+                
+                    <a href="../../service/sendmail/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                        Sendmail
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.1" data-path="service/sendmail/sendmail_mqueue_error.html">
+            
+                
+                    <a href="../../service/sendmail/sendmail_mqueue_error.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.1.</b>
+                        
+                        Sendmail队列异常处理
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2" data-path="service/ssh/index.html">
+            
+                
+                    <a href="../../service/ssh/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                        ssh
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.2.1" data-path="service/ssh/ssh_port_forwarding.html">
+            
+                
+                    <a href="../../service/ssh/ssh_port_forwarding.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.1.</b>
+                        
+                        ssh端口转发
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2.2" data-path="service/ssh/multiplexing.html">
+            
+                
+                    <a href="../../service/ssh/multiplexing.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.2.</b>
+                        
+                        ssh多路传输multiplexing加速
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2.3" data-path="service/ssh/sslh_multi_service_in_one_port.html">
+            
+                
+                    <a href="../../service/ssh/sslh_multi_service_in_one_port.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.3.</b>
+                        
+                        使用sslh在443端口提供多种协议服务
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.3" data-path="service/nginx/index.html">
+            
+                
+                    <a href="../../service/nginx/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.</b>
+                        
+                        Nginx
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.3.1" data-path="service/nginx/install_nginx_in_mac_os_x_with_homebrew.html">
+            
+                
+                    <a href="../../service/nginx/install_nginx_in_mac_os_x_with_homebrew.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.1.</b>
+                        
+                        在Mac OS X环境使用HomeBrew安装Nginx
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4" data-path="service/openresty/index.html">
+            
+                
+                    <a href="../../service/openresty/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.</b>
+                        
+                        OpenResty
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.4.1" data-path="service/openresty/server_openresty_install.html">
+            
+                
+                    <a href="../../service/openresty/server_openresty_install.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.1.</b>
+                        
+                        OpenResty安装
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.4.2" data-path="service/openresty/server_openresty_startup.html">
+            
+                
+                    <a href="../../service/openresty/server_openresty_startup.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.4.2.</b>
+                        
+                        OpenResty快速起步
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="6" data-path="security/index.html">
+            
+                
+                    <a href="../../security/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                        安全
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1" data-path="security/vpn/index.html">
+            
+                
+                    <a href="../../security/vpn/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                        VPN
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="6.1.1" data-path="security/vpn/use_openconnect_to_ocserv_in_android.html">
+            
+                
+                    <a href="../../security/vpn/use_openconnect_to_ocserv_in_android.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.1.</b>
+                        
+                        在Android上使用OpenConnect连接ocserv
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter active" data-level="6.1.2" data-path="security/vpn/deploy_ocserv_vpn_server.html">
+            
+                
+                    <a href="../../security/vpn/deploy_ocserv_vpn_server.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.2.</b>
+                        
+                        部署ocserv VPN服务器
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7" data-path="virtual/index.html">
+            
+                
+                    <a href="../../virtual/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                        虚拟化
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1" data-path="virtual/kvm/virtual_kvm_intro.html">
+            
+            <span><b>7.1.</b> kvm</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1.1" data-path="virtual/kvm/virtual_kvm_infrastructure.html">
+            
+            <span><b>7.1.1.</b> kvm架构</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.1.2" data-path="virtual/kvm/install/virtual_kvm_install_intro.html">
+            
+            <span><b>7.1.2.</b> kvm安装</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.1.2.1" data-path="virtual/kvm/install/virtual_kvm_install_in_gentoo.html">
+            
+            <span><b>7.1.2.1.</b> 在Gentoo上部署kvm</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.1.2.2" data-path="virtual/kvm/install/virtual_kvm_install_in_centos_rhel.html">
+            
+            <span><b>7.1.2.2.</b> 在CentOS/RHEL上部署kvm</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.2" data-path="virtual/xen/index.html">
+            
+                
+                    <a href="../../virtual/xen/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.2.</b>
+                        
+                        xen
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.2.1" data-path="virtual/xen/xen_infrastructure.html">
+            
+            <span><b>7.2.1.</b> xen架构</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3" data-path="virtual/docker/index.html">
+            
+                
+                    <a href="../../virtual/docker/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.</b>
+                        
+                        docker
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.3.1" data-path="virtual/docker/engine/index.html">
+            
+                
+                    <a href="../../virtual/docker/engine/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.1.</b>
+                        
+                        Docker Engine
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.3.1.1" data-path="virtual/docker/engine/install/index.html">
+            
+            <span><b>7.3.1.1.</b> 安装</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.3.1.1.1" data-path="virtual/docker/engine/install/deploy_docker_in_redhat.html">
+            
+                
+                    <a href="../../virtual/docker/engine/install/deploy_docker_in_redhat.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.1.1.1.</b>
+                        
+                        在RedHat安装Docker
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3.1.1.2" data-path="virtual/docker/engine/install/docker_run_centos.html">
+            
+                
+                    <a href="../../virtual/docker/engine/install/docker_run_centos.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.1.1.2.</b>
+                        
+                        在Docker中运行CentOS
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3.1.1.3" data-path="virtual/docker/engine/install/deploy_docker_in_gentoo.html">
+            
+                
+                    <a href="../../virtual/docker/engine/install/deploy_docker_in_gentoo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.1.1.3.</b>
+                        
+                        在Gentoo安装Docker
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.3.1.1.3.1" data-path="virtual/docker/engine/install/docker_kernel.html">
+            
+                
+                    <a href="../../virtual/docker/engine/install/docker_kernel.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.1.1.3.1.</b>
+                        
+                        Docker内核支持参数说明
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3.1.1.4" data-path="virtual/docker/engine/install/deploy_docker_in_osx.html">
+            
+                
+                    <a href="../../virtual/docker/engine/install/deploy_docker_in_osx.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.1.1.4.</b>
+                        
+                        在OS X安装Docker
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="7.4" data-path="virtual/virtualbox/index.html">
+            
+            <span><b>7.4.</b> VirtualBox</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="7.4.1" >
+            
+            <span><b>7.4.1.</b> [Vagrant]</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="8" data-path="virtual_network/index.html">
+            
+            <span><b>8.</b> 虚拟化网络</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="8.1" data-path="virtual_network/vxlan/index.html">
+            
+            <span><b>8.1.</b> VXLAN</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="8.2" data-path="virtual_network/monitor/index.html">
+            
+            <span><b>8.2.</b> 虚拟化网络监控</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9" data-path="monitor/index.html">
+            
+                
+                    <a href="../../monitor/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                        监控
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1" data-path="monitor/core/index.html">
+            
+            <span><b>9.1.</b> 监控的核心技术</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.1.1" data-path="monitor/core/smart.html">
+            
+            <span><b>9.1.1.</b> SMART</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.1.2" data-path="monitor/core/lm_sensors.html">
+            
+            <span><b>9.1.2.</b> lm_sensors</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2" data-path="monitor/iaas/index.html">
+            
+                
+                    <a href="../../monitor/iaas/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.2.</b>
+                        
+                        IaaS类监控
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="9.2.1" data-path="monitor/skinken/index.html">
+            
+            <span><b>9.2.1.</b> skinken</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="9.2.2" data-path="monitor/sensu/index.html">
+            
+            <span><b>9.2.2.</b> sensu</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10" data-path="develop/index.html">
+            
+                
+                    <a href="../../develop/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.</b>
+                        
+                        开发
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.1" data-path="develop/git/index.html">
+            
+            <span><b>10.1.</b> Git</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.2" data-path="develop/java/index.html">
+            
+            <span><b>10.2.</b> Java</span>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.3" data-path="develop/android/index.html">
+            
+                
+                    <a href="../../develop/android/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.3.</b>
+                        
+                        Android
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.3.1" data-path="develop/android/startup/index.html">
+            
+                
+                    <a href="../../develop/android/startup/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.3.1.</b>
+                        
+                        Android起步
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.3.1.1" data-path="develop/android/startup/nexus_5_update.html">
+            
+                
+                    <a href="../../develop/android/startup/nexus_5_update.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.3.1.1.</b>
+                        
+                        Nexus 5系统升级
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.3.1.2" data-path="develop/android/startup/transfer_file_to_android.html">
+            
+                
+                    <a href="../../develop/android/startup/transfer_file_to_android.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.3.1.2.</b>
+                        
+                        Android文件传输
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.3.1.3" data-path="develop/android/startup/android_file_manage_and_install_apk.html">
+            
+                
+                    <a href="../../develop/android/startup/android_file_manage_and_install_apk.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.3.1.3.</b>
+                        
+                        Android文件管理和apk安装
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.3.1.4" data-path="develop/android/startup/take_screenshot_in_android.html">
+            
+                
+                    <a href="../../develop/android/startup/take_screenshot_in_android.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.3.1.4.</b>
+                        
+                        Android截屏和录屏
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.3.1.5" data-path="develop/android/startup/buy_in_google_play.html">
+            
+                
+                    <a href="../../develop/android/startup/buy_in_google_play.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.3.1.5.</b>
+                        
+                        在Google Play购买软件
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.3.1.6" data-path="develop/android/startup/android_develop_environment.html">
+            
+                
+                    <a href="../../develop/android/startup/android_develop_environment.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.3.1.6.</b>
+                        
+                        Android开发环境准备
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10.4" data-path="develop/python/index.html">
+            
+                
+                    <a href="../../develop/python/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.4.</b>
+                        
+                        Python
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.4.1" data-path="develop/python/startup/index.html">
+            
+                
+                    <a href="../../develop/python/startup/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.4.1.</b>
+                        
+                        Python快速起步
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.4.1.1" data-path="develop/python/startup/pip.html">
+            
+                
+                    <a href="../../develop/python/startup/pip.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.4.1.1.</b>
+                        
+                        pip包管理
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10.5" data-path="develop/ruby/index.html">
+            
+                
+                    <a href="../../develop/ruby/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.5.</b>
+                        
+                        Ruby
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.5.1" data-path="develop/ruby/startup/READMD.html">
+            
+            <span><b>10.5.1.</b> Ruby快速起步</span>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.5.1.1" data-path="develop/ruby/startup/rubygems_install_and_usage.html">
+            
+                
+                    <a href="../../develop/ruby/startup/rubygems_install_and_usage.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.5.1.1.</b>
+                        
+                        RubyGems安装和使用
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10.6" data-path="develop/nodejs/index.html">
+            
+                
+                    <a href="../../develop/nodejs/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.6.</b>
+                        
+                        Node.js
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.6.1" data-path="develop/nodejs/startup/index.html">
+            
+                
+                    <a href="../../develop/nodejs/startup/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.6.1.</b>
+                        
+                        Node.js快速起步
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.6.1.1" data-path="develop/nodejs/startup/nodejs_develop_environment.html">
+            
+                
+                    <a href="../../develop/nodejs/startup/nodejs_develop_environment.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.6.1.1.</b>
+                        
+                        Node.js开发环境准备
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.6.1.2" data-path="develop/nodejs/startup/uinstall_nodejs_in_os_x.html">
+            
+                
+                    <a href="../../develop/nodejs/startup/uinstall_nodejs_in_os_x.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.6.1.2.</b>
+                        
+                        在Mac OS X下卸载Node.js
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10.6.2" data-path="develop/nodejs/npm/index.html">
+            
+                
+                    <a href="../../develop/nodejs/npm/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.6.2.</b>
+                        
+                        npm包管理
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.6.2.1" data-path="develop/nodejs/npm/npm_tips.html">
+            
+                
+                    <a href="../../develop/nodejs/npm/npm_tips.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.6.2.1.</b>
+                        
+                        npm使用tips
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.6.2.2" data-path="develop/nodejs/npm/svg2png.html">
+            
+                
+                    <a href="../../develop/nodejs/npm/svg2png.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.6.2.2.</b>
+                        
+                        svg2png
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10.7" data-path="develop/mac/index.html">
+            
+                
+                    <a href="../../develop/mac/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.7.</b>
+                        
+                        Mac
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.7.1" data-path="develop/mac/chinese_input.html">
+            
+                
+                    <a href="../../develop/mac/chinese_input.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.7.1.</b>
+                        
+                        中文输入法
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.7.2" data-path="develop/mac/textmate2_tips.html">
+            
+                
+                    <a href="../../develop/mac/textmate2_tips.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.7.2.</b>
+                        
+                        TextMate 2使用Tips
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.7.3" data-path="develop/mac/multiple_versions_java_in_os_x.html">
+            
+                
+                    <a href="../../develop/mac/multiple_versions_java_in_os_x.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.7.3.</b>
+                        
+                        在Mac OS X上安装Java多个版本
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.7.4" data-path="develop/mac/mac_bluetooth_keyboard_for_mobile_device.html">
+            
+                
+                    <a href="../../develop/mac/mac_bluetooth_keyboard_for_mobile_device.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.7.4.</b>
+                        
+                        使用MacBook键盘在移动设备输入
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.7.5" data-path="develop/mac/mac_network.html">
+            
+                
+                    <a href="../../develop/mac/mac_network.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.7.5.</b>
+                        
+                        Mac网络
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10.8" data-path="develop/doc/index.html">
+            
+                
+                    <a href="../../develop/doc/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.8.</b>
+                        
+                        文档
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.8.1" data-path="develop/doc/gitbook/index.html">
+            
+                
+                    <a href="../../develop/doc/gitbook/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.8.1.</b>
+                        
+                        GitBook
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.8.1.1" data-path="develop/doc/gitbook/using_gitbook_write_book.html">
+            
+                
+                    <a href="../../develop/doc/gitbook/using_gitbook_write_book.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.8.1.1.</b>
+                        
+                        使用GitBook撰写书籍
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.8.1.2" data-path="develop/doc/gitbook/run_multi_gitbook_in_one_host.html">
+            
+                
+                    <a href="../../develop/doc/gitbook/run_multi_gitbook_in_one_host.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.8.1.2.</b>
+                        
+                        如何在一台主机同时运行多个GitBook
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.8.1.3" data-path="develop/doc/gitbook/gitbook_discussions.html">
+            
+                
+                    <a href="../../develop/doc/gitbook/gitbook_discussions.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.8.1.3.</b>
+                        
+                        GitBook评论插件
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.8.1.4" data-path="develop/doc/gitbook/gitbook_toggle_chapters.html">
+            
+                
+                    <a href="../../develop/doc/gitbook/gitbook_toggle_chapters.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.8.1.4.</b>
+                        
+                        GitBook单章节展开插件
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.8.1.5" data-path="develop/doc/gitbook/gitbook_codeblock_filename.html">
+            
+                
+                    <a href="../../develop/doc/gitbook/gitbook_codeblock_filename.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.8.1.5.</b>
+                        
+                        GitBook代码段添加文件名
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.8.1.6" data-path="develop/doc/gitbook/gitbook_multi_language.html">
+            
+                
+                    <a href="../../develop/doc/gitbook/gitbook_multi_language.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.8.1.6.</b>
+                        
+                        GitBook多国语言
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.8.1.7" data-path="develop/doc/gitbook/gitbook_video.html">
+            
+                
+                    <a href="../../develop/doc/gitbook/gitbook_video.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.8.1.7.</b>
+                        
+                        GitBook嵌入视频
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="10.8.2" data-path="develop/doc/hexo/index.html">
+            
+                
+                    <a href="../../develop/doc/hexo/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.8.2.</b>
+                        
+                        Hexo
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.8.2.1" data-path="develop/doc/hexo/write_blog_by_hexo.html">
+            
+                
+                    <a href="../../develop/doc/hexo/write_blog_by_hexo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.8.2.1.</b>
+                        
+                        使用hexo撰写blog
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="10.8.2.2" data-path="develop/doc/hexo/hexo_theme_tranquilpeak.html">
+            
+                
+                    <a href="../../develop/doc/hexo/hexo_theme_tranquilpeak.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.8.2.2.</b>
+                        
+                        使用hexo theme tranquilpeak
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="11" data-path="devops/index.html">
+            
+                
+                    <a href="../../devops/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.</b>
+                        
+                        DevOps
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.1" data-path="devops/git/index.html">
+            
+                
+                    <a href="../../devops/git/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.1.</b>
+                        
+                        Git
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.2" data-path="devops/gerrit/index.html">
+            
+                
+                    <a href="../../devops/gerrit/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.2.</b>
+                        
+                        Gerrit
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.3" data-path="devops/gitlab/index.html">
+            
+                
+                    <a href="../../devops/gitlab/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.3.</b>
+                        
+                        Gitlab
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.4" data-path="devops/jenkins/index.html">
+            
+                
+                    <a href="../../devops/jenkins/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.4.</b>
+                        
+                        Jenkins
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.5" data-path="devops/ansible/index.html">
+            
+                
+                    <a href="../../devops/ansible/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.</b>
+                        
+                        Ansible
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.5.1" data-path="devops/ansible/startup/index.html">
+            
+                
+                    <a href="../../devops/ansible/startup/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.1.</b>
+                        
+                        起步
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.5.1.1" data-path="devops/ansible/startup/install.html">
+            
+                
+                    <a href="../../devops/ansible/startup/install.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.1.1.</b>
+                        
+                        安装
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.5.1.2" data-path="devops/ansible/startup/getting_started.html">
+            
+                
+                    <a href="../../devops/ansible/startup/getting_started.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.1.2.</b>
+                        
+                        快速起步
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.5.1.3" data-path="devops/ansible/startup/inventory.html">
+            
+                
+                    <a href="../../devops/ansible/startup/inventory.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.1.3.</b>
+                        
+                        清单
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.5.1.4" data-path="devops/ansible/startup/dynamic_inventory.html">
+            
+                
+                    <a href="../../devops/ansible/startup/dynamic_inventory.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.1.4.</b>
+                        
+                        动态清单
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.5.1.5" data-path="devops/ansible/startup/patterns.html">
+            
+                
+                    <a href="../../devops/ansible/startup/patterns.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.1.5.</b>
+                        
+                        Patterns
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.5.1.6" data-path="devops/ansible/startup/adhoc.html">
+            
+                
+                    <a href="../../devops/ansible/startup/adhoc.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.1.6.</b>
+                        
+                        Ad-Hoc命令
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="11.5.2" data-path="devops/ansible/playbooks/index.html">
+            
+                
+                    <a href="../../devops/ansible/playbooks/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.2.</b>
+                        
+                        Playbooks
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.5.2.1" data-path="devops/ansible/playbooks/introduce.html">
+            
+                
+                    <a href="../../devops/ansible/playbooks/introduce.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.2.1.</b>
+                        
+                        Playbooks入门
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="11.5.3" data-path="devops/ansible/dashboard/index.html">
+            
+                
+                    <a href="../../devops/ansible/dashboard/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.3.</b>
+                        
+                        Dashboard
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="11.5.3.1" data-path="devops/ansible/dashboard/semaphone.html">
+            
+                
+                    <a href="../../devops/ansible/dashboard/semaphone.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.5.3.1.</b>
+                        
+                        Ansible Tower开源替代:semaphore
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="11.6" data-path="devops/puppet/index.html">
+            
+                
+                    <a href="../../devops/puppet/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.6.</b>
+                        
+                        Puppet
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+            
+            <li class="divider"></li>
+            <li>
+                <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+                    本書使用 GitBook 釋出
+                </a>
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="book-header" role="navigation">
+    <!-- Actions Left -->
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../../" >云图</a>
+    </h1>
+</div>
+
+            <div class="page-wrapper" tabindex="-1" role="main">
+                <div class="page-inner">
+                
+                
+                    <section class="normal" id="section-">
+                    
+                        <p>Cisco AnyConnect&#x662F;&#x975E;&#x5E38;&#x6D41;&#x884C;&#x7684;SSL VPN&#x5BA2;&#x6237;&#x7AEF;&#xFF0C;&#x5E76;&#x4E14;&#x8DE8;&#x5E73;&#x53F0;&#xFF0C;&#x5E38;&#x89C1;&#x4E8E;iOS&#xFF0C;Android&#xFF0C;BlackBerry&#x5E73;&#x53F0;&#x3002;&#x7531;&#x4E8E;&#x6211;&#x540C;&#x65F6;&#x4F7F;&#x7528;Linux&#xFF0C;Mac&#xFF0C;iPhone&#xFF0C;&#x9ED1;&#x8393;&#xFF0C;&#x6240;&#x4EE5;&#x4E3A;&#x4E86;&#x65B9;&#x4FBF;&#x4F7F;&#x7528;&#xFF0C;&#x91C7;&#x7528;&#x901A;&#x7528;&#x7684;<a href="www.infradead.org/ocserv">OpenConnect VPN Server - ocserv</a>&#xFF08;&#x517C;&#x5BB9;Cisco AnyConnect&#x7684;&#x5F00;&#x6E90;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF09;&#x6765;&#x90E8;&#x7F72;VPN Server&#x3002;</p>
+<ul>
+<li>&#x6E90;&#x4EE3;&#x7801;&#x4E0B;&#x8F7D;</li>
+</ul>
+<p>&#x4ECE; <a href="https://gitlab.com/groups/ocserv" target="_blank">ocserv gitlab&#x8F6F;&#x4EF6;&#x5E93;</a> &#x4E0B;&#x8F7D;&#x6700;&#x65B0;&#x6E90;&#x4EE3;&#x7801;</p>
+<pre><code class="lang-bash">git <span class="hljs-built_in">clone</span> https://gitlab.com/ocserv/ocserv.git
+</code></pre>
+<ul>
+<li>&#x7F16;&#x8BD1;&#x4F9D;&#x8D56;</li>
+</ul>
+<p>Debian&#x548C;Fedora&#x7F16;&#x8BD1;&#x4F9D;&#x8D56;&#x8F6F;&#x4EF6;&#x5E93;&#x5206;&#x522B;&#x662F; <code>libgnutls28-dev</code> &#x548C; <code>gnutls-devel</code> &#xFF0C;&#x6B64;&#x5916;&#xFF0C;&#x5BF9;&#x5E94;&#x7684;&#x4E00;&#x4E9B;&#x53EF;&#x9009;&#x529F;&#x80FD;&#x4F9D;&#x8D56;&#x5E93;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-bash">TCP wrappers: libwrap0-dev       / tcp_wrappers-devel
+PAM:          libpam0g-dev       / pam-devel
+LZ4:          liblz4-dev         / lz4-devel
+seccomp:      libseccomp-dev     / libseccomp-devel
+occtl:        libreadline-dev    / readline-devel
+              libnl-route-<span class="hljs-number">3</span>-dev  / libnl3-devel
+GSSAPI:       libkrb5-dev        / krb5-devel
+</code></pre>
+<p>&#x5F00;&#x53D1;&#x4F9D;&#x8D56;&#x5E93;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-bash">libprotobuf-c0-dev / protobuf-c-devel
+libtalloc-dev      / libtalloc-devel
+libhttp-parser-dev / http-parser-devel
+libpcl1-dev        / pcllib-devel
+libopts25-dev      / autogen-libopts-devel
+autogen            / autogen
+protobuf-c-compiler/ protobuf-c
+gperf              / gperf
+</code></pre>
+<p>Debian/Ubuntu&#x6309;&#x7167;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x51C6;&#x5907;&#x4F9D;&#x8D56;&#x5E93;&#x5B89;&#x88C5; &#xFF08;&#x53C2;&#x8003; <a href="https://www.vultr.com/docs/setup-openconnect-vpn-server-for-cisco-anyconnect-on-ubuntu-14-04-x64" target="_blank">Setup OpenConnect VPN Server for Cisco AnyConnect on Ubuntu 14.04 x64</a>&#xFF09;</p>
+<pre><code class="lang-bash">apt-get install build-essential pkg-config libgnutls28-dev libwrap0-dev libpam0g-dev libseccomp-dev libreadline-dev libnl-route-<span class="hljs-number">3</span>-dev
+</code></pre>
+<blockquote>
+<p>&#x4E0A;&#x8FF0;&#x4F9D;&#x8D56;&#x5305;&#x5B89;&#x88C5;&#x7F3A;&#x5C11; <code>lbopts25-dev</code> &#xFF0C;&#x7F16;&#x8BD1;&#x65F6;&#x5019;&#x53D1;&#x73B0;&#x62A5;&#x9519;&#xFF0C;&#x6240;&#x4EE5;&#x8865;&#x5145;&#x5B89;&#x88C5;&#x4E86;&#x5B98;&#x65B9;&#x6587;&#x6863;&#x4E2D;&#x8BF4;&#x660E;&#x7684;&#x6240;&#x6709;&#x53EF;&#x9009;&#x4F9D;&#x8D56;&#x5F00;&#x53D1;&#x5E93;</p>
+</blockquote>
+<ul>
+<li>&#x7F16;&#x8BD1; ocserv</li>
+</ul>
+<p>&#x5982;&#x679C;&#x662F;&#x53D1;&#x884C;&#x7248;&#x672C;</p>
+<pre><code class="lang-bash">./configure &amp;&amp; make
+</code></pre>
+<p>&#x5982;&#x679C;&#x662F;git&#x7248;&#x672C;</p>
+<pre><code class="lang-bash">autoreconf -fvi
+./configure &amp;&amp; make
+</code></pre>
+<p>&#x62A5;&#x9519;</p>
+<pre><code class="lang-bash">make[<span class="hljs-number">3</span>]: Entering directory <span class="hljs-string">&apos;/root/ocserv/libopts&apos;</span>
+  CC       libopts_a-libopts.o
+In file included from libopts.c:<span class="hljs-number">24</span>:<span class="hljs-number">0</span>:
+enum.c: In <span class="hljs-keyword">function</span> &#x2018;enum_err&#x2019;:
+enum.c:<span class="hljs-number">112</span>:<span class="hljs-number">13</span>: warning: embedded &#x2018;\<span class="hljs-number">0</span>&#x2019; <span class="hljs-keyword">in</span> format [-Wformat-contains-nul]
+             fprintf(option_usage_fp, ENUM_ERR_LINE, *(paz_names++));
+             ^
+enum.c:<span class="hljs-number">135</span>:<span class="hljs-number">9</span>: warning: embedded &#x2018;\<span class="hljs-number">0</span>&#x2019; <span class="hljs-keyword">in</span> format [-Wformat-contains-nul]
+         sprintf(zFmt, ENUM_ERR_WIDTH, (int)max_len);
+         ^
+</code></pre>
+<p>&#x5C1D;&#x8BD5;&#x6539;&#x6210;</p>
+<pre><code class="lang-bash">./configure --enable-local-libopts
+</code></pre>
+<p>&#x62A5;&#x9519;&#x6539;&#x6210;</p>
+<pre><code class="lang-bash">make[<span class="hljs-number">2</span>]: Entering directory <span class="hljs-string">&apos;/root/ocserv/src&apos;</span>
+: ocpasswd-args.def
+: ocserv-args.def
+protoc-c --c_out=. --proto_path=. ipc.proto
+/bin/bash: protoc-c: <span class="hljs-built_in">command</span> not found
+Makefile:<span class="hljs-number">1779</span>: recipe <span class="hljs-keyword">for</span> target <span class="hljs-string">&apos;ipc.pb-c.c&apos;</span> failed
+</code></pre>
+<p>&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x53C2;&#x8003; <a href="https://sskaje.me/2014/02/openconnect-ubuntu/" target="_blank">OpenConnect on Ubuntu</a> &#x5E76;&#x6309;&#x7167;&#x5B98;&#x65B9;&#x6587;&#x6863;&#x5B89;&#x88C5;&#x6240;&#x6709;&#x53EF;&#x9009;&#x4F9D;&#x8D56;&#x5F00;&#x53D1;&#x5E93;DTLS Dead Peer Detection detected dead peer!</p>
+<pre><code class="lang-bash">apt-get install libprotobuf-c0-dev libtalloc-dev libhttp-parser-dev libpcl1-dev libopts25-dev autogen protobuf-c-compiler gperf
+</code></pre>
+<p>&#x7136;&#x540E;&#x91CD;&#x65B0;&#x7F16;&#x8BD1;&#x5C31;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;</p>
+<pre><code class="lang-bash">./configure
+make
+</code></pre>
+<p>&#x5B89;&#x88C5;</p>
+<pre><code class="lang-bash">make install
+</code></pre>
+<h1 id="&#x914D;&#x7F6E;ocserv">&#x914D;&#x7F6E;ocserv</h1>
+<p>&#x9996;&#x5148;&#x9700;&#x8981;&#x521B;&#x5EFA;&#x81EA;&#x5DF1;&#x7684;CA&#x8BC1;&#x4E66;&#x548C;&#x670D;&#x52A1;&#x5668;&#x8BC1;&#x4E66;</p>
+<pre><code class="lang-bash"><span class="hljs-built_in">cd</span> ~
+apt-get install gnutls-bin
+mkdir certificates
+<span class="hljs-built_in">cd</span> certificates
+</code></pre>
+<p>&#x521B;&#x5EFA;CA&#x6A21;&#x7248;&#x6587;&#x4EF6; <code>ca.tmpl</code> &#xFF0C;&#x8FD9;&#x91CC;<code>cn</code>&#x8BF7;&#x8BBE;&#x7F6E;&#x6210;&#x81EA;&#x5DF1;&#x7EC4;&#x7EC7;&#x7684;cn</p>
+<pre><code class="lang-bash">cn = <span class="hljs-string">&quot;VPN CA&quot;</span> 
+organization = <span class="hljs-string">&quot;Big Corp&quot;</span> 
+serial = <span class="hljs-number">1</span> 
+expiration_days = <span class="hljs-number">3650</span>
+ca 
+signing_key 
+cert_signing_key 
+crl_signing_key
+</code></pre>
+<p>&#x751F;&#x6210;CA&#x5BC6;&#x94A5;&#x548C;CA&#x8BC1;&#x4E66;</p>
+<pre><code class="lang-bash">certtool --generate-privkey --outfile ca-key.pem
+certtool --generate-self-signed --load-privkey ca-key.pem --template ca.tmpl --outfile ca-cert.pem
+</code></pre>
+<p>&#x7136;&#x540E;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x5185;&#x5BB9;&#x521B;&#x5EFA;&#x672C;&#x5730;&#x670D;&#x52A1;&#x5668;&#x8BC1;&#x4E66;&#x6A21;&#x7248;&#x6587;&#x4EF6;&#xFF08;<code>server.tmpl</code>&#xFF09;&#xFF0C;&#x6CE8;&#x610F;<code>cn</code>&#x5B57;&#x6BB5;&#xFF0C;&#x5FC5;&#x987B;&#x7B26;&#x5408;&#x4F60;&#x670D;&#x52A1;&#x5668;&#x7684;DNS&#x540D;&#x5B57;&#x6216;&#x8005;IP&#x5730;&#x5740;</p>
+<pre><code class="lang-bash">cn = <span class="hljs-string">&quot;you domain name or ip&quot;</span>
+organization = <span class="hljs-string">&quot;MyCompany&quot;</span> 
+expiration_days = <span class="hljs-number">3650</span> 
+signing_key 
+encryption_key
+tls_www_server
+</code></pre>
+<p>&#x7136;&#x540E;&#x521B;&#x5EFA;&#x670D;&#x52A1;&#x5668;&#x5BC6;&#x94A5;&#x548C;&#x8BC1;&#x4E66;</p>
+<pre><code class="lang-bash">certtool --generate-privkey --outfile server-key.pem
+certtool --generate-certificate --load-privkey server-key.pem --load-ca-certificate ca-cert.pem --load-ca-privkey ca-key.pem --template server.tmpl --outfile server-cert.pem
+</code></pre>
+<p>&#x590D;&#x5236;&#x5BC6;&#x94A5;&#x3001;&#x8BC1;&#x4E66;&#x548C;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x5230;ocserv&#x914D;&#x7F6E;&#x76EE;&#x5F55;</p>
+<pre><code class="lang-bash">mkdir /etc/ocserv
+cp server-cert.pem server-key.pem /etc/ocserv
+<span class="hljs-built_in">cd</span> ~/ocserv/doc
+cp sample.config /etc/ocserv/config
+<span class="hljs-built_in">cd</span> /etc/ocserv
+</code></pre>
+<p>&#x7F16;&#x8F91; <code>/etc/ocserv/config</code> &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x7C7B;&#x4F3C;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-bash">auth = <span class="hljs-string">&quot;plain[/etc/ocserv/ocpasswd]&quot;</span>
+
+try-mtu-discovery = <span class="hljs-literal">true</span>
+
+server-cert = /etc/ocserv/server-cert.pem
+server-key = /etc/ocserv/server-key.pem
+
+tcp-port = <span class="hljs-number">9000</span>
+udp-port = <span class="hljs-number">9001</span>
+dns = <span class="hljs-number">8.8</span>.<span class="hljs-number">8.8</span>
+
+<span class="hljs-comment"># comment out all route fields</span>
+<span class="hljs-comment">#route = 10.10.10.0/255.255.255.0</span>
+<span class="hljs-comment">#route = 192.168.0.0/255.255.0.0</span>
+<span class="hljs-comment">#route = fef4:db8:1000:1001::/64</span>
+<span class="hljs-comment">#no-route = 192.168.5.0/255.255.255.0</span>
+cisco-client-compat = <span class="hljs-literal">true</span>
+</code></pre>
+<blockquote>
+<p><code>no-route</code>&#x914D;&#x7F6E;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x6839;&#x636E;&#x81EA;&#x5DF1;&#x7684;&#x5C40;&#x57DF;&#x7F51;&#x914D;&#x7F6E;&#x8C03;&#x6574;&#x3002;&#x6B64;&#x5916;&#xFF0C;&#x5BF9;&#x4E8E;&#x56FD;&#x5185;&#x7F51;&#x6BB5;&#xFF0C;&#x8BBE;&#x7F6E;no-route&#x53EF;&#x4EE5;&#x907F;&#x514D;&#x56FD;&#x5185;&#x6D41;&#x91CF;&#x901A;&#x8FC7;vpn&#x964D;&#x4F4E;&#x8BBF;&#x95EE;&#x6548;&#x7387;&#x3002;</p>
+<p>&#x9ED8;&#x8BA4;&#x7AEF;&#x53E3;&#x662F;<code>443</code>&#xFF0C;&#x8FD9;&#x91CC;&#x6539;&#x6210;<code>9000</code></p>
+</blockquote>
+<p>&#x53E6;&#x5916;&#xFF0C;&#x53C2;&#x8003; <a href="http://www.lichanglin.cn/%E5%AE%89%E8%A3%85%E9%85%8D%E7%BD%AEAnyConnect%E6%9C%8D%E5%8A%A1%E7%AB%AF%E8%BD%AF%E4%BB%B6-ocserv/" target="_blank">&#x5B89;&#x88C5;&#x914D;&#x7F6E;AnyConnect&#x670D;&#x52A1;&#x7AEF;&#x8F6F;&#x4EF6;-ocserv</a>&#x505A;&#x4E00;&#x4E9B;&#x914D;&#x7F6E;&#x4F18;&#x5316;&#x8C03;&#x6574;</p>
+<pre><code class="lang-bash"><span class="hljs-comment">#&#x540C;&#x4E00;&#x4E2A;&#x7528;&#x6237;&#x6700;&#x591A;&#x540C;&#x65F6;&#x767B;&#x9646;&#x6570;</span>
+max-same-clients = <span class="hljs-number">10</span>
+<span class="hljs-comment"># Dead peer detection in seconds.</span>
+dpd = <span class="hljs-number">900</span>
+<span class="hljs-comment"># Dead peer detection for mobile clients. The needs to</span>
+<span class="hljs-comment"># be much higher to prevent such clients being awaken too</span>
+<span class="hljs-comment"># often by the DPD messages, and save battery.</span>
+<span class="hljs-comment"># (clients that send the X-AnyConnect-Identifier-DeviceType)</span>
+mobile-dpd = <span class="hljs-number">1800</span>
+
+output-buffer = <span class="hljs-number">23000</span> 
+try-mtu-discovery = <span class="hljs-literal">true</span> 
+
+<span class="hljs-comment"># The time (in seconds) that a client is allowed to stay idle (no traffic)</span>
+<span class="hljs-comment"># before being disconnected. Unset to disable.</span>
+idle-timeout = <span class="hljs-number">3600</span>
+
+<span class="hljs-comment"># The time (in seconds) that a mobile client is allowed to stay idle (no</span>
+<span class="hljs-comment"># traffic) before being disconnected. Unset to disable.</span>
+mobile-idle-timeout = <span class="hljs-number">3600</span>
+</code></pre>
+<p>&#x521B;&#x5EFA;&#x7528;&#x6237;&#x767B;&#x5F55;&#x5E10;&#x53F7;</p>
+<pre><code class="lang-bash">ocpasswd -c /etc/ocserv/ocpasswd username
+</code></pre>
+<p>&#x6FC0;&#x6D3B;NAT</p>
+<pre><code class="lang-bash">iptables -t nat -A POSTROUTING -j MASQUERADE
+</code></pre>
+<p>&#x6FC0;&#x6D3B;IPv4 forwarding&#xFF0C;&#x7F16;&#x8F91;<code>/etc/sysctl.conf</code></p>
+<pre><code class="lang-bash">net.ipv4.ip_forward=<span class="hljs-number">1</span>
+</code></pre>
+<p>&#x5E76;&#x4F7F;&#x4E4B;&#x751F;&#x6548;</p>
+<pre><code class="lang-bash">sysctl -p /etc/sysctl.conf
+</code></pre>
+<p>&#x542F;&#x52A8;ocserv</p>
+<pre><code class="lang-bash">ocserv -c /etc/ocserv/config
+</code></pre>
+<blockquote>
+<p>&#x6CE8;&#x610F;&#xFF1A;Cisco AnyConnect&#x5BA2;&#x6237;&#x7AEF;&#x914D;&#x7F6E;&#x8981;&#x540C;&#x65F6;&#x5199;&#x4E0A;&#x670D;&#x52A1;&#x5668;IP&#x5730;&#x5740;&#x548C;&#x7AEF;&#x53E3;&#xFF0C;&#x7C7B;&#x4F3C; <code>IP:PORT</code></p>
+</blockquote>
+<p>Debug&#x65B9;&#x6CD5;</p>
+<pre><code class="lang-bash">ocserv -c /etc/ocserv/config <span class="hljs-operator">-d</span> <span class="hljs-number">9</span> <span class="hljs-operator">-f</span>
+</code></pre>
+<blockquote>
+<p><code>-d</code> &#x53C2;&#x6570;&#x8BBE;&#x7F6E;debug&#x7EA7;&#x522B;&#xFF0C;&#x4ECE;<code>0-999</code></p>
+</blockquote>
+<h1 id="&#x8DEF;&#x7531;&#x8BBE;&#x7F6E;">&#x8DEF;&#x7531;&#x8BBE;&#x7F6E;</h1>
+<p>&#x53C2;&#x8003; <a href="https://darknode.in/network/setup-debian-ocserv/" target="_blank">Oc&#xAD;serv &#x5728; De&#xAD;bian &#x4E0B;&#x7684;&#x5B89;&#x88C5;&#x4E0E;&#x914D;&#x7F6E;&#x6307;&#x5357;</a>&#xFF0C;&#x5728; <code>/etc/ocserv/config</code> &#x4E2D;&#x6DFB;&#x52A0;&#x914D;&#x7F6E;</p>
+<pre><code class="lang-bash">no-route = <span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.0</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">1.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">1.160</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">1.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">10.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.0</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">14.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">14.96</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">14.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">14.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">27.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">27.96</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">27.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">36.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">36.96</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">36.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">39.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">39.64</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">39.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">42.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.0</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">43.224</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">45.64</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">47.64</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">49.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">49.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">49.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">54.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">58.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>                                          
+no-route = <span class="hljs-number">58.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>                                        
+no-route = <span class="hljs-number">58.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>                                        
+no-route = <span class="hljs-number">59.32</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>                                         
+no-route = <span class="hljs-number">59.64</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>                                         
+no-route = <span class="hljs-number">59.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>                                        
+no-route = <span class="hljs-number">60.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>                                          
+no-route = <span class="hljs-number">60.160</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>                                        
+no-route = <span class="hljs-number">60.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>                                        
+no-route = <span class="hljs-number">61.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>                                          
+no-route = <span class="hljs-number">61.64</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>                                         
+no-route = <span class="hljs-number">61.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>                                        
+no-route = <span class="hljs-number">61.224</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">100.64</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">101.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">101.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">101.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">103.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">103.224</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">106.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">106.224</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">110.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">254.0</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">112.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">112.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">112.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">113.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">113.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">113.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">114.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">114.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">114.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">115.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.0</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">116.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.0</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">117.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">117.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">118.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">118.64</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">118.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">119.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">119.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">119.224</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">120.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">120.64</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">120.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">120.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">121.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">121.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">122.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">254.0</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">124.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.0</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">125.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">125.160</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">125.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">127.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.0</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">139.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">139.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">140.64</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">140.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">140.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">144.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">144.96</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">144.224</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">150.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">150.96</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">150.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">150.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">152.96</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">153.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">153.96</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">157.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">157.96</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">157.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">157.224</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">159.224</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">161.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">162.96</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">163.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">163.96</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">163.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">163.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">166.96</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">167.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">168.160</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">169.254</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.255</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">171.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">171.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">172.16</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.240</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">175.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">175.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">180.64</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">180.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">182.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.0</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">183.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">183.64</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">183.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">192.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.255</span>.<span class="hljs-number">255.0</span>
+no-route = <span class="hljs-number">192.0</span>.<span class="hljs-number">2.0</span>/<span class="hljs-number">255.255</span>.<span class="hljs-number">255.0</span>
+no-route = <span class="hljs-number">192.88</span>.<span class="hljs-number">99.0</span>/<span class="hljs-number">255.255</span>.<span class="hljs-number">255.0</span>
+no-route = <span class="hljs-number">192.96</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">192.160</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.248</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">192.168</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.255</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">192.169</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.255</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">192.170</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.254</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">192.172</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.252</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">192.176</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.240</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">198.18</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.254</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">198.51</span>.<span class="hljs-number">100.0</span>/<span class="hljs-number">255.255</span>.<span class="hljs-number">255.0</span>
+no-route = <span class="hljs-number">202.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">202.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">202.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">203.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">203.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">203.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">210.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">210.64</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">210.160</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">210.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">211.64</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">211.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">218.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">218.160</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">218.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">219.64</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">219.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">219.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">220.96</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">220.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">221.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">221.96</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">221.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">222.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.0</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">223.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">223.64</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.192</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">223.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+no-route = <span class="hljs-number">224.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">224.0</span>.<span class="hljs-number">0.0</span>
+</code></pre>
+<blockquote>
+<p>&#x4E0D;&#x8FC7;&#xFF0C;&#x53C2;&#x8003; <a href="http://www.fanyueciyuan.info/fq/ocserv-debian.html/comment-page-2" target="_blank">OpenConnect server(ocserv) &#x4E00;&#x952E;&#x811A;&#x672C; for deibian 7</a> &#xFF0C;&#x5982;&#x679C;&#x4F7F;&#x7528; openconnect &#x5BA2;&#x6237;&#x7AEF;&#xFF0C;&#x5219;&#x6240;&#x6709;&#x7248;&#x672C;&#x90FD;&#x4E0D;&#x652F;&#x6301; no-route &#xFF0C;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x4F7F;&#x7528;cisco anyconnect&#x5BA2;&#x6237;&#x7AEF;&#x652F;&#x6301;&#x3002;&#x6240;&#x6709;&#x5982;&#x679C;&#x4F7F;&#x7528; openconnect &#xFF0C;&#x8FD8;&#x662F;&#x5728;&#x5BA2;&#x6237;&#x7AEF;&#x81EA;&#x5DF1;&#x7528;&#x811A;&#x672C;&#x6DFB;&#x52A0;&#x8DEF;&#x7531;&#x3002;</p>
+<p>&#x4E0A;&#x8FF0;&#x914D;&#x7F6E;&#x4E2D;&#xFF0C;&#x6211;&#x66F4;&#x6539;&#x4E86; 192.168.0.0 &#xFF0C;&#x56E0;&#x4E3A;&#x6211;&#x914D;&#x7F6E;&#x7684;ocserv&#x4F7F;&#x7528;&#x4E86; 192.168.101.0/255.255.255.0 &#x4F5C;&#x4E3A; tun &#x7F51;&#x6BB5;&#xFF0C;&#x800C;&#x6211;&#x7684;&#x5C40;&#x57DF;&#x7F51;&#x4F7F;&#x7528;&#x7684;&#x662F;  192.168.1.0/24</p>
+</blockquote>
+<pre><code class="lang-bash"><span class="hljs-number">192.168</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.255</span>.<span class="hljs-number">255.0</span> ==&gt; <span class="hljs-number">192.168</span>.<span class="hljs-number">1.0</span>/<span class="hljs-number">255.255</span>.<span class="hljs-number">255.0</span>
+</code></pre>
+<blockquote>
+<p>&#x6B64;&#x5916;&#xFF0C;&#x6DFB;&#x52A0;&#x4E86;&#x4E00;&#x4E2A;VPN&#x670D;&#x52A1;&#x5668;&#x7684;IP&#x5730;&#x5740;</p>
+</blockquote>
+<p><strong>Cisco AnyConnect for BlackBerry &#x4E0D;&#x652F;&#x6301; no-route &#x6307;&#x4EE4;&#xFF0C;&#x5982;&#x679C;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x914D;&#x7F6E;&#x4E86;no-route&#xFF0C;&#x4F1A;&#x5BFC;&#x81F4;&#x65E0;&#x6CD5;&#x901A;&#x8BAF;&#xFF08;&#x663E;&#x793A;&#x4E3B;&#x673A;&#x65E0;&#x6CD5;&#x89E3;&#x6790;&#x6216;&#x8005;&#x7F51;&#x7EDC;&#x672A;&#x8FDE;&#x63A5;&#xFF09;&#xFF0C;&#x6240;&#x4EE5;&#x6700;&#x540E;&#x8FD8;&#x662F;&#x5168;&#x90E8;&#x5220;&#x9664;&#x4E86;no-route&#x914D;&#x7F6E;&#x3002;&#x4E0D;&#x8FC7;Cisco AnyConnect for iOS&#x6CA1;&#x6709;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x4E0D;&#x786E;&#x5B9A;no-route&#x662F;&#x5426;&#x771F;&#x6B63;&#x751F;&#x6548;&#x3002;</strong> &#x53CD;&#x6B63;&#x624B;&#x673A;&#x4E3B;&#x8981;&#x662F;&#x7528;&#x4E8E;&#x8BBF;&#x95EE;twiter&#xFF0C;&#x8F83;&#x5C11;&#x5185;&#x7F51;&#x8BBF;&#x95EE;&#xFF0C;&#x6240;&#x4EE5;&#x6682;&#x65F6;&#x6CA1;&#x6709;&#x95EE;&#x9898;&#x3002;Linux&#x5BA2;&#x6237;&#x7AEF;&#x91C7;&#x7528;&#x7F57;&#x6709;&#x6DFB;&#x52A0;&#x811A;&#x672C;&#x3002;</p>
+<blockquote>
+<p>&#x6709;&#x4E9B;IP&#x6BB5;&#x53EF;&#x80FD;&#x4E0D;&#x662F;&#x4E2D;&#x56FD;&#x7684;&#xFF0C;&#x4F8B;&#x5982;&#x53D1;&#x73B0; m.voachinese.com &#x4F7F;&#x7528;&#x7684;akamai&#x7684;CDN&#x5730;&#x5740;&#x662F;&#x65E5;&#x672C;&#x7684;</p>
+</blockquote>
+<pre><code class="lang-bash">m.voachinese.com.       <span class="hljs-number">1185</span>    IN      CNAME   m.voanews.com.edgesuite.net.
+m.voanews.com.edgesuite.net. <span class="hljs-number">19185</span> IN   CNAME   a1250.b.akamai.net.
+a1250.b.akamai.net.     <span class="hljs-number">30</span>      IN      A       <span class="hljs-number">124.40</span>.<span class="hljs-number">42.57</span>
+a1250.b.akamai.net.     <span class="hljs-number">30</span>      IN      A       <span class="hljs-number">124.40</span>.<span class="hljs-number">42.62</span>
+</code></pre>
+<h1 id="&#x5BA2;&#x6237;&#x7AEF;&#x6DFB;&#x52A0;&#x8DEF;&#x7531;&#x811A;&#x672C;">&#x5BA2;&#x6237;&#x7AEF;&#x6DFB;&#x52A0;&#x8DEF;&#x7531;&#x811A;&#x672C;</h1>
+<p>&#x9ED8;&#x8BA4;&#x7684;&#x5C1A;&#x672A;&#x8FDE;&#x63A5;VPN&#x65F6;&#x5019;&#x7684;&#x8DEF;&#x7531;&#x8868;</p>
+<pre><code class="lang-bash">Kernel IP routing table
+Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+default         <span class="hljs-number">10.33</span>.<span class="hljs-number">33.250</span>    <span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>         UG        <span class="hljs-number">0</span> <span class="hljs-number">0</span>          <span class="hljs-number">0</span> wlp3s0
+<span class="hljs-number">10.33</span>.<span class="hljs-number">32.0</span>      <span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>         <span class="hljs-number">255.255</span>.<span class="hljs-number">254.0</span>   U         <span class="hljs-number">0</span> <span class="hljs-number">0</span>          <span class="hljs-number">0</span> wlp3s0
+loopback        <span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>         <span class="hljs-number">255.0</span>.<span class="hljs-number">0.0</span>       U         <span class="hljs-number">0</span> <span class="hljs-number">0</span>          <span class="hljs-number">0</span> lo
+</code></pre>
+<p>&#x8FDE;&#x63A5;VPN&#x4EE5;&#x540E;&#x7684;&#x8DEF;&#x7531;&#x8868;</p>
+<pre><code class="lang-bash">Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+<span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>         <span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>         <span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>         U         <span class="hljs-number">0</span> <span class="hljs-number">0</span>          <span class="hljs-number">0</span> tun0
+<span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>         <span class="hljs-number">10.33</span>.<span class="hljs-number">33.250</span>    <span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>         UG        <span class="hljs-number">0</span> <span class="hljs-number">0</span>          <span class="hljs-number">0</span> wlp3s0
+<span class="hljs-number">10.33</span>.<span class="hljs-number">32.0</span>      <span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>         <span class="hljs-number">255.255</span>.<span class="hljs-number">254.0</span>   U         <span class="hljs-number">0</span> <span class="hljs-number">0</span>          <span class="hljs-number">0</span> wlp3s0
+<span class="hljs-number">104.236</span>.<span class="hljs-number">154.90</span>  <span class="hljs-number">10.33</span>.<span class="hljs-number">33.250</span>    <span class="hljs-number">255.255</span>.<span class="hljs-number">255.255</span> UGH       <span class="hljs-number">0</span> <span class="hljs-number">0</span>          <span class="hljs-number">0</span> wlp3s0
+<span class="hljs-number">127.0</span>.<span class="hljs-number">0.0</span>       <span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>         <span class="hljs-number">255.0</span>.<span class="hljs-number">0.0</span>       U         <span class="hljs-number">0</span> <span class="hljs-number">0</span>          <span class="hljs-number">0</span> lo
+<span class="hljs-number">192.168</span>.<span class="hljs-number">101.0</span>   <span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>         <span class="hljs-number">255.255</span>.<span class="hljs-number">255.0</span>   U         <span class="hljs-number">0</span> <span class="hljs-number">0</span>          <span class="hljs-number">0</span> tun0
+</code></pre>
+<p>&#x53C2;&#x8003;&#x4E0A;&#x8FF0;ocserv&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x8BBE;&#x7F6E; no-route &#xFF0C;&#x5728;Linux&#x4E3B;&#x673A;&#x4E0A;&#xFF0C;&#x91C7;&#x7528;&#x811A;&#x672C;&#x65B9;&#x5F0F;&#x8BBE;&#x7F6E;&#x8DEF;&#x7531;&#x3002;&#x601D;&#x8DEF;&#x662F;&#x4F7F;&#x7528;openconnect&#x8FDE;&#x63A5;&#x4E86;VPN&#x670D;&#x52A1;&#x5668;&#x4E4B;&#x540E;&#xFF0C;&#x5728;&#x672C;&#x5730;&#x7EC8;&#x7AEF;&#x6267;&#x884C;&#x811A;&#x672C; vpn_route.sh start &#x8BBE;&#x7F6E;&#x8DEF;&#x7531;&#xFF08;vpn_route.sh stop&#x5219;&#x53BB;&#x9664;&#x8DEF;&#x7531;&#xFF09;&#x3002;&#x6CE8;&#x610F;&#xFF0C;&#x5728; cn_route.cfg &#x4E2D;&#x662F;&#x9700;&#x8981;&#x8DEF;&#x7531;&#x7684;&#x7F51;&#x6BB5;&#xFF0C;&#x7C7B;&#x4F3C;&#x683C;&#x5F0F;&#x5982;&#x4E0B;</p>
+<pre><code class="lang-bash"><span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.0</span>.<span class="hljs-number">0.0</span>
+<span class="hljs-number">1.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.128</span>.<span class="hljs-number">0.0</span>
+<span class="hljs-number">1.160</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+<span class="hljs-number">1.192</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+<span class="hljs-number">10.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.0</span>.<span class="hljs-number">0.0</span>
+<span class="hljs-number">14.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+<span class="hljs-number">14.96</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+<span class="hljs-number">14.128</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.224</span>.<span class="hljs-number">0.0</span>
+</code></pre>
+<blockquote>
+<p>&#x8DEF;&#x7531;&#x7F51;&#x6BB5;&#x4E2D;&#x53BB;&#x6389;&#x4E86;</p>
+</blockquote>
+<pre><code class="lang-bash">    <span class="hljs-number">0.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.0</span>.<span class="hljs-number">0.0</span>
+    <span class="hljs-number">127.0</span>.<span class="hljs-number">0.0</span>/<span class="hljs-number">255.0</span>.<span class="hljs-number">0.0</span>
+</code></pre>
+<p>&#x811A;&#x672C; vpn_route.sh</p>
+<pre><code class="lang-bash"><span class="hljs-shebang">#!/bin/bash
+</span>
+DEVICE=$(ip route list | grep <span class="hljs-string">&quot;^default&quot;</span> | grep <span class="hljs-string">&quot;metric 303&quot;</span> | awk <span class="hljs-string">&apos;{print $5}&apos;</span>)
+GATEWAY=$(ip route list | grep <span class="hljs-string">&quot;^default&quot;</span> | grep <span class="hljs-string">&quot;metric 303&quot;</span> | awk <span class="hljs-string">&apos;{print $3}&apos;</span>)
+
+ROUTELIST=cn_route.cfg
+ROUTENUM=$(wc <span class="hljs-operator">-l</span> &lt; <span class="hljs-variable">$ROUTELIST</span>)
+
+<span class="hljs-function"><span class="hljs-title">addroute</span></span>()
+{
+COUNT=<span class="hljs-number">0</span>
+<span class="hljs-keyword">while</span> [ <span class="hljs-variable">$COUNT</span> <span class="hljs-operator">-lt</span> <span class="hljs-variable">$ROUTENUM</span> ]
+<span class="hljs-keyword">do</span> 
+    <span class="hljs-built_in">let</span> COUNT++
+    NET=`head -n <span class="hljs-variable">$COUNT</span> <span class="hljs-variable">$ROUTELIST</span> | tail -<span class="hljs-number">1</span>`
+
+    ip route add <span class="hljs-variable">$NET</span> via <span class="hljs-variable">$GATEWAY</span> dev <span class="hljs-variable">$DEVICE</span>
+<span class="hljs-keyword">done</span>
+}
+
+<span class="hljs-function"><span class="hljs-title">delroute</span></span>()
+{
+COUNT=<span class="hljs-number">0</span>
+<span class="hljs-keyword">while</span> [ <span class="hljs-variable">$COUNT</span> <span class="hljs-operator">-lt</span> <span class="hljs-variable">$ROUTENUM</span> ]
+<span class="hljs-keyword">do</span> 
+    <span class="hljs-built_in">let</span> COUNT++
+    NET=`head -n <span class="hljs-variable">$COUNT</span> <span class="hljs-variable">$ROUTELIST</span> | tail -<span class="hljs-number">1</span>`
+
+    ip route del <span class="hljs-variable">$NET</span> via <span class="hljs-variable">$GATEWAY</span> dev <span class="hljs-variable">$DEVICE</span>
+<span class="hljs-keyword">done</span>
+}
+
+<span class="hljs-keyword">case</span> <span class="hljs-string">&quot;<span class="hljs-variable">$1</span>&quot;</span> <span class="hljs-keyword">in</span>
+        start)
+                addroute &amp;&amp; <span class="hljs-built_in">exit</span> <span class="hljs-number">0</span>
+                ;;
+        stop)
+                delroute &amp;&amp; <span class="hljs-built_in">exit</span> <span class="hljs-number">0</span>
+                ;;
+        *)
+                <span class="hljs-built_in">echo</span> $<span class="hljs-string">&quot;Usage: <span class="hljs-variable">$0</span> {start|stop)&quot;</span>
+                RETVAL=<span class="hljs-number">2</span>
+<span class="hljs-keyword">esac</span>
+</code></pre>
+<h1 id="dnsmasq">DNSMASQ</h1>
+<p>&#x6211;&#x8BBE;&#x7F6E;&#x4E86;VPN&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x7684;dnsmasq&#xFF0C;&#x60F3;vpn&#x8FDE;&#x63A5;&#x4EE5;&#x540E;&#xFF0C;&#x901A;&#x8FC7;&#x67E5;&#x8BE2;dns&#x6765;&#x89E3;&#x51B3;&#x5185;&#x7F51;&#x548C;&#x5916;&#x7F51;&#x7684;dns&#x89E3;&#x6790;&#xFF08;&#x4E00;&#x4E9B;&#x5185;&#x7F51;ip&#x89E3;&#x6790;&#x901A;&#x8FC7;dnsmasq&#x6DFB;&#x52A0;&#xFF09;&#xFF0C;&#x4F46;&#x662F;&#x53D1;&#x73B0;&#xFF0C;&#x59CB;&#x7EC8;&#x4E0D;&#x80FD;&#x6B63;&#x5E38;&#x8BBF;&#x95EE;dns&#x3002;&#x5728;vpn&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x662F;&#x53EF;&#x4EE5;&#x89E3;&#x6790;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x8FDC;&#x7A0B;&#x4E0D;&#x884C;&#x3002;&#x6211;&#x4F7F;&#x7528;nc&#x68C0;&#x67E5;&#xFF0C;&#x7AEF;&#x53E3;&#x662F;&#x6253;&#x5F00;&#x7684;</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># nc -u -v -w 2 VPN_SERVER_IP 53</span>
+li421-<span class="hljs-number">128</span>.members.linode.com [VPN_SERVER_IP] <span class="hljs-number">53</span> (domain) open
+</code></pre>
+<p>&#x4F46;&#x662F;&#x67E5;&#x8BE2;&#x8D85;&#x65F6;</p>
+<pre><code class="lang-bash">dig @VPN_SERVER_IP www.sina.com.cn
+
+; &lt;&lt;&gt;&gt; DiG <span class="hljs-number">9.10</span>.<span class="hljs-number">2</span>-P4 &lt;&lt;&gt;&gt; @VPN_SERVER_IP www.sina.com.cn
+; (<span class="hljs-number">1</span> server found)
+;; global options: +cmd
+;; connection timed out; no servers could be reached
+</code></pre>
+<p>&#x4F46;&#x662F;&#x5728;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x76F4;&#x63A5;&#x67E5;&#x8BE2;&#x5374;&#x5B8C;&#x5168;&#x6B63;&#x5E38;</p>
+<pre><code class="lang-bash">root@mynode:/etc<span class="hljs-comment"># dig @VPN_SERVER_IP www.sina.com.cn</span>
+
+......
+;; ANSWER SECTION:
+www.sina.com.cn.        <span class="hljs-number">1728</span>    IN      CNAME   jupiter.sina.com.cn.
+jupiter.sina.com.cn.    <span class="hljs-number">2767</span>    IN      CNAME   ara.sina.com.cn.
+ara.sina.com.cn.        <span class="hljs-number">1</span>       IN      A       <span class="hljs-number">58.63</span>.<span class="hljs-number">236.248</span>
+ara.sina.com.cn.        <span class="hljs-number">1</span>       IN      A       <span class="hljs-number">121.14</span>.<span class="hljs-number">1.189</span>
+ara.sina.com.cn.        <span class="hljs-number">1</span>       IN      A       <span class="hljs-number">121.14</span>.<span class="hljs-number">1.190</span>
+
+;; AUTHORITY SECTION:
+sina.com.cn.            <span class="hljs-number">73563</span>   IN      NS      ns4.sina.com.cn.
+sina.com.cn.            <span class="hljs-number">73563</span>   IN      NS      ns1.sina.com.cn.
+sina.com.cn.            <span class="hljs-number">73563</span>   IN      NS      ns3.sina.com.cn.
+sina.com.cn.            <span class="hljs-number">73563</span>   IN      NS      ns2.sina.com.cn.
+......
+</code></pre>
+<p>&#x5F00;&#x59CB;&#x6211;&#x4EE5;&#x4E3A;&#x662F;vpn&#x670D;&#x52A1;&#x5F71;&#x54CD;&#xFF0C;&#x6240;&#x4EE5;&#x7279;&#x610F;&#x5173;&#x95ED;&#x4E86;VPN&#x8FDE;&#x63A5;&#xFF0C;&#x5E76;&#x4E14;&#x4ECE;&#x5176;&#x4ED6;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x591A;&#x6B21;&#x6D4B;&#x8BD5;&#x90FD;&#x6CA1;&#x6709;&#x6210;&#x529F;&#x3002;&#x4E5F;&#x9A8C;&#x8BC1;&#x4E86;&#x6CA1;&#x6709;&#x9632;&#x706B;&#x5899;&#x5E72;&#x6270;&#x3002;&#x6700;&#x540E;&#xFF0C;&#x5076;&#x7136;&#x641C;&#x7D22;&#x5230; <a href="http://superuser.com/questions/858443/dnsmasq-dns-request-timed-out-for-machines-in-local-network" target="_blank">dnsmasq: DNS request timed out for machines in local network</a> &#xFF0C;&#x539F;&#x6765;&#x5FC5;&#x987B;&#x663E;&#x5F0F;&#x5730;&#x8BBE;&#x7F6E; listen-address &#x76D1;&#x542C;&#x63A5;&#x53E3;&#xFF0C;DNSmasq&#x624D;&#x4F1A;&#x5BF9;&#x5916;&#x90E8;&#x5BA2;&#x6237;&#x7AEF;&#x8BF7;&#x6C42;&#x54CD;&#x5E94;&#xFF0C;&#x5426;&#x5219;&#x53EA;&#x6709;&#x672C;&#x673A;&#xFF08;&#x4F30;&#x8BA1;DNSmasq&#x4EE3;&#x7801;&#x4E2D;&#x68C0;&#x67E5;&#x5BA2;&#x6237;&#x7AEF;IP&#x6765;&#x5224;&#x65AD;&#x662F;&#x5426;&#x662F;&#x672C;&#x673A;IP&#x8FDB;&#x884C;&#x8FC7;&#x6EE4;&#xFF09;&#x624D;&#x63D0;&#x4F9B;&#x670D;&#x52A1;&#xFF0C;&#x867D;&#x7136;&#x7AEF;&#x53E3;&#x5DF2;&#x7ECF;&#x76D1;&#x542C;&#x3002;</p>
+<p>&#x4FEE;&#x6539;VPN&#x670D;&#x52A1;&#x5668;&#x4E0A; /etc/dnsmasq.conf &#x914D;&#x7F6E;&#xFF0C;&#x6DFB;&#x52A0;</p>
+<pre><code class="lang-bash">listen-address=<span class="hljs-number">192.168</span>.<span class="hljs-number">101.1</span>
+listen-address=VPN_SERVER_IP
+</code></pre>
+<p>&#x7136;&#x540E;&#x91CD;&#x542F;dnsmasq&#x5C31;&#x53EF;&#x4EE5;&#x6B63;&#x5E38;&#x89E3;&#x6790;&#x3002;</p>
+<blockquote>
+<p>&#x4E3A;&#x4E86;&#x5B89;&#x5168;&#x8D77;&#x89C1;&#xFF0C;&#x5B9E;&#x9645;&#x6211;&#x662F;&#x53EA;&#x76D1;&#x542C;tun&#x63A5;&#x53E3;&#x63D0;&#x4F9B;&#x670D;&#x52A1;&#xFF0C;&#x8FD9;&#x6837;&#x53EA;&#x6709;VPN&#x5BA2;&#x6237;&#x7AEF;&#x53EF;&#x4EE5;&#x8BBF;&#x95EE;DNS&#x3002;</p>
+</blockquote>
+<h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
+<ul>
+<li><a href="https://www.vultr.com/docs/setup-openconnect-vpn-server-for-cisco-anyconnect-on-ubuntu-14-04-x64" target="_blank">Setup OpenConnect VPN Server for Cisco AnyConnect on Ubuntu 14.04 x64</a></li>
+<li><a href="http://wiki.openwrt.org/doc/howto/openconnect-setup" target="_blank">OpenConnect SERVER Setup Guide for Beginners</a> - &#x5728;OpenWrt&#x4E0A;&#x90E8;&#x7F72;OpenConnect&#x670D;&#x52A1;</li>
+<li><a href="https://gitlab.com/ocserv/ocserv" target="_blank">ocserv&#x5B89;&#x88C5;&#x6587;&#x6863;</a></li>
+<li>&#x5176;&#x4ED6;&#x4E00;&#x4E9B;&#x4E2D;&#x6587;&#x7684;&#x8BBE;&#x7F6E;&#x53C2;&#x8003;&#x6587;&#x6863;<ul>
+<li><a href="http://bitinn.net/11084/" target="_blank">&#x67B6;&#x8BBE;OpenConnect Server&#x7ED9;iPhone&#x63D0;&#x4F9B;&#x66F4;&#x987A;&#x7545;&#x7684;&#x7F51;&#x7EDC;&#x751F;&#x6D3B;</a></li>
+<li><a href="http://www.fanyueciyuan.info/fq/ocserv-debian.html/comment-page-2" target="_blank">OpenConnect server(ocserv) &#x4E00;&#x952E;&#x811A;&#x672C; for deibian 7+ </a></li>
+<li><a href="http://briteming.blogspot.com/2015/02/centos-65ocservcisco-anyconnect.html" target="_blank">&#x7F16;&#x8BD1;ocserv&#x5E76;&#x914D;&#x7F6E;Cisco AnyConnect VPN&#xFF0C;&#x4EE5;&#x4FBF;&#x5728;iphone&#x4E0A;&#x4F7F;&#x7528;OpenConnect SSL VPN&#x7FFB;&#x5899;</a></li>
+<li><a href="https://darknode.in/network/setup-debian-ocserv/" target="_blank">Oc&#xAD;serv &#x5728; De&#xAD;bian &#x4E0B;&#x7684;&#x5B89;&#x88C5;&#x4E0E;&#x914D;&#x7F6E;&#x6307;&#x5357;</a> - &#x63D0;&#x4F9B;&#x4E86;&#x6709;&#x5173; no-route &#x7684;&#x5EFA;&#x8BAE;</li>
+</ul>
+</li>
+</ul>
+
+                    
+                    </section>
+                
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../security/vpn/use_openconnect_to_ocserv_in_android.html" class="navigation navigation-prev " aria-label="Previous page: 在Android上使用OpenConnect连接ocserv"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../virtual/index.html" class="navigation navigation-next " aria-label="Next page: 虚拟化"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/app.js"></script>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    
+
+    
+    <script src="../../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {"disqus":{"shortName":"huatai-gitbooks","useIdentifier":false},"codeblock-filename":{},"toggle-chapters":{},"highlight":{},"search":{"maxIndexSize":1000000},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"livereload":{}};
+    gitbook.start(config);
+});
+</script>
+
+        <!-- body:end -->
+    </body>
+    <!-- End of book 云图 -->
+</html>

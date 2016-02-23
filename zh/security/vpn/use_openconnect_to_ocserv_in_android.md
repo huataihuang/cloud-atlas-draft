@@ -8,6 +8,8 @@
 
 > 更为方便的方法是从[Google Play Store](https://play.google.com/store/apps/details?id=app.openconnect&hl=en)直接安装，可惜在景德镇，要访问Google Play首先要翻墙，所以只能先独立下载安装OpenConnect，然后再翻墙访问Goople Play。
 
+> VPN服务器部署参考[部署ocserv VPN服务器](deploy_ocserv_vpn_server.md)
+
 # 参考
 
 * [OpenConnect for Android](https://github.com/cernekee/ics-openconnect) 

@@ -54,6 +54,7 @@
 * [安全](security/README.md)
 	* [VPN](security/vpn/README.md)
 		* [在Android上使用OpenConnect连接ocserv](security/vpn/use_openconnect_to_ocserv_in_android.md)
+		* [部署ocserv VPN服务器](security/vpn/deploy_ocserv_vpn_server.md)
 * [虚拟化](virtual/README.md)
     * [kvm](virtual/kvm/virtual_kvm_intro.md)
         * [kvm架构](virtual/kvm/virtual_kvm_infrastructure.md)
