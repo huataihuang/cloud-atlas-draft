@@ -23,6 +23,8 @@ Mac OS X虽然是非常优雅，但是不知道为什么，这么多年，中文
 
 # 使用Tips
 
+* 简体输入切换
+
 第一个推荐的Tips，就是上手如何将默认的繁体输入切换为简体输入：
 
 按组合键 Ctrl+` 呼出输入法方案选单（如下），切换为「汉字」就可以输入简体了
@@ -31,6 +33,18 @@ Mac OS X虽然是非常优雅，但是不知道为什么，这么多年，中文
 
 > 详细的特性介绍和对比参考[安装及配置 Mac 上的 Rime 输入法——鼠鬚管 (Squirrel)](http://www.dreamxu.com/install-config-squirrel/)
 
+* 配置待选字排列方式
+
+默认的界面方案，待选字是垂直排列的，并且字体超大（21号），不是很习惯。修改配置文件`squirrel.yaml`，修改段落`style:`，设置为横向候选以及字体大小12号，以及采用黑色主题（`luna`）
+
+```bash
+style:
+  color_scheme: luna
+  horizontal: true
+  ...
+  font_point: 12
+```
+
 # 图形化的配置工具SCU
 
 [SCU（Squirrel 配置工具）](https://github.com/neolee/SCU) - 其实默认的设置已经足够，并且网上有很多提供设置的介绍文档，可以直接修改配置文件来实现。不过，对于不想花费时间来研究的用户，使用图形界面不失为一个节约时间精力的方式。
@@ -38,4 +52,5 @@ Mac OS X虽然是非常优雅，但是不知道为什么，这么多年，中文
 # 参考
 
 * [安装及配置 Mac 上的 Rime 输入法——鼠鬚管 (Squirrel)](http://www.dreamxu.com/install-config-squirrel/) - 我是参考这个文档使用`ctrl+``来设置简体中文输入的，小小技巧方便了众人。
+* [鼠须管，“神级”输入法](http://www.ifanr.com/156409)
 * [为什么鼠须管输入法的设置这么麻烦？为什么不弄个设置界面？ ](https://www.zhihu.com/question/21101540)
