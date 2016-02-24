@@ -25,6 +25,8 @@
 			* [RHEL/CentOS启动服务Tips](os/linux/redhat/daemon_tips.md)
 		* [Gentoo](os/linux/gentoo/README.md)
 			* [Portage包管理](os/linux/gentoo/portage.md)
+		* [实用工具](os/linux/utility/README.md)
+			* [多路复用终端管理器screen](os/linux/utility/screen.md)
 * [网络](network/README.md)
     * [链路聚合](network/link_aggregation/README.md)
         * [LACP](network/link_aggregation/lacp/README.md)
