@@ -75,6 +75,8 @@
 				* [在OS X安装Docker](virtual/docker/engine/install/deploy_docker_in_osx.md)
 	* [VirtualBox](virtual/virtualbox/README.md)
 		* [Vagrant]
+	* [杂项](virtual/misc/README.md)
+		* [如何检测虚拟或物理主机](virtual/misc/detecting_virtualization.md)
 * [虚拟化网络](virtual_network/README.md)
     * [VXLAN](virtual_network/vxlan/README.md)
     * [虚拟化网络监控](virtual_network/monitor/README.md)
