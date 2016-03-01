@@ -83,6 +83,7 @@
 		* [Vagrant Box管理](virtual/vagrant/box.md)
 		* [使用Vagrant Snapshot创建快照备份](virtual/vagrant/snapshot.md)
 		* [vagrant up下载镜像失败无法断点续传处理](virtual/vagrant/resume_download.md)
+		* [vboxsf模块安装和挂载共享目录](virtual/vagrant/vboxsf.md)
 	* [杂项](virtual/misc/README.md)
 		* [如何检测虚拟或物理主机](virtual/misc/detecting_virtualization.md)
 * [虚拟化网络](virtual_network/README.md)
