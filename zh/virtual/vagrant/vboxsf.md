@@ -37,7 +37,7 @@ The error output from the last command was:
 mount /dev/cdrom /mnt
 ```
 
-> 这里设备`/dev/cdrom`可以通过`ls -lh /dev/cdrom`看到如下设备（也可能是`/dev/dvd`设备）
+> 这里设备`/dev/cdrom`可以通过`ls -lh /dev/cdrom`看到如下设备（也可能是`/dev/dvd`设备或者是`/dev/cdrom1`）
 
 ```bash
 lrwxrwxrwx. 1 root root 3 Mar  1 14:54 /dev/cdrom -> sr0
