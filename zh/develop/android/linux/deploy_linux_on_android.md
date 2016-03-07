@@ -23,9 +23,33 @@
 
 * 确保网络联通情况下，点击`'Install'`，安装过程是自动的，最后可以看到`<<< end: install`表示安装完成。
 
+> 安装对网络有要求（景德镇访问非常不稳定），实际上我安装了多次才成功
+
 > 默认启动的账户是`android`密码是`changeme`，请立即修改帐号密码。
 
+* 安装后通过ssh登录手机中运行的`Debian Jesssie`，可以看到系统占用了4G空间，对于一些常规的使用已经足够
 
+可以在平时采用iPad Pro登录到Nexus 5手机的Linux操作系统，使用这个环境来做一些相关的维护和开发工作。
+
+## 安装完成后的一些简单维护
+
+作为服务器爱好者，安装的debian系统自然是选择最小化安装，安装完成后，可以做一些简单的包管理配置以便完善系统
+
+```bash
+apt-get update
+apt-get upgrade
+apt-get install dnsutils
+```
+
+> 由于网络不稳定等原因，在线安装debian的时候，有可能部分软件包安装存在问题，可以通过[debian在线搜索软件包](https://www.debian.org/distrib/packages)找到对应包进行补充安装。
+
+主机名修改
+
+```bash
+hostname nexus5
+echo nexus5 > /etc/hostname
+sed -i 's/localhost/localhost nexus5/g' /etc/hosts
+```
 
 # 参考
 
