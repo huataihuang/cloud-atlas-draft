@@ -14,8 +14,8 @@
 
 **`注意：RHEL 6 和 RHEL 7 的cgroup概念及使用方法有较大差异，请注意区别！`**
 
-* [RHEL 6 Cgroups介绍](../../../../../zh/os/linux/kernel/cgroups/rhel6/introduction.md)
-* [RHEL 7 Cgroups介绍](../../../../../zh/os/linux/kernel/cgroups/rhel7/introduction.md)
+* [RHEL 6 Cgroups介绍](rhel6/README.md)
+* [RHEL 7 Cgroups介绍](rhel7/README.md)
 
 
 # 参考

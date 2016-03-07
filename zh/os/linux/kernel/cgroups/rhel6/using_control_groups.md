@@ -382,3 +382,41 @@ user:command subsystems control_group
 ```
 
 这里`user`是用户名，或者是以`@`开头的组名。
+
+**这里需要再补充一些细节**
+
+# 在控制组中启动一个进程
+
+注意：在移动一个进程到使用了子系统的cgroup，这些子系统需要先设置好强制参数（mandatory parameters）。例如，在将一个任务移动到使用了`cpuset`子系统的cgroup之前，你必须先创建好`cpuset.cpus`和`cpuset.mems`参数。
+
+要将一个进程在cgroup中启动，需要使用`cgexec`命令。例如，在`gruop1`的cgroup中启动`firefox`浏览器，限制到`cpu`子系统
+
+```bash
+cgexec -g cpu:group1 firefox http://www.redhat.com
+```
+
+使用`cgexec`的语法：
+
+```bash
+cgexec -g subsystems:path_to_cgroup command arguments
+```
+
+* `subsystem`是逗号分隔的子系统列表。如果在多个hierarchies中有相同名字的cgroup，则`-g`参数将在每个groups中创建进程。
+* `path_to_cgroup`是在hierarchy中的相关cgroup
+
+**替代方法**
+
+也可以使用shell命令：当启动一个进程，它将继承父进程的group，所以替代方法是先将shell进程移动到组里面，然后在shell中启动组：
+
+```bash
+echo $$ > /cgroup/cpu_and_mem/group1/tasks
+firefox
+```
+
+更好的方法是：
+
+```bash
+sh -c "echo \$$ > /cgroup/cpu_and_mem/group1/tasks && firefox"
+```
+
+# Starting a Service in a Control Group
