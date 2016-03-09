@@ -25,6 +25,8 @@
 
 > [NFC手机支付，何时消灭公交卡？](http://tech.ifeng.com/speakout/detail_2014_06/26/37030697_0.shtml)
 
+不过，上海公交公司自己开发了[上海交通卡](http://www.sptcc.com/Load_jiaotongkaxinwen.html#xinwen?jtk_new/jtk_p10_l23.json)手机应用，可以支持银联卡向交通卡充值。不过，手机充值只限“U”字母开头的交通卡，且必须使用带有NFC功能的安卓手机。
+
 使用`Taginfo`可以看到NFC交通卡详细的信息。
 
 小米5也内建了NFC功能，支持读卡、写卡、卡模拟，以及P2P模式。成功绑定公交卡后，就可以用小米5作为公交卡使用，并且支持充值。
