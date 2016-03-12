@@ -2,6 +2,8 @@
 
 推荐`nvm`来管理`node.js`版本，请参考[nvm官方说明](https://github.com/creationix/nvm)
 
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
+
 	nvm install 4.3.0
 	nvm alias default 4.3.0
 

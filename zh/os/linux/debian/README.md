@@ -1,0 +1,1 @@
+本章节的`Debian`泛指Debian系发行版，包括了流行的Debian和Ubuntu。
