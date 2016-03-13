@@ -8,7 +8,7 @@
         <title>pip包管理 | 云图</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.6.5">
+        <meta name="generator" content="GitBook 2.6.7">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -65,7 +65,7 @@
         data-chapter-title="pip包管理"
         data-filepath="develop/python/startup/pip.md"
         data-basepath="../../.."
-        data-revision="Sun Mar 13 2016 00:19:52 GMT+0800 (CST)"
+        data-revision="Sun Mar 13 2016 21:15:20 GMT+0800 (CST)"
         data-innerlanguage="zh">
     
 
@@ -3146,9 +3146,44 @@
                         <p><code>pip</code>&#x662F;&#x4F7F;&#x7528;Python&#x7F16;&#x5199;&#x7684;&#x7528;&#x8BED;&#x8F6F;&#x4EF6;&#x5305;&#x5B89;&#x88C5;&#x548C;&#x7BA1;&#x7406;&#x7684;&#x5305;&#x7BA1;&#x7406;&#x5668;&#x3002;&#x5F88;&#x591A;&#x8F6F;&#x4EF6;&#x5305;&#x90FD;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<a href="https://pypi.python.org/pypi" target="_blank">Python Package Index</a>&#xFF08;PyPI&#xFF09;&#x6765;&#x627E;&#x5230;&#x3002;</p>
 <p>Python 2.7.9&#x5F00;&#x59CB;&#x5305;&#x542B;&#x4E86;pip&#xFF08;&#x5728;Python 3&#x4E2D;&#x662F;<code>pip3</code>&#xFF09;&#x3002;</p>
 <h1 id="&#x64CD;&#x4F5C;&#x547D;&#x4EE4;">&#x64CD;&#x4F5C;&#x547D;&#x4EE4;</h1>
-<p>&#x5F88;&#x591A;&#x53D1;&#x884C;&#x7248;&#x5DF2;&#x7ECF;&#x5B89;&#x88C5;&#x4E86;<code>pip</code>&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x5B89;&#x88C5;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x5982;&#x4E0B;&#x547D;&#x4EE4;&#x5FEB;&#x901F;&#x5B8C;&#x6210;</p>
-<pre><code>curl https://bootstrap.pypa.io/get-pip.py | python
-</code></pre><p>&#x8981;&#x5B89;&#x88C5;&#x8F6F;&#x4EF6;&#x5305;</p>
+<h2 id="&#x7CFB;&#x7EDF;&#x7EA7;&#x522B;&#x5B89;&#x88C5;pip">&#x7CFB;&#x7EDF;&#x7EA7;&#x522B;&#x5B89;&#x88C5;pip</h2>
+<ul>
+<li>Red Hat&#x7CFB;&#x5217;&#x5B89;&#x88C5;pip</li>
+</ul>
+<pre><code class="lang-bash">sudo yum -y install python-pip
+</code></pre>
+<blockquote>
+<p>&#x53C2;&#x8003;<a href="http://www.cyberciti.biz/faq/debian-ubuntu-centos-rhel-linux-install-pipclient/" target="_blank">Linux: Install pip Client To Install Python Packages</a></p>
+</blockquote>
+<ul>
+<li>Debian&#x7CFB;&#x5217;&#x5B89;&#x88C5;pip</li>
+</ul>
+<pre><code class="lang-bash">sudo apt-get install python-pip
+</code></pre>
+<blockquote>
+<p>&#x53C2;&#x8003;<a href="http://sharadchhetri.com/2014/05/30/install-pip-centos-rhel-ubuntu-debian/" target="_blank">How to install pip on CentOS / RHEL / Ubuntu / Debian</a></p>
+</blockquote>
+<ul>
+<li>&#x901A;&#x8FC7;&#x811A;&#x672C;&#x547D;&#x4EE4;&#x5B89;&#x88C5;</li>
+</ul>
+<pre><code class="lang-bash">curl https://bootstrap.pypa.io/get-pip.py | python
+</code></pre>
+<h2 id="&#x4E2A;&#x4EBA;&#x7528;&#x6237;&#x73AF;&#x5883;&#x5B89;&#x88C5;pip">&#x4E2A;&#x4EBA;&#x7528;&#x6237;&#x73AF;&#x5883;&#x5B89;&#x88C5;pip</h2>
+<p>&#x5982;&#x679C;&#x7528;&#x6237;&#x6CA1;&#x6709;root&#x6743;&#x9650;&#xFF0C;&#x6216;&#x8005;&#x4E0D;&#x80FD;&#x4FEE;&#x6539;&#x7CFB;&#x7EDF;&#x7EA7;&#x522B;&#x7684;Python&#x5B89;&#x88C5;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4EE5;&#x4E0B;&#x65B9;&#x6CD5;&#x5728;&#x4E2A;&#x4EBA;&#x5DE5;&#x4F5C;&#x76EE;&#x5F55;&#x4E0B;&#x90E8;&#x7F72;Python&#x5DE5;&#x4F5C;&#x73AF;&#x5883;</p>
+<p>&#x5B89;&#x88C5;virtualenv</p>
+<pre><code class="lang-bash">curl -O https://raw.github.com/pypa/virtualenv/master/virtualenv.py
+</code></pre>
+<p>&#x521B;&#x5EFA;&#x865A;&#x62DF;&#x73AF;&#x5883;</p>
+<pre><code class="lang-bash">python virtualenv.py py_virtual
+</code></pre>
+<p>&#x6FC0;&#x6D3B;&#x865A;&#x62DF;&#x73AF;&#x5883;</p>
+<pre><code class="lang-bash">. py_virtual/bin/activate
+</code></pre>
+<p>&#x53C2;&#x8003;<a href="http://www.cyberciti.biz/faq/debian-ubuntu-centos-rhel-linux-install-pipclient/" target="_blank">Linux: Install pip Client To Install Python Packages</a></p>
+<ul>
+<li>Red Hat&#x7CFB;&#x5217;&#x5B89;&#x88C5;pip</li>
+</ul>
+<p>&#x8981;&#x5B89;&#x88C5;&#x8F6F;&#x4EF6;&#x5305;</p>
 <pre><code>pip install some-package-name
 </code></pre><p>&#x5378;&#x8F7D;&#x4E5F;&#x5F88;&#x65B9;&#x4FBF;</p>
 <pre><code>pip uninstall some-package-name
