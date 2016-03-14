@@ -65,6 +65,7 @@
 	* [Sendmail](service/sendmail/README.md)
 		* [Sendmail队列异常处理](service/sendmail/sendmail_mqueue_error.md)
 	* [ssh](service/ssh/README.md)
+		* [ssh密钥](service/ssh/ssh_key.md)
 		* [ssh端口转发](service/ssh/ssh_port_forwarding.md)
 		* [ssh多路传输multiplexing加速](service/ssh/multiplexing.md)
 		* [使用sslh在443端口提供多种协议服务](service/ssh/sslh_multi_service_in_one_port.md)

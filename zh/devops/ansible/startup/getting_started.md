@@ -30,6 +30,8 @@ ssh-agent bash
 ssh-add ~/.ssh/id_rsa
 ```
 
+> 详细有关ssh密钥技术和ssh agent使用方法，请参考[ssh密钥](../../../service/ssh/ssh_key.md)
+
 现在开始测试访问所有的节点
 
 ```bash

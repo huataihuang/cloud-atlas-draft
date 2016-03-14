@@ -99,6 +99,14 @@ Ubuntu的发行包通过[PPA](https://launchpad.net/~ansible/+archive/ansible)�
 
 	make deb
 
+# 在Linux over Android上安装
+
+[在Android上运行Linux](../../../develop/android/linux/deploy_linux_on_android.md)实现了Linux移动工作环境，其基础环境就是Debian，支持直接通过软件仓库安装：
+
+```bash
+sudo apt-get install ansible
+```
+
 # 通过Portage安装(Gentoo)
 
 	emerge -av app-admin/ansible

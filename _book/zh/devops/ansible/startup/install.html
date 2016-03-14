@@ -65,7 +65,7 @@
         data-chapter-title="安装"
         data-filepath="devops/ansible/startup/install.md"
         data-basepath="../../.."
-        data-revision="Sun Mar 13 2016 21:15:20 GMT+0800 (CST)"
+        data-revision="Mon Mar 14 2016 16:22:56 GMT+0800 (CST)"
         data-innerlanguage="zh">
     
 
@@ -1185,14 +1185,29 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="5.2.1" data-path="service/ssh/ssh_port_forwarding.html">
+        <li class="chapter " data-level="5.2.1" data-path="service/ssh/ssh_key.html">
+            
+                
+                    <a href="../../../service/ssh/ssh_key.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.1.</b>
+                        
+                        ssh密钥
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="5.2.2" data-path="service/ssh/ssh_port_forwarding.html">
             
                 
                     <a href="../../../service/ssh/ssh_port_forwarding.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>5.2.1.</b>
+                            <b>5.2.2.</b>
                         
                         ssh端口转发
                     </a>
@@ -1200,14 +1215,14 @@
             
         </li>
     
-        <li class="chapter " data-level="5.2.2" data-path="service/ssh/multiplexing.html">
+        <li class="chapter " data-level="5.2.3" data-path="service/ssh/multiplexing.html">
             
                 
                     <a href="../../../service/ssh/multiplexing.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>5.2.2.</b>
+                            <b>5.2.3.</b>
                         
                         ssh多路传输multiplexing加速
                     </a>
@@ -1215,14 +1230,14 @@
             
         </li>
     
-        <li class="chapter " data-level="5.2.3" data-path="service/ssh/sslh_multi_service_in_one_port.html">
+        <li class="chapter " data-level="5.2.4" data-path="service/ssh/sslh_multi_service_in_one_port.html">
             
                 
                     <a href="../../../service/ssh/sslh_multi_service_in_one_port.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>5.2.3.</b>
+                            <b>5.2.4.</b>
                         
                         使用sslh在443端口提供多种协议服务
                     </a>
@@ -3204,7 +3219,11 @@ sudo apt-get update
 sudo apt-get install ansible
 </code></pre><p>&#x540C;&#x6837;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x6E90;&#x4EE3;&#x7801;&#x4E0A;&#x6784;&#x5EFA;<code>deb</code></p>
 <pre><code>make deb
-</code></pre><h1 id="&#x901A;&#x8FC7;portage&#x5B89;&#x88C5;gentoo">&#x901A;&#x8FC7;Portage&#x5B89;&#x88C5;(Gentoo)</h1>
+</code></pre><h1 id="&#x5728;linux-over-android&#x4E0A;&#x5B89;&#x88C5;">&#x5728;Linux over Android&#x4E0A;&#x5B89;&#x88C5;</h1>
+<p><a href="../../../develop/android/linux/deploy_linux_on_android.html">&#x5728;Android&#x4E0A;&#x8FD0;&#x884C;Linux</a>&#x5B9E;&#x73B0;&#x4E86;Linux&#x79FB;&#x52A8;&#x5DE5;&#x4F5C;&#x73AF;&#x5883;&#xFF0C;&#x5176;&#x57FA;&#x7840;&#x73AF;&#x5883;&#x5C31;&#x662F;Debian&#xFF0C;&#x652F;&#x6301;&#x76F4;&#x63A5;&#x901A;&#x8FC7;&#x8F6F;&#x4EF6;&#x4ED3;&#x5E93;&#x5B89;&#x88C5;&#xFF1A;</p>
+<pre><code class="lang-bash">sudo apt-get install ansible
+</code></pre>
+<h1 id="&#x901A;&#x8FC7;portage&#x5B89;&#x88C5;gentoo">&#x901A;&#x8FC7;Portage&#x5B89;&#x88C5;(Gentoo)</h1>
 <pre><code>emerge -av app-admin/ansible
 </code></pre><p>&#x8981;&#x5B89;&#x88C5;&#x6700;&#x65B0;&#x7248;&#x672C;&#xFF0C;&#x53EF;&#x80FD;&#x9700;&#x8981;unmask</p>
 <pre><code>echo &apos;app-admin/ansible&apos; &gt;&gt; /etc/portage/package.accept_keywords
