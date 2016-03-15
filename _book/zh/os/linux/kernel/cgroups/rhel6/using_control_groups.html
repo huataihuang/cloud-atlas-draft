@@ -65,7 +65,7 @@
         data-chapter-title="RHEL6 使用控制组"
         data-filepath="os/linux/kernel/cgroups/rhel6/using_control_groups.md"
         data-basepath="../../../../.."
-        data-revision="Tue Mar 15 2016 16:20:00 GMT+0800 (CST)"
+        data-revision="Tue Mar 15 2016 22:54:02 GMT+0800 (CST)"
         data-innerlanguage="zh">
     
 
@@ -3463,7 +3463,12 @@ firefox
 <p>&#x66F4;&#x597D;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#xFF1A;</p>
 <pre><code class="lang-bash">sh -c <span class="hljs-string">&quot;echo \$$ &gt; /cgroup/cpu_and_mem/group1/tasks &amp;&amp; firefox&quot;</span>
 </code></pre>
-<h1 id="starting-a-service-in-a-control-group">Starting a Service in a Control Group</h1>
+<h1 id="&#x5728;&#x63A7;&#x5236;&#x7EC4;&#x4E2D;&#x542F;&#x52A8;&#x4E00;&#x4E2A;&#x670D;&#x52A1;">&#x5728;&#x63A7;&#x5236;&#x7EC4;&#x4E2D;&#x542F;&#x52A8;&#x4E00;&#x4E2A;&#x670D;&#x52A1;</h1>
+<p>&#x53EF;&#x4EE5;&#x5728;cgroup&#x4E2D;&#x542F;&#x52A8;&#x4E00;&#x7CFB;&#x5217;&#x670D;&#x52A1;&#x3002;&#x8981;&#x5728;&#x4E00;&#x4E2A;cgroup&#x4E2D;&#x542F;&#x52A8;&#x670D;&#x52A1;&#xFF0C;&#x9700;&#x8981;&#x6EE1;&#x8DB3;&#x4EE5;&#x4E0B;&#x6761;&#x4EF6;&#xFF1A;</p>
+<ul>
+<li>&#x4F7F;&#x7528;<code>/etc/sysconfig/servicename</code>&#x6587;&#x4EF6;</li>
+<li>&#x5728;<code>/etc/init.d/functions</code>&#x4E2D;&#x4F7F;&#x7528;<code>daemon()</code>&#x529F;&#x80FD;&#x6765;&#x542F;&#x52A8;&#x670D;&#x52A1;</li>
+</ul>
 
                     
                     </section>

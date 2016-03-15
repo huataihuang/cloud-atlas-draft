@@ -419,4 +419,10 @@ firefox
 sh -c "echo \$$ > /cgroup/cpu_and_mem/group1/tasks && firefox"
 ```
 
-# Starting a Service in a Control Group
+# 在控制组中启动一个服务
+
+可以在cgroup中启动一系列服务。要在一个cgroup中启动服务，需要满足以下条件：
+
+* 使用`/etc/sysconfig/servicename`文件
+* 在`/etc/init.d/functions`中使用`daemon()`功能来启动服务
+

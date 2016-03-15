@@ -117,7 +117,118 @@ fastboot flash recovery twrp-3.0.0-0-hammerhead.img
 
 ![TWRP](/img/develop/android/twrp-6.jpg)
 
+# root后Android升级
+
+root过之后的Android运行和使用没有任何问题，但是会遇到一个问题，就是当Google推送系统升级的时候，每次系统启动开始打补丁总是不成功，进入Android系统之后，依然看到系统提示你要更新软件包。
+
+在`TWRP`启动时候，注意观察，可以看到启动报错是在安装`/cache/update.zip`包时候返回了一个`Status 7`错误：
+
+```bash
+Updter process ended with ERROR: 7
+Error installing zip file '/cache/update.zip'
+```
+
+截图如下：
+
+上述`Status 7`错误的原因是因为更新软件包中的`updater-script`脚本中有一部分是检查设备型号是否和安装的ROM兼容，这部分的`updater-script`有一个称为`asserts`的部分是用来校验的。
+
+* 将 `update.zip` 文件复制出来（对于系统目录下文件复制，需要su权限，见下文）解压缩
+
+```bash
+adb shell su
+exit
+adb pull /cache/update.zip
+```
+
+* 解压缩以后，进入`META-INF/com/google/android`目录，将`updater-script`复制成`updater-script.txt`，然后使用文本编辑器编辑这个文件
+* 删除`assert`开头的所有行（也就是对文件进行校验的命令），然后保存文件
+* 再将`updater-script.txt`重命名会`updater-script`
+* 重新将文件压缩成原先的`update.zip`，并传输回
+
+```bash
+zip -r update.zip META-INF patch
+adb push update.zip /cache/update.zip
+```
+
+> 上述方法对于OTA方式升级新的Android系统或者补丁包都是适用的
+
+## 具体操作步骤
+
+* 使用`adb`工具将Nexus 5中已经下载的`update.zip`复制出来
+
+> `adb`使用方法参考[ADB Shell](http://adbshell.com/commands/adb-root)
+
+检查连接设备
+
+```bash
+adb devices
+```
+
+显示输出
+
+```bash
+List of devices attached
+02211e9ec9623837	device
+```
+
+检查目录
+
+```bash
+adb shell ls
+```
+
+可以看到 
+
+```bash
+...
+cache
+...
+```
+
+但是，尝试列出`/cache`目录文件会被拒绝
+
+```bash
+adb shell ls /cache
+```
+
+提示权限不足
+
+```bash
+opendir failed, Permission denied
+```
+
+原来要浏览设备中所有文件需要满足两个条件
+
+* Android设备已经被root或者是使用开发设备
+* 需要以root模式运行ADB，也就是执行`adb root`
+
+> 参考 [Why do I get access denied to data folder when using adb?](http://stackoverflow.com/questions/1043322/why-do-i-get-access-denied-to-data-folder-when-using-adb)
+
+不过，我尝试
+
+```bash
+adb root
+```
+
+提示错误
+
+```bash
+adbd cannot run as root in production builds
+```
+
+解决的方法是使用
+
+```bash
+adb shell
+su
+```
+
+此时在手机屏幕上会提示是否允许授予`root`访问，点击授予权限。授权之后，就可以使用 `adb shell su`命令来执行`root`才能访问的文件了。
+
+> 注意，如果前面补丁失败，再正常启动系统，会清理掉 `/cache` 下文件，需要重新下载 `update.zip` （通过 `Setting => About phone => System updates`）
+
 # 参考
 
 * [Rooting your Android](http://www.androidcentral.com/root) - 介绍通过[Wug's Nexus Root Toolkit](http://www.wugfresh.com/nrt/)快速完成
 * [How to Root Android](http://www.maximumpc.com/how-root-android-2013/) - 介绍了手工操作完成root Android方法，适用所有Android设备，推荐阅读
+* [How to Fix Status 7 Error While Installing OTA Update or Custom ROMs](http://www.droidviews.com/fix-status-7-error-while-installing-ota-update-or-roms/)

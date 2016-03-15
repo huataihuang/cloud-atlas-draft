@@ -65,7 +65,7 @@
         data-chapter-title="Root Android(Nexus 5)"
         data-filepath="develop/android/startup/root_android_on_nexus_5.md"
         data-basepath="../../.."
-        data-revision="Tue Mar 15 2016 16:20:00 GMT+0800 (CST)"
+        data-revision="Tue Mar 15 2016 22:54:02 GMT+0800 (CST)"
         data-innerlanguage="zh">
     
 
@@ -3280,10 +3280,88 @@ fastboot flash recovery twrp-<span class="hljs-number">3.0</span>.<span class="h
 <p>&#x5728;Google Play Store&#x4E2D;&#x5B89;&#x88C5;<a href="https://play.google.com/store/apps/details?id=com.joeykrim.rootcheck&amp;hl=en" target="_blank">Root Checker</a>&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x6267;&#x884C;&#x8FD9;&#x4E2A;&#x7A0B;&#x5E8F;&#x6765;&#x68C0;&#x67E5;&#x3002;&#x8BE5;&#x7A0B;&#x5E8F;&#x4E0D;&#x4F1A;&#x5BF9;&#x7CFB;&#x7EDF;&#x505A;&#x4EFB;&#x4F55;&#x4FEE;&#x6539;&#xFF0C;&#x53EA;&#x662F;&#x9A8C;&#x8BC1;&#x83B7;&#x53D6;Root&#x6743;&#x9650;&#x662F;&#x5426;&#x80FD;&#x591F;&#x6210;&#x529F;&#xFF0C;&#x6240;&#x4EE5;&#x662F;&#x4E00;&#x4E2A;&#x5B89;&#x5168;&#x7684;&#x7A0B;&#x5E8F;&#x3002;</p>
 <p>&#x770B;&#x5230;&#x4EE5;&#x4E0B;&#x9A8C;&#x8BC1;&#x754C;&#x9762;&#x5C31;&#x8868;&#x793A;Root&#x8BBE;&#x5907;&#x6210;&#x529F;&#x4E86;</p>
 <p><img src="../../../img/develop/android/twrp-6.jpg" alt="TWRP"></p>
+<h1 id="root&#x540E;android&#x5347;&#x7EA7;">root&#x540E;Android&#x5347;&#x7EA7;</h1>
+<p>root&#x8FC7;&#x4E4B;&#x540E;&#x7684;Android&#x8FD0;&#x884C;&#x548C;&#x4F7F;&#x7528;&#x6CA1;&#x6709;&#x4EFB;&#x4F55;&#x95EE;&#x9898;&#xFF0C;&#x4F46;&#x662F;&#x4F1A;&#x9047;&#x5230;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF0C;&#x5C31;&#x662F;&#x5F53;Google&#x63A8;&#x9001;&#x7CFB;&#x7EDF;&#x5347;&#x7EA7;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6BCF;&#x6B21;&#x7CFB;&#x7EDF;&#x542F;&#x52A8;&#x5F00;&#x59CB;&#x6253;&#x8865;&#x4E01;&#x603B;&#x662F;&#x4E0D;&#x6210;&#x529F;&#xFF0C;&#x8FDB;&#x5165;Android&#x7CFB;&#x7EDF;&#x4E4B;&#x540E;&#xFF0C;&#x4F9D;&#x7136;&#x770B;&#x5230;&#x7CFB;&#x7EDF;&#x63D0;&#x793A;&#x4F60;&#x8981;&#x66F4;&#x65B0;&#x8F6F;&#x4EF6;&#x5305;&#x3002;</p>
+<p>&#x5728;<code>TWRP</code>&#x542F;&#x52A8;&#x65F6;&#x5019;&#xFF0C;&#x6CE8;&#x610F;&#x89C2;&#x5BDF;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x542F;&#x52A8;&#x62A5;&#x9519;&#x662F;&#x5728;&#x5B89;&#x88C5;<code>/cache/update.zip</code>&#x5305;&#x65F6;&#x5019;&#x8FD4;&#x56DE;&#x4E86;&#x4E00;&#x4E2A;<code>Status 7</code>&#x9519;&#x8BEF;&#xFF1A;</p>
+<pre><code class="lang-bash">Updter process ended with ERROR: <span class="hljs-number">7</span>
+Error installing zip file <span class="hljs-string">&apos;/cache/update.zip&apos;</span>
+</code></pre>
+<p>&#x622A;&#x56FE;&#x5982;&#x4E0B;&#xFF1A;</p>
+<p>&#x4E0A;&#x8FF0;<code>Status 7</code>&#x9519;&#x8BEF;&#x7684;&#x539F;&#x56E0;&#x662F;&#x56E0;&#x4E3A;&#x66F4;&#x65B0;&#x8F6F;&#x4EF6;&#x5305;&#x4E2D;&#x7684;<code>updater-script</code>&#x811A;&#x672C;&#x4E2D;&#x6709;&#x4E00;&#x90E8;&#x5206;&#x662F;&#x68C0;&#x67E5;&#x8BBE;&#x5907;&#x578B;&#x53F7;&#x662F;&#x5426;&#x548C;&#x5B89;&#x88C5;&#x7684;ROM&#x517C;&#x5BB9;&#xFF0C;&#x8FD9;&#x90E8;&#x5206;&#x7684;<code>updater-script</code>&#x6709;&#x4E00;&#x4E2A;&#x79F0;&#x4E3A;<code>asserts</code>&#x7684;&#x90E8;&#x5206;&#x662F;&#x7528;&#x6765;&#x6821;&#x9A8C;&#x7684;&#x3002;</p>
+<ul>
+<li>&#x5C06; <code>update.zip</code> &#x6587;&#x4EF6;&#x590D;&#x5236;&#x51FA;&#x6765;&#xFF08;&#x5BF9;&#x4E8E;&#x7CFB;&#x7EDF;&#x76EE;&#x5F55;&#x4E0B;&#x6587;&#x4EF6;&#x590D;&#x5236;&#xFF0C;&#x9700;&#x8981;su&#x6743;&#x9650;&#xFF0C;&#x89C1;&#x4E0B;&#x6587;&#xFF09;&#x89E3;&#x538B;&#x7F29;</li>
+</ul>
+<pre><code class="lang-bash">adb shell su
+<span class="hljs-built_in">exit</span>
+adb pull /cache/update.zip
+</code></pre>
+<ul>
+<li>&#x89E3;&#x538B;&#x7F29;&#x4EE5;&#x540E;&#xFF0C;&#x8FDB;&#x5165;<code>META-INF/com/google/android</code>&#x76EE;&#x5F55;&#xFF0C;&#x5C06;<code>updater-script</code>&#x590D;&#x5236;&#x6210;<code>updater-script.txt</code>&#xFF0C;&#x7136;&#x540E;&#x4F7F;&#x7528;&#x6587;&#x672C;&#x7F16;&#x8F91;&#x5668;&#x7F16;&#x8F91;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;</li>
+<li>&#x5220;&#x9664;<code>assert</code>&#x5F00;&#x5934;&#x7684;&#x6240;&#x6709;&#x884C;&#xFF08;&#x4E5F;&#x5C31;&#x662F;&#x5BF9;&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x6821;&#x9A8C;&#x7684;&#x547D;&#x4EE4;&#xFF09;&#xFF0C;&#x7136;&#x540E;&#x4FDD;&#x5B58;&#x6587;&#x4EF6;</li>
+<li>&#x518D;&#x5C06;<code>updater-script.txt</code>&#x91CD;&#x547D;&#x540D;&#x4F1A;<code>updater-script</code></li>
+<li>&#x91CD;&#x65B0;&#x5C06;&#x6587;&#x4EF6;&#x538B;&#x7F29;&#x6210;&#x539F;&#x5148;&#x7684;<code>update.zip</code>&#xFF0C;&#x5E76;&#x4F20;&#x8F93;&#x56DE;</li>
+</ul>
+<pre><code class="lang-bash">zip -r update.zip META-INF patch
+adb push update.zip /cache/update.zip
+</code></pre>
+<blockquote>
+<p>&#x4E0A;&#x8FF0;&#x65B9;&#x6CD5;&#x5BF9;&#x4E8E;OTA&#x65B9;&#x5F0F;&#x5347;&#x7EA7;&#x65B0;&#x7684;Android&#x7CFB;&#x7EDF;&#x6216;&#x8005;&#x8865;&#x4E01;&#x5305;&#x90FD;&#x662F;&#x9002;&#x7528;&#x7684;</p>
+</blockquote>
+<h2 id="&#x5177;&#x4F53;&#x64CD;&#x4F5C;&#x6B65;&#x9AA4;">&#x5177;&#x4F53;&#x64CD;&#x4F5C;&#x6B65;&#x9AA4;</h2>
+<ul>
+<li>&#x4F7F;&#x7528;<code>adb</code>&#x5DE5;&#x5177;&#x5C06;Nexus 5&#x4E2D;&#x5DF2;&#x7ECF;&#x4E0B;&#x8F7D;&#x7684;<code>update.zip</code>&#x590D;&#x5236;&#x51FA;&#x6765;</li>
+</ul>
+<blockquote>
+<p><code>adb</code>&#x4F7F;&#x7528;&#x65B9;&#x6CD5;&#x53C2;&#x8003;<a href="http://adbshell.com/commands/adb-root" target="_blank">ADB Shell</a></p>
+</blockquote>
+<p>&#x68C0;&#x67E5;&#x8FDE;&#x63A5;&#x8BBE;&#x5907;</p>
+<pre><code class="lang-bash">adb devices
+</code></pre>
+<p>&#x663E;&#x793A;&#x8F93;&#x51FA;</p>
+<pre><code class="lang-bash">List of devices attached
+<span class="hljs-number">02211</span>e9ec9623837    device
+</code></pre>
+<p>&#x68C0;&#x67E5;&#x76EE;&#x5F55;</p>
+<pre><code class="lang-bash">adb shell ls
+</code></pre>
+<p>&#x53EF;&#x4EE5;&#x770B;&#x5230; </p>
+<pre><code class="lang-bash">...
+cache
+...
+</code></pre>
+<p>&#x4F46;&#x662F;&#xFF0C;&#x5C1D;&#x8BD5;&#x5217;&#x51FA;<code>/cache</code>&#x76EE;&#x5F55;&#x6587;&#x4EF6;&#x4F1A;&#x88AB;&#x62D2;&#x7EDD;</p>
+<pre><code class="lang-bash">adb shell ls /cache
+</code></pre>
+<p>&#x63D0;&#x793A;&#x6743;&#x9650;&#x4E0D;&#x8DB3;</p>
+<pre><code class="lang-bash">opendir failed, Permission denied
+</code></pre>
+<p>&#x539F;&#x6765;&#x8981;&#x6D4F;&#x89C8;&#x8BBE;&#x5907;&#x4E2D;&#x6240;&#x6709;&#x6587;&#x4EF6;&#x9700;&#x8981;&#x6EE1;&#x8DB3;&#x4E24;&#x4E2A;&#x6761;&#x4EF6;</p>
+<ul>
+<li>Android&#x8BBE;&#x5907;&#x5DF2;&#x7ECF;&#x88AB;root&#x6216;&#x8005;&#x662F;&#x4F7F;&#x7528;&#x5F00;&#x53D1;&#x8BBE;&#x5907;</li>
+<li>&#x9700;&#x8981;&#x4EE5;root&#x6A21;&#x5F0F;&#x8FD0;&#x884C;ADB&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x6267;&#x884C;<code>adb root</code></li>
+</ul>
+<blockquote>
+<p>&#x53C2;&#x8003; <a href="http://stackoverflow.com/questions/1043322/why-do-i-get-access-denied-to-data-folder-when-using-adb" target="_blank">Why do I get access denied to data folder when using adb?</a></p>
+</blockquote>
+<p>&#x4E0D;&#x8FC7;&#xFF0C;&#x6211;&#x5C1D;&#x8BD5;</p>
+<pre><code class="lang-bash">adb root
+</code></pre>
+<p>&#x63D0;&#x793A;&#x9519;&#x8BEF;</p>
+<pre><code class="lang-bash">adbd cannot run as root <span class="hljs-keyword">in</span> production builds
+</code></pre>
+<p>&#x89E3;&#x51B3;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x4F7F;&#x7528;</p>
+<pre><code class="lang-bash">adb shell
+su
+</code></pre>
+<p>&#x6B64;&#x65F6;&#x5728;&#x624B;&#x673A;&#x5C4F;&#x5E55;&#x4E0A;&#x4F1A;&#x63D0;&#x793A;&#x662F;&#x5426;&#x5141;&#x8BB8;&#x6388;&#x4E88;<code>root</code>&#x8BBF;&#x95EE;&#xFF0C;&#x70B9;&#x51FB;&#x6388;&#x4E88;&#x6743;&#x9650;&#x3002;&#x6388;&#x6743;&#x4E4B;&#x540E;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; <code>adb shell su</code>&#x547D;&#x4EE4;&#x6765;&#x6267;&#x884C;<code>root</code>&#x624D;&#x80FD;&#x8BBF;&#x95EE;&#x7684;&#x6587;&#x4EF6;&#x4E86;&#x3002;</p>
+<blockquote>
+<p>&#x6CE8;&#x610F;&#xFF0C;&#x5982;&#x679C;&#x524D;&#x9762;&#x8865;&#x4E01;&#x5931;&#x8D25;&#xFF0C;&#x518D;&#x6B63;&#x5E38;&#x542F;&#x52A8;&#x7CFB;&#x7EDF;&#xFF0C;&#x4F1A;&#x6E05;&#x7406;&#x6389; <code>/cache</code> &#x4E0B;&#x6587;&#x4EF6;&#xFF0C;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x4E0B;&#x8F7D; <code>update.zip</code> &#xFF08;&#x901A;&#x8FC7; <code>Setting =&gt; About phone =&gt; System updates</code>&#xFF09;</p>
+</blockquote>
 <h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
 <ul>
 <li><a href="http://www.androidcentral.com/root" target="_blank">Rooting your Android</a> - &#x4ECB;&#x7ECD;&#x901A;&#x8FC7;<a href="http://www.wugfresh.com/nrt/" target="_blank">Wug&apos;s Nexus Root Toolkit</a>&#x5FEB;&#x901F;&#x5B8C;&#x6210;</li>
 <li><a href="http://www.maximumpc.com/how-root-android-2013/" target="_blank">How to Root Android</a> - &#x4ECB;&#x7ECD;&#x4E86;&#x624B;&#x5DE5;&#x64CD;&#x4F5C;&#x5B8C;&#x6210;root Android&#x65B9;&#x6CD5;&#xFF0C;&#x9002;&#x7528;&#x6240;&#x6709;Android&#x8BBE;&#x5907;&#xFF0C;&#x63A8;&#x8350;&#x9605;&#x8BFB;</li>
+<li><a href="http://www.droidviews.com/fix-status-7-error-while-installing-ota-update-or-roms/" target="_blank">How to Fix Status 7 Error While Installing OTA Update or Custom ROMs</a></li>
 </ul>
 
                     
