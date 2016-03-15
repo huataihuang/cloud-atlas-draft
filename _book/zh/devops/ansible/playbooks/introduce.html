@@ -65,7 +65,7 @@
         data-chapter-title="Playbooks入门"
         data-filepath="devops/ansible/playbooks/introduce.md"
         data-basepath="../../.."
-        data-revision="Mon Mar 14 2016 18:00:01 GMT+0800 (CST)"
+        data-revision="Tue Mar 15 2016 13:12:27 GMT+0800 (CST)"
         data-innerlanguage="zh">
     
 
@@ -3169,6 +3169,199 @@
 <h1 id="playbook&#x8BED;&#x8A00;&#x6848;&#x4F8B;">playbook&#x8BED;&#x8A00;&#x6848;&#x4F8B;</h1>
 <p>playbooks&#x4F7F;&#x7528;YAML&#x683C;&#x5F0F;&#x64B0;&#x5199;&#xFF0C;&#x5E76;&#x4E14;&#x6709;&#x4E00;&#x4E2A;&#x5F88;&#x5C0F;&#x7684;&#x8BED;&#x6CD5;&#x96C6;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x4E0D;&#x4F5C;&#x4E3A;&#x7F16;&#x7A0B;&#x8BED;&#x8A00;&#x6216;&#x8005;&#x811A;&#x672C;&#xFF0C;&#x800C;&#x4EC5;&#x4EC5;&#x662F;&#x914D;&#x7F6E;&#x6216;&#x8005;&#x8FC7;&#x7A0B;&#x7684;&#x4E00;&#x4E2A;&#x6A21;&#x5F0F;&#x6765;&#x4F7F;&#x7528;&#x3002;</p>
 <p>&#x6BCF;&#x4E2A;playbook&#x7531;&#x4E00;&#x4E2A;&#x6216;&#x591A;&#x4E2A;&#x5217;&#x8868;&#x4E2D;&#x7684;<code>plays</code>&#x6765;&#x7EC4;&#x6210;&#x3002;</p>
+<h1 id="playbooks&#x57FA;&#x7840;">playbooks&#x57FA;&#x7840;</h1>
+<h2 id="hosts&#x548C;users">Hosts&#x548C;Users</h2>
+<p>&#x5BF9;&#x4E8E;playbook&#x4E2D;&#x7684;&#x6BCF;&#x4E2A;play&#xFF0C;&#x9700;&#x8981;&#x9009;&#x62E9;&#x67B6;&#x6784;&#x4E2D;&#x7684;&#x54EA;&#x4E2A;&#x4E3B;&#x673A;&#x4F5C;&#x4E3A;&#x76EE;&#x6807;&#x5E76;&#x786E;&#x5B9A;&#x4E4B;&#x884C;&#x6B65;&#x9AA4;&#xFF08;&#x79F0;&#x4E3A;&#x4EFB;&#x52A1;&#xFF0C;tasks&#xFF09;&#x7684;&#x7528;&#x6237;&#x3002;</p>
+<p><code>hosts</code>&#x884C;&#x662F;&#x5206;&#x7EC4;&#x6216;&#x8005;&#x4E3B;&#x673A;&#x90E8;&#x5206;&#xFF0C;&#x901A;&#x8FC7;&#x5192;&#x53F7;&#x5206;&#x9694;&#x3002;<code>remote_user</code>&#x5219;&#x8868;&#x793A;&#x8FDC;&#x7A0B;&#x6267;&#x884C;&#x547D;&#x4EE4;&#x7684;&#x7528;&#x6237;&#x7684;&#x8D26;&#x53F7;</p>
+<pre><code class="lang-yaml">---
+- hosts: webservers
+  remote_user: root
+</code></pre>
+<p><code>remote_user</code>&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x6BCF;&#x4E2A;&#x4EFB;&#x52A1;&#x4E2D;&#x5B9A;&#x4E49;</p>
+<pre><code class="lang-yaml">---
+- host: webservers
+  remote_user: root
+  tasks:
+    - name: test connection
+    ping:
+    remote_user: yourname
+</code></pre>
+<p>Ansible&#x4E5F;&#x652F;&#x6301;&#x4EE5;&#x5176;&#x5B83;&#x7528;&#x6237;&#x8EAB;&#x4EFD;&#x6267;&#x884C;</p>
+<pre><code class="lang-yaml">---
+- hosts: webservers
+  remote_user: yourname
+  become: yes
+</code></pre>
+<p>&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<code>sudo</code>&#x65B9;&#x5F0F;&#x5728;&#x90E8;&#x5206;&#x4EFB;&#x52A1;&#x4E2D;&#x5207;&#x6362;&#x8EAB;&#x4EFD;</p>
+<pre><code class="lang-yaml">---
+- hosts: webservers
+  remote_user: yourname
+  tasks:
+    - service: name=nginx state=started
+    become: yes
+    become_method: sudo
+</code></pre>
+<p>&#x6216;&#x8005;&#x767B;&#x5F55;&#x540E;&#xFF0C;&#x5207;&#x6362;&#x5230;&#x5176;&#x5B83;&#x7528;&#x6237;&#x8EAB;&#x4EFD;</p>
+<pre><code class="lang-yaml">---
+- hosts: webservers
+  remote_user: yourname
+  become: yes
+  become_user: postgres
+</code></pre>
+<p>&#x5982;&#x679C;&#x9700;&#x8981;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;<code>sudo</code>&#x5BC6;&#x7801;&#xFF0C;&#x4F7F;&#x7528;<code>ansible-playbook</code>&#x7684;<code>--ask-become-pass</code>&#x65B9;&#x5F0F;&#x3002;&#x5982;&#x679C;&#x5728;&#x8FD0;&#x884C;&#x4E00;&#x4E2A;<code>become</code>&#x7684;playbook&#xFF0C;&#x7136;&#x540E;&#x8FD9;&#x4E2A;playbook&#x4F3C;&#x4E4E;&#x505C;&#x6B62;&#x4E86;&#xFF0C;&#x5219;&#x53EF;&#x80FD;&#x662F;&#x5728;&#x7B49;&#x5F85;&#x5207;&#x6362;&#x8EAB;&#x4EFD;&#x7684;&#x5BC6;&#x7801;&#x8F93;&#x5165;&#x63D0;&#x793A;&#x4E0A;&#x3002;&#x53EF;&#x4EE5;<code>Ctrl-C</code>&#x6740;&#x6B7B;ansible&#xFF0C;&#x7136;&#x540E;&#x6DFB;&#x52A0;&#x76F8;&#x5E94;&#x7684;&#x5BC6;&#x7801;&#x53C2;&#x6570;&#x540E;&#x518D;&#x6267;&#x884C;&#x3002;</p>
+<h2 id="&#x4EFB;&#x52A1;&#x5217;&#x8868;">&#x4EFB;&#x52A1;&#x5217;&#x8868;</h2>
+<p>&#x6BCF;&#x4E2A;play&#x5305;&#x542B;&#x4E86;&#x4E00;&#x7CFB;&#x5217;&#x4EFB;&#x52A1;&#x3002;&#x4EFB;&#x52A1;&#x662F;&#x987A;&#x5E8F;&#x6267;&#x884C;&#x7684;&#xFF0C;&#x6BCF;&#x6B21;&#x4E00;&#x4E2A;&#x4EFB;&#x52A1;&#xFF0C;&#x901A;&#x8FC7;<code>host</code>&#x90E8;&#x5206;&#x7684;&#x4E3B;&#x673A;&#x5339;&#x914D;&#x6240;&#x6709;&#x7684;&#x4E3B;&#x673A;&#xFF0C;&#x5B8C;&#x6210;&#x4EFB;&#x52A1;&#x540E;&#x518D;&#x6267;&#x884C;&#x4E0B;&#x4E00;&#x4E2A;&#x4EFB;&#x52A1;&#x3002;&#x9700;&#x8981;&#x6CE8;&#x610F;&#x7684;&#x662F;&#xFF0C;&#x5728;&#x4E00;&#x4E2A;play&#x4E2D;&#xFF0C;&#x6240;&#x6709;&#x4E3B;&#x673A;&#x662F;&#x6267;&#x884C;&#x76F8;&#x540C;&#x7684;&#x4EFB;&#x52A1;&#x3002;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;play&#x6765;&#x6620;&#x5C04;&#x9009;&#x62E9;&#x7684;&#x4E3B;&#x673A;&#x5230;&#x4EFB;&#x52A1;&#x4E0A;&#x3002;</p>
+<p>&#x5F53;&#x8FD0;&#x884C;&#x4E00;&#x4E2A;playbook&#xFF0C;&#x662F;&#x4ECE;&#x4E0A;&#x5F80;&#x4E0B;&#x6267;&#x884C;&#x7684;&#xFF0C;&#x5F53;&#x4E3B;&#x673A;&#x6267;&#x884C;&#x4EFB;&#x52A1;&#x5931;&#x8D25;&#xFF0C;&#x5C31;&#x4F1A;&#x88AB;&#x5254;&#x9664;&#x51FA;&#x6574;&#x4E2A;playbook&#x7684;&#x5FAA;&#x73AF;&#x3002;&#x5982;&#x679C;&#x4E8B;&#x60C5;&#x5931;&#x8D25;&#xFF0C;&#x7B80;&#x5355;&#x5730;&#x4FEE;&#x6B63;playbook&#x6587;&#x4EF6;&#x518D;&#x91CD;&#x65B0;&#x8FD0;&#x884C;&#x3002;</p>
+<p>&#x6BCF;&#x4E2A;&#x4EFB;&#x52A1;&#x7684;&#x76EE;&#x6807;&#x662F;&#x4EE5;&#x7279;&#x5B9A;&#x53C2;&#x6570;&#x6765;&#x6267;&#x884C;&#x4E00;&#x4E2A;&#x6A21;&#x5757;&#x3002;&#x53D8;&#x91CF;&#x662F;&#x6A21;&#x5757;&#x6240;&#x4F7F;&#x7528;&#x7684;&#x53C2;&#x6570;&#x3002;</p>
+<p>&#x6A21;&#x5757;&#x662F;<code>&#x5E42;&#x7B49;</code>&#x7684;&#xFF08;<code>idempotent</code>&#xFF09;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8BF4;&#x4E0D;&#x7BA1;&#x4F60;&#x8FD0;&#x884C;&#x591A;&#x5C11;&#x6B21;&#xFF0C;&#x6267;&#x884C;&#x7684;&#x7ED3;&#x679C;&#x90FD;&#x662F;&#x76F8;&#x540C;&#x7684;&#x5E76;&#x7B26;&#x5408;&#x8BA1;&#x5212;&#x4E2D;&#x5E26;&#x7ED9;&#x7CFB;&#x7EDF;&#x7684;&#x6700;&#x7EC8;&#x72B6;&#x6001;&#x3002;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x5B89;&#x5168;&#x5730;&#x591A;&#x6B21;&#x8FD0;&#x884C;&#x76F8;&#x540C;&#x7684;playbook&#x3002;</p>
+<p><code>command</code>&#x548C;<code>shell</code>&#x6A21;&#x5757;&#x901A;&#x5E38;&#x4EE5;&#x76F8;&#x540C;&#x547D;&#x4EE4;&#x91CD;&#x590D;&#x8FD0;&#x884C;&#xFF0C;&#x5982;&#x679C;&#x547D;&#x4EE4;&#x662F;&#x7C7B;&#x4F3C;<code>chmod</code>&#x6216;<code>setsebool</code>&#x7B49;&#x3002;&#x7136;&#x800C;&#xFF0C;&#x5982;&#x679C;&#x662F;<code>creates</code>&#x6807;&#x8BB0;&#xFF0C;&#x5219;&#x4F1A;&#x5BFC;&#x81F4;&#x6A21;&#x5757;&#x4E0D;&#x5E42;&#x7B49;&#x3002;</p>
+<p>&#x6BCF;&#x4E2A;&#x4EFB;&#x52A1;&#x90FD;&#x6709;&#x4E00;&#x4E2A;<code>name</code>&#xFF0C;&#x5305;&#x542B;&#x4E86;&#x8FD0;&#x884C;playbook&#x7684;&#x8F93;&#x51FA;&#x3002;&#x8FD9;&#x4E2A;&#x8F93;&#x51FA;&#x662F;&#x53EF;&#x8BFB;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x975E;&#x5E38;&#x5BB9;&#x6613;&#x63CF;&#x8FF0;&#x6BCF;&#x4E2A;&#x4EFB;&#x52A1;&#x6267;&#x884C;&#x3002;&#x5982;&#x679C;&#x540D;&#x5B57;&#x6CA1;&#x6709;&#x63D0;&#x4F9B;&#xFF0C;&#x5219;&#x4F7F;&#x7528;<code>action</code>&#x5B57;&#x7B26;&#x5B57;&#x6BB5;&#x6765;&#x7528;&#x4E8E;&#x8F93;&#x51FA;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;&#x4E00;&#x4E2A;&#x57FA;&#x672C;&#x7684;&#x4F8B;&#x5B50;&#xFF0C;&#x8FD9;&#x91CC;service&#x6A21;&#x5757;&#x4EFB;&#x52A1;&#x4F7F;&#x7528;<code>key=value</code>&#x53C2;&#x6570;&#xFF1A;</p>
+<pre><code class="lang-yaml">tasks:
+  - name: make sure apache is running
+  service: name=httpd state=running
+</code></pre>
+<p><code>command</code>&#x548C;<code>shell</code>&#x6A21;&#x5757;&#x662F;&#x4EC5;&#x6709;&#x7684;&#x9700;&#x8981;&#x53C2;&#x6570;&#x7684;&#x6A21;&#x5757;&#xFF0C;&#x5E76;&#x4E14;&#x4E0D;&#x4F7F;&#x7528;<code>key=value</code>&#x65B9;&#x5F0F;&#x3002;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x4F7F;&#x5F97;&#x6309;&#x7167;&#x671F;&#x671B;&#x7684;&#x7B80;&#x5355;&#x65B9;&#x5F0F;&#x8FD0;&#x884C;</p>
+<pre><code class="lang-bash">tasks:
+  - name: <span class="hljs-built_in">disable</span> selinux
+    <span class="hljs-built_in">command</span>: /sbin/setenforce <span class="hljs-number">0</span>
+</code></pre>
+<p><code>command</code>&#x548C;<code>shell</code>&#x6A21;&#x5757;&#x5173;&#x6CE8;&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x6240;&#x4EE5;&#x5982;&#x679C;&#x547D;&#x4EE4;&#x6210;&#x529F;&#x6267;&#x884C;&#x4F46;&#x662F;&#x8FD4;&#x56DE;&#x503C;&#x4E0D;&#x662F;0&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x5982;&#x4E0B;&#x65B9;&#x6CD5;&#x6267;&#x884C;</p>
+<pre><code class="lang-bash">tasks:
+  - name: run this <span class="hljs-built_in">command</span> and ignore the result
+    shell: /usr/bin/somecommand || /bin/<span class="hljs-literal">true</span>
+</code></pre>
+<p>&#x6216;&#x8005;&#x6309;&#x7167;&#x4EE5;&#x4E0B;&#x65B9;&#x6CD5;&#xFF1A;</p>
+<pre><code class="lang-bash">tasks:
+  - name: run this <span class="hljs-built_in">command</span> and ignore the result
+    shell: /usr/bin/somecommand
+    ignore_errors: True
+</code></pre>
+<p>&#x5982;&#x679C;&#x52A8;&#x4F5C;&#x884C;&#x592A;&#x957F;&#xFF0C;&#x53EF;&#x4EE5;&#x5C06;&#x547D;&#x4EE4;&#x884C;&#x6298;&#x8FD4;&#xFF0C;&#x4E2D;&#x95F4;&#x4EE5;&#x4EFB;&#x610F;&#x8FDE;&#x7EED;&#x884C;&#x7684;&#x7F29;&#x8FDB;&#xFF0C;&#x7C7B;&#x4F3C;&#xFF1A;</p>
+<pre><code class="lang-bash">tasks:
+  - name: Copy ansible inventory file to client
+    copy: src=/etc/ansible/hosts dest=/etc/ansible/hosts
+            owner=root group=root mode=<span class="hljs-number">0644</span>
+</code></pre>
+<p>&#x53D8;&#x91CF;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;&#x52A8;&#x4F5C;&#x884C;&#x3002;&#x5047;&#x8BBE;&#x4F60;&#x5728;<code>vars</code>&#x6BB5;&#x843D;&#x5B9A;&#x4E49;&#x4E86;&#x4E00;&#x4E2A;<code>vhost</code>&#x53D8;&#x91CF;&#xFF0C;&#x53EF;&#x4EE5;&#x5982;&#x4E0B;&#x4F7F;&#x7528;&#xFF1A;</p>
+<pre><code class="lang-bash">tasks:
+  - name: create a virtual host file <span class="hljs-keyword">for</span> {{ vhost }}
+    template: src=somefile.j2 dest=/etc/httpd/conf.d/{{ vhost }}
+</code></pre>
+<h1 id="&#x5904;&#x7406;&#xFF1A;&#x6839;&#x636E;&#x53D8;&#x5316;&#x8FD0;&#x884C;&#x64CD;&#x4F5C;">&#x5904;&#x7406;&#xFF1A;&#x6839;&#x636E;&#x53D8;&#x5316;&#x8FD0;&#x884C;&#x64CD;&#x4F5C;</h1>
+<p>&#x6A21;&#x5757;&#x662F;<code>&#x5E42;&#x7B49;</code>&#x7684;&#xFF0C;&#x6839;&#x636E;&#x8FDC;&#x7A0B;&#x7CFB;&#x7EDF;&#x7684;&#x4E0D;&#x540C;&#x4F1A;&#x6709;&#x6539;&#x53D8;&#x3002;playbooks&#x53EF;&#x4EE5;&#x611F;&#x77E5;&#x7CFB;&#x7EDF;&#x7684;&#x5DEE;&#x5F02;&#xFF0C;&#x5E76;&#x4E14;&#x6839;&#x636E;&#x4E0D;&#x540C;&#x73AF;&#x5883;&#x4F7F;&#x7528;&#x57FA;&#x672C;&#x7684;&#x4E8B;&#x4EF6;&#x7CFB;&#x7EDF;&#x3002;</p>
+<p>&#x8FD9;&#x4E2A;<code>&#x901A;&#x77E5;</code>&#x52A8;&#x4F5C;&#x662F;&#x5728;playbook&#x7684;&#x4EFB;&#x52A1;&#x5757;&#x7684;&#x5E95;&#x90E8;&#x89E6;&#x53D1;&#x7684;&#xFF0C;&#x5E76;&#x4E14;&#x901A;&#x8FC7;&#x591A;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x901A;&#x77E5;&#x53EA;&#x4F1A;&#x89E6;&#x53D1;&#x4E00;&#x6B21;&#x3002;</p>
+<p>&#x4E3E;&#x4F8B;&#xFF0C;&#x591A;&#x4E2A;&#x8D44;&#x6E90;&#x53EF;&#x80FD;&#x90FD;&#x6807;&#x8BB0;&#x4E86;&#x9700;&#x8981;&#x91CD;&#x542F;apache&#x670D;&#x52A1;&#xFF0C;&#x56E0;&#x4E3A;&#x5B83;&#x4EEC;&#x90FD;&#x4FEE;&#x6539;&#x4E86;&#x4E00;&#x4E2A;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x4F46;&#x662F;apache&#x53EA;&#x4F1A;&#x89E6;&#x53D1;&#x4E00;&#x6B21;&#x91CD;&#x542F;&#x4EE5;&#x907F;&#x514D;&#x4E0D;&#x5FC5;&#x8981;&#x7684;&#x670D;&#x52A1;&#x91CD;&#x542F;&#x3002;</p>
+<p>&#x4EE5;&#x4E0B;&#x662F;&#x4E00;&#x4E2A;&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x540E;&#x91CD;&#x542F;&#x4E24;&#x4E2A;&#x5BF9;&#x5E94;&#x670D;&#x52A1;&#x7684;&#x6848;&#x4F8B;&#xFF1A;</p>
+<pre><code class="lang-yaml">- name: template configuration file
+  template: src=template.j2 dest=/etc/foo.conf
+  notify:
+    - restart memcached
+    - restart apache
+</code></pre>
+<p>&#x5728;<code>notify</code>&#x6BB5;&#x843D;&#x5217;&#x51FA;&#x4E86;&#x4EFB;&#x52A1;&#x9700;&#x8981;&#x8C03;&#x7528;&#x5904;&#x7406;&#x7684;&#x4E8B;&#x60C5;&#x88AB;&#x79F0;&#x4E3A;<code>handlers</code>&#xFF08;&#x5904;&#x7406;&#x8005;&#xFF09;&#x3002;</p>
+<p>handlers&#x662F;&#x4EFB;&#x52A1;&#x5217;&#x8868;&#xFF0C;&#x548C;&#x5E38;&#x89C4;&#x7684;&#x4EFB;&#x52A1;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x4E0D;&#x540C;&#xFF0C;&#x5728;&#x5168;&#x5C40;&#x5F15;&#x7528;&#x65F6;&#x5FC5;&#x987B;&#x552F;&#x4E00;&#x3002;handlers&#x662F;&#x901A;&#x77E5;&#x51FA;&#x53D1;&#xFF0C;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x901A;&#x77E5;&#xFF0C;&#x5C31;&#x4E0D;&#x8FD0;&#x884C;&#x3002;&#x4E0D;&#x8BBA;&#x591A;&#x5C11;&#x4E8B;&#x60C5;&#x901A;&#x77E5;&#x7ED9;handler&#xFF0C;&#x90FD;&#x53EA;&#x8FD0;&#x884C;&#x4E00;&#x6B21;&#xFF0C;&#x53EA;&#x5728;&#x8FD9;&#x90E8;&#x5206;play&#x6240;&#x6709;&#x4EFB;&#x52A1;&#x90FD;&#x5B8C;&#x6210;&#x65F6;&#x89E6;&#x53D1;&#x3002;</p>
+<p>&#x4EE5;&#x4E0B;&#x662F;&#x4E00;&#x4E2A;<code>handlers</code>&#x90E8;&#x5206;&#x7684;&#x6848;&#x4F8B;</p>
+<pre><code class="lang-yaml">handlers:
+  - name: restart memcached
+    service: name=memcached state=restarted
+  - name: restart apache
+    service: name=apache state=restarted
+</code></pre>
+<p>handlers&#x662F;&#x6700;&#x597D;&#x7684;&#x5904;&#x7406;&#x91CD;&#x542F;&#x670D;&#x52A1;&#x6216;&#x8005;&#x89E6;&#x53D1;&#x91CD;&#x542F;&#x7CFB;&#x7EDF;&#x7684;&#x65B9;&#x5F0F;&#x3002;</p>
+<blockquote>
+<p><strong>&#x6CE8;&#x610F;</strong></p>
+<ul>
+<li>&#x89E6;&#x53D1;handlers&#x603B;&#x662F;&#x6309;&#x7167;&#x987A;&#x5E8F;&#x6765;&#x7F16;&#x5199;&#x7684;</li>
+<li>handler&#x540D;&#x5B57;&#x662F;&#x5168;&#x5C40;&#x540D;&#x5B57;&#x7A7A;&#x95F4;&#x7684;</li>
+<li>&#x5982;&#x679C;&#x4E24;&#x4E2A;handler&#x4F7F;&#x7528;&#x4E86;&#x76F8;&#x540C;&#x7684;&#x540D;&#x5B57;&#xFF0C;&#x53EA;&#x4F1A;&#x8FD0;&#x884C;&#x5176;&#x4E2D;&#x4E00;&#x4E2A;handler</li>
+<li>&#x4E0D;&#x80FD;&#x5728;&#x4E00;&#x4E2A;include&#x4E2D;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x89E6;&#x53D1;handler</li>
+</ul>
+</blockquote>
+<p>&#x6B64;&#x5916;&#x8FD8;&#x8981;&#x6307;&#x51FA;&#xFF1A;</p>
+<ul>
+<li>&#x5728;<code>pre_tasks</code>&#xFF0C;<code>tasks</code>&#x548C;<code>post_tasks</code>&#x6BB5;&#x843D;&#x5B9A;&#x4E49;&#x7684;handler&#x662F;&#x81EA;&#x52A8;&#x5728;&#x5B83;&#x4EEC;&#x88AB;&#x901A;&#x77E5;&#x7684;&#x7ED3;&#x5C3E;&#x90E8;&#x5206;&#x5237;&#x65B0;&#x7684;</li>
+<li>&#x5728;<code>roles</code>&#x6BB5;&#x843D;&#x7684;handers&#x662F;&#x5728;<code>tasks</code>&#x6BB5;&#x843D;&#x7684;&#x7ED3;&#x5C3E;&#x5237;&#x65B0;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x6BD4;&#x5176;&#x5B83;<code>tasks</code>&#x7684;handlers&#x8981;&#x65E9;&#x89E6;&#x53D1;&#x3002;</li>
+</ul>
+<p>&#x5982;&#x679C;&#x8981;&#x7ACB;&#x5373;&#x89E6;&#x53D1;&#x6240;&#x6709;&#x7684;handler&#x547D;&#x4EE4;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5982;&#x4E0B;&#x65B9;&#x6CD5;</p>
+<pre><code class="lang-yaml">tasks:
+  - shell: some tasks go here
+  - meta: flush_handlers
+  - shell: some other tasks
+</code></pre>
+<p>&#x4EE5;&#x4E0A;&#x6848;&#x4F8B;&#x4E2D;&#xFF0C;&#x5F53;<code>meta</code>&#x72B6;&#x6001;&#x5230;&#x8FBE;&#x65F6;&#x5019;&#xFF0C;&#x6240;&#x6709;&#x961F;&#x5217;&#x4E2D;&#x7684;handlers&#x5C06;&#x88AB;&#x6267;&#x884C;&#x5904;&#x7406;&#x3002;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x9002;&#x5408;&#x4E00;&#x6B21;&#x53C8;&#x4E00;&#x6B21;&#x89E6;&#x53D1;&#x7684;&#x60C5;&#x51B5;&#xFF08;&#x72B6;&#x6001;&#x89E6;&#x53D1;&#xFF1F;&#xFF09;&#x3002;</p>
+<h1 id="&#x6267;&#x884C;playbook">&#x6267;&#x884C;playbook</h1>
+<p>&#x4EE5;&#x4E0B;&#x65B9;&#x5F0F;&#x662F;&#x4EE5;&#x5E76;&#x53D1;<code>10</code>&#x65B9;&#x5F0F;&#x6267;&#x884C;&#x4E00;&#x4E2A;playbook</p>
+<pre><code class="lang-bash">ansible-playbook playbook.yml <span class="hljs-operator">-f</span> <span class="hljs-number">10</span>
+</code></pre>
+<h1 id="ansiblepull">ansible-pull</h1>
+<p><code>ansible-pull</code>&#x662F;&#x4E00;&#x4E2A;&#x5C0F;&#x811A;&#x672C;&#xFF0C;&#x7528;&#x4E8E;&#x4ECE;<code>git</code>&#x4E2D;<code>checkout</code>&#x51FA;&#x4E00;&#x4E2A;&#x4ED3;&#x5E93;&#x7684;&#x914D;&#x7F6E;&#x7ED3;&#x6784;&#xFF0C;&#x7136;&#x540E;&#x5BF9;&#x53D6;&#x5230;&#x7684;&#x5185;&#x5BB9;&#x901A;&#x8FC7;<code>ansible-playbook</code>&#x65B9;&#x5F0F;&#x8FD0;&#x884C;&#x3002;</p>
+<p>&#x5047;&#x8BBE;&#x4F60;<code>checkout</code>&#x4F4D;&#x7F6E;&#x662F;&#x901A;&#x8FC7;&#x8D1F;&#x8F7D;&#x5747;&#x8861;&#x8BBF;&#x95EE;&#x7684;&#xFF08;&#x4E5F;&#x5C31;&#x662F;&#x53EF;&#x4EE5;&#x6A2A;&#x5411;&#x6269;&#x5C55;&#xFF09;&#xFF0C;&#x6B64;&#x65F6;<code>ansible-pull</code>&#x7684;&#x6269;&#x5C55;&#x6027;&#x51E0;&#x4E4E;&#x662F;&#x65E0;&#x9650;&#x7684;&#x3002;</p>
+<h1 id="&#x4E3E;&#x4F8B;">&#x4E3E;&#x4F8B;</h1>
+<ul>
+<li>&#x68C0;&#x67E5;<code>ansible-test</code>&#x5206;&#x7EC4;&#x670D;&#x52A1;&#x5668;&#x662F;&#x5426;&#x542F;&#x52A8;&#x4E86;<code>sshd</code>&#x670D;&#x52A1; - <code>sshd.yml</code></li>
+</ul>
+<pre><code class="lang-yaml">---
+- hosts: ansible-test
+  tasks:
+    - name: make sure ssh is running
+      service: name=sshd state=running
+</code></pre>
+<p>&#x6267;&#x884C;&#x6D4B;&#x8BD5;</p>
+<pre><code class="lang-bash">ansible-playbook sshd.yml <span class="hljs-operator">-f</span> <span class="hljs-number">10</span>
+</code></pre>
+<blockquote>
+<p><code>-f 10</code>&#x8868;&#x793A;10&#x4E2A;&#x5E76;&#x53D1;&#x6267;&#x884C;&#x4EFB;&#x52A1;</p>
+</blockquote>
+<p>&#x6267;&#x884C;&#x7ED3;&#x679C;&#x8F93;&#x51FA;</p>
+<pre><code class="lang-bash">PLAY [ansible-test] *********************************************************** 
+
+GATHERING FACTS *************************************************************** 
+ok: [root@<span class="hljs-number">192.168</span>.<span class="hljs-number">1.101</span>]
+ok: [root@<span class="hljs-number">192.168</span>.<span class="hljs-number">1.111</span>]
+
+TASK: [make sure ssh is running] ********************************************** 
+ok: [root@<span class="hljs-number">192.168</span>.<span class="hljs-number">1.111</span>]
+ok: [root@<span class="hljs-number">192.168</span>.<span class="hljs-number">1.101</span>]
+
+PLAY RECAP ******************************************************************** 
+root@<span class="hljs-number">192.168</span>.<span class="hljs-number">1.101</span>          : ok=<span class="hljs-number">2</span>    changed=<span class="hljs-number">0</span>    unreachable=<span class="hljs-number">0</span>    failed=<span class="hljs-number">0</span>   
+root@<span class="hljs-number">192.168</span>.<span class="hljs-number">1.111</span>          : ok=<span class="hljs-number">2</span>    changed=<span class="hljs-number">0</span>    unreachable=<span class="hljs-number">0</span>    failed=<span class="hljs-number">0</span>
+</code></pre>
+<blockquote>
+<p>&#x4F7F;&#x7528;<code>ansible</code>&#x6709;&#x4E00;&#x4E2A;&#x975E;&#x5E38;&#x597D;&#x7684;&#x4F18;&#x52BF;&#x5C31;&#x662F;&#x5DE5;&#x5177;&#x5DF2;&#x7ECF;&#x9488;&#x5BF9;&#x5404;&#x79CD;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x505A;&#x4E86;&#x5BF9;&#x5E94;&#x7684;&#x5904;&#x7406;&#xFF0C;&#x62BD;&#x8C61;&#x51FA;&#x76F8;&#x540C;&#x7684;&#x5B9A;&#x4E49;&#x65B9;&#x6CD5;&#x3002;&#x5B9E;&#x9645;&#x4E0A;&#xFF0C;&#x76EE;&#x6807;&#x670D;&#x52A1;&#x5668;&#x53EF;&#x4EE5;&#x662F;&#x4E0D;&#x540C;&#x7C7B;&#x578B;&#x548C;&#x4E0D;&#x540C;&#x7248;&#x672C;&#x7684;linux&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x4F8B;&#x5982;RHEL 6&#x548C;RHEL 7&#x5BF9;&#x4E8E;&#x670D;&#x52A1;&#x68C0;&#x67E5;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x4E0D;&#x540C;&#x7684;&#xFF08;RHEL&#x5F15;&#x5165;&#x4E86;<code>systemd</code>&#xFF09;&#xFF0C;&#x4F46;&#x662F;&#x4F7F;&#x7528;<code>ansible</code>&#x8FDB;&#x884C;&#x68C0;&#x67E5;&#x53EF;&#x4EE5;&#x81EA;&#x52A8;&#x5B8C;&#x6210;&#x4E0D;&#x540C;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x9002;&#x914D;&#xFF0C;&#x5E95;&#x5C42;&#x4F7F;&#x7528;&#x5BF9;&#x5E94;&#x7684;&#x68C0;&#x67E5;&#x547D;&#x4EE4;&#x5B8C;&#x6210;&#x76F8;&#x540C;&#x7684;&#x68C0;&#x67E5;&#x3002;</p>
+</blockquote>
+<p>&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x53EF;&#x4EE5;&#x68C0;&#x67E5;<code>ansible-test</code>&#x670D;&#x52A1;&#x5668;&#x5206;&#x7EC4;&#x663E;&#x793A;&#x670D;&#x52A1;&#x5668;&#x4F7F;&#x7528;&#x7684;&#x662F;&#x4E0D;&#x540C;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7248;&#x672C;</p>
+<pre><code class="lang-bash">ansible ansible-test -m raw <span class="hljs-operator">-a</span> <span class="hljs-string">&quot;cat /etc/redhat-release&quot;</span>
+</code></pre>
+<pre><code class="lang-bash">root@<span class="hljs-number">192.168</span>.<span class="hljs-number">1.101</span> | success | rc=<span class="hljs-number">0</span> &gt;&gt;
+CentOS Linux release <span class="hljs-number">7.2</span>.<span class="hljs-number">1511</span> (Core) 
+
+
+root@<span class="hljs-number">192.168</span>.<span class="hljs-number">1.111</span> | success | rc=<span class="hljs-number">0</span> &gt;&gt;
+CentOS release <span class="hljs-number">6.6</span> (Final)
+</code></pre>
+<p>&#x6CE8;&#x610F;&#xFF0C;&#x670D;&#x52A1;&#x540D;&#x5B57;<code>sshd</code>&#x4E0D;&#x8981;&#x9519;&#x8BEF;&#x5199;&#x6210;<code>ssh</code>&#xFF0C;&#x5426;&#x5219;&#x5C31;&#x4E0D;&#x80FD;&#x5339;&#x914D;&#xFF0C;&#x4F1A;&#x8FD4;&#x56DE;&#x9519;&#x8BEF;</p>
+<pre><code class="lang-bash">PLAY [ansible-test] *********************************************************** 
+
+GATHERING FACTS *************************************************************** 
+ok: [root@<span class="hljs-number">192.168</span>.<span class="hljs-number">1.101</span>]
+ok: [root@<span class="hljs-number">192.168</span>.<span class="hljs-number">1.111</span>]
+
+TASK: [make sure ssh is running] ********************************************** 
+failed: [root@<span class="hljs-number">192.168</span>.<span class="hljs-number">1.111</span>] =&gt; {<span class="hljs-string">&quot;failed&quot;</span>: <span class="hljs-literal">true</span>}
+msg: cannot find <span class="hljs-string">&apos;service&apos;</span> binary or init script <span class="hljs-keyword">for</span> service,  possible typo <span class="hljs-keyword">in</span> service name?, aborting
+failed: [root@<span class="hljs-number">192.168</span>.<span class="hljs-number">1.101</span>] =&gt; {<span class="hljs-string">&quot;cmd&quot;</span>: <span class="hljs-string">&quot;None show None&quot;</span>, <span class="hljs-string">&quot;failed&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-string">&quot;rc&quot;</span>: <span class="hljs-number">2</span>}
+msg: [Errno <span class="hljs-number">2</span>] No such file or directory
+
+FATAL: all hosts have already failed -- aborting
+
+PLAY RECAP ******************************************************************** 
+           to retry, use: --limit @/home/huatai/ssh.retry
+
+root@<span class="hljs-number">192.168</span>.<span class="hljs-number">1.101</span>          : ok=<span class="hljs-number">1</span>    changed=<span class="hljs-number">0</span>    unreachable=<span class="hljs-number">0</span>    failed=<span class="hljs-number">1</span>   
+root@<span class="hljs-number">192.168</span>.<span class="hljs-number">1.111</span>          : ok=<span class="hljs-number">1</span>    changed=<span class="hljs-number">0</span>    unreachable=<span class="hljs-number">0</span>    failed=<span class="hljs-number">1</span>
+</code></pre>
 
                     
                     </section>
