@@ -32,7 +32,7 @@ curl https://bootstrap.pypa.io/get-pip.py | python
 
 如果用户没有root权限，或者不能修改系统级别的Python安装，则可以通过以下方法在个人工作目录下部署Python工作环境
 
-安装virtualenv
+### 安装virtualenv
 
 ```bash
 curl -O https://raw.github.com/pypa/virtualenv/master/virtualenv.py
@@ -51,7 +51,41 @@ python virtualenv.py py_virtual
 
 参考[Linux: Install pip Client To Install Python Packages](http://www.cyberciti.biz/faq/debian-ubuntu-centos-rhel-linux-install-pipclient/)
 
-* Red Hat系列安装pip
+Debian/Ubuntu也提供了发行版本的`virtualevn`包
+
+```bash
+sudo apt-get install python-virtualenv
+```
+
+在Debian `Jessie`版本中，安装`python-virtualenv`会安装`Python 3.4`软件包，这个工具包是同时兼容Python 2和Python 3的。要建立Python 2 或 Python 3的虚拟环境，主要通过参数来区别
+
+* `Python 2`虚拟环境
+
+```bash
+virtualenv venv2
+```
+
+* `Python 3`虚拟环境
+
+```bash
+virtualenv -p python3 venv3
+```
+
+要退出虚拟环境输入以下命令
+
+```bash
+deactivate
+```
+
+> 参考 [Using Python 3 in virtualenv](http://stackoverflow.com/questions/23842713/using-python-3-in-virtualenv)
+
+如果使用Mac OS X，使用`easy_install`来安装`virtualenv`
+
+```bash
+sudo easy_install virtualenv
+```
+
+## Red Hat系列安装pip
 
 要安装软件包
 

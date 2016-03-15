@@ -138,6 +138,8 @@
     * [Python](develop/python/README.md)
 		* [Python快速起步](develop/python/startup/README.md)
 			* [pip包管理](develop/python/startup/pip.md)
+		* [Flask开发Web](develop/python/flask/README.md)
+			* [安装Flask开发环境](develop/python/flask/install.md)
 	* [Ruby](develop/ruby/README.md)
 		* [Ruby快速起步](develop/ruby/startup/READMD.md)
 			* [RubyGems安装和使用](develop/ruby/startup/rubygems_install_and_usage.md)

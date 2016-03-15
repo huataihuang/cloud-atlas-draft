@@ -8,7 +8,7 @@
         <title>pip包管理 | 云图</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="generator" content="GitBook 2.6.5">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -49,7 +49,7 @@
         
     
     
-    <link rel="next" href="../../../develop/ruby/index.html" />
+    <link rel="next" href="../../../develop/python/flask/index.html" />
     
     
     <link rel="prev" href="../../../develop/python/startup/index.html" />
@@ -65,7 +65,7 @@
         data-chapter-title="pip包管理"
         data-filepath="develop/python/startup/pip.md"
         data-basepath="../../.."
-        data-revision="Tue Mar 15 2016 13:12:27 GMT+0800 (CST)"
+        data-revision="Tue Mar 15 2016 16:20:00 GMT+0800 (CST)"
         data-innerlanguage="zh">
     
 
@@ -2292,6 +2292,42 @@
             
         </li>
     
+        <li class="chapter " data-level="10.4.2" data-path="develop/python/flask/index.html">
+            
+                
+                    <a href="../../../develop/python/flask/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.4.2.</b>
+                        
+                        Flask开发Web
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="10.4.2.1" data-path="develop/python/flask/install.html">
+            
+                
+                    <a href="../../../develop/python/flask/install.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.4.2.1.</b>
+                        
+                        安装Flask开发环境
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
             </ul>
             
@@ -3185,7 +3221,7 @@
 </code></pre>
 <h2 id="&#x4E2A;&#x4EBA;&#x7528;&#x6237;&#x73AF;&#x5883;&#x5B89;&#x88C5;pip">&#x4E2A;&#x4EBA;&#x7528;&#x6237;&#x73AF;&#x5883;&#x5B89;&#x88C5;pip</h2>
 <p>&#x5982;&#x679C;&#x7528;&#x6237;&#x6CA1;&#x6709;root&#x6743;&#x9650;&#xFF0C;&#x6216;&#x8005;&#x4E0D;&#x80FD;&#x4FEE;&#x6539;&#x7CFB;&#x7EDF;&#x7EA7;&#x522B;&#x7684;Python&#x5B89;&#x88C5;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4EE5;&#x4E0B;&#x65B9;&#x6CD5;&#x5728;&#x4E2A;&#x4EBA;&#x5DE5;&#x4F5C;&#x76EE;&#x5F55;&#x4E0B;&#x90E8;&#x7F72;Python&#x5DE5;&#x4F5C;&#x73AF;&#x5883;</p>
-<p>&#x5B89;&#x88C5;virtualenv</p>
+<h3 id="&#x5B89;&#x88C5;virtualenv">&#x5B89;&#x88C5;virtualenv</h3>
 <pre><code class="lang-bash">curl -O https://raw.github.com/pypa/virtualenv/master/virtualenv.py
 </code></pre>
 <p>&#x521B;&#x5EFA;&#x865A;&#x62DF;&#x73AF;&#x5883;</p>
@@ -3195,9 +3231,30 @@
 <pre><code class="lang-bash">. py_virtual/bin/activate
 </code></pre>
 <p>&#x53C2;&#x8003;<a href="http://www.cyberciti.biz/faq/debian-ubuntu-centos-rhel-linux-install-pipclient/" target="_blank">Linux: Install pip Client To Install Python Packages</a></p>
+<p>Debian/Ubuntu&#x4E5F;&#x63D0;&#x4F9B;&#x4E86;&#x53D1;&#x884C;&#x7248;&#x672C;&#x7684;<code>virtualevn</code>&#x5305;</p>
+<pre><code class="lang-bash">sudo apt-get install python-virtualenv
+</code></pre>
+<p>&#x5728;Debian <code>Jessie</code>&#x7248;&#x672C;&#x4E2D;&#xFF0C;&#x5B89;&#x88C5;<code>python-virtualenv</code>&#x4F1A;&#x5B89;&#x88C5;<code>Python 3.4</code>&#x8F6F;&#x4EF6;&#x5305;&#xFF0C;&#x8FD9;&#x4E2A;&#x5DE5;&#x5177;&#x5305;&#x662F;&#x540C;&#x65F6;&#x517C;&#x5BB9;Python 2&#x548C;Python 3&#x7684;&#x3002;&#x8981;&#x5EFA;&#x7ACB;Python 2 &#x6216; Python 3&#x7684;&#x865A;&#x62DF;&#x73AF;&#x5883;&#xFF0C;&#x4E3B;&#x8981;&#x901A;&#x8FC7;&#x53C2;&#x6570;&#x6765;&#x533A;&#x522B;</p>
 <ul>
-<li>Red Hat&#x7CFB;&#x5217;&#x5B89;&#x88C5;pip</li>
+<li><code>Python 2</code>&#x865A;&#x62DF;&#x73AF;&#x5883;</li>
 </ul>
+<pre><code class="lang-bash">virtualenv venv2
+</code></pre>
+<ul>
+<li><code>Python 3</code>&#x865A;&#x62DF;&#x73AF;&#x5883;</li>
+</ul>
+<pre><code class="lang-bash">virtualenv -p python3 venv3
+</code></pre>
+<p>&#x8981;&#x9000;&#x51FA;&#x865A;&#x62DF;&#x73AF;&#x5883;&#x8F93;&#x5165;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;</p>
+<pre><code class="lang-bash">deactivate
+</code></pre>
+<blockquote>
+<p>&#x53C2;&#x8003; <a href="http://stackoverflow.com/questions/23842713/using-python-3-in-virtualenv" target="_blank">Using Python 3 in virtualenv</a></p>
+</blockquote>
+<p>&#x5982;&#x679C;&#x4F7F;&#x7528;Mac OS X&#xFF0C;&#x4F7F;&#x7528;<code>easy_install</code>&#x6765;&#x5B89;&#x88C5;<code>virtualenv</code></p>
+<pre><code class="lang-bash">sudo easy_install virtualenv
+</code></pre>
+<h2 id="red-hat&#x7CFB;&#x5217;&#x5B89;&#x88C5;pip">Red Hat&#x7CFB;&#x5217;&#x5B89;&#x88C5;pip</h2>
 <p>&#x8981;&#x5B89;&#x88C5;&#x8F6F;&#x4EF6;&#x5305;</p>
 <pre><code>pip install some-package-name
 </code></pre><p>&#x5378;&#x8F7D;&#x4E5F;&#x5F88;&#x65B9;&#x4FBF;</p>
@@ -3223,7 +3280,7 @@
         <a href="../../../develop/python/startup/index.html" class="navigation navigation-prev " aria-label="Previous page: Python快速起步"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../../develop/ruby/index.html" class="navigation navigation-next " aria-label="Next page: Ruby"><i class="fa fa-angle-right"></i></a>
+        <a href="../../../develop/python/flask/index.html" class="navigation navigation-next " aria-label="Next page: Flask开发Web"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
