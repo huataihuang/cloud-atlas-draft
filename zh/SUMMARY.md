@@ -7,6 +7,8 @@
 		* [进程](os/linux/process/README.md)
 			* [SELinux](os/linux/process/selinux/README.md)
 			* [线程](os/linux/process/thread/README.md)
+				* [进程和线程](os/linux/process/thread/process_vs_thread.md)
+				* [检查线程的方法](os/linux/process/thread/check_thread.md)
 		* [日志](os/linux/log/README.md)
 			* [logrotate日志轮转工具](os/linux/log/logrotate.md)
 			* [mcelog系统硬件诊断日志搜集工具](os/linux/log/mcelog.md)
