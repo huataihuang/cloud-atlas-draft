@@ -124,8 +124,18 @@ root过之后的Android运行和使用没有任何问题，但是会遇到一个
 在`TWRP`启动时候，注意观察，可以看到启动报错是在安装`/cache/update.zip`包时候返回了一个`Status 7`错误：
 
 ```bash
+Updating partition detail...
+...done
+Full SELinux support is present.
+Running Recovery Commands
+Installing zip file '/cache/update.zip'
+Checking for MD5 file...
+Skipping D5 check: no MD5 file found
+Package expects build fingerprint of google/hammerhead/hammerhead:6.0.1/MMB29Q/2480792:usr/release-keys for google/hammerhead/hammerhead:6.0.1/MMB29V/2554798:usr/release-keys; this device has google/omni_hammerhead/hammerhead:5.0.2/LRX22G/3:eng/test-keys.
 Updter process ended with ERROR: 7
 Error installing zip file '/cache/update.zip'
+Done processing script file
+MTP Enabled
 ```
 
 截图如下：
@@ -135,9 +145,27 @@ Error installing zip file '/cache/update.zip'
 * 将 `update.zip` 文件复制出来（对于系统目录下文件复制，需要su权限，见下文）解压缩
 
 ```bash
-adb shell su
-exit
-adb pull /cache/update.zip
+adb shell
+su
+```
+
+当使用了`su`指令之后，就可以进入`root`帐号，此时就可以`cd /cache`等系统目录。不过，无法使用`adb root`指令（这个指令可以以root身份运行adbd，就可以直接`adb pull`系统文件），如果直接使用`adb root`指令会提示正式产品设备无法使用该指令
+
+```bash
+adbd cannot run as root in production builds
+```
+
+解决的方法参考 [copy db file with adb pull results in 'permission denied' error](http://stackoverflow.com/questions/20891597/copy-db-file-with-adb-pull-results-in-permission-denied-error)，可以将系统文件复制到普通目录，如`/sdcard/Download`目录，然后就可以下载或上传。
+
+```bash
+cd /sdcard/Download
+cp /cache/update.zip ./
+```
+
+然后在主机操作系统执行`adb`命令复制出文件
+
+```bash
+adb pull /sdcard/Download/update.zip
 ```
 
 * 解压缩以后，进入`META-INF/com/google/android`目录，将`updater-script`复制成`updater-script.txt`，然后使用文本编辑器编辑这个文件
@@ -152,80 +180,148 @@ adb push update.zip /cache/update.zip
 
 > 上述方法对于OTA方式升级新的Android系统或者补丁包都是适用的
 
-## 具体操作步骤
+不过，我依然遇到ERROR 7报错，仔细检查报错，发现是因为`fingerprint`错误
+
+```bash
+getprop("ro.build.fingerprint") == "google/hammerhead/hammerhead:6.0.1/MMB29Q/2480792:user/release-keys" ||
+    getprop("ro.build.fingerprint") == "google/hammerhead/hammerhead:6.0.1/MMB29V/2554798:user/release-keys" ||
+    abort("Package expects build fingerprint of google/hammerhead/hammerhead:6.0.1/MMB29Q/2480792:user/release-keys or google/hammerhead/hammerhead:6.0.1/MMB29V/2554798:user/release-keys; this device has " + getprop("ro.build.fingerprint") + ".");
+```
+
+添加上 `google/omni_hammerhead/hammerhead:5.0.2/LRX22G/3:eng/test-keys`（因为root的时候使用了omni_hammerhead的）或者索性删除掉这行`getprop`检查即可以绕过报错。
+
+修改上述代码行：
+
+```bash
+getprop("ro.build.fingerprint") == "google/hammerhead/hammerhead:6.0.1/MMB29Q/2480792:user/release-keys" ||
+    getprop("ro.build.fingerprint") == "google/hammerhead/hammerhead:6.0.1/MMB29V/2554798:user/release-keys" ||
+	getprop("ro.build.fingerprint") == "google/omni_hammerhead/hammerhead:5.0.2/LRX22G/3:eng/test-keys" ||
+    abort("Package expects build fingerprint of google/hammerhead/hammerhead:6.0.1/MMB29Q/2480792:user/release-keys or google/hammerhead/hammerhead:6.0.1/MMB29V/2554798:user/release-keys; this device has " + getprop("ro.build.fingerprint") + ".");
+```
+
+> Nexus 5启动进入`recovery`模式的方法是在启动时同时按下上下两个音量键再按下电源键启动，保持这3个键按下状态，直到系统启动，就会进入[Fastboot/Bootloader Mode options](http://www.android.gs/boot-nexus-5-fastboot-mode/)页面，此时就可以通过音量键选择`recovery`模式（[How to Boot Recovery Mode for Google Nexus 5](http://www.android.gs/how-to-boot-recovery-mode-for-google-nexus-5/)）
+
+## 其他验证步骤需要修正
+
+* 去除`/system/recovery-from-boot.p`校验
+
+```bash
+Verifying current system...
+"/system/recovery-from-boot.p" has unexpected contents.
+Updter process ended with ERROR: 7
+Error installing zip file '/cache/update.zip'
+Updating partition details...
+...done
+```
+
+这个报错解决方法是删除`updater-script`中以下检查行
+
+```bash
+apply_patch_check("/system/recovery-from-boot.p", "49d5122adb02c2f67f1f80d3     9a384ec6d44bf3e1", "8130c984873d707063496965b6ad571518bcd968") || abort("\"     /system/recovery-from-boot.p\" has unexpected contents.");
+```
+
+* 去除`EMMC`校验
+
+```bash
+Verify current system..
+"EMMC:/dev/block/platform/msm_sdcc.1/by-name/boot:9371648:dac193c5c724e60434495657d50583e53d1a9137:9367552:81250cee12dbb1332479d2f91b179fb96e09377a" has unexpected contents.
+Updter process ended with ERROR: 7
+Error installing zip file '/cache/update.zip'
+Updating partition details...
+...done
+```
+
+这个报错解决方法是删除`updater-script`中以下检查行
+
+```bash
+apply_patch_check("EMMC:/dev/block/platform/msm_sdcc.1/by-name/boot:9371648     :dac193c5c724e60434495657d50583e53d1a9137:9367552:81250cee12dbb1332479d2f91     b179fb96e09377a") || abort("\"EMMC:/dev/block/platform/msm_sdcc.1/by-name/b     oot:9371648:dac193c5c724e60434495657d50583e53d1a9137:9367552:81250cee12dbb1     332479d2f91b179fb96e09377a\" has unexpected contents.");
+```
+
+# root后Android升级patch完整操作步骤整理
+
+> 上述对`root后Android升级`做了探索，反复折腾了多次，总算完成了root后第一次补丁包安装。本段落再做一次整理总结
+
+**root过的Android系统会对Android做如下改动**
+
+* 启动分区修改（也就是`/system/recovery-from-boot.p`）
+* EMMC修改
+* `ro.build.fingerprint`修改
+* 部分系统软件包的替换（目前我不确定是哪些被修改了，要看实际SHA校验）
+
+## 操作步骤
+
+* 在Nexus 5 Android操作系统中检查系统更新，此时系统提示下载补丁包完成后，不要直接进行升级。而是连接USB数据线，使用`adb`进行操作。
+
+* 连接USB数据线后，执行如下`adb`命令(其中`su`命令是为了获得Android系统的`root`权限，以便从系统目录中复制出补丁包)
+
+```bash
+adb devices
+adb shell
+su
+cp /cache/update.zip /sdcard/Download/
+```
+
+此时补丁包被复制到存储卡目录下，就可以通过`adb`命令复制出来进行修改了。
 
 * 使用`adb`工具将Nexus 5中已经下载的`update.zip`复制出来
 
 > `adb`使用方法参考[ADB Shell](http://adbshell.com/commands/adb-root)
 
-检查连接设备
-
 ```bash
-adb devices
+adb pull /sdcard/Download/update.zip
 ```
 
-显示输出
+* 解压缩`update.zip`
+
+此时补丁包`update.zip`被复制到当前目录，使用`zip`命令进行解压缩
 
 ```bash
-List of devices attached
-02211e9ec9623837	device
+zip -d update.zip
 ```
 
-检查目录
+解压缩以后，当前目录下会有两个子目录`META-INF`和`patch`
+
+### 修改`META-INF/com/android/updater-script`脚本
+
+* 删除所有`assert`开头的所有行（也就是对文件进行校验的命令)
+* 删除`EMMC`校验
 
 ```bash
-adb shell ls
+apply_patch_check("EMMC:/dev/block/platform/msm_sdcc.1/by-name/boot:9371648     :dac193c5c724e60434495657d50583e53d1a9137:9367552:81250cee12dbb1332479d2f91     b179fb96e09377a") || abort("\"EMMC:/dev/block/platform/msm_sdcc.1/by-name/b     oot:9371648:dac193c5c724e60434495657d50583e53d1a9137:9367552:81250cee12dbb1     332479d2f91b179fb96e09377a\" has unexpected contents.");
 ```
 
-可以看到 
+* 删除`/system/recovery-from-boot.p`校验
 
 ```bash
-...
-cache
-...
+apply_patch_check("/system/recovery-from-boot.p", "49d5122adb02c2f67f1f80d3     9a384ec6d44bf3e1", "8130c984873d707063496965b6ad571518bcd968") || abort("\"     /system/recovery-from-boot.p\" has unexpected contents.");
 ```
 
-但是，尝试列出`/cache`目录文件会被拒绝
+* 修改或删除`fingerprint`校验（这里可以根据第一次补丁包安装时提示错误来修改，或者索性删除）
 
 ```bash
-adb shell ls /cache
+getprop("ro.build.fingerprint") == "google/hammerhead/hammerhead:6.0.1/MMB29Q/2480792:user/release-keys" ||
+    getprop("ro.build.fingerprint") == "google/hammerhead/hammerhead:6.0.1/MMB29V/2554798:user/release-keys" ||
+    abort("Package expects build fingerprint of google/hammerhead/hammerhead:6.0.1/MMB29Q/2480792:user/release-keys or google/hammerhead/hammerhead:6.0.1/MMB29V/2554798:user/release-keys; this device has " + getprop("ro.build.fingerprint") + ".");
 ```
 
-提示权限不足
+* 重新打包
 
 ```bash
-opendir failed, Permission denied
+zip -r update.zip META-INF patch
 ```
 
-原来要浏览设备中所有文件需要满足两个条件
-
-* Android设备已经被root或者是使用开发设备
-* 需要以root模式运行ADB，也就是执行`adb root`
-
-> 参考 [Why do I get access denied to data folder when using adb?](http://stackoverflow.com/questions/1043322/why-do-i-get-access-denied-to-data-folder-when-using-adb)
-
-不过，我尝试
+* 通过`adb`将修改过的`update.zip`传回手机
 
 ```bash
-adb root
+adb push update.zip /sdcard/Download/
 ```
 
-提示错误
+* 启动Android进入`recovery`模式（同时安装上下音量键和电源键开机，并选择recovery模式）
+* 通过`TWRP`的`Install`功能安装自己修改过的`/sdcard/Download/update.zip`
 
-```bash
-adbd cannot run as root in production builds
-```
+**安装过程如果有报错，请仔细查看报错信息，一般是校验错误，只要相应修改`updater-script`脚本绕过就可以了**
 
-解决的方法是使用
-
-```bash
-adb shell
-su
-```
-
-此时在手机屏幕上会提示是否允许授予`root`访问，点击授予权限。授权之后，就可以使用 `adb shell su`命令来执行`root`才能访问的文件了。
-
-> 注意，如果前面补丁失败，再正常启动系统，会清理掉 `/cache` 下文件，需要重新下载 `update.zip` （通过 `Setting => About phone => System updates`）
+使用`TWRP`的`Install`功能安装补丁包有一个好处，就是安装失败可以立即修改`update.zip`，再用`adb`将调整后的`update.zip`传入手机再次尝试升级。多试几次，就会成功！
 
 # 参考
 
