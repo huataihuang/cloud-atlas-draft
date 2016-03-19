@@ -426,3 +426,8 @@ sh -c "echo \$$ > /cgroup/cpu_and_mem/group1/tasks && firefox"
 * 使用`/etc/sysconfig/servicename`文件
 * 在`/etc/init.d/functions`中使用`daemon()`功能来启动服务
 
+
+要设置一个服务以cgroup启动，编辑 `/etc/sysconfig` 目录下的 配置
+
+
+

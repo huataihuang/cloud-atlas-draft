@@ -1,0 +1,7 @@
+日常工作中，常常在safari中打开很多的web页面，时间久了，想关闭又发现有些文章还没有看完。此外，有时还要切换到到Linux桌面工作，如何将大量的safari中的页面迁移到linux平台的chromium就是一个比较头疼的事情。
+
+其实有一个比较简单的解决方法，甚至不需要安装第三方插件。
+
+Safari或Chrome都支持一种将所有打开的tab保存到一个Bookmark目录，再加上现在主流浏览器都支持互相导入导出Bookmark，这样就非常方经常同步各个平台的浏览器。
+
+![safari保存dizhi](/img/develop/mac/save_bookmarks.png)

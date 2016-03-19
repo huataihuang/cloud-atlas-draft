@@ -17,7 +17,11 @@
 * [RHEL 6 Cgroups介绍](rhel6/README.md)
 * [RHEL 7 Cgroups介绍](rhel7/README.md)
 
+> 2013年8月的[All About the Linux Kernel: Cgroup’s Redesign](https://www.linux.com/news/featured-blogs/200-libby-clark/733595-all-about-the-linux-kernel-cgroups-redesign)一文介绍了结合Systemd的全新设计开发的[内核cgroup子系统设计cgroup-v2](https://www.kernel.org/doc/Documentation/cgroup-v2.txt)
+>
+> [cgroup-v1文档](https://www.kernel.org/doc/Documentation/cgroup-v1/)
 
 # 参考
 
 * [Resource Management Guide: Managing system resources on Red Hat Enterprise Linux 7](https://access.redhat.com/site/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Resource_Management_Guide/index.html)
+* [All About the Linux Kernel: Cgroup’s Redesign](https://www.linux.com/news/featured-blogs/200-libby-clark/733595-all-about-the-linux-kernel-cgroups-redesign)
