@@ -20,7 +20,7 @@
 
 在被管理节点上，需要能能够和控制主机通讯，通常使用ssh通讯。并且，主机上需要使用Python 2.5以上版本，对于低版本Python，需要安装`python-simplejson`。
 
-> Ansible的"raw"模块（也就是直接执行命令）和脚本。可以通过"raw"模块给呗管理主机安装`python-simplejson`
+> Ansible的"raw"模块（也就是直接执行命令）和脚本。可以通过"raw"模块给被管理主机安装`python-simplejson`
 >
 > 如果远程被管理节点激活了`SELinux`，就需要在被管理节点上安装`libselinux-python`，这样才能在Ansible中使用`copy/file/template`相关功能。需要使用Ansible的yum来安装Ansible模块。
 >

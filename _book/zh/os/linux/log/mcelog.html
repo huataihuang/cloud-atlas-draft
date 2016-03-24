@@ -65,7 +65,7 @@
         data-chapter-title="mcelog系统硬件诊断日志搜集工具"
         data-filepath="os/linux/log/mcelog.md"
         data-basepath="../../.."
-        data-revision="Sat Mar 19 2016 13:13:06 GMT+0800 (CST)"
+        data-revision="Fri Mar 25 2016 00:29:48 GMT+0800 (CST)"
         data-innerlanguage="zh">
     
 
@@ -2791,6 +2791,21 @@
             
         </li>
     
+        <li class="chapter " data-level="11.7.7" data-path="develop/mac/bird_process.html">
+            
+                
+                    <a href="../../../develop/mac/bird_process.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.7.7.</b>
+                        
+                        bird进程
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -3166,6 +3181,27 @@
                     </a>
             
             
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="12.3.1" data-path="devops/gitlab/deploy_key.html">
+            
+                
+                    <a href="../../../devops/gitlab/deploy_key.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.3.1.</b>
+                        
+                        部署使用的ssh key
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
         </li>
     
         <li class="chapter " data-level="12.4" data-path="devops/jenkins/index.html">
@@ -3491,7 +3527,41 @@
 <pre><code>--ignorenodev       Exit silently when the device cannot be opened
 --daemon            Run in background waiting for events (needs newer kernel)
 --syslog            Log decoded machine checks in syslog (default stdout or syslog for daemon)
-</code></pre><p><strong>&#x5B9E;&#x8DF5;&#x8BCA;&#x65AD;&#x5F85;&#x8865;&#x5145;</strong></p>
+</code></pre><h1 id="&#x6848;&#x4F8B;">&#x6848;&#x4F8B;</h1>
+<p>&#x901A;&#x5E38;&#x68C0;&#x67E5;&#x7CFB;&#x7EDF;&#x786C;&#x4EF6;&#x6545;&#x969C;&#xFF0C;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x4F7F;&#x7528;<code>mcelog</code>&#x5BA2;&#x6237;&#x7AEF;</p>
+<pre><code class="lang-bash">sudo mcelog
+</code></pre>
+<p>&#x4F8B;&#x5982;&#x4E0B;&#x9762;&#x6848;&#x4F8B;&#x8F93;&#x51FA;&#x663E;&#x793A;&#x7CFB;&#x7EDF;&#x5185;&#x5B58;&#x6545;&#x969C;</p>
+<pre><code class="lang-bash">MCE <span class="hljs-number">0</span>
+HARDWARE ERROR. This is *NOT* a software problem!
+Please contact your hardware vendor
+Thu Mar <span class="hljs-number">24</span> <span class="hljs-number">16</span>:<span class="hljs-number">15</span>:<span class="hljs-number">20</span> <span class="hljs-number">2016</span>
+CPU <span class="hljs-number">15</span> BANK <span class="hljs-number">7</span> MISC <span class="hljs-number">5262</span>be86 ADDR <span class="hljs-number">7</span>f594d80
+STATUS cc1f1dc000010091 MCGSTATUS <span class="hljs-number">0</span>
+CPUID Vendor Intel Family <span class="hljs-number">6</span> Model <span class="hljs-number">62</span>
+WARNING: SMBIOS data is often unreliable. Take with a grain of salt!
+&lt;<span class="hljs-number">24</span>&gt; DIMM <span class="hljs-number">1600</span> Mhz Res13 Width <span class="hljs-number">72</span> Data Width <span class="hljs-number">64</span> Size <span class="hljs-number">16</span> GB
+Device Locator: CPU0_A0
+Bank Locator: CPU0_Bank0
+Manufacturer: Samsung
+Serial Number: <span class="hljs-number">1331</span>F1A9
+Asset Tag: Dimm0_AssetTag
+Part Number: M393B2G70QH0-YK0
+MCE <span class="hljs-number">1</span>
+HARDWARE ERROR. This is *NOT* a software problem!
+Please contact your hardware vendor
+Thu Mar <span class="hljs-number">24</span> <span class="hljs-number">16</span>:<span class="hljs-number">15</span>:<span class="hljs-number">20</span> <span class="hljs-number">2016</span>
+CPU <span class="hljs-number">15</span> BANK <span class="hljs-number">9</span> MISC <span class="hljs-number">90840000000208</span>c ADDR <span class="hljs-number">4863</span>b580
+STATUS cc000150000800c0 MCGSTATUS <span class="hljs-number">0</span>
+CPUID Vendor Intel Family <span class="hljs-number">6</span> Model <span class="hljs-number">62</span>
+&lt;<span class="hljs-number">24</span>&gt; DIMM <span class="hljs-number">1600</span> Mhz Res13 Width <span class="hljs-number">72</span> Data Width <span class="hljs-number">64</span> Size <span class="hljs-number">16</span> GB
+Device Locator: CPU0_A0
+Bank Locator: CPU0_Bank0
+Manufacturer: Samsung
+Serial Number: <span class="hljs-number">1331</span>F1A9
+Asset Tag: Dimm0_AssetTag
+Part Number: M393B2G70QH0-YK0
+</code></pre>
 <h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
 <ul>
 <li><a href="http://www.mcelog.org" target="_blank">mcelog&#x5B98;&#x65B9;&#x7F51;&#x7AD9;</a></li>

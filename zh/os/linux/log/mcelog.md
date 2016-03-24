@@ -62,7 +62,47 @@ crw------- 1 root root 10, 227 Jan 27 00:59 /dev/mcelog
 --syslog            Log decoded machine checks in syslog (default stdout or syslog for daemon)
 ```
 
-**实践诊断待补充**
+# 案例
+
+通常检查系统硬件故障，可以直接使用`mcelog`客户端
+
+```bash
+sudo mcelog
+```
+
+例如下面案例输出显示系统内存故障
+
+```bash
+MCE 0
+HARDWARE ERROR. This is *NOT* a software problem!
+Please contact your hardware vendor
+Thu Mar 24 16:15:20 2016
+CPU 15 BANK 7 MISC 5262be86 ADDR 7f594d80
+STATUS cc1f1dc000010091 MCGSTATUS 0
+CPUID Vendor Intel Family 6 Model 62
+WARNING: SMBIOS data is often unreliable. Take with a grain of salt!
+<24> DIMM 1600 Mhz Res13 Width 72 Data Width 64 Size 16 GB
+Device Locator: CPU0_A0
+Bank Locator: CPU0_Bank0
+Manufacturer: Samsung
+Serial Number: 1331F1A9
+Asset Tag: Dimm0_AssetTag
+Part Number: M393B2G70QH0-YK0
+MCE 1
+HARDWARE ERROR. This is *NOT* a software problem!
+Please contact your hardware vendor
+Thu Mar 24 16:15:20 2016
+CPU 15 BANK 9 MISC 90840000000208c ADDR 4863b580
+STATUS cc000150000800c0 MCGSTATUS 0
+CPUID Vendor Intel Family 6 Model 62
+<24> DIMM 1600 Mhz Res13 Width 72 Data Width 64 Size 16 GB
+Device Locator: CPU0_A0
+Bank Locator: CPU0_Bank0
+Manufacturer: Samsung
+Serial Number: 1331F1A9
+Asset Tag: Dimm0_AssetTag
+Part Number: M393B2G70QH0-YK0
+```
 
 # 参考
 
