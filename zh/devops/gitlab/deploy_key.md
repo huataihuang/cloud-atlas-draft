@@ -48,21 +48,16 @@ Host fedorapeople.org
 可以参考 [Specify private SSH-key to use when executing shell command with or without Ruby?](http://stackoverflow.com/questions/4565700/specify-private-ssh-key-to-use-when-executing-shell-command-with-or-without-ruby) 使用以下命令
 
 ```bash
-ssh-agent $(ssh-add /home/christoffer/ssh_keys/theuser; git clone git@github.com:TheUser/TheProject.git)
-```
-
-> 此方法测试失败
-
-或者
-
-```bash
 ssh-agent bash -c 'ssh-add /home/christoffer/ssh_keys/theuser; git clone git@github.com:TheUser/TheProject.git'
 ```
 
-> 此方法测试可行
+> 此方法测试可用于`git 1.9`，上述方法解决了对特定项目使用指定密钥对的问题。
 
-上述方法解决了对特定项目使用指定密钥对的问题。
+另一个建议方法测试没有成功：
 
+```bash
+ssh-agent $(ssh-add /home/christoffer/ssh_keys/theuser; git clone git@github.com:TheUser/TheProject.git)
+```
 
 # 使用git的`GIT_SSH_COMMAND`来使用指定私钥
 

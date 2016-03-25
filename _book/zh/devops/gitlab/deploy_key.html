@@ -65,7 +65,7 @@
         data-chapter-title="部署使用的ssh key"
         data-filepath="devops/gitlab/deploy_key.md"
         data-basepath="../.."
-        data-revision="Fri Mar 25 2016 00:29:48 GMT+0800 (CST)"
+        data-revision="Fri Mar 25 2016 11:48:28 GMT+0800 (CST)"
         data-innerlanguage="zh">
     
 
@@ -3433,6 +3433,57 @@
             
         </li>
     
+        <li class="chapter " data-level="12.5.4" data-path="devops/ansible/troubleshoot/index.html">
+            
+                
+                    <a href="../../devops/ansible/troubleshoot/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.4.</b>
+                        
+                        问题排查
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="12.5.4.1" data-path="devops/ansible/troubleshoot/yaml_syntax_error_with_tab.html">
+            
+                
+                    <a href="../../devops/ansible/troubleshoot/yaml_syntax_error_with_tab.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.4.1.</b>
+                        
+                        TAB键导致&quot;Syntax Error while loading YAML&quot;
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="12.5.4.2" data-path="devops/ansible/troubleshoot/host_authenticity.html">
+            
+                
+                    <a href="../../devops/ansible/troubleshoot/host_authenticity.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.4.2.</b>
+                        
+                        paramiko主机认证报错
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
 
             </ul>
             
@@ -3522,18 +3573,14 @@ Host fedorapeople.org
 <h1 id="&#x7ED3;&#x5408;sshagent&#x6765;&#x4F7F;&#x7528;&#x6307;&#x5B9A;&#x79C1;&#x94A5;">&#x7ED3;&#x5408;<code>ssh-agent</code>&#x6765;&#x4F7F;&#x7528;&#x6307;&#x5B9A;&#x79C1;&#x94A5;</h1>
 <p>&#x4E0A;&#x8FF0;&#x601D;&#x8DEF;&#x4E2D;&#x4F7F;&#x7528;&#x4E86;&#x591A;&#x4E2A;&#x5BC6;&#x94A5;&#x5BF9;&#x6765;&#x9488;&#x5BF9;&#x4E0D;&#x540C;&#x57DF;&#x540D;&#x533A;&#x522B;&#x4F7F;&#x7528;&#x5BC6;&#x94A5;&#xFF0C;&#x5728;&#x6211;&#x4EEC;&#x8FD9;&#x4E2A;&#x6848;&#x4F8B;&#x4E2D;&#xFF0C;&#x57DF;&#x540D;&#x662F;&#x4E0D;&#x53D8;&#x7684;&#xFF0C;&#x5355;&#x662F;&#x6211;&#x4EEC;&#x4E5F;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x4E0D;&#x540C;&#x7684;&#x79C1;&#x94A5;&#x3002;</p>
 <p>&#x53EF;&#x4EE5;&#x53C2;&#x8003; <a href="http://stackoverflow.com/questions/4565700/specify-private-ssh-key-to-use-when-executing-shell-command-with-or-without-ruby" target="_blank">Specify private SSH-key to use when executing shell command with or without Ruby?</a> &#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;</p>
-<pre><code class="lang-bash">ssh-agent $(ssh-add /home/christoffer/ssh_keys/theuser; git <span class="hljs-built_in">clone</span> git@github.com:TheUser/TheProject.git)
-</code></pre>
-<blockquote>
-<p>&#x6B64;&#x65B9;&#x6CD5;&#x6D4B;&#x8BD5;&#x5931;&#x8D25;</p>
-</blockquote>
-<p>&#x6216;&#x8005;</p>
 <pre><code class="lang-bash">ssh-agent bash -c <span class="hljs-string">&apos;ssh-add /home/christoffer/ssh_keys/theuser; git clone git@github.com:TheUser/TheProject.git&apos;</span>
 </code></pre>
 <blockquote>
-<p>&#x6B64;&#x65B9;&#x6CD5;&#x6D4B;&#x8BD5;&#x53EF;&#x884C;</p>
+<p>&#x6B64;&#x65B9;&#x6CD5;&#x6D4B;&#x8BD5;&#x53EF;&#x7528;&#x4E8E;<code>git 1.9</code>&#xFF0C;&#x4E0A;&#x8FF0;&#x65B9;&#x6CD5;&#x89E3;&#x51B3;&#x4E86;&#x5BF9;&#x7279;&#x5B9A;&#x9879;&#x76EE;&#x4F7F;&#x7528;&#x6307;&#x5B9A;&#x5BC6;&#x94A5;&#x5BF9;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
 </blockquote>
-<p>&#x4E0A;&#x8FF0;&#x65B9;&#x6CD5;&#x89E3;&#x51B3;&#x4E86;&#x5BF9;&#x7279;&#x5B9A;&#x9879;&#x76EE;&#x4F7F;&#x7528;&#x6307;&#x5B9A;&#x5BC6;&#x94A5;&#x5BF9;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x53E6;&#x4E00;&#x4E2A;&#x5EFA;&#x8BAE;&#x65B9;&#x6CD5;&#x6D4B;&#x8BD5;&#x6CA1;&#x6709;&#x6210;&#x529F;&#xFF1A;</p>
+<pre><code class="lang-bash">ssh-agent $(ssh-add /home/christoffer/ssh_keys/theuser; git <span class="hljs-built_in">clone</span> git@github.com:TheUser/TheProject.git)
+</code></pre>
 <h1 id="&#x4F7F;&#x7528;git&#x7684;gitsshcommand&#x6765;&#x4F7F;&#x7528;&#x6307;&#x5B9A;&#x79C1;&#x94A5;">&#x4F7F;&#x7528;git&#x7684;<code>GIT_SSH_COMMAND</code>&#x6765;&#x4F7F;&#x7528;&#x6307;&#x5B9A;&#x79C1;&#x94A5;</h1>
 <p>&#x53C2;&#x8003;<a href="http://superuser.com/questions/232373/how-to-tell-git-which-private-key-to-use" target="_blank">How to tell git which private key to use?</a>&#xFF0C;&#x5373;&#x4ECE;<code>git 2.3.0</code>&#x5F00;&#x59CB;&#x53EF;&#x4EE5;&#x6307;&#x5B9A;&#x73AF;&#x5883;&#x53D8;&#x91CF;</p>
 <pre><code class="lang-bash">GIT_SSH_COMMAND=<span class="hljs-string">&quot;ssh -i ~/.ssh/id_rsa_example&quot;</span> git <span class="hljs-built_in">clone</span> example
