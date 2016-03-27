@@ -55,7 +55,7 @@ rEFInd是从rEFIt项目fork出来的，并且支持传递内核参数。rEFInd�
 解压缩以后，执行其中的`install.sh`脚本
 
 ```bash
-cd refind-bin-0.10.1
+cd refind-bin-0.10.2
 ./refind-install
 ```
 
