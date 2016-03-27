@@ -46,6 +46,7 @@
 			* [deb软件包管理](os/linux/debian/package/README.md)
 				* [Debian最小化安装后的软件包安装建议](os/linux/debian/package/debian_mini_install_packages_suggest.md)
 		* [Gentoo](os/linux/gentoo/README.md)
+			* [在MacBook Pro上安装Gentoo](os/linux/gentoo/install_gentoo_on_macbook_pro.md)
 			* [Portage包管理](os/linux/gentoo/portage.md)
 		* [实用工具](os/linux/utility/README.md)
 			* [多路复用终端管理器screen](os/linux/utility/screen.md)
