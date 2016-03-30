@@ -27,6 +27,7 @@
 				* [系统日志"__ratelimit: N callbacks suppressed"分析](os/linux/kernel/log/ratelimit.md)
 			* [CPU affinity](os/linux/kernel/cpu_affinity.md)
 			* [Linux内核模式设置KMS](os/linux/kernel/kms.md)
+			* [Linux内核同页合并](os/linux/kernel/ksm.md)
 			* [微代码Microcode](os/linux/kernel/microcode.md)
 			* [进程状态标志的含义](os/linux/kernel/process_stat_indicates.md)
 		* [存储](os/linux/storage/README.md)

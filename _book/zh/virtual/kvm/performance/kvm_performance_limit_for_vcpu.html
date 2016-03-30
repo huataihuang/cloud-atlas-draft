@@ -65,7 +65,7 @@
         data-chapter-title="对于虚拟CPU内核的KVM性能限制"
         data-filepath="virtual/kvm/performance/kvm_performance_limit_for_vcpu.md"
         data-basepath="../../.."
-        data-revision="Wed Mar 30 2016 18:01:20 GMT+0800 (CST)"
+        data-revision="Wed Mar 30 2016 19:20:26 GMT+0800 (CST)"
         data-innerlanguage="zh">
     
 
@@ -3840,12 +3840,37 @@
 <p>&#x542F;&#x52A8;KVM&#x865A;&#x62DF;&#x673A;&#x65F6;&#x5019;&#xFF0C;&#x53EF;&#x4EE5;&#x5B9A;&#x4E49;VM&#x4F7F;&#x7528;&#x7684;&#x5185;&#x5B58;&#x5927;&#x5C0F;&#x3002;&#x6240;&#x6709;&#x8FD0;&#x884C;&#x5728;&#x4E3B;&#x673A;&#x4E0A;&#x7684;&#x865A;&#x62DF;&#x673A;&#x7684;&#x5185;&#x5B58;&#x603B;&#x91CF;&#x6709;&#x53EF;&#x80FD;&#x53EF;&#x4EE5;&#x8D85;&#x914D;&#xFF08;<code>overbooked</code>&#xFF09;&#x3002;</p>
 <p>&#x6709;&#x5173;KVM&#x5185;&#x5B58;&#x9650;&#x5236;&#x7684;&#x5927;&#x591A;&#x6570;&#x4FE1;&#x606F;&#x6C47;&#x603B;&#x5F97;&#x5230;&#x7684;&#x7ECF;&#x9A8C;&#x662F;&#xFF1A;<strong>&#x53EF;&#x4EE5;&#x6700;&#x591A;&#x8D85;&#x914D;&#x5230;&#x7269;&#x7406;&#x670D;&#x52A1;&#x5668;&#x7684;150%</strong> (&#x5305;&#x62EC;&#x7269;&#x7406;&#x4E3B;&#x673A;&#x4F7F;&#x7528;&#x7684;&#x5185;&#x5B58;)&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x4F60;&#x7684;&#x7B14;&#x8BB0;&#x672C;&#x6709;8GB&#x5185;&#x5B58;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x8FD0;&#x884C;10&#x4E2A;1GB&#x5185;&#x5B58;&#x7684;&#x865A;&#x62DF;&#x673A;&#xFF0C;&#x8FD9;&#x6837;&#x52A0;&#x4E0A;&#x7269;&#x7406;&#x670D;&#x52A1;&#x5668;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x8FD0;&#x884C;&#x9700;&#x8981;&#x7684;2GB&#x5185;&#x5B58;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x5B9E;&#x9645;&#x7269;&#x7406;&#x5185;&#x5B58;&#x7684;150%&#x8D85;&#x914D;&#x3002;</p>
 <p>&#x7136;&#x800C;&#xFF0C;&#x4E0A;&#x8FF0;&#x914D;&#x7F6E;&#x662F;&#x5047;&#x8BBE;&#x6240;&#x6709;guest&#x865A;&#x62DF;&#x673A;&#x5E76;<strong>&#x4E0D;&#x662F;</strong>&#x540C;&#x65F6;&#x4F7F;&#x7528;&#x5206;&#x914D;&#x7ED9;&#x5B83;&#x4EEC;&#x7684;&#x6240;&#x6709;&#x5185;&#x5B58;&#x3002;&#x5982;&#x679C;&#x8FD0;&#x884C;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x6D88;&#x8017;&#x4E86;&#x6BCF;&#x4E2A;&#x865A;&#x62DF;&#x673A;&#x7684;&#x6240;&#x6709;&#x5185;&#x5B58;&#xFF0C;&#x5C31;&#x4F1A;&#x5BFC;&#x81F4;&#x6781;&#x5DEE;&#x7684;&#x6027;&#x80FD;&#x3002;&#xFF08;&#x6B64;&#x65F6;&#x4F1A;&#x5BFC;&#x81F4;&#x5927;&#x91CF;&#x7684;&#x5185;&#x5B58;&#x4EA4;&#x6362;&#xFF09;</p>
-<p>&#x8BE6;&#x7EC6;&#x7684;KVM&#x5185;&#x5B58;&#x9650;&#x5236;&#xFF0C;&#x7F51;&#x7EDC;&#x63A5;&#x53E3;&#x548C;&#x5176;&#x4ED6;&#x8D44;&#x6E90;&#xFF0C;&#x5728;<a href="https://docs.fedoraproject.org/en-US/Fedora/13/html/Virtualization_Guide/sect-Virtualization-Virtualization_limitations-KVM_limitations.html" target="_blank">Fedora projet</a>&#x548C;<a href="https://www.suse.com/documentation/sles11/singlehtml/book_kvm/book_kvm.html#cha.kvm.limits" target="_blank">OpenSUSE project</a>&#x6709;&#x8BE6;&#x7EC6;&#x63CF;&#x8FF0;&#x3002;</p>
-<h1 id="kvm&#x9650;&#x5236;">KVM&#x9650;&#x5236;</h1>
-<p>&#x5728;<a href="https://docs.fedoraproject.org/en-US/Fedora/13/html/Virtualization_Guide/sect-Virtualization-Virtualization_limitations-KVM_limitations.html" target="_blank">Fedora 13: Virtualization Guide 3.2. KVM limitations</a>&#x63D0;&#x4F9B;&#x4E86;&#x6709;&#x5173;KVM&#x9650;&#x5236;&#x7684;&#x4FE1;&#x606F;&#xFF1A;</p>
-<ul>
-<li>&#x6CA1;&#x6709;&#x6052;&#x5B9A;&#x7684;TSC&#xFF08;Time Stamp Counter&#xFF09;&#x9700;&#x8981;&#x9644;&#x52A0;&#x7684;&#x914D;&#x7F6E; - [../deployment_and_administration/kvm_guest_timing_management.md]</li>
-</ul>
+<p>&#x8BE6;&#x7EC6;&#x7684;KVM&#x5185;&#x5B58;&#x9650;&#x5236;&#xFF0C;&#x7F51;&#x7EDC;&#x63A5;&#x53E3;&#x548C;&#x5176;&#x4ED6;&#x8D44;&#x6E90;&#xFF0C;&#x5728;<a href="https://docs.fedoraproject.org/en-US/Fedora/13/html/Virtualization_Guide/sect-Virtualization-Virtualization_limitations-KVM_limitations.html" target="_blank">Fedora projet</a>&#x548C;<a href="https://www.suse.com/documentation/sles11/singlehtml/book_kvm/book_kvm.html#cha.kvm.limits" target="_blank">SUSE Linux Enterprise Server 11 SP4 Virtualization with KVM:Performance Limitations</a>&#x8BE6;&#x7EC6;&#x5217;&#x51FA;&#x4E86;KVM&#x7684;&#x9650;&#x5236;&#xFF0C;&#x7279;&#x522B;&#x662F;&#x6709;&#x5173;&#x786C;&#x4EF6;&#x548C;&#x6027;&#x80FD;&#x7684;&#x9650;&#x5236;&#xFF1A;</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">&#x865A;&#x62DF;&#x786C;&#x4EF6;</th>
+<th style="text-align:center">&#x6700;&#x5927;&#x9650;&#x5236;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Guest&#x6700;&#x5927;&#x652F;&#x6301;&#x865A;&#x62DF;&#x5185;&#x5B58;</td>
+<td style="text-align:center">4 TB</td>
+</tr>
+<tr>
+<td style="text-align:center">Guest&#x6700;&#x5927;&#x652F;&#x6301;vcpu&#x6570;&#x91CF;</td>
+<td style="text-align:center">256</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x6BCF;&#x4E2A;Guest&#x652F;&#x6301;&#x6700;&#x5927;&#x865A;&#x62DF;&#x7F51;&#x7EDC;&#x8BBE;&#x5907;&#x6570;&#x91CF;</td>
+<td style="text-align:center">8</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x6BCF;&#x4E2A;Guest&#x652F;&#x6301;&#x6700;&#x5927;&#x5757;&#x8BBE;&#x5907;&#x6570;&#x91CF;</td>
+<td style="text-align:center">4&#x4E2A;&#x6A21;&#x62DF;&#x8BBE;&#x5907;&#xFF08;IDE&#xFF09;&#xFF0C;&#x901A;&#x8FC7;<code>virtio-blk</code>&#x652F;&#x6301;20&#x4E2A;para-virtual&#x8BBE;&#x5907;</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x6BCF;&#x4E2A;Host&#x7269;&#x7406;&#x670D;&#x52A1;&#x5668;&#x652F;&#x6301;&#x6700;&#x5927;VM&#x6570;&#x91CF;</td>
+<td style="text-align:center">&#x6240;&#x6709;guest&#x865A;&#x62DF;&#x673A;&#x7684;vcpu&#x6570;&#x91CF;&#x603B;&#x548C;&#x4E0D;&#x80FD;&#x5927;&#x4E8E;&#x7269;&#x7406;&#x670D;&#x52A1;&#x5668;CPU&#x6838;&#x6570;&#x7684;<code>8</code>&#x500D;</td>
+</tr>
+</tbody>
+</table>
 <h1 id="fedora&#x865A;&#x62DF;&#x5316;&#x624B;&#x518C;">Fedora&#x865A;&#x62DF;&#x5316;&#x624B;&#x518C;</h1>
 <p><a href="https://docs.fedoraproject.org/" target="_blank">Fedora projet&#x6587;&#x6863;</a>&#x9646;&#x7EED;&#x53D1;&#x5E03;&#x4E86;&#x51E0;&#x672C;&#x6709;&#x5173;&#x865A;&#x62DF;&#x5316;&#x7684;&#x624B;&#x518C;</p>
 <ul>

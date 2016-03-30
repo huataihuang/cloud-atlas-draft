@@ -23,13 +23,29 @@ KVM允许用户为每个虚拟机设置多个虚拟内核，从实践来看每�
 
 然而，上述配置是假设所有guest虚拟机并**不是**同时使用分配给它们的所有内存。如果运行的应用程序消耗了每个虚拟机的所有内存，就会导致极差的性能。（此时会导致大量的内存交换）
 
-详细的KVM内存限制，网络接口和其他资源，在[Fedora projet](https://docs.fedoraproject.org/en-US/Fedora/13/html/Virtualization_Guide/sect-Virtualization-Virtualization_limitations-KVM_limitations.html)和[OpenSUSE project](https://www.suse.com/documentation/sles11/singlehtml/book_kvm/book_kvm.html#cha.kvm.limits)有详细描述。
+详细的KVM内存限制，网络接口和其他资源，在[Fedora projet](https://docs.fedoraproject.org/en-US/Fedora/13/html/Virtualization_Guide/sect-Virtualization-Virtualization_limitations-KVM_limitations.html)和[SUSE Linux Enterprise Server 11 SP4 Virtualization with KVM:Performance Limitations](https://www.suse.com/documentation/sles11/singlehtml/book_kvm/book_kvm.html#cha.kvm.limits)详细列出了KVM的限制，特别是有关硬件和性能的限制：
 
-# KVM限制
+| 虚拟硬件 | 最大限制 |
+| ----- | ----- |
+| Guest最大支持虚拟内存 | 4 TB |
+| Guest最大支持vcpu数量 | 256 |
+| 每个Guest支持最大虚拟网络设备数量 | 8 |
+| 每个Guest支持最大块设备数量 | 4个模拟设备（IDE），通过`virtio-blk`支持20个para-virtual设备 |
+| 每个Host物理服务器支持最大VM数量 | 所有guest虚拟机的vcpu数量总和不能大于物理服务器CPU核数的`8`倍 |
 
-在[Fedora 13: Virtualization Guide 3.2. KVM limitations](https://docs.fedoraproject.org/en-US/Fedora/13/html/Virtualization_Guide/sect-Virtualization-Virtualization_limitations-KVM_limitations.html)提供了有关KVM限制的信息：
+> SUSE测试过上述虚拟硬件的限制，报告说VM安装和工作正常，并且在达到上限时没有出现明显的性能恶化（CPU，内存，磁盘，网络）。
 
-* 没有恒定的TSC（Time Stamp Counter）需要附加的配置 - [../deployment_and_administration/kvm_guest_timing_management.md]
+| 分类 | 完全虚拟化(Fully Virtualized) | 半虚拟化(paravirtualized) | 主机传递(Host Pass-through) |
+| ---- | ---- | ---- | ---- |
+| CPU,MMU(内存管理单元) | 7% | 不适用 | 在使用EPT(intel)或NPT(AMD)的硬件虚拟化时 97% / 在使用[SPT](What exactly do shadow page tables (for VMMs) do?)的硬件虚拟化时 85% |
+| Network I/O (1GB LAN) | 60% (e1000虚拟网卡) | 75% (`virtio-net`) | 95% |
+| Disk I/O | 40% (IDE虚拟设备) | 85%(`virtio-blk`) | 95% |
+| Graphics(非加速) | 50% (虚拟VGA或Cirrus) | 不适用 | 不适用 |
+| 时间精度(没有使用NTP) | 95%-105%（100%表示完全准确） | 100%(`kvm-clock`) | 不适用 |
+
+> 请参考[]
+>
+> CPU `host-passthrough` 模式表示将物理CPU的一些特性传给虚拟机使用，虚拟机里看到和物理CPU一模一样的CPU品牌型号，但不同型号CPU的宿主机之间虚拟机不能迁移。
 
 # Fedora虚拟化手册
 
