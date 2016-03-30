@@ -1,0 +1,1 @@
+本手册翻译整理自 RedHat官方文档 [RED HAT ENTERPRISE LINUX 7 SYSTEM ADMINISTRATOR'S GUIDE](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/index.html)
