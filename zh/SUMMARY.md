@@ -1,6 +1,8 @@
 # Summary
 
 * [服务器](server/README.md)
+	* [IPMI](server/ipmi/ERADME.md)
+		* [ipmitool使用tips](server/ipmi/ipmitool_tips.md)
 * [操作系统](os/README.md)
 	* [Linux](os/linux/README.md)
 		* [启动](os/linux/boot/README.md)

@@ -43,7 +43,7 @@ KVM允许用户为每个虚拟机设置多个虚拟内核，从实践来看每�
 | Graphics(非加速) | 50% (虚拟VGA或Cirrus) | 不适用 | 不适用 |
 | 时间精度(没有使用NTP) | 95%-105%（100%表示完全准确） | 100%(`kvm-clock`) | 不适用 |
 
-> 请参考[]
+> 请参考[CPU MODELS AND TOPOLOGY](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Virtualization_Deployment_and_Administration_Guide/sect-Manipulating_the_domain_xml-CPU_model_and_topology.html)了解详细的CPU model配置方法。
 >
 > CPU `host-passthrough` 模式表示将物理CPU的一些特性传给虚拟机使用，虚拟机里看到和物理CPU一模一样的CPU品牌型号，但不同型号CPU的宿主机之间虚拟机不能迁移。
 
