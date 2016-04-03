@@ -88,6 +88,8 @@
 	* [VPN](security/vpn/README.md)
 		* [在Android上使用OpenConnect连接ocserv](security/vpn/use_openconnect_to_ocserv_in_android.md)
 		* [部署ocserv VPN服务器](security/vpn/deploy_ocserv_vpn_server.md)
+	* [认证](security/authentication/README.md)
+		* [Linux 802.1x网络认证](security/authentication/linux_802.1x.md)
 * [虚拟化](virtual/README.md)
 	* [Intel](virtual/intel/README.md)
 		* [VT-x](virtual/intel/vt-x/README.md)
