@@ -1,4 +1,4 @@
-> 以下记录是我[在MacBook上安装Gentoo](os/linux/gentoo/install_gentoo_on_macbook.md)之后，安装轻量级桌面[Xfce](http://www.xfce.org/)的摘要笔记。对于技术工作者，追求典雅和精简的桌面系统，尽可能将性能用于开发和服务调试。
+> 以下记录是我[在MacBook上安装Gentoo](install_gentoo_on_macbook.md)之后，安装轻量级桌面[Xfce](http://www.xfce.org/)的摘要笔记。对于技术工作者，追求典雅和精简的桌面系统，尽可能将性能用于开发和服务调试。
 
 # 应用程序
 
