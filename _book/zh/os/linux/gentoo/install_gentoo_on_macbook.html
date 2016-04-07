@@ -65,7 +65,7 @@
         data-chapter-title="在MacBook上安装Gentoo"
         data-filepath="os/linux/gentoo/install_gentoo_on_macbook.md"
         data-basepath="../../.."
-        data-revision="Wed Apr 06 2016 23:49:32 GMT+0800 (CST)"
+        data-revision="Thu Apr 07 2016 22:32:32 GMT+0800 (CST)"
         data-innerlanguage="zh">
     
 
@@ -4374,11 +4374,11 @@ cp /boot/vmlinuz-4.3.2-gentoo-vms ./
 <pre><code>menuentry Gentoo-VMS 4.3.2 {
     icon EFI/refind/icons/os_gentoo.png
     loader EFI/gentoo/vmlinuz-4.3.2-gentoo-vms
-    #options &quot;ro root=PARTUUID=f99cd3be-245e-4dcb-8594-ac21d1fe3d83&quot;
-    options &quot;ro root=PARTUUID=c51ae4f4-35b4-406f-8058-0fa1d82bf154&quot;
+    #options &quot;ro root=UUID=f99cd3be-245e-4dcb-8594-ac21d1fe3d83&quot;
+    options &quot;ro root=PARTUUID=ce1d1c89-8ca1-48b0-b4ef-5a312ae8c710&quot;
 }
 </code></pre><blockquote>
-<p><strong><code>&#x8FD9;&#x91CC;PARTUUID&#x662F;&#x5206;&#x533A;UUID&#xFF0C;&#x9700;&#x8981;&#x5728;&#x542F;&#x52A8;&#x65F6;&#x4ECE;&#x542F;&#x52A8;&#x4FE1;&#x606F;&#x4E2D;&#x83B7;&#x53D6;&#xFF0C;&#x6655;&#x6B7B;</code></strong> &#xFF08;&#x53C2;&#x8003;<a href="http://unix.stackexchange.com/questions/93767/why-cant-i-specify-my-root-fs-with-a-uuid" target="_blank">Why can&apos;t I specify my root fs with a UUID?</a>&#xFF09;</p>
+<p><strong><code>&#x8FD9;&#x91CC;PARTUUID&#x662F;&#x5206;&#x533A;UUID&#xFF0C;&#x9700;&#x8981;&#x4F7F;&#x7528;blkid&#x547D;&#x4EE4;&#x83B7;&#x5F97;</code></strong> &#xFF08;&#x53C2;&#x8003;<a href="http://unix.stackexchange.com/questions/93767/why-cant-i-specify-my-root-fs-with-a-uuid" target="_blank">Why can&apos;t I specify my root fs with a UUID?</a>&#xFF09;</p>
 <p>&#x4F7F;&#x7528;&#x547D;&#x4EE4;</p>
 </blockquote>
 <pre><code>lsblk -f
@@ -4392,7 +4392,12 @@ sdb    iso9660  Gentoo-amd64 2014-08-25-05-56-52-00
 &#x251C;&#x2500;sdb1 iso9660  Gentoo-amd64 2014-08-25-05-56-52-00
 &#x251C;&#x2500;sdb2 vfat                  4B33-A38B
 &#x2514;&#x2500;sdb3 hfsplus  Gentoo Linux
-</code></pre><p>&#x5176;&#x4E2D; <code>f99cd3be-245e-4dcb-8594-ac21d1fe3d83</code> &#x5C31;&#x662F;&#x6211;&#x4EEC;&#x9700;&#x8981;&#x7684;<code>PARTUUID</code></p>
+</code></pre><p>&#x5176;&#x4E2D; <code>f99cd3be-245e-4dcb-8594-ac21d1fe3d83</code> &#x5C31;&#x662F;<code>UUID</code>&#xFF0C;&#x9700;&#x8981;&#x8F93;&#x51FA;<code>PARTUUID</code>&#x5219;&#x4F7F;&#x7528;<code>blkid</code>&#x547D;&#x4EE4;&#xFF08;&#x8FD9;&#x4E2A;&#x547D;&#x4EE4;&#x66F4;&#x5B8C;&#x6574;&#x8F93;&#x51FA;<code>UUID</code>&#x548C;<code>PARTUUID</code>&#xFF09;</p>
+<pre><code class="lang-bash">blkid /dev/sda3
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5185;&#x5BB9;&#x7C7B;&#x4F3C;&#x5982;&#x4E0B;&#xFF1A;</p>
+<pre><code class="lang-bash">/dev/sda4: LABEL=<span class="hljs-string">&quot;Gentoo&quot;</span> UUID=<span class="hljs-string">&quot;f99cd3be-245e-4dcb-8594-ac21d1fe3d83&quot;</span> TYPE=<span class="hljs-string">&quot;ext4&quot;</span> PARTLABEL=<span class="hljs-string">&quot;Gentoo&quot;</span> PARTUUID=<span class="hljs-string">&quot;ce1d1c89-8ca1-48b0-b4ef-5a312ae8c710&quot;</span>
+</code></pre>
 <blockquote>
 <p>&#x6709;&#x5173;&#x901A;&#x8FC7;UUID&#x65B9;&#x5F0F;&#x6301;&#x4E45;&#x5316;&#x5757;&#x8BBE;&#x5907;&#x540D;&#x5B57;&#xFF0C;&#x53C2;&#x8003; <a href="https://wiki.archlinux.org/index.php/Persistent_block_device_naming_(&#x7B80;&#x4F53;&#x4E2D;&#x6587;" target="_blank">Arch Linux&#x6587;&#x6863;&#xFF1A;Persistent block device naming (&#x7B80;&#x4F53;&#x4E2D;&#x6587;)</a>)</p>
 </blockquote>

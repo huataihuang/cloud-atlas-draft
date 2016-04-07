@@ -1,6 +1,6 @@
 [OpenConnect](www.infradead.org/openconnect)是Cisco AnyConnect SSL VPN的一个开源客户端，支持Cisco多个系列IOS 12.4(9)T及更高版本的Cisco SR500, 870, 880, 1800, 2800, 3800, 7200 Series 和 Cisco 7301，以及ASA 5500系列。
 
-OpenConnnect也可以配合[OpenConnect VPN Server - ocserv](#部署Cisco AnyConnect服务器和客户端)来实现便捷的翻墙。
+OpenConnnect也可以配合[OpenConnect VPN Server - ocserv](deploy_ocserv_vpn_server.md)来实现便捷的翻墙。
 
 # Linux使用openconnect
 
