@@ -8,7 +8,7 @@
 
 # 要求
 
-* 软件包要求
+* （按照文档要求）软件包要求
 
 ```bash
 emerge --ask sys-power/suspend
@@ -198,6 +198,29 @@ menuentry cloud_partuuid_hibernate {
 ```
 
 > 这里添加的配置就是 `resume=UUID=6d6de45b-52b9-4c13-81b2-aff34a6791bd resume_offset=5382144`
+
+**不过，实际我测试还是没有成功**，日志中显示
+
+```bash
+Thu Apr  7 22:50:44 CST 2016: performing hibernate
+s2disk: Could not stat the resume device file. Reason: No such file or directory
+```
+
+待探索！！！
+
+# xfce和suspend
+
+**我使用xfce桌面环境，其内置的`xfce-extra/xfce4-power-manager`则依赖`sys-power/upower`而且不能很好地和`upower-pm-utils`协作（休眠后会不断亮起screensaver），所以前述设置仅供参考**
+
+最终我还是卸载了`upower-pm-utils`软件包，而采用xfce内建的`xfce4-power-manager`（依赖`sys-power/upower`软件包）。
+
+```bash
+emerge --unmerge sys-power/suspend
+emerge --unmerge sys-power/upower-pm-utils
+emerge --ask sys-power/upower
+```
+
+使用`suspend to RAM`方式
 
 # 参考
 

@@ -22,18 +22,6 @@
 
 > 轻量级应用程序选择可以参考 [Best Linux apps for non-Gnome, non-KDE desktops](http://www.dedoimedo.com/computers/linux-apps-non-gnome-kde.html)
 
-# 中文环境
-
-在使用ibus时，要修改默认的`key`，将`space`修改成`l`，即`Next input method`组合键修改成`<Alt><Shift>l`，这样可以避免`Terminal`中无法使用`space`空格键。
-
-ibus中文拼音输入法已经停止维护`ibus-pinyin`，应该使用`ibus-libpinyin`代替(似乎不能够自定义词语，可以尝试`ibus-sunpinyin`)。
-
-建议使用`ibus-rime`（中州输入法），支持更多的输入方法并且跨平台，并且更为灵活：
-
-* 安装rime后，默认配置是繁体中文输入，按组合键 **Ctrl+`** 呼出输入法方案选单，切换为「汉字」就可以输入简体了。配置文件位于`~/.config/ibus/rime`，定制方法见[Rime定制指南](https://github.com/rime/home/wiki/CustomizationGuide)
-
-> [archlinux: IBus](https://wiki.archlinux.org/index.php/IBus)
-
 # themes
 
 xfce4主持多种window theme，其中以下两种主题和Mac OS X非常相近，也非常简洁：
