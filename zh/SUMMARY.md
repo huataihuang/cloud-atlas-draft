@@ -235,6 +235,7 @@
 		* [Playbooks](devops/ansible/playbooks/README.md)
 			* [Playbooks入门](devops/ansible/playbooks/introduce.md)
 			* [案例：升级CentOS操作系统](devops/ansible/playbooks/centos_upgrade.md)
+			* [案例：通过sudo安装rpm包](devops/ansible/playbooks/install_rpm_through_sudo.md)
 		* [Dashboard](devops/ansible/dashboard/README.md)
 			* [Ansible Tower开源替代:semaphore](devops/ansible/dashboard/semaphone.md)
 		* [问题排查](devops/ansible/troubleshoot/README.md)

@@ -5,7 +5,7 @@
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>动态清单 | 云图</title>
+        <title>案例：通过sudo安装rpm包 | 云图</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.7">
@@ -49,10 +49,10 @@
         
     
     
-    <link rel="next" href="../../../devops/ansible/startup/patterns.html" />
+    <link rel="next" href="../../../devops/ansible/dashboard/index.html" />
     
     
-    <link rel="prev" href="../../../devops/ansible/startup/inventory.html" />
+    <link rel="prev" href="../../../devops/ansible/playbooks/centos_upgrade.html" />
     
 
         <!-- head:end -->
@@ -61,9 +61,9 @@
         <!-- body:start -->
         
     <div class="book"
-        data-level="12.5.1.4"
-        data-chapter-title="动态清单"
-        data-filepath="devops/ansible/startup/dynamic_inventory.md"
+        data-level="12.5.2.3"
+        data-chapter-title="案例：通过sudo安装rpm包"
+        data-filepath="devops/ansible/playbooks/install_rpm_through_sudo.md"
         data-basepath="../../.."
         data-revision="Sun Apr 10 2016 07:51:26 GMT+0800 (CST)"
         data-innerlanguage="zh">
@@ -3860,7 +3860,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="12.5.1.4" data-path="devops/ansible/startup/dynamic_inventory.html">
+        <li class="chapter " data-level="12.5.1.4" data-path="devops/ansible/startup/dynamic_inventory.html">
             
                 
                     <a href="../../../devops/ansible/startup/dynamic_inventory.html">
@@ -3956,7 +3956,7 @@
             
         </li>
     
-        <li class="chapter " data-level="12.5.2.3" data-path="devops/ansible/playbooks/install_rpm_through_sudo.html">
+        <li class="chapter active" data-level="12.5.2.3" data-path="devops/ansible/playbooks/install_rpm_through_sudo.html">
             
                 
                     <a href="../../../devops/ansible/playbooks/install_rpm_through_sudo.html">
@@ -4172,7 +4172,60 @@
                 
                     <section class="normal" id="section-">
                     
-                        <p>Ansible&#x4E0D;&#x4EC5;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<a href="inventory.html">&#x9759;&#x6001;&#x6E05;&#x5355;</a>&#xFF0C;&#x800C;&#x4E14;&#x652F;&#x6301;&#x4ECE;&#x5916;&#x90E8;&#x4E91;&#x7BA1;&#x7406;&#xFF0C;LDAP&#xFF0C;<a href="https://cobbler.github.com" target="_blank">Cobbler</a>&#xFF0C;&#x6216;&#x8005;CMDB&#x8F6F;&#x4EF6;&#x7684;&#x6269;&#x5C55;&#x6765;&#x62C9;&#x53D6;&#x6E05;&#x5355;&#x3002;Ansible&#x4E5F;&#x975E;&#x5E38;&#x5BB9;&#x6613;&#x652F;&#x6301;&#x5916;&#x90E8;&#x7684;&#x6E05;&#x5355;&#x7CFB;&#x7EDF;&#xFF0C;&#x5305;&#x62EC; EC2/Eucalyptus&#xFF0C;Rackspace Cloud&#x548C;OpenStack&#x3002;</p>
+                        <p>&#x6267;&#x884C;&#x4EE5;&#x4E0B;<code>deploy_rpm.yaml</code></p>
+<pre><code class="lang-bash">- hosts: install_server
+  tasks:
+  - name: copy example rpm
+    copy:
+      src: example-<span class="hljs-number">0.1</span>.<span class="hljs-number">0.0</span>-dev5.el5.x86_64.rpm
+      dest: /tmp/example-<span class="hljs-number">0.1</span>.<span class="hljs-number">0.0</span>-dev5.el5.x86_64.rpm
+  - name: Install virt_tools
+    yum:
+      name: /tmp/example-<span class="hljs-number">0.1</span>.<span class="hljs-number">0.0</span>-dev5.el5.x86_64.rpm
+      state: present
+</code></pre>
+<p>&#x53D1;&#x73B0;&#x51FA;&#x73B0;&#x5982;&#x4E0B;&#x9519;&#x8BEF;</p>
+<pre><code class="lang-bash">TASK: [Install example] **************************************************** 
+failed: [<span class="hljs-number">192.168</span>.<span class="hljs-number">1.1</span> =&gt; {<span class="hljs-string">&quot;failed&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-string">&quot;parsed&quot;</span>: <span class="hljs-literal">false</span>}
+Traceback (most recent call last):
+  File <span class="hljs-string">&quot;/home/admin/.ansible/tmp/ansible-tmp-1460215801.87-119327494457597/yum&quot;</span>, line <span class="hljs-number">3371</span>, <span class="hljs-keyword">in</span> ?
+    main()
+  File <span class="hljs-string">&quot;/home/admin/.ansible/tmp/ansible-tmp-1460215801.87-119327494457597/yum&quot;</span>, line <span class="hljs-number">983</span>, <span class="hljs-keyword">in</span> main
+    disablerepo, <span class="hljs-built_in">disable</span>_gpg_check)
+  File <span class="hljs-string">&quot;/home/admin/.ansible/tmp/ansible-tmp-1460215801.87-119327494457597/yum&quot;</span>, line <span class="hljs-number">901</span>, <span class="hljs-keyword">in</span> ensure
+    my = yum_base(conf_file)
+  File <span class="hljs-string">&quot;/home/admin/.ansible/tmp/ansible-tmp-1460215801.87-119327494457597/yum&quot;</span>, line <span class="hljs-number">185</span>, <span class="hljs-keyword">in</span> yum_base
+    my.repos.setCacheDir(cachedir)
+  File <span class="hljs-string">&quot;/usr/lib/python2.4/site-packages/yum/__init__.py&quot;</span>, line <span class="hljs-number">689</span>, <span class="hljs-keyword">in</span> &lt;lambda&gt;
+    repos = property(fget=lambda self: self._getRepos(),
+  File <span class="hljs-string">&quot;/usr/lib/python2.4/site-packages/yum/__init__.py&quot;</span>, line <span class="hljs-number">478</span>, <span class="hljs-keyword">in</span> _getRepos
+    self.getReposFromConfig()
+  File <span class="hljs-string">&quot;/usr/lib/python2.4/site-packages/yum/__init__.py&quot;</span>, line <span class="hljs-number">367</span>, <span class="hljs-keyword">in</span> getReposFromConfig
+    self.getReposFromConfigFile(repofn, repo_age=thisrepo_age)
+  File <span class="hljs-string">&quot;/usr/lib/python2.4/site-packages/yum/__init__.py&quot;</span>, line <span class="hljs-number">314</span>, <span class="hljs-keyword">in</span> getReposFromConfigFile
+    thisrepo = self.readRepoConfig(parser, section)
+  File <span class="hljs-string">&quot;/usr/lib/python2.4/site-packages/yum/__init__.py&quot;</span>, line <span class="hljs-number">401</span>, <span class="hljs-keyword">in</span> <span class="hljs-built_in">read</span>RepoConfig
+    repos = repo.getSubrepos(parser, section, self.conf)
+  File <span class="hljs-string">&quot;/usr/lib/python2.4/site-packages/yum/yumRepo.py&quot;</span>, line <span class="hljs-number">319</span>, <span class="hljs-keyword">in</span> getSubrepos
+    self._saveOldRepoXML(<span class="hljs-built_in">local</span>)
+  File <span class="hljs-string">&quot;/usr/lib/python2.4/site-packages/yum/yumRepo.py&quot;</span>, line <span class="hljs-number">1108</span>, <span class="hljs-keyword">in</span> _saveOldRepoXML
+    misc.unlink_f(fname)
+  File <span class="hljs-string">&quot;/usr/lib/python2.4/site-packages/yum/misc.py&quot;</span>, line <span class="hljs-number">776</span>, <span class="hljs-keyword">in</span> unlink_f
+    os.unlink(filename)
+OSError: [Errno <span class="hljs-number">13</span>] Permission denied: <span class="hljs-string">&apos;/var/cache/yum/CentOS/multi-repomd.xml.old.tmp&apos;</span>
+
+
+FATAL: all hosts have already failed -- aborting
+</code></pre>
+<p>&#x539F;&#x6765;&#xFF0C;&#x6211;&#x5728;&#x53D1;&#x51FA;ansible&#x6307;&#x4EE4;&#x7684;&#x7BA1;&#x7406;&#x670D;&#x52A1;&#x5668;&#x662F;<code>admin</code>&#x5E10;&#x53F7;&#xFF0C;&#x8FDC;&#x7A0B;&#x5B89;&#x88C5;&#x670D;&#x52A1;&#x5668;&#x9700;&#x8981;&#x4F7F;&#x7528;<code>sudo</code>&#x6307;&#x4EE4;&#x624D;&#x80FD;&#x6267;&#x884C;<code>root</code>&#x89D2;&#x8272;&#x7684;&#x5B89;&#x88C5;&#x547D;&#x4EE4;&#x3002;</p>
+<p>&#x6539;&#x8FDB;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x5728;&#x9700;&#x8981;&#x4F7F;&#x7528;<code>sudo</code>&#x65B9;&#x5F0F;&#x7684;&#x6307;&#x4EE4;&#x80FD;&#x591F;&#x524D;&#x589E;&#x52A0; <code>sudo: true</code> &#xFF0C;&#x5373;&#x4EE5;&#x4E0A;playbook&#x4FEE;&#x6539;&#x6210;</p>
+<pre><code class="lang-bash">  - name: Install virt_tools
+    sudo: <span class="hljs-literal">true</span>
+    yum:
+      name: /tmp/example-<span class="hljs-number">0.1</span>.<span class="hljs-number">0.0</span>-dev5.el5.x86_64.rpm
+      state: present
+</code></pre>
+<p>&#x8FD9;&#x6837;&#x5B89;&#x88C5;&#x8FC7;&#x7A0B;&#x8FDC;&#x7A0B;<code>yum</code>&#x6307;&#x4EE4;&#x6267;&#x884C;&#x65F6;&#x4F1A;&#x901A;&#x8FC7;<code>sudo</code>&#x5207;&#x6362;<code>root</code>&#x6743;&#x9650;&#x6267;&#x884C;&#x3002;</p>
 
                     
                     </section>
@@ -4183,10 +4236,10 @@
         </div>
 
         
-        <a href="../../../devops/ansible/startup/inventory.html" class="navigation navigation-prev " aria-label="Previous page: 清单"><i class="fa fa-angle-left"></i></a>
+        <a href="../../../devops/ansible/playbooks/centos_upgrade.html" class="navigation navigation-prev " aria-label="Previous page: 案例：升级CentOS操作系统"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../../devops/ansible/startup/patterns.html" class="navigation navigation-next " aria-label="Next page: Patterns"><i class="fa fa-angle-right"></i></a>
+        <a href="../../../devops/ansible/dashboard/index.html" class="navigation navigation-next " aria-label="Next page: Dashboard"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

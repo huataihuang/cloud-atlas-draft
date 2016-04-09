@@ -49,7 +49,7 @@
         
     
     
-    <link rel="next" href="../../../devops/ansible/dashboard/index.html" />
+    <link rel="next" href="../../../devops/ansible/playbooks/install_rpm_through_sudo.html" />
     
     
     <link rel="prev" href="../../../devops/ansible/playbooks/introduce.html" />
@@ -65,7 +65,7 @@
         data-chapter-title="案例：升级CentOS操作系统"
         data-filepath="devops/ansible/playbooks/centos_upgrade.md"
         data-basepath="../../.."
-        data-revision="Sat Apr 09 2016 21:55:11 GMT+0800 (CST)"
+        data-revision="Sun Apr 10 2016 07:51:26 GMT+0800 (CST)"
         data-innerlanguage="zh">
     
 
@@ -3956,6 +3956,21 @@
             
         </li>
     
+        <li class="chapter " data-level="12.5.2.3" data-path="devops/ansible/playbooks/install_rpm_through_sudo.html">
+            
+                
+                    <a href="../../../devops/ansible/playbooks/install_rpm_through_sudo.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.2.3.</b>
+                        
+                        案例：通过sudo安装rpm包
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -4249,6 +4264,15 @@
 <h1 id="&#x6267;&#x884C;">&#x6267;&#x884C;</h1>
 <pre><code class="lang-bash">ansible-playbook upgrade_centos.yml <span class="hljs-operator">-f</span> <span class="hljs-number">10</span>
 </code></pre>
+<h2 id="sudo">sudo</h2>
+<p>&#x5982;&#x679C;ansible&#x7684;&#x63A7;&#x5236;&#x53F0;&#x767B;&#x5F55;&#x5230;&#x88AB;&#x7BA1;&#x7406;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x7684;&#x5E10;&#x53F7;&#x662F;&#x975E;<code>root</code>&#x7684;&#x5176;&#x4ED6;&#x5E10;&#x53F7;&#xFF0C;&#x5982;<code>admin</code>&#xFF0C;&#x9700;&#x8981;&#x901A;&#x8FC7;<code>sudo</code>&#x6307;&#x4EE4;&#x6765;&#x6267;&#x884C;&#x7CFB;&#x7EDF;&#x7A0B;&#x5E8F;&#x5B89;&#x88C5;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x5728;<code>ansible</code>&#x7684;playbook&#x4E2D;&#x8BBE;&#x7F6E;&#x4F7F;&#x7528;<code>sudo: true</code></p>
+<pre><code class="lang-bash">    - name: upgrade all packages
+      sudo: <span class="hljs-literal">true</span>
+      yum: name=* state=latest
+</code></pre>
+<blockquote>
+<p>&#x53C2;&#x8003;<a href="install_rpm_through_sudo.html">&#x901A;&#x8FC7;sudo&#x5B89;&#x88C5;rpm&#x5305;</a></p>
+</blockquote>
 <h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
 <ul>
 <li><a href="http://docs.ansible.com/ansible/yum_module.html" target="_blank">yum - Manages packages with the yum package manager</a></li>
@@ -4270,7 +4294,7 @@
         <a href="../../../devops/ansible/playbooks/introduce.html" class="navigation navigation-prev " aria-label="Previous page: Playbooks入门"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../../devops/ansible/dashboard/index.html" class="navigation navigation-next " aria-label="Next page: Dashboard"><i class="fa fa-angle-right"></i></a>
+        <a href="../../../devops/ansible/playbooks/install_rpm_through_sudo.html" class="navigation navigation-next " aria-label="Next page: 案例：通过sudo安装rpm包"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
