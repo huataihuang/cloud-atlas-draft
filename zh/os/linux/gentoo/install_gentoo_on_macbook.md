@@ -474,11 +474,11 @@ MacBook Air 11使用的无线网卡是Broadcom  b43，需要安装 [sys-firmware
     menuentry Gentoo-VMS 4.3.2 {
         icon EFI/refind/icons/os_gentoo.png
         loader EFI/gentoo/vmlinuz-4.3.2-gentoo-vms
-        #options "ro root=PARTUUID=f99cd3be-245e-4dcb-8594-ac21d1fe3d83"
-        options "ro root=PARTUUID=c51ae4f4-35b4-406f-8058-0fa1d82bf154"
+        #options "ro root=UUID=f99cd3be-245e-4dcb-8594-ac21d1fe3d83"
+        options "ro root=PARTUUID=ce1d1c89-8ca1-48b0-b4ef-5a312ae8c710"
     }
 
-> **`这里PARTUUID是分区UUID，需要在启动时从启动信息中获取，晕死`** （参考[Why can't I specify my root fs with a UUID?](http://unix.stackexchange.com/questions/93767/why-cant-i-specify-my-root-fs-with-a-uuid)）
+> **`这里PARTUUID是分区UUID，需要使用blkid命令获得`** （参考[Why can't I specify my root fs with a UUID?](http://unix.stackexchange.com/questions/93767/why-cant-i-specify-my-root-fs-with-a-uuid)）
 >
 > 使用命令
 
@@ -496,7 +496,18 @@ MacBook Air 11使用的无线网卡是Broadcom  b43，需要安装 [sys-firmware
     ├─sdb2 vfat                  4B33-A38B
     └─sdb3 hfsplus  Gentoo Linux
 
-其中 `f99cd3be-245e-4dcb-8594-ac21d1fe3d83` 就是我们需要的`PARTUUID`
+其中 `f99cd3be-245e-4dcb-8594-ac21d1fe3d83` 就是`UUID`，需要输出`PARTUUID`则使用`blkid`命令（这个命令更完整输出`UUID`和`PARTUUID`）
+
+```bash
+blkid /dev/sda3
+```
+
+输出内容类似如下：
+
+```bash
+/dev/sda4: LABEL="Gentoo" UUID="f99cd3be-245e-4dcb-8594-ac21d1fe3d83" TYPE="ext4" PARTLABEL="Gentoo" PARTUUID="ce1d1c89-8ca1-48b0-b4ef-5a312ae8c710"
+```
+
 
 > 有关通过UUID方式持久化块设备名字，参考 [Arch Linux文档：Persistent block device naming (简体中文)](https://wiki.archlinux.org/index.php/Persistent_block_device_naming_(简体中文))
 

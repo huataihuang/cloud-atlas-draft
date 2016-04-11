@@ -111,6 +111,18 @@
 ansible-playbook upgrade_centos.yml -f 10
 ```
 
+## sudo
+
+如果ansible的控制台登录到被管理服务器上的帐号是非`root`的其他帐号，如`admin`，需要通过`sudo`指令来执行系统程序安装，则需要在`ansible`的playbook中设置使用`sudo: true`
+
+```bash
+    - name: upgrade all packages
+      sudo: true
+      yum: name=* state=latest
+```
+
+> 参考[通过sudo安装rpm包](install_rpm_through_sudo.md)
+
 # 参考
 
 * [yum - Manages packages with the yum package manager](http://docs.ansible.com/ansible/yum_module.html)
