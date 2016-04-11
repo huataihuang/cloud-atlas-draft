@@ -189,6 +189,8 @@
 		* [bash](develop/shell/bash/README.md)
 			* [shell的特殊变量](develop/shell/bash/special_shell_variable.md)
 			* [根据命令返回结果做if判断](develop/shell/bash/if_command_result_then_do.md)
+		* [sed和awk](develop/shell/sed_awk/README.md)
+			* [awk和shell之间的变量传递](develop/shell/sed_awk/awk_shell_var.md)
 		* [实用工具](develop/shell/utilities/README.md)
 			* [脚本作为daemon运行](develop/shell/utilities/run_script_as_daemon.md)
 	* [文档](develop/doc/README.md)
