@@ -64,6 +64,8 @@
 			* [在MacBook上安装Gentoo](os/linux/gentoo/install_gentoo_on_macbook.md)
 			* [Portage包管理](os/linux/gentoo/portage.md)
 			* [gcc-config错误处理一例](os/linux/gentoo/gcc_profile_invalid.md)
+			* [nVidia显卡](os/linux/gentoo/nvidia.md)
+			* [intel显卡](os/linux/gentoo/intel.md)
 			* [安装Xfce工作平台](os/linux/gentoo/xfce.md)
 			* [中文输入](os/linux/gentoo/chinese_input.md)
 			* [安装Broadcom无线网卡](os/linux/gentoo/broadcom_wifi.md)

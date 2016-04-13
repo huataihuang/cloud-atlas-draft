@@ -166,6 +166,8 @@ depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknow
 
 可以使用[Hprofile](https://wiki.gentoo.org/wiki/Hprofile)在Intel和Nouveau之间无缝切换，但是如果使用Nvidia闭源驱动，则要重启（kernel 3.14之后的内核）
 
+要使用内核 3.9 和 nvidia-drivers-319.17 ，最新的内核或显卡版本似乎不能工作，并且要在内核参数设置`nomodeset`
+
 # 参考
 
 * [NVidia/nvidia-drivers](https://wiki.gentoo.org/wiki/NVidia/nvidia-drivers)
