@@ -63,7 +63,7 @@ Device Drivers  --->
 perl /usr/src/linux/scripts/sign-file sha512 /usr/src/linux/signing_key.priv /usr/src/linux/signing_key.x509 /lib/modules/Kernel-Version-modules-path/video/nvidia-uvm.ko
 
 perl /usr/src/linux/scripts/sign-file sha512 /usr/src/linux/signing_key.priv /usr/src/linux/signing_key.x509 /lib/modules/Kernel-Version-modules-path/video/nvidia.ko
-```
+```cd 
 
 对于驱动版本`358.09`新的模块处理显示模式设置，这个模块也需要签名
 
@@ -119,8 +119,54 @@ glxinfo | grep direct
 direct rendering: Yes
 ```
 
-可以使用`x11-apps/mesa-progs`软件包提供的`glxinfo`检查，以及运行`glxgears`检查FPS。
+可以使用`x11-apps/mesa-progs`软件包提供的`glxinfo`检查，以及运行`glxgears`检查FPS
+
+# 问题排查
+
+* 编译时候报有关"drm"错误
+
+```
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_atomic_helper_plane_destroy_state
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_kms_helper_poll_fini
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_kms_helper_poll_disable
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_kms_helper_poll_init
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_atomic_helper_disable_plane
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_atomic_helper_cleanup_planes
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_helper_hpd_irq_event
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_atomic_helper_crtc_destroy_state
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_atomic_helper_connector_dpms
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_atomic_helper_check
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_atomic_helper_connector_destroy_state
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_atomic_helper_plane_duplicate_state
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_atomic_helper_plane_reset
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_atomic_helper_prepare_planes
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_helper_mode_fill_fb_struct
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_atomic_helper_set_config
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_atomic_helper_connector_duplicate_state
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_atomic_helper_crtc_reset
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_kms_helper_hotplug_event
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_atomic_helper_swap_state
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_atomic_helper_page_flip
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_atomic_helper_connector_reset
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_atomic_helper_crtc_duplicate_state
+depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknown symbol drm_atomic_helper_update_plane
+```
+
+参考 [Unable to load kernel module for 364.12](https://devtalk.nvidia.com/default/topic/926967/unable-to-load-kernel-module-for-364-12/) 要支持`DRM_KMS_HELPER`，在内核编译选择时至少要选择一个显卡，以便能够激活显卡需要的`DRM_KMS_HELPER`。注意，不要编译`nouveau`模块，例如可以选择 Intel显卡编译成模块这样旧可以自动具备`DMA_KMS_HELPER`
+
+* 启动时候显示启动参数后就没有响应，而以前使用开源`nouveau`驱动此时会切换字符终端的显示分辨率并启动
+
+参考 [Apple Macbook Pro Retina 15-inch (early 2013)](https://wiki.gentoo.org/wiki/Apple_Macbook_Pro_Retina_15-inch_(early_2013)) 
+
+* 在内核参数中需要添加`nomodeset`
+* 使用命令`nvidia-xconfig`和`nvidia-settings`来创建`xorg.conf`
+
+
+如果使用开源驱动，建议同时编译配置Intel和Nouveau显卡驱动，即使你只准备使用其中之一。因为同时安装这两个驱动就可以使用`vga_switcheroo`来切换，并且可以通过关闭其中之一来节电。切换方法参考 [vga_switcheroo](http://archive.is/ofeBp)。
+
+可以使用[Hprofile](https://wiki.gentoo.org/wiki/Hprofile)在Intel和Nouveau之间无缝切换，但是如果使用Nvidia闭源驱动，则要重启（kernel 3.14之后的内核）
 
 # 参考
 
 * [NVidia/nvidia-drivers](https://wiki.gentoo.org/wiki/NVidia/nvidia-drivers)
+* [Apple Macbook Pro Retina 15-inch (early 2013)](https://wiki.gentoo.org/wiki/Apple_Macbook_Pro_Retina_15-inch_(early_2013))
