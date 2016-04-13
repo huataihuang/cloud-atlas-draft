@@ -66,6 +66,7 @@
 			* [gcc-config错误处理一例](os/linux/gentoo/gcc_profile_invalid.md)
 			* [nVidia显卡](os/linux/gentoo/nvidia.md)
 			* [intel显卡](os/linux/gentoo/intel.md)
+			* [混合显卡切换](os/linux/gentoo/vga_switcheroo)
 			* [安装Xfce工作平台](os/linux/gentoo/xfce.md)
 			* [中文输入](os/linux/gentoo/chinese_input.md)
 			* [安装Broadcom无线网卡](os/linux/gentoo/broadcom_wifi.md)

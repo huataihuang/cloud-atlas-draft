@@ -159,10 +159,13 @@ depmod: WARNING: /lib/modules/4.5.0-gentoo-r1-x/video/nvidia-drm.ko needs unknow
 参考 [Apple Macbook Pro Retina 15-inch (early 2013)](https://wiki.gentoo.org/wiki/Apple_Macbook_Pro_Retina_15-inch_(early_2013)) 
 
 * 在内核参数中需要添加`nomodeset`
+
 * 使用命令`nvidia-xconfig`和`nvidia-settings`来创建`xorg.conf`
 
 
 如果使用开源驱动，建议同时编译配置Intel和Nouveau显卡驱动，即使你只准备使用其中之一。因为同时安装这两个驱动就可以使用`vga_switcheroo`来切换，并且可以通过关闭其中之一来节电。切换方法参考 [vga_switcheroo](http://archive.is/ofeBp)。
+
+> 参考 [vga_switcheroo](http://gentoo-en.vfose.ru/wiki/Vga_switcheroo)
 
 可以使用[Hprofile](https://wiki.gentoo.org/wiki/Hprofile)在Intel和Nouveau之间无缝切换，但是如果使用Nvidia闭源驱动，则要重启（kernel 3.14之后的内核）
 
