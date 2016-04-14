@@ -12,6 +12,29 @@
 
 要选择可以配合主机Broadcom无线网卡芯片的驱动，可以通过检查 `device ID` 和芯片名称来确定。对于我使用的MacBook Pro 2013 late版本，无线网卡是 `BCM4360 802.11ac` ，由于这个网卡不是 `802.11n` 类型，所以不能使用 `brcm80211` 驱动，只能使用 `b43` 或者 `broadcom-sta` 驱动。
 
+# 使用开源`b43`驱动
+
+`b43` 开源驱动是早期通过反向工程实现的驱动
+
+```bash
+emerge sys-firmware/b43-firmware
+```
+
+但是启动`dmesg`显示
+
+```bash
+[    3.196410] bcma: Unsupported SPROM revision: 11
+[    3.196418] bcma: bus0: Invalid SPROM read from the PCIe card, trying to use fallback SPROM
+[    3.196422] bcma: bus0: Using fallback SPROM failed (err -2)
+[    3.196425] bcma: bus0: No SPROM available
+[    3.198562] bcma: bus0: Bus registered
+[    3.215371] usb 1-8.2: New USB device found, idVendor=05ac, idProduct=820b
+[    3.215377] usb 1-8.2: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+[    3.218135] b43-phy0: Broadcom 4360 WLAN found (core revision 42)
+[    3.218594] b43-phy0 ERROR: FOUND UNSUPPORTED PHY (Analog 12, Type 11 (AC), Revision 1)
+[    3.218600] b43: probe of bcma0:1 failed with error -95
+[    3.218614] Broadcom 43xx driver loaded [ Features: P ]
+```
 
 # 使用闭源broadcom-sta驱动
 
@@ -33,11 +56,6 @@ emerge sys-firmware/b43-firmware
 > 一定要安装`b43-firmware`（我开始以为是使用`linux-firmware`就可以包含所有的必要firmware，实际不是这样的），否则启动`dhcpcd`服务还是会看不到任何数据包通过无线网卡，只有安装了`b43-firmware`后，才会有数据包通讯。
 >
 > 注意：每次使用新内核源代码，或者编译内核模块创建新目录（例如修改了内核版本后缀名），则需要重新安装`broadcom-sta`驱动，这样才能重新编译`wl`内核模块安装到新的内核模块目录`/lib/modules/XXXX`中。
-
-# 使用开源`b43`驱动
-
-`b43` 开源驱动是早期通过反向工程实现的驱动
-
 
 # 使用开源`brcm80211`驱动
 
@@ -67,6 +85,8 @@ key_mgmt=NONE
 priority=-999
 }
 ```
+
+> 这里一定要设置`ap_scan=1`，否则无法扫描无线AP，也就不能自动连接wifi
 
 > 为防止密码泄露，请使用 `chmod 600 /etc/wpa_supplicant/wpa_supplicant.conf` 将该配置文件摄制成对普通用户无法访问
 
