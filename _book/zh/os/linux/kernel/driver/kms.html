@@ -5,43 +5,43 @@
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>微代码Microcode | 云图</title>
+        <title>内核模式设置KMS | 云图</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.6.5">
+        <meta name="generator" content="GitBook 2.6.7">
         
         
         <meta name="HandheldFriendly" content="true"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
-        <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../../gitbook/images/apple-touch-icon-precomposed-152.png">
+        <link rel="shortcut icon" href="../../../../gitbook/images/favicon.ico" type="image/x-icon">
         
-    <link rel="stylesheet" href="../../../gitbook/style.css">
+    <link rel="stylesheet" href="../../../../gitbook/style.css">
     
         
-        <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-disqus/plugin.css">
-        
-    
-        
-        <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-codeblock-filename/block.css">
+        <link rel="stylesheet" href="../../../../gitbook/plugins/gitbook-plugin-disqus/plugin.css">
         
     
         
-        <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
+        <link rel="stylesheet" href="../../../../gitbook/plugins/gitbook-plugin-codeblock-filename/block.css">
         
     
         
-        <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-highlight/website.css">
+        <link rel="stylesheet" href="../../../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.css">
         
     
         
-        <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-search/search.css">
+        <link rel="stylesheet" href="../../../../gitbook/plugins/gitbook-plugin-highlight/website.css">
         
     
         
-        <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
+        <link rel="stylesheet" href="../../../../gitbook/plugins/gitbook-plugin-search/search.css">
+        
+    
+        
+        <link rel="stylesheet" href="../../../../gitbook/plugins/gitbook-plugin-fontsettings/website.css">
         
     
     
@@ -49,10 +49,10 @@
         
     
     
-    <link rel="next" href="../../../os/linux/kernel/process_stat_indicates.html" />
+    <link rel="next" href="../../../../os/linux/kernel/memory/index.html" />
     
     
-    <link rel="prev" href="../../../os/linux/kernel/ksm.html" />
+    <link rel="prev" href="../../../../os/linux/kernel/driver/index.html" />
     
 
         <!-- head:end -->
@@ -61,11 +61,11 @@
         <!-- body:start -->
         
     <div class="book"
-        data-level="2.1.4.7"
-        data-chapter-title="微代码Microcode"
-        data-filepath="os/linux/kernel/microcode.md"
-        data-basepath="../../.."
-        data-revision="Thu Apr 14 2016 09:35:41 GMT+0800 (CST)"
+        data-level="2.1.4.5.1"
+        data-chapter-title="内核模式设置KMS"
+        data-filepath="os/linux/kernel/driver/kms.md"
+        data-basepath="../../../.."
+        data-revision="Tue Apr 26 2016 00:57:23 GMT+0800 (CST)"
         data-innerlanguage="zh">
     
 
@@ -84,7 +84,7 @@
         <li class="chapter " data-level="0" data-path="index.html">
             
                 
-                    <a href="../../../index.html">
+                    <a href="../../../../index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -97,7 +97,7 @@
         <li class="chapter " data-level="1" data-path="server/index.html">
             
                 
-                    <a href="../../../server/index.html">
+                    <a href="../../../../server/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -121,7 +121,7 @@
         <li class="chapter " data-level="1.1.1" data-path="server/ipmi/ipmitool_tips.html">
             
                 
-                    <a href="../../../server/ipmi/ipmitool_tips.html">
+                    <a href="../../../../server/ipmi/ipmitool_tips.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -146,7 +146,7 @@
         <li class="chapter " data-level="2" data-path="os/index.html">
             
                 
-                    <a href="../../../os/index.html">
+                    <a href="../../../../os/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -162,7 +162,7 @@
         <li class="chapter " data-level="2.1" data-path="os/linux/index.html">
             
                 
-                    <a href="../../../os/linux/index.html">
+                    <a href="../../../../os/linux/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -178,7 +178,7 @@
         <li class="chapter " data-level="2.1.1" data-path="os/linux/boot/index.html">
             
                 
-                    <a href="../../../os/linux/boot/index.html">
+                    <a href="../../../../os/linux/boot/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -193,7 +193,7 @@
         <li class="chapter " data-level="2.1.2" data-path="os/linux/process/index.html">
             
                 
-                    <a href="../../../os/linux/process/index.html">
+                    <a href="../../../../os/linux/process/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -206,14 +206,50 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1.2.1" data-path="os/linux/process/selinux/index.html">
+        <li class="chapter " data-level="2.1.2.1" data-path="os/linux/process/management/index.html">
             
                 
-                    <a href="../../../os/linux/process/selinux/index.html">
+                    <a href="../../../../os/linux/process/management/index.html">
                 
                         <i class="fa fa-check"></i>
                         
                             <b>2.1.2.1.</b>
+                        
+                        进程管理
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.2.1.1" data-path="os/linux/process/management/process_stat_indicates.html">
+            
+                
+                    <a href="../../../../os/linux/process/management/process_stat_indicates.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.1.1.</b>
+                        
+                        进程状态标志的含义
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2.2" data-path="os/linux/process/selinux/index.html">
+            
+                
+                    <a href="../../../../os/linux/process/selinux/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.2.</b>
                         
                         SELinux
                     </a>
@@ -221,14 +257,14 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.2.2" data-path="os/linux/process/thread/index.html">
+        <li class="chapter " data-level="2.1.2.3" data-path="os/linux/process/thread/index.html">
             
                 
-                    <a href="../../../os/linux/process/thread/index.html">
+                    <a href="../../../../os/linux/process/thread/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>2.1.2.2.</b>
+                            <b>2.1.2.3.</b>
                         
                         线程
                     </a>
@@ -237,14 +273,14 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="2.1.2.2.1" data-path="os/linux/process/thread/process_vs_thread.html">
+        <li class="chapter " data-level="2.1.2.3.1" data-path="os/linux/process/thread/process_vs_thread.html">
             
                 
-                    <a href="../../../os/linux/process/thread/process_vs_thread.html">
+                    <a href="../../../../os/linux/process/thread/process_vs_thread.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>2.1.2.2.1.</b>
+                            <b>2.1.2.3.1.</b>
                         
                         进程和线程
                     </a>
@@ -252,14 +288,14 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.2.2.2" data-path="os/linux/process/thread/check_thread.html">
+        <li class="chapter " data-level="2.1.2.3.2" data-path="os/linux/process/thread/check_thread.html">
             
                 
-                    <a href="../../../os/linux/process/thread/check_thread.html">
+                    <a href="../../../../os/linux/process/thread/check_thread.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>2.1.2.2.2.</b>
+                            <b>2.1.2.3.2.</b>
                         
                         检查线程的方法
                     </a>
@@ -280,7 +316,7 @@
         <li class="chapter " data-level="2.1.3" data-path="os/linux/log/index.html">
             
                 
-                    <a href="../../../os/linux/log/index.html">
+                    <a href="../../../../os/linux/log/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -296,7 +332,7 @@
         <li class="chapter " data-level="2.1.3.1" data-path="os/linux/log/logrotate.html">
             
                 
-                    <a href="../../../os/linux/log/logrotate.html">
+                    <a href="../../../../os/linux/log/logrotate.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -311,7 +347,7 @@
         <li class="chapter " data-level="2.1.3.2" data-path="os/linux/log/mcelog.html">
             
                 
-                    <a href="../../../os/linux/log/mcelog.html">
+                    <a href="../../../../os/linux/log/mcelog.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -331,7 +367,7 @@
         <li class="chapter " data-level="2.1.4" data-path="os/linux/kernel/index.html">
             
                 
-                    <a href="../../../os/linux/kernel/index.html">
+                    <a href="../../../../os/linux/kernel/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -347,7 +383,7 @@
         <li class="chapter " data-level="2.1.4.1" data-path="os/linux/kernel/cgroups/index.html">
             
                 
-                    <a href="../../../os/linux/kernel/cgroups/index.html">
+                    <a href="../../../../os/linux/kernel/cgroups/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -363,7 +399,7 @@
         <li class="chapter " data-level="2.1.4.1.1" data-path="os/linux/kernel/cgroups/rhel6/index.html">
             
                 
-                    <a href="../../../os/linux/kernel/cgroups/rhel6/index.html">
+                    <a href="../../../../os/linux/kernel/cgroups/rhel6/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -379,7 +415,7 @@
         <li class="chapter " data-level="2.1.4.1.1.1" data-path="os/linux/kernel/cgroups/rhel6/introduction.html">
             
                 
-                    <a href="../../../os/linux/kernel/cgroups/rhel6/introduction.html">
+                    <a href="../../../../os/linux/kernel/cgroups/rhel6/introduction.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -394,7 +430,7 @@
         <li class="chapter " data-level="2.1.4.1.1.2" data-path="os/linux/kernel/cgroups/rhel6/using_control_groups.html">
             
                 
-                    <a href="../../../os/linux/kernel/cgroups/rhel6/using_control_groups.html">
+                    <a href="../../../../os/linux/kernel/cgroups/rhel6/using_control_groups.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -414,7 +450,7 @@
         <li class="chapter " data-level="2.1.4.1.2" data-path="os/linux/kernel/cgroups/rhel7/index.html">
             
                 
-                    <a href="../../../os/linux/kernel/cgroups/rhel7/index.html">
+                    <a href="../../../../os/linux/kernel/cgroups/rhel7/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -430,7 +466,7 @@
         <li class="chapter " data-level="2.1.4.1.2.1" data-path="os/linux/kernel/cgroups/rhel7/introduction.html">
             
                 
-                    <a href="../../../os/linux/kernel/cgroups/rhel7/introduction.html">
+                    <a href="../../../../os/linux/kernel/cgroups/rhel7/introduction.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -445,7 +481,7 @@
         <li class="chapter " data-level="2.1.4.1.2.2" data-path="os/linux/kernel/cgroups/rhel7/using_control_groups.html">
             
                 
-                    <a href="../../../os/linux/kernel/cgroups/rhel7/using_control_groups.html">
+                    <a href="../../../../os/linux/kernel/cgroups/rhel7/using_control_groups.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -470,7 +506,7 @@
         <li class="chapter " data-level="2.1.4.2" data-path="os/linux/kernel/net/index.html">
             
                 
-                    <a href="../../../os/linux/kernel/net/index.html">
+                    <a href="../../../../os/linux/kernel/net/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -486,7 +522,7 @@
         <li class="chapter " data-level="2.1.4.2.1" data-path="os/linux/kernel/net/time_wait_bucket_table_overflow.html">
             
                 
-                    <a href="../../../os/linux/kernel/net/time_wait_bucket_table_overflow.html">
+                    <a href="../../../../os/linux/kernel/net/time_wait_bucket_table_overflow.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -501,7 +537,7 @@
         <li class="chapter " data-level="2.1.4.2.2" data-path="os/linux/kernel/net/kernel_net_example_analysis.html">
             
                 
-                    <a href="../../../os/linux/kernel/net/kernel_net_example_analysis.html">
+                    <a href="../../../../os/linux/kernel/net/kernel_net_example_analysis.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -521,7 +557,7 @@
         <li class="chapter " data-level="2.1.4.3" data-path="os/linux/kernel/log/index.html">
             
                 
-                    <a href="../../../os/linux/kernel/log/index.html">
+                    <a href="../../../../os/linux/kernel/log/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -537,7 +573,7 @@
         <li class="chapter " data-level="2.1.4.3.1" data-path="os/linux/kernel/log/ratelimit.html">
             
                 
-                    <a href="../../../os/linux/kernel/log/ratelimit.html">
+                    <a href="../../../../os/linux/kernel/log/ratelimit.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -554,59 +590,60 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.4.4" data-path="os/linux/kernel/cpu_affinity.html">
+        <li class="chapter " data-level="2.1.4.4" data-path="os/linux/kernel/cpu/index.html">
             
                 
-                    <a href="../../../os/linux/kernel/cpu_affinity.html">
+                    <a href="../../../../os/linux/kernel/cpu/index.html">
                 
                         <i class="fa fa-check"></i>
                         
                             <b>2.1.4.4.</b>
                         
-                        CPU affinity
+                        cpu
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.4.4.1" data-path="os/linux/kernel/cpu/cpu_affinity.html">
+            
+                
+                    <a href="../../../../os/linux/kernel/cpu/cpu_affinity.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.4.1.</b>
+                        
+                        CPU亲和性
                     </a>
             
             
         </li>
     
-        <li class="chapter " data-level="2.1.4.5" data-path="os/linux/kernel/kms.html">
+        <li class="chapter " data-level="2.1.4.4.2" data-path="os/linux/kernel/cpu/interrupt_and_cpu_affinity.html">
             
                 
-                    <a href="../../../os/linux/kernel/kms.html">
+                    <a href="../../../../os/linux/kernel/cpu/interrupt_and_cpu_affinity.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>2.1.4.5.</b>
+                            <b>2.1.4.4.2.</b>
                         
-                        Linux内核模式设置KMS
+                        中断和CPU亲和性
                     </a>
             
             
         </li>
     
-        <li class="chapter " data-level="2.1.4.6" data-path="os/linux/kernel/ksm.html">
+        <li class="chapter " data-level="2.1.4.4.3" data-path="os/linux/kernel/cpu/microcode.html">
             
                 
-                    <a href="../../../os/linux/kernel/ksm.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.1.4.6.</b>
-                        
-                        Linux内核同页合并
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter active" data-level="2.1.4.7" data-path="os/linux/kernel/microcode.html">
-            
-                
-                    <a href="../../../os/linux/kernel/microcode.html">
+                    <a href="../../../../os/linux/kernel/cpu/microcode.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>2.1.4.7.</b>
+                            <b>2.1.4.4.3.</b>
                         
                         微代码Microcode
                     </a>
@@ -614,18 +651,95 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.4.8" data-path="os/linux/kernel/process_stat_indicates.html">
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4.5" data-path="os/linux/kernel/driver/index.html">
             
                 
-                    <a href="../../../os/linux/kernel/process_stat_indicates.html">
+                    <a href="../../../../os/linux/kernel/driver/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>2.1.4.8.</b>
+                            <b>2.1.4.5.</b>
                         
-                        进程状态标志的含义
+                        驱动
                     </a>
             
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="2.1.4.5.1" data-path="os/linux/kernel/driver/kms.html">
+            
+                
+                    <a href="../../../../os/linux/kernel/driver/kms.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.5.1.</b>
+                        
+                        内核模式设置KMS
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4.6" data-path="os/linux/kernel/memory/index.html">
+            
+                
+                    <a href="../../../../os/linux/kernel/memory/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.6.</b>
+                        
+                        内存
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.4.6.1" data-path="os/linux/kernel/memory/page_allocation_failure.html">
+            
+                
+                    <a href="../../../../os/linux/kernel/memory/page_allocation_failure.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.6.1.</b>
+                        
+                        内存页分配错误
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4.6.2" data-path="os/linux/kernel/memory/ksm.html">
+            
+                
+                    <a href="../../../../os/linux/kernel/memory/ksm.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.6.2.</b>
+                        
+                        内核同页合并
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -637,7 +751,7 @@
         <li class="chapter " data-level="2.1.5" data-path="os/linux/device/index.html">
             
                 
-                    <a href="../../../os/linux/device/index.html">
+                    <a href="../../../../os/linux/device/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -653,7 +767,7 @@
         <li class="chapter " data-level="2.1.5.1" data-path="os/linux/device/udev/index.html">
             
                 
-                    <a href="../../../os/linux/device/udev/index.html">
+                    <a href="../../../../os/linux/device/udev/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -669,7 +783,7 @@
         <li class="chapter " data-level="2.1.5.1.1" data-path="os/linux/device/udev/udev_infrastructure.html">
             
                 
-                    <a href="../../../os/linux/device/udev/udev_infrastructure.html">
+                    <a href="../../../../os/linux/device/udev/udev_infrastructure.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -694,7 +808,7 @@
         <li class="chapter " data-level="2.1.6" data-path="os/linux/storage/index.html">
             
                 
-                    <a href="../../../os/linux/storage/index.html">
+                    <a href="../../../../os/linux/storage/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -710,7 +824,7 @@
         <li class="chapter " data-level="2.1.6.1" data-path="os/linux/storage/disk/index.html">
             
                 
-                    <a href="../../../os/linux/storage/disk/index.html">
+                    <a href="../../../../os/linux/storage/disk/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -726,7 +840,7 @@
         <li class="chapter " data-level="2.1.6.1.1" data-path="os/linux/storage/disk/disk_io_scheduler.html">
             
                 
-                    <a href="../../../os/linux/storage/disk/disk_io_scheduler.html">
+                    <a href="../../../../os/linux/storage/disk/disk_io_scheduler.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -741,7 +855,7 @@
         <li class="chapter " data-level="2.1.6.1.2" data-path="os/linux/storage/disk/ssd_hdd_mix_io_scheduler.html">
             
                 
-                    <a href="../../../os/linux/storage/disk/ssd_hdd_mix_io_scheduler.html">
+                    <a href="../../../../os/linux/storage/disk/ssd_hdd_mix_io_scheduler.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -781,7 +895,7 @@
         <li class="chapter " data-level="2.1.6.3" data-path="os/linux/storage/filesystem/index.html">
             
                 
-                    <a href="../../../os/linux/storage/filesystem/index.html">
+                    <a href="../../../../os/linux/storage/filesystem/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -797,7 +911,7 @@
         <li class="chapter " data-level="2.1.6.3.1" data-path="os/linux/storage/filesystem/ext_filesystem_file_limit.html">
             
                 
-                    <a href="../../../os/linux/storage/filesystem/ext_filesystem_file_limit.html">
+                    <a href="../../../../os/linux/storage/filesystem/ext_filesystem_file_limit.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -822,7 +936,7 @@
         <li class="chapter " data-level="2.1.7" data-path="os/linux/network/index.html">
             
                 
-                    <a href="../../../os/linux/network/index.html">
+                    <a href="../../../../os/linux/network/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -838,7 +952,7 @@
         <li class="chapter " data-level="2.1.7.1" data-path="os/linux/network/iproute2/index.html">
             
                 
-                    <a href="../../../os/linux/network/iproute2/index.html">
+                    <a href="../../../../os/linux/network/iproute2/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -854,7 +968,7 @@
         <li class="chapter " data-level="2.1.7.1.1" data-path="os/linux/network/iproute2/ip.html">
             
                 
-                    <a href="../../../os/linux/network/iproute2/ip.html">
+                    <a href="../../../../os/linux/network/iproute2/ip.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -887,7 +1001,7 @@
         <li class="chapter " data-level="2.1.8.1" data-path="os/linux/backup/full_system_backup_with_tar.html">
             
                 
-                    <a href="../../../os/linux/backup/full_system_backup_with_tar.html">
+                    <a href="../../../../os/linux/backup/full_system_backup_with_tar.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -907,7 +1021,7 @@
         <li class="chapter " data-level="2.1.9" data-path="os/linux/redhat/index.html">
             
                 
-                    <a href="../../../os/linux/redhat/index.html">
+                    <a href="../../../../os/linux/redhat/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -923,7 +1037,7 @@
         <li class="chapter " data-level="2.1.9.1" data-path="os/linux/redhat/system_administration/index.html">
             
                 
-                    <a href="../../../os/linux/redhat/system_administration/index.html">
+                    <a href="../../../../os/linux/redhat/system_administration/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -939,7 +1053,7 @@
         <li class="chapter " data-level="2.1.9.1.1" data-path="os/linux/redhat/system_administration/grub2/index.html">
             
                 
-                    <a href="../../../os/linux/redhat/system_administration/grub2/index.html">
+                    <a href="../../../../os/linux/redhat/system_administration/grub2/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -966,7 +1080,7 @@
         <li class="chapter " data-level="2.1.9.2" data-path="os/linux/redhat/package/index.html">
             
                 
-                    <a href="../../../os/linux/redhat/package/index.html">
+                    <a href="../../../../os/linux/redhat/package/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -982,7 +1096,7 @@
         <li class="chapter " data-level="2.1.9.2.1" data-path="os/linux/redhat/package/cannot_retrieve_metalink_for_repository.html">
             
                 
-                    <a href="../../../os/linux/redhat/package/cannot_retrieve_metalink_for_repository.html">
+                    <a href="../../../../os/linux/redhat/package/cannot_retrieve_metalink_for_repository.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -997,7 +1111,7 @@
         <li class="chapter " data-level="2.1.9.2.2" data-path="os/linux/redhat/package/rpm_tips.html">
             
                 
-                    <a href="../../../os/linux/redhat/package/rpm_tips.html">
+                    <a href="../../../../os/linux/redhat/package/rpm_tips.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1012,7 +1126,7 @@
         <li class="chapter " data-level="2.1.9.2.3" data-path="os/linux/redhat/package/yum_tips.html">
             
                 
-                    <a href="../../../os/linux/redhat/package/yum_tips.html">
+                    <a href="../../../../os/linux/redhat/package/yum_tips.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1032,7 +1146,7 @@
         <li class="chapter " data-level="2.1.9.3" data-path="os/linux/redhat/daemon_tips.html">
             
                 
-                    <a href="../../../os/linux/redhat/daemon_tips.html">
+                    <a href="../../../../os/linux/redhat/daemon_tips.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1052,7 +1166,7 @@
         <li class="chapter " data-level="2.1.10" data-path="os/linux/debian/index.html">
             
                 
-                    <a href="../../../os/linux/debian/index.html">
+                    <a href="../../../../os/linux/debian/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1068,7 +1182,7 @@
         <li class="chapter " data-level="2.1.10.1" data-path="os/linux/debian/package/index.html">
             
                 
-                    <a href="../../../os/linux/debian/package/index.html">
+                    <a href="../../../../os/linux/debian/package/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1084,7 +1198,7 @@
         <li class="chapter " data-level="2.1.10.1.1" data-path="os/linux/debian/package/debian_mini_install_packages_suggest.html">
             
                 
-                    <a href="../../../os/linux/debian/package/debian_mini_install_packages_suggest.html">
+                    <a href="../../../../os/linux/debian/package/debian_mini_install_packages_suggest.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1109,7 +1223,7 @@
         <li class="chapter " data-level="2.1.11" data-path="os/linux/gentoo/index.html">
             
                 
-                    <a href="../../../os/linux/gentoo/index.html">
+                    <a href="../../../../os/linux/gentoo/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1125,7 +1239,7 @@
         <li class="chapter " data-level="2.1.11.1" data-path="os/linux/gentoo/install_gentoo_on_macbook.html">
             
                 
-                    <a href="../../../os/linux/gentoo/install_gentoo_on_macbook.html">
+                    <a href="../../../../os/linux/gentoo/install_gentoo_on_macbook.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1140,7 +1254,7 @@
         <li class="chapter " data-level="2.1.11.2" data-path="os/linux/gentoo/portage.html">
             
                 
-                    <a href="../../../os/linux/gentoo/portage.html">
+                    <a href="../../../../os/linux/gentoo/portage.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1155,7 +1269,7 @@
         <li class="chapter " data-level="2.1.11.3" data-path="os/linux/gentoo/gcc_profile_invalid.html">
             
                 
-                    <a href="../../../os/linux/gentoo/gcc_profile_invalid.html">
+                    <a href="../../../../os/linux/gentoo/gcc_profile_invalid.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1170,7 +1284,7 @@
         <li class="chapter " data-level="2.1.11.4" data-path="os/linux/gentoo/nvidia.html">
             
                 
-                    <a href="../../../os/linux/gentoo/nvidia.html">
+                    <a href="../../../../os/linux/gentoo/nvidia.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1185,7 +1299,7 @@
         <li class="chapter " data-level="2.1.11.5" data-path="os/linux/gentoo/intel.html">
             
                 
-                    <a href="../../../os/linux/gentoo/intel.html">
+                    <a href="../../../../os/linux/gentoo/intel.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1207,7 +1321,7 @@
         <li class="chapter " data-level="2.1.11.7" data-path="os/linux/gentoo/xfce.html">
             
                 
-                    <a href="../../../os/linux/gentoo/xfce.html">
+                    <a href="../../../../os/linux/gentoo/xfce.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1222,7 +1336,7 @@
         <li class="chapter " data-level="2.1.11.8" data-path="os/linux/gentoo/chinese_input.html">
             
                 
-                    <a href="../../../os/linux/gentoo/chinese_input.html">
+                    <a href="../../../../os/linux/gentoo/chinese_input.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1237,7 +1351,7 @@
         <li class="chapter " data-level="2.1.11.9" data-path="os/linux/gentoo/broadcom_wifi.html">
             
                 
-                    <a href="../../../os/linux/gentoo/broadcom_wifi.html">
+                    <a href="../../../../os/linux/gentoo/broadcom_wifi.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1252,7 +1366,7 @@
         <li class="chapter " data-level="2.1.11.10" data-path="os/linux/gentoo/suspend_hibernate.html">
             
                 
-                    <a href="../../../os/linux/gentoo/suspend_hibernate.html">
+                    <a href="../../../../os/linux/gentoo/suspend_hibernate.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1272,7 +1386,7 @@
         <li class="chapter " data-level="2.1.12" data-path="os/linux/utility/index.html">
             
                 
-                    <a href="../../../os/linux/utility/index.html">
+                    <a href="../../../../os/linux/utility/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1288,7 +1402,7 @@
         <li class="chapter " data-level="2.1.12.1" data-path="os/linux/utility/screen.html">
             
                 
-                    <a href="../../../os/linux/utility/screen.html">
+                    <a href="../../../../os/linux/utility/screen.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1325,7 +1439,7 @@
         <li class="chapter " data-level="3" data-path="network/index.html">
             
                 
-                    <a href="../../../network/index.html">
+                    <a href="../../../../network/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1341,7 +1455,7 @@
         <li class="chapter " data-level="3.1" data-path="network/link_aggregation/index.html">
             
                 
-                    <a href="../../../network/link_aggregation/index.html">
+                    <a href="../../../../network/link_aggregation/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1357,7 +1471,7 @@
         <li class="chapter " data-level="3.1.1" data-path="network/link_aggregation/lacp/index.html">
             
                 
-                    <a href="../../../network/link_aggregation/lacp/index.html">
+                    <a href="../../../../network/link_aggregation/lacp/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1373,7 +1487,7 @@
         <li class="chapter " data-level="3.1.1.1" data-path="network/link_aggregation/lacp/network_lacp_infrastructure.html">
             
                 
-                    <a href="../../../network/link_aggregation/lacp/network_lacp_infrastructure.html">
+                    <a href="../../../../network/link_aggregation/lacp/network_lacp_infrastructure.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1388,7 +1502,7 @@
         <li class="chapter " data-level="3.1.1.2" data-path="network/link_aggregation/lacp/network_lacp_ad_select.html">
             
                 
-                    <a href="../../../network/link_aggregation/lacp/network_lacp_ad_select.html">
+                    <a href="../../../../network/link_aggregation/lacp/network_lacp_ad_select.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1403,7 +1517,7 @@
         <li class="chapter " data-level="3.1.1.3" data-path="network/link_aggregation/lacp/network_lacp_tcpdump.html">
             
                 
-                    <a href="../../../network/link_aggregation/lacp/network_lacp_tcpdump.html">
+                    <a href="../../../../network/link_aggregation/lacp/network_lacp_tcpdump.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1428,7 +1542,7 @@
         <li class="chapter " data-level="3.2" data-path="network/packet_analysis/index.html">
             
                 
-                    <a href="../../../network/packet_analysis/index.html">
+                    <a href="../../../../network/packet_analysis/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1444,7 +1558,7 @@
         <li class="chapter " data-level="3.2.1" data-path="network/packet_analysis/tcpdump_example.html">
             
                 
-                    <a href="../../../network/packet_analysis/tcpdump_example.html">
+                    <a href="../../../../network/packet_analysis/tcpdump_example.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1477,7 +1591,7 @@
         <li class="chapter " data-level="4.1" data-path="storage/das/index.html">
             
                 
-                    <a href="../../../storage/das/index.html">
+                    <a href="../../../../storage/das/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1500,7 +1614,7 @@
         <li class="chapter " data-level="4.1.2" data-path="storage/das/mpt2sas_driver.html">
             
                 
-                    <a href="../../../storage/das/mpt2sas_driver.html">
+                    <a href="../../../../storage/das/mpt2sas_driver.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1515,7 +1629,7 @@
         <li class="chapter " data-level="4.1.3" data-path="storage/das/mpt2sas_offline_fail_disk.html">
             
                 
-                    <a href="../../../storage/das/mpt2sas_offline_fail_disk.html">
+                    <a href="../../../../storage/das/mpt2sas_offline_fail_disk.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1530,7 +1644,7 @@
         <li class="chapter " data-level="4.1.4" data-path="storage/das/smart.html">
             
                 
-                    <a href="../../../storage/das/smart.html">
+                    <a href="../../../../storage/das/smart.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1550,7 +1664,7 @@
         <li class="chapter " data-level="4.2" data-path="storage/glusterfs/index.html">
             
                 
-                    <a href="../../../storage/glusterfs/index.html">
+                    <a href="../../../../storage/glusterfs/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1566,7 +1680,7 @@
         <li class="chapter " data-level="4.2.1" data-path="storage/glusterfs/glusterfs_server_quorum.html">
             
                 
-                    <a href="../../../storage/glusterfs/glusterfs_server_quorum.html">
+                    <a href="../../../../storage/glusterfs/glusterfs_server_quorum.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1591,7 +1705,7 @@
         <li class="chapter " data-level="5" data-path="service/index.html">
             
                 
-                    <a href="../../../service/index.html">
+                    <a href="../../../../service/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1607,7 +1721,7 @@
         <li class="chapter " data-level="5.1" data-path="service/sendmail/index.html">
             
                 
-                    <a href="../../../service/sendmail/index.html">
+                    <a href="../../../../service/sendmail/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1623,7 +1737,7 @@
         <li class="chapter " data-level="5.1.1" data-path="service/sendmail/sendmail_mqueue_error.html">
             
                 
-                    <a href="../../../service/sendmail/sendmail_mqueue_error.html">
+                    <a href="../../../../service/sendmail/sendmail_mqueue_error.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1643,7 +1757,7 @@
         <li class="chapter " data-level="5.2" data-path="service/ssh/index.html">
             
                 
-                    <a href="../../../service/ssh/index.html">
+                    <a href="../../../../service/ssh/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1659,7 +1773,7 @@
         <li class="chapter " data-level="5.2.1" data-path="service/ssh/ssh_key.html">
             
                 
-                    <a href="../../../service/ssh/ssh_key.html">
+                    <a href="../../../../service/ssh/ssh_key.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1674,7 +1788,7 @@
         <li class="chapter " data-level="5.2.2" data-path="service/ssh/ssh_port_forwarding.html">
             
                 
-                    <a href="../../../service/ssh/ssh_port_forwarding.html">
+                    <a href="../../../../service/ssh/ssh_port_forwarding.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1689,7 +1803,7 @@
         <li class="chapter " data-level="5.2.3" data-path="service/ssh/multiplexing.html">
             
                 
-                    <a href="../../../service/ssh/multiplexing.html">
+                    <a href="../../../../service/ssh/multiplexing.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1704,7 +1818,7 @@
         <li class="chapter " data-level="5.2.4" data-path="service/ssh/sslh_multi_service_in_one_port.html">
             
                 
-                    <a href="../../../service/ssh/sslh_multi_service_in_one_port.html">
+                    <a href="../../../../service/ssh/sslh_multi_service_in_one_port.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1724,7 +1838,7 @@
         <li class="chapter " data-level="5.3" data-path="service/nginx/index.html">
             
                 
-                    <a href="../../../service/nginx/index.html">
+                    <a href="../../../../service/nginx/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1740,7 +1854,7 @@
         <li class="chapter " data-level="5.3.1" data-path="service/nginx/install_nginx_in_mac_os_x_with_homebrew.html">
             
                 
-                    <a href="../../../service/nginx/install_nginx_in_mac_os_x_with_homebrew.html">
+                    <a href="../../../../service/nginx/install_nginx_in_mac_os_x_with_homebrew.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1760,7 +1874,7 @@
         <li class="chapter " data-level="5.4" data-path="service/openresty/index.html">
             
                 
-                    <a href="../../../service/openresty/index.html">
+                    <a href="../../../../service/openresty/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1776,7 +1890,7 @@
         <li class="chapter " data-level="5.4.1" data-path="service/openresty/server_openresty_install.html">
             
                 
-                    <a href="../../../service/openresty/server_openresty_install.html">
+                    <a href="../../../../service/openresty/server_openresty_install.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1791,7 +1905,7 @@
         <li class="chapter " data-level="5.4.2" data-path="service/openresty/server_openresty_startup.html">
             
                 
-                    <a href="../../../service/openresty/server_openresty_startup.html">
+                    <a href="../../../../service/openresty/server_openresty_startup.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1816,7 +1930,7 @@
         <li class="chapter " data-level="6" data-path="security/index.html">
             
                 
-                    <a href="../../../security/index.html">
+                    <a href="../../../../security/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1832,7 +1946,7 @@
         <li class="chapter " data-level="6.1" data-path="security/vpn/index.html">
             
                 
-                    <a href="../../../security/vpn/index.html">
+                    <a href="../../../../security/vpn/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1848,7 +1962,7 @@
         <li class="chapter " data-level="6.1.1" data-path="security/vpn/use_openconnect_to_ocserv_in_android.html">
             
                 
-                    <a href="../../../security/vpn/use_openconnect_to_ocserv_in_android.html">
+                    <a href="../../../../security/vpn/use_openconnect_to_ocserv_in_android.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1863,7 +1977,7 @@
         <li class="chapter " data-level="6.1.2" data-path="security/vpn/openconnect.html">
             
                 
-                    <a href="../../../security/vpn/openconnect.html">
+                    <a href="../../../../security/vpn/openconnect.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1878,7 +1992,7 @@
         <li class="chapter " data-level="6.1.3" data-path="security/vpn/deploy_ocserv_vpn_server.html">
             
                 
-                    <a href="../../../security/vpn/deploy_ocserv_vpn_server.html">
+                    <a href="../../../../security/vpn/deploy_ocserv_vpn_server.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1898,7 +2012,7 @@
         <li class="chapter " data-level="6.2" data-path="security/authentication/index.html">
             
                 
-                    <a href="../../../security/authentication/index.html">
+                    <a href="../../../../security/authentication/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1914,7 +2028,7 @@
         <li class="chapter " data-level="6.2.1" data-path="security/authentication/linux_802.1x.html">
             
                 
-                    <a href="../../../security/authentication/linux_802.1x.html">
+                    <a href="../../../../security/authentication/linux_802.1x.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1939,7 +2053,7 @@
         <li class="chapter " data-level="7" data-path="virtual/index.html">
             
                 
-                    <a href="../../../virtual/index.html">
+                    <a href="../../../../virtual/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1955,7 +2069,7 @@
         <li class="chapter " data-level="7.1" data-path="virtual/intel/index.html">
             
                 
-                    <a href="../../../virtual/intel/index.html">
+                    <a href="../../../../virtual/intel/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1971,7 +2085,7 @@
         <li class="chapter " data-level="7.1.1" data-path="virtual/intel/vt-x/index.html">
             
                 
-                    <a href="../../../virtual/intel/vt-x/index.html">
+                    <a href="../../../../virtual/intel/vt-x/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -1986,7 +2100,7 @@
         <li class="chapter " data-level="7.1.2" data-path="virtual/intel/vt-d/index.html">
             
                 
-                    <a href="../../../virtual/intel/vt-d/index.html">
+                    <a href="../../../../virtual/intel/vt-d/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2001,7 +2115,7 @@
         <li class="chapter " data-level="7.1.3" data-path="virtual/intel/ept/index.html">
             
                 
-                    <a href="../../../virtual/intel/ept/index.html">
+                    <a href="../../../../virtual/intel/ept/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2021,7 +2135,7 @@
         <li class="chapter " data-level="7.2" data-path="virtual/kvm/index.html">
             
                 
-                    <a href="../../../virtual/kvm/index.html">
+                    <a href="../../../../virtual/kvm/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2037,7 +2151,7 @@
         <li class="chapter " data-level="7.2.1" data-path="virtual/kvm/deployment_and_administration/index.html">
             
                 
-                    <a href="../../../virtual/kvm/deployment_and_administration/index.html">
+                    <a href="../../../../virtual/kvm/deployment_and_administration/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2053,7 +2167,7 @@
         <li class="chapter " data-level="7.2.1.1" data-path="virtual/kvm/deployment_and_administration/kvm_guest_timing_management.html">
             
                 
-                    <a href="../../../virtual/kvm/deployment_and_administration/kvm_guest_timing_management.html">
+                    <a href="../../../../virtual/kvm/deployment_and_administration/kvm_guest_timing_management.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2073,7 +2187,7 @@
         <li class="chapter " data-level="7.2.2" data-path="virtual/kvm/performance/index.html">
             
                 
-                    <a href="../../../virtual/kvm/performance/index.html">
+                    <a href="../../../../virtual/kvm/performance/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2089,7 +2203,7 @@
         <li class="chapter " data-level="7.2.2.1" data-path="virtual/kvm/performance/kvm_performance_tunning.html">
             
                 
-                    <a href="../../../virtual/kvm/performance/kvm_performance_tunning.html">
+                    <a href="../../../../virtual/kvm/performance/kvm_performance_tunning.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2104,7 +2218,7 @@
         <li class="chapter " data-level="7.2.2.2" data-path="virtual/kvm/performance/best_practices_for_kvm.html">
             
                 
-                    <a href="../../../virtual/kvm/performance/best_practices_for_kvm.html">
+                    <a href="../../../../virtual/kvm/performance/best_practices_for_kvm.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2119,7 +2233,7 @@
         <li class="chapter " data-level="7.2.2.3" data-path="virtual/kvm/performance/kvm_performance_limit_for_vcpu.html">
             
                 
-                    <a href="../../../virtual/kvm/performance/kvm_performance_limit_for_vcpu.html">
+                    <a href="../../../../virtual/kvm/performance/kvm_performance_limit_for_vcpu.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2144,7 +2258,7 @@
         <li class="chapter " data-level="7.3" data-path="virtual/xen/index.html">
             
                 
-                    <a href="../../../virtual/xen/index.html">
+                    <a href="../../../../virtual/xen/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2160,7 +2274,7 @@
         <li class="chapter " data-level="7.3.1" data-path="virtual/xen/architecture/index.html">
             
                 
-                    <a href="../../../virtual/xen/architecture/index.html">
+                    <a href="../../../../virtual/xen/architecture/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2176,7 +2290,7 @@
         <li class="chapter " data-level="7.3.1.1" data-path="virtual/xen/architecture/hypervisor.html">
             
                 
-                    <a href="../../../virtual/xen/architecture/hypervisor.html">
+                    <a href="../../../../virtual/xen/architecture/hypervisor.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2201,7 +2315,7 @@
         <li class="chapter " data-level="7.4" data-path="virtual/docker/index.html">
             
                 
-                    <a href="../../../virtual/docker/index.html">
+                    <a href="../../../../virtual/docker/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2217,7 +2331,7 @@
         <li class="chapter " data-level="7.4.1" data-path="virtual/docker/engine/index.html">
             
                 
-                    <a href="../../../virtual/docker/engine/index.html">
+                    <a href="../../../../virtual/docker/engine/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2241,7 +2355,7 @@
         <li class="chapter " data-level="7.4.1.1.1" data-path="virtual/docker/engine/install/deploy_docker_in_redhat.html">
             
                 
-                    <a href="../../../virtual/docker/engine/install/deploy_docker_in_redhat.html">
+                    <a href="../../../../virtual/docker/engine/install/deploy_docker_in_redhat.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2256,7 +2370,7 @@
         <li class="chapter " data-level="7.4.1.1.2" data-path="virtual/docker/engine/install/docker_run_centos.html">
             
                 
-                    <a href="../../../virtual/docker/engine/install/docker_run_centos.html">
+                    <a href="../../../../virtual/docker/engine/install/docker_run_centos.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2271,7 +2385,7 @@
         <li class="chapter " data-level="7.4.1.1.3" data-path="virtual/docker/engine/install/deploy_docker_in_gentoo.html">
             
                 
-                    <a href="../../../virtual/docker/engine/install/deploy_docker_in_gentoo.html">
+                    <a href="../../../../virtual/docker/engine/install/deploy_docker_in_gentoo.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2287,7 +2401,7 @@
         <li class="chapter " data-level="7.4.1.1.3.1" data-path="virtual/docker/engine/install/docker_kernel.html">
             
                 
-                    <a href="../../../virtual/docker/engine/install/docker_kernel.html">
+                    <a href="../../../../virtual/docker/engine/install/docker_kernel.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2307,7 +2421,7 @@
         <li class="chapter " data-level="7.4.1.1.4" data-path="virtual/docker/engine/install/deploy_docker_in_osx.html">
             
                 
-                    <a href="../../../virtual/docker/engine/install/deploy_docker_in_osx.html">
+                    <a href="../../../../virtual/docker/engine/install/deploy_docker_in_osx.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2344,7 +2458,7 @@
         <li class="chapter " data-level="7.6" data-path="virtual/vagrant/index.html">
             
                 
-                    <a href="../../../virtual/vagrant/index.html">
+                    <a href="../../../../virtual/vagrant/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2360,7 +2474,7 @@
         <li class="chapter " data-level="7.6.1" data-path="virtual/vagrant/deploy_develop_env.html">
             
                 
-                    <a href="../../../virtual/vagrant/deploy_develop_env.html">
+                    <a href="../../../../virtual/vagrant/deploy_develop_env.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2375,7 +2489,7 @@
         <li class="chapter " data-level="7.6.2" data-path="virtual/vagrant/package.html">
             
                 
-                    <a href="../../../virtual/vagrant/package.html">
+                    <a href="../../../../virtual/vagrant/package.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2390,7 +2504,7 @@
         <li class="chapter " data-level="7.6.3" data-path="virtual/vagrant/box.html">
             
                 
-                    <a href="../../../virtual/vagrant/box.html">
+                    <a href="../../../../virtual/vagrant/box.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2405,7 +2519,7 @@
         <li class="chapter " data-level="7.6.4" data-path="virtual/vagrant/snapshot.html">
             
                 
-                    <a href="../../../virtual/vagrant/snapshot.html">
+                    <a href="../../../../virtual/vagrant/snapshot.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2420,7 +2534,7 @@
         <li class="chapter " data-level="7.6.5" data-path="virtual/vagrant/resume_download.html">
             
                 
-                    <a href="../../../virtual/vagrant/resume_download.html">
+                    <a href="../../../../virtual/vagrant/resume_download.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2435,7 +2549,7 @@
         <li class="chapter " data-level="7.6.6" data-path="virtual/vagrant/vboxsf.html">
             
                 
-                    <a href="../../../virtual/vagrant/vboxsf.html">
+                    <a href="../../../../virtual/vagrant/vboxsf.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2455,7 +2569,7 @@
         <li class="chapter " data-level="7.7" data-path="virtual/misc/index.html">
             
                 
-                    <a href="../../../virtual/misc/index.html">
+                    <a href="../../../../virtual/misc/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2471,7 +2585,7 @@
         <li class="chapter " data-level="7.7.1" data-path="virtual/misc/detecting_virtualization.html">
             
                 
-                    <a href="../../../virtual/misc/detecting_virtualization.html">
+                    <a href="../../../../virtual/misc/detecting_virtualization.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2523,7 +2637,7 @@
         <li class="chapter " data-level="9" data-path="monitor/index.html">
             
                 
-                    <a href="../../../monitor/index.html">
+                    <a href="../../../../monitor/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2566,7 +2680,7 @@
         <li class="chapter " data-level="9.2" data-path="monitor/iaas/index.html">
             
                 
-                    <a href="../../../monitor/iaas/index.html">
+                    <a href="../../../../monitor/iaas/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2606,7 +2720,7 @@
         <li class="chapter " data-level="10" data-path="performance/index.html">
             
                 
-                    <a href="../../../performance/index.html">
+                    <a href="../../../../performance/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2622,7 +2736,7 @@
         <li class="chapter " data-level="10.1" data-path="performance/web/index.html">
             
                 
-                    <a href="../../../performance/web/index.html">
+                    <a href="../../../../performance/web/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2638,7 +2752,7 @@
         <li class="chapter " data-level="10.1.1" data-path="performance/web/progressive_jpeg.html">
             
                 
-                    <a href="../../../performance/web/progressive_jpeg.html">
+                    <a href="../../../../performance/web/progressive_jpeg.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2658,7 +2772,7 @@
         <li class="chapter " data-level="10.2" data-path="performance/network/index.html">
             
                 
-                    <a href="../../../performance/network/index.html">
+                    <a href="../../../../performance/network/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2674,7 +2788,7 @@
         <li class="chapter " data-level="10.2.1" data-path="performance/network/tcpreplay.html">
             
                 
-                    <a href="../../../performance/network/tcpreplay.html">
+                    <a href="../../../../performance/network/tcpreplay.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2706,7 +2820,7 @@
         <li class="chapter " data-level="11" data-path="develop/index.html">
             
                 
-                    <a href="../../../develop/index.html">
+                    <a href="../../../../develop/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2736,7 +2850,7 @@
         <li class="chapter " data-level="11.3" data-path="develop/android/index.html">
             
                 
-                    <a href="../../../develop/android/index.html">
+                    <a href="../../../../develop/android/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2752,7 +2866,7 @@
         <li class="chapter " data-level="11.3.1" data-path="develop/android/startup/index.html">
             
                 
-                    <a href="../../../develop/android/startup/index.html">
+                    <a href="../../../../develop/android/startup/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2768,7 +2882,7 @@
         <li class="chapter " data-level="11.3.1.1" data-path="develop/android/startup/nexus_5_update.html">
             
                 
-                    <a href="../../../develop/android/startup/nexus_5_update.html">
+                    <a href="../../../../develop/android/startup/nexus_5_update.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2783,7 +2897,7 @@
         <li class="chapter " data-level="11.3.1.2" data-path="develop/android/startup/root_android_on_nexus_5.html">
             
                 
-                    <a href="../../../develop/android/startup/root_android_on_nexus_5.html">
+                    <a href="../../../../develop/android/startup/root_android_on_nexus_5.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2798,7 +2912,7 @@
         <li class="chapter " data-level="11.3.1.3" data-path="develop/android/startup/transfer_file_to_android.html">
             
                 
-                    <a href="../../../develop/android/startup/transfer_file_to_android.html">
+                    <a href="../../../../develop/android/startup/transfer_file_to_android.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2813,7 +2927,7 @@
         <li class="chapter " data-level="11.3.1.4" data-path="develop/android/startup/android_file_manage_and_install_apk.html">
             
                 
-                    <a href="../../../develop/android/startup/android_file_manage_and_install_apk.html">
+                    <a href="../../../../develop/android/startup/android_file_manage_and_install_apk.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2828,7 +2942,7 @@
         <li class="chapter " data-level="11.3.1.5" data-path="develop/android/startup/take_screenshot_in_android.html">
             
                 
-                    <a href="../../../develop/android/startup/take_screenshot_in_android.html">
+                    <a href="../../../../develop/android/startup/take_screenshot_in_android.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2843,7 +2957,7 @@
         <li class="chapter " data-level="11.3.1.6" data-path="develop/android/startup/buy_in_google_play.html">
             
                 
-                    <a href="../../../develop/android/startup/buy_in_google_play.html">
+                    <a href="../../../../develop/android/startup/buy_in_google_play.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2858,7 +2972,7 @@
         <li class="chapter " data-level="11.3.1.7" data-path="develop/android/startup/android_develop_environment.html">
             
                 
-                    <a href="../../../develop/android/startup/android_develop_environment.html">
+                    <a href="../../../../develop/android/startup/android_develop_environment.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2873,7 +2987,7 @@
         <li class="chapter " data-level="11.3.1.8" data-path="develop/android/startup/install_idea_on_gentoo.html">
             
                 
-                    <a href="../../../develop/android/startup/install_idea_on_gentoo.html">
+                    <a href="../../../../develop/android/startup/install_idea_on_gentoo.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2893,7 +3007,7 @@
         <li class="chapter " data-level="11.3.2" data-path="develop/android/linux/index.html">
             
                 
-                    <a href="../../../develop/android/linux/index.html">
+                    <a href="../../../../develop/android/linux/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2909,7 +3023,7 @@
         <li class="chapter " data-level="11.3.2.1" data-path="develop/android/linux/deploy_linux_on_android.html">
             
                 
-                    <a href="../../../develop/android/linux/deploy_linux_on_android.html">
+                    <a href="../../../../develop/android/linux/deploy_linux_on_android.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2924,7 +3038,7 @@
         <li class="chapter " data-level="11.3.2.2" data-path="develop/android/linux/linux_develop_environment_on_android.html">
             
                 
-                    <a href="../../../develop/android/linux/linux_develop_environment_on_android.html">
+                    <a href="../../../../develop/android/linux/linux_develop_environment_on_android.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2944,7 +3058,7 @@
         <li class="chapter " data-level="11.3.3" data-path="develop/android/bluetooth/index.html">
             
                 
-                    <a href="../../../develop/android/bluetooth/index.html">
+                    <a href="../../../../develop/android/bluetooth/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2960,7 +3074,7 @@
         <li class="chapter " data-level="11.3.3.1" data-path="develop/android/bluetooth/share_wifi_or_mobile_via_bluetooth.html">
             
                 
-                    <a href="../../../develop/android/bluetooth/share_wifi_or_mobile_via_bluetooth.html">
+                    <a href="../../../../develop/android/bluetooth/share_wifi_or_mobile_via_bluetooth.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2980,7 +3094,7 @@
         <li class="chapter " data-level="11.3.4" data-path="develop/android/nfc/index.html">
             
                 
-                    <a href="../../../develop/android/nfc/index.html">
+                    <a href="../../../../develop/android/nfc/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -2996,7 +3110,7 @@
         <li class="chapter " data-level="11.3.4.1" data-path="develop/android/nfc/introduce.html">
             
                 
-                    <a href="../../../develop/android/nfc/introduce.html">
+                    <a href="../../../../develop/android/nfc/introduce.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3011,7 +3125,7 @@
         <li class="chapter " data-level="11.3.4.2" data-path="develop/android/nfc/use_nfc_in_life.html">
             
                 
-                    <a href="../../../develop/android/nfc/use_nfc_in_life.html">
+                    <a href="../../../../develop/android/nfc/use_nfc_in_life.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3026,7 +3140,7 @@
         <li class="chapter " data-level="11.3.4.3" data-path="develop/android/nfc/nfc_basics.html">
             
                 
-                    <a href="../../../develop/android/nfc/nfc_basics.html">
+                    <a href="../../../../develop/android/nfc/nfc_basics.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3051,7 +3165,7 @@
         <li class="chapter " data-level="11.4" data-path="develop/python/index.html">
             
                 
-                    <a href="../../../develop/python/index.html">
+                    <a href="../../../../develop/python/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3067,7 +3181,7 @@
         <li class="chapter " data-level="11.4.1" data-path="develop/python/startup/index.html">
             
                 
-                    <a href="../../../develop/python/startup/index.html">
+                    <a href="../../../../develop/python/startup/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3083,7 +3197,7 @@
         <li class="chapter " data-level="11.4.1.1" data-path="develop/python/startup/pip.html">
             
                 
-                    <a href="../../../develop/python/startup/pip.html">
+                    <a href="../../../../develop/python/startup/pip.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3103,7 +3217,7 @@
         <li class="chapter " data-level="11.4.2" data-path="develop/python/flask/index.html">
             
                 
-                    <a href="../../../develop/python/flask/index.html">
+                    <a href="../../../../develop/python/flask/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3119,7 +3233,7 @@
         <li class="chapter " data-level="11.4.2.1" data-path="develop/python/flask/install.html">
             
                 
-                    <a href="../../../develop/python/flask/install.html">
+                    <a href="../../../../develop/python/flask/install.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3144,7 +3258,7 @@
         <li class="chapter " data-level="11.5" data-path="develop/ruby/index.html">
             
                 
-                    <a href="../../../develop/ruby/index.html">
+                    <a href="../../../../develop/ruby/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3168,7 +3282,7 @@
         <li class="chapter " data-level="11.5.1.1" data-path="develop/ruby/startup/rubygems_install_and_usage.html">
             
                 
-                    <a href="../../../develop/ruby/startup/rubygems_install_and_usage.html">
+                    <a href="../../../../develop/ruby/startup/rubygems_install_and_usage.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3193,7 +3307,7 @@
         <li class="chapter " data-level="11.6" data-path="develop/nodejs/index.html">
             
                 
-                    <a href="../../../develop/nodejs/index.html">
+                    <a href="../../../../develop/nodejs/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3209,7 +3323,7 @@
         <li class="chapter " data-level="11.6.1" data-path="develop/nodejs/startup/index.html">
             
                 
-                    <a href="../../../develop/nodejs/startup/index.html">
+                    <a href="../../../../develop/nodejs/startup/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3225,7 +3339,7 @@
         <li class="chapter " data-level="11.6.1.1" data-path="develop/nodejs/startup/nodejs_develop_environment.html">
             
                 
-                    <a href="../../../develop/nodejs/startup/nodejs_develop_environment.html">
+                    <a href="../../../../develop/nodejs/startup/nodejs_develop_environment.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3240,7 +3354,7 @@
         <li class="chapter " data-level="11.6.1.2" data-path="develop/nodejs/startup/uinstall_nodejs_in_os_x.html">
             
                 
-                    <a href="../../../develop/nodejs/startup/uinstall_nodejs_in_os_x.html">
+                    <a href="../../../../develop/nodejs/startup/uinstall_nodejs_in_os_x.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3260,7 +3374,7 @@
         <li class="chapter " data-level="11.6.2" data-path="develop/nodejs/npm/index.html">
             
                 
-                    <a href="../../../develop/nodejs/npm/index.html">
+                    <a href="../../../../develop/nodejs/npm/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3276,7 +3390,7 @@
         <li class="chapter " data-level="11.6.2.1" data-path="develop/nodejs/npm/npm_tips.html">
             
                 
-                    <a href="../../../develop/nodejs/npm/npm_tips.html">
+                    <a href="../../../../develop/nodejs/npm/npm_tips.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3291,7 +3405,7 @@
         <li class="chapter " data-level="11.6.2.2" data-path="develop/nodejs/npm/svg2png.html">
             
                 
-                    <a href="../../../develop/nodejs/npm/svg2png.html">
+                    <a href="../../../../develop/nodejs/npm/svg2png.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3316,7 +3430,7 @@
         <li class="chapter " data-level="11.7" data-path="develop/mac/index.html">
             
                 
-                    <a href="../../../develop/mac/index.html">
+                    <a href="../../../../develop/mac/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3332,7 +3446,7 @@
         <li class="chapter " data-level="11.7.1" data-path="develop/mac/chinese_input.html">
             
                 
-                    <a href="../../../develop/mac/chinese_input.html">
+                    <a href="../../../../develop/mac/chinese_input.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3347,7 +3461,7 @@
         <li class="chapter " data-level="11.7.2" data-path="develop/mac/textmate2_tips.html">
             
                 
-                    <a href="../../../develop/mac/textmate2_tips.html">
+                    <a href="../../../../develop/mac/textmate2_tips.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3362,7 +3476,7 @@
         <li class="chapter " data-level="11.7.3" data-path="develop/mac/multiple_versions_java_in_os_x.html">
             
                 
-                    <a href="../../../develop/mac/multiple_versions_java_in_os_x.html">
+                    <a href="../../../../develop/mac/multiple_versions_java_in_os_x.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3377,7 +3491,7 @@
         <li class="chapter " data-level="11.7.4" data-path="develop/mac/mac_bluetooth_keyboard_for_mobile_device.html">
             
                 
-                    <a href="../../../develop/mac/mac_bluetooth_keyboard_for_mobile_device.html">
+                    <a href="../../../../develop/mac/mac_bluetooth_keyboard_for_mobile_device.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3392,7 +3506,7 @@
         <li class="chapter " data-level="11.7.5" data-path="develop/mac/mac_network.html">
             
                 
-                    <a href="../../../develop/mac/mac_network.html">
+                    <a href="../../../../develop/mac/mac_network.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3407,7 +3521,7 @@
         <li class="chapter " data-level="11.7.6" data-path="develop/mac/migrate_open_tabs_from_safari.html">
             
                 
-                    <a href="../../../develop/mac/migrate_open_tabs_from_safari.html">
+                    <a href="../../../../develop/mac/migrate_open_tabs_from_safari.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3422,7 +3536,7 @@
         <li class="chapter " data-level="11.7.7" data-path="develop/mac/bird_process.html">
             
                 
-                    <a href="../../../develop/mac/bird_process.html">
+                    <a href="../../../../develop/mac/bird_process.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3437,7 +3551,7 @@
         <li class="chapter " data-level="11.7.8" data-path="develop/mac/dual_boot_linux_on_mac.html">
             
                 
-                    <a href="../../../develop/mac/dual_boot_linux_on_mac.html">
+                    <a href="../../../../develop/mac/dual_boot_linux_on_mac.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3452,7 +3566,7 @@
         <li class="chapter " data-level="11.7.9" data-path="develop/mac/refind.html">
             
                 
-                    <a href="../../../develop/mac/refind.html">
+                    <a href="../../../../develop/mac/refind.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3472,7 +3586,7 @@
         <li class="chapter " data-level="11.8" data-path="develop/shell/index.html">
             
                 
-                    <a href="../../../develop/shell/index.html">
+                    <a href="../../../../develop/shell/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3488,7 +3602,7 @@
         <li class="chapter " data-level="11.8.1" data-path="develop/shell/bash/index.html">
             
                 
-                    <a href="../../../develop/shell/bash/index.html">
+                    <a href="../../../../develop/shell/bash/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3504,7 +3618,7 @@
         <li class="chapter " data-level="11.8.1.1" data-path="develop/shell/bash/special_shell_variable.html">
             
                 
-                    <a href="../../../develop/shell/bash/special_shell_variable.html">
+                    <a href="../../../../develop/shell/bash/special_shell_variable.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3519,7 +3633,7 @@
         <li class="chapter " data-level="11.8.1.2" data-path="develop/shell/bash/if_command_result_then_do.html">
             
                 
-                    <a href="../../../develop/shell/bash/if_command_result_then_do.html">
+                    <a href="../../../../develop/shell/bash/if_command_result_then_do.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3539,7 +3653,7 @@
         <li class="chapter " data-level="11.8.2" data-path="develop/shell/sed_awk/index.html">
             
                 
-                    <a href="../../../develop/shell/sed_awk/index.html">
+                    <a href="../../../../develop/shell/sed_awk/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3555,7 +3669,7 @@
         <li class="chapter " data-level="11.8.2.1" data-path="develop/shell/sed_awk/awk_shell_var.html">
             
                 
-                    <a href="../../../develop/shell/sed_awk/awk_shell_var.html">
+                    <a href="../../../../develop/shell/sed_awk/awk_shell_var.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3575,7 +3689,7 @@
         <li class="chapter " data-level="11.8.3" data-path="develop/shell/utilities/index.html">
             
                 
-                    <a href="../../../develop/shell/utilities/index.html">
+                    <a href="../../../../develop/shell/utilities/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3591,7 +3705,7 @@
         <li class="chapter " data-level="11.8.3.1" data-path="develop/shell/utilities/run_script_as_daemon.html">
             
                 
-                    <a href="../../../develop/shell/utilities/run_script_as_daemon.html">
+                    <a href="../../../../develop/shell/utilities/run_script_as_daemon.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3616,7 +3730,7 @@
         <li class="chapter " data-level="11.9" data-path="develop/doc/index.html">
             
                 
-                    <a href="../../../develop/doc/index.html">
+                    <a href="../../../../develop/doc/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3632,7 +3746,7 @@
         <li class="chapter " data-level="11.9.1" data-path="develop/doc/gitbook/index.html">
             
                 
-                    <a href="../../../develop/doc/gitbook/index.html">
+                    <a href="../../../../develop/doc/gitbook/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3648,7 +3762,7 @@
         <li class="chapter " data-level="11.9.1.1" data-path="develop/doc/gitbook/using_gitbook_write_book.html">
             
                 
-                    <a href="../../../develop/doc/gitbook/using_gitbook_write_book.html">
+                    <a href="../../../../develop/doc/gitbook/using_gitbook_write_book.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3663,7 +3777,7 @@
         <li class="chapter " data-level="11.9.1.2" data-path="develop/doc/gitbook/run_multi_gitbook_in_one_host.html">
             
                 
-                    <a href="../../../develop/doc/gitbook/run_multi_gitbook_in_one_host.html">
+                    <a href="../../../../develop/doc/gitbook/run_multi_gitbook_in_one_host.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3678,7 +3792,7 @@
         <li class="chapter " data-level="11.9.1.3" data-path="develop/doc/gitbook/gitbook_discussions.html">
             
                 
-                    <a href="../../../develop/doc/gitbook/gitbook_discussions.html">
+                    <a href="../../../../develop/doc/gitbook/gitbook_discussions.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3693,7 +3807,7 @@
         <li class="chapter " data-level="11.9.1.4" data-path="develop/doc/gitbook/gitbook_toggle_chapters.html">
             
                 
-                    <a href="../../../develop/doc/gitbook/gitbook_toggle_chapters.html">
+                    <a href="../../../../develop/doc/gitbook/gitbook_toggle_chapters.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3708,7 +3822,7 @@
         <li class="chapter " data-level="11.9.1.5" data-path="develop/doc/gitbook/gitbook_codeblock_filename.html">
             
                 
-                    <a href="../../../develop/doc/gitbook/gitbook_codeblock_filename.html">
+                    <a href="../../../../develop/doc/gitbook/gitbook_codeblock_filename.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3723,7 +3837,7 @@
         <li class="chapter " data-level="11.9.1.6" data-path="develop/doc/gitbook/gitbook_multi_language.html">
             
                 
-                    <a href="../../../develop/doc/gitbook/gitbook_multi_language.html">
+                    <a href="../../../../develop/doc/gitbook/gitbook_multi_language.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3738,7 +3852,7 @@
         <li class="chapter " data-level="11.9.1.7" data-path="develop/doc/gitbook/gitbook_video.html">
             
                 
-                    <a href="../../../develop/doc/gitbook/gitbook_video.html">
+                    <a href="../../../../develop/doc/gitbook/gitbook_video.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3758,7 +3872,7 @@
         <li class="chapter " data-level="11.9.2" data-path="develop/doc/hexo/index.html">
             
                 
-                    <a href="../../../develop/doc/hexo/index.html">
+                    <a href="../../../../develop/doc/hexo/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3774,7 +3888,7 @@
         <li class="chapter " data-level="11.9.2.1" data-path="develop/doc/hexo/write_blog_by_hexo.html">
             
                 
-                    <a href="../../../develop/doc/hexo/write_blog_by_hexo.html">
+                    <a href="../../../../develop/doc/hexo/write_blog_by_hexo.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3789,7 +3903,7 @@
         <li class="chapter " data-level="11.9.2.2" data-path="develop/doc/hexo/hexo_theme_tranquilpeak.html">
             
                 
-                    <a href="../../../develop/doc/hexo/hexo_theme_tranquilpeak.html">
+                    <a href="../../../../develop/doc/hexo/hexo_theme_tranquilpeak.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3819,7 +3933,7 @@
         <li class="chapter " data-level="12" data-path="devops/index.html">
             
                 
-                    <a href="../../../devops/index.html">
+                    <a href="../../../../devops/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3835,7 +3949,7 @@
         <li class="chapter " data-level="12.1" data-path="devops/git/index.html">
             
                 
-                    <a href="../../../devops/git/index.html">
+                    <a href="../../../../devops/git/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3850,7 +3964,7 @@
         <li class="chapter " data-level="12.2" data-path="devops/gerrit/index.html">
             
                 
-                    <a href="../../../devops/gerrit/index.html">
+                    <a href="../../../../devops/gerrit/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3865,7 +3979,7 @@
         <li class="chapter " data-level="12.3" data-path="devops/gitlab/index.html">
             
                 
-                    <a href="../../../devops/gitlab/index.html">
+                    <a href="../../../../devops/gitlab/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3881,7 +3995,7 @@
         <li class="chapter " data-level="12.3.1" data-path="devops/gitlab/deploy_key.html">
             
                 
-                    <a href="../../../devops/gitlab/deploy_key.html">
+                    <a href="../../../../devops/gitlab/deploy_key.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3901,7 +4015,7 @@
         <li class="chapter " data-level="12.4" data-path="devops/jenkins/index.html">
             
                 
-                    <a href="../../../devops/jenkins/index.html">
+                    <a href="../../../../devops/jenkins/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3916,7 +4030,7 @@
         <li class="chapter " data-level="12.5" data-path="devops/ansible/index.html">
             
                 
-                    <a href="../../../devops/ansible/index.html">
+                    <a href="../../../../devops/ansible/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3932,7 +4046,7 @@
         <li class="chapter " data-level="12.5.1" data-path="devops/ansible/startup/index.html">
             
                 
-                    <a href="../../../devops/ansible/startup/index.html">
+                    <a href="../../../../devops/ansible/startup/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3948,7 +4062,7 @@
         <li class="chapter " data-level="12.5.1.1" data-path="devops/ansible/startup/install.html">
             
                 
-                    <a href="../../../devops/ansible/startup/install.html">
+                    <a href="../../../../devops/ansible/startup/install.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3963,7 +4077,7 @@
         <li class="chapter " data-level="12.5.1.2" data-path="devops/ansible/startup/getting_started.html">
             
                 
-                    <a href="../../../devops/ansible/startup/getting_started.html">
+                    <a href="../../../../devops/ansible/startup/getting_started.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3978,7 +4092,7 @@
         <li class="chapter " data-level="12.5.1.3" data-path="devops/ansible/startup/inventory.html">
             
                 
-                    <a href="../../../devops/ansible/startup/inventory.html">
+                    <a href="../../../../devops/ansible/startup/inventory.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -3993,7 +4107,7 @@
         <li class="chapter " data-level="12.5.1.4" data-path="devops/ansible/startup/dynamic_inventory.html">
             
                 
-                    <a href="../../../devops/ansible/startup/dynamic_inventory.html">
+                    <a href="../../../../devops/ansible/startup/dynamic_inventory.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -4008,7 +4122,7 @@
         <li class="chapter " data-level="12.5.1.5" data-path="devops/ansible/startup/patterns.html">
             
                 
-                    <a href="../../../devops/ansible/startup/patterns.html">
+                    <a href="../../../../devops/ansible/startup/patterns.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -4023,7 +4137,7 @@
         <li class="chapter " data-level="12.5.1.6" data-path="devops/ansible/startup/adhoc.html">
             
                 
-                    <a href="../../../devops/ansible/startup/adhoc.html">
+                    <a href="../../../../devops/ansible/startup/adhoc.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -4043,7 +4157,7 @@
         <li class="chapter " data-level="12.5.2" data-path="devops/ansible/playbooks/index.html">
             
                 
-                    <a href="../../../devops/ansible/playbooks/index.html">
+                    <a href="../../../../devops/ansible/playbooks/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -4059,7 +4173,7 @@
         <li class="chapter " data-level="12.5.2.1" data-path="devops/ansible/playbooks/introduce.html">
             
                 
-                    <a href="../../../devops/ansible/playbooks/introduce.html">
+                    <a href="../../../../devops/ansible/playbooks/introduce.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -4074,7 +4188,7 @@
         <li class="chapter " data-level="12.5.2.2" data-path="devops/ansible/playbooks/centos_upgrade.html">
             
                 
-                    <a href="../../../devops/ansible/playbooks/centos_upgrade.html">
+                    <a href="../../../../devops/ansible/playbooks/centos_upgrade.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -4089,7 +4203,7 @@
         <li class="chapter " data-level="12.5.2.3" data-path="devops/ansible/playbooks/install_rpm_through_sudo.html">
             
                 
-                    <a href="../../../devops/ansible/playbooks/install_rpm_through_sudo.html">
+                    <a href="../../../../devops/ansible/playbooks/install_rpm_through_sudo.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -4109,7 +4223,7 @@
         <li class="chapter " data-level="12.5.3" data-path="devops/ansible/dashboard/index.html">
             
                 
-                    <a href="../../../devops/ansible/dashboard/index.html">
+                    <a href="../../../../devops/ansible/dashboard/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -4125,7 +4239,7 @@
         <li class="chapter " data-level="12.5.3.1" data-path="devops/ansible/dashboard/semaphone.html">
             
                 
-                    <a href="../../../devops/ansible/dashboard/semaphone.html">
+                    <a href="../../../../devops/ansible/dashboard/semaphone.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -4145,7 +4259,7 @@
         <li class="chapter " data-level="12.5.4" data-path="devops/ansible/troubleshoot/index.html">
             
                 
-                    <a href="../../../devops/ansible/troubleshoot/index.html">
+                    <a href="../../../../devops/ansible/troubleshoot/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -4161,7 +4275,7 @@
         <li class="chapter " data-level="12.5.4.1" data-path="devops/ansible/troubleshoot/yaml_syntax_error_with_tab.html">
             
                 
-                    <a href="../../../devops/ansible/troubleshoot/yaml_syntax_error_with_tab.html">
+                    <a href="../../../../devops/ansible/troubleshoot/yaml_syntax_error_with_tab.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -4176,7 +4290,7 @@
         <li class="chapter " data-level="12.5.4.2" data-path="devops/ansible/troubleshoot/host_authenticity.html">
             
                 
-                    <a href="../../../devops/ansible/troubleshoot/host_authenticity.html">
+                    <a href="../../../../devops/ansible/troubleshoot/host_authenticity.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -4191,7 +4305,7 @@
         <li class="chapter " data-level="12.5.4.3" data-path="devops/ansible/troubleshoot/yum_permission_deny.html">
             
                 
-                    <a href="../../../devops/ansible/troubleshoot/yum_permission_deny.html">
+                    <a href="../../../../devops/ansible/troubleshoot/yum_permission_deny.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -4211,7 +4325,7 @@
         <li class="chapter " data-level="12.5.5" data-path="devops/ansible/tips/index.html">
             
                 
-                    <a href="../../../devops/ansible/tips/index.html">
+                    <a href="../../../../devops/ansible/tips/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -4227,7 +4341,7 @@
         <li class="chapter " data-level="12.5.5.1" data-path="devops/ansible/tips/execute_shell_if_package_not_installed.html">
             
                 
-                    <a href="../../../devops/ansible/tips/execute_shell_if_package_not_installed.html">
+                    <a href="../../../../devops/ansible/tips/execute_shell_if_package_not_installed.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -4259,7 +4373,7 @@
         <li class="chapter " data-level="12.6" data-path="devops/puppet/index.html">
             
                 
-                    <a href="../../../devops/puppet/index.html">
+                    <a href="../../../../devops/puppet/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -4279,7 +4393,7 @@
         <li class="chapter " data-level="13" data-path="read/index.html">
             
                 
-                    <a href="../../../read/index.html">
+                    <a href="../../../../read/index.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -4295,7 +4409,7 @@
         <li class="chapter " data-level="13.1" data-path="read/reset_kindle_paperwhite.html">
             
                 
-                    <a href="../../../read/reset_kindle_paperwhite.html">
+                    <a href="../../../../read/reset_kindle_paperwhite.html">
                 
                         <i class="fa fa-check"></i>
                         
@@ -4335,7 +4449,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../../../" >云图</a>
+        <a href="../../../../" >云图</a>
     </h1>
 </div>
 
@@ -4345,53 +4459,37 @@
                 
                     <section class="normal" id="section-">
                     
-                        <p>&#x6240;&#x6709;&#x73B0;&#x4EE3;CPU&#x5382;&#x5546;&#x90FD;&#x6709;&#x8BBE;&#x8BA1;&#x548C;&#x751F;&#x4EA7;&#x7455;&#x75B5;&#x7684;&#x5386;&#x53F2;&#xFF0C;&#x4ECE;&#x76F8;&#x5173;&#x8BBE;&#x8BA1;&#x7A33;&#x5B9A;&#x6027;&#x95EE;&#x9898;&#x5230;&#x6F5C;&#x5728;&#x7684;&#x5B89;&#x5168;&#x6F0F;&#x6D1E;&#x3002;&#x867D;&#x7136;&#x5927;&#x591A;&#x6570;CPU&#x7684;&#x52D8;&#x8BEF;&#x8868;&#x4E2D;&#x5217;&#x51FA;&#x7684;bug&#x90FD;&#x88AB;&#x6807;&#x8BB0;&#x4E3A;&quot;&#x4E0D;&#x4FEE;&#x590D;&quot;&#xFF0C;Intel&#x4F9D;&#x7136;&#x63D0;&#x4F9B;&#x4E86;&#x80FD;&#x591F;&#x901A;&#x8FC7;microcode&#x66F4;&#x65B0;&#x7684;&#x65B9;&#x5F0F;&#x63D0;&#x4F9B;CPU&#x7A33;&#x5B9A;&#x6027;&#x548C;&#x5B89;&#x5168;&#x6027;&#x8865;&#x4E01;&#x3002;</p>
-<p>microcode&#x5C31;&#x662F;&#x5904;&#x7406;&#x5668;&#x5382;&#x5546;&#x53D1;&#x5E03;&#x7A33;&#x5B9A;&#x6027;&#x548C;&#x5B89;&#x5168;&#x6027;&#x5347;&#x7EA7;&#x7684;&#x5904;&#x7406;&#x5668;&#x5FAE;&#x4EE3;&#x7801;&#x3002;&#x867D;&#x7136;&#x5FAE;&#x4EE3;&#x7801;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;BIOS&#x6765;&#x5347;&#x7EA7;&#xFF0C;&#x4F46;&#x662F;Linux&#x5185;&#x6838;&#x4E5F;&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x79CD;&#x901A;&#x8FC7;&#x5728;&#x542F;&#x52A8;&#x65F6;&#x66F4;&#x65B0;&#x7684;&#x65B9;&#x6CD5;&#x3002;&#x8FD9;&#x4E9B;&#x66F4;&#x65B0;&#x63D0;&#x4F9B;&#x4E86;bug fix&#x6765;&#x786E;&#x4FDD;&#x7CFB;&#x7EDF;&#x7684;&#x7A33;&#x5B9A;&#x6027;&#x3002;&#x6CA1;&#x6709;&#x8FD9;&#x4E9B;&#x66F4;&#x65B0;&#xFF0C;&#x4F60;&#x53EF;&#x80FD;&#x4F1A;&#x9047;&#x5230;&#x5947;&#x602A;&#x7684;&#x5B95;&#x673A;&#x6216;&#x8005;&#x5F02;&#x5E38;&#x7684;&#x7CFB;&#x7EDF;&#x6302;&#x8D77;&#xFF0C;&#x800C;&#x4E14;&#x975E;&#x5E38;&#x96BE;&#x4EE5;&#x8DDF;&#x8E2A;&#x3002;</p>
-<p><strong>&#x5BF9;&#x4E8E;&#x4F7F;&#x7528;Intel Haswell&#x548C;Broadwell&#x5904;&#x7406;&#x5668;&#x7CFB;&#x5217;&#x7684;&#x7528;&#x6237;&#xFF0C;&#x5FC5;&#x987B;&#x8981;&#x5B89;&#x88C5;&#x8FD9;&#x4E9B;microcode&#x6765;&#x53D6;&#x4FDD;&#x7CFB;&#x7EDF;&#x7A33;&#x5B9A;&#x3002;</strong></p>
-<p>&#x4E0D;&#x5E78;&#x7684;&#x662F;&#xFF0C;microcode&#x66F4;&#x65B0;&#x683C;&#x5F0F;&#x662F;&#x6CA1;&#x6709;&#x6587;&#x6863;&#x8BF4;&#x660E;&#x7684;&#xFF08;&#x4F3C;&#x4E4E;&#x6CA1;&#x6CD5;&#x83B7;&#x5F97;microcode&#x683C;&#x5F0F;&#x7684;&#x7406;&#x89E3;&#x65B9;&#x6CD5;&#xFF09;&#xFF0C;&#x4E5F;&#x65E0;&#x6CD5;&#x6E05;&#x6670;&#x7406;&#x89E3;microcode&#x8865;&#x4E01;&#x4FEE;&#x590D;&#x7684;&#x5177;&#x4F53;bug&#x3002;</p>
-<h1 id="microcode&#x66F4;&#x65B0;&#x5DE5;&#x4F5C;&#x539F;&#x7406;">microcode&#x66F4;&#x65B0;&#x5DE5;&#x4F5C;&#x539F;&#x7406;</h1>
-<p>microcode&#x66F4;&#x65B0;&#x662F;&#x901A;&#x8FC7;&#x5728;&#x4E00;&#x4E2A;&#x79F0;&#x4E3A;<code>IA32_UCODE_WRITE</code>&#x7684;&#x7279;&#x5B9A;&#x578B;&#x53F7;&#x5BC4;&#x5B58;&#x5668;&#xFF08;model-specific register, MSR&#xFF09;&#x4E2D;&#x5199;&#x5165;intel&#x63D0;&#x4F9B;&#x7684;&#x65E0;&#x6587;&#x6863;&#x8BF4;&#x660E;&#x7684;&#x4E8C;&#x8FDB;&#x5236;&#x5185;&#x5BB9;&#x7684;&#x865A;&#x62DF;&#x5730;&#x5740;&#x3002;&#x8FD9;&#x4E2A;&#x79C1;&#x6709;&#x7684;&#x64CD;&#x4F5C;&#x901A;&#x5E38;&#x662F;&#x5728;&#x7CFB;&#x7EDF;&#x542F;&#x52A8;&#x65F6;&#x901A;&#x8FC7;&#x7CFB;&#x7EDF;BIOS&#x6765;&#x6267;&#x884C;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x73B0;&#x4EE3;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5185;&#x6838;&#x5DF2;&#x7ECF;&#x5305;&#x542B;&#x4E86;&#x652F;&#x6301;microcode&#x66F4;&#x65B0;&#x7684;&#x529F;&#x80FD;&#x3002;</p>
-<p>BIOS&#xFF08;&#x6216;&#x64CD;&#x7EB5;&#x7CFB;&#x7EDF;&#xFF09;&#x5728;&#x5C1D;&#x8BD5;WRMSR&#x64CD;&#x4F5C;&#x4E4B;&#x524D;&#x5C06;&#x6821;&#x9A8C;&#x5339;&#x914D;&#x8FD0;&#x884C;&#x786C;&#x4EF6;&#x7684;&#x6B63;&#x786E;&#x66F4;&#x65B0;&#x5305;&#x3002;&#x4E3A;&#x4E86;&#x5B9E;&#x73B0;&#x8FD9;&#x4E2A;&#x76EE;&#x7684;&#xFF0C;&#x6BCF;&#x4E2A;microcode&#x66F4;&#x65B0;&#x5305;&#x7684;&#x5934;&#x90E8;&#x6709;&#x4E00;&#x4E2A;&#x66F4;&#x65B0;&#x5143;&#x4FE1;&#x606F;&#x3002;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x5934;&#x90E8;&#x5728;Intel&#x5F00;&#x53D1;&#x624B;&#x518C;&#x5377;3&#x63CF;&#x8FF0;&#x3002;&#x5305;&#x542B;3&#x4E2A;&#x76F8;&#x5173;&#x6821;&#x9A8C;&#x4FE1;&#x606F;&#xFF1A;microcode&#x4FEE;&#x8BA2;&#xFF0C;&#x5904;&#x7406;&#x5668;&#x7B7E;&#x540D;&#x548C;&#x5904;&#x7406;&#x5668;&#x6807;&#x5FD7;&#x3002;</p>
-<p>microcode&#x4FEE;&#x8BA2;&#x662F;&#x4E00;&#x4E2A;&#x9012;&#x589E;&#x7684;&#x7248;&#x672C;&#x53F7; - &#x4F60;&#x53EA;&#x80FD;&#x66F4;&#x65B0;&#x66F4;&#x9AD8;&#x7248;&#x672C;&#x7684;&#x8F6F;&#x4EF6;&#x5305;&#xFF08;&#x53EA;&#x80FD;&#x5347;&#x7EA7;&#x4E0D;&#x80FD;&#x964D;&#x7EA7;&#xFF09;&#x3002;BIOS&#x901A;&#x5E38;&#x901A;&#x8FC7;&#x4E00;&#x4E2A;&#x79F0;&#x4E3A;<code>IA32_UCODE_REV</code>&#x7684;<code>RDMSR</code>&#x8C03;&#x7528;&#x6765;&#x5C55;&#x5F00;&#x5F53;&#x524D;microcode&#x8BA2;&#x6B63;&#xFF0C;&#x7136;&#x540E;&#x5BF9;&#x6BD4;&#x66F4;&#x65B0;&#x5305;&#x5934;&#x90E8;&#x7684;&#x8BA2;&#x6B63;&#x53F7;&#x3002;</p>
-<p>&#x5904;&#x7406;&#x5668;&#x7B7E;&#x540D;&#x662F;&#x4E00;&#x4E2A;microcode&#x5C06;&#x8981;&#x8865;&#x4E01;&#x7684;&#x786C;&#x4EF6;&#x578B;&#x53F7;&#x7684;&#x552F;&#x4E00;&#x6807;&#x8BC6;&#x3002;&#x8FD9;&#x4E2A;&#x8FD0;&#x884C;&#x786C;&#x4EF6;&#x7684;&#x7B7E;&#x540D;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4F7F;&#x7528;<code>CPUID</code>&#x6307;&#x4EE4;&#x6765;&#x83B7;&#x5F97;&#xFF0C;&#x7136;&#x540E;&#x5BF9;&#x6BD4;microcode&#x5934;&#x90E8;&#x7684;&#x5904;&#x7406;&#x5668;&#x5361;&#x540D;&#x3002;&#x5BF9;&#x5E94;Intel&#xFF0C;&quot;&#x6BCF;&#x4E2A;microcode&#x66F4;&#x65B0;&#x662F;&#x5BF9;&#x4E8E;&#x7ED9;&#x5B9A;&#x5904;&#x7406;&#x5668;&#x5BB6;&#x65CF;&#xFF0C;&#x6269;&#x5C55;&#x6A21;&#x578B;&#xFF0C;&#x7C7B;&#x578B;&#xFF0C;&#x578B;&#x53F7;&#x7B49;&#x6765;&#x7B7E;&#x540D;&quot;&#x3002;&#x5904;&#x7406;&#x5668;&#x6807;&#x5FD7;&#x5B57;&#x6BB5;&#x7C7B;&#x4F3C;&#xFF0C;Intel&#x8BF4;&quot;BIOS&#x4F7F;&#x7528;&#x5904;&#x7406;&#x5668;&#x6807;&#x5FD7;&#x4E3A;&#x6765;&#x7ED3;&#x5408;MSR(17H)&#x7684;&#x5E73;&#x53F0;ID&#x6765;&#x786E;&#x5B9A;&#x66F4;&#x65B0;&#x662F;&#x5426;&#x7B26;&#x5408;&#x5F53;&#x524D;&#x5904;&#x7406;&#x5668;&quot;&#x3002;</p>
-<p>&#x4E00;&#x65E6;microcode&#x66F4;&#x65B0;&#x901A;&#x8FC7;<code>IA32_UCODE_WRITE</code>&#x5B8C;&#x6210;&#xFF0C;BIOS&#x901A;&#x5E38;&#x53D1;&#x51FA;<code>CPUID</code>&#x6307;&#x4EE4;&#x7136;&#x540E;&#x8BFB;&#x53D6;<code>IA32_UCODE_REV</code>&#x7684;<code>MSR</code>&#x3002;&#x5982;&#x679C;&#x83B7;&#x5F97;&#x7684;&#x4FEE;&#x8BA2;&#x7248;&#x672C;&#x53F7;&#x589E;&#x52A0;&#x4E86;&#xFF0C;&#x5C31;&#x8868;&#x793A;&#x8865;&#x4E01;&#x6B63;&#x786E;&#x5B8C;&#x6210;&#x3002;</p>
-<h1 id="&#x5982;&#x4F55;&#x66F4;&#x65B0;">&#x5982;&#x4F55;&#x66F4;&#x65B0;</h1>
-<p>&#x4ECE;2008&#x5E74;&#x5F00;&#x59CB;&#xFF0C;Intel&#x5468;&#x671F;&#x6027;&#x53D1;&#x5E03;&#x5305;&#x542B;&#x6BCF;&#x4E2A;&#x5904;&#x7406;&#x5668;&#x7684;&#x6700;&#x65B0;&#x66F4;&#x65B0;&#x7684;DAT&#x6587;&#x4EF6;&#x3002;&#x5728;&#x6B64;&#x4E4B;&#x524D;&#xFF0C;microcode&#x66F4;&#x65B0;&#x6570;&#x636E;&#x5305;&#x662F;&#x901A;&#x8FC7;&#x5F00;&#x6E90;&#x5DE5;&#x5177;<code>microcode_ctl</code>&#x7684;&#x4E00;&#x90E8;&#x5206;&#x6765;&#x53D1;&#x5E03;&#x7684;&#x3002;</p>
-<p>Red Hat Enterprise Linux&#x7CFB;&#x7EDF;&#x6709;&#x4E00;&#x4E2A;<code>microcode_ctl</code>&#x8F6F;&#x4EF6;&#x5305;&#xFF0C;&#x63D0;&#x4F9B;&#x4E86;&#x66F4;&#x65B0; <code>x86/x86-64</code> CPU microcode&#x7684;&#x5DE5;&#x5177;&#xFF0C;&#x9ED8;&#x8BA4;&#x7CFB;&#x7EDF;&#x5DF2;&#x7ECF;&#x5B89;&#x88C5;&#x3002;&#x8FD9;&#x4E2A;&#x8F6F;&#x4EF6;&#x5305;&#x5305;&#x542B;&#x4E86;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x53D1;&#x884C;&#x7248;&#x672C;&#x66F4;&#x65B0;&#x7684;Intel microcode&#xFF0C;&#x6587;&#x4EF6;&#x5B58;&#x50A8;&#x4F4D;&#x7F6E;&#x5728; <code>/lib/firmware/intel-ucode/</code> &#x76EE;&#x5F55;&#x4E0B;&#x3002;&#xFF08;&#x6839;&#x636E;&#x53D1;&#x884C;&#x7248;&#x672C;&#xFF0C;&#x4E5F;&#x53EF;&#x80FD;&#x5C06;&#x66F4;&#x65B0;&#x7684;microcode&#x5B58;&#x653E;&#x5728;<code>/etc/firmware</code>&#x76EE;&#x5F55;&#xFF09;&#x3002;&#x672A;&#x6765;&#x7248;&#x672C;&#x4F1A;&#x91C7;&#x7528;<code>kernel-firmware</code>&#x65B9;&#x5F0F;&#x6765;&#x53D1;&#x5E03;&#x3002;(&#x53C2;&#x8003;<a href="https://fedorahosted.org/microcode_ctl/" target="_blank">microcode_ctl: tool to update x86/x86-64 CPU microcode</a>)</p>
-<p>Intel&#x9A71;&#x52A8;&#x4E0B;&#x8F7D;&#x4E2D;&#x5FC3;&#x63D0;&#x4F9B;&#x4E86;<a href="https://downloadcenter.intel.com/search?keyword=Linux+Processor+Microcode+Data+File" target="_blank">Linux Processor Microcode Data File</a>&#x4E0B;&#x8F7D;&#xFF0C;&#x53EF;&#x4EE5;&#x53CA;&#x65F6;&#x66F4;&#x65B0;Linux&#x7CFB;&#x7EDF;&#x7684;&#x5904;&#x7406;&#x5668;&#x5FAE;&#x4EE3;&#x7801;&#x3002;&#x4E0B;&#x8F7D;&#x7684;&#x5FAE;&#x4EE3;&#x7801;&#x89E3;&#x538B;&#x7F29;&#x540E;&#x662F;&#x4E00;&#x4E2A; <code>microcode.dat</code> &#x6587;&#x4EF6;&#x3002;</p>
-<p>&#x53C2;&#x8003;<a href="https://wiki.gentoo.org/wiki/Intel_microcode" target="_blank">Gentoo Linux wiki: Intel microcode</a>&#xFF0C;&#x5BF9;&#x4E8E;Intel Haswell&#x5904;&#x7406;&#x5668;&#xFF0C;&#x8981;&#x6C42;&#x5148;&#x52A0;&#x8F7D;microcode&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;&#x6A21;&#x5757;&#x7F16;&#x8BD1;&#xFF0C;&#x8981;&#x76F4;&#x63A5;&#x7F16;&#x8BD1;&#x8FDB;&#x5185;&#x6838;&#xFF0C;&#x5185;&#x6838;&#x914D;&#x7F6E;&#x8981;&#x6C42;</p>
-<pre><code class="lang-bash">CONFIG_MICROCODE_EARLY=y
-</code></pre>
-<p>micorcode&#x9700;&#x8981;&#x901A;&#x8FC7;<code>bootloader</code>&#x52A0;&#x8F7D;&#xFF0C;</p>
-<h1 id="&#x9A8C;&#x8BC1;microcode&#x5728;&#x542F;&#x52A8;&#x65F6;&#x5DF2;&#x7ECF;&#x66F4;&#x65B0;">&#x9A8C;&#x8BC1;microcode&#x5728;&#x542F;&#x52A8;&#x65F6;&#x5DF2;&#x7ECF;&#x66F4;&#x65B0;</h1>
-<p>&#x4F7F;&#x7528;<code>dmesg</code>&#x547D;&#x4EE4;&#x68C0;&#x67E5;&#x7CFB;&#x7EDF;&#x542F;&#x52A8;&#x65F6;&#x662F;&#x5426;&#x66F4;&#x65B0;&#x4E86;microcode</p>
-<pre><code class="lang-bash">dmesg | grep microcode
-</code></pre>
-<p>&#x663E;&#x793A;&#x8F93;&#x51FA;&#x7C7B;&#x4F3C;&#x5982;&#x4E0B;</p>
-<pre><code class="lang-bash">[    <span class="hljs-number">0.855704</span>] microcode: CPU0 sig=<span class="hljs-number">0</span>x206d7, pf=<span class="hljs-number">0</span>x1, revision=<span class="hljs-number">0</span>x710
-[    <span class="hljs-number">0.855898</span>] microcode: CPU1 sig=<span class="hljs-number">0</span>x206d7, pf=<span class="hljs-number">0</span>x1, revision=<span class="hljs-number">0</span>x710
-[    <span class="hljs-number">0.856194</span>] microcode: CPU2 sig=<span class="hljs-number">0</span>x206d7, pf=<span class="hljs-number">0</span>x1, revision=<span class="hljs-number">0</span>x710
-...
-[    <span class="hljs-number">0.860201</span>] microcode: CPU22 sig=<span class="hljs-number">0</span>x206d7, pf=<span class="hljs-number">0</span>x1, revision=<span class="hljs-number">0</span>x710
-[    <span class="hljs-number">0.860403</span>] microcode: CPU23 sig=<span class="hljs-number">0</span>x206d7, pf=<span class="hljs-number">0</span>x1, revision=<span class="hljs-number">0</span>x710
-[    <span class="hljs-number">0.860635</span>] microcode: Microcode Update Driver: v2.<span class="hljs-number">00</span> &lt;tigran@aivazian.fsnet.co.uk&gt;, Peter Oruba
-</code></pre>
-<p>&#x4F7F;&#x7528;&#x547D;&#x4EE4; <code>cat /proc/cpuinfo</code> &#x53EF;&#x4EE5;&#x770B;&#x5230;cpu&#x4FE1;&#x606F;</p>
-<pre><code class="lang-bash">processor    : <span class="hljs-number">23</span>
-vendor_id    : GenuineIntel
-cpu family    : <span class="hljs-number">6</span>
-model        : <span class="hljs-number">45</span>
-model name    : Intel(R) Xeon(R) CPU E5-<span class="hljs-number">2630</span> <span class="hljs-number">0</span> @ <span class="hljs-number">2.30</span>GHz
-stepping    : <span class="hljs-number">7</span>
-microcode    : <span class="hljs-number">0</span>x710
-cpu MHz        : <span class="hljs-number">2299.910</span>
-</code></pre>
-<p>&#x5176;&#x4E2D;<code>microcode</code>&#x7248;&#x672C;&#x663E;&#x793A;<code>0x710</code>&#x5C31;&#x662F;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x542F;&#x52A8;&#x65F6;&#x52A0;&#x8F7D;&#x7684;microcode&#x66F4;&#x65B0;&#x7684;&#x7248;&#x672C;&#x3002;</p>
-<h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
+                        <h1 id="&#x4EC0;&#x4E48;&#x662F;kms">&#x4EC0;&#x4E48;&#x662F;KMS</h1>
+<p>&#x5185;&#x6838;&#x6A21;&#x5F0F;&#x8BBE;&#x7F6E;&#xFF08;Kernel Mode Setting, KMS&#xFF09;&#x662F;&#x4E00;&#x79CD;&#x5728;&#x5185;&#x6838;&#x7A7A;&#x95F4;&#x800C;&#x4E0D;&#x662F;&#x7528;&#x6237;&#x7A7A;&#x95F4;&#x8BBE;&#x7F6E;&#x663E;&#x793A;&#x5206;&#x8FA8;&#x7387;&#x548C;&#x989C;&#x8272;&#x6DF1;&#x5EA6;&#x7684;&#x65B9;&#x5F0F;&#x3002;</p>
+<p>Linux&#x5185;&#x6838;&#x5728;frameibuffer&#x4E0A;&#x5B9E;&#x73B0;KMS&#x6FC0;&#x6D3B;&#x539F;&#x751F;&#x7684;&#x5206;&#x8FA8;&#x7387;&#x5E76;&#x5141;&#x8BB8;&#x5373;&#x65F6;&#x63A7;&#x5236;&#x53F0;&#xFF08;tty&#xFF09;&#x5207;&#x6362;&#x3002;KMS&#x8FD8;&#x6FC0;&#x6D3B;&#x4E86;&#x65B0;&#x6280;&#x672F;&#xFF08;&#x4F8B;&#x5982;DRI2&#xFF09;&#x4EE5;&#x51CF;&#x5C11;&#x5EF6;&#x8FDF;&#x548C;&#x589E;&#x52A0;3D&#x6027;&#x80FD;&#xFF0C;&#x751A;&#x81F3;&#x5185;&#x6838;&#x7A7A;&#x95F4;&#x8282;&#x80FD;&#x3002;</p>
+<blockquote>
+<p>NVIDIA&#x548C;catalyst&#x9A71;&#x52A8;&#x4E5F;&#x5728;&#x5185;&#x6838;&#x6A21;&#x5F0F;&#x5B9E;&#x73B0;KMS&#xFF0C;&#x4F46;&#x662F;&#x5B83;&#x4EEC;&#x5E76;&#x4E0D;&#x4F7F;&#x7528;&#x5185;&#x5EFA;&#x7684;&#x5185;&#x6838;&#x5B9E;&#x73B0;&#xFF0C;&#x5B83;&#x4EEC;&#x7F3A;&#x5C11;&#x4E00;&#x79CD;&#x9488;&#x5BF9;&#x9AD8;&#x5206;&#x8FA8;&#x7387;&#x63A7;&#x5236;&#x53F0;&#x7684;fbdev&#x9A71;&#x52A8;&#x3002;</p>
+</blockquote>
+<h1 id="kms&#x80CC;&#x666F;">KMS&#x80CC;&#x666F;</h1>
+<p>&#x6700;&#x521D;&#xFF0C;&#x8BBE;&#x7F6E;&#x663E;&#x5361;&#x7684;&#x5DE5;&#x4F5C;&#x662F;&#x7531;X server&#x5B8C;&#x6210;&#x7684;&#x3002;&#x7531;&#x4E8E;&#x8FD9;&#x4E2A;&#x539F;&#x56E0;&#xFF0C;&#x5F88;&#x96BE;&#x5728;&#x865A;&#x62DF;&#x63A7;&#x5236;&#x53F0;&#x8BBE;&#x7F6E;&#x56FE;&#x5F62;&#xFF0C;&#x5E76;&#x4E14;&#x6BCF;&#x6B21;&#x4ECE;X&#x5207;&#x6362;&#x5230;&#x865A;&#x62DF;&#x63A7;&#x5236;&#x53F0;&#xFF08;ctrl+Alt+F1&#xFF09;&#xFF0C;X Server&#x9700;&#x8981;&#x5C06;&#x663E;&#x5361;&#x63A7;&#x5236;&#x6743;&#x8FD4;&#x56DE;&#x7ED9;&#x5185;&#x6838;&#xFF0C;&#x8FD9;&#x5C06;&#x5BFC;&#x81F4;&#x7F13;&#x6162;&#x548C;&#x95EA;&#x70C1;&#x3002;&#x5F53;&#x63A7;&#x5236;&#x6743;&#x4ECE;&#x63A7;&#x5236;&#x53F0;&#x8FD4;&#x56DE;&#x7ED9;X Server&#x4E5F;&#x5B58;&#x5728;&#x76F8;&#x540C;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x4F7F;&#x7528;Kernel Mode Setting&#xFF08;KMS&#xFF09;&#xFF0C;&#x5185;&#x6838;&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x8BBE;&#x7F6E;&#x663E;&#x5361;&#x6A21;&#x5F0F;&#x3002;&#x8FD9;&#x4F7F;&#x5F97;X&#x5207;&#x6362;&#x52A0;&#x5FEB;&#x3002;</p>
+<h1 id="&#x5B89;&#x88C5;">&#x5B89;&#x88C5;</h1>
+<p>&#x6CE8;&#x610F;&#xFF0C;&#x4EE5;&#x4E0B;&#x9009;&#x9879;&#x5E94;&#x8BE5;&#x5728;&#x4F7F;&#x7528;KMS&#x65F6;&#x5019;&#x7981;&#x6B62;&#xFF1A;</p>
 <ul>
-<li><a href="http://inertiawar.com/microcode/" target="_blank">Notes on Intel Microcode Updates</a> - &#x8FD9;&#x7BC7;&#x6587;&#x6863;&#x975E;&#x5E38;&#x8BE6;&#x5C3D;&#xFF0C;&#x5EFA;&#x8BAE;&#x9605;&#x8BFB;</li>
-<li><a href="https://wiki.archlinux.org/index.php/microcode" target="_blank">ArchLinux wiki: Microcode</a></li>
-<li><a href="https://wiki.gentoo.org/wiki/Intel_microcode" target="_blank">Intel microcode</a></li>
+<li>&#x4EFB;&#x4F55; vga= &#x542F;&#x52A8;&#x53C2;&#x6570;&#x90FD;&#x4F1A;&#x548C;&#x901A;&#x8FC7;KMS&#x8BBE;&#x7F6E;&#x539F;&#x751F;&#x5C4F;&#x5E55;&#x5206;&#x8FA8;&#x7387;&#x51B2;&#x7A81;</li>
+<li>&#x4EFB;&#x4F55; video= &#x542F;&#x52A8;&#x914D;&#x7F6E;framebuffer&#x90FD;&#x4F1A;&#x548C;&#x9A71;&#x52A8;&#x51B2;&#x7A81;</li>
+<li>&#x4EFB;&#x4F55;&#x5176;&#x4ED6; framebuffer &#x9A71;&#x52A8;</li>
+</ul>
+<h1 id="kms&#x542F;&#x52A8;">KMS&#x542F;&#x52A8;</h1>
+<p>Intel&#xFF0C; Nouveau &#x548C; ATI &#x9A71;&#x52A8;&#x603B;&#x662F;&#x81EA;&#x52A8;&#x6FC0;&#x6D3B;&#x6240;&#x4EE5;&#x82AF;&#x7247;&#x7684;KMS&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x9700;&#x8981;&#x624B;&#x5DE5;&#x5B89;&#x88C5;&#x3002;</p>
+<p>&#x79C1;&#x6709;&#x7684; NVIDIA &#x548C; AMD Catalyst&#x9A71;&#x52A8;&#x4E0D;&#x80FD;&#x7528;&#x4E8E;&#x5F00;&#x6E90;&#x9A71;&#x52A8;&#x5806;&#x6808;&#x3002;&#x8981;&#x4F7F;&#x7528;KMS&#xFF0C;&#x4F60;&#x9700;&#x8981;&#x7528;&#x5F00;&#x6E90;&#x9A71;&#x52A8;&#x6765;&#x66FF;&#x4EE3;&#x79C1;&#x6709;&#x9A71;&#x52A8;&#x3002;</p>
+<p>&#x4E3A;&#x4E86;&#x5728;&#x542F;&#x52A8;&#x8FC7;&#x7A0B;&#x4E2D;&#x5BB9;&#x6613;&#x52A0;&#x8F7D;KMS&#xFF0C;&#x9700;&#x8981;&#x5C06; radeon &#xFF08;ATI/AMD&#x663E;&#x5361;&#xFF09;&#xFF0C; i915 &#xFF08;Intel&#x96C6;&#x6210;&#x663E;&#x5361;&#xFF09;&#x6216;&#x8005; nouveau&#xFF08;Nvidia&#x663E;&#x5361;&#xFF09;&#x52A0;&#x5165;&#x5230; /etc/mkinitcpio.conf &#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x7684; MODULES &#x884C;&#xFF0C;&#x4F8B;&#x5982;</p>
+<pre><code>MODULES=&quot;... i915 ...&quot;
+</code></pre><blockquote>
+<p>&#x6CE8;&#x610F;&#xFF1A;Intel&#x7528;&#x6237;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x5C06; intel_agp &#x8BBE;&#x7F6E;&#x6DFB;&#x52A0;&#x5728; i915 &#x4E4B;&#x524D;&#xFF0C;&#x4EE5;&#x4FBF;&#x80FD;&#x591F;&#x652F;&#x6301;ACPI errors&#x3002;</p>
+</blockquote>
+<p>&#x5982;&#x679C;&#x4F60;&#x4F7F;&#x7528;&#x5B9A;&#x5236;&#x7684;EDID&#x6587;&#x4EF6;&#xFF08;&#x4E0D;&#x80FD;&#x5728;&#x5185;&#x5EFA;&#x5206;&#x8FA8;&#x7387;&#x8C03;&#x6574;&#xFF09;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x5C06;&#x5176;&#x5D4C;&#x5165;&#x5230;initramfs &#x3002;&#x914D;&#x7F6E; /etc/mkinitcpio.conf &#x5982;&#x4E0B;</p>
+<pre><code>FILES=&quot;/usr/lib/firmware/edid/your_edid.bin&quot;
+</code></pre><p>&#x7136;&#x540E;&#x91CD;&#x5EFA;&#x5185;&#x6838;&#x6620;&#x50CF;</p>
+<pre><code>mkinitcpio -p &lt;name of your kernel preset; e.g. linux&gt;
+</code></pre><h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
+<ul>
+<li><a href="https://wiki.archlinux.org/index.php/Kernel_mode_setting" target="_blank">Arch Linux - Kernel mode setting</a></li>
 </ul>
 
                     
@@ -4403,47 +4501,47 @@ cpu MHz        : <span class="hljs-number">2299.910</span>
         </div>
 
         
-        <a href="../../../os/linux/kernel/ksm.html" class="navigation navigation-prev " aria-label="Previous page: Linux内核同页合并"><i class="fa fa-angle-left"></i></a>
+        <a href="../../../../os/linux/kernel/driver/index.html" class="navigation navigation-prev " aria-label="Previous page: 驱动"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../../os/linux/kernel/process_stat_indicates.html" class="navigation navigation-next " aria-label="Next page: 进程状态标志的含义"><i class="fa fa-angle-right"></i></a>
+        <a href="../../../../os/linux/kernel/memory/index.html" class="navigation navigation-next " aria-label="Next page: 内存"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
 
         
-<script src="../../../gitbook/app.js"></script>
+<script src="../../../../gitbook/app.js"></script>
 
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
     
 
     
-    <script src="../../../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
+    <script src="../../../../gitbook/plugins/gitbook-plugin-disqus/plugin.js"></script>
     
 
     
-    <script src="../../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
+    <script src="../../../../gitbook/plugins/gitbook-plugin-toggle-chapters/toggle.js"></script>
     
 
     
-    <script src="../../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
+    <script src="../../../../gitbook/plugins/gitbook-plugin-search/lunr.min.js"></script>
     
 
     
-    <script src="../../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
+    <script src="../../../../gitbook/plugins/gitbook-plugin-search/search.js"></script>
     
 
     
-    <script src="../../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
+    <script src="../../../../gitbook/plugins/gitbook-plugin-sharing/buttons.js"></script>
     
 
     
-    <script src="../../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
+    <script src="../../../../gitbook/plugins/gitbook-plugin-fontsettings/buttons.js"></script>
     
 
     
-    <script src="../../../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
+    <script src="../../../../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
     
 
 <script>

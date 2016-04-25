@@ -36,7 +36,7 @@ netstat -an | awk '{print $6}' | sort | uniq -c | sort -rn
 	  1 FIN_WAIT2
       1 FIN_WAIT1
      81 LAST_ACK
-...    
+...
 ```
 
 检查`tcp_max_tw_buckets`

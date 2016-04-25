@@ -1,4 +1,4 @@
-由于使用nVidia开源驱动`nouveau`驱动感觉显示刷新有些缓慢，但是使用[闭源nVidia驱动](nvcidia.md)又存在无法正常启动的问题，所以准备切换到Intel开源驱动。
+由于使用nVidia开源驱动`nouveau`驱动感觉显示刷新有些缓慢，但是使用[闭源nVidia驱动](nvidia.md)又存在无法正常启动的问题，所以准备切换到Intel开源驱动。
 
 [MacBookPro11,x](https://wiki.archlinux.org/index.php/MacBookPro11,x) 提到了建议安装Microcode(`intel-ucode`)，特别是使用Nvidia驱动，建议参考[Microcode](https://wiki.archlinux.org/index.php/Microcode)
 
