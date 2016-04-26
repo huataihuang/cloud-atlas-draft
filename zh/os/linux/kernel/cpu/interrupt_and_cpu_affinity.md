@@ -134,7 +134,7 @@ cat /proc/irq/18/smp_affinity
 ff
 ```
 
-表示中断将分布到`8`个内核上（每个`f`代表了4个核，也就是`1111`）
+`smp_affinity`是16进制表示，f就是二进制的`1111` ，表示4个cpu都会参与处理中断。这里`ff`表示有8个cpu核心同时处理中断（实际我的笔记本是i7，双核，每个核有4个超线程）
 
 这个中断分布的cpu核也可以从 `smp_affinity_list` 看到（是数字表示）
 
@@ -171,7 +171,9 @@ cat /proc/irq/18/smp_affinity_list
  117:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI-edge      mpt2sas0-msix15
 ```
 
-**原因是因为没有启用`irqbalance`服务**
+**原因是没有启用`irqbalance`服务**，默认的的`mpt2sas0-msix`队列中断都被绑定到`cpu0`。后文中启动了`irqbalance`服务，设置了每个`mpt2sas0-msix`的中断到不同的cpu上，实现了中断分散。
+
+居然有[一种将sas控制器中断绑定到cpu的自动化方法](http://www.google.com/patents/CN104572282A?cl=zh)的专利申请，实在有些无语。
 
 # IRQ Balance
 
@@ -194,24 +196,76 @@ service irqbalance start
 经过一些磁盘文件操作后，可以看到前面案例中`mpt2sas0`的中断开始分散到各个处理器上
 
 ```bash
- 101:   93571571          0          0          0          0          0          0          0          0      33484          0         61         83        155         69          0          0          0          0          0          0          0          0          0  IR-PCI-MSI-edge      mpt2sas0-msix0
- 102:   27360106          0          0          0          0         24          0          0      34881          0        487          0         59          0          0          0          0          0          0         38          0          0          0          0  IR-PCI-MSI-edge      mpt2sas0-msix1
- 103:   26262780          0          0          0          0          0          0      35722          0          0          0         55          0         91         59          0          0          0          0        387          0          0          0          0  IR-PCI-MSI-edge      mpt2sas0-msix2
- 104:   47063144          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0       2776          0          0          0  IR-PCI-MSI-edge      mpt2sas0-msix3
- 105:   46148644          0          0          0          0          0          0          0          0          0          0          0          0          0          0      19290          0          0          0          0          0          0          0          0  IR-PCI-MSI-edge      mpt2sas0-msix4
- 106:   46304729          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0       9608          0          0  IR-PCI-MSI-edge      mpt2sas0-msix5
- 107:   10791269          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0        729          0          0          0          0          0          0          0  IR-PCI-MSI-edge      mpt2sas0-msix6
- 108:    8256517          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0       5342          0  IR-PCI-MSI-edge      mpt2sas0-msix7
- 109:    8885189          0          0          0          0          0          0          0          0          0          0       1812          0          0          0          0          0       1976          0          0          0       2241          0          0  IR-PCI-MSI-edge      mpt2sas0-msix8
- 110:   23529234          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0        398  IR-PCI-MSI-edge      mpt2sas0-msix9
- 111:   29429844          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI-edge      mpt2sas0-msix10
- 112:   23132297          0          0          0          0          0         50          0          0          0          0          0          0         16       4572          0          0          0          0          0          0          0          0          0  IR-PCI-MSI-edge      mpt2sas0-msix11
- 113:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI-edge      mpt2sas0-msix12
- 114:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI-edge      mpt2sas0-msix13
- 115:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI-edge      mpt2sas0-msix14
- 116:          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0  IR-PCI-MSI-edge      mpt2sas0-msix15
+            CPU0       CPU1       CPU2       CPU3       CPU4       CPU5       CPU6       CPU7       CPU8       CPU9       CPU10      CPU11      CPU12      CPU13      CPU14      CPU15      CPU16      CPU17      CPU18      CPU19      CPU20      CPU21      CPU22      CPU23      
+
+ 101:   93571571          0          0          0          0          0          0          0          0     150968          0         61         83        155         69          0          0          0          0          0          0          0          0          0  IR-PCI-MSI-edge      mpt2sas0-msix0
+ 102:   27360106          0          0          0          0         24          0          0     130209          0        487          0         59          0          0          0          0          0          0         38          0          0          0          0  IR-PCI-MSI-edge      mpt2sas0-msix1
+ 103:   26262780          0          0          0          0          0          0     132902          0          0          0         55          0         91         59          0          0          0          0        387          0          0          0          0  IR-PCI-MSI-edge      mpt2sas0-msix2
+ 104:   47063144          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0      67648          0          0          0  IR-PCI-MSI-edge      mpt2sas0-msix3
+ 105:   46148644          0          0          0          0          0          0          0          0          0          0          0          0          0          0     125707          0          0          0          0          0          0          0          0  IR-PCI-MSI-edge      mpt2sas0-msix4
+ 106:   46304729          0          0          0          0          0        123          0          0          0          0          0          0          0      86076       5361          0        181          0          0          0      33378          0          0  IR-PCI-MSI-edge      mpt2sas0-msix5
+ 107:   10791398          0          0          0          0          0        322          0          0          0          0      10795          0          0       1286          0       3381         86          0         49          0         98      31043          0  IR-PCI-MSI-edge      mpt2sas0-msix6
+ 108:    8258858          0          0          0          0          0       2770          0          0          0          0          0          0         39      21046          0       7394       1037          0        427          0       9797       8637          0  IR-PCI-MSI-edge      mpt2sas0-msix7
+ 109:    8885189          0          0          0          0          0          0          0          0          0          0      63530          0          0          0          0      11010       2050          0          0          0       2241          0          0  IR-PCI-MSI-edge      mpt2sas0-msix8
+ 110:   23529234          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0          0      25187  IR-PCI-MSI-edge      mpt2sas0-msix9
+ 111:   29442882          0          0          0          0          0        231          0          0          0          0          0          0          0          0          0      56418          0          0          0          0      77554          0          0  IR-PCI-MSI-edge      mpt2sas0-msix10
 ```
+
+检查`mpt2sas0`的中断`smp_affinity`:
+
+```bash
+#for i in {101..111};do cat /proc/irq/$i/smp_affinity;done
+000200
+000100
+000080
+100000
+008000
+008000
+400000
+200000
+000800
+800000
+010000
+```
+
+可以看到`irqbalance`启动后，调整了每个中断的`smp_affinity`设置，我们可以核对一下是设置`smp_affinity`是否和`/proc/interrupts`观察是否一致。
+
+举例:
+
+| 中断 | smp_affinity | cpu |
+| :----: | :----: | :----: |
+| `101` | `000200` | `0000 0000 0000 0010 0000 0000` |
+| `102` | `000100` | `0000 0000 0000 0001 0000 0000` |
+| `103` | `000080` | `0000 0000 0000 0000 1000 0000` |
+| `104` | `100000` | `0001 0000 0000 0000 0000 0000` |
+| `105` | `008000` | `0000 0000 1000 0000 0000 0000` |
+| `106` | `008000` | `0000 0000 1000 0000 0000 0000` |
+| `107` | `400000` | `0100 0000 0000 0000 0000 0000` |
+| `108` | `200000` | `0010 0000 0000 0000 0000 0000` |
+| `109` | `000080` | `0000 0000 0000 0000 1000 0000` |
+| `110` | `000800` | `0000 0000 0000 1000 0000 0000` |
+| `111` | `010000` | `0000 0001 0000 0000 0000 0000` |
+
+对于32核以上系统，用逗号分隔不连续的32核。例如，对于64核系统中IRQ 40
+
+```bash
+# cat /proc/irq/40/smp_affinity
+ffffffff,ffffffff
+```
+
+ 如果要在上述64核系统的后32核上提供IRQ 40，执行
+ 
+ ```bash
+# echo 0xffffffff,00000000 > /proc/irq/40/smp_affinity
+# cat /proc/irq/40/smp_affinity
+ffffffff,00000000
+```
+
+# 软中断
+
+参考 [softirq](softirq.md)
 
 # 参考
 
 * [Introduction to Linux Interrupts and CPU SMP Affinity](http://www.thegeekstuff.com/2014/01/linux-interrupts/)
+* [中断和 IRQ 调节](https://access.redhat.com/documentation/zh-CN/Red_Hat_Enterprise_Linux/6/html/Performance_Tuning_Guide/s-cpu-irq.html)
