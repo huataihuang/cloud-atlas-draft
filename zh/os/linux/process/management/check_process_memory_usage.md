@@ -57,8 +57,29 @@ total kB          192320   16360   12512
 
 `pmap`是从 `/proc/PID/maps` 和 `/proc/PID/smaps` 中获取的信息。
 
+# 检查进程的内存使用并按照内存使用量排序
+
+`ps`的参数`--sort spec`可以指定列进行升序和降序排列
+
+```bash
+--sort spec     specify sorting order. Sorting syntax is [+|-]key[,[+|-]key[,...]] 
+                Choose a multi-letter key from the STANDARD FORMAT SPECIFIERS section. 
+                The "+" is optional since default direction is increasing numerical or 
+                lexicographic order. Identical to k. For example:
+
+                ps jax --sort=uid,-ppid,+pid
+```
+
+例如要检查系统中进程使用内存从高到低排列
+
+```bash
+ps aux --sort -rss
+```
 
 # 参考
 
 * [How to find the memory consumption of a particular process in linux for every 5 seconds](http://stackoverflow.com/questions/14641553/how-to-find-the-memory-consumption-of-a-particular-process-in-linux-for-every-5)
 * [Actual memory usage of a process](http://unix.stackexchange.com/questions/164653/actual-memory-usage-of-a-process)
+* [How to measure actual memory usage of an application or process?](http://stackoverflow.com/questions/131303/how-to-measure-actual-memory-usage-of-an-application-or-process)
+* [Understanding memory usage on Linux](http://virtualthreads.blogspot.com/2006/02/understanding-memory-usage-on-linux.html)
+* [Linux process memory usage - how to sort the ps command](http://alvinalexander.com/linux/unix-linux-process-memory-sort-ps-command-cpu)

@@ -8,7 +8,7 @@
         <title>Xen Hypervisor | 云图</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 2.6.7">
+        <meta name="generator" content="GitBook 2.6.5">
         
         
         <meta name="HandheldFriendly" content="true"/>
@@ -49,7 +49,7 @@
         
     
     
-    <link rel="next" href="../../../virtual/docker/index.html" />
+    <link rel="next" href="../../../virtual/xen/architecture/hypervisor_debug.html" />
     
     
     <link rel="prev" href="../../../virtual/xen/architecture/index.html" />
@@ -65,7 +65,7 @@
         data-chapter-title="Xen Hypervisor"
         data-filepath="virtual/xen/architecture/hypervisor.md"
         data-basepath="../../.."
-        data-revision="Mon May 02 2016 22:49:39 GMT+0800 (CST)"
+        data-revision="Fri May 06 2016 13:49:58 GMT+0800 (CST)"
         data-innerlanguage="zh">
     
 
@@ -110,9 +110,17 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.1" data-path="server/ipmi/ERADME.html">
+        <li class="chapter " data-level="1.1" data-path="server/ipmi/index.html">
             
-            <span><b>1.1.</b> IPMI</span>
+                
+                    <a href="../../../server/ipmi/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                        IPMI
+                    </a>
             
             
             <ul class="articles">
@@ -232,6 +240,21 @@
                             <b>2.1.2.1.1.</b>
                         
                         进程状态标志的含义
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2.1.2" data-path="os/linux/process/management/check_process_memory_usage.html">
+            
+                
+                    <a href="../../../os/linux/process/management/check_process_memory_usage.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.1.2.</b>
+                        
+                        检查进程的内存使用
                     </a>
             
             
@@ -892,6 +915,21 @@
                             <b>2.1.6.1.2.</b>
                         
                         混合HDD/SDD的IO scheduler设置
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.6.1.3" data-path="os/linux/storage/disk/block_dump_monitor_linux_io.html">
+            
+                
+                    <a href="../../../os/linux/storage/disk/block_dump_monitor_linux_io.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.6.1.3.</b>
+                        
+                        通过block_dump实时监测LinuxIO
                     </a>
             
             
@@ -2375,6 +2413,36 @@
             
         </li>
     
+        <li class="chapter " data-level="7.3.1.2" data-path="virtual/xen/architecture/hypervisor_debug.html">
+            
+                
+                    <a href="../../../virtual/xen/architecture/hypervisor_debug.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.1.2.</b>
+                        
+                        Xen Hypervisor Debug
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="7.3.1.3" data-path="virtual/xen/architecture/xenstore_xenstored.html">
+            
+                
+                    <a href="../../../virtual/xen/architecture/xenstore_xenstored.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.3.1.3.</b>
+                        
+                        XenStore和xenstored
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -3790,6 +3858,21 @@
             
         </li>
     
+        <li class="chapter " data-level="11.8.3.2" data-path="develop/shell/utilities/produce_cpu_load.html">
+            
+                
+                    <a href="../../../develop/shell/utilities/produce_cpu_load.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.8.3.2.</b>
+                        
+                        对cpu施加负载
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -4540,7 +4623,7 @@
 <blockquote>
 <p><code>type-1</code>&#x4E5F;&#x79F0;&#x4E3A;<code>native</code>&#x6216;&#x8005;<code>bare-metal</code>&#xFF0C;&#x6B64;&#x65F6;hypervisor&#x76F4;&#x63A5;&#x8BBF;&#x95EE;&#x4E3B;&#x673A;&#x786C;&#x4EF6;&#x6765;&#x7BA1;&#x7406;guest&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x3002;&#x7531;&#x4E8E;&#x8FD9;&#x4E2A;&#x539F;&#x56E0;&#xFF0C;&#x4E5F;&#x79F0;&#x4E3A;<code>bare metal</code> hypervisor&#x3002;&#x8FD9;&#x65F6;&#xFF0C;guest&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x662F;&#x4F5C;&#x4E3A;&#x7269;&#x7406;&#x4E3B;&#x673A;&#x7684;&#x4E00;&#x4E2A;&#x8FDB;&#x7A0B;&#x6765;&#x8FD0;&#x884C;&#x7684;&#x3002;&#x76EE;&#x524D;&#x6D41;&#x884C;&#x7684;<code>type-1</code> hypervisor&#x6709;<code>Oracle VM Server for SPARC/x86</code>&#xFF0C;Citrix <code>XenServer</code>&#xFF0C;Microsoft <code>Hyper-V</code>&#x4EE5;&#x53CA;<code>VMware ESX/ESXi</code>&#x3002;</p>
 <p><code>type-2</code>&#x4E5F;&#x79F0;&#x4E3A;<code>hosted</code> hypervisor&#xFF0C;&#x6B64;&#x65F6;hypervisor&#x5728;&#x7269;&#x7406;&#x4E3B;&#x673A;&#x4E0A;&#x548C;&#x5176;&#x4ED6;&#x8FDB;&#x7A0B;&#x7C7B;&#x4F3C;&#x5176;&#x4ED6;&#x96C6;&#x6210;&#xFF0C;&#x6B64;&#x65F6;<code>type-2</code> hypervisor&#x4ECE;&#x7269;&#x7406;&#x4E3B;&#x673A;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E2D;&#x62BD;&#x8C61;&#x51FA;guest&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x3002;<code>VMware Workstation</code>&#xFF0C;<code>VMware Player</code>&#xFF0C;<code>VirtualBox</code>&#xFF0C;<code>QEMU</code>&#x90FD;&#x662F;&#x5178;&#x578B;&#x7684;<code>type-2</code> hypervisor&#x3002;</p>
-<p>&#x4E0D;&#x8FC7;&#xFF0C;&#x4E0A;&#x8FF0;&#x4E24;&#x79CD;hypervisor&#x7C7B;&#x578B;&#x5E76;&#x4E0D;&#x662F;&#x660E;&#x663E;&#x533A;&#x522B;&#x3002;Linux <code>kernel-base Virtual Machine</code>(<code>KVM</code>)&#x4EE5;&#x53CA;FreeBSD <code>bhyve</code>&#x90FD;&#x662F;&#x5185;&#x6838;&#x6A21;&#x5757;&#xFF0C;&#x53EF;&#x4EE5;&#x9AD8;&#x6821;&#x5730;&#x8F6C;&#x6362;&#x4E3B;&#x673A;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x6210;&#x4E3A;<code>type-1</code> hypervisor&#x3002;&#x4E0D;&#x8FC7;&#xFF0C;&#x7531;&#x4E8E;Linux&#x548C;FreeBSD&#x4F9D;&#x7136;&#x662F;&#x901A;&#x7528;&#x529F;&#x80FD;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x548C;VM&#x8D44;&#x6E90;&#x5E76;&#x884C;&#xFF0C;&#x6240;&#x4EE5;KVM&#x548C;bhyve&#x4F9D;&#x7136;&#x88AB;&#x89C6;&#x4E3A;<code>type-2</code> hypervisor&#x3002;</p>
+<p>&#x4E0D;&#x8FC7;&#xFF0C;&#x4E0A;&#x8FF0;&#x4E24;&#x79CD;hypervisor&#x7C7B;&#x578B;&#x5E76;&#x4E0D;&#x662F;&#x660E;&#x663E;&#x533A;&#x522B;&#x3002;Linux <code>kernel-base Virtual Machine</code>(<code>KVM</code>)&#x4EE5;&#x53CA;FreeBSD <code>bhyve</code>&#x90FD;&#x662F;&#x5185;&#x6838;&#x6A21;&#x5757;&#xFF0C;&#x53EF;&#x4EE5;&#x9AD8;&#x6548;&#x5730;&#x8F6C;&#x6362;&#x4E3B;&#x673A;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x6210;&#x4E3A;<code>type-1</code> hypervisor&#x3002;&#x4E0D;&#x8FC7;&#xFF0C;&#x7531;&#x4E8E;Linux&#x548C;FreeBSD&#x4F9D;&#x7136;&#x662F;&#x901A;&#x7528;&#x529F;&#x80FD;&#x7684;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x5176;&#x4ED6;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x548C;VM&#x8D44;&#x6E90;&#x5E76;&#x884C;&#xFF0C;&#x6240;&#x4EE5;KVM&#x548C;bhyve&#x4F9D;&#x7136;&#x88AB;&#x89C6;&#x4E3A;<code>type-2</code> hypervisor&#x3002;</p>
 <p>2012&#x5E74;&#xFF0C;Lynx Software Technologies&#x53D1;&#x5E03;&#x4E86;&#x4E00;&#x79CD;&#x65B0;&#x7684;&#x9AD8;&#x6027;&#x80FD;hypervisor&#x67B6;&#x6784;&#xFF0C;<code>type-0</code>&#xFF0C;&#x662F;&#x4E00;&#x79CD;&#x62BD;&#x8C61;&#x4E86;&#x6240;&#x6709;&#x4E00;&#x573A;&#x5904;&#x7406;&#x548C;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;/VM&#x670D;&#x52A1;&#x5230;&#x7528;&#x6237;&#x7A7A;&#x95F4;&#x7684;&#x786C;&#x4EF6;&#x865A;&#x62DF;&#x5316;&#x3002;&#x8FD9;&#x4E2A;&#x8BBE;&#x8BA1;&#x901A;&#x8FC7;&#x53BB;&#x9664;&#x4E86;&#x7528;&#x6237;&#x7A7A;&#x95F4;&#x7684;&#x529F;&#x80FD;&#x79FB;&#x9664;&#x4E86;&#x5728;&#x5C42;&#x6B21;&#x7ED3;&#x6784;&#xFF08;&#x5982;Linux KVM/ESXi&#xFF09;Kernel API(&#x4F8B;&#x5982; POSIX)&#x548C;I/O&#x5806;&#x6808;&#x3002;&#x8FD9;&#x79CD;&#x67B6;&#x6784;&#x901A;&#x8FC7;&#x53BB;&#x9664;&#x4E86;&#x7528;&#x6237;&#x7A7A;&#x95F4;&#x80FD;&#x529B;&#x505A;&#x5230;&#x4E86;&#x76F4;&#x63A5;&#x5C06;&#x6570;&#x636E;&#x4F20;&#x9012;&#x7ED9;&#x5185;&#x6838;&#x4EE5;&#x53CA;&#x76F4;&#x63A5;&#x6267;&#x884C;&#x529F;&#x80FD;&#xFF0C;&#x4ECE;&#x800C;&#x6D88;&#x9664;&#x4E86;&#x8BF8;&#x5982;VENOM&#x7684;CPU&#x7279;&#x6743;&#x653B;&#x51FB;&#x3002;&#x6B64;&#x5916;&#xFF0C;LynxSecure&#x4E0D;&#x9700;&#x8981;&#x8BF8;&#x5982;Xen Dom0&#x8FD9;&#x6837;&#x7684;&#x7279;&#x6743;&#x8F85;&#x52A9;OS&#xFF0C;&#x6240;&#x6709;&#x7684;VM&#x90FD;&#x80FD;&#x591F;&#x81EA;&#x52A8;&#x8FD0;&#x884C;&#x65E0;&#x9700;&#x7BA1;&#x7406;domin&#x7684;&#x670D;&#x52A1;&#x3002;</p>
 </blockquote>
 <p><img src="../../../img/virtual/xen/architecture/hyperviseur.png" alt="hypervisor type"></p>
@@ -4739,7 +4822,7 @@ My-PV-VM                                    <span class="hljs-number">7</span> <
         <a href="../../../virtual/xen/architecture/index.html" class="navigation navigation-prev " aria-label="Previous page: xen架构"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../../virtual/docker/index.html" class="navigation navigation-next " aria-label="Next page: docker"><i class="fa fa-angle-right"></i></a>
+        <a href="../../../virtual/xen/architecture/hypervisor_debug.html" class="navigation navigation-next " aria-label="Next page: Xen Hypervisor Debug"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

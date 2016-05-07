@@ -8,7 +8,7 @@ Xen hypervisor是一个开源的`type-1`或`baremetal`类型hypervisor，它能�
 > 
 > `type-2`也称为`hosted` hypervisor，此时hypervisor在物理主机上和其他进程类似其他集成，此时`type-2` hypervisor从物理主机操作系统中抽象出guest操作系统。`VMware Workstation`，`VMware Player`，`VirtualBox`，`QEMU`都是典型的`type-2` hypervisor。
 > 
-> 不过，上述两种hypervisor类型并不是明显区别。Linux `kernel-base Virtual Machine`(`KVM`)以及FreeBSD `bhyve`都是内核模块，可以高校地转换主机操作系统成为`type-1` hypervisor。不过，由于Linux和FreeBSD依然是通用功能的操作系统，其他应用程序和VM资源并行，所以KVM和bhyve依然被视为`type-2` hypervisor。
+> 不过，上述两种hypervisor类型并不是明显区别。Linux `kernel-base Virtual Machine`(`KVM`)以及FreeBSD `bhyve`都是内核模块，可以高效地转换主机操作系统成为`type-1` hypervisor。不过，由于Linux和FreeBSD依然是通用功能的操作系统，其他应用程序和VM资源并行，所以KVM和bhyve依然被视为`type-2` hypervisor。
 > 
 > 2012年，Lynx Software Technologies发布了一种新的高性能hypervisor架构，`type-0`，是一种抽象了所有一场处理和应用程序/VM服务到用户空间的硬件虚拟化。这个设计通过去除了用户空间的功能移除了在层次结构（如Linux KVM/ESXi）Kernel API(例如 POSIX)和I/O堆栈。这种架构通过去除了用户空间能力做到了直接将数据传递给内核以及直接执行功能，从而消除了诸如VENOM的CPU特权攻击。此外，LynxSecure不需要诸如Xen Dom0这样的特权辅助OS，所有的VM都能够自动运行无需管理domin的服务。
 

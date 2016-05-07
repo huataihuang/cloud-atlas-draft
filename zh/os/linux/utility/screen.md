@@ -52,6 +52,19 @@ Screen 会话的连接，可以用 `screen -p ID` 命令重新连接特定的窗
 
 这样 `-dm` 命令可以执行shell时断开，以便后续再连接访问。
 
+```bash
+	   -d|-D [pid.tty.host]
+            does not start screen, but detaches the elsewhere running screen session. It has the same  effect  as  typing
+            "C-a  d" from screen’s controlling terminal. -D is the equivalent to the power detach key.  If no session can
+            be detached, this option is ignored. In combination with the  -r/-R  option  more  powerful  effects  can  be
+            achieved:	        
+		-m   causes screen to ignore the $STY environment variable.  With  "screen  -m"  creation  of  a  new  session  is
+            enforced, regardless whether screen is called from within another screen session or not. This flag has a spe-
+            cial meaning in connection with the ‘-d’ option:        
+		-d -m   Start screen in "detached" mode. This creates a new session but doesn’t attach to it. This is  useful  for
+        system startup scripts.
+```
+
 > 使用`screen`的好处是某些需要使用tty的工具可以正常执行
 >
 > 注意`一定要正常能够执行的shell脚本`，否则会直接结束，并且返回值还是`0`，就不知道是否正确执行脚本了
@@ -61,6 +74,12 @@ Screen 会话的连接，可以用 `screen -p ID` 命令重新连接特定的窗
     ssh remoteserver 'nohup /path/to/script `</dev/null` >nohup.out 2>&1 &'
 
 但是nohup方式不利于再次连接终端进行检查。
+
+一个案例：需要在服务器上通过`strace`工具来跟踪程序`example_program`
+
+```bash
+pssh -ih nc_list 'screen -S strace_example_program -d -m sudo strace -o example_program.strace -p `pgrep example_program`'
+```
 
 # 参考
 
