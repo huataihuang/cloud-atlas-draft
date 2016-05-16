@@ -207,6 +207,10 @@ feed:
   limit: 20
 ```
 
+完成后的外观
+
+![hexo theme tranquilpeak](/img/develop/doc/hexo/tranquilpeak.png)
+
 # 参考
 
 * [User documentation](https://github.com/LouisBarranqueiro/hexo-theme-tranquilpeak/blob/master/docs/user.md)

@@ -61,8 +61,30 @@ xenbr0			8000.d89d6724d840	no			eth0
 # XenServer如何处理VM流量
 
 
-![xen处理vm网络流量](img/virtual/xen/architecture/xen_handle_vm_traffic.png)
+![xen处理vm网络流量](/img/virtual/xen/architecture/xen_handle_vm_traffic.png)
+
+* 物理网卡`PIF`进入混杂模式（`promiscuous mode`），即所有通过网络的数据包都接受
+* 数据包被转发给虚拟交换机`xenbr0`
+* 虚拟交换机将查看目标MAC地址并找出连接在虚拟交换机上的`VIF`
+* 一旦找到了对应的VIF，Xen就会吧数据包传递给虚拟机
+
+# Bonds和VLANs
+
+Bonding提供了多块网卡配置成逻辑网卡的功能，提供了冗余和通道聚合，主要分为：`Active-backup`和`Balance-slb (active-active)`
+
+VLANs提供了流量隔离功能，每个VLAN需要创建独立的虚拟网桥。VLAN配置对于guest vm是透明的，VLAN的taging/untagging是由内核完成的。
+
+在Xen中使用VLAN需要配置虚拟网卡加上特定的VLAN tag，并且对应的（物理）网络交换机需要符合以下要求：
+
+* 连接Xen的交换机端口必须配置成trunk port
+* 交换机端口必须配置成 `802.1q`
+* trunk端口不能配置Port security
+* 作为trunk的端口必须设置成原生VLAN：默认使用1
+
+详细配置参考 [Xen多个VLANs的网络配置](../network/xen_multiple_vlans.md)
 
 # 参考
 
 * [XenServer Networking](http://www.slideshare.net/asrarkadri/networking-in-xenserver-24691440)
+* [XenServer VLAN Networking](http://support.citrix.com/article/CTX123489)
+* [Xen Networking](http://wiki.xenproject.org/wiki/Xen_Networking) - 这篇是Xen开源官方网站wiki，非常详尽的解释了Xen网络的工作原理
