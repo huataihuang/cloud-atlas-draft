@@ -61,7 +61,7 @@ fastboot oem unlock
 
 * 在电脑上下载 [TWRP recovery](http://teamw.in/project/twrp2) **或者** [ClockWorkMod](http://www.clockworkmod.com/rommanager)（需要根据不同设备进行下载）以及[SuperSU](http://forum.xda-developers.com/apps/supersu)软件包（可以从xda developers论坛SuperSU板块找到最新版本）。
 
-> [TWRP Manager (Requires ROOT)](https://play.google.com/store/apps/details?id=com.jmz.soft.twrpmanager)也可以从Google Play Store安装
+> [TWRP Manager (Requires ROOT)](https://play.google.com/store/apps/details?id=com.jmz.soft.twrpmanager)也可以从Google Play Store安装，使用Google Play Store上的TWRP Manager比较傻瓜化，并且可以根据TWRP官方网站版本更新而不断根新版本，推荐使用。
 >
 > [ROM Manager](https://play.google.com/store/apps/details?id=com.koushikdutta.rommanager)也可以从Google Play Store安装 （版本似乎旧一些）
 >
@@ -322,6 +322,16 @@ adb push update.zip /sdcard/Download/
 **安装过程如果有报错，请仔细查看报错信息，一般是校验错误，只要相应修改`updater-script`脚本绕过就可以了**
 
 使用`TWRP`的`Install`功能安装补丁包有一个好处，就是安装失败可以立即修改`update.zip`，再用`adb`将调整后的`update.zip`传入手机再次尝试升级。多试几次，就会成功！
+
+# 升级TWRP 3.0.2.0
+
+通过Google Play Store安装了[TWRP Manager (Requires ROOT)](https://play.google.com/store/apps/details?id=com.jmz.soft.twrpmanager)，将TWRP升级到3.0.2.0之后，安装Android 6.0.1的补丁包`update.zip`遇到的报错类似前述，报错信息略有改变
+
+```bash
+Package expects build fingerprint of google/hammerhead/hammerhead:6.0.1/MMB29V/2554798:usr/release-keys for google/hammerhead/hammerhead:6.0.1/MOB30D/2704746:usr/release-keys; this device has google/omni_hammerhead/hammerhead:5.1.1/LYZ28J/5:eng/test-keys.
+```
+
+这个问题比较麻烦，每次需要手工hack升级脚本不是解决的好方法
 
 # 参考
 
