@@ -8,3 +8,4 @@
 
 * [Pitfalls of TSC usage](http://oliveryang.net/2015/09/pitfalls-of-TSC-usage/) EMC开发工程师Oliver(Yong) Yang撰写的x86平台使用TSC存在的坑，是非常好的经验参考
 * [Timekeeping in VMware Virtual Machines](http://www.vmware.com/files/pdf/Timekeeping-In-VirtualMachines.pdf) VMware提供的技术文档
+* [Linux 时钟管理](https://www.ibm.com/developerworks/cn/linux/l-cn-timerm/) - IBM developWorks网站提供的技术文档
