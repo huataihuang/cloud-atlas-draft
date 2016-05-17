@@ -65,7 +65,7 @@
         data-chapter-title="EXT文件系统文件数"
         data-filepath="os/linux/storage/filesystem/ext_filesystem_file_limit.md"
         data-basepath="../../../.."
-        data-revision="Tue May 17 2016 23:44:44 GMT+0800 (CST)"
+        data-revision="Wed May 18 2016 00:04:49 GMT+0800 (CST)"
         data-innerlanguage="">
     
 
@@ -4787,6 +4787,16 @@ ext4:
     Maximum file size: <span class="hljs-number">244</span> - <span class="hljs-number">1</span> bytes (<span class="hljs-number">16</span> TiB - <span class="hljs-number">1</span>)
     Maximum volume size: <span class="hljs-number">248</span> - <span class="hljs-number">1</span> bytes (<span class="hljs-number">256</span> TiB - <span class="hljs-number">1</span>)
 </code></pre>
+<h1 id="&#x8865;&#x5145;&#xFF1A;ext&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x4FDD;&#x7559;&#x7A7A;&#x95F4;">&#x8865;&#x5145;&#xFF1A;Ext&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x4FDD;&#x7559;&#x7A7A;&#x95F4;</h1>
+<p><code>ext2/3/4</code>&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x9ED8;&#x8BA4;&#x4F1A;&#x4FDD;&#x7559;<code>5%</code>&#x7A7A;&#x95F4;&#x7ED9;<code>root</code>&#x7528;&#x6237;&#x4F7F;&#x7528;&#xFF0C;&#x4EE5;&#x907F;&#x514D;&#x666E;&#x901A;&#x7528;&#x6237;&#x5B8C;&#x5168;&#x586B;&#x6EE1;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x5BFC;&#x81F4;&#x7CFB;&#x7EDF;&#x7EC4;&#x4EF6;&#x65E0;&#x6CD5;&#x5199;&#x5165;&#x78C1;&#x76D8;&#x800C;&#x65E0;&#x6CD5;&#x8FD0;&#x884C;&#x3002;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x68C0;&#x67E5;&#x78C1;&#x76D8;&#x7684;&#x4FDD;&#x7559;&#x6570;&#x636E;&#x5757;(<code>Reserved block count</code>)</p>
+<pre><code class="lang-bash">sudo tune2fs <span class="hljs-operator">-l</span> /dev/sda8
+</code></pre>
+<p>&#x5BF9;&#x4E8E;<code>/home</code>&#x5206;&#x533A;&#xFF0C;&#x53EF;&#x4EE5;&#x5B89;&#x5168;&#x5730;&#x5173;&#x95ED;&#x8FD9;&#x4E2A;&#x4FDD;&#x7559;&#x7A7A;&#x95F4;&#x529F;&#x80FD;&#xFF08;<code>/home</code>&#x5206;&#x533A;&#x90FD;&#x662F;&#x666E;&#x901A;&#x7528;&#x6237;&#x4F7F;&#x7528;&#xFF09;&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x8282;&#x7EA6;&#x4E00;&#x4E9B;&#x78C1;&#x76D8;&#x7A7A;&#x95F4;</p>
+<pre><code class="lang-bash">sudo tune2fs -m <span class="hljs-number">0</span> /dev/sda8
+</code></pre>
+<blockquote>
+<p>&#x53C2;&#x8003; <a href="http://askubuntu.com/questions/249387/df-h-used-space-avail-free-space-is-less-than-the-total-size-of-home" target="_blank">df -h - Used space + Avail Free space is less than the Total size of /home</a></p>
+</blockquote>
 <h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
 <ul>
 <li><a href="http://stackoverflow.com/questions/466521/how-many-files-can-i-put-in-a-directory" target="_blank">How many files can I put in a directory?</a></li>

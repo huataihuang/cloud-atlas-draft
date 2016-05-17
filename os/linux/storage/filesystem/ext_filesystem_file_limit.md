@@ -52,6 +52,22 @@ ext4:
     Maximum volume size: 248 - 1 bytes (256 TiB - 1)
 ```
 
+# 补充：Ext文件系统保留空间
+
+`ext2/3/4`文件系统默认会保留`5%`空间给`root`用户使用，以避免普通用户完全填满文件系统导致系统组件无法写入磁盘而无法运行。可以通过以下命令检查磁盘的保留数据块(`Reserved block count`)
+
+```bash
+sudo tune2fs -l /dev/sda8
+```
+
+对于`/home`分区，可以安全地关闭这个保留空间功能（`/home`分区都是普通用户使用），这样可以节约一些磁盘空间
+
+```bash
+sudo tune2fs -m 0 /dev/sda8
+```
+
+> 参考 [df -h - Used space + Avail Free space is less than the Total size of /home](http://askubuntu.com/questions/249387/df-h-used-space-avail-free-space-is-less-than-the-total-size-of-home)
+
 # 参考
 
 * [How many files can I put in a directory?](http://stackoverflow.com/questions/466521/how-many-files-can-i-put-in-a-directory)

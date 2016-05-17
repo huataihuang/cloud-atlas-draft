@@ -4,6 +4,8 @@
 rsync -a --exclude={"/dev/*","/proc/*","/sys/*","/tmp/*","/run/*","/mnt/*","/media/*","/lost+found"} 192.168.1.1:/ /backup/192.168.1.1/ | tee /var/log/10.195.186.137_backup.log
 ```
 
+如果多次备份，则可以加上`--delete`参数，确保两者一致
+
 参考 
 
 * https://wiki.archlinux.org/index.php/full_system_backup_with_rsync
