@@ -8,7 +8,17 @@
   gather_facts: False
 ```
 
-# 增加ansible并发
+# 增加ansible任务执行的并发
+
+默认情况下，ansible执行恩每个任务的并发是5个并发，也就是同时只在5台目标服务器上执行同一个任务，对于很多大规模集群效率很低。ansible有一个`forks`参数可以设置每个任务的并发，在 `ansible.cfg` 中添加 `forks = 100` 可以使得每个任务的执行时并发达到100台主机
+
+```bash
+[defaults]
+host_key_checking = False
+forks = 100
+```
+
+# 增加ansible任务顺序的并发
 
 参考 [并发运行](http://www.kisops.com/?p=42)使用`async`和`poll`，前者触发并行运行`任务`（`task`），其值是任务的最大超时时间，后者表示检查任务是否完成的频率时间。这个方法对于一组任务之间没有顺序关系的话可以加快执行。也就是`task1`，`task2`。。。`taskN`之间没有顺序关系，则可以提高执行效率。
 
@@ -17,8 +27,6 @@
 * 你有一个task需要运行很长的时间,这个task很可能会达到timeout.
 * 你有一个任务需要在大量的机器上面运行
 * 你有一个任务是不需要等待它完成的
-
-注意：对于同一个任务， [Ansible: deploy on multiple hosts in the same time](http://stackoverflow.com/questions/21158689/ansible-deploy-on-multiple-hosts-in-the-same-time) 说明：Ansible默认是并发在所有主机执行一个任务，如果需要限制并发数量，需要使用`serial`参数，例如，每次执行一台服务器则设置 `serial:1`。例如，Ansible服务器压力过高，可以减少并发，例如限制100个并发。
 
 # 参考
 

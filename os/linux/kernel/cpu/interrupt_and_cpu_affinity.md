@@ -177,9 +177,20 @@ cat /proc/irq/18/smp_affinity_list
 
 # IRQ Balance
 
-`irqbalance`是一个Linux工具用来将中断分散到主机的多个处理器核上帮助提高性能。
+`irqbalance`是一个Linux工具用来将中断分散到主机的多个处理器核上帮助提高性能。`irqbalance`避免所有的IRQ请求都由单一的CPU负担。很多4核以上CPU系统缓慢有时是因为都在等待`CPU 0`处理网络或者存储的IRQ请求。此时CPU 0非常繁忙，而其他CPU则非常空闲。应用缓慢是因为它们在等待从CPU 0返回请求。
 
-`irqbalance`目标是在节能和性能优化之间找到一个平衡。
+`irqbalance`尝试一种智能方法使中断分布到所有的CPU，如果可能，将IRQ处理和处理器尽可能接近。这可能是相同的内核，和相同缓存共享的内核，或相同NUMA区域的内核。`irqbalance`目标是在节能和性能优化之间找到一个平衡。
+
+**除了**以下情况，你都 **应该使用** irqbalance：
+
+* 由于非常特殊原因需要人工设置应用/IRQ集中到特定内核（例如，更小的延迟，实时请求等）
+* 虚拟机：虚拟机不能实际获得性能提高，因为除非你将guest绑定到特定的CPU和IRQ并且隔离网络/存储硬件，否则你看不到任何性能提高。但是你的KVM/RHEV在主机**需要**使用irqbalance和numa并且调优。
+
+Numad是类似irqbalance的机制并且它将处理器和内存限定在相同的numa区域。在多核系统中，可以看到在重负载下明显降低延迟平滑的可靠的性能。
+
+如果维护人员有很好的技术以及经常监控或者具有非常规则的负载，则可能通过人工绑定进程和IRQ到特定处理器。即使这种情况，irqbalance和numad也能达到近似的效果。所以，如果不能确定或者负载不是规律的，还是建议使用irqbalance和numad 
+
+> 参考 [Is there still a use for irqbalance on modern hardware?](http://serverfault.com/questions/513807/is-there-still-a-use-for-irqbalance-on-modern-hardware)
 
 如果系统没有安装`irqbalance`，可以通过以下命令安装
 
@@ -260,6 +271,51 @@ ffffffff,ffffffff
 # cat /proc/irq/40/smp_affinity
 ffffffff,00000000
 ```
+
+# 针对消息服务器的调优 - 中断和处理进程绑定
+
+[Red Hat Entreprise MRG](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_MRG/) 是集成了消息（Messaging），实时（Realtime）和网格（Grid）服务器，其中[Interrupt and process binding](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_MRG/2/html/Realtime_Tuning_Guide/sect-Realtime_Tuning_Guide-General_System_Tuning-Interrupt_and_Process_Binding.html)对中断和处理进程绑定到不同隔离的CPU以提供更好的实时响应提供了借鉴。
+
+> MRG的Messageing部分是基于[Apache Qpid开源项目](http://qpid.apache.org)
+
+以下是文档摘录翻译：
+
+实时环境需要在响应不同的事件时最小化和消除延迟。理想情况下，中断（IRQs）和用户处理进程可以相互隔离在不同的分离的CPU上。
+
+中断是常见的在多个CPU之间共享事件。通过写入新数据和指令缓存可以延迟中断处理，并且通常导致和其他进程争夺CPU资源。为了解决这个问题，时间敏感中断和处理进程可以分离到不同CPU或者一组CPU。这样，代码和数据结构需要处理这个具有高可能性位于处理器数据和指令缓存的中断。这个隔离的进程就可以运行得尽可能快速，而其他非时间敏感的进程可以运行在其他剩余的CPU上。这个处理在一些有些内存和总线带宽的涉及速度的环境下非常重要，此时，任何等待内存返回数据到处理器缓存的等待都会影响处理时间。
+
+例如，在不同环境下调优程序，优化的方式完全不同。有些环境下，可能需要隔离2到4个CPU用于应用程序；另一些情况，将网络相关的应用程序处理进程绑定到CPU来处理网络驱动中断的优化。极端情况下，优化是通过尝试不同设置来发现适合工作的最优设置。
+
+> 对于多处理器环境，需要了解 `CPU mask`如何作用于给定CPU或一系列CPU。`CPU mask`通常表述未一个32位的位掩码（bitmask）。`CPU mask`可以表述为10进制或者16进制数字，取决于你使用的命令。例如，CPU `0`的`CPU mask`的位图表述是`00000000000000000000000000000001`，10进制表述就是`1`，而16进制表述就是`0x00000001`。同时使用CPU `0`和`1`的位图表述是`00000000000000000000000000000011`，10进制表述就是`3`，而16进制表述就是`0x00000003`。
+
+默认情况下系统会启动 `irqbalance` 服务用于周期性处理CPU事件，公平方式。然而在实时环境的部署中，应用程序通常是绑定到特定的CPU上，所以不需要`irqbalance`。此时，应该关闭`irqbalance`
+
+    service irqbalance stop
+    chkconfig irqbalance off
+
+另外一种方式是只在使用隔离功能的CPU上禁用`irqbalance`，而在其余的CPU上继续使用`irqbalance`。这个设置可以通过 `/etc/sysconfig/irqbalance`来实现，即编辑 `FOLLOW_ISOLCPUS` 部分：
+
+    FOLLOW_ISOLCPUS=yes
+
+这个设置使 `irqbalance` 只在没有设置隔离的CPU上生效。这个设置对于只有两个处理器的主机是没有效果的，但都与双核主机是有效的。
+
+# 使用`taskset`工具将进程绑定处理器
+
+`taskset`工具可以使用进程ID（PID）来查看或设置关联，或者可以用于选择一个CPU关联的方式来运行一个命令。要设置关联，`taskset`需要将`CPU mask`表述为10进制或者16进制数字。这个mask参数是一个指定哪个CPU内核是合法的被修改的命令或PID。
+
+要设置当前没有运行的进程，使用 `taskset` 和指定`CPU mask`和进程。例如，`my_embedded_process`是设置只使用CPU `3`：
+
+    taskset 8 /usr/local/bin/my_embedded_process
+
+可以使用位图指定一系列CPU，例如这里指定 `4 5 6 7`用于运行 `my_embedded_process`
+
+    taskset 0xF0 /usr/local/bin/my_embedded_process
+
+也可以对已经运行的进程设置CPU关联，此时需要使用 `-p`或者`--pid`参数来指定特定PID的进程使用，例如，这里指定PID为7013的进程只运行在CPU `0`上：
+
+    taskset -p 1 7013
+
+> **注意** `taskset`工具只能用于没有激活系统NUMA（非统一内存访问）的环境（在NUMA环境中，使用`numactl`命令来替代`taskset`）
 
 # 软中断
 

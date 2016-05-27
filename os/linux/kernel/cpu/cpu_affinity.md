@@ -37,12 +37,9 @@ Amdahl 法则说明这种加速比在现实中可能并不会发生，但是可�
 
 实时（对时间敏感的）进程可能会希望使用硬亲和性（affinity）来指定某个处理器，而同时允许其他 个处理器处理所有普通的系统调度。这种做法确保长时间运行、对时间敏感的应用程序可以得到运行，同时可以允许其他应用程序独占其余的计算资源。
 
-
-
 # 参考
 
 * [Managing Process Affinity in Linux](http://www.glennklockwood.com/hpc-howtos/process-affinity.html)
 * [Chapter 6. Affinity](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_MRG/1.3/html/Realtime_Reference_Guide/chap-Realtime_Reference_Guide-Affinity.html)
-* 一年前自己写的"Linux irqbalance、中断和进程绑定CPU"
 * [Linux CPU affinity](http://blog.csdn.net/yfkiss/article/details/7464968)
 * [管理处理器的亲和性（affinity）](http://www.ibm.com/developerworks/cn/linux/l-affinity.html)
