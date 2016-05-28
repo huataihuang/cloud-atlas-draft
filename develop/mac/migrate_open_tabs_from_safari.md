@@ -4,4 +4,4 @@
 
 Safari或Chrome都支持一种将所有打开的tab保存到一个Bookmark目录，再加上现在主流浏览器都支持互相导入导出Bookmark，这样就非常方经常同步各个平台的浏览器。
 
-![safari保存dizhi](/img/develop/mac/save_bookmarks.png)
+![safari保存tab](/img/develop/mac/save_bookmarks.png)

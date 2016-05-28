@@ -238,6 +238,7 @@
 		* [从safari中导出打开的tab](develop/mac/migrate_open_tabs_from_safari.md)
 		* [bird进程](develop/mac/bird_process.md)
 		* [在Mac上双启动方式安装Linux](develop/mac/dual_boot_linux_on_mac.md)
+		* [创建OS X EICapitan启动啊装U盘](develop/mac/create_os_x_el_capitan_boot_install_drive.md)
 		* [rEFInd工具详解](develop/mac/refind.md)
 	* [shell](develop/shell/README.md)
 		* [bash](develop/shell/bash/README.md)
