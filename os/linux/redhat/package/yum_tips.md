@@ -31,3 +31,13 @@ Filename    : /usr/bin/lssubsys
 可以看到`lscgroup-tools`软件包提供了该工具命令。
 
 > 参考[How to find out which package a file belongs to?](http://unix.stackexchange.com/questions/4705/how-to-find-out-which-package-a-file-belongs-to)
+
+# yum使用代理服务器
+
+有时候需要使用[polipo](../../../../service/proxy/polipo.md)这样的代理服务器访问internet资源，如果需要使用yum安装软件包，可以设置环境变量`http_proxy`来实现安装：
+
+```bash
+export http_proxy="http://PROXY_IP:8123"
+yum upgrade
+yum install XXXX
+```
