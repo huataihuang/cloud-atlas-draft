@@ -12,6 +12,12 @@
 
 所以我把这个积累云计算技术实践的网站称为"云图" － Cloud Atlas
 
+-- [Who am I](whoami.md)?
+
+----
+
 一部关于自由的电影《[云图](http://movie.douban.com/subject/3530403/)》
 
 ![云图](img/cloud/cloud_atlas.jpg)
+
+
