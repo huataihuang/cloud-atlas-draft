@@ -34,10 +34,22 @@ Filename    : /usr/bin/lssubsys
 
 # yum使用代理服务器
 
-有时候需要使用[polipo](../../../../service/proxy/polipo.md)这样的代理服务器访问internet资源，如果需要使用yum安装软件包，可以设置环境变量`http_proxy`来实现安装：
+有时候需要使用[polipo](../../../../service/proxy/polipo.md)这样的代理服务器访问internet资源，如果偶尔使用yum安装软件包，可以设置**当前用户**环境变量`http_proxy`来实现安装：
 
 ```bash
 export http_proxy="http://PROXY_IP:8123"
 yum upgrade
 yum install XXXX
 ```
+
+如果要一直使用代理服务器方式，则修改`/etc/yum.conf`配置文件，添加：
+
+```bash
+# The proxy server - proxy server:port number
+proxy=http://PROXY_IP:8123
+# The account details for yum connections
+proxy_username=yum-user
+proxy_password=qwerty
+```
+
+> 参考[Using yum with a Proxy Server](https://www.centos.org/docs/5/html/yum/sn-yum-proxy-server.html)

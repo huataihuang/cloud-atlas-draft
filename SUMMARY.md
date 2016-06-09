@@ -254,6 +254,7 @@
 			* [shell的特殊变量](develop/shell/bash/special_shell_variable.md)
 			* [根据命令返回结果做if判断](develop/shell/bash/if_command_result_then_do.md)
 			* [使用sudo在文件中添加内容](develop/shell/bash/append_to_file_as_sudo.md)
+			* [shell中的环境变量](develop/shell/bash/env.md)
 		* [sed和awk](develop/shell/sed_awk/README.md)
 			* [awk和shell之间的变量传递](develop/shell/sed_awk/awk_shell_var.md)
 			* [awk处理字符串搜索](develop/shell/sed_awk/awk_search_string.md)

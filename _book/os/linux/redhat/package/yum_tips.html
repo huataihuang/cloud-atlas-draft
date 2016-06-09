@@ -65,7 +65,7 @@
         data-chapter-title="yum使用tips"
         data-filepath="os/linux/redhat/package/yum_tips.md"
         data-basepath="../../../.."
-        data-revision="Wed Jun 08 2016 10:32:29 GMT+0800 (CST)"
+        data-revision="Thu Jun 09 2016 16:29:14 GMT+0800 (CST)"
         data-innerlanguage="">
     
 
@@ -4285,6 +4285,21 @@
             
         </li>
     
+        <li class="chapter " data-level="11.8.1.4" data-path="develop/shell/bash/env.html">
+            
+                
+                    <a href="../../../../develop/shell/bash/env.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.8.1.4.</b>
+                        
+                        shell中的环境变量
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -5254,11 +5269,21 @@ Filename    : /usr/bin/lssubsys
 <p>&#x53C2;&#x8003;<a href="http://unix.stackexchange.com/questions/4705/how-to-find-out-which-package-a-file-belongs-to" target="_blank">How to find out which package a file belongs to?</a></p>
 </blockquote>
 <h1 id="yum&#x4F7F;&#x7528;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;">yum&#x4F7F;&#x7528;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;</h1>
-<p>&#x6709;&#x65F6;&#x5019;&#x9700;&#x8981;&#x4F7F;&#x7528;<a href="../../../../service/proxy/polipo.html">polipo</a>&#x8FD9;&#x6837;&#x7684;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;&#x8BBF;&#x95EE;internet&#x8D44;&#x6E90;&#xFF0C;&#x5982;&#x679C;&#x9700;&#x8981;&#x4F7F;&#x7528;yum&#x5B89;&#x88C5;&#x8F6F;&#x4EF6;&#x5305;&#xFF0C;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#x73AF;&#x5883;&#x53D8;&#x91CF;<code>http_proxy</code>&#x6765;&#x5B9E;&#x73B0;&#x5B89;&#x88C5;&#xFF1A;</p>
+<p>&#x6709;&#x65F6;&#x5019;&#x9700;&#x8981;&#x4F7F;&#x7528;<a href="../../../../service/proxy/polipo.html">polipo</a>&#x8FD9;&#x6837;&#x7684;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;&#x8BBF;&#x95EE;internet&#x8D44;&#x6E90;&#xFF0C;&#x5982;&#x679C;&#x5076;&#x5C14;&#x4F7F;&#x7528;yum&#x5B89;&#x88C5;&#x8F6F;&#x4EF6;&#x5305;&#xFF0C;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;<strong>&#x5F53;&#x524D;&#x7528;&#x6237;</strong>&#x73AF;&#x5883;&#x53D8;&#x91CF;<code>http_proxy</code>&#x6765;&#x5B9E;&#x73B0;&#x5B89;&#x88C5;&#xFF1A;</p>
 <pre><code class="lang-bash"><span class="hljs-built_in">export</span> http_proxy=<span class="hljs-string">&quot;http://PROXY_IP:8123&quot;</span>
 yum upgrade
 yum install XXXX
 </code></pre>
+<p>&#x5982;&#x679C;&#x8981;&#x4E00;&#x76F4;&#x4F7F;&#x7528;&#x4EE3;&#x7406;&#x670D;&#x52A1;&#x5668;&#x65B9;&#x5F0F;&#xFF0C;&#x5219;&#x4FEE;&#x6539;<code>/etc/yum.conf</code>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x6DFB;&#x52A0;&#xFF1A;</p>
+<pre><code class="lang-bash"><span class="hljs-comment"># The proxy server - proxy server:port number</span>
+proxy=http://PROXY_IP:<span class="hljs-number">8123</span>
+<span class="hljs-comment"># The account details for yum connections</span>
+proxy_username=yum-user
+proxy_password=qwerty
+</code></pre>
+<blockquote>
+<p>&#x53C2;&#x8003;<a href="https://www.centos.org/docs/5/html/yum/sn-yum-proxy-server.html" target="_blank">Using yum with a Proxy Server</a></p>
+</blockquote>
 
                     
                     </section>
