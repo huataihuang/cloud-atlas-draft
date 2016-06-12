@@ -210,6 +210,25 @@ Solaris
 AIX
 ```
 
+[sed - 25 examples to delete a line or pattern in a file](http://unix-school.blogspot.com/2012/06/sed-25-examples-to-delete-line-or.html)原文还有3个例子较为复杂：
+
+删除匹配行和匹配行之前的行
+
+```bash
+sed -n '/Linux/{s/.*//;x;d;};x;p;${x;p;}' file | sed '/^$/d'
+```
+
+删除包含`Linux`的行之前的行，但不删除'Linux'行：
+
+```bash
+sed -n '/Linux/{x;d;};1h;1!{x;p;};${x;p;}' file
+```
+
+删除包含`Linux`行以及之前的行和之后好的行
+
+```bash
+sed -n '/Linux/{N;s/.*//;x;d;};x;p;${x;p;}' file | sed '/^$/d'
+```
 
 # 参考
 
