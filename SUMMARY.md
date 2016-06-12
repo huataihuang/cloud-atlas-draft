@@ -260,6 +260,7 @@
 		* [sed和awk](develop/shell/sed_awk/README.md)
 			* [awk和shell之间的变量传递](develop/shell/sed_awk/awk_shell_var.md)
 			* [awk处理字符串搜索](develop/shell/sed_awk/awk_search_string.md)
+			* [sed举例](develop/shell/sed_awk/sed_examples.md)
 		* [实用工具](develop/shell/utilities/README.md)
 			* [脚本作为daemon运行](develop/shell/utilities/run_script_as_daemon.md)
 			* [对cpu施加负载](develop/shell/utilities/produce_cpu_load.md)
