@@ -230,6 +230,31 @@ sed -n '/Linux/{x;d;};1h;1!{x;p;};${x;p;}' file
 sed -n '/Linux/{N;s/.*//;x;d;};x;p;${x;p;}' file | sed '/^$/d'
 ```
 
+* 合并重复的空格成一个空格
+
+在使用`cut`工具来截取`ps`出来的进程的`pid`，会遇到一个问题，就是每列之间的空格数量是不一定的，这样虽然可以通过`awk`来截取，但是蹪于`cut`命令就不行了。解决的方法是将多个空格合并成一个空格，`sed`命令提供了这个功能：
+
+```bash
+ps axu | grep '[j]boss' | sed 's/\s\+/ /g' | cut -d' ' -f2
+```
+
+> 这里使用的是GNU sed，这个sed提供了`\s`表示空格（扩展），`\+`表示多个空格
+
+或者
+
+```bash
+ps axu | grep '[j]boss' | sed 's/\s\s*/ /g' | cut -d' ' -f2
+```
+
+> 不过，在OS X中，需要传递`-E`参数来激活sed扩展正则表达式，然后使用`[[:space:]]`来代替`\s`，也就是
+
+```bash
+ps axu | grep '[j]boss' | sed -E 's/[[:space:]]+/ /g' | cut -d' ' -f2
+```
+
+> 请参考[cut使用举例](../utilities/cut_examples.md)
+
 # 参考
 
 * [sed - 25 examples to delete a line or pattern in a file](http://unix-school.blogspot.com/2012/06/sed-25-examples-to-delete-line-or.html)
+* [linux cut help - how to specify more spaces for the delimiter?](http://stackoverflow.com/questions/7142735/linux-cut-help-how-to-specify-more-spaces-for-the-delimiter)

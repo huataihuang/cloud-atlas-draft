@@ -317,6 +317,30 @@ ffffffff,00000000
 
 > **注意** `taskset`工具只能用于没有激活系统NUMA（非统一内存访问）的环境（在NUMA环境中，使用`numactl`命令来替代`taskset`）
 
+* 检查进程`4299`的cpu_affinity
+
+```bash
+taskset -c -p 4299
+```
+
+显示输出
+
+```bash
+pid 4299's current affinity list: 0-15
+```
+
+> `-c` 表示显示并以列表格式指定cpus
+>
+> `-p` 对给定的进程进程操作
+
+* 设置进程`4299`的cpu_affinity到`10`就是第二个cpu，也就是`cpu1`
+
+```bash
+taskset -p 2 4299
+```
+
+**`taskset`的参数感觉有点反直觉，`-p`参数后有两种参数可以设置，`cpus`和`pid`，没有`cpus`的时候就是显示，有`cpus`就是设置进程绑定到指定cpu**
+
 # 软中断
 
 参考 [softirq](softirq.md)
@@ -325,3 +349,4 @@ ffffffff,00000000
 
 * [Introduction to Linux Interrupts and CPU SMP Affinity](http://www.thegeekstuff.com/2014/01/linux-interrupts/)
 * [中断和 IRQ 调节](https://access.redhat.com/documentation/zh-CN/Red_Hat_Enterprise_Linux/6/html/Performance_Tuning_Guide/s-cpu-irq.html)
+* []
