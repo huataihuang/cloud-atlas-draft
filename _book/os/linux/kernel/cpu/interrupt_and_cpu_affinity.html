@@ -65,7 +65,7 @@
         data-chapter-title="中断和CPU亲和性"
         data-filepath="os/linux/kernel/cpu/interrupt_and_cpu_affinity.md"
         data-basepath="../../../.."
-        data-revision="Fri Jun 10 2016 11:11:13 GMT+0800 (CST)"
+        data-revision="Mon Jun 13 2016 14:30:53 GMT+0800 (CST)"
         data-innerlanguage="">
     
 
@@ -3432,6 +3432,21 @@
             
         </li>
     
+        <li class="chapter " data-level="10.2.3" data-path="performance/network/netperf.html">
+            
+                
+                    <a href="../../../../performance/network/netperf.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.3.</b>
+                        
+                        netperf网络带宽测试
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -4381,6 +4396,21 @@
             
         </li>
     
+        <li class="chapter " data-level="11.8.2.3" data-path="develop/shell/sed_awk/sed_examples.html">
+            
+                
+                    <a href="../../../../develop/shell/sed_awk/sed_examples.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.8.2.3.</b>
+                        
+                        sed举例
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -4417,14 +4447,29 @@
             
         </li>
     
-        <li class="chapter " data-level="11.8.3.2" data-path="develop/shell/utilities/produce_cpu_load.html">
+        <li class="chapter " data-level="11.8.3.2" data-path="develop/shell/utilities/cut_examples.html">
+            
+                
+                    <a href="../../../../develop/shell/utilities/cut_examples.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.8.3.2.</b>
+                        
+                        cut使用举例
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.8.3.3" data-path="develop/shell/utilities/produce_cpu_load.html">
             
                 
                     <a href="../../../../develop/shell/utilities/produce_cpu_load.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>11.8.3.2.</b>
+                            <b>11.8.3.3.</b>
                         
                         对cpu施加负载
                     </a>
@@ -5553,12 +5598,31 @@ chkconfig irqbalance off
 </code></pre><blockquote>
 <p><strong>&#x6CE8;&#x610F;</strong> <code>taskset</code>&#x5DE5;&#x5177;&#x53EA;&#x80FD;&#x7528;&#x4E8E;&#x6CA1;&#x6709;&#x6FC0;&#x6D3B;&#x7CFB;&#x7EDF;NUMA&#xFF08;&#x975E;&#x7EDF;&#x4E00;&#x5185;&#x5B58;&#x8BBF;&#x95EE;&#xFF09;&#x7684;&#x73AF;&#x5883;&#xFF08;&#x5728;NUMA&#x73AF;&#x5883;&#x4E2D;&#xFF0C;&#x4F7F;&#x7528;<code>numactl</code>&#x547D;&#x4EE4;&#x6765;&#x66FF;&#x4EE3;<code>taskset</code>&#xFF09;</p>
 </blockquote>
+<ul>
+<li>&#x68C0;&#x67E5;&#x8FDB;&#x7A0B;<code>4299</code>&#x7684;cpu_affinity</li>
+</ul>
+<pre><code class="lang-bash">taskset -c -p <span class="hljs-number">4299</span>
+</code></pre>
+<p>&#x663E;&#x793A;&#x8F93;&#x51FA;</p>
+<pre><code class="lang-bash">pid <span class="hljs-number">4299</span><span class="hljs-string">&apos;s current affinity list: 0-15
+</span></code></pre>
+<blockquote>
+<p><code>-c</code> &#x8868;&#x793A;&#x663E;&#x793A;&#x5E76;&#x4EE5;&#x5217;&#x8868;&#x683C;&#x5F0F;&#x6307;&#x5B9A;cpus</p>
+<p><code>-p</code> &#x5BF9;&#x7ED9;&#x5B9A;&#x7684;&#x8FDB;&#x7A0B;&#x8FDB;&#x7A0B;&#x64CD;&#x4F5C;</p>
+</blockquote>
+<ul>
+<li>&#x8BBE;&#x7F6E;&#x8FDB;&#x7A0B;<code>4299</code>&#x7684;cpu_affinity&#x5230;<code>10</code>&#x5C31;&#x662F;&#x7B2C;&#x4E8C;&#x4E2A;cpu&#xFF0C;&#x4E5F;&#x5C31;&#x662F;<code>cpu1</code></li>
+</ul>
+<pre><code class="lang-bash">taskset -p <span class="hljs-number">2</span> <span class="hljs-number">4299</span>
+</code></pre>
+<p><strong><code>taskset</code>&#x7684;&#x53C2;&#x6570;&#x611F;&#x89C9;&#x6709;&#x70B9;&#x53CD;&#x76F4;&#x89C9;&#xFF0C;<code>-p</code>&#x53C2;&#x6570;&#x540E;&#x6709;&#x4E24;&#x79CD;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#xFF0C;<code>cpus</code>&#x548C;<code>pid</code>&#xFF0C;&#x6CA1;&#x6709;<code>cpus</code>&#x7684;&#x65F6;&#x5019;&#x5C31;&#x662F;&#x663E;&#x793A;&#xFF0C;&#x6709;<code>cpus</code>&#x5C31;&#x662F;&#x8BBE;&#x7F6E;&#x8FDB;&#x7A0B;&#x7ED1;&#x5B9A;&#x5230;&#x6307;&#x5B9A;cpu</strong></p>
 <h1 id="&#x8F6F;&#x4E2D;&#x65AD;">&#x8F6F;&#x4E2D;&#x65AD;</h1>
 <p>&#x53C2;&#x8003; <a href="softirq.html">softirq</a></p>
 <h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
 <ul>
 <li><a href="http://www.thegeekstuff.com/2014/01/linux-interrupts/" target="_blank">Introduction to Linux Interrupts and CPU SMP Affinity</a></li>
 <li><a href="https://access.redhat.com/documentation/zh-CN/Red_Hat_Enterprise_Linux/6/html/Performance_Tuning_Guide/s-cpu-irq.html" target="_blank">&#x4E2D;&#x65AD;&#x548C; IRQ &#x8C03;&#x8282;</a></li>
+<li>[]</li>
 </ul>
 
                     

@@ -65,7 +65,7 @@
         data-chapter-title="yum使用tips"
         data-filepath="os/linux/redhat/package/yum_tips.md"
         data-basepath="../../../.."
-        data-revision="Fri Jun 10 2016 11:11:13 GMT+0800 (CST)"
+        data-revision="Mon Jun 13 2016 14:30:53 GMT+0800 (CST)"
         data-innerlanguage="">
     
 
@@ -3432,6 +3432,21 @@
             
         </li>
     
+        <li class="chapter " data-level="10.2.3" data-path="performance/network/netperf.html">
+            
+                
+                    <a href="../../../../performance/network/netperf.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.2.3.</b>
+                        
+                        netperf网络带宽测试
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -4381,6 +4396,21 @@
             
         </li>
     
+        <li class="chapter " data-level="11.8.2.3" data-path="develop/shell/sed_awk/sed_examples.html">
+            
+                
+                    <a href="../../../../develop/shell/sed_awk/sed_examples.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.8.2.3.</b>
+                        
+                        sed举例
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -4417,14 +4447,29 @@
             
         </li>
     
-        <li class="chapter " data-level="11.8.3.2" data-path="develop/shell/utilities/produce_cpu_load.html">
+        <li class="chapter " data-level="11.8.3.2" data-path="develop/shell/utilities/cut_examples.html">
+            
+                
+                    <a href="../../../../develop/shell/utilities/cut_examples.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>11.8.3.2.</b>
+                        
+                        cut使用举例
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="11.8.3.3" data-path="develop/shell/utilities/produce_cpu_load.html">
             
                 
                     <a href="../../../../develop/shell/utilities/produce_cpu_load.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>11.8.3.2.</b>
+                            <b>11.8.3.3.</b>
                         
                         对cpu施加负载
                     </a>
@@ -5313,6 +5358,49 @@ proxy_password=qwerty
 </code></pre>
 <blockquote>
 <p>&#x53C2;&#x8003;<a href="https://www.centos.org/docs/5/html/yum/sn-yum-proxy-server.html" target="_blank">Using yum with a Proxy Server</a></p>
+</blockquote>
+<h1 id="&#x67E5;&#x770B;&#x8F6F;&#x4EF6;&#x5305;&#x5C5E;&#x4E8E;&#x54EA;&#x4E2A;&#x4ED3;&#x5E93;">&#x67E5;&#x770B;&#x8F6F;&#x4EF6;&#x5305;&#x5C5E;&#x4E8E;&#x54EA;&#x4E2A;&#x4ED3;&#x5E93;</h1>
+<ul>
+<li><code>yum list &#x8F6F;&#x4EF6;&#x5305;</code>&#x53EF;&#x4EE5;&#x663E;&#x793A;&#x8F6F;&#x4EF6;&#x5305;&#x7684;&#x8BE6;&#x7EC6;&#x7248;&#x672C;&#xFF0C;&#x5E76;&#x4E14;&#x53EF;&#x4EE5;&#x663E;&#x793A;&#x8F6F;&#x4EF6;&#x5305;&#x5C5E;&#x4E8E;&#x54EA;&#x4E2A;&#x8F6F;&#x4EF6;&#x5E93;</li>
+</ul>
+<p>&#x5728;<a href="../../../../iaas/ovirt/deploy_ovirt.html">&#x90E8;&#x7F72;oVirt</a> v3.6 &#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5728;engine&#x5173;&#x673A;&#x63A7;&#x5236;&#x53F0;&#x6DFB;&#x52A0;host&#x540E;&#xFF0C;&#x8F6F;&#x4EF6;&#x5305;&#x5B89;&#x88C5;&#x5230;node&#x8282;&#x70B9;&#x7684;&#x65F6;&#x5019;&#x51FA;&#x73B0;&#x62A5;&#x9519;&#xFF1A;</p>
+<pre><code class="lang-bash">RuntimeError: Cannot locate gluster packages, possible cause is incorrect channels
+<span class="hljs-number">2016</span>-<span class="hljs-number">06</span>-<span class="hljs-number">10</span> <span class="hljs-number">11</span>:<span class="hljs-number">38</span>:<span class="hljs-number">59</span> ERROR otopi.context context._executeMethod:<span class="hljs-number">165</span> Failed to execute stage <span class="hljs-string">&apos;Setup validation&apos;</span>: Cannot locate gluster packages, possible cause is incorrect channels
+</code></pre>
+<p>&#x6211;&#x68C0;&#x67E5;&#x4E86;&#x662F;&#x53EF;&#x4EE5;&#x5B89;&#x88C5;<code>glusterfs</code>&#x548C;<code>glusterfs-cli</code>&#x8F6F;&#x4EF6;&#x5305;&#x7684;&#xFF0C;&#x4F46;&#x662F;<code>yum search vdsm</code>&#x5374;&#x53EA;&#x6709;<code>vdsm-jsonrpc-java.noarch</code>&#xFF0C;&#x4E0D;&#x50CF;&#x4EE5;&#x524D;&#x5B89;&#x88C5;&#x7684;ovrit&#x8282;&#x70B9;&#x6709;&#x5927;&#x91CF;&#x7684;<code>vdsm</code>&#x8F6F;&#x4EF6;&#x5305;&#x3002;<a href="http://permalink.gmane.org/gmane.comp.emulators.ovirt.user/26370" target="_blank">Ovirt 3.5 problem adding GlusterFS servers</a> &#x63D0;&#x793A;&#x9700;&#x8981;&#x68C0;&#x67E5;&#x670D;&#x52A1;&#x5668;&#x5373;&#x8BF6;&#x5355;&#x662F;&#x5426;&#x6709;<code>vdsm-gluster</code>&#x8F6F;&#x4EF6;&#x5305;&#x3002;</p>
+<p>&#x68C0;&#x67E5; <code>/usr/share/ovirt-host-deploy/plugins/ovirt-host-deploy/gluster/packages.py</code> &#x679C;&#x7136;&#x6709;&#xFF1A;</p>
+<pre><code class="lang-python">    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_validation</span><span class="hljs-params">(self)</span>:</span>
+        <span class="hljs-keyword">if</span> <span class="hljs-keyword">not</span> self.packager.queryPackages(patterns=(<span class="hljs-string">&apos;vdsm-gluster&apos;</span>,)):
+            <span class="hljs-keyword">raise</span> RuntimeError(
+                _(
+                    <span class="hljs-string">&apos;Cannot locate gluster packages, &apos;</span>
+                    <span class="hljs-string">&apos;possible cause is incorrect channels&apos;</span>
+                )
+            )
+        self._enabled = <span class="hljs-keyword">True</span>
+
+<span class="hljs-decorator">    @plugin.event(</span>
+        stage=plugin.Stages.STAGE_PACKAGES,
+        condition=<span class="hljs-keyword">lambda</span> self: self._enabled,
+    )
+    <span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">_packages</span><span class="hljs-params">(self)</span>:</span>
+        self.packager.installUpdate((<span class="hljs-string">&apos;vdsm-gluster&apos;</span>,))
+</code></pre>
+<p>&#x90A3;&#x4E48;&#x7A76;&#x7ADF;&#x662F;&#x8C01;&#x63D0;&#x4F9B;&#x4E86;&#x8FD9;&#x4E2A;&#x8F6F;&#x4EF6;&#x5305;&#xFF1F;&#x5728;&#x8282;&#x70B9;&#x4E0A;&#x4F7F;&#x7528;&#x547D;&#x4EE4;<code>yum list vdsm-gluster</code>&#x53D1;&#x73B0;&#x662F;&#x6700;&#x65E9;&#x5B89;&#x88C5;&#x7684;<code>ovirt-3.5</code>&#x63D0;&#x4F9B;&#x4E86;&#x8FD9;&#x4E2A;&#x8F6F;&#x4EF6;&#x5305;&#xFF08;&#x540E;&#x6765;&#x53C8;&#x5347;&#x7EA7;&#x5230;ovirt-3.6&#x53CD;&#x800C;&#x6CA1;&#x6709;&#x8FD9;&#x4E2A;&#x8F6F;&#x4EF6;&#x5305;&#xFF09;</p>
+<pre><code class="lang-bash">vdsm-gluster.noarch                                              <span class="hljs-number">4.16</span>.<span class="hljs-number">26</span>-<span class="hljs-number">0</span>.el6                                               @ovirt-<span class="hljs-number">3.5</span>
+</code></pre>
+<p>&#x68C0;&#x67E5; <a href="http://resources.ovirt.org/pub/ovirt-3.5/rpm/el6Server/noarch/" target="_blank">http://resources.ovirt.org/pub/ovirt-3.5/rpm/el6Server/noarch/</a> &#x679C;&#x7136;&#x6709;&#x8FD9;&#x4E2A;&#x8F6F;&#x4EF6;&#x5305;&#xFF0C;&#x800C;&#x4E14;&#x7248;&#x672C;&#x8981;&#x9AD8;&#x4E8E;EPEL&#x63D0;&#x4F9B;&#x7684;&#x7248;&#x672C;&#x3002;&#x6240;&#x4EE5;&#x5220;&#x9664;&#x6389;EPEL&#x4ED3;&#x5E93;&#xFF0C;&#x6DFB;&#x52A0; <code>@ovirt-3.5</code> &#x4ED3;&#x5E93;&#xFF0C;&#x5373;&#x518D;&#x589E;&#x52A0; <code>/etc/yum.repos.d/ovirt-3.5.repo</code> &#xFF08;&#x548C;<code>ovirt-3.6.repo</code>&#x5E76;&#x5B58;&#xFF0C;&#x5185;&#x5BB9;&#x662F;&#x4ECE;<code>ovirt-3.6.repo</code>&#x590D;&#x5236;&#x5E76;&#x4FEE;&#x6539;&#x7248;&#x672C;&#x53F7;&#x6210;<code>3.5</code>&#xFF09;&#x3002;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>ovirt 3.5</code>&#x4ED3;&#x5E93;&#x4E2D;&#x7684;&#x8F6F;&#x4EF6;&#x5305;&#xFF0C;&#x540C;&#x65F6;&#x7531;&#x4E8E;<code>ovirt 3.6</code>&#x4E2D;&#x76F8;&#x5173;&#x8F6F;&#x4EF6;&#x7248;&#x672C;&#x8F83;&#x65B0;&#xFF0C;&#x4E5F;&#x4E0D;&#x4F1A;&#x9519;&#x8BEF;&#x8986;&#x76D6;</p>
+<pre><code class="lang-bash">[ovirt-<span class="hljs-number">3.5</span>]
+name=Latest oVirt <span class="hljs-number">3.5</span> Release
+<span class="hljs-comment">#baseurl=http://resources.ovirt.org/pub/ovirt-3.5/rpm/el$releasever/</span>
+mirrorlist=http://resources.ovirt.org/pub/yum-repo/mirrorlist-ovirt-<span class="hljs-number">3.5</span>-el<span class="hljs-variable">$releasever</span>
+enabled=<span class="hljs-number">1</span>
+skip_<span class="hljs-keyword">if</span>_unavailable=<span class="hljs-number">1</span>
+gpgcheck=<span class="hljs-number">1</span>
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-ovirt-<span class="hljs-number">3.5</span>
+</code></pre>
+<blockquote>
+<p>&#x603B;&#x4E4B;&#xFF0C;&#x4F7F;&#x7528;<code>yum list &#x8F6F;&#x4EF6;&#x5305;</code>&#x540D;&#x5B57;&#x53EF;&#x4EE5;&#x627E;&#x5BFB;&#x51FA;&#x5BF9;&#x5E94;&#x7684;&#x962E;&#x7C4D;&#x90A3;&#x4ED3;&#x5E93;&#xFF0C;&#x4E5F;&#x5C31;&#x53EF;&#x4EE5;&#x8FDB;&#x4E00;&#x6B65;&#x6392;&#x67E5;&#x95EE;&#x9898;&#x7684;&#x539F;&#x56E0;</p>
 </blockquote>
 
                     
