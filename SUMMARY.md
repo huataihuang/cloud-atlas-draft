@@ -98,6 +98,8 @@
 		* [实用工具](os/linux/utility/README.md)
 			* [多路复用终端管理器screen](os/linux/utility/screen.md)
 			* [随机输出文本文件中的行:shuf](os/linux/utility/shuf.md)
+	* [FreeBSD](os/freebsd/README.md)
+		* [FreeBSD安装](os/freebsd/install_freebsd.md)
 	* [Windows](os/windows/README.md)
 		* [firewall](os/windows/firewall/README.md)
 			* [在Event Viewer中查看Firewall和IPsec事件](os/windows/firewall/view_firewall_and_ipsec_events.md)
