@@ -65,7 +65,7 @@
         data-chapter-title="中断和CPU亲和性"
         data-filepath="os/linux/kernel/cpu/interrupt_and_cpu_affinity.md"
         data-basepath="../../../.."
-        data-revision="Mon Jun 13 2016 14:30:53 GMT+0800 (CST)"
+        data-revision="Tue Jun 14 2016 10:41:04 GMT+0800 (CST)"
         data-innerlanguage="">
     
 
@@ -5615,6 +5615,10 @@ chkconfig irqbalance off
 </ul>
 <pre><code class="lang-bash">taskset -p <span class="hljs-number">2</span> <span class="hljs-number">4299</span>
 </code></pre>
+<blockquote>
+<p>&#x6CE8;&#x610F;&#xFF1A;&#x8FD9;&#x91CC;<code>-p</code>&#x53C2;&#x6570;&#x540E;&#x9762;&#x8868;&#x793A;cpu&#x6307;&#x5B9A;&#x4F7F;&#x7528;&#x7684;&#x662F;16&#x8FDB;&#x5236;&#x7684;&#x63A9;&#x7801;&#x8868;&#x793A;&#x65B9;&#x6CD5;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x8981;&#x8BBE;&#x7F6E;&#x7B2C;4&#x4E2A;cpu&#xFF08;<code>cpu3</code>&#xFF09;&#xFF0C;&#x4E8C;&#x8FDB;&#x5236;&#x8868;&#x793A;cpu&#x7684;&#x63A9;&#x7801;&#x5C31;&#x662F;<code>1000</code>&#xFF0C;&#x8F6C;&#x6362;&#x6210;16&#x8FDB;&#x5236;&#x5C31;&#x662F;<code>8</code>&#xFF0C;&#x6240;&#x4EE5;&#x547D;&#x4EE4;&#x5C31;&#x662F;<code>taskset -p 8 4299</code></p>
+<p>&#x5982;&#x679C;&#x8981;&#x7ED1;&#x5B9A;&#x591A;&#x4E2A;cpu&#xFF0C;&#x4F8B;&#x5982;&#x7ED1;&#x5B9A;&#x5230;<code>cpu 0,1,2,3,4,7</code>&#x5BF9;&#x5E94;&#x7684;&#x63A9;&#x7801;&#x5C31;&#x662F;<code>10011111</code>&#xFF0C;&#x8F6C;&#x6362;&#x6210;16&#x8FDB;&#x5236;&#x5C31;&#x662F;<code>9f</code>&#xFF0C;&#x6240;&#x4EE5;&#x547D;&#x4EE4;&#x5C31;&#x662F;<code>taskset -p 9f 4229</code></p>
+</blockquote>
 <p><strong><code>taskset</code>&#x7684;&#x53C2;&#x6570;&#x611F;&#x89C9;&#x6709;&#x70B9;&#x53CD;&#x76F4;&#x89C9;&#xFF0C;<code>-p</code>&#x53C2;&#x6570;&#x540E;&#x6709;&#x4E24;&#x79CD;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#xFF0C;<code>cpus</code>&#x548C;<code>pid</code>&#xFF0C;&#x6CA1;&#x6709;<code>cpus</code>&#x7684;&#x65F6;&#x5019;&#x5C31;&#x662F;&#x663E;&#x793A;&#xFF0C;&#x6709;<code>cpus</code>&#x5C31;&#x662F;&#x8BBE;&#x7F6E;&#x8FDB;&#x7A0B;&#x7ED1;&#x5B9A;&#x5230;&#x6307;&#x5B9A;cpu</strong></p>
 <h1 id="&#x8F6F;&#x4E2D;&#x65AD;">&#x8F6F;&#x4E2D;&#x65AD;</h1>
 <p>&#x53C2;&#x8003; <a href="softirq.html">softirq</a></p>
