@@ -42,14 +42,17 @@ sudo dd if=biosupdate.img of=/dev/rdisk2 bs=1m conv=sync
 
 * 刷先完成后，重启系统，按F1进入BIOS设置，在`Startup`栏设置`UEFI/Legancy Boot`选项中，设置成`UEFI Only`。这是因为X220s不能使用Legacy BIOS从GPT分区启动
 
+
 # 安装注意
 
 * Booting / disk layout issues
-  * The BIOS does not handle GPT-labelled disks that boot via BIOS (default install layout for FreeBSD). It seems to assume that the present of a GPT means it should expect an UEFI partition. Using MBR partition and BSD label with UFS works fine.
-  * Using ZFS with MBR is reported to not work with FreeBSD's bootloader (but does work with grub)
+  * The BIOS does not handle GPT-labelled disks that boot via BIOS (default install layout for FreeBSD). It seems to assume that the present of a GPT means it should expect an UEFI partition. Using MBR partition and BSD label with UFS works fine. - x220的BIOS不支持GPT标记的磁盘启动，似乎是对x220而言GPT就是需要UEFI分区。使用BSD分区UFS标记的分区工作正常。
+  * Using ZFS with MBR is reported to not work with FreeBSD's bootloader (but does work with grub) - 使用MBR的ZFS文件系统被报告不能使用FreeBSD的bootloader启动，但是可以使用grub
   * See PR#194359 for the bug report and fix
-  * Booting with UEFI works
-  
+  * Booting with UEFI works - UEFI启动正常
+
+使用UEFI模式，设置GPT的ZFS磁盘，看看能否成功
+
 > **尚未实践成功**
 
 # 参考

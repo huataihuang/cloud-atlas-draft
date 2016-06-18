@@ -58,9 +58,9 @@ oVirt输出一系列接口用于和虚拟环境的组件交互。这些接口提
 * oVirt节点控制台 - oVirtjiedian之外的访问文本用户界面的控制台不被支持
 * oVirts护具库 - 不支持直接访问和维护oVirt数据库
 
-# 下一步
+# oVirt组件
 
-* [使用oVirt管理门户](#使用oVirt管理门户)
+* [oVirt存储管理](ovirt_storage.md)
 
 # 参考
 
