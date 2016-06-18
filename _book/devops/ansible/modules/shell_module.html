@@ -5,7 +5,7 @@
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>使用GitBook撰写书籍 | 云图</title>
+        <title>shell - 在远程节点执行命令 | 云图</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.5">
@@ -49,10 +49,10 @@
         
     
     
-    <link rel="next" href="../../../develop/doc/gitbook/run_multi_gitbook_in_one_host.html" />
+    <link rel="next" href="../../../devops/ansible/dashboard/index.html" />
     
     
-    <link rel="prev" href="../../../develop/doc/gitbook/index.html" />
+    <link rel="prev" href="../../../devops/ansible/modules/command_module.html" />
     
 
         <!-- head:end -->
@@ -61,9 +61,9 @@
         <!-- body:start -->
         
     <div class="book"
-        data-level="11.9.1.1"
-        data-chapter-title="使用GitBook撰写书籍"
-        data-filepath="develop/doc/gitbook/using_gitbook_write_book.md"
+        data-level="12.5.3.2"
+        data-chapter-title="shell - 在远程节点执行命令"
+        data-filepath="devops/ansible/modules/shell_module.md"
         data-basepath="../../.."
         data-revision="Sat Jun 18 2016 22:37:09 GMT+0800 (CST)"
         data-innerlanguage="">
@@ -4570,7 +4570,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="11.9.1.1" data-path="develop/doc/gitbook/using_gitbook_write_book.html">
+        <li class="chapter " data-level="11.9.1.1" data-path="develop/doc/gitbook/using_gitbook_write_book.html">
             
                 
                     <a href="../../../develop/doc/gitbook/using_gitbook_write_book.html">
@@ -5062,7 +5062,7 @@
             
         </li>
     
-        <li class="chapter " data-level="12.5.3.2" data-path="devops/ansible/modules/shell_module.html">
+        <li class="chapter active" data-level="12.5.3.2" data-path="devops/ansible/modules/shell_module.html">
             
                 
                     <a href="../../../devops/ansible/modules/shell_module.html">
@@ -5419,157 +5419,33 @@
                 
                     <section class="normal" id="section-">
                     
-                        <blockquote>
-<p>&#x6B63;&#x5982;&#x4F60;&#x770B;&#x5230;&#x7684;&#xFF0C;&#x8FD9;&#x672C;&#x4E66;&#x5C31;&#x662F;&#x4F7F;&#x7528;gitbook&#x64B0;&#x5199;&#x7684;</p>
-</blockquote>
-<h1 id="&#x5B89;&#x88C5;gitbook">&#x5B89;&#x88C5;gitbook</h1>
-<ul>
-<li>&#x5B89;&#x88C5;Node.js</li>
-</ul>
-<blockquote>
-<p>&#x53C2;&#x8003; <a href="http://www.gtwang.org/2013/12/install-node-js-in-windows-mac-os-x-linux.html" target="_blank">&#x5728; Windows&#x3001;Mac OS X &#x8207; Linux &#x4E2D;&#x5B89;&#x88DD; Node.js &#x7DB2;&#x9801;&#x61C9;&#x7528;&#x7A0B;&#x5F0F;&#x958B;&#x767C;&#x74B0;&#x5883;</a></p>
-<p>&#x6211;&#x524D;&#x671F;<a href="&#x518D;&#x6B21;&#x4F7F;&#x7528;hexo&#x64B0;&#x5199;&#x535A;&#x5BA2;">&#x4F7F;&#x7528;Hexo</a>&#xFF0C;&#x5DF2;&#x7ECF;&#x5B89;&#x88C5;&#x4E86;node&#xFF0C;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x9A8C;&#x8BC1;</p>
-</blockquote>
-<pre><code>node -v
-</code></pre><ul>
-<li>&#x5B89;&#x88C5;Gitbook</li>
-</ul>
-<p>&#x4F7F;&#x7528;NMP&#x5B89;&#x88C5;Gitbook</p>
-<pre><code>npm install gitbook -g
-</code></pre><blockquote>
-<p>&#x8BF7;&#x4F7F;&#x7528;<code>nvm</code>&#x6765;&#x5B89;&#x88C5;node&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x7528;&#x6237;&#x76EE;&#x5F55;&#x4E0B;&#x5B89;&#x88C5;&#x548C;&#x7BA1;&#x7406;&#x5404;&#x79CD;&#x7248;&#x672C;node&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x907F;&#x514D;&#x5B89;&#x88C5;&#x7CFB;&#x7EDF;&#x76EE;&#x5F55;node&#xFF0C;&#x4E5F;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x4F7F;&#x7528;<code>sudo</code>&#x547D;&#x4EE4;&#x3002;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x7CFB;&#x7EDF;&#x8303;&#x56F4;&#x7684;<code>node.js</code>&#xFF0C;&#x9700;&#x8981;&#x4F7F;&#x7528;&#x547D;&#x4EE4;<code>sudo npm install gitbook -g</code></p>
-</blockquote>
-<p>&#x5B89;&#x88C5;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x9A8C;&#x8BC1;&#x662F;&#x5426;&#x5B89;&#x88C5;&#x6210;&#x529F;</p>
-<pre><code>gitbook -V
-</code></pre><p>&#x8FD9;&#x91CC;&#x51FA;&#x73B0;&#x62A5;&#x9519;</p>
-<pre><code>You need to install &quot;gitbook-cli&quot; to have access to the gitbook command anywhere     on your system.
-If you&apos;ve installed this package globally, you need to uninstall it.
-&gt;&gt; Run &quot;npm uninstall -g gitbook&quot; then &quot;npm install -g gitbook-cli&quot;
-</code></pre><p>&#x6240;&#x4EE5;&#x91CD;&#x65B0;&#x5B89;&#x88C5;&#x4E00;&#x904D;</p>
-<pre><code>npm uninstall -g gitbook
-npm install -g gitbook-cli
-</code></pre><h1 id="&#x4F7F;&#x7528;gitbook">&#x4F7F;&#x7528;GitBook</h1>
-<ul>
-<li><p>&#x521D;&#x59CB;&#x5316;&#x76EE;&#x5F55;<code>cloudatlas</code></p>
-<pre><code>  gitbook init cloudatlas
-</code></pre></li>
-</ul>
-<blockquote>
-<p>&#x6211;&#x7684;&#x4E2A;&#x4EBA;&quot;&#x4E91;&#x56FE;&quot; <a href="http://cloudatlas.huatai.me" target="_blank">cloudatlas.huatai.me</a> &#x8BB0;&#x5F55;&#x81EA;&#x5DF1;&#x5728;&#x4E91;&#x8BA1;&#x7B97;&#x9886;&#x57DF;&#x7684;&#x6280;&#x672F;&#x63A2;&#x7D22;&#x3002;</p>
-</blockquote>
-<p>&#x8FDB;&#x5165;<code>cloudatlas.huatai.me</code>&#x76EE;&#x5F55;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x8BE5;&#x76EE;&#x5F55;&#x4E0B;&#x6709;2&#x4E2A;&#x6587;&#x4EF6;&#xFF0C;&#x9664;&#x6B64;&#x4E4B;&#x5916;&#x4EC0;&#x4E48;&#x4E5F;&#x6CA1;&#x6709;</p>
-<pre><code>README.md
-SUMMARY.md
-</code></pre><ul>
-<li>&#x672C;&#x5730;&#x9884;&#x89C8;&#x81EA;&#x52A8;&#x751F;&#x6210;</li>
-</ul>
-<p>&#x7F16;&#x8F91;&#x597D;&#x521D;&#x6B65;&#x7684;&#x6587;&#x6863;&#x4E4B;&#x540E;&#xFF08;&#x4F8B;&#x5982;&#x7F16;&#x8F91; <code>README.md</code> &#xFF09;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>gitbook</code>&#x547D;&#x4EE4;&#x542F;&#x7528;&#x4E00;&#x4E2A;&#x672C;&#x5730;&#x7684;&#x670D;&#x52A1;&#x8FDB;&#x884C;&#x9884;&#x89C8;</p>
-<pre><code>gitbook serve cloudatlas
-</code></pre><p>&#x6B64;&#x65F6;&#x4F1A;&#x5728; <code>cloudatlas</code> &#x76EE;&#x5F55;&#x4E0B;&#x751F;&#x6210;&#x4E00;&#x4E2A;&#x5B50;&#x76EE;&#x5F55;<code>_book</code>&#x5305;&#x542B;&#x4E86;&#x6240;&#x6709;&#x751F;&#x6210;&#x7684;&#x9759;&#x6001;&#x7F51;&#x7AD9;&#x6587;&#x4EF6;&#x3002;</p>
-<ul>
-<li>&#x4F7F;&#x7528;<code>build</code>&#x53C2;&#x6570;&#x5C06;&#x9759;&#x6001;&#x6587;&#x4EF6;&#x751F;&#x6210;&#x5230;&#x6307;&#x5B9A;&#x76EE;&#x5F55;</li>
-</ul>
-<p>&#x4E5F;&#x53EF;&#x4EE5;&#x5C06;&#x9759;&#x6001;&#x6587;&#x4EF6;&#x751F;&#x6210;&#x5230;&#x6307;&#x5B9A;&#x76EE;&#x5F55;&#x4E0B;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x65B9;&#x4FBF;&#x6253;&#x5305;&#x8F93;&#x51FA;&#x7684;&#x9759;&#x6001;&#x6587;&#x4EF6;</p>
-<pre><code>mkdir /tmp/gitbook
-gitbook build cloudatlas.huatai.me --output=/tmp/gitbook
-</code></pre><p>&#x901A;&#x8FC7;&#x6D4F;&#x89C8;&#x5668;&#x8BBF;&#x95EE; <a href="http://localhost:4000" target="_blank">http://localhost:4000</a> &#x6765;&#x67E5;&#x770B;&#x9875;&#x9762;&#x6548;&#x679C;</p>
-<h1 id="&#x8F93;&#x51FA;pdf">&#x8F93;&#x51FA;pdf</h1>
-<p>&#x8981;&#x8F93;&#x51FA;PDF&#x6587;&#x4EF6;&#xFF0C;&#x5148;&#x5B89;&#x88C5;<code>gitbook-pdf</code></p>
-<pre><code>npm install gitbook-pdf -g
-</code></pre><p>&#x8FD9;&#x91CC;&#x5B89;&#x88C5;&#x62A5;&#x9519;&#x663E;&#x793A;</p>
-<pre><code>Downloading http://cdn.bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.7-macosx.zip
-Saving to /usr/local/lib/node_modules/gitbook-pdf/node_modules/phantomjs/phantomjs/phantomjs-1.9.7-macosx.zip
-Receiving...
-Error requesting archive.
-Status: 403
-...
-npm ERR! phantomjs@1.9.7-5 install: `node install.js`
-npm ERR! Exit status 1
-</code></pre><p>&#x53C2;&#x8003;<a href="http://stackoverflow.com/questions/23823319/yeoman-generator-always-get-some-error" target="_blank">Yeoman generator always get some error</a>&#xFF0C;&#x5C1D;&#x8BD5;</p>
-<pre><code>PHANTOMJS_CDNURL=https://bitbucket.org/ariya/phantomjs/downloads npm install phantomjs
-</code></pre><p>&#x867D;&#x7136;&#x6B63;&#x786E;&#x5B89;&#x88C5;&#x4E86; <code>phantomjs-1.9.8</code>&#xFF0C;&#x4F46;&#x662F;&#x5B89;&#x88C5;<code>gitbook-pdf</code>&#x540C;&#x6837;&#x5931;&#x8D25;&#x3002;&#x540E;&#x6765;&#x53D1;&#x73B0;&#xFF0C;&#x5E94;&#x8BE5;&#x662F;&#x8FD9;&#x4E2A;&#x5B89;&#x88C5; <code>gitbook-pdf</code> &#x4F9D;&#x8D56;&#x5B89;&#x88C5;&#x6307;&#x5B9A;&#x7248;&#x672C;&#xFF0C;&#x6240;&#x4EE5;&#x53C2;&#x8003; <a href="https://docs.npmjs.com/cli/install" target="_blank">npm-install</a>&#x5B89;&#x88C5;&#x6307;&#x5B9A;&#x7248;&#x672C;</p>
-<pre><code>PHANTOMJS_CDNURL=https://bitbucket.org/ariya/phantomjs/downloads npm install phantomjs@1.9.7-5
-</code></pre><blockquote>
-<p>&#x8FD8;&#x6CA1;&#x6709;&#x6210;&#x529F;</p>
-</blockquote>
-<h1 id="gitbook&#x7B80;&#x660E;&#x4F7F;&#x7528;&#x624B;&#x518C;">GitBook&#x7B80;&#x660E;&#x4F7F;&#x7528;&#x624B;&#x518C;</h1>
-<h2 id="&#x9996;&#x9875;">&#x9996;&#x9875;</h2>
-<blockquote>
-<p>&#x8BE6;&#x7EC6;&#x7684;Gitbook&#x4F7F;&#x7528;&#x53C2;&#x8003; <a href="GitBook&#x4F7F;&#x7528;&#x6307;&#x5357;">GitBook&#x4F7F;&#x7528;&#x6307;&#x5357;</a></p>
-</blockquote>
-<p>&#x9ED8;&#x8BA4;&#x6587;&#x4EF6;<code>README.md</code>&#xFF0C;&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x662F;&#x4ECB;&#x7ECD;&#x7F51;&#x7AD9;&#x7684;&#x7684;&#x8BF4;&#x660E;&#xFF0C;&#x4E5F;&#x662F;GitBook&#x663E;&#x793A;&#x5728;&#x9996;&#x9875;&#x7684;&#x5185;&#x5BB9;</p>
-<blockquote>
-<p>&#x5728;Gitbook&#x7684;2.0.0&#x4E4B;&#x540E;&#xFF0C;&#x53EF;&#x4EE5;&#x5728;  book.json &#x4E2D;&#x6307;&#x5B9A;&#x6587;&#x4EF6;&#x4F5C;&#x4E3A;README</p>
-</blockquote>
-<pre><code>{
-    &quot;structure&quot;: {
-    &quot;readme&quot;: &quot;myIntro.md&quot;
-    }
-}
-</code></pre><h2 id="&#x7AE0;&#x8282;">&#x7AE0;&#x8282;</h2>
-<p>GitBook&#x4F7F;&#x7528; <code>SUMMARY.md</code>&#x6765;&#x5B9A;&#x4E49;&#x7AE0;&#x8282;&#x548C;&#x5B50;&#x7AE0;&#x8282;</p>
-<pre><code># Summary
+                        <h1 id="&#x6982;&#x8981;">&#x6982;&#x8981;</h1>
+<p><code>shell</code>&#x6A21;&#x5757;&#x5904;&#x7406;&#x5E26;&#x6709;&#x4E00;&#x4E32;&#x7A7A;&#x683C;&#x5206;&#x9694;&#x7684;&#x53C2;&#x6570;&#x7684;&#x547D;&#x4EE4;&#x3002;<code>shell</code>&#x6A21;&#x5757;&#x548C;<code>command</code>&#x975E;&#x5E38;&#x76F8;&#x4F3C;&#xFF0C;&#x4F46;&#x662F;&#x5B83;&#x662F;&#x901A;&#x8FC7;shell<code>/bin/sh</code>&#x6765;&#x8FDC;&#x7A0B;&#x6267;&#x884C;&#x7684;&#x3002;</p>
+<h1 id="&#x6848;&#x4F8B;">&#x6848;&#x4F8B;</h1>
+<pre><code class="lang-bash"><span class="hljs-comment"># Execute the command in remote shell; stdout goes to the specified</span>
+<span class="hljs-comment"># file on the remote.</span>
+- shell: somescript.sh &gt;&gt; somelog.txt
 
-* [Chapter 1](chapter1.md) 
-* [Chapter 2](chapter2.md)
-* [Chapter 3](chapter3.md)
-</code></pre><p>&#x5B50;&#x7AE0;&#x8282;&#x6848;&#x4F8B;&#xFF1A;</p>
-<pre><code># Summary
+<span class="hljs-comment"># Change the working directory to somedir/ before executing the command.</span>
+- shell: somescript.sh &gt;&gt; somelog.txt <span class="hljs-built_in">chdir</span>=somedir/
 
-* [Part I](part1/README.md)
-    * [Writing is nice](part1/writing.md)
-    * [GitBook is nice](part1/gitbook.md)
-* [Part II](part2/README.md)
-    * [We love feedback](part2/feedback_please.md)
-    * [Better tools for authors](part2/better_tools.md)# Summary
-* [Part I](part1/README.md)
-    * [Writing is nice](part1/writing.md)
-    * [GitBook is nice](part1/gitbook.md)
-* [Part II](part2/README.md)
-    * [We love feedback](part2/feedback_please.md)
-    * [Better tools for authors](part2/better_tools.md)
-</code></pre><h2 id="markdown">MarkDown</h2>
-<p><a href="http://help.gitbook.com/format/markdown.html" target="_blank">GitBook&#x4F7F;&#x7528;GitHub favorited markdown&#x683C;&#x5F0F;</a></p>
-<ul>
-<li><p>&#x94FE;&#x63A5;</p>
-<ul>
-<li>&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5F15;&#x7528;URL <code>[Google&#x5B98;&#x7F51;](https://www.google.com)</code></li>
-<li>&#x4E5F;&#x53EF;&#x4EE5;&#x5F15;&#x7528;&#x672C;&#x7F51;&#x7AD9;&#x7684;&#x6587;&#x6863;&#xFF0C;&#x5982; <code>[&#x5185;&#x6838;&#x8FDB;&#x7A0B;&#x72B6;&#x6001;&#x53C2;&#x8003;](../../../../os/linux/kernel/process_stat_indicates.md)</code></li>
-<li>&#x53EF;&#x4EE5;&#x76F4;&#x63A5;&#x5F15;&#x7528;&#x76F8;&#x540C;&#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x6587;&#x6863;&#xFF0C;&#x5982; <code>[ssh portfording&#x8BBE;&#x7F6E;](ssh_portfording.md)</code>&#xFF1A;&#x4E0D;&#x8FC7;&#x9700;&#x8981;&#x6CE8;&#x610F;&#xFF0C;&#x6240;&#x5F15;&#x7528;&#x7684;&#x6587;&#x6863;&#x5FC5;&#x987B;&#x5728;<code>summary.md</code>&#x4E2D;&#x5DF2;&#x7ECF;&#x5B9A;&#x4E49;&#xFF0C;&#x8FD9;&#x6837;&#x624D;&#x80FD;&#x591F;&#x521B;&#x5EFA;html&#x6587;&#x4EF6;&#xFF0C;&#x5E76;&#x6B63;&#x786E;&#x5F15;&#x7528;</li>
-<li><p>&#x6216;&#x8005;&#x5C06;&#x8D85;&#x94FE;&#x63A5;&#x90FD;&#x96C6;&#x4E2D;&#x5230;&#x6587;&#x6863;&#x672B;&#x5C3E;&#xFF08;&#x5047;&#x5982;&#x6709;&#x591A;&#x4E2A;&#x76F8;&#x540C;&#x7684;&#x94FE;&#x63A5;&#x5012;&#x662F;&#x6BD4;&#x8F83;&#x65B9;&#x4FBF;&#xFF0C;&#x4E0D;&#x8FC7;&#x6211;&#x6CA1;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x683C;&#x5F0F;&#xFF09;</p>
-<p>[You can use numbers for reference-style link definitions][1]</p>
-</li>
-</ul>
-</li>
-</ul>
-<pre><code>[1]: http://slashdot.org
-</code></pre><h1 id="&#x53D1;&#x5E03;">&#x53D1;&#x5E03;</h1>
-<ul>
-<li>&#x9996;&#x5148;&#x5728;<a href="https://www.gitbook.com" target="_blank">gitbook</a> &#x6CE8;&#x518C;&#x4E00;&#x4E2A;&#x8D26;&#x53F7;</li>
-</ul>
-<p>&#x6CE8;&#x518C;&#x65F6;&#x5019;&#x4F1A;&#x53D1;&#x9001;&#x4E00;&#x4E2A;&#x786E;&#x8BA4;&#x90AE;&#x4EF6;&#x5230;&#x4F60;&#x7684;&#x90AE;&#x7BB1;&#xFF0C;&#x5982;&#x679C;&#x90AE;&#x7BB1;&#x5730;&#x5740;&#x548C;&#x4F60;&#x7684;<a href="http://en.gravatar.com/" target="_blank">gravatar&#x6CE8;&#x518C;&#x5934;&#x50CF;</a>&#x4E00;&#x81F4;&#xFF0C;&#x5C31;&#x4F1A;&#x81EA;&#x52A8;&#x663E;&#x793A;&#x5728;gitbook&#x4E0A;&#xFF08;&#x4E5F;&#x53EF;&#x4EE5;&#x5728;&#x8BBE;&#x7F6E;&#x4E2D;&#x4FEE;&#x6539;&#xFF09;&#x3002;</p>
-<ul>
-<li><p>&#x5728;gitbook&#x7684;&#x8BBE;&#x7F6E;<code>Profile</code>&#x4E2D;&#xFF0C;&#x5176;&#x4E2D;&#x6709;&#x4E00;&#x9879;&#x662F;<code>Connect GitHub Account</code>&#x3002;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x7BA1;&#x7406;&#x529F;&#x80FD;&#xFF0C;github&#x4F1A;&#x901A;&#x8FC7;oauth&#x65B9;&#x5F0F;&#xFF0C;&#x7ED9;&#x4E88;gitbook&#x8BBF;&#x95EE; <strong>&#x516C;&#x5F00;&#x7684;&#x4ED3;&#x5E93;</strong> &#x6743;&#x9650;&#xFF08;&#x8FD9;&#x6B65;&#x9700;&#x8981;&#x4E48;&#xFF1F;&#xFF09;</p>
-</li>
-<li><p>&#x521B;&#x5EFA;&#x56FE;&#x4E66;&#xFF0C;&#x5728;&#x56FE;&#x4E66;&#x9875;&#x9762;&#x9009;&#x62E9; <code>github</code> &#xFF0C;&#x6B64;&#x65F6;&#x9009;&#x62E9;gitbub&#x7684;&#x67D0;&#x4E2A;&#x516C;&#x5F00;&#x7684;&#x4ED3;&#x5E93;&#xFF08;&#x4E5F;&#x5C31;&#x662F;&#x4F60;&#x524D;&#x9762;&#x5C06;&#x81EA;&#x5DF1;&#x7684;gitbook&#x63A8;&#x9001;&#x7684;&#x4ED3;&#x5E93;&#xFF09;&#xFF0C;&#x901A;&#x8FC7;&#x5173;&#x8054;&#x540E;&#xFF0C;&#x8FD9;&#x4E2A;&#x4ED3;&#x5E93;&#x7684;&#x4E66;&#x5C31;&#x4F1A;&#x51FA;&#x73B0;&#x5728;&#x5728; <a href="https://{author}.gitbooks.io/{book}/" target="_blank">https://{author}.gitbooks.io/{book}/</a></p>
-</li>
-</ul>
-<blockquote>
-<p>&#x4F8B;&#x5982;&#xFF0C;&#x6211;&#x7684;&#x6709;&#x5173;&#x4E91;&#x8BA1;&#x7B97;&#x7684;&#x4E66; Cloud Atlas <a href="https://huataihuang.gitbooks.io/cloudatlas/" target="_blank">https://huataihuang.gitbooks.io/cloudatlas/</a></p>
-</blockquote>
-<h1 id="&#x63D2;&#x4EF6;">&#x63D2;&#x4EF6;</h1>
-<p><a href="https://plugins.gitbook.com/" target="_blank">gitbook&#x63D2;&#x4EF6;</a>&#x53EF;&#x4EE5;&#x7ED9;&#x4F60;&#x7684;&#x7535;&#x5B50;&#x4E66;&#x5E26;&#x6765;&#x66F4;&#x591A;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x8BF7;&#x5C1D;&#x8BD5;&#x5427;&#xFF01;</p>
-<ul>
-<li><a href="https://plugins.gitbook.com/plugin/puml" target="_blank">PlantUML in GitBook</a></li>
-</ul>
-<p><a href="http://blog.lyhdev.com/2014/12/gitbook-plantuml-markdown-uml.html" target="_blank">GitBook + PlantUML &#x4EE5; Markdown &#x5FEB;&#x901F;&#x88FD;&#x4F5C; UML &#x6559;&#x6750;</a></p>
+<span class="hljs-comment"># You can also use the &apos;args&apos; form to provide the options. This command</span>
+<span class="hljs-comment"># will change the working directory to somedir/ and will only run when</span>
+<span class="hljs-comment"># somedir/somelog.txt doesn&apos;t exist.</span>
+- shell: somescript.sh &gt;&gt; somelog.txt
+  args:
+    <span class="hljs-built_in">chdir</span>: somedir/
+    creates: somelog.txt
+
+<span class="hljs-comment"># Run a command that uses non-posix shell-isms (in this example /bin/sh</span>
+<span class="hljs-comment"># doesn&apos;t handle redirection and wildcards together but bash does)</span>
+- shell: cat &lt; /tmp/*txt
+  args:
+    executable: /bin/bash
+</code></pre>
 <h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
 <ul>
-<li><a href="http://wanqingwong.com/gitbook-zh/" target="_blank">GitBook&#x4F7F;&#x7528;&#x6307;&#x5357;</a></li>
-<li><a href="https://www.gitbook.com/book/gitbookio/documentation/details" target="_blank">GitBook Help</a></li>
-<li><a href="http://www.ituring.com.cn/article/127645" target="_blank">&#x4F7F;&#x7528;Gitbook&#x5236;&#x4F5C;&#x7535;&#x5B50;&#x4E66;</a></li>
-<li><a href="http://www.ituring.com.cn/article/127744" target="_blank">&#x4F7F;&#x7528;GitBook&#x5E73;&#x53F0;&#x53D1;&#x5E03;&#x7535;&#x5B50;&#x4E66;</a></li>
-<li><a href="http://leeluolee.github.io/2014/07/22/2014-07-22-gitbook-guide/" target="_blank">GitBook, Git + Markdown &#x5FEB;&#x901F;&#x53D1;&#x5E03;&#x4F60;&#x7684;&#x4E66;&#x7C4D;</a></li>
+<li><a href="http://docs.ansible.com/ansible/shell_module.html" target="_blank">shell - Execute commands in nodes</a></li>
 </ul>
 
                     
@@ -5581,10 +5457,10 @@ npm ERR! Exit status 1
         </div>
 
         
-        <a href="../../../develop/doc/gitbook/index.html" class="navigation navigation-prev " aria-label="Previous page: GitBook"><i class="fa fa-angle-left"></i></a>
+        <a href="../../../devops/ansible/modules/command_module.html" class="navigation navigation-prev " aria-label="Previous page: command - 在远程节点执行一个命令"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../../develop/doc/gitbook/run_multi_gitbook_in_one_host.html" class="navigation navigation-next " aria-label="Next page: 如何在一台主机同时运行多个GitBook"><i class="fa fa-angle-right"></i></a>
+        <a href="../../../devops/ansible/dashboard/index.html" class="navigation navigation-next " aria-label="Next page: Dashboard"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

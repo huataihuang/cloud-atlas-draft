@@ -301,6 +301,7 @@
 			* [案例：通过sudo安装rpm包](devops/ansible/playbooks/install_rpm_through_sudo.md)
 		* [模块](devops/ansible/modules/README.md)
 			* [command - 在远程节点执行一个命令](devops/ansible/modules/command_module.md)
+			* [shell - 在远程节点执行命令](devops/ansible/modules/shell_module.md)
 		* [Dashboard](devops/ansible/dashboard/README.md)
 			* [Ansible Tower开源替代:semaphore](devops/ansible/dashboard/semaphone.md)
 		* [问题排查](devops/ansible/troubleshoot/README.md)

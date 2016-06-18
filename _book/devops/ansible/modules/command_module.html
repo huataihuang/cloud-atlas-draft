@@ -49,7 +49,7 @@
         
     
     
-    <link rel="next" href="../../../devops/ansible/dashboard/index.html" />
+    <link rel="next" href="../../../devops/ansible/modules/shell_module.html" />
     
     
     <link rel="prev" href="../../../devops/ansible/modules/index.html" />
@@ -65,7 +65,7 @@
         data-chapter-title="command - 在远程节点执行一个命令"
         data-filepath="devops/ansible/modules/command_module.md"
         data-basepath="../../.."
-        data-revision="Sat Jun 18 2016 22:04:11 GMT+0800 (CST)"
+        data-revision="Sat Jun 18 2016 22:37:09 GMT+0800 (CST)"
         data-innerlanguage="">
     
 
@@ -5062,6 +5062,21 @@
             
         </li>
     
+        <li class="chapter " data-level="12.5.3.2" data-path="devops/ansible/modules/shell_module.html">
+            
+                
+                    <a href="../../../devops/ansible/modules/shell_module.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.5.3.2.</b>
+                        
+                        shell - 在远程节点执行命令
+                    </a>
+            
+            
+        </li>
+    
 
             </ul>
             
@@ -5404,7 +5419,28 @@
                 
                     <section class="normal" id="section-">
                     
-                        
+                        <h1 id="&#x6982;&#x8981;">&#x6982;&#x8981;</h1>
+<p><code>command</code>&#x6A21;&#x5757;&#x7BA1;&#x7406;&#x5E26;&#x6709;&#x4E00;&#x7CFB;&#x5217;&#x7A7A;&#x683C;&#x5206;&#x9694;&#x7684;&#x53C2;&#x6570;&#x7684;&#x547D;&#x4EE4;&#x3002;&#x6307;&#x5B9A;&#x547D;&#x4EE4;&#x5728;&#x6240;&#x6709;&#x9009;&#x5B9A;&#x7684;&#x8282;&#x70B9;&#x6267;&#x884C;&#x3002;&#x6CE8;&#x610F;&#xFF1A;<code>command</code>&#x6A21;&#x5757;&#x4E0D;&#x901A;&#x8FC7;shell&#x6267;&#x884C;&#xFF0C;&#x6240;&#x4EE5;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#xFF0C;&#x4F8B;&#x5982;<code>$HOME</code>&#x4EE5;&#x53CA;&#x64CD;&#x4F5C;&#x7B26;&#x5982;<code>&lt;</code>&#xFF0C;<code>&gt;</code>&#xFF0C;<code>|</code>&#x548C;<code>&amp;</code>&#x4E0D;&#x80FD;&#x751F;&#x6548;&#x3002;&#xFF08;&#x5982;&#x679C;&#x4F60;&#x9700;&#x8981;&#x8FD9;&#x4E9B;&#x529F;&#x80FD;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x4F7F;&#x7528;<a href="shell_module.html">shell</a>&#x6A21;&#x5757;&#xFF09;</p>
+<h1 id="&#x6848;&#x4F8B;">&#x6848;&#x4F8B;</h1>
+<pre><code class="lang-bash"><span class="hljs-comment"># Example from Ansible Playbooks.</span>
+- <span class="hljs-built_in">command</span>: /sbin/shutdown -t now
+
+<span class="hljs-comment"># Run the command if the specified file does not exist.</span>
+- <span class="hljs-built_in">command</span>: /usr/bin/make_database.sh arg1 arg2 creates=/path/to/database
+
+<span class="hljs-comment"># You can also use the &apos;args&apos; form to provide the options. This command</span>
+<span class="hljs-comment"># will change the working directory to somedir/ and will only run when</span>
+<span class="hljs-comment"># /path/to/database doesn&apos;t exist.</span>
+- <span class="hljs-built_in">command</span>: /usr/bin/make_database.sh arg1 arg2
+  args:
+    <span class="hljs-built_in">chdir</span>: somedir/
+    creates: /path/to/database
+</code></pre>
+<h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
+<ul>
+<li><a href="http://docs.ansible.com/ansible/command_module.html" target="_blank">command - Executes a command on a remote node</a></li>
+</ul>
+
                     
                     </section>
                 
@@ -5417,7 +5453,7 @@
         <a href="../../../devops/ansible/modules/index.html" class="navigation navigation-prev " aria-label="Previous page: 模块"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../../devops/ansible/dashboard/index.html" class="navigation navigation-next " aria-label="Next page: Dashboard"><i class="fa fa-angle-right"></i></a>
+        <a href="../../../devops/ansible/modules/shell_module.html" class="navigation navigation-next " aria-label="Next page: shell - 在远程节点执行命令"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
