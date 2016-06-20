@@ -33,6 +33,7 @@
 			* [内核中日志模块和参数](os/linux/kernel/log/README.md)
 				* [系统日志"__ratelimit: N callbacks suppressed"分析](os/linux/kernel/log/ratelimit.md)
 			* [cpu](os/linux/kernel/cpu/README.md)
+			    * [CPU型号和分类](os/linux/kernel/cpu/cpu_models_and_topology.md)
 				* [CPU亲和性](os/linux/kernel/cpu/cpu_affinity.md)
 				* [中断和CPU亲和性](os/linux/kernel/cpu/interrupt_and_cpu_affinity.md)
 				* [软中断](os/linux/kernel/cpu/softirq.md)

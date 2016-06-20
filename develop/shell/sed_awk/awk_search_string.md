@@ -79,3 +79,4 @@ awk -F, '/Medicine/ || $2>600' file
 # 参考
 
 * [awk - Match a pattern in a file in Linux](http://www.tuicool.com/articles/F7JbEn)
+* [grep vs awk : 10 examples of pattern search](http://www.theunixschool.com/2012/09/grep-vs-awk-examples-for-pattern-search.html)
