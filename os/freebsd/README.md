@@ -12,6 +12,15 @@ FreeBSD的FreeBSD的开发者保持至少两个分支的同步发展。在-CURRE
 
 FreeBSD是BSD三大主要发行版中最为流行的系统(另外两个分别是OpenBSD和NetBSD)。FreeBSD大范围的应用于世界上很多公司的核心基础设施，包括NetFlix，WhataApp，Yahoo！，Juniper网络，EMC/Isilon。另外苹果公司的Darwin使用的也是FreeBSD，也就是Mac OS X的基础操作系统。也由于它可以构建一个非常小的系统，所以能够在嵌入式系统中的应用逐渐增多。开源界主要替代FreeBSD的还是Linux。FreeBSD的许可条款允许修改和改进系统而无需再发行，这样使得FreeBSD的许可更加的友好，无论是企业还是个人用户。Linux的许可条款要求所有的更改和改进内核进行源代码可以以最低的成本再发布。因此，若企业需要控制发行版的知识产权，那么使用FreeBSD来构建他们的产品就是不错的选择。
 
+# My FreeBSD
+
+我使用FreeBSD的目标：
+
+* 完整学习一遍[FreeBSD手册](https://www.freebsd.org/doc/zh_CN.UTF-8/books/handbook/index.html)：本文档章节将按照手册进行组织，选择自己感兴趣的目标深入实践，整理心得
+* 在FreeBSD环境学习Unix编程（C语言）
+
+> 比较喜欢FreeBSD的独特的气质
+
 # 参考
 
 * [FreeBSD百度词条](http://baike.baidu.com/item/FreeBSD)

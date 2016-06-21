@@ -1,6 +1,6 @@
 # 连接802.1x
 
-配置`/etc/wpa_supplicant/wpa_suplicant.conf`
+配置`/etc/wpa_supplicant/wpa_supplicant.conf`
 
 ```bash
 ctrl_interface=/var/run/wpa_supplicant  
@@ -23,10 +23,12 @@ network={
   
 ifconfig eth0 up  
 ifconfig eth0 promisc  
-wpa_supplicant -i eth0 -B -Dwired -c /etc/wpa_supplicant/wpa_suplicant.conf  
+wpa_supplicant -i eth0 -B -Dwired -c /etc/wpa_supplicant/wpa_supplicant.conf  
 sleep 1 
 dhcpd eth0
-```  
+``` 
+
+> FreeBSD上使用上述方法同样可行（注意网卡名称变化）
 
 ## 对于不使用802.1x的无线网络
 

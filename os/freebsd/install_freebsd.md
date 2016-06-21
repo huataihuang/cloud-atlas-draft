@@ -51,9 +51,9 @@ sudo dd if=biosupdate.img of=/dev/rdisk2 bs=1m conv=sync
   * See PR#194359 for the bug report and fix
   * Booting with UEFI works - UEFI启动正常
 
-使用UEFI模式，设置GPT的ZFS磁盘，看看能否成功
+验证 FreeBSD 11 alpha 4版本可以安装在ThinkPad X220笔记本，并且会提示该型号笔记本BIOS有bug，可以在Installer中fix
 
-> **尚未实践成功**
+安装后无线网卡设置见 [FreeBSD无线网络](freebsd_wireless.md)
 
 # 参考
 
