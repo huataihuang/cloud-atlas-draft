@@ -53,7 +53,17 @@ sudo dd if=biosupdate.img of=/dev/rdisk2 bs=1m conv=sync
 
 验证 FreeBSD 11 alpha 4版本可以安装在ThinkPad X220笔记本，并且会提示该型号笔记本BIOS有bug，可以在Installer中fix
 
-安装后无线网卡设置见 [FreeBSD无线网络](freebsd_wireless.md)
+# 安装后操作
+
+* 安装后无线网卡设置见 [FreeBSD无线网络](freebsd_wireless.md)
+* 安装后安装软件包 [在FreeBSD上安装软件:Packages和Ports](packages_and_ports.md)
+
+```bash
+pkg
+pkg install sudo lsof aria2 tmux
+```
+
+> `aria2`是多线程下载工具，比wget要快速很多（[5 FASTEST LINUX DOWNLOAD MANAGER/ACCELERATOR PROGRAM](http://www.ubuntubuzz.com/2010/06/5-fastest-linux-download.html)）。使用`axel`也可以，不过没有很方便的安装方法。
 
 # 参考
 
