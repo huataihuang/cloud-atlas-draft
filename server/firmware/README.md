@@ -1,0 +1,1 @@
+[BIOS](https://en.wikipedia.org/wiki/BIOS)即是Basic Input/Output System（基本输入输出系统），是PC主机启动过程中执行的硬件初始化的firmware。
