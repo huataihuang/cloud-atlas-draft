@@ -6,9 +6,34 @@ Devstack是一套给开发人员快速部署OpenStack开发环境的脚本，不
 
 * 虚拟机
 
-可以使用任何支持Linux发行版本的虚拟机，建议使用4G内存可以获得最好的执行效率。
+可以使用任何支持Linux发行版本的虚拟机，建议使用4G内存可以获得最好的执行效率。OpenStack官方文档推荐[All-In-One Single VM](http://docs.openstack.org/developer/devstack/guides/single-vm.html)方式运行DevStack，可以在各种虚拟机环境中部署DevStack。
 
-* OpenStack Development & cloud-init
+
+* 下载DevStack
+
+```bash
+git clone https://git.openstack.org/openstack-dev/devstack
+```
+
+* [最小化配置](http://docs.openstack.org/developer/devstack/configuration.html#minimal-configuration)
+
+* 添加stack用户
+
+```bash
+devstack/tools/create-stack-user.sh; su stack
+```
+
+* 启动安装
+
+```bash
+cd devstack; ./stack.sh
+```
+
+# DevStack报错处理
+
+* `ERROR: toxini file 'tox.ini' not found`
+
+
 
 #  参考
 

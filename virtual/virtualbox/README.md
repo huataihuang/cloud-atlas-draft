@@ -1,0 +1,1 @@
+VirtualBox是跨平台的虚拟化技术，特别适合桌面运行环境测试（免费且开源，支持Mac/Windows/Linux）
