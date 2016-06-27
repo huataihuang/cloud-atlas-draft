@@ -5,7 +5,7 @@
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>使用ansible.cfg | 云图</title>
+        <title>生成随机数和随机字符串 | 云图</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.5">
@@ -49,10 +49,10 @@
         
     
     
-    <link rel="next" href="../../../devops/ansible/tips/unfinished_transactions_remain.html" />
+    <link rel="next" href="../../../develop/shell/sed_awk/index.html" />
     
     
-    <link rel="prev" href="../../../devops/ansible/tips/ansible_performance_tuning.html" />
+    <link rel="prev" href="../../../develop/shell/bash/env.html" />
     
 
         <!-- head:end -->
@@ -61,9 +61,9 @@
         <!-- body:start -->
         
     <div class="book"
-        data-level="12.5.6.5"
-        data-chapter-title="使用ansible.cfg"
-        data-filepath="devops/ansible/tips/use_ansible_cfg.md"
+        data-level="11.8.1.5"
+        data-chapter-title="生成随机数和随机字符串"
+        data-filepath="develop/shell/bash/generate_random_number_and_string.md"
         data-basepath="../../.."
         data-revision="Tue Jun 28 2016 00:47:13 GMT+0800 (CST)"
         data-innerlanguage="">
@@ -4671,7 +4671,7 @@
             
         </li>
     
-        <li class="chapter " data-level="11.8.1.5" data-path="develop/shell/bash/generate_random_number_and_string.html">
+        <li class="chapter active" data-level="11.8.1.5" data-path="develop/shell/bash/generate_random_number_and_string.html">
             
                 
                     <a href="../../../develop/shell/bash/generate_random_number_and_string.html">
@@ -5586,7 +5586,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="12.5.6.5" data-path="devops/ansible/tips/use_ansible_cfg.html">
+        <li class="chapter " data-level="12.5.6.5" data-path="devops/ansible/tips/use_ansible_cfg.html">
             
                 
                     <a href="../../../devops/ansible/tips/use_ansible_cfg.html">
@@ -5745,22 +5745,34 @@
                 
                     <section class="normal" id="section-">
                     
-                        <p>&#x5728;&#x4F7F;&#x7528;ansible&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5E38;&#x5E38;&#x6709;&#x4E00;&#x4E9B;&#x6709;&#x5171;&#x6027;&#x7684;&#x914D;&#x7F6E;&#x6BCF;&#x6B21;&#x901A;&#x8FC7;&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x6216;&#x8005;&#x53C2;&#x6570;&#x4F20;&#x9012;&#xFF08;&#x4F8B;&#x5982;<a href="host_key_checking_false.html">&#x5173;&#x95ED;ssh&#x670D;&#x52A1;&#x5668;fingerprint&#x68C0;&#x67E5;</a>&#xFF09;&#x662F;&#x975E;&#x5E38;&#x9EBB;&#x70E6;&#x7684;&#xFF0C;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;<code>ansible.cfg</code>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x6765;&#x8BBE;&#x7F6E;&#x3002;</p>
-<p>Ansible&#x6309;&#x7167;&#x5982;&#x4E0B;&#x4F4D;&#x7F6E;&#x548C;&#x987A;&#x5E8F;&#x67E5;&#x627E;<code>ansible.cfg</code>&#x6587;&#x4EF6;&#xFF1A;</p>
-<ul>
-<li><code>ANSIBLE_CONFIG</code>&#x73AF;&#x5883;&#x53D8;&#x91CF;&#x6307;&#x5B9A;&#x7684;&#x6587;&#x4EF6;</li>
-<li><code>./ansible.cfg</code>&#xFF08;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#x4E0B;&#x7684;<code>ansible.cfg</code>&#xFF09;</li>
-<li><code>~/.ansible.cfg</code>&#xFF08;&#x4E3B;&#x76EE;&#x5F55;&#x4E0B;&#x7684;<code>.ansible.cfg</code>&#xFF09;</li>
-<li><code>/etc/ansible/ansible.cfg</code></li>
-</ul>
-<p>&#x901A;&#x5E38;&#x53EF;&#x4EE5;&#x5C06;<code>ansible.cfg</code>&#x548C;<code>playbooks</code>&#x4E00;&#x8D77;&#x5F53;&#x524D;&#x76EE;&#x5F55;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x628A;<code>playbooks</code>&#x63D0;&#x4EA4;&#x7684;&#x540C;&#x4E00;&#x4E2A;&#x7248;&#x672C;&#x63A7;&#x5236;&#x4ED3;&#x5E93;&#x4E2D;</p>
-<p><code>ansible.cfg</code>&#x6848;&#x4F8B;&#xFF1A;</p>
-<pre><code class="lang-bash">[defaults]
-hostfile = hosts
-remote_user = admin
-private_key_file = /home/admin/.ssh/ansible_private_key
-host_key_checking = False
+                        <h1 id="&#x968F;&#x673A;&#x6570;&#x5B57;">&#x968F;&#x673A;&#x6570;&#x5B57;</h1>
+<p><code>bash</code>&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x7279;&#x6B8A;&#x7684;<code>$RANDOM</code>&#x53D8;&#x91CF;&#xFF08;&#x5728;<code>ksh</code>&#x4E2D;&#x4E5F;&#x652F;&#x6301;&#xFF09;&#xFF0C;&#x662F;&#x968F;&#x673A;&#x9009;&#x62E9;<code>0</code>&#x5230;<code>32767</code>&#x4E4B;&#x95F4;&#x7684;&#x4E00;&#x4E2A;&#x6574;&#x6570;&#x3002;&#x7B80;&#x5355;&#x7684;&#x65B9;&#x6CD5;&#x5C31;&#x662F;</p>
+<pre><code class="lang-bash"><span class="hljs-built_in">echo</span> <span class="hljs-variable">$RANDOM</span>
 </code></pre>
+<p>&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#x662F;&#x91C7;&#x7528;<code>/dev/random</code>&#x548C;<code>/dev/urandom</code>&#x8BBE;&#x5907;&#x63A5;&#x53E3;&#x901A;&#x8FC7;&#x5185;&#x6838;&#x6765;&#x968F;&#x673A;&#x4EA7;&#x751F;&#x6570;&#x5B57;&#xFF1A;</p>
+<pre><code class="lang-bash">od -vAn -N4 -tu4 &lt; /dev/urandom
+</code></pre>
+<p>&#x6216;&#x8005;</p>
+<pre><code class="lang-bash">od -An -N2 -i /dev/random
+</code></pre>
+<blockquote>
+<p>od - dump files in octal and other formats</p>
+</blockquote>
+<h1 id="&#x968F;&#x673A;&#x5B57;&#x7B26;&#x4E32;">&#x968F;&#x673A;&#x5B57;&#x7B26;&#x4E32;</h1>
+<p>&#x968F;&#x673A;&#x5B57;&#x7B26;&#x4E32;&#x7684;&#x65B9;&#x6CD5;&#x662F;&#x5229;&#x7528;&#x4E86;&#x524D;&#x9762;&#x751F;&#x6210;&#x968F;&#x673A;&#x6570;&#x5B57;&#x7684;&#x65B9;&#x6CD5;&#x7ED3;&#x5408;<code>md5sum</code>&#x5DE5;&#x5177;&#xFF0C;&#x5C06;&#x968F;&#x673A;&#x6570;&#x5B57;&#x7684;<code>md5</code>&#x8BA1;&#x7B97;&#x51FA;&#x6765;&#xFF08;&#x4E5F;&#x5C31;&#x662F;&#x968F;&#x673A;&#x7684;&#x5B57;&#x7B26;&#x4E32;&#x4E86;&#xFF09;</p>
+<pre><code class="lang-bash"><span class="hljs-built_in">echo</span> <span class="hljs-variable">$RANDOM</span> | md5sum
+</code></pre>
+<p>&#x751A;&#x81F3;&#x53EF;&#x4EE5;&#x518D;&#x968F;&#x673A;&#x4E00;&#x4E9B;</p>
+<pre><code class="lang-bash"><span class="hljs-built_in">echo</span> <span class="hljs-variable">$RANDOM</span> | md5sum | md5sum
+</code></pre>
+<p>&#x5982;&#x679C;&#x8981;&#x622A;&#x53D6;&#x6307;&#x5B9A;&#x957F;&#x5EA6;&#xFF08;&#x4E3E;&#x4F8B;9&#x4F4D;&#xFF09;</p>
+<pre><code class="lang-bash"><span class="hljs-built_in">echo</span> <span class="hljs-variable">$RANDOM</span> | md5sum | cut -c <span class="hljs-number">1</span>-<span class="hljs-number">9</span>
+</code></pre>
+<h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
+<ul>
+<li><a href="http://www.cyberciti.biz/faq/bash-shell-script-generating-random-numbers/" target="_blank">Bash Shell Generate Random Numbers</a></li>
+<li><a href="http://utdream.org/post.cfm/bash-generate-a-random-string" target="_blank">BASH - Generate a Random String</a></li>
+</ul>
 
                     
                     </section>
@@ -5771,10 +5783,10 @@ host_key_checking = False
         </div>
 
         
-        <a href="../../../devops/ansible/tips/ansible_performance_tuning.html" class="navigation navigation-prev " aria-label="Previous page: ansible性能优化"><i class="fa fa-angle-left"></i></a>
+        <a href="../../../develop/shell/bash/env.html" class="navigation navigation-prev " aria-label="Previous page: shell中的环境变量"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../../devops/ansible/tips/unfinished_transactions_remain.html" class="navigation navigation-next " aria-label="Next page: 安装rpm报错&quot;unfinished transactions remainin&quot;"><i class="fa fa-angle-right"></i></a>
+        <a href="../../../develop/shell/sed_awk/index.html" class="navigation navigation-next " aria-label="Next page: sed和awk"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

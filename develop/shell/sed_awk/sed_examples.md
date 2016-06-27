@@ -254,7 +254,34 @@ ps axu | grep '[j]boss' | sed -E 's/[[:space:]]+/ /g' | cut -d' ' -f2
 
 > 请参考[cut使用举例](../utilities/cut_examples.md)
 
+* 替换换行符（`\n`）: 读取整个文件替换换行符成一个空格
+
+```bash
+sed ':a;N;$!ba;s/\n/ /g'
+```
+
+> 首先创建一个label `:a`
+>
+> 通过`N`将当前行和下一行通过空格连接
+>
+> 如果到了最后一行，则创建label `$!ba` （这里`$!`表示不在最后一行做这个操作）
+>
+> 最后使用在模式坑拜拜中的空格来替换每个换行符
+
+**上述方法实在太拗口**，其实可以使用`tr`工具来实现这个任务
+
+```bash
+tr '\n' ' ' < input_filename
+```
+
+或者
+
+```bash
+tr --delete '\n' < input.txt > output.txt
+```
+
 # 参考
 
 * [sed - 25 examples to delete a line or pattern in a file](http://unix-school.blogspot.com/2012/06/sed-25-examples-to-delete-line-or.html)
 * [linux cut help - how to specify more spaces for the delimiter?](http://stackoverflow.com/questions/7142735/linux-cut-help-how-to-specify-more-spaces-for-the-delimiter)
+* [How can I replace a newline (\n) using sed?](http://stackoverflow.com/questions/1251999/how-can-i-replace-a-newline-n-using-sed)
