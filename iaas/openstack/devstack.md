@@ -29,12 +29,6 @@ devstack/tools/create-stack-user.sh; su stack
 cd devstack; ./stack.sh
 ```
 
-# DevStack报错处理
-
-* `ERROR: toxini file 'tox.ini' not found`
-
-
-
 #  参考
 
 * [DevStack文档](http://docs.openstack.org/developer/devstack/)
