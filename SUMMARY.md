@@ -291,6 +291,8 @@
 			* [cut使用举例](develop/shell/utilities/cut_examples.md)
 			* [对cpu施加负载](develop/shell/utilities/produce_cpu_load.md)
 	* [vim](develop/vim/README.md)
+		* [vim结合ctags作为开发平台](develop/vim/vim_with_ctags.md)
+		* [将Vim打造成Python开发平台](develop/vim/vim_python_ide.md)
 		* [vim tips](develop/vim/vim_tips.md)
 	* [文档](develop/doc/README.md)
 		* [GitBook](develop/doc/gitbook/README.md)
@@ -343,3 +345,4 @@
 	* [Puppet](devops/puppet/README.md)
 * [阅读](read/README.md)
 	* [重置Kindle Paperwhite](read/reset_kindle_paperwhite.md)
+* [Who am I?](whoami.md)
