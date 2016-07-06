@@ -1,3 +1,5 @@
+> 本文主要是**转载** [netperf 与网络性能测量](https://www.ibm.com/developerworks/cn/linux/l-netperf/) ，这篇文章写得非常清晰实用！
+
 # 网络性能测量的五项指标
 
 * 可用性（availability）
@@ -153,6 +155,79 @@ bytes   bytes    secs            #      #   10^6bits/sec
 * `TCP_RR`
 
 TCP_RR方式的测试对象是多次TCP request和response的交易过程，但是它们发生在同一个TCP连接中，这种模式常常出现在数据库应用中。数据库的client程序与server程序建立一个TCP连接以后，就在这个连接中传送数据库的多次交易过程。
+
+```
+./netperf -t TCP_RR -H 192.168.0.28
+TCP REQUEST/RESPONSE TEST to 192.168.0.28
+Local /Remote
+Socket Size   Request  Resp.   Elapsed  Trans.
+Send   Recv   Size     Size    Time     Rate
+bytes  Bytes  bytes    bytes   secs.    per sec
+ 
+16384  87380  1        1       10.00    9502.73
+16384  87380
+```
+
+`TCP_RR`方式输出的结果也是由两行组成。第一行显示本地系统的情况，第二行显示的是远端系统的信息。平均的交易率（transaction rate）为9502.73次/秒。注意到这里每次交易中的request和response分组的大小都为1个字节，不具有很大的实际意义。用户可以通过测试相关的参数来改变request和response分组的大小，TCP_RR方式下的参数如下表所示：
+
+| 参数 | 说明 |
+| ---- | ---- |
+| `-r req,resp` | 设置request和reponse分组的大小 |
+| `-s size` | 设置本地系统的socket发送与接收缓冲大小 |
+| `-S size` | 设置远端系统的socket发送与接收缓冲大小 |
+| `-D` | 对本地与远端系统的socket设置TCP_NODELAY选项 |
+
+通过使用-r参数，我们可以进行更有实际意义的测试：
+
+```
+./netperf -t TCP_RR -H 192.168.0.28 -- -r 32,1024
+TCP REQUEST/RESPONSE TEST to 192.168.0.28
+Local /Remote
+Socket Size   Request  Resp.   Elapsed  Trans.
+Send   Recv   Size     Size    Time     Rate
+bytes  Bytes  bytes    bytes   secs.    per sec
+ 
+16384  87380  32       1024    10.00    4945.97
+16384  87380
+```
+
+从结果中可以看出，由于request/reponse分组的大小增加了，导致了交易率明显的下降。 **注：相对于实际的系统，这里交易率的计算没有充分考虑到交易过程中的应用程序处理时延，因此结果往往会高于实际情况。**
+
+* `TCP_CRR`
+
+与`TCP_RR`不同，`TCP_CRR`为每次交易建立一个新的TCP连接。最典型的应用就是HTTP，每次HTTP交易是在一条单独的TCP连接中进行的。因此，由于需要不停地建立新的TCP连接，并且在交易结束后拆除TCP连接，交易率一定会受到很大的影响。
+
+```
+./netperf -t TCP_CRR -H 192.168.0.28 
+TCP Connect/Request/Response TEST to 192.168.0.28
+Local /Remote
+Socket Size   Request  Resp.   Elapsed  Trans.
+Send   Recv   Size     Size    Time     Rate
+bytes  Bytes  bytes    bytes   secs.    per sec
+ 
+131070 131070 1        1       9.99     2662.20
+16384  87380
+```
+
+即使是使用一个字节的`request/response`分组，交易率也明显的降低了，只有2662.20次/秒。`TCP_CRR`使用与`TCP_RR`相同的局部参数。
+
+* `UDP_RR`
+
+UDP_RR方式使用UDP分组进行`request/response`的交易过程。由于没有TCP连接所带来的负担，所以我们推测交易率一定会有相应的提升。
+
+```
+./netperf -t UDP_RR -H 192.168.0.28 
+UDP REQUEST/RESPONSE TEST to 192.168.0.28
+Local /Remote
+Socket Size   Request  Resp.   Elapsed  Trans.
+Send   Recv   Size     Size    Time     Rate
+bytes  Bytes  bytes    bytes   secs.    per sec
+ 
+65535  65535  1        1       9.99     10141.16
+65535  65535
+```
+
+结果证实了我们的推测，交易率为10141.16次/秒，高过`TCP_RR`的数值。不过，如果出现了相反的结果，即交易率反而降低了，也不需要担心，因为这说明了在网络中，路由器或其它的网络设备对UDP采用了与TCP不同的缓冲区空间和处理技术。
 
 # 测试案例
 
