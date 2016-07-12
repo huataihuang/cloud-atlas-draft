@@ -65,7 +65,7 @@
         data-chapter-title="将Vim打造成Python开发平台"
         data-filepath="develop/vim/vim_python_ide.md"
         data-basepath="../.."
-        data-revision="Wed Jul 06 2016 21:46:06 GMT+0800 (CST)"
+        data-revision="Tue Jul 12 2016 09:50:30 GMT+0800 (CST)"
         data-innerlanguage="">
     
 
@@ -940,6 +940,21 @@
     
 
             </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4.8" data-path="os/linux/kernel/tracing/index.html">
+            
+                
+                    <a href="../../os/linux/kernel/tracing/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.8.</b>
+                        
+                        内核跟踪排查
+                    </a>
+            
             
         </li>
     
@@ -2132,14 +2147,50 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2" data-path="network/packet_analysis/index.html">
+        <li class="chapter " data-level="3.2" data-path="network/dpdk/index.html">
+            
+                
+                    <a href="../../network/dpdk/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                        数据平面开发套件DPDK
+                    </a>
+            
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.2.1" data-path="network/dpdk/dpdk_for_linux.html">
+            
+                
+                    <a href="../../network/dpdk/dpdk_for_linux.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.1.</b>
+                        
+                        在Linux上使用DPDK
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="3.3" data-path="network/packet_analysis/index.html">
             
                 
                     <a href="../../network/packet_analysis/index.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.2.</b>
+                            <b>3.3.</b>
                         
                         网络数据包分析
                     </a>
@@ -2148,14 +2199,14 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="3.2.1" data-path="network/packet_analysis/tcpdump_example.html">
+        <li class="chapter " data-level="3.3.1" data-path="network/packet_analysis/tcpdump_example.html">
             
                 
                     <a href="../../network/packet_analysis/tcpdump_example.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>3.2.1.</b>
+                            <b>3.3.1.</b>
                         
                         tcpdump实例介绍
                     </a>
@@ -2163,9 +2214,9 @@
             
         </li>
     
-        <li class="chapter " data-level="3.2.2" data-path="tcpdump_avoid_packets_dropped_by_kernel_messages.html">
+        <li class="chapter " data-level="3.3.2" data-path="tcpdump_avoid_packets_dropped_by_kernel_messages.html">
             
-            <span><b>3.2.2.</b> tcpdump避免&quot;packets dropped by kernel&quot;</span>
+            <span><b>3.3.2.</b> tcpdump避免&quot;packets dropped by kernel&quot;</span>
             
             
         </li>
@@ -5835,7 +5886,21 @@
 <li>&#x5B89;&#x88C5;<a href="https://github.com/gmarik/Vundle.vim" target="_blank">Vundle</a>&#x6269;&#x5C55;&#x7BA1;&#x7406;&#x5668;</li>
 </ul>
 <pre><code>git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-</code></pre><hr>
+</code></pre><ul>
+<li><p>&#x4F7F;&#x7528;<a href="img/vi/vimrc_realpython">vimrc realpython</a>&#x6216;&#x8005;&#x76F4;&#x63A5;&#x4ECE;<a href="https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/" target="_blank">VIM and Python - a Match Made in Heaven</a>&#x63D0;&#x4F9B;&#x7684;<a href="https://github.com/j1z0/vim-config/blob/master/vimrc" target="_blank">VIM config</a>&#x4FDD;&#x5B58;&#x6210;<code>~/.vimrc</code></p>
+</li>
+<li><p>&#x6267;&#x884C;<code>vim</code>&#x547D;&#x4EE4;&#xFF0C;&#x7136;&#x540E;&#x5728;&#x547D;&#x4EE4;&#x6A21;&#x5F0F;&#x4E0B;&#x6267;&#x884C;<code>:PluginInstall</code>&#x5B89;&#x88C5;&#x63D2;&#x4EF6;</p>
+</li>
+<li><p><code>ycm</code>&#x9700;&#x8981;&#x624B;&#x5DE5;&#x7F16;&#x8BD1;&#x51FA;&#x5E93;&#x6587;&#x4EF6;</p>
+</li>
+</ul>
+<pre><code>cd ~/.vim/bundle/YouCompleteMe
+./install.py
+</code></pre><blockquote>
+<p><code>macOS</code>&#x9700;&#x8981;&#x5148;&#x5B89;&#x88C5;<a href="https://cmake.org/install/" target="_blank">cmake</a>&#x624D;&#x80FD;&#x7F16;&#x8BD1;&#xFF0C;&#x5982;&#x679C;&#x901A;&#x8FC7;<code>.dmg</code>&#x5305;&#x5B89;&#x88C5;&#x4E8C;&#x8FDB;&#x5236;&#x8F6F;&#x4EF6;&#x5305;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x7F16;&#x8F91;<code>~/.bash_profile</code>&#x6DFB;&#x52A0;<code>export PATH=/Applications/CMake.app/Contents/bin:$PATH</code>&#xFF0C;&#x5E76;&#x6267;&#x884C;<code>. ~/.bash_profile</code>&#x4F7F;&#x73AF;&#x5883;&#x751F;&#x6548;&#x540E;&#x624D;&#x80FD;&#x6267;&#x884C;&#x4E0A;&#x8FF0;&#x7F16;&#x8BD1;&#x3002;</p>
+<p><code>YouCompleteMe</code>&#x6A21;&#x5757;&#x8981;&#x6C42;<code>Vim 7.3.598+</code>&#x4EE5;&#x4E0A;&#x7248;&#x672C;&#xFF0C;Mac OS X 10.11&#x81EA;&#x5E26;&#x7684;vim&#x7248;&#x672C;&#x8F83;&#x4F4E;&#xFF0C;&#x6D4B;&#x8BD5;&#x4F7F;&#x7528;<code>brew</code>&#x5B89;&#x88C5;&#x7684;<code>vim</code>&#x7248;&#x672C;&#x4F1A;&#x5BFC;&#x81F4;python&#x7EBF;&#x7A0B;crash&#xFF0C;&#x6240;&#x4EE5;&#x4E0D;&#x63A8;&#x8350;&#x3002;&#x5728;macOS 10.12 beta&#x7248;&#x672C;&#x4E0A;&#x6D4B;&#x8BD5;&#x9A8C;&#x8BC1;&#x6B63;&#x5E38;&#x3002;</p>
+</blockquote>
+<hr>
 <h1 id="vim&#x73AF;&#x5883;&#x68C0;&#x67E5;">vim&#x73AF;&#x5883;&#x68C0;&#x67E5;</h1>
 <p>&#x68C0;&#x67E5; <code>vim</code> &#x7248;&#x672C;</p>
 <pre><code>vim --version

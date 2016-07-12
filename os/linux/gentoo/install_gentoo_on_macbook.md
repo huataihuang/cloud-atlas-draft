@@ -12,6 +12,12 @@ hdiutil convert -format UDRW -o livedvd-amd64-multilib-20140826.img livedvd-amd6
 
 > OS X会自动添加`.dmg`文件名后缀，所以实际生成的文件名是`livedvd-amd64-multilib-20140826.img.dmg`
 
+> OS X的`hdiutil`支持各种镜像文件的转换，例如`.iso`文件的格式，称为`UDTO`，则可以使用如下命令转换`img`文件到`iso`文件，类似如下：
+
+```bash
+convert -format UDTO -o Fedora-Server-DVD-x86_64-23.iso Fedora-Server-DVD-x86_64-23.img
+```
+
 * 检查当前可用设备，可以看到插入的U盘的对应设备
 
 ```bash

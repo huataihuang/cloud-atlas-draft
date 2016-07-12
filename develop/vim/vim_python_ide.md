@@ -8,6 +8,21 @@
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 ```
 
+* 使用[vimrc realpython](/img/vi/vimrc_realpython)或者直接从[VIM and Python - a Match Made in Heaven](https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/)提供的[VIM config](https://github.com/j1z0/vim-config/blob/master/vimrc)保存成`~/.vimrc`
+
+* 执行`vim`命令，然后在命令模式下执行`:PluginInstall`安装插件
+
+* `ycm`需要手工编译出库文件
+
+```
+cd ~/.vim/bundle/YouCompleteMe
+./install.py
+```
+
+> `macOS`需要先安装[cmake](https://cmake.org/install/)才能编译，如果通过`.dmg`包安装二进制软件包，则需要编辑`~/.bash_profile`添加`export PATH=/Applications/CMake.app/Contents/bin:$PATH`，并执行`. ~/.bash_profile`使环境生效后才能执行上述编译。
+>
+> `YouCompleteMe`模块要求`Vim 7.3.598+`以上版本，Mac OS X 10.11自带的vim版本较低，测试使用`brew`安装的`vim`版本会导致python线程crash，所以不推荐。在macOS 10.12 beta版本上测试验证正常。
+
 ----
 
 # vim环境检查
@@ -276,7 +291,7 @@ Solarized携带了两种theme，一种是dark，一种是light，切换非常方
 
     set editing-mode vi
 
-一份完整清单[vimrc realpython](img/vi/vimrc_realpython)
+一份完整清单[vimrc realpython](/img/vi/vimrc_realpython)
 
 # 参考
 

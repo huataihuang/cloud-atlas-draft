@@ -29,6 +29,8 @@ devstack/tools/create-stack-user.sh; su stack
 cd devstack; ./stack.sh
 ```
 
+自动完成软件包安装和配置，可能需要多次安装（网络是关键）。安装完成后，源代码位于`/opt/stack`中，可以进行相关分析和开发。
+
 #  参考
 
 * [DevStack文档](http://docs.openstack.org/developer/devstack/)
