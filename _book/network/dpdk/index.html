@@ -65,7 +65,7 @@
         data-chapter-title="数据平面开发套件DPDK"
         data-filepath="network/dpdk/README.md"
         data-basepath="../.."
-        data-revision="Tue Jul 12 2016 09:50:30 GMT+0800 (CST)"
+        data-revision="Tue Jul 12 2016 23:55:45 GMT+0800 (CST)"
         data-innerlanguage="">
     
 
@@ -577,6 +577,36 @@
                             <b>2.1.4.1.2.2.</b>
                         
                         RHEL7 使用控制组
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4.1.2.3" data-path="os/linux/kernel/cgroups/rhel7/removing_control_groups.html">
+            
+                
+                    <a href="../../os/linux/kernel/cgroups/rhel7/removing_control_groups.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.1.2.3.</b>
+                        
+                        RHEL7 删除控制组
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.4.1.2.4" data-path="os/linux/kernel/cgroups/rhel7/modify_control_groups.html">
+            
+                
+                    <a href="../../os/linux/kernel/cgroups/rhel7/modify_control_groups.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.4.1.2.4.</b>
+                        
+                        RHEL7 修改控制组
                     </a>
             
             
@@ -5882,7 +5912,6 @@
 <h1 id="&#x6982;&#x8FF0;">&#x6982;&#x8FF0;</h1>
 <p>DPDK&#x6846;&#x67B6;&#x901A;&#x8FC7;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x73AF;&#x5883;&#x62BD;&#x8C61;&#x5C42;&#xFF08;Environment Abstraction Layer, EAL&#xFF09;&#x63D0;&#x4F9B;&#x4E86;&#x7279;&#x5B9A;&#x7684;&#x786C;&#x4EF6;/&#x8F6F;&#x4EF6;&#x73AF;&#x5883;&#x7684;&#x5E93;&#x3002;EAL&#x9690;&#x85CF;&#x4E86;&#x7279;&#x6B8A;&#x73AF;&#x5883;&#x7684;&#x5DEE;&#x5F02;&#x5E76;&#x63D0;&#x4F9B;&#x4E86;&#x6807;&#x51C6;&#x7684;&#x7F16;&#x7A0B;&#x63A5;&#x53E3;&#x5E93;&#xFF0C;&#x63D0;&#x4F9B;&#x786C;&#x4EF6;&#x52A0;&#x901F;&#x548C;&#x5176;&#x4ED6;&#x786C;&#x4EF6;&#x548C;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF08;Linux, FreeBSD&#xFF09;&#x8981;&#x7D20;&#x3002;&#x4E00;&#x65E6;&#x5728;&#x6307;&#x5B9A;&#x73AF;&#x5883;&#x521B;&#x5EFA;&#x4E86;EAL&#xFF0C;&#x5F00;&#x53D1;&#x8005;&#x53EF;&#x4EE5;&#x8FDE;&#x63A5;&#x8FD9;&#x4E2A;&#x5E93;&#x6765;&#x521B;&#x5EFA;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x3002;</p>
 <p>EAL&#x4E5F;&#x63D0;&#x4F9B;&#x4E86;&#x9644;&#x52A0;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x5305;&#x62EC;&#xFF0C;&#x65F6;&#x95F4;&#x53C2;&#x8003;&#xFF0C;PCIe&#x603B;&#x7EBF;&#x8BBF;&#x95EE;&#xFF0C;&#x8DDF;&#x8E2A;&#x3001;&#x8C03;&#x8BD5;&#x548C;&#x544A;&#x8B66;&#x64CD;&#x4F5C;&#x529F;&#x80FD;&#x3002;</p>
-<p>DPDK</p>
 <p>Data Plane Development Kit(<code>DPDK</code>)<strong>&#x6570;&#x636E;&#x5E73;&#x9762;&#x5F00;&#x53D1;&#x5957;&#x4EF6;</strong>&#x662F;&#x5E76;&#x975E;&#x662F;&#x4E00;&#x4E2A;&#x5168;&#x65B0;&#x7684;&#x6280;&#x672F;&#xFF0C;&#x800C;&#x662F;&#x5145;&#x5206;&#x5229;&#x7528;&#x4E86;Linux&#x81EA;&#x8EAB;&#x63D0;&#x4F9B;&#x7684;&#x7279;&#x6027;&#x6765;&#x63D0;&#x5347;&#x7F51;&#x7EDC;&#x6570;&#x636E;&#x7684;&#x5904;&#x7406;&#x6027;&#x80FD;:</p>
 <ul>
 <li><code>UIO</code> &#x7528;&#x6237;&#x7A7A;&#x95F4;&#x4E0B;&#x9A71;&#x52A8;&#x7A0B;&#x5E8F;&#x7684;&#x652F;&#x6301;&#x673A;&#x5236;&#x3002;DPDK&#x4F7F;&#x7528;<code>UIO</code>&#x673A;&#x5236;&#x4F7F;&#x7528;&#x7F51;&#x5361;&#x9A71;&#x52A8;&#x7A0B;&#x5E8F;&#xFF08;&#x4E3B;&#x8981;&#x662F;Intel&#x7684;&#x5343;&#x5146;<code>igb</code>&#x548C;&#x4E07;&#x5146;<code>ixgbe</code>&#x9A71;&#x52A8;&#x7A0B;&#x5E8F;&#xFF09;&#x8FD0;&#x884C;&#x5728;&#x7528;&#x6237;&#x6001;&#xFF0C;&#x5E76;&#x91C7;&#x7528;&#x8F6E;&#x8BE2;&#x548C;&#x96F6;&#x62F7;&#x8D1D;&#x65B9;&#x5F0F;&#x4ECE;&#x7F51;&#x5361;&#x6536;&#x53D6;&#x62A5;&#x6587;&#xFF0C;&#x63D0;&#x9AD8;&#x6536;&#x53D1;&#x62A5;&#x6587;&#x7684;&#x6027;&#x80FD;&#x3002;</li>

@@ -6,8 +6,6 @@ DPDK框架通过创建一个环境抽象层（Environment Abstraction Layer, EAL
 
 EAL也提供了附加的服务，包括，时间参考，PCIe总线访问，跟踪、调试和告警操作功能。
 
-DPDK
-
 Data Plane Development Kit(`DPDK`)**数据平面开发套件**是并非是一个全新的技术，而是充分利用了Linux自身提供的特性来提升网络数据的处理性能:
 
 * `UIO` 用户空间下驱动程序的支持机制。DPDK使用`UIO`机制使用网卡驱动程序（主要是Intel的千兆`igb`和万兆`ixgbe`驱动程序）运行在用户态，并采用轮询和零拷贝方式从网卡收取报文，提高收发报文的性能。

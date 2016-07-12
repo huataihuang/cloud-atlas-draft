@@ -172,3 +172,7 @@ yum install kernel-doc
 
 * [Red Hat Enterprise Linux 7 System Administrators Guide](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/System_Administrators_Guide/index.html) - 详细解释了systemd概念和相关的服务管理方法
 * [The D-Bus API of systemd](https://www.freedesktop.org/wiki/Software/systemd/dbus/) - 有关使用D-Bus API命令和`systemd`交互的参考手册
+
+# 参考
+
+* [INTRODUCTION TO CONTROL GROUPS (CGROUPS)](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Resource_Management_Guide/chap-Introduction_to_Control_Groups.html)

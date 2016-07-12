@@ -29,6 +29,8 @@
 				* [在RHEL7中的Cgroups](os/linux/kernel/cgroups/rhel7/README.md)
 					* [RHEL7 Cgroups概述](os/linux/kernel/cgroups/rhel7/introduction.md)
 					* [RHEL7 使用控制组](os/linux/kernel/cgroups/rhel7/using_control_groups.md)
+					* [RHEL7 删除控制组](os/linux/kernel/cgroups/rhel7/removing_control_groups.md)
+					* [RHEL7 修改控制组](os/linux/kernel/cgroups/rhel7/modify_control_groups.md)
 			* [内核中网络模块和参数](os/linux/kernel/net/README.md)
 				* [系统日志"TCP: time wait bucket table overflow"分析](os/linux/kernel/net/time_wait_bucket_table_overflow.md)
 				* [内核参数网络配置案例](os/linux/kernel/net/kernel_net_example_analysis.md)
