@@ -65,7 +65,7 @@
         data-chapter-title="使用rsync备份完整Linux操作系统"
         data-filepath="os/linux/backup/full_system_backup_with_rsync.md"
         data-basepath="../../.."
-        data-revision="Wed Jul 13 2016 23:53:56 GMT+0800 (CST)"
+        data-revision="Thu Jul 14 2016 22:51:59 GMT+0800 (CST)"
         data-innerlanguage="">
     
 
@@ -582,31 +582,16 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.4.1.2.3" data-path="os/linux/kernel/cgroups/rhel7/removing_control_groups.html">
+        <li class="chapter " data-level="2.1.4.1.2.3" data-path="os/linux/kernel/cgroups/rhel7/using_libcgroup_tools.html">
             
                 
-                    <a href="../../../os/linux/kernel/cgroups/rhel7/removing_control_groups.html">
+                    <a href="../../../os/linux/kernel/cgroups/rhel7/using_libcgroup_tools.html">
                 
                         <i class="fa fa-check"></i>
                         
                             <b>2.1.4.1.2.3.</b>
                         
-                        RHEL7 删除控制组
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="2.1.4.1.2.4" data-path="os/linux/kernel/cgroups/rhel7/modify_control_groups.html">
-            
-                
-                    <a href="../../../os/linux/kernel/cgroups/rhel7/modify_control_groups.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.1.4.1.2.4.</b>
-                        
-                        RHEL7 修改控制组
+                        RHEL7 使用libcgroup工具
                     </a>
             
             
@@ -1356,9 +1341,17 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.8" data-path="os/linux/backup/READMD.html">
+        <li class="chapter " data-level="2.1.8" data-path="os/linux/backup/index.html">
             
-            <span><b>2.1.8.</b> 备份</span>
+                
+                    <a href="../../../os/linux/backup/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.8.</b>
+                        
+                        备份
+                    </a>
             
             
             <ul class="articles">
@@ -5971,10 +5964,17 @@
 <pre><code class="lang-bash">rsync <span class="hljs-operator">-a</span> --exclude={<span class="hljs-string">&quot;/dev/*&quot;</span>,<span class="hljs-string">&quot;/proc/*&quot;</span>,<span class="hljs-string">&quot;/sys/*&quot;</span>,<span class="hljs-string">&quot;/tmp/*&quot;</span>,<span class="hljs-string">&quot;/run/*&quot;</span>,<span class="hljs-string">&quot;/mnt/*&quot;</span>,<span class="hljs-string">&quot;/media/*&quot;</span>,<span class="hljs-string">&quot;/lost+found&quot;</span>} <span class="hljs-number">192.168</span>.<span class="hljs-number">1.1</span>:/ /backup/<span class="hljs-number">192.168</span>.<span class="hljs-number">1.1</span>/ | tee /var/<span class="hljs-built_in">log</span>/<span class="hljs-number">10.195</span>.<span class="hljs-number">186.137</span>_backup.log
 </code></pre>
 <p>&#x5982;&#x679C;&#x591A;&#x6B21;&#x5907;&#x4EFD;&#xFF0C;&#x5219;&#x53EF;&#x4EE5;&#x52A0;&#x4E0A;<code>--delete</code>&#x53C2;&#x6570;&#xFF0C;&#x786E;&#x4FDD;&#x4E24;&#x8005;&#x4E00;&#x81F4;</p>
+<ul>
+<li><code>rsync</code>&#x53C2;&#x6570;<code>--dry-run</code></li>
+</ul>
+<p>&#x5BF9;&#x6BD4;&#x4E24;&#x4E2A;&#x76EE;&#x5F55;&#x4E0B;&#x6587;&#x4EF6;&#xFF0C;&#x60F3;&#x77E5;&#x9053;&#x76EE;&#x6807;&#x76EE;&#x5F55;&#x4E0B;&#x54EA;&#x4E9B;&#x6587;&#x4EF6;&#x88AB;&#x4FEE;&#x6539;&#x6216;&#x589E;&#x52A0;&#x5220;&#x9664;&#x4E86;&#xFF0C;rsync&#x63D0;&#x4F9B;&#x4E86;&#x4E00;&#x4E2A;&#x53EA;&#x6821;&#x9A8C;&#x6587;&#x4EF6;&#x4F46;&#x4E0D;&#x5B9E;&#x9645;&#x540C;&#x6B65;&#x76EE;&#x5F55;&#x5185;&#x5BB9;&#x7684;&#x53C2;&#x6570; <code>--dry-run</code>&#xFF0C;&#x7ED3;&#x5408;<code>-vrc</code>&#x53C2;&#x6570;&#xFF08;&#x8868;&#x793A;&#x8BE6;&#x7EC6;&#x3001;&#x9012;&#x5F52;&#x3001;&#x6821;&#x9A8C;&#xFF09;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x77E5;&#x9053;&#x4E24;&#x4E2A;&#x76EE;&#x5F55;&#x4E0B;&#x6587;&#x4EF6;&#x7684;&#x5DEE;&#x5F02;&#x3002;</p>
+<pre><code class="lang-bash">rsync --dry-run -rvc --delete /home/admin/dir1/ /home/admin/dir2/
+</code></pre>
 <p>&#x53C2;&#x8003; </p>
 <ul>
-<li><a href="https://wiki.archlinux.org/index.php/full_system_backup_with_rsync" target="_blank">https://wiki.archlinux.org/index.php/full_system_backup_with_rsync</a></li>
-<li><a href="https://www.digitalocean.com/community/tutorials/how-to-use-rsync-to-sync-local-and-remote-directories-on-a-vps" target="_blank">https://www.digitalocean.com/community/tutorials/how-to-use-rsync-to-sync-local-and-remote-directories-on-a-vps</a></li>
+<li><a href="https://wiki.archlinux.org/index.php/full_system_backup_with_rsync" target="_blank">Full system backup with rsync</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-use-rsync-to-sync-local-and-remote-directories-on-a-vps" target="_blank">How to use rsync to sync local and remote directories on a VPS</a></li>
+<li><a href="http://blog-en.openalfa.com/how-to-compare-recursively-the-content-of-two-directories-with-rsync" target="_blank">How to compare recursively the content of two directories with rsync</a></li>
 </ul>
 
                     

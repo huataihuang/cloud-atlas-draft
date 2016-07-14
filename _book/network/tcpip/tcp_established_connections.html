@@ -65,7 +65,7 @@
         data-chapter-title="TCP连接数检查"
         data-filepath="network/tcpip/tcp_established_connections.md"
         data-basepath="../.."
-        data-revision="Wed Jul 13 2016 23:53:56 GMT+0800 (CST)"
+        data-revision="Thu Jul 14 2016 22:51:59 GMT+0800 (CST)"
         data-innerlanguage="">
     
 
@@ -582,31 +582,16 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.4.1.2.3" data-path="os/linux/kernel/cgroups/rhel7/removing_control_groups.html">
+        <li class="chapter " data-level="2.1.4.1.2.3" data-path="os/linux/kernel/cgroups/rhel7/using_libcgroup_tools.html">
             
                 
-                    <a href="../../os/linux/kernel/cgroups/rhel7/removing_control_groups.html">
+                    <a href="../../os/linux/kernel/cgroups/rhel7/using_libcgroup_tools.html">
                 
                         <i class="fa fa-check"></i>
                         
                             <b>2.1.4.1.2.3.</b>
                         
-                        RHEL7 删除控制组
-                    </a>
-            
-            
-        </li>
-    
-        <li class="chapter " data-level="2.1.4.1.2.4" data-path="os/linux/kernel/cgroups/rhel7/modify_control_groups.html">
-            
-                
-                    <a href="../../os/linux/kernel/cgroups/rhel7/modify_control_groups.html">
-                
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.1.4.1.2.4.</b>
-                        
-                        RHEL7 修改控制组
+                        RHEL7 使用libcgroup工具
                     </a>
             
             
@@ -1356,9 +1341,17 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.8" data-path="os/linux/backup/READMD.html">
+        <li class="chapter " data-level="2.1.8" data-path="os/linux/backup/index.html">
             
-            <span><b>2.1.8.</b> 备份</span>
+                
+                    <a href="../../os/linux/backup/index.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.8.</b>
+                        
+                        备份
+                    </a>
             
             
             <ul class="articles">
@@ -5985,7 +5978,12 @@
 0      0                  10.145.130.40:2908              10.145.129.18:2909   timer:(keepalive,29sec,0) ino:143071699 sk:7b11b000ffff8
 800
 </code></pre><blockquote>
-<p>&#x8FD9;&#x91CC;<code>Recv-Q</code>&#x548C;<code>Send-Q</code>&#x8868;&#x793A;&#x6570;&#x636E;&#x5305;&#x6536;&#x53D1;&#x961F;&#x5217;&#xFF0C;&#x6B63;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#x6570;&#x503C;&#x5E94;&#x8BE5;&#x662F;0&#xFF0C;&#x5982;&#x679C;&#x6570;&#x503C;&#x8F83;&#x9AD8;&#xFF0C;&#x8868;&#x660E;&#x961F;&#x5217;&#x5806;&#x79EF;&#xFF0C;&#x5C31;&#x662F;&#x63A5;&#x6536;&#x65B9;&#x5B58;&#x5728;&#x901F;&#x5EA6;&#x95EE;&#x9898;&#x6216;&#x8005;&#x53D1;&#x9001;&#x65B9;&#x53D1;&#x9001;&#x9891;&#x7387;&#x592A;&#x5FEB;&#x5BFC;&#x81F4;&#x5806;&#x79EF;&#x3002;</p>
+<p>&#x8FD9;&#x91CC;<code>Recv-Q</code>&#x548C;<code>Send-Q</code>&#x8868;&#x793A;&#x6570;&#x636E;&#x5305;&#x6536;&#x53D1;&#x961F;&#x5217;&#xFF0C;&#x6B63;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#x6570;&#x503C;&#x5E94;&#x8BE5;&#x662F;0&#xFF0C;&#x5982;&#x679C;&#x6570;&#x503C;&#x8F83;&#x9AD8;&#xFF0C;&#x8868;&#x660E;&#x961F;&#x5217;&#x5806;&#x79EF;&#xFF0C;&#x5C31;&#x662F;&#x63A5;&#x6536;&#x65B9;&#x5B58;&#x5728;&#x901F;&#x5EA6;&#x95EE;&#x9898;&#x6216;&#x8005;&#x53D1;&#x9001;&#x65B9;&#x53D1;&#x9001;&#x9891;&#x7387;&#x592A;&#x5FEB;&#x5BFC;&#x81F4;&#x5806;&#x79EF;&#x3002;&#x53EF;&#x63A5;&#x53D7;&#x77ED;&#x6682;&#x7684;&#x975E;0&#x60C5;&#x51B5;&#x3002;</p>
+</blockquote>
+<p>&#x53C2;&#x8003; <a href="http://www.code521.com/index.php/archives/993" target="_blank">Netstat &#x4E2D; Recv-Q&#x548C;Send-Q&#x72B6;&#x6001;</a></p>
+<blockquote>
+<p>recv-Q &#x8868;&#x793A;&#x7F51;&#x7EDC;&#x63A5;&#x6536;&#x961F;&#x5217;&#xFF1A;&#x8868;&#x793A;&#x6536;&#x5230;&#x7684;&#x6570;&#x636E;&#x5DF2;&#x7ECF;&#x5728;&#x672C;&#x5730;&#x63A5;&#x6536;&#x7F13;&#x51B2;&#xFF0C;&#x4F46;&#x662F;&#x8FD8;&#x6709;&#x591A;&#x5C11;&#x6CA1;&#x6709;&#x88AB;&#x8FDB;&#x7A0B;&#x53D6;&#x8D70;&#xFF0C;recv()&#x5982;&#x679C;&#x63A5;&#x6536;&#x961F;&#x5217;Recv-Q&#x4E00;&#x76F4;&#x5904;&#x4E8E;&#x963B;&#x585E;&#x72B6;&#x6001;&#xFF0C;&#x53EF;&#x80FD;&#x662F;&#x906D;&#x53D7;&#x4E86;&#x62D2;&#x7EDD;&#x670D;&#x52A1; <code>denial-of-service</code> &#x653B;&#x51FB;&#x3002;</p>
+<p>send-Q &#x8868;&#x793A;&#x7F51;&#x8DEF;&#x53D1;&#x9001;&#x961F;&#x5217;&#xFF1A;&#x5BF9;&#x65B9;&#x6CA1;&#x6709;&#x6536;&#x5230;&#x7684;&#x6570;&#x636E;&#x6216;&#x8005;&#x8BF4;&#x6CA1;&#x6709;Ack&#x7684;,&#x8FD8;&#x662F;&#x672C;&#x5730;&#x7F13;&#x51B2;&#x533A;&#x3002;&#x5982;&#x679C;&#x53D1;&#x9001;&#x961F;&#x5217;Send-Q&#x4E0D;&#x80FD;&#x5F88;&#x5FEB;&#x7684;&#x6E05;&#x96F6;&#xFF0C;&#x53EF;&#x80FD;&#x662F;&#x6709;&#x5E94;&#x7528;&#x5411;&#x5916;&#x53D1;&#x9001;&#x6570;&#x636E;&#x5305;&#x8FC7;&#x5FEB;&#xFF0C;&#x6216;&#x8005;&#x662F;&#x5BF9;&#x65B9;&#x63A5;&#x6536;&#x6570;&#x636E;&#x5305;&#x4E0D;&#x591F;&#x5FEB;&#x3002;</p>
 </blockquote>
 <p>&#x5982;&#x679C;&#x8981;&#x83B7;&#x53D6;&#x4E00;&#x4E2A;&#x6BD4;&#x8F83;&#x7B80;&#x5355;&#x7684;&#x8FDE;&#x63A5;&#x7EDF;&#x8BA1;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;</p>
 <pre><code>ss -s
