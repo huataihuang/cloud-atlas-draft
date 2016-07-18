@@ -299,52 +299,6 @@ ffffffff,00000000
 
 这个设置使 `irqbalance` 只在没有设置隔离的CPU上生效。这个设置对于只有两个处理器的主机是没有效果的，但都与双核主机是有效的。
 
-# 使用`taskset`工具将进程绑定处理器
-
-`taskset`工具可以使用进程ID（PID）来查看或设置关联，或者可以用于选择一个CPU关联的方式来运行一个命令。要设置关联，`taskset`需要将`CPU mask`表述为10进制或者16进制数字。这个mask参数是一个指定哪个CPU内核是合法的被修改的命令或PID。
-
-要设置当前没有运行的进程，使用 `taskset` 和指定`CPU mask`和进程。例如，`my_embedded_process`是设置只使用CPU `3`：
-
-    taskset 8 /usr/local/bin/my_embedded_process
-
-可以使用位图指定一系列CPU，例如这里指定 `4 5 6 7`用于运行 `my_embedded_process`
-
-    taskset 0xF0 /usr/local/bin/my_embedded_process
-
-也可以对已经运行的进程设置CPU关联，此时需要使用 `-p`或者`--pid`参数来指定特定PID的进程使用，例如，这里指定PID为7013的进程只运行在CPU `0`上：
-
-    taskset -p 1 7013
-
-> **注意** `taskset`工具只能用于没有激活系统NUMA（非统一内存访问）的环境（在NUMA环境中，使用`numactl`命令来替代`taskset`）
-
-* 检查进程`4299`的cpu_affinity
-
-```bash
-taskset -c -p 4299
-```
-
-显示输出
-
-```bash
-pid 4299's current affinity list: 0-15
-```
-
-> `-c` 表示显示并以列表格式指定cpus
->
-> `-p` 对给定的进程进程操作
-
-* 设置进程`4299`的cpu_affinity到`10`就是第二个cpu，也就是`cpu1`
-
-```bash
-taskset -p 2 4299
-```
-
-> 注意：这里`-p`参数后面表示cpu指定使用的是16进制的掩码表示方法，也就是，如果要设置第4个cpu（`cpu3`），二进制表示cpu的掩码就是`1000`，转换成16进制就是`8`，所以命令就是`taskset -p 8 4299`
->
-> 如果要绑定多个cpu，例如绑定到`cpu 0,1,2,3,4,7`对应的掩码就是`10011111`，转换成16进制就是`9f`，所以命令就是`taskset -p 9f 4229`
-
-**`taskset`的参数感觉有点反直觉，`-p`参数后有两种参数可以设置，`cpus`和`pid`，没有`cpus`的时候就是显示，有`cpus`就是设置进程绑定到指定cpu**
-
 # 软中断
 
 参考 [softirq](softirq.md)
@@ -353,4 +307,3 @@ taskset -p 2 4299
 
 * [Introduction to Linux Interrupts and CPU SMP Affinity](http://www.thegeekstuff.com/2014/01/linux-interrupts/)
 * [中断和 IRQ 调节](https://access.redhat.com/documentation/zh-CN/Red_Hat_Enterprise_Linux/6/html/Performance_Tuning_Guide/s-cpu-irq.html)
-* []

@@ -5,7 +5,7 @@
         <!-- head:start -->
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>中断和CPU亲和性 | 云图</title>
+        <title>中断和smp_affinity | 云图</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 2.6.5">
@@ -62,10 +62,10 @@
         
     <div class="book"
         data-level="2.1.4.4.3"
-        data-chapter-title="中断和CPU亲和性"
-        data-filepath="os/linux/kernel/cpu/interrupt_and_cpu_affinity.md"
+        data-chapter-title="中断和smp_affinity"
+        data-filepath="os/linux/kernel/cpu/interrupt_and_smp_affinity.md"
         data-basepath="../../../.."
-        data-revision="Sat Jul 16 2016 22:22:14 GMT+0800 (CST)"
+        data-revision="Mon Jul 18 2016 16:09:36 GMT+0800 (CST)"
         data-innerlanguage="">
     
 
@@ -232,6 +232,27 @@
                     </a>
             
             
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="2.1.1.1" data-path="os/linux/boot/fail_start_file_system_chek.html">
+            
+                
+                    <a href="../../../../os/linux/boot/fail_start_file_system_chek.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.1.1.</b>
+                        
+                        RHEL7升级后磁盘设备label识别错误处理
+                    </a>
+            
+            
+        </li>
+    
+
+            </ul>
+            
         </li>
     
         <li class="chapter " data-level="2.1.2" data-path="os/linux/process/index.html">
@@ -281,14 +302,29 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.2.1.2" data-path="os/linux/process/management/check_process_memory_usage.html">
+        <li class="chapter " data-level="2.1.2.1.2" data-path="os/linux/process/management/process_priority_with_nice.html">
+            
+                
+                    <a href="../../../../os/linux/process/management/process_priority_with_nice.html">
+                
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.1.2.1.2.</b>
+                        
+                        使用nice调整进程优先级
+                    </a>
+            
+            
+        </li>
+    
+        <li class="chapter " data-level="2.1.2.1.3" data-path="os/linux/process/management/check_process_memory_usage.html">
             
                 
                     <a href="../../../../os/linux/process/management/check_process_memory_usage.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>2.1.2.1.2.</b>
+                            <b>2.1.2.1.3.</b>
                         
                         检查进程的内存使用
                     </a>
@@ -296,14 +332,14 @@
             
         </li>
     
-        <li class="chapter " data-level="2.1.2.1.3" data-path="os/linux/process/management/top_tips.html">
+        <li class="chapter " data-level="2.1.2.1.4" data-path="os/linux/process/management/top_tips.html">
             
                 
                     <a href="../../../../os/linux/process/management/top_tips.html">
                 
                         <i class="fa fa-check"></i>
                         
-                            <b>2.1.2.1.3.</b>
+                            <b>2.1.2.1.4.</b>
                         
                         top命令使用tips
                     </a>
@@ -734,22 +770,22 @@
                         
                             <b>2.1.4.4.2.</b>
                         
-                        CPU亲和性
+                        cpu_affinity
                     </a>
             
             
         </li>
     
-        <li class="chapter active" data-level="2.1.4.4.3" data-path="os/linux/kernel/cpu/interrupt_and_cpu_affinity.html">
+        <li class="chapter active" data-level="2.1.4.4.3" data-path="os/linux/kernel/cpu/interrupt_and_smp_affinity.html">
             
                 
-                    <a href="../../../../os/linux/kernel/cpu/interrupt_and_cpu_affinity.html">
+                    <a href="../../../../os/linux/kernel/cpu/interrupt_and_smp_affinity.html">
                 
                         <i class="fa fa-check"></i>
                         
                             <b>2.1.4.4.3.</b>
                         
-                        中断和CPU亲和性
+                        中断和smp_affinity
                     </a>
             
             
@@ -6302,46 +6338,12 @@ chkconfig irqbalance off
 </code></pre><p>&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x65B9;&#x5F0F;&#x662F;&#x53EA;&#x5728;&#x4F7F;&#x7528;&#x9694;&#x79BB;&#x529F;&#x80FD;&#x7684;CPU&#x4E0A;&#x7981;&#x7528;<code>irqbalance</code>&#xFF0C;&#x800C;&#x5728;&#x5176;&#x4F59;&#x7684;CPU&#x4E0A;&#x7EE7;&#x7EED;&#x4F7F;&#x7528;<code>irqbalance</code>&#x3002;&#x8FD9;&#x4E2A;&#x8BBE;&#x7F6E;&#x53EF;&#x4EE5;&#x901A;&#x8FC7; <code>/etc/sysconfig/irqbalance</code>&#x6765;&#x5B9E;&#x73B0;&#xFF0C;&#x5373;&#x7F16;&#x8F91; <code>FOLLOW_ISOLCPUS</code> &#x90E8;&#x5206;&#xFF1A;</p>
 <pre><code>FOLLOW_ISOLCPUS=yes
 </code></pre><p>&#x8FD9;&#x4E2A;&#x8BBE;&#x7F6E;&#x4F7F; <code>irqbalance</code> &#x53EA;&#x5728;&#x6CA1;&#x6709;&#x8BBE;&#x7F6E;&#x9694;&#x79BB;&#x7684;CPU&#x4E0A;&#x751F;&#x6548;&#x3002;&#x8FD9;&#x4E2A;&#x8BBE;&#x7F6E;&#x5BF9;&#x4E8E;&#x53EA;&#x6709;&#x4E24;&#x4E2A;&#x5904;&#x7406;&#x5668;&#x7684;&#x4E3B;&#x673A;&#x662F;&#x6CA1;&#x6709;&#x6548;&#x679C;&#x7684;&#xFF0C;&#x4F46;&#x90FD;&#x4E0E;&#x53CC;&#x6838;&#x4E3B;&#x673A;&#x662F;&#x6709;&#x6548;&#x7684;&#x3002;</p>
-<h1 id="&#x4F7F;&#x7528;taskset&#x5DE5;&#x5177;&#x5C06;&#x8FDB;&#x7A0B;&#x7ED1;&#x5B9A;&#x5904;&#x7406;&#x5668;">&#x4F7F;&#x7528;<code>taskset</code>&#x5DE5;&#x5177;&#x5C06;&#x8FDB;&#x7A0B;&#x7ED1;&#x5B9A;&#x5904;&#x7406;&#x5668;</h1>
-<p><code>taskset</code>&#x5DE5;&#x5177;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x8FDB;&#x7A0B;ID&#xFF08;PID&#xFF09;&#x6765;&#x67E5;&#x770B;&#x6216;&#x8BBE;&#x7F6E;&#x5173;&#x8054;&#xFF0C;&#x6216;&#x8005;&#x53EF;&#x4EE5;&#x7528;&#x4E8E;&#x9009;&#x62E9;&#x4E00;&#x4E2A;CPU&#x5173;&#x8054;&#x7684;&#x65B9;&#x5F0F;&#x6765;&#x8FD0;&#x884C;&#x4E00;&#x4E2A;&#x547D;&#x4EE4;&#x3002;&#x8981;&#x8BBE;&#x7F6E;&#x5173;&#x8054;&#xFF0C;<code>taskset</code>&#x9700;&#x8981;&#x5C06;<code>CPU mask</code>&#x8868;&#x8FF0;&#x4E3A;10&#x8FDB;&#x5236;&#x6216;&#x8005;16&#x8FDB;&#x5236;&#x6570;&#x5B57;&#x3002;&#x8FD9;&#x4E2A;mask&#x53C2;&#x6570;&#x662F;&#x4E00;&#x4E2A;&#x6307;&#x5B9A;&#x54EA;&#x4E2A;CPU&#x5185;&#x6838;&#x662F;&#x5408;&#x6CD5;&#x7684;&#x88AB;&#x4FEE;&#x6539;&#x7684;&#x547D;&#x4EE4;&#x6216;PID&#x3002;</p>
-<p>&#x8981;&#x8BBE;&#x7F6E;&#x5F53;&#x524D;&#x6CA1;&#x6709;&#x8FD0;&#x884C;&#x7684;&#x8FDB;&#x7A0B;&#xFF0C;&#x4F7F;&#x7528; <code>taskset</code> &#x548C;&#x6307;&#x5B9A;<code>CPU mask</code>&#x548C;&#x8FDB;&#x7A0B;&#x3002;&#x4F8B;&#x5982;&#xFF0C;<code>my_embedded_process</code>&#x662F;&#x8BBE;&#x7F6E;&#x53EA;&#x4F7F;&#x7528;CPU <code>3</code>&#xFF1A;</p>
-<pre><code>taskset 8 /usr/local/bin/my_embedded_process
-</code></pre><p>&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4F4D;&#x56FE;&#x6307;&#x5B9A;&#x4E00;&#x7CFB;&#x5217;CPU&#xFF0C;&#x4F8B;&#x5982;&#x8FD9;&#x91CC;&#x6307;&#x5B9A; <code>4 5 6 7</code>&#x7528;&#x4E8E;&#x8FD0;&#x884C; <code>my_embedded_process</code></p>
-<pre><code>taskset 0xF0 /usr/local/bin/my_embedded_process
-</code></pre><p>&#x4E5F;&#x53EF;&#x4EE5;&#x5BF9;&#x5DF2;&#x7ECF;&#x8FD0;&#x884C;&#x7684;&#x8FDB;&#x7A0B;&#x8BBE;&#x7F6E;CPU&#x5173;&#x8054;&#xFF0C;&#x6B64;&#x65F6;&#x9700;&#x8981;&#x4F7F;&#x7528; <code>-p</code>&#x6216;&#x8005;<code>--pid</code>&#x53C2;&#x6570;&#x6765;&#x6307;&#x5B9A;&#x7279;&#x5B9A;PID&#x7684;&#x8FDB;&#x7A0B;&#x4F7F;&#x7528;&#xFF0C;&#x4F8B;&#x5982;&#xFF0C;&#x8FD9;&#x91CC;&#x6307;&#x5B9A;PID&#x4E3A;7013&#x7684;&#x8FDB;&#x7A0B;&#x53EA;&#x8FD0;&#x884C;&#x5728;CPU <code>0</code>&#x4E0A;&#xFF1A;</p>
-<pre><code>taskset -p 1 7013
-</code></pre><blockquote>
-<p><strong>&#x6CE8;&#x610F;</strong> <code>taskset</code>&#x5DE5;&#x5177;&#x53EA;&#x80FD;&#x7528;&#x4E8E;&#x6CA1;&#x6709;&#x6FC0;&#x6D3B;&#x7CFB;&#x7EDF;NUMA&#xFF08;&#x975E;&#x7EDF;&#x4E00;&#x5185;&#x5B58;&#x8BBF;&#x95EE;&#xFF09;&#x7684;&#x73AF;&#x5883;&#xFF08;&#x5728;NUMA&#x73AF;&#x5883;&#x4E2D;&#xFF0C;&#x4F7F;&#x7528;<code>numactl</code>&#x547D;&#x4EE4;&#x6765;&#x66FF;&#x4EE3;<code>taskset</code>&#xFF09;</p>
-</blockquote>
-<ul>
-<li>&#x68C0;&#x67E5;&#x8FDB;&#x7A0B;<code>4299</code>&#x7684;cpu_affinity</li>
-</ul>
-<pre><code class="lang-bash">taskset -c -p <span class="hljs-number">4299</span>
-</code></pre>
-<p>&#x663E;&#x793A;&#x8F93;&#x51FA;</p>
-<pre><code class="lang-bash">pid <span class="hljs-number">4299</span><span class="hljs-string">&apos;s current affinity list: 0-15
-</span></code></pre>
-<blockquote>
-<p><code>-c</code> &#x8868;&#x793A;&#x663E;&#x793A;&#x5E76;&#x4EE5;&#x5217;&#x8868;&#x683C;&#x5F0F;&#x6307;&#x5B9A;cpus</p>
-<p><code>-p</code> &#x5BF9;&#x7ED9;&#x5B9A;&#x7684;&#x8FDB;&#x7A0B;&#x8FDB;&#x7A0B;&#x64CD;&#x4F5C;</p>
-</blockquote>
-<ul>
-<li>&#x8BBE;&#x7F6E;&#x8FDB;&#x7A0B;<code>4299</code>&#x7684;cpu_affinity&#x5230;<code>10</code>&#x5C31;&#x662F;&#x7B2C;&#x4E8C;&#x4E2A;cpu&#xFF0C;&#x4E5F;&#x5C31;&#x662F;<code>cpu1</code></li>
-</ul>
-<pre><code class="lang-bash">taskset -p <span class="hljs-number">2</span> <span class="hljs-number">4299</span>
-</code></pre>
-<blockquote>
-<p>&#x6CE8;&#x610F;&#xFF1A;&#x8FD9;&#x91CC;<code>-p</code>&#x53C2;&#x6570;&#x540E;&#x9762;&#x8868;&#x793A;cpu&#x6307;&#x5B9A;&#x4F7F;&#x7528;&#x7684;&#x662F;16&#x8FDB;&#x5236;&#x7684;&#x63A9;&#x7801;&#x8868;&#x793A;&#x65B9;&#x6CD5;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#xFF0C;&#x5982;&#x679C;&#x8981;&#x8BBE;&#x7F6E;&#x7B2C;4&#x4E2A;cpu&#xFF08;<code>cpu3</code>&#xFF09;&#xFF0C;&#x4E8C;&#x8FDB;&#x5236;&#x8868;&#x793A;cpu&#x7684;&#x63A9;&#x7801;&#x5C31;&#x662F;<code>1000</code>&#xFF0C;&#x8F6C;&#x6362;&#x6210;16&#x8FDB;&#x5236;&#x5C31;&#x662F;<code>8</code>&#xFF0C;&#x6240;&#x4EE5;&#x547D;&#x4EE4;&#x5C31;&#x662F;<code>taskset -p 8 4299</code></p>
-<p>&#x5982;&#x679C;&#x8981;&#x7ED1;&#x5B9A;&#x591A;&#x4E2A;cpu&#xFF0C;&#x4F8B;&#x5982;&#x7ED1;&#x5B9A;&#x5230;<code>cpu 0,1,2,3,4,7</code>&#x5BF9;&#x5E94;&#x7684;&#x63A9;&#x7801;&#x5C31;&#x662F;<code>10011111</code>&#xFF0C;&#x8F6C;&#x6362;&#x6210;16&#x8FDB;&#x5236;&#x5C31;&#x662F;<code>9f</code>&#xFF0C;&#x6240;&#x4EE5;&#x547D;&#x4EE4;&#x5C31;&#x662F;<code>taskset -p 9f 4229</code></p>
-</blockquote>
-<p><strong><code>taskset</code>&#x7684;&#x53C2;&#x6570;&#x611F;&#x89C9;&#x6709;&#x70B9;&#x53CD;&#x76F4;&#x89C9;&#xFF0C;<code>-p</code>&#x53C2;&#x6570;&#x540E;&#x6709;&#x4E24;&#x79CD;&#x53C2;&#x6570;&#x53EF;&#x4EE5;&#x8BBE;&#x7F6E;&#xFF0C;<code>cpus</code>&#x548C;<code>pid</code>&#xFF0C;&#x6CA1;&#x6709;<code>cpus</code>&#x7684;&#x65F6;&#x5019;&#x5C31;&#x662F;&#x663E;&#x793A;&#xFF0C;&#x6709;<code>cpus</code>&#x5C31;&#x662F;&#x8BBE;&#x7F6E;&#x8FDB;&#x7A0B;&#x7ED1;&#x5B9A;&#x5230;&#x6307;&#x5B9A;cpu</strong></p>
 <h1 id="&#x8F6F;&#x4E2D;&#x65AD;">&#x8F6F;&#x4E2D;&#x65AD;</h1>
 <p>&#x53C2;&#x8003; <a href="softirq.html">softirq</a></p>
 <h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
 <ul>
 <li><a href="http://www.thegeekstuff.com/2014/01/linux-interrupts/" target="_blank">Introduction to Linux Interrupts and CPU SMP Affinity</a></li>
 <li><a href="https://access.redhat.com/documentation/zh-CN/Red_Hat_Enterprise_Linux/6/html/Performance_Tuning_Guide/s-cpu-irq.html" target="_blank">&#x4E2D;&#x65AD;&#x548C; IRQ &#x8C03;&#x8282;</a></li>
-<li>[]</li>
 </ul>
 
                     
@@ -6353,7 +6355,7 @@ chkconfig irqbalance off
         </div>
 
         
-        <a href="../../../../os/linux/kernel/cpu/cpu_affinity.html" class="navigation navigation-prev " aria-label="Previous page: CPU亲和性"><i class="fa fa-angle-left"></i></a>
+        <a href="../../../../os/linux/kernel/cpu/cpu_affinity.html" class="navigation navigation-prev " aria-label="Previous page: cpu_affinity"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="../../../../os/linux/kernel/cpu/softirq.html" class="navigation navigation-next " aria-label="Next page: 软中断"><i class="fa fa-angle-right"></i></a>

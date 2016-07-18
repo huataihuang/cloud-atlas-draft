@@ -14,6 +14,18 @@ top -b -n 5 > top.log
 top -b -n 5 | head -17 > top.log
 ```
 
+> `-n 5`表示采样5次
+
+# 指定进程号采样top
+
+以下命令指定对进程`7890`进行20次采样，采样间隔时间是`0.5`秒
+
+```
+top -d 0.5 -b -n 20 -p 7890
+```
+
+> `-d 0.5`表示采样间隔`0.5`秒
+
 # 参考
 
 * [What does “batch mode” mean for the top command?](http://unix.stackexchange.com/questions/138484/what-does-batch-mode-mean-for-the-top-command)
