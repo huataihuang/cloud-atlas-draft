@@ -37,7 +37,7 @@ Running as unit toptest.service.
 
 ## 创建持久化Cgroups
 
-要配置启动启动时自动启动的单元，则使用`systemctl enable`命令（参考[RHEL系统管理:systemd](../../../redhat/system_administration/systemd/README.md)）。这个命令自动在`/usr/lib/systemd/system/`目录下创建一个单元文件。要持久化改变cgroup，添加或修改这个单元文件的配置参数。详细请参考 [修改控制组](modify_control_groups.md)
+要配置启动启动时自动启动的单元，则使用`systemctl enable`命令（参考[RHEL系统管理:systemd](../../../redhat/system_administration/systemd/README.md)）。这个命令自动在`/usr/lib/systemd/system/`目录下创建一个单元文件。要持久化改变cgroup，添加或修改这个单元文件的配置参数。详细请参考 "修改控制组" 
 
 ----
 
@@ -444,8 +444,8 @@ systemd-cgtop
 
 有关cpu子系统文档信息
 
-* Real-Time scheduling — /usr/share/doc/kernel-doc-<kernel_version>/Documentation/scheduler/sched-rt-group.txt
-* CFS scheduling — /usr/share/doc/kernel-doc-<kernel_version>/Documentation/scheduler/sched-bwc.txt
+* Real-Time scheduling — `/usr/share/doc/kernel-doc-<kernel_version>/Documentation/scheduler/sched-rt-group.txt`
+* CFS scheduling — `/usr/share/doc/kernel-doc-<kernel_version>/Documentation/scheduler/sched-bwc.txt`
 
 ## 在线文档
 

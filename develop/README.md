@@ -18,3 +18,7 @@
     我只愿面朝大海，春暖花开
 
 > 从今天起，做一个写代码的人
+
+# 参考
+
+* [Google 开源项目风格指南 (中文版)](https://zh-google-styleguide.readthedocs.io/en/latest/)

@@ -100,3 +100,4 @@ HPET被设计成可以通过驱动PIT和CMOS计时器通常连接的中断总线
 # 参考
 
 * [Timekeeping in VMware Virtual Machines VMware vSphere 5.0, Workstation 8.0, Fusion 4.0](http://www.vmware.com/files/pdf/Timekeeping-In-VirtualMachines.pdf)
+* 有关Linux时钟管理，参考汇总的一篇文档[Linux时钟管理](../../os/linux/kernel/cpu/linux_timer_management.md)，这篇文档是从IBM developWorks的[Linux时钟管理](https://www.ibm.com/developerworks/cn/linux/l-cn-timerm/)转载的
