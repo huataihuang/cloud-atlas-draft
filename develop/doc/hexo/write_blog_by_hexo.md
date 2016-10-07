@@ -2,23 +2,32 @@
 
 推荐`nvm`来管理`node.js`版本，请参考[nvm官方说明](https://github.com/creationix/nvm)
 
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.31.0/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
 
-	nvm install 4.3.0
-	nvm alias default 4.3.0
+> 脚本在 `~/.nvm` 目录下clone了`nvm`的git仓库，并在`~/.bash_profile`， `~/.zshrc`， `~/.profile` 或 `~/.bashrc` 中添加了
 
-> 目前测试下来，在一些插件兼容性上使用最细的 v5.x 会产生异常，此外，在gitbook的运行中发现，使用 node v5.x 出现cpu资源占用较高问题。所以，目前（2016年2月）还继续使用node.js v4.3.0（长期支持版）。
+```
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
+```
+
+> 如果在Mac OS X中执行`nvm`命令提示`nvm: command not found`，则可能在执行上述脚本的时候，系统中尚未有`~/.bash_profie`，请先执行`touch ~/.bash_profile`，然后再执行一遍安装脚本
+
+	nvm install 4.6.0
+	nvm alias default 4.6.0
+
+> 2016年2月测试在一些插件兼容性上使用最细的 v5.x 会产生异常，此外，在gitbook的运行中发现，使用 node v5.x 出现cpu资源占用较高问题。不过，我在2016年10月采用最简单的typing模版时，使用最新的`6.7.0`系列发现无法正常显示，所以还是采用了4.6.0
 >
-> 如果使用[node.js官方pkg包](http://nodejs.org)安装，会在系统级别安装到`/usr/local`目录下，但是对于hexo安装，总是需要使用sudo权限，非常不方便。
+> 如果使用[node.js官方pkg包](http://nodejs.org)安装，会在系统级别安装到`/usr/local`目录下，但是对于hexo安装，总是需要使用sudo权限，非常不方便。所以推荐使用`nvm`作为node.js的包管理。
 
 安装Hexo
 
 	npm install hexo-cli -g
 
-先使用`hexo`初始化目录，这个目录名字可以是任意名称，最好和你的网址同名。这里我使用自己的个人网站`huataihuang.github.io`
+先使用`hexo`初始化目录，这个目录名字可以是任意名称，最好和你的网址同名。这里我使用自己的个人网站`blog.huatai.me`
 
-	hexo init huataihuang.github.io
-	cd huataihuang.github.io
+	hexo init blog
+	cd blog
 	npm install
 
 启动服务
@@ -27,11 +36,25 @@
 
 > 此时默认端口监听`4000`，可以通过参数 `-p 3999` 修改监听端口（如果在主机上运行多个服务）
 
+# Typing主题
+
+> 最初，想回归最简单的文字主题，采用 [Maupassant](https://github.com/tufu9441/maupassant-hexo) ，参考 [大道至简——Hexo简洁主题推荐](https://www.haomwei.com/technology/maupassant-hexo.html)进行设置。不过，geekplux的[typing](https://github.com/geekplux/hexo-theme-typing)似乎更为简洁，所以准备入手。
+
+    cd blog
+	git clone https://github.com/geekplux/hexo-theme-typing themes/typing
+
+修改`_config.yml`将`theme`设置成`typing`
+
+如果要更新：
+
+    cd themes/typing
+	git pull
+
 # 使用hexo
 
-> 默认的theme是`landscape`，后面再讲述如何定制theme
-
-在 [github](https://github.com) 上创建自己的账号，并以自己的`账号名字+github.io`作为仓库名（参考[github pages说明](https://pages.github.com)）。例如，我的github账号是`huataihuang`，则创建的仓库名字是`huataihuang.github.io`
+> github提供了一个[pages](https://pages.github.com)服务，可以将自己账号名同名的repo作为对外展示blog的仓库。即在[github](https://github.com) 上创建自己的账号，并以自己的`账号名字+github.io`作为仓库名（参考[github pages说明](https://pages.github.com)）。例如，我的github账号是`huataihuang`，则创建的仓库名字是`huataihuang.github.io`
+>
+> 默认使用的是 [Jekyll](https://github.com/jekyll/jekyll) 作为静态页面平台（使用Ruby生成静态blog）
 
 > 发布需要设置自己账号的公钥，即将管理密钥设置为**ssh公钥**
 
@@ -41,7 +64,7 @@
     ## Docs: http://hexo.io/docs/deployment.html
     deploy:
       type: git
-      repo: https://github.com/huataihuang/huataihuang.github.io.git
+      repo: https://github.com/huataihuang/nebula.git
       branch: master
 
 安装git插件
@@ -63,12 +86,24 @@
 
 > `d` 表示 `deploy`，即部署到github的页面，然后就可以通过访问 http://huataihuang.github.io 看到自己的页面
 
+# 创建about页面
+
+```bash
+hexo new page about
+```
+
+会在source/about中生成index.html。这个就叫做页面，不在文章列表显示，可以通过http://localhost/about浏览。
+
+页面支持文章的大部分属性，除了分类和标签。
+
 # 增加Disqus评论功能
 
 hexo内置支持了disqus评论功能，只需要在 `_config.yml` 配置中添加（需要先到disqus上申请域名）
 
     # Disqus
     disqus_shortname: bloghuataime
+
+
 
 # 设置域名
 
@@ -83,6 +118,13 @@ hexo内置支持了disqus评论功能，只需要在 `_config.yml` 配置中添�
 
 域名生效后，访问 http://blog.huatai.me 就会访问 http://huataihuang.github.io 并且看到完全一致的页面
 
+# 插件
+
+* [hexo-generator-feed](https://github.com/hexojs/hexo-generator-feed) ->生成rss
+* [hexo-generator-sitemap](https://github.com/hexojs/hexo-generator-sitemap) ->生成sitemap
+* [hexo-pdf](https://github.com/superalsrk/hexo-pdf/) ->嵌入pdf
+* [hexo-qiniu-sync](https://github.com/gyk001/hexo-qiniu-sync) ->插入图片外链，并且同步你的文件到七牛云(暂未使用)
+
 # 升级hexo
 
 再次进入 `huataihuang.github.io` 目录，执行
@@ -93,3 +135,21 @@ hexo内置支持了disqus评论功能，只需要在 `_config.yml` 配置中添�
 
 文档采用GitHub favored Markdown格式，可以支持[表格、代码着色、高级引用](https://help.github.com/articles/working-with-advanced-formatting/)等功能，非常适合代码分享。
 
+# 其他静态blog
+
+* 使用github issue撰写博客
+
+没有想到的是，也有人直接使用[GitHub的Issues搭建了一个名为"lifesinger"的个人博客](https://github.com/lifesinger/blog/issues)，因为issue天然支持MarkDown并且可以开放式讨论，倒是也别有趣味。
+
+* jekyll 和 Octopress
+
+jekyll是GitHub官方支持的Pages工具，基于Ruby，由于github巨大的影响力使用非常广泛。Octopress则是Jekyll的定制简化，但依然比较折腾。根据网上的一些评测，对于大量的文档创建，hexo相对速度较快。
+
+> 考虑到每个人的生活是多面的，我准备使用`hexo`(`typing` theme)来构建生活的blog，而使用`jekyll`来构建偏向技术的blog。
+
+> 参考 [FarBox、Jekyll、Octopress、ghost、marboo、Hexo、Medium、Logdown、prose.io，这些博客程序有什么特点？](https://www.zhihu.com/question/21981094)
+
+# 参考
+
+* [from jekyll to hexo](https://kangqingfei.cn/2015/12/30/from-jekyll-to-hexo/)
+* [Hexo 入门指南（四） - 页面、导航、边栏、底栏](http://blog.csdn.net/wizardforcel/article/details/40684953)

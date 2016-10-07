@@ -14,7 +14,7 @@
 
 使用NMP安装Gitbook
 
-    npm install gitbook -g
+    npm install gitbook-cli -g
 
 > 请使用`nvm`来安装node，这样可以在自己的用户目录下安装和管理各种版本node，就可以避免安装系统目录node，也就不需要使用`sudo`命令。如果使用系统范围的`node.js`，需要使用命令`sudo npm install gitbook -g`
 
@@ -22,26 +22,15 @@
 
     gitbook -V
 
-这里出现报错
-
-    You need to install "gitbook-cli" to have access to the gitbook command anywhere     on your system.
-    If you've installed this package globally, you need to uninstall it.
-    >> Run "npm uninstall -g gitbook" then "npm install -g gitbook-cli"
-
-所以重新安装一遍
-
-    npm uninstall -g gitbook
-    npm install -g gitbook-cli
-
 # 使用GitBook
 
-* 初始化目录`cloudatlas`
+* 初始化目录`cloud-atlas`
 
-        gitbook init cloudatlas
+        gitbook init cloud-atlas
 
-> 我的个人"云图" [cloudatlas.huatai.me](http://cloudatlas.huatai.me) 记录自己在云计算领域的技术探索。
+> 我的个人"云图" [cloud-atlas.huatai.me](http://cloud-atlas.huatai.me) 记录自己在云计算领域的技术探索。
 
-进入`cloudatlas.huatai.me`目录可以看到该目录下有2个文件，除此之外什么也没有
+进入`cloud-atlas.huatai.me`目录可以看到该目录下有2个文件，除此之外什么也没有
 
     README.md
     SUMMARY.md
@@ -50,7 +39,7 @@
 
 编辑好初步的文档之后（例如编辑 `README.md` ）可以使用`gitbook`命令启用一个本地的服务进行预览
 
-    gitbook serve cloudatlas
+    gitbook serve cloud-atlas
 
 此时会在 `cloudatlas` 目录下生成一个子目录`_book`包含了所有生成的静态网站文件。
 
@@ -157,7 +146,7 @@ GitBook使用 `SUMMARY.md`来定义章节和子章节
 
 * 创建图书，在图书页面选择 `github` ，此时选择gitbub的某个公开的仓库（也就是你前面将自己的gitbook推送的仓库），通过关联后，这个仓库的书就会出现在在 https://{author}.gitbooks.io/{book}/
 
-> 例如，我的有关云计算的书 Cloud Atlas https://huataihuang.gitbooks.io/cloudatlas/
+> 例如，我的有关云计算的书 Cloud Atlas https://huataihuang.gitbooks.io/cloud-atlas/
 
 # 插件
 
@@ -166,6 +155,132 @@ GitBook使用 `SUMMARY.md`来定义章节和子章节
 * [PlantUML in GitBook](https://plugins.gitbook.com/plugin/puml)
 
 [GitBook + PlantUML 以 Markdown 快速製作 UML 教材](http://blog.lyhdev.com/2014/12/gitbook-plantuml-markdown-uml.html)
+
+# 升级
+
+升级到GitBook 3.x 时候，在执行 `gitbook serve` 命令的终端提示
+
+```
+Live reload server started on port: 35729
+Press CTRL+C to quit ...
+
+info: 8 plugins are installed
+info: loading plugin "disqus"... OK
+info: loading plugin "livereload"... OK
+info: loading plugin "highlight"... OK
+info: loading plugin "search"... OK
+info: loading plugin "lunr"... OK
+info: loading plugin "sharing"... OK
+info: loading plugin "fontsettings"... OK
+info: loading plugin "theme-default"... OK
+info: found 348 pages
+info: found 111 asset files
+warn: "sections" property is deprecated, use page.content instead
+```
+
+检查了 `node_modules` 目录下模块，发现是 `gitbook-plugin-codeblock-filename` 使用了 `page.sections` ，但是观察了最新的gitbook，发现已经支持章节缩进，所以就去除掉多个插件，只保留`disqus`插件。
+
+发现访问 http://127.0.0.1:35729 不能正常展示，页面只提示
+
+```
+{"tinylr":"Welcome","version":"0.2.1"}
+```
+
+但是依然出现同样无法展示问题。参考 [Gitbookのインストール（2016/1/19時点）](http://swiftlife.hatenablog.jp/entry/2016/01/19/205357) ，原来这个页面`{"tinylr":"Welcome","version":"0.2.1"}`是表示安装gitbook成功。
+
+但是，发现过了很久，大约 380 秒以后才提示出现
+
+```
+info: >> generation finished with success in 380.2s !
+
+Starting server ...
+Serving book on http://localhost:4000
+```
+
+原来升级到新版本之后，在重新绘制页面出现了非常缓慢的问题。在 [Generating slowly when the file number is large #1497](https://github.com/GitbookIO/gitbook/issues/1497) 提出了同样的问题，显示升级到 3.x 之后build非常缓慢。我自己测试了一下，差不多一个文件需要1秒钟，期间单个CPU负载满负荷运行。
+
+[Setup and Installation of GitBook](https://github.com/GitbookIO/gitbook/blob/master/docs/setup.md) 提供了如下debug的方法
+
+```
+gitbook build ./ --log=debug --debug
+```
+
+此外可以统计各阶段的使用时间
+
+```
+gitbook build --timing
+```
+
+显示输出大部分时间消耗在`template.render`
+
+```
+debug: 0.0% of time spent in "call.hook.finish:before" (1 times) :
+debug:     > Total: 1ms | Average: 1ms
+debug:     > Min: 1ms | Max: 1ms
+debug: ---------------------------
+debug: 0.0% of time spent in "call.hook.init" (1 times) :
+debug:     > Total: 1ms | Average: 1ms
+debug:     > Min: 1ms | Max: 1ms
+debug: ---------------------------
+debug: 0.0% of time spent in "call.hook.config" (1 times) :
+debug:     > Total: 2ms | Average: 2ms
+debug:     > Min: 2ms | Max: 2ms
+debug: ---------------------------
+debug: 0.0% of time spent in "plugins.findForBook" (1 times) :
+debug:     > Total: 52ms | Average: 52ms
+debug:     > Min: 52ms | Max: 52ms
+debug: ---------------------------
+debug: 0.0% of time spent in "parse.listAssets" (1 times) :
+debug:     > Total: 98ms | Average: 98ms
+debug:     > Min: 98ms | Max: 98ms
+debug: ---------------------------
+debug: 0.1% of time spent in "call.hook.page:before" (348 times) :
+debug:     > Total: 187ms | Average: 1ms
+debug:     > Min: 0ms | Max: 5ms
+debug: ---------------------------
+debug: 0.1% of time spent in "plugin.load" (8 times) :
+debug:     > Total: 194ms | Average: 24ms
+debug:     > Min: 1ms | Max: 147ms
+debug: ---------------------------
+debug: 0.1% of time spent in "call.hook.finish" (1 times) :
+debug:     > Total: 259ms | Average: 259ms
+debug:     > Min: 259ms | Max: 259ms
+debug: ---------------------------
+debug: 0.1% of time spent in "parse.book" (1 times) :
+debug:     > Total: 270ms | Average: 270ms
+debug:     > Min: 270ms | Max: 270ms
+debug: ---------------------------
+debug: 0.1% of time spent in "parse.listPages" (1 times) :
+debug:     > Total: 300ms | Average: 300ms
+debug:     > Min: 300ms | Max: 300ms
+debug: ---------------------------
+debug: 0.4% of time spent in "call.hook.page" (348 times) :
+debug:     > Total: 1.36s | Average: 4ms
+debug:     > Min: 0ms | Max: 110ms
+debug: ---------------------------
+debug: 2.2% of time spent in "page.generate" (348 times) :
+debug:     > Total: 8.31s | Average: 24ms
+debug:     > Min: 11ms | Max: 136ms
+debug: ---------------------------
+debug: 92.3% of time spent in "template.render" (696 times) :
+debug:     > Total: 344.00s | Average: 494ms
+debug:     > Min: 0ms | Max: 1.33s
+debug: ---------------------------
+debug: 17.46s spent in non-mesured sections
+```
+
+# 回滚gitbook版本
+
+> 参考 [How do I install a previous version of an npm package?](http://stackoverflow.com/questions/15890958/how-do-i-install-a-previous-version-of-an-npm-package)
+
+```
+npm view gitbook versions
+```
+
+```
+npm remove gitbook@3.2.2
+npm install gitbook@2.6.7
+```
 
 # 参考
 
