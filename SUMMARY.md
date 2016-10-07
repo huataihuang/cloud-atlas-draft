@@ -368,4 +368,5 @@
 	* [Puppet](devops/puppet/README.md)
 * [阅读](read/README.md)
 	* [重置Kindle Paperwhite](read/reset_kindle_paperwhite.md)
+	* [使用calibre去除kindle drm](read/calibre_remove_drm.md)
 * [Who am I?](whoami.md)
