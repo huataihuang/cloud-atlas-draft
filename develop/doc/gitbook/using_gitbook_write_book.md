@@ -282,6 +282,8 @@ npm remove gitbook@3.2.2
 npm install gitbook@2.6.7
 ```
 
+> 上述方法并没有成功，我也尝试重新安装`gitbook-cli`，发现`gitbook-cli`安装的`2.3.0`版本自动安装了`gitbook 3.2.2`。所以暂时采用在更新了多个文档之后，只执行 `gitbook build` 生成静态文件，大多数情况下并不需要实时编译。
+
 # 参考
 
 * [GitBook使用指南](http://wanqingwong.com/gitbook-zh/)
