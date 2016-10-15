@@ -28,6 +28,7 @@
 			* [systemd环境syslog-ng启动失败排查](os/linux/log/syslog-ng_3.5_fails_with_systemctl.md)
 			* [syslog-ng部署和维护](os/linux/log/syslog-ng_deploy.md)
 			* [tmp临时文件目录自动清理](os/linux/log/tmp_folder_auto_clean.md)
+			* [禁止日志打印到控制台](os/linux/log/disable_console_log.md)
 		* [内核](os/linux/kernel/README.md)
 			* [Linux资源管理](os/linux/kernel/cgroups/README.md)
 				* [在RHEL6中的Cgroups](os/linux/kernel/cgroups/rhel6/README.md)
