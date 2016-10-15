@@ -506,6 +506,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.3.1.3.6" data-path="../../os/linux/log/tmp_folder_auto_clean.html">
+            
+                <a href="../../os/linux/log/tmp_folder_auto_clean.html">
+            
+                    
+                    tmp临时文件目录自动清理
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -2844,7 +2857,20 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.8.2.3.1" data-path="deploy_kvm_on_gentoo.md">
+        <li class="chapter " data-level="1.8.2.3.1" data-path="deploy_kvm_on_centos.md">
+            
+                <span>
+            
+                    
+                    在CentOS中部署KVM
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.2.3.2" data-path="deploy_kvm_on_gentoo.md">
             
                 <span>
             
@@ -2857,7 +2883,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8.2.3.2" data-path="deployment_and_administration/kvm_guest_timing_management.html">
+        <li class="chapter " data-level="1.8.2.3.3" data-path="deployment_and_administration/kvm_guest_timing_management.html">
             
                 <a href="deployment_and_administration/kvm_guest_timing_management.html">
             
@@ -4676,6 +4702,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.12.9.1.7" data-path="../../develop/shell/bash/array.html">
+            
+                <a href="../../develop/shell/bash/array.html">
+            
+                    
+                    shell中使用数组
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -5703,7 +5742,7 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p><code>KVM</code>&#xFF08;Kernel-based Virtual Machine&#xFF09;&#x662F;AMD64&#x548C;Intel 64&#x786C;&#x4EF6;&#x5E73;&#x53F0;&#x7684;&#x5B8C;&#x5168;&#x865A;&#x62DF;&#x5316;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF0C;&#x662F;&#x6784;&#x5EFA;Red Hat Enterprise Linux 6&#x865A;&#x62DF;&#x5316;&#x7684;&#x57FA;&#x7840;&#x3002;KVM&#x53EF;&#x4EE5;&#x8FD0;&#x884C;&#x591A;&#x4E2A;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x3002;&#x5728;Red Hat&#x4E2D;KVM hypervisor&#x662F;&#x901A;&#x8FC7;<code>libvirt</code> API&#x548C;&#x57FA;&#x4E8E;<code>libvir</code>t&#x7684;&#x5DE5;&#x5177;&#x6765;&#x7BA1;&#x7406;&#x7684;&#xFF08;&#x5982;<code>virt-manager</code>&#x548C;<code>virsh</code>&#xFF09;&#x3002;</p>
+                                <p><code>KVM</code>&#xFF08;Kernel-based Virtual Machine&#xFF09;&#x662F;AMD64&#x548C;Intel 64&#x786C;&#x4EF6;&#x5E73;&#x53F0;&#x7684;&#x5B8C;&#x5168;&#x865A;&#x62DF;&#x5316;&#x89E3;&#x51B3;&#x65B9;&#x6848;&#xFF0C;&#x662F;&#x6784;&#x5EFA;Red Hat Enterprise Linux 6&#x865A;&#x62DF;&#x5316;&#x7684;&#x57FA;&#x7840;&#x3002;KVM&#x53EF;&#x4EE5;&#x8FD0;&#x884C;&#x591A;&#x4E2A;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x3002;&#x5728;Red Hat&#x4E2D;KVM hypervisor&#x662F;&#x901A;&#x8FC7;<code>libvirt</code> API&#x548C;&#x57FA;&#x4E8E;<code>libvirt</code>&#x7684;&#x5DE5;&#x5177;&#x6765;&#x7BA1;&#x7406;&#x7684;&#xFF08;&#x5982;<code>virt-manager</code>&#x548C;<code>virsh</code>&#xFF09;&#x3002;</p>
 <p>KVM hypervisor&#x652F;&#x6301;&#x7CFB;&#x7EDF;&#x8D44;&#x6E90;&#x8D85;&#x5206;&#x914D;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8D85;&#x51FA;&#x7CFB;&#x7EDF;&#x7684;&#x865A;&#x62DF;CPU&#x548C;&#x5185;&#x5B58;&#x5206;&#x914D;&#x8D44;&#x6E90;&#x3002;&#x4E00;&#x4E2A;&#x5355;&#x4E00;&#x865A;&#x62DF;&#x673A;&#x4E0D;&#x80FD;&#x4F7F;&#x7528;&#x8D85;&#x8FC7;&#x7269;&#x7406;&#x63D0;&#x4F9B;&#x7684;CPU&#x548C;&#x5185;&#x5B58;&#xFF0C;&#x4E0D;&#x8FC7;<code>overcommitting</code>&#xFF08;&#x8D85;&#x5206;&#x914D;&#xFF09;&#x53EF;&#x4EE5;&#x652F;&#x6301;&#x591A;&#x4E8E;CPU&#x6570;&#x91CF;&#x7684;&#x591A;&#x4E2A;&#x865A;&#x62DF;&#x673A;&#x8FD0;&#x884C;&#xFF0C;&#x867D;&#x7136;&#x8FD9;&#x5B58;&#x5728;&#x7A33;&#x5B9A;&#x6027;&#x98CE;&#x9669;&#x3002;</p>
 <p>KSM&#xFF08;Kernel SamePage Merging&#xFF09;&#x662F;&#x901A;&#x8FC7;KVM hypervisor&#x5141;&#x8BB8;KVM&#x865A;&#x62DF;&#x673A;&#x5171;&#x4EAB;&#x540C;&#x7B49;&#x5185;&#x5B58;&#x9875;&#x3002;&#x8FD9;&#x4E9B;&#x5171;&#x4EAB;&#x5185;&#x5B58;&#x4E5F;&#x901A;&#x5E38;&#x4F7F;&#x7528;&#x5171;&#x6709;&#x7684;&#x5E93;&#x6216;&#x5176;&#x4ED6;&#x5171;&#x540C;&#x7684;&#x9AD8;&#x4F7F;&#x7528;&#x7387;&#x6570;&#x636E;&#x3002;KVM&#x5141;&#x8BB8;&#x5927;&#x91CF;&#x865A;&#x62DF;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x5171;&#x7528;&#x5185;&#x5B58;&#x4EE5;&#x907F;&#x514D;&#x5185;&#x5B58;&#x91CD;&#x590D;&#x5206;&#x914D;&#x3002;</p>
 <h1 id="libvirt&#x548C;libvirt&#x5DE5;&#x5177;">libvirt&#x548C;libvirt&#x5DE5;&#x5177;</h1>
@@ -5724,7 +5763,7 @@
 <ul>
 <li><code>RHEV-M</code></li>
 </ul>
-<p>Red Hat Enterprise Virtualization Manager (~RHEV-M)&#x63D0;&#x4F9B;&#x865A;&#x62DF;&#x73AF;&#x5883;&#x6784;&#x67B6;&#x7684;&#x56FE;&#x5F62;&#x5316;&#x8FD8;&#x793C;&#xFF0C;&#x7528;&#x4E8E;&#x7BA1;&#x7406;&#x5206;&#x914D;&#x3001;&#x8FDE;&#x63A5;&#x534F;&#x8BAE;&#x3001;&#x7528;&#x6237;&#x4F1A;&#x8BDD;&#x3001;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x6C60;&#x3001;&#x6620;&#x50CF;&#x548C;&#x9AD8;&#x53EF;&#x7528;&#x96C6;&#x7FA4;&#xFF0C;&#x6B64;&#x6784;&#x67B6;&#x53EF;&#x7528;&#x4E8E;&#x66FF;&#x6362;<code>virsh</code>&#x548C;<code>virt-manager</code>&#x5DE5;&#x5177;&#x3002;&#x8BE5;&#x5DE5;&#x5177;&#x8FD0;&#x884C;&#x5728;Windows Server 2008 R2&#x96C6;&#x7FA4;&#x6A21;&#x5F0F;&#xFF0C;&#x4F7F;&#x7528;&#x4E3B;&#x5907;&#x914D;&#x7F6E;&#x3002;</p>
+<p>Red Hat Enterprise Virtualization Manager (<code>RHEV-M</code>)&#x63D0;&#x4F9B;&#x865A;&#x62DF;&#x73AF;&#x5883;&#x6784;&#x67B6;&#x7684;&#x56FE;&#x5F62;&#x5316;&#x8FD8;&#x793C;&#xFF0C;&#x7528;&#x4E8E;&#x7BA1;&#x7406;&#x5206;&#x914D;&#x3001;&#x8FDE;&#x63A5;&#x534F;&#x8BAE;&#x3001;&#x7528;&#x6237;&#x4F1A;&#x8BDD;&#x3001;&#x865A;&#x62DF;&#x4E3B;&#x673A;&#x6C60;&#x3001;&#x6620;&#x50CF;&#x548C;&#x9AD8;&#x53EF;&#x7528;&#x96C6;&#x7FA4;&#xFF0C;&#x6B64;&#x6784;&#x67B6;&#x53EF;&#x7528;&#x4E8E;&#x66FF;&#x6362;<code>virsh</code>&#x548C;<code>virt-manager</code>&#x5DE5;&#x5177;&#x3002;&#x8BE5;&#x5DE5;&#x5177;&#x8FD0;&#x884C;&#x5728;Windows Server 2008 R2&#x96C6;&#x7FA4;&#x6A21;&#x5F0F;&#xFF0C;&#x4F7F;&#x7528;&#x4E3B;&#x5907;&#x914D;&#x7F6E;&#x3002;</p>
 <h1 id="&#x865A;&#x62DF;&#x786C;&#x4EF6;&#x8BBE;&#x5907;">&#x865A;&#x62DF;&#x786C;&#x4EF6;&#x8BBE;&#x5907;</h1>
 <p>&#x5728;Red Hat Linux 6&#x4E2D;&#x865A;&#x62DF;&#x5316;&#x4F1A;&#x6A21;&#x62DF;&#x4E09;&#x79CD;&#x7C7B;&#x578B;&#x7CFB;&#x7EDF;&#x8BBE;&#x5907;&#x7ED9;&#x865A;&#x62DF;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF1A;</p>
 <ul>
@@ -5766,7 +5805,7 @@
 <h1 id="&#x534A;&#x865A;&#x62DF;&#x5316;&#x9A71;&#x52A8;&#xFF08;para-virtualized-drivers&#xFF09;">&#x534A;&#x865A;&#x62DF;&#x5316;&#x9A71;&#x52A8;&#xFF08;Para-virtualized drivers&#xFF09;</h1>
 <p>&#x534A;&#x865A;&#x62DF;&#x5316;&#x9A71;&#x52A8;&#xFF08;Para-virtualized drivers&#xFF09;&#x53EF;&#x4EE5;&#x63D0;&#x9AD8;&#x865A;&#x62DF;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;I/O&#x6027;&#x80FD;&#x3002;</p>
 <p>&#x534A;&#x865A;&#x62DF;&#x5316;&#x9A71;&#x52A8;&#x51CF;&#x5C11;&#x4E86;I/O&#x5EF6;&#x8FDF;&#x5E76;&#x589E;&#x5F3A;&#x4E86;I/O&#x901A;&#x8FC7;&#xFF0C;&#x8FD9;&#x6837;&#x53EF;&#x4EE5;&#x5F97;&#x5230;&#x63A5;&#x8FD1;&#x7269;&#x7406;&#x8BBE;&#x5907;&#x7684;&#x6027;&#x80FD;&#x3002;&#x5BF9;&#x4E8E;I/O&#x654F;&#x611F;&#x7684;&#x5E94;&#x7528;&#xFF0C;&#x5EFA;&#x8BAE;&#x4F7F;&#x7528;para-virtualized drivers&#x3002;</p>
-<p>para-virtualized&#x9A71;&#x52A8;&#x5FC5;&#x987B;&#x5728;guest&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E2D;&#x5B89;&#x88C5;&#x3002;&#x9ED8;&#x8BA4;&#xFF0C;para-virtualized&#x9A71;&#x52A8;&#x5DF2;&#x7ECF;&#x5305;&#x542B;&#x518D;Red Hat Enterprise Linux 4.7&#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;&#xFF0C;Red Hat Enterprise Linux 5.4&#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;&#xFF0C;Red Hat Enterprise Linux 6.0&#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;&#x3002;&#x4E0D;&#x8FC7;&#xFF0C;&#x5728;Windows guests&#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x624B;&#x5DE5;&#x5B89;&#x88C5;~para-virtualized&#x9A71;&#x52A8;&#x3002;</p>
+<p>para-virtualized&#x9A71;&#x52A8;&#x5FC5;&#x987B;&#x5728;guest&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E2D;&#x5B89;&#x88C5;&#x3002;&#x9ED8;&#x8BA4;&#xFF0C;para-virtualized&#x9A71;&#x52A8;&#x5DF2;&#x7ECF;&#x5305;&#x542B;&#x518D;Red Hat Enterprise Linux 4.7&#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;&#xFF0C;Red Hat Enterprise Linux 5.4&#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;&#xFF0C;Red Hat Enterprise Linux 6.0&#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;&#x3002;&#x4E0D;&#x8FC7;&#xFF0C;&#x5728;Windows guests&#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x624B;&#x5DE5;&#x5B89;&#x88C5;<code>para-virtualized</code>&#x9A71;&#x52A8;&#x3002;</p>
 <ul>
 <li>Para-virtualized network driver (<code>virtio-net</code>)</li>
 <li>Para-virtualized block driver (<code>virtio-blk</code>)</li>
@@ -5779,10 +5818,10 @@
 <ul>
 <li><code>PCI device assignment</code> - KVM hypervisor&#x652F;&#x6301;&#x5C06;PCI&#x8BBE;&#x5907;&#x8FDE;&#x63A5;&#x5230;&#x865A;&#x62DF;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x8FD9;&#x6837;guest&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x53EF;&#x4EE5;&#x72EC;&#x5360;PCI&#x8BBE;&#x5907;&#x6765;&#x5B8C;&#x6210;&#x4E00;&#x7CFB;&#x5217;&#x5DE5;&#x4F5C;&#xFF0C;&#x8FD9;&#x79CD;&#x65B9;&#x5F0F;&#x5C31;&#x597D;&#x50CF;PCI&#x8BBE;&#x5907;&#x771F;&#x7684;&#x8FDE;&#x63A5;&#x5728;&#x865A;&#x62DF;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x4E2D;&#x4E00;&#x6837;&#x3002;<code>device assignment</code>&#x4E5F;&#x652F;&#x6301;PCI Express&#x8BBE;&#x5907;&#xFF0C;&#x4F46;&#x662F;&#x4E0D;&#x652F;&#x6301;&#x663E;&#x5361;&#xFF0C;&#x5E76;&#x884C;PCI&#x8BBE;&#x5907;&#x4E5F;&#x53EF;&#x80FD;&#x652F;&#x6301;&#xFF0C;&#x4F46;&#x662F;&#x5B58;&#x5728;&#x5B89;&#x5168;&#x548C;&#x7CFB;&#x7EDF;&#x914D;&#x7F6E;&#x51B2;&#x7A81;&#x3002;</li>
 <li><code>SR-IOV</code> (Single Root I/O Virtualization) &#x662F;&#x4E00;&#x79CD;PCI Express&#x6807;&#x51C6;&#xFF0C;&#x6269;&#x5C55;&#x4E00;&#x4E2A;&#x7269;&#x7406;PCI&#x529F;&#x80FD;&#x5C06;&#x5176;PCI&#x8D44;&#x6E90;&#x5206;&#x522B;&#x5171;&#x4EAB;&#xFF0C;&#x865A;&#x62DF;&#x5316;&#x529F;&#x80FD;&#x3002;&#x6BCF;&#x4E2A;&#x4E0D;&#x540C;&#x7684;&#x529F;&#x80FD;&#x53EF;&#x4EE5;&#x4F5C;&#x4E3A;PCI device assignment&#x63D0;&#x4F9B;&#x7ED9;&#x4E0D;&#x540C;&#x7684;guest&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x3002;</li>
-<li><code>NPIV</code>(~N_Port ID Virtualization, NPIV)&#x662F;&#x4E00;&#x4E9B;&#x5149;&#x7EA4;&#x901A;&#x9053;&#x8BBE;&#x5907;&#x63D0;&#x4F9B;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x5C06;&#x4E00;&#x4E2A;&#x7269;&#x7406;~N_Port&#x4F5C;&#x4E3A;&#x591A;~N_Port ID&#x5171;&#x4EAB;&#x3002;&#x901A;&#x8FC7;NPIV&#xFF0C;&#x865A;&#x62DF;&#x64CD;&#x4F5C;&#x63D0;&#x4F9B;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x865A;&#x62DF;Fibre Channel&#x6765;&#x8BBF;&#x95EE;SAN&#x5B58;&#x50A8;&#x3002;</li>
+<li><code>NPIV</code>(N_Port ID Virtualization, NPIV)&#x662F;&#x4E00;&#x4E9B;&#x5149;&#x7EA4;&#x901A;&#x9053;&#x8BBE;&#x5907;&#x63D0;&#x4F9B;&#x7684;&#x529F;&#x80FD;&#xFF0C;&#x5C06;&#x4E00;&#x4E2A;&#x7269;&#x7406;N_Port&#x4F5C;&#x4E3A;&#x591A;N_Port ID&#x5171;&#x4EAB;&#x3002;&#x901A;&#x8FC7;NPIV&#xFF0C;&#x865A;&#x62DF;&#x64CD;&#x4F5C;&#x63D0;&#x4F9B;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4E00;&#x4E2A;&#x865A;&#x62DF;Fibre Channel&#x6765;&#x8BBF;&#x95EE;SAN&#x5B58;&#x50A8;&#x3002;</li>
 </ul>
 <h1 id="&#x5B58;&#x50A8;">&#x5B58;&#x50A8;</h1>
-<p>&#x63D0;&#x4F9B;&#x7ED9;&#x865A;&#x62DF;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x5B58;&#x50A8;&#x662F;&#x7269;&#x7406;&#x5B58;&#x50A8;&#x7684;&#x62BD;&#x8C61;&#xFF0C;&#x4F7F;&#x7528;p<code>ara-virtualized</code>&#x6216;&#x6A21;&#x62DF;&#x5757;&#x8BBE;&#x5907;&#x9A71;&#x52A8;&#x5668;&#x3002;</p>
+<p>&#x63D0;&#x4F9B;&#x7ED9;&#x865A;&#x62DF;&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x7684;&#x5B58;&#x50A8;&#x662F;&#x7269;&#x7406;&#x5B58;&#x50A8;&#x7684;&#x62BD;&#x8C61;&#xFF0C;&#x4F7F;&#x7528;<code>para-virtualized</code>&#x6216;&#x6A21;&#x62DF;&#x5757;&#x8BBE;&#x5907;&#x9A71;&#x52A8;&#x5668;&#x3002;</p>
 <ul>
 <li>&#x5B58;&#x50A8;&#x6C60;&#xFF1A;&#x5B58;&#x50A8;&#x6C60;&#x662F;&#x4E00;&#x4E2A;&#x901A;&#x8FC7;libvirt&#x7BA1;&#x7406;&#x63D0;&#x4F9B;&#x7ED9;&#x865A;&#x62DF;guest&#x64CD;&#x4F5C;&#x7684;&#x6587;&#x4EF6;&#xFF0C;&#x76EE;&#x5F55;&#x6216;&#x5B58;&#x50A8;&#x8BBE;&#x5907;&#x3002;<ul>
 <li>&#x672C;&#x5730;&#x5B58;&#x50A8;&#x6C60; - &#x672C;&#x5730;&#x5B58;&#x50A8;&#x6C60;&#x662F;&#x76F4;&#x63A5;&#x8FDE;&#x63A5;&#x5230;host&#x670D;&#x52A1;&#x5668;&#x7684;&#xFF0C;&#x5305;&#x62EC;&#x672C;&#x5730;&#x76EE;&#x5F55;&#xFF0C;&#x76F4;&#x63A5;&#x8FDE;&#x63A5;&#x78C1;&#x76D8;&#xFF0C;&#x7269;&#x7406;&#x5206;&#x533A;&#x548C;&#x672C;&#x5730;&#x8BBE;&#x5907;&#x4E0A;&#x4E0A;&#x7684;LVM&#x5377;&#x3002;&#x901A;&#x5E38;&#x672C;&#x5730;&#x5B58;&#x50A8;&#x6C60;&#x53EF;&#x7528;&#x4E8E;&#x5F00;&#x53D1;&#x3001;&#x6D4B;&#x8BD5;&#x548C;&#x5C0F;&#x578B;&#x90E8;&#x7F72;&#xFF0C;&#x6216;&#x8005;&#x662F;&#x7528;&#x4E8E;&#x4E0D;&#x9700;&#x8981;&#x8FC1;&#x79FB;&#x6216;&#x4E0D;&#x9700;&#x8981;&#x5927;&#x91CF;&#x8FD0;&#x884C;&#x865A;&#x62DF;&#x673A;&#x7684;&#x73AF;&#x5883;&#x3002;</li>
@@ -5801,7 +5840,7 @@
 <li>Live migration</li>
 </ul>
 <p>Live&#x8FC1;&#x79FB;&#x662F;&#x4ECE;&#x4E00;&#x4E2A;&#x7269;&#x7406;&#x4E3B;&#x673A;&#x5C06;&#x8FD0;&#x884C;&#x7684;guest&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#x8FC1;&#x79FB;&#x5230;&#x53E6;&#x5916;&#x4E00;&#x4E2A;&#x7269;&#x7406;&#x4E3B;&#x673A;&#x3002;</p>
-<h1 id="&#x865A;&#x62DF;&#x5230;&#x865A;&#x62DF;&#x8FC1;&#x79FB;v2v">&#x865A;&#x62DF;&#x5230;&#x865A;&#x62DF;&#x8FC1;&#x79FB;(~V2V)</h1>
+<h1 id="&#x865A;&#x62DF;&#x5230;&#x865A;&#x62DF;&#x8FC1;&#x79FB;v2v">&#x865A;&#x62DF;&#x5230;&#x865A;&#x62DF;&#x8FC1;&#x79FB;(V2V)</h1>
 <p>&#x652F;&#x6301;&#x4ECE;XEN&#xFF0C;&#x5176;&#x4ED6;&#x7248;&#x672C;KVM&#x548C;Vmware ESX&#x8FC1;&#x79FB;&#x4E3B;&#x673A;&#x5230;Red Hat KVM</p>
 <h1 id="&#x865A;&#x62DF;&#x9650;&#x5236;">&#x865A;&#x62DF;&#x9650;&#x5236;</h1>
 <p>&#x865A;&#x62DF;&#x786C;&#x4EF6;&#x9650;&#x5236;&#xFF1A;</p>
@@ -5870,7 +5909,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"kvm虚拟化技术简介","level":"1.8.2.1","depth":3,"next":{"title":"virsh使用","level":"1.8.2.2","depth":3,"path":"virtual/kvm/virsh.md","ref":"virtual/kvm/virsh.md","articles":[]},"previous":{"title":"kvm","level":"1.8.2","depth":2,"path":"virtual/kvm/README.md","ref":"virtual/kvm/README.md","articles":[{"title":"kvm虚拟化技术简介","level":"1.8.2.1","depth":3,"path":"virtual/kvm/intruduce_kvm.md","ref":"virtual/kvm/intruduce_kvm.md","articles":[]},{"title":"virsh使用","level":"1.8.2.2","depth":3,"path":"virtual/kvm/virsh.md","ref":"virtual/kvm/virsh.md","articles":[]},{"title":"kvm虚拟化部署和管理","level":"1.8.2.3","depth":3,"path":"virtual/kvm/deployment_and_administration/README.md","ref":"virtual/kvm/deployment_and_administration/README.md","articles":[{"title":"在Gentoo中部署KVM","level":"1.8.2.3.1","depth":4,"path":"virtual/kvm/deploy_kvm_on_gentoo.md","ref":"virtual/kvm/deploy_kvm_on_gentoo.md","articles":[]},{"title":"kvm guest虚拟机时间管理","level":"1.8.2.3.2","depth":4,"path":"virtual/kvm/deployment_and_administration/kvm_guest_timing_management.md","ref":"virtual/kvm/deployment_and_administration/kvm_guest_timing_management.md","articles":[]}]},{"title":"kvm性能","level":"1.8.2.4","depth":3,"path":"virtual/kvm/performance/README.md","ref":"virtual/kvm/performance/README.md","articles":[{"title":"kvm性能优化","level":"1.8.2.4.1","depth":4,"path":"virtual/kvm/performance/kvm_performance_tunning.md","ref":"virtual/kvm/performance/kvm_performance_tunning.md","articles":[]},{"title":"kvm最佳实践（汇总）","level":"1.8.2.4.2","depth":4,"path":"virtual/kvm/performance/best_practices_for_kvm.md","ref":"virtual/kvm/performance/best_practices_for_kvm.md","articles":[]},{"title":"对于虚拟CPU的KVM性能限制","level":"1.8.2.4.3","depth":4,"path":"virtual/kvm/performance/kvm_performance_limit_for_vcpu.md","ref":"virtual/kvm/performance/kvm_performance_limit_for_vcpu.md","articles":[]}]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["disqus","toggle-chapters"],"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"huatai-gitbooks"},"toggle-chapters":{},"highlight":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"fontsettings":{"theme":"white","family":"sans","size":2},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"virtual/kvm/intruduce_kvm.md","mtime":"2016-09-25T16:47:41.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-07T15:37:56.588Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"kvm虚拟化技术简介","level":"1.8.2.1","depth":3,"next":{"title":"virsh使用","level":"1.8.2.2","depth":3,"path":"virtual/kvm/virsh.md","ref":"virtual/kvm/virsh.md","articles":[]},"previous":{"title":"kvm","level":"1.8.2","depth":2,"path":"virtual/kvm/README.md","ref":"virtual/kvm/README.md","articles":[{"title":"kvm虚拟化技术简介","level":"1.8.2.1","depth":3,"path":"virtual/kvm/intruduce_kvm.md","ref":"virtual/kvm/intruduce_kvm.md","articles":[]},{"title":"virsh使用","level":"1.8.2.2","depth":3,"path":"virtual/kvm/virsh.md","ref":"virtual/kvm/virsh.md","articles":[]},{"title":"kvm虚拟化部署和管理","level":"1.8.2.3","depth":3,"path":"virtual/kvm/deployment_and_administration/README.md","ref":"virtual/kvm/deployment_and_administration/README.md","articles":[{"title":"在CentOS中部署KVM","level":"1.8.2.3.1","depth":4,"path":"virtual/kvm/deploy_kvm_on_centos.md","ref":"virtual/kvm/deploy_kvm_on_centos.md","articles":[]},{"title":"在Gentoo中部署KVM","level":"1.8.2.3.2","depth":4,"path":"virtual/kvm/deploy_kvm_on_gentoo.md","ref":"virtual/kvm/deploy_kvm_on_gentoo.md","articles":[]},{"title":"kvm guest虚拟机时间管理","level":"1.8.2.3.3","depth":4,"path":"virtual/kvm/deployment_and_administration/kvm_guest_timing_management.md","ref":"virtual/kvm/deployment_and_administration/kvm_guest_timing_management.md","articles":[]}]},{"title":"kvm性能","level":"1.8.2.4","depth":3,"path":"virtual/kvm/performance/README.md","ref":"virtual/kvm/performance/README.md","articles":[{"title":"kvm性能优化","level":"1.8.2.4.1","depth":4,"path":"virtual/kvm/performance/kvm_performance_tunning.md","ref":"virtual/kvm/performance/kvm_performance_tunning.md","articles":[]},{"title":"kvm最佳实践（汇总）","level":"1.8.2.4.2","depth":4,"path":"virtual/kvm/performance/best_practices_for_kvm.md","ref":"virtual/kvm/performance/best_practices_for_kvm.md","articles":[]},{"title":"对于虚拟CPU的KVM性能限制","level":"1.8.2.4.3","depth":4,"path":"virtual/kvm/performance/kvm_performance_limit_for_vcpu.md","ref":"virtual/kvm/performance/kvm_performance_limit_for_vcpu.md","articles":[]}]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["disqus","toggle-chapters","livereload"],"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"huatai-gitbooks"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"virtual/kvm/intruduce_kvm.md","mtime":"2016-10-09T14:54:12.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-10-15T04:17:25.189Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
@@ -5889,6 +5928,10 @@
     
         
         <script src="../../gitbook/gitbook-plugin-toggle-chapters/toggle.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-livereload/plugin.js"></script>
         
     
         

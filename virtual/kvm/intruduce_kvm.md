@@ -1,4 +1,4 @@
-`KVM`（Kernel-based Virtual Machine）是AMD64和Intel 64硬件平台的完全虚拟化解决方案，是构建Red Hat Enterprise Linux 6虚拟化的基础。KVM可以运行多个，不需要修改虚拟主机操作系统。在Red Hat中KVM hypervisor是通过`libvirt` API和基于`libvir`t的工具来管理的（如`virt-manager`和`virsh`）。
+`KVM`（Kernel-based Virtual Machine）是AMD64和Intel 64硬件平台的完全虚拟化解决方案，是构建Red Hat Enterprise Linux 6虚拟化的基础。KVM可以运行多个，不需要修改虚拟主机操作系统。在Red Hat中KVM hypervisor是通过`libvirt` API和基于`libvirt`的工具来管理的（如`virt-manager`和`virsh`）。
 
 KVM hypervisor支持系统资源超分配，也就是超出系统的虚拟CPU和内存分配资源。一个单一虚拟机不能使用超过物理提供的CPU和内存，不过`overcommitting`（超分配）可以支持多于CPU数量的多个虚拟机运行，虽然这存在稳定性风险。
 
@@ -22,7 +22,7 @@ Libvirt是hypervisor无关的虚拟化API用于和操作系统虚拟功能进行
 
 * `RHEV-M`
 
-Red Hat Enterprise Virtualization Manager (~RHEV-M)提供虚拟环境构架的图形化还礼，用于管理分配、连接协议、用户会话、虚拟主机池、映像和高可用集群，此构架可用于替换`virsh`和`virt-manager`工具。该工具运行在Windows Server 2008 R2集群模式，使用主备配置。
+Red Hat Enterprise Virtualization Manager (`RHEV-M`)提供虚拟环境构架的图形化还礼，用于管理分配、连接协议、用户会话、虚拟主机池、映像和高可用集群，此构架可用于替换`virsh`和`virt-manager`工具。该工具运行在Windows Server 2008 R2集群模式，使用主备配置。
 
 # 虚拟硬件设备
 
@@ -65,7 +65,7 @@ QEMU/KVM以软件方式模拟实现了很多核心设备给虚拟操作系统，
 
 半虚拟化驱动减少了I/O延迟并增强了I/O通过，这样可以得到接近物理设备的性能。对于I/O敏感的应用，建议使用para-virtualized drivers。
 
-para-virtualized驱动必须在guest操作系统中安装。默认，para-virtualized驱动已经包含再Red Hat Enterprise Linux 4.7及以上版本，Red Hat Enterprise Linux 5.4及以上版本，Red Hat Enterprise Linux 6.0及以上版本。不过，在Windows guests中，需要手工安装~para-virtualized驱动。
+para-virtualized驱动必须在guest操作系统中安装。默认，para-virtualized驱动已经包含再Red Hat Enterprise Linux 4.7及以上版本，Red Hat Enterprise Linux 5.4及以上版本，Red Hat Enterprise Linux 6.0及以上版本。不过，在Windows guests中，需要手工安装`para-virtualized`驱动。
 
 * Para-virtualized network driver (`virtio-net`)
 * Para-virtualized block driver (`virtio-blk`)
@@ -79,11 +79,11 @@ para-virtualized驱动必须在guest操作系统中安装。默认，para-virtua
 
 * `PCI device assignment` - KVM hypervisor支持将PCI设备连接到虚拟操作系统，这样guest操作系统可以独占PCI设备来完成一系列工作，这种方式就好像PCI设备真的连接在虚拟操作系统中一样。`device assignment`也支持PCI Express设备，但是不支持显卡，并行PCI设备也可能支持，但是存在安全和系统配置冲突。
 * `SR-IOV` (Single Root I/O Virtualization) 是一种PCI Express标准，扩展一个物理PCI功能将其PCI资源分别共享，虚拟化功能。每个不同的功能可以作为PCI device assignment提供给不同的guest操作系统。
-* `NPIV`(~N_Port ID Virtualization, NPIV)是一些光纤通道设备提供的功能，将一个物理~N_Port作为多~N_Port ID共享。通过NPIV，虚拟操作提供可以使用一个虚拟Fibre Channel来访问SAN存储。
+* `NPIV`(N_Port ID Virtualization, NPIV)是一些光纤通道设备提供的功能，将一个物理N_Port作为多N_Port ID共享。通过NPIV，虚拟操作提供可以使用一个虚拟Fibre Channel来访问SAN存储。
 
 # 存储
 
-提供给虚拟操作系统的存储是物理存储的抽象，使用p`ara-virtualized`或模拟块设备驱动器。
+提供给虚拟操作系统的存储是物理存储的抽象，使用`para-virtualized`或模拟块设备驱动器。
 
 * 存储池：存储池是一个通过libvirt管理提供给虚拟guest操作的文件，目录或存储设备。
   * 本地存储池 - 本地存储池是直接连接到host服务器的，包括本地目录，直接连接磁盘，物理分区和本地设备上上的LVM卷。通常本地存储池可用于开发、测试和小型部署，或者是用于不需要迁移或不需要大量运行虚拟机的环境。
@@ -102,7 +102,7 @@ para-virtualized驱动必须在guest操作系统中安装。默认，para-virtua
 
 Live迁移是从一个物理主机将运行的guest操作系统迁移到另外一个物理主机。
 
-# 虚拟到虚拟迁移(~V2V)
+# 虚拟到虚拟迁移(V2V)
 
 支持从XEN，其他版本KVM和Vmware ESX迁移主机到Red Hat KVM
 
