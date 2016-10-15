@@ -274,6 +274,7 @@
 		* [Python快速起步](develop/python/startup/README.md)
 			* [pip包管理](develop/python/startup/pip.md)
 			* [python编程风格](develop/python/startup/python_style.md)
+			* [python中文本编码](develop/python/startup/python_encoding.md)
 		* [Flask开发Web](develop/python/flask/README.md)
 			* [安装Flask开发环境](develop/python/flask/install.md)
 	* [Ruby](develop/ruby/README.md)
