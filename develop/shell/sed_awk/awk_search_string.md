@@ -227,9 +227,14 @@ AIX
 awk '/Solaris/{print x;print;getline;print;next}{x=$0}' file
 ```
 
+# 计算合计
 
+```
+awk '{s+=$1} END {print s}' mydatafile
+```
 
 # 参考
 
 * [awk - Match a pattern in a file in Linux](http://www.tuicool.com/articles/F7JbEn)
 * [grep vs awk : 10 examples of pattern search](http://www.theunixschool.com/2012/09/grep-vs-awk-examples-for-pattern-search.html)
+* [Shell command to sum integers, one per line?](http://stackoverflow.com/questions/450799/shell-command-to-sum-integers-one-per-line)

@@ -1,4 +1,4 @@
-# 安装hexo
+# 安装nvm管理node.js安装
 
 推荐`nvm`来管理`node.js`版本，请参考[nvm官方说明](https://github.com/creationix/nvm)
 
@@ -19,6 +19,44 @@ export NVM_DIR="$HOME/.nvm"
 > 2016年2月测试在一些插件兼容性上使用最细的 v5.x 会产生异常，此外，在gitbook的运行中发现，使用 node v5.x 出现cpu资源占用较高问题。不过，我在2016年10月采用最简单的typing模版时，使用最新的`6.7.0`系列发现无法正常显示，所以还是采用了4.6.0
 >
 > 如果使用[node.js官方pkg包](http://nodejs.org)安装，会在系统级别安装到`/usr/local`目录下，但是对于hexo安装，总是需要使用sudo权限，非常不方便。所以推荐使用`nvm`作为node.js的包管理。
+
+## 升级node.js
+
+使用一段时间后，官方node.js长期稳定版本可能升级，例如，使用
+
+```
+nvm ls-remote --lts
+```
+
+可以看到
+
+```
+->       v4.6.0   (LTS: Argon)
+         v4.6.1   (Latest LTS: Argon)
+```
+
+```
+nvm install 4.6.1
+nvm alias default 4.6.1
+nvm uninstall 4.6.0
+```
+
+提示报错
+
+```
+nvm: Cannot uninstall currently-active node version, v4.6.0 (inferred from 4.6.0).
+```
+
+解决方法是（参考 [nvm: Cannot uninstall currently-active node version](http://stackoverflow.com/questions/38775287/nvm-cannot-uninstall-currently-active-node-version)）
+
+```
+nvm deactivate 4.6.0
+nvm uninstall 4.6.0
+```
+
+此时还要再进行一次 `nvm install 4.6.1` 以便将当前活跃版本指向4.6.1
+
+# 安装hexo
 
 安装Hexo
 

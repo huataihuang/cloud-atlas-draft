@@ -280,6 +280,14 @@ tr '\n' ' ' < input_filename
 tr --delete '\n' < input.txt > output.txt
 ```
 
+* 在匹配行的最后添加内容
+
+```
+sed -i '/kernel \/boot/s/$/ clocksource_failover=acpi_pm/' /boot/grub/grub.cfg
+```
+
+参考 [How to append a string at end of a specific line in a file in bash](http://stackoverflow.com/questions/22159044/how-to-append-a-string-at-end-of-a-specific-line-in-a-file-in-bash)
+
 # 参考
 
 * [sed - 25 examples to delete a line or pattern in a file](http://unix-school.blogspot.com/2012/06/sed-25-examples-to-delete-line-or.html)

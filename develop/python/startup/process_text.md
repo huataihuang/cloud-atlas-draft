@@ -105,3 +105,58 @@ for (dirpath, dirnames, filenames) in walk(mypath):
 ```
 
 > 参考 [How to list all files of a directory in Python](http://stackoverflow.com/questions/3207219/how-to-list-all-files-of-a-directory-in-python)
+
+# 文件读取到字典
+
+对于需要分析数据，将数据读取到字典中非常方便索引
+
+```
+d = {}
+with open("file.txt") as f:
+    for line in f:
+       (key, val) = line.split()
+       d[int(key)] = val
+```
+
+```
+my_dict = {}
+
+with open("rest.txt", 'r') as f:
+    for line in f:
+        items = line.split()
+        key, values = items[0], items[1:]
+        my_dict[key] = values
+
+
+print my_dict
+```
+
+> 参考 [Python - file to dictionary?](http://stackoverflow.com/questions/4803999/python-file-to-dictionary)
+>
+> 参考 [How to read file into dictionary in Python specific filetype](http://stackoverflow.com/questions/15577990/how-to-read-file-into-dictionary-in-python-specific-filetype)
+
+# 类型
+
+想从一个函数返回结果写入到文件
+
+```
+def outputVCPUTop():
+    kvm0_vcpu_top=updateVCPU("/proc/kvm0/vcpu_top")
+    kvm1_vcpu_top=updateVCPU("/proc/kvm1/vcpu_top")
+    foutput = open(g_vcpu_top,'w')
+    foutput.write(kvm0_vcpu_top)
+    foutput.write(kvm1_vcpu_top)
+    foutput.close()
+```
+
+提示报错
+
+```
+...
+TypeError: expected a character buffer object
+```
+
+改进
+
+```
+```
