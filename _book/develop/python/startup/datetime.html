@@ -3536,7 +3536,39 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8.10" data-path="../../../virtual/misc/">
+        <li class="chapter " data-level="1.8.10" data-path="../../../virtuanl/performance/README.md">
+            
+                <span>
+            
+                    
+                    性能
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.10.1" data-path="../../../virtuanl/performance/cpu_steal.md">
+            
+                <span>
+            
+                    
+                    CPU steal
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.11" data-path="../../../virtual/misc/">
             
                 <a href="../../../virtual/misc/">
             
@@ -3550,7 +3582,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.8.10.1" data-path="../../../virtual/misc/detecting_virtualization.html">
+        <li class="chapter " data-level="1.8.11.1" data-path="../../../virtual/misc/detecting_virtualization.html">
             
                 <a href="../../../virtual/misc/detecting_virtualization.html">
             
@@ -4555,6 +4587,58 @@
             
                     
                     python创建其他用户可写文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5.1.18" data-path="delete_content_of_file.html">
+            
+                <a href="delete_content_of_file.html">
+            
+                    
+                    python清空文件内容
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5.1.19" data-path="convert_list_str_to_float.html">
+            
+                <a href="convert_list_str_to_float.html">
+            
+                    
+                    python列表字符串转浮点数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5.1.20" data-path="nested_dictionary_key_error.html">
+            
+                <a href="nested_dictionary_key_error.html">
+            
+                    
+                    python多层嵌套字典KeyError
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5.1.21" data-path="assign_lambda_expression.html">
+            
+                <a href="assign_lambda_expression.html">
+            
+                    
+                    "PEP 8(E731): do not assign a lambda expression, use a def"
             
                 </a>
             
@@ -6170,6 +6254,19 @@ print time1
 <blockquote>
 <p>&#x5224;&#x65AD;&#x6587;&#x4EF6;&#x5927;&#x5C0F;&#xFF0C;&#x8D85;&#x8FC7;&#x6307;&#x5B9A;&#x5927;&#x5C0F;&#x8FDB;&#x884C;&#x91CD;&#x547D;&#x540D;</p>
 </blockquote>
+<h1 id="&#x83B7;&#x53D6;15&#x5206;&#x949F;&#x6216;1&#x5C0F;&#x65F6;&#x540E;&#x7684;&#x65F6;&#x95F4;">&#x83B7;&#x53D6;15&#x5206;&#x949F;&#x6216;1&#x5C0F;&#x65F6;&#x540E;&#x7684;&#x65F6;&#x95F4;</h1>
+<p><code>datetime</code>&#x652F;&#x6301;<code>timedelta</code>&#x51FD;&#x6570;&#x80FD;&#x591F;&#x83B7;&#x53D6;&#x6307;&#x5B9A;&#x65F6;&#x95F4;&#x5DEE;&#x5F02;&#x7684;&#x65F6;&#x95F4;</p>
+<pre><code>d1 = datetime.datetime.now() + datetime.timedelta(minutes=15)
+d2 = datetime.datetime.now() + datetime.timedelta(hours=1)
+</code></pre><pre><code>from datetime import datetime, timedelta
+d = datetime.today() - timedelta(days=days_to_subtract)
+</code></pre><blockquote>
+<p>&#x53C2;&#x8003; </p>
+</blockquote>
+<ul>
+<li><a href="http://stackoverflow.com/questions/4557577/in-python-how-do-i-make-a-datetime-that-is-15-minutes-from-now-1-hour-from-now" target="_blank">In Python, how do I make a datetime that is 15 minutes from now? 1 hour from now? [duplicate]</a></li>
+<li><a href="http://stackoverflow.com/questions/441147/how-can-i-subtract-a-day-from-a-python-date" target="_blank">How can I subtract a day from a Python date?</a></li>
+</ul>
 
                                 
                                 </section>
@@ -6213,7 +6310,7 @@ print time1
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"python日期","level":"1.12.5.1.8","depth":4,"next":{"title":"python变量写文件","level":"1.12.5.1.9","depth":4,"path":"develop/python/startup/variable_write_file.md","ref":"develop/python/startup/variable_write_file.md","articles":[]},"previous":{"title":"python日志","level":"1.12.5.1.7","depth":4,"path":"develop/python/startup/logging.md","ref":"develop/python/startup/logging.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["disqus","toggle-chapters","livereload"],"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"huatai-gitbooks"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"develop/python/startup/datetime.md","mtime":"2016-10-31T15:57:31.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-01T00:09:10.004Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"python日期","level":"1.12.5.1.8","depth":4,"next":{"title":"python变量写文件","level":"1.12.5.1.9","depth":4,"path":"develop/python/startup/variable_write_file.md","ref":"develop/python/startup/variable_write_file.md","articles":[]},"previous":{"title":"python日志","level":"1.12.5.1.7","depth":4,"path":"develop/python/startup/logging.md","ref":"develop/python/startup/logging.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["disqus","toggle-chapters","livereload"],"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"huatai-gitbooks"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"develop/python/startup/datetime.md","mtime":"2016-11-08T01:50:57.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-16T08:21:18.912Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -3536,7 +3536,39 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8.10" data-path="../../../../virtual/misc/">
+        <li class="chapter " data-level="1.8.10" data-path="../../../../virtuanl/performance/README.md">
+            
+                <span>
+            
+                    
+                    性能
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.10.1" data-path="../../../../virtuanl/performance/cpu_steal.md">
+            
+                <span>
+            
+                    
+                    CPU steal
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.11" data-path="../../../../virtual/misc/">
             
                 <a href="../../../../virtual/misc/">
             
@@ -3550,7 +3582,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.8.10.1" data-path="../../../../virtual/misc/detecting_virtualization.html">
+        <li class="chapter " data-level="1.8.11.1" data-path="../../../../virtual/misc/detecting_virtualization.html">
             
                 <a href="../../../../virtual/misc/detecting_virtualization.html">
             
@@ -4555,6 +4587,58 @@
             
                     
                     python创建其他用户可写文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5.1.18" data-path="../../../../develop/python/startup/delete_content_of_file.html">
+            
+                <a href="../../../../develop/python/startup/delete_content_of_file.html">
+            
+                    
+                    python清空文件内容
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5.1.19" data-path="../../../../develop/python/startup/convert_list_str_to_float.html">
+            
+                <a href="../../../../develop/python/startup/convert_list_str_to_float.html">
+            
+                    
+                    python列表字符串转浮点数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5.1.20" data-path="../../../../develop/python/startup/nested_dictionary_key_error.html">
+            
+                <a href="../../../../develop/python/startup/nested_dictionary_key_error.html">
+            
+                    
+                    python多层嵌套字典KeyError
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5.1.21" data-path="../../../../develop/python/startup/assign_lambda_expression.html">
+            
+                <a href="../../../../develop/python/startup/assign_lambda_expression.html">
+            
+                    
+                    "PEP 8(E731): do not assign a lambda expression, use a def"
             
                 </a>
             
@@ -6090,18 +6174,28 @@
 <pre><code>echo &apos;/tmp/core_%e.%p&apos; | sudo tee /proc/sys/kernel/core_pattern
 </code></pre><p>&#x4E0A;&#x8FF0;&#x547D;&#x4EE4;&#x53EF;&#x4EE5;&#x4F7F;&#x5F97;core&#x6587;&#x4EF6;&#x4FDD;&#x5B58;&#x5728;<code>/tmp</code>&#x76EE;&#x5F55;&#x4E0B;&#x7684; <code>core_[program].[pid]</code></p>
 <h1 id="&#x8BBE;&#x7F6E;sysrq&#x548C;nmi">&#x8BBE;&#x7F6E;sysrq&#x548C;nmi</h1>
-<p>[admin@nu8b07488.cloud.nu16:/home/admin]
-$echo 1 | sudo tee /proc/sys/kernel/unknown_nmi_panic
-1</p>
-<p>[admin@nu8b07488.cloud.nu16:/home/admin]
-$echo 1 | sudo tee /proc/sys/kernel/sysrq
-1</p>
-<p>&#x89E6;&#x53D1;crash</p>
-<p>echo c | sudo tee /proc/sysrq-trigger</p>
-<p>&#x901A;&#x8FC7;ipmi&#x518D;&#x6B21;&#x53D1;&#x9001;nmi</p>
-<h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
+<ul>
+<li>&#x542F;&#x7528;sysrq</li>
+</ul>
+<pre><code>echo 1 | sudo tee /proc/sys/kernel/unknown_nmi_panic
+</code></pre><ul>
+<li>&#x542F;&#x7528;nmi</li>
+</ul>
+<pre><code>echo 1 | sudo tee /proc/sys/kernel/sysrq
+</code></pre><ul>
+<li>&#x89E6;&#x53D1;crash</li>
+</ul>
+<pre><code>echo c | sudo tee /proc/sysrq-trigger
+</code></pre><ul>
+<li>&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;ipmi&#x518D;&#x6B21;&#x53D1;&#x9001;nmi&#xFF08;&#x7EC8;&#x6781;&#x5927;&#x62DB;&#xFF09;</li>
+</ul>
+<pre><code>ipmitool -I lanplus -H &lt;OOB_IP&gt; -U &lt;USERNAME&gt; -P &lt;PASSWORD&gt; chassis power diag
+</code></pre><h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
 <ul>
 <li><a href="http://stackoverflow.com/questions/16048101/changing-location-of-core-dump" target="_blank">Changing location of core dump</a></li>
+<li><a href="http://www.ibm.com/support/knowledgecenter/linuxonibm/liaai.crashdump/liaaicrashdumpnmiipmi.htm" target="_blank">Generating an NMI through IPMI</a></li>
+<li><a href="How%20to%20trigger%20SysRq%20from%20ipmitool%20and%20ipmiconsole%20using%20the%20SysRq%20magic%20keys%20over%20an%20HP%20iLO4%20">How to trigger SysRq from ipmitool and ipmiconsole using the SysRq magic keys over an HP iLO4 ?</a></li>
+<li><a href="https://www.symantec.com/connect/articles/how-do-sol-serial-over-lan-aka-console-redirection-dell-servers" target="_blank">How to do SOL (Serial Over LAN aka Console Redirection) on Dell Servers</a></li>
 </ul>
 
                                 
@@ -6146,7 +6240,7 @@ $echo 1 | sudo tee /proc/sys/kernel/sysrq
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"core dump分析","level":"1.3.1.4.8.2","depth":5,"next":{"title":"设备管理","level":"1.3.1.5","depth":3,"path":"os/linux/device/README.md","ref":"os/linux/device/README.md","articles":[{"title":"udev","level":"1.3.1.5.1","depth":4,"path":"os/linux/device/udev/README.md","ref":"os/linux/device/udev/README.md","articles":[{"title":"udev设备管理架构","level":"1.3.1.5.1.1","depth":5,"path":"os/linux/device/udev/udev_infrastructure.md","ref":"os/linux/device/udev/udev_infrastructure.md","articles":[]}]}]},"previous":{"title":"segfault分析","level":"1.3.1.4.8.1","depth":5,"path":"os/linux/kernel/tracing/segfault_analysis.md","ref":"os/linux/kernel/tracing/segfault_analysis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["disqus","toggle-chapters","livereload"],"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"huatai-gitbooks"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"os/linux/kernel/tracing/core_dump_analysis.md","mtime":"2016-11-04T07:42:47.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-01T00:09:10.004Z"},"basePath":"../../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"core dump分析","level":"1.3.1.4.8.2","depth":5,"next":{"title":"设备管理","level":"1.3.1.5","depth":3,"path":"os/linux/device/README.md","ref":"os/linux/device/README.md","articles":[{"title":"udev","level":"1.3.1.5.1","depth":4,"path":"os/linux/device/udev/README.md","ref":"os/linux/device/udev/README.md","articles":[{"title":"udev设备管理架构","level":"1.3.1.5.1.1","depth":5,"path":"os/linux/device/udev/udev_infrastructure.md","ref":"os/linux/device/udev/udev_infrastructure.md","articles":[]}]}]},"previous":{"title":"segfault分析","level":"1.3.1.4.8.1","depth":5,"path":"os/linux/kernel/tracing/segfault_analysis.md","ref":"os/linux/kernel/tracing/segfault_analysis.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["disqus","toggle-chapters","livereload"],"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"huatai-gitbooks"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"os/linux/kernel/tracing/core_dump_analysis.md","mtime":"2016-11-04T07:50:23.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-16T08:21:18.912Z"},"basePath":"../../../..","book":{"language":""}});
         });
     </script>
 </div>

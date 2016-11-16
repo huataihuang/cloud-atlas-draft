@@ -3536,7 +3536,39 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8.10" data-path="../../../virtual/misc/">
+        <li class="chapter " data-level="1.8.10" data-path="../../../virtuanl/performance/README.md">
+            
+                <span>
+            
+                    
+                    性能
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.10.1" data-path="../../../virtuanl/performance/cpu_steal.md">
+            
+                <span>
+            
+                    
+                    CPU steal
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8.11" data-path="../../../virtual/misc/">
             
                 <a href="../../../virtual/misc/">
             
@@ -3550,7 +3582,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.8.10.1" data-path="../../../virtual/misc/detecting_virtualization.html">
+        <li class="chapter " data-level="1.8.11.1" data-path="../../../virtual/misc/detecting_virtualization.html">
             
                 <a href="../../../virtual/misc/detecting_virtualization.html">
             
@@ -4555,6 +4587,58 @@
             
                     
                     python创建其他用户可写文件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5.1.18" data-path="delete_content_of_file.html">
+            
+                <a href="delete_content_of_file.html">
+            
+                    
+                    python清空文件内容
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5.1.19" data-path="convert_list_str_to_float.html">
+            
+                <a href="convert_list_str_to_float.html">
+            
+                    
+                    python列表字符串转浮点数
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5.1.20" data-path="nested_dictionary_key_error.html">
+            
+                <a href="nested_dictionary_key_error.html">
+            
+                    
+                    python多层嵌套字典KeyError
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.12.5.1.21" data-path="assign_lambda_expression.html">
+            
+                <a href="assign_lambda_expression.html">
+            
+                    
+                    "PEP 8(E731): do not assign a lambda expression, use a def"
             
                 </a>
             
@@ -6102,22 +6186,51 @@ logging.warning(<span class="hljs-string">&apos;And this, too&apos;</span>)
 logging.basicConfig(format=<span class="hljs-string">&apos;%(asctime)s %(message)s&apos;</span>)
 logging.warning(<span class="hljs-string">&apos;is when this event was logged.&apos;</span>)
 </code></pre>
+<ul>
+<li>&#x8BBE;&#x7F6E;&#x65E5;&#x5FD7;&#x7EA7;&#x522B;&#xFF1A;</li>
+</ul>
+<pre><code>import logging
+logger = logging.getLogger(&apos;myapp&apos;)
+hdlr = logging.FileHandler(&apos;/var/tmp/myapp.log&apos;)
+formatter = logging.Formatter(&apos;%(asctime)s %(levelname)s %(message)s&apos;)
+hdlr.setFormatter(formatter)
+logger.addHandler(hdlr)
+logger.setLevel(logging.WARNING)
+</code></pre><p>&#x7136;&#x540E;&#x901A;&#x8FC7;&#x5982;&#x4E0B;&#x65B9;&#x6CD5;&#x8BB0;&#x5F55;&#x65E5;&#x5FD7;</p>
+<pre><code>logger.error(&apos;We have a problem&apos;)
+logger.info(&apos;While this is just chatty&apos;)
+</code></pre><blockquote>
+<p>&#x53C2;&#x8003; <a href="https://docs.python.org/2.3/lib/node304.html" target="_blank">Basic example - log to a file</a></p>
+</blockquote>
+<h1 id="&#x591A;&#x7EBF;&#x7A0B;&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;">&#x591A;&#x7EBF;&#x7A0B;&#x65E5;&#x5FD7;&#x8BB0;&#x5F55;</h1>
+<p>&#x4EE5;&#x4E0B;&#x6848;&#x4F8B;&#x662F;&#x4E3B;&#x7EBF;&#x7A0B;&#xFF08;initlal&#xFF09;&#x548C;&#x5176;&#x4ED6;&#x7EBF;&#x7A0B;&#x540C;&#x65F6;&#x8BB0;&#x5F55;&#x65E5;&#x5FD7;&#x7684;&#x65B9;&#x6CD5;</p>
+<pre><code>import logging
+import threading
+import time
+
+def worker(arg):
+    while not arg[&apos;stop&apos;]:
+</code></pre><blockquote>
+<p>&#x53C2;&#x8003; <a href="https://docs.python.org/2/howto/logging-cookbook.html" target="_blank">Logging Cookbook</a></p>
+</blockquote>
 <h1 id="&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x7A7A;&#x884C;">&#x65E5;&#x5FD7;&#x6587;&#x4EF6;&#x4E2D;&#x7684;&#x7A7A;&#x884C;</h1>
 <pre><code class="lang-python">g_tsar_log=<span class="hljs-string">&quot;/tmp/tsar.logging&quot;</span>
 logging.basicConfig(filename=g_tsar_log,format=<span class="hljs-string">&apos;%(asctime)s %(message)s&apos;</span>)
 logging.warning(res)
 </code></pre>
 <p>&#x4F46;&#x662F;&#x53D1;&#x73B0;&#x65E5;&#x5FD7;&#x4E2D;&#x6BCF;&#x884C;&#x8BB0;&#x5F55;&#x540E;&#x9762;&#x90FD;&#x6709;&#x4E00;&#x4E2A;&#x7A7A;&#x767D;&#x884C;&#xFF0C;&#x6240;&#x4EE5;&#x8BB0;&#x5F55;&#x65E5;&#x5FD7;&#x4E2D;&#x589E;&#x52A0;<code>strip()</code>&#x53BB;&#x9664;&#x591A;&#x4F59;&#x56DE;&#x884C;</p>
-<pre><code>logging.warning(res.strip())
-</code></pre><h1 id="python&#x600E;&#x4E48;&#x5220;&#x9664;txt&#x6587;&#x672C;&#x91CC;&#x9762;&#x7684;&#x7B2C;&#x4E00;&#x884C;&#xFF1F;">python&#x600E;&#x4E48;&#x5220;&#x9664;txt&#x6587;&#x672C;&#x91CC;&#x9762;&#x7684;&#x7B2C;&#x4E00;&#x884C;&#xFF1F;</h1>
-<pre><code>fin=open(&apos;a.txt&apos;)
+<pre><code class="lang-python">logging.warning(res.strip())
+</code></pre>
+<h1 id="python&#x600E;&#x4E48;&#x5220;&#x9664;txt&#x6587;&#x672C;&#x91CC;&#x9762;&#x7684;&#x7B2C;&#x4E00;&#x884C;&#xFF1F;">python&#x600E;&#x4E48;&#x5220;&#x9664;txt&#x6587;&#x672C;&#x91CC;&#x9762;&#x7684;&#x7B2C;&#x4E00;&#x884C;&#xFF1F;</h1>
+<pre><code class="lang-python">fin=open(<span class="hljs-string">&apos;a.txt&apos;</span>)
 a=fin.readlines()
-fout=open(&apos;newa.txt&apos;,&apos;w&apos;)
-b=&apos;&apos;.join(a[1:])
+fout=open(<span class="hljs-string">&apos;newa.txt&apos;</span>,<span class="hljs-string">&apos;w&apos;</span>)
+b=<span class="hljs-string">&apos;&apos;</span>.join(a[<span class="hljs-number">1</span>:])
 fout.write(b)
 fin.close()
 fout.close()
-</code></pre><p>&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x901A;&#x8FC7;&#x5207;&#x7247;&#x65B9;&#x5F0F;&#xFF0C;&#x53EF;&#x4EE5;&#x53BB;&#x9664;&#x6389;&#x6307;&#x5B9A;&#x884C;</p>
+</code></pre>
+<p>&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x901A;&#x8FC7;&#x5207;&#x7247;&#x65B9;&#x5F0F;&#xFF0C;&#x53EF;&#x4EE5;&#x53BB;&#x9664;&#x6389;&#x6307;&#x5B9A;&#x884C;</p>
 <blockquote>
 <p>&#x53C2;&#x8003; <a href="http://zhidao.baidu.com/question/583049390.html" target="_blank">python&#x600E;&#x4E48;&#x5220;&#x9664;txt&#x6587;&#x672C;&#x91CC;&#x9762;&#x7684;&#x7B2C;&#x4E00;&#x884C;&#xFF1F;</a></p>
 </blockquote>
@@ -6208,7 +6321,7 @@ fout.close()
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"python日志","level":"1.12.5.1.7","depth":4,"next":{"title":"python日期","level":"1.12.5.1.8","depth":4,"path":"develop/python/startup/datetime.md","ref":"develop/python/startup/datetime.md","articles":[]},"previous":{"title":"python中main函数作用","level":"1.12.5.1.6","depth":4,"path":"develop/python/startup/main_function.md","ref":"develop/python/startup/main_function.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["disqus","toggle-chapters","livereload"],"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"huatai-gitbooks"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"develop/python/startup/logging.md","mtime":"2016-10-19T01:21:29.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-01T00:09:10.004Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"python日志","level":"1.12.5.1.7","depth":4,"next":{"title":"python日期","level":"1.12.5.1.8","depth":4,"path":"develop/python/startup/datetime.md","ref":"develop/python/startup/datetime.md","articles":[]},"previous":{"title":"python中main函数作用","level":"1.12.5.1.6","depth":4,"path":"develop/python/startup/main_function.md","ref":"develop/python/startup/main_function.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["disqus","toggle-chapters","livereload"],"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"huatai-gitbooks"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"develop/python/startup/logging.md","mtime":"2016-11-11T14:47:16.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-16T08:21:18.912Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

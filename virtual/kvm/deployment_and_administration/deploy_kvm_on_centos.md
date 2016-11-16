@@ -177,6 +177,14 @@ sudo virsh vncdisplay win2012
 127.0.0.1:0
 ```
 
+## VNC客户端连接
+
+经过反复测试，我发现在Mac OS X平台上，很多vnc viewer客户端都不能正常连接到qemu提供的VNC界面，折腾了很长时间。
+
+最后发现，开源的 [Chicken](http://sourceforge.net/projects/chicken/) 是最好的VNC客户端，可以支持访问VNC界面。
+
+## 修改VNC监听网络接口
+
 如果要监听所有端口，可以修改 `/etc/libvirt/qemu.conf`
 
 ```
@@ -198,7 +206,19 @@ systemctl restart libvirtd
 
 > 以上参考 [virt-install ignoring vnc port/listen?](http://serverfault.com/questions/567716/virt-install-ignoring-vnc-port-listen)
 
-或者参考 [KVM Virtualization: Start VNC Remote Access For Guest Operating Systems](http://www.cyberciti.biz/faq/linux-kvm-vnc-for-guest-machine/)
+注意，默认开启的iptables防火墙需要开启端口访问，例如：
+
+```
+iptables -A INPUT -p tcp --dport 5900 -j ACCEPT
+```
+
+> CentOS 7开始推荐使用firewalld来管理防火墙，而不是直接使用iptables
+
+----
+
+# 开启VNC监听（不推荐）
+
+参考 [KVM Virtualization: Start VNC Remote Access For Guest Operating Systems](http://www.cyberciti.biz/faq/linux-kvm-vnc-for-guest-machine/)
 
 * 方法一
 
@@ -220,6 +240,8 @@ virsh shutdown win2012
 virsh start win2012
 ```
 
+> 这个方法测试可行
+
 * 方法三
 
 ```
@@ -232,7 +254,7 @@ sudo virsh edit win2012
 <graphics type='vnc' port='-1' autoport='yes' listen='0.0.0.0'/>
 ```
 
-## 通过ssh tunnel使用
+## 通过ssh tunnel使用(推荐)
 
 不过上述修改方法都不是很好，存在安全隐患，并且需要打通防火墙端口。
 
@@ -248,7 +270,22 @@ ssh -L 5901:localhost:5901 -N -f -l username SERVER_IP
 ssh -L 5901:127.0.0.1:5901 -N -f -l rocky 192.168.1.100
 ```
 
-然后就
+> `-N` 参数表示不执行远程命令，这个参数是用于端口转发的
+>
+> `-f` 参数表示后台执行ssh
+
+然后就可以使用vnc viewer客户端访问本地回环地址 127.0.0.1 来访问远程服务器的VNC来进行进一步安装。
+
+> 对于Mac系统，内建有一个VNC客户端（但是 **很不幸** `不支持libvirtd所使用的VNC`），可以尝试 `open vnc://127.0.0.1:5901` 来访问VNC服务器。
+
+如果要批量开启一批端口转发：
+
+```
+SERVER=192.168.1.100
+for i in {5900..5950};do
+    ssh -L $i:127.0.0.1:$i -N -f $SERVER
+done
+```
 
 # 参考
 

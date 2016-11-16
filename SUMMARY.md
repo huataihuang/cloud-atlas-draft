@@ -302,6 +302,7 @@
 			* [python清空文件内容](develop/python/startup/delete_content_of_file.md)
 			* [python列表字符串转浮点数](develop/python/startup/convert_list_str_to_float.md)
 			* [python多层嵌套字典KeyError](develop/python/startup/nested_dictionary_key_error.md)
+			* ["PEP 8(E731): do not assign a lambda expression, use a def"](develop/python/startup/assign_lambda_expression.md)
 		* [Flask开发Web](develop/python/flask/README.md)
 			* [安装Flask开发环境](develop/python/flask/install.md)
 	* [Ruby](develop/ruby/README.md)
