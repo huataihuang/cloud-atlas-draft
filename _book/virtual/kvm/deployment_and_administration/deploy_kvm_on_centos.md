@@ -107,15 +107,17 @@ setsebool -P virt_use_nfs 1
 
 # 创建VM
 
+* 举例：安装CentOS 7操作系统
+
 使用`virt-install`创建，这个工具分为交互和非交互模式，以下命令使用非交互方式创建CentOS 7 x64虚拟机，名字是`vm1`使用1个Virtual CPU，1G内存和10GB磁盘
 
 ```
 virt-install \
   --network bridge:virbr0 \
-  --name vm1 \
+  --name centos7 \
   --ram=1024 \
   --vcpus=1 \
-  --disk path=/var/lib/libvirt/images/vm1.img,size=10 \
+  --disk path=/var/lib/libvirt/images/centos7.img,size=10 \
   --graphics none \
   --location=http://mirrors.163.com/centos/7/os/x86_64/ \
   --extra-args="console=tty0 console=ttyS0,115200"
@@ -123,13 +125,26 @@ virt-install \
 
 * `--graphics none` 这个参数表示不使用VNC来访问VM的控制台，而是使用VM串口的字符控制台。如果希望使用X window的图形界面来安装VM操作系统，则可以忽略这个参数
 * `--location=http://mirrors.163.com/centos/7/os/x86_64/` 这个是指定通过网络的CentOS 7安装目录进行安装。如果你使用本地的iso安装，可以修改成 `--cdrom /root/CentOS-7-x86_64-DVD-1511.iso`
-* `--extra-args="console=tty0 console=ttyS0,115200"` 这个`extra-args`是传递给OS installer的内核启动参数。这里因为需要连接到VM的串口，所以要传递内核对应参数启动串口。此外，可以指定kickstart文件，这样就可以不用交互而自动完成安装，如
+* `--extra-args="console=tty0 console=ttyS0,115200"` 这个`extra-args`是传递给OS installer的内核启动参数(注意：这个`extra-args`参数智能用语`--location`)。这里因为需要连接到VM的串口，所以要传递内核对应参数启动串口。此外，可以指定kickstart文件，这样就可以不用交互而自动完成安装，如
 
 ```
 --extra-args="ks=http://my.server.com/pub/ks.cfg console=tty0 console=ttyS0,115200"
 ```
 
-举例：安装windows 2012操作系统
+> 遇到一个奇怪问题，上述命令使用`--graphics vnc`虽然可以用vnc连接，但是到了`Started D-Bus System Message Bus`之后字符界面停止了。改为iso安装尝试
+
+```
+virt-install \
+  --network bridge:virbr0 \
+  --name centos7 \
+  --ram=1024 \
+  --vcpus=1 \
+  --disk path=/var/lib/libvirt/images/centos7.img,size=10 \
+  --graphics vnc \
+  --cdrom=/var/lib/libvirt/images/CentOS-7-x86_64-DVD-1511.iso
+```
+
+* 举例：安装windows 2012操作系统
 
 ```
 virt-install \
@@ -155,7 +170,7 @@ virt-install \
    --name=win2012 \
    --os-type=windows \
    --network bridge:virbr0 \
-   --disk path=/var/lib/libvirt/images/win2012.img,size=10 \
+   --disk path=/var/lib/libvirt/images/win2012.img,size=16 \
    --cdrom=/var/lib/libvirt/images/win2012.iso \
    --graphics vnc --ram=2028 \
    --vcpus=1
@@ -278,6 +293,15 @@ ssh -L 5901:127.0.0.1:5901 -N -f -l rocky 192.168.1.100
 
 > 对于Mac系统，内建有一个VNC客户端（但是 **很不幸** `不支持libvirtd所使用的VNC`），可以尝试 `open vnc://127.0.0.1:5901` 来访问VNC服务器。
 
+如果要批量开启一批端口转发(例如51个端口转发，可以支持服务器上51个虚拟机的VNC访问)：
+
+```
+SERVER=192.168.1.100
+PORTS=`echo {5900..5950}`
+for i in $PORTS;do
+    ssh -L $i:127.0.0.1:$i -N -f $SERVER
+done
+```
 
 # 参考
 
