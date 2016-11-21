@@ -210,7 +210,7 @@ git push origin master
 
 ```
 git push origin
-````
+```
 
 上面命令表示，将当前分支推送到`origin`主机的对应分支。
 
@@ -220,7 +220,23 @@ git push origin
 git push
 ```
 
+* 根据远程分支创建本地分支（相当于从远程下载这个分支然后切换到这个分支上）
 
+```
+git checkout -b <新建的本地分支名>  <远程分支名>
+```
+
+* 删除本地分支
+
+```
+git branch -d <local_branch>
+```
+
+* 如果已经下载过远程分支，则可以直接切换
+
+```
+git checkout <本地分支名>
+```
 
 # 参考
 

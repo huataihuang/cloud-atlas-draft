@@ -5,8 +5,12 @@
 [Time Machine ridiculously slow after El Capitan upgrade](http://apple.stackexchange.com/questions/212537/time-machine-ridiculously-slow-after-el-capitan-upgrade) 提供了一个解决建议。
 
 > 不过，我的实践测试下来并没有改善备份速度，看来还有什么我没有找到的解决问题。
->
-> [Fix Slow Time Machine Backups on a Mac](http://osxdaily.com/2016/03/19/fix-slow-time-machine-backups-mac/)建议可以尝试启动到安全模式进行备份，可以尝试一下。
+
+# 实际使用的方法
+
+[Fix Slow Time Machine Backups on a Mac](http://osxdaily.com/2016/03/19/fix-slow-time-machine-backups-mac/)建议可以尝试启动到安全模式进行备份。安全模式的启动方法是在启动的时候按住`shift`键，启动后会看到右上角有一行红色小字显示"sofe boot"。
+
+我的验证确实发现，第一次对整个系统备份采用这个方法是成功的（没有使用sofe boot时候备份了十几个小时都没有完成）。
 
 # 关闭限流
 

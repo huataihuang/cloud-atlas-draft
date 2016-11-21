@@ -233,8 +233,19 @@ awk '/Solaris/{print x;print;getline;print;next}{x=$0}' file
 awk '{s+=$1} END {print s}' mydatafile
 ```
 
+# 输出结果但不换行
+
+因为需要结合awk数据结果和特定字符串，所以希望awk输出结果后不换行
+
+```
+awk '{sum+=$3}; END  {printf "%f",sum/NR}' ${file}_${f}_v1.xls >> to-plot-p.xls
+```
+
+> `print`会默认加入换行，如果不希望换行，则使用`printf`
+
 # 参考
 
 * [awk - Match a pattern in a file in Linux](http://www.tuicool.com/articles/F7JbEn)
 * [grep vs awk : 10 examples of pattern search](http://www.theunixschool.com/2012/09/grep-vs-awk-examples-for-pattern-search.html)
 * [Shell command to sum integers, one per line?](http://stackoverflow.com/questions/450799/shell-command-to-sum-integers-one-per-line)
+* [awk without printing newline](http://stackoverflow.com/questions/2021982/awk-without-printing-newline)

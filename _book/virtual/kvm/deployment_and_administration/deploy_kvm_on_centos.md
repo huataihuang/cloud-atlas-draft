@@ -131,13 +131,15 @@ virt-install \
 --extra-args="ks=http://my.server.com/pub/ks.cfg console=tty0 console=ttyS0,115200"
 ```
 
-> 遇到一个奇怪问题，上述命令使用`--graphics vnc`虽然可以用vnc连接，但是到了`Started D-Bus System Message Bus`之后字符界面停止了。改为iso安装尝试
+> 遇到一个奇怪问题，上述命令使用`--graphics vnc`虽然可以用vnc连接，但是到了`Started D-Bus System Message Bus`之后字符界面停止了。
+
+改为直接通过下载的iso镜像安装初始操作系统
 
 ```
 virt-install \
   --network bridge:virbr0 \
   --name centos7 \
-  --ram=1024 \
+  --ram=2048 \
   --vcpus=1 \
   --disk path=/var/lib/libvirt/images/centos7.img,size=10 \
   --graphics vnc \
