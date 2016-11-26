@@ -305,6 +305,8 @@ for i in $PORTS;do
 done
 ```
 
+> 安装好虚拟机初始操作系统之后，可以[clone KVM虚拟机](clone_kvm_vm)
+
 # 参考
 
 * [Install and use CentOS 7 or RHEL 7 as KVM virtualization host](http://jensd.be/207/linux/install-and-use-centos-7-as-kvm-virtualization-host)
