@@ -8,10 +8,12 @@ Devstack是一套给开发人员快速部署OpenStack开发环境的脚本，不
 
 可以使用任何支持Linux发行版本的虚拟机，建议使用4G内存可以获得最好的执行效率。OpenStack官方文档推荐[All-In-One Single VM](http://docs.openstack.org/developer/devstack/guides/single-vm.html)方式运行DevStack，可以在各种虚拟机环境中部署DevStack。
 
+> 虚拟机采用CentOS 7初始最小化安装，并按照[CentOS最小化安装后安装的软件包](../../os/linux/redhat/package/yum_after_mini_install)安装必要的开发工具包
 
 * 下载DevStack
 
 ```bash
+cd /opt
 git clone https://git.openstack.org/openstack-dev/devstack
 ```
 

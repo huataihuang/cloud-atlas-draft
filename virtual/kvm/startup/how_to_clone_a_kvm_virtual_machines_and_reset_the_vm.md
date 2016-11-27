@@ -1,5 +1,325 @@
+# 系列教程编译
 
+本系列教程根据 [UnixArena Linux KVM](http://www.unixarena.com/category/redhat-linux/linux-kvm) 系列教程编译，共分以下文章：
 
-# 参考
+* [一：基于内核的虚拟机（KVM）概览](kernel_based_virtual_machine_kvm_overview)
+* [二：Redhat企业Linux安装KVM](redhat_enterprise_linux_kvm_installation)
+* [三：RHEL 7.2 配置KVM主机](rhel_7_2_configuring_kvm_hosts)
+* [四：使用命令行启动第一个KVM实例](launch_the_first_kvm_instance_using_cli)
+* [五：使用Virt-Manger(VMM)部署KVM实例](deploy_kvm_instance_using_virt_manger_vmm_gui)
+* [六：如何克隆一个KVM虚拟机并重置该虚拟机](how_to_clone_a_kvm_virtual_machines_and_reset_the_vm)
+* [七：如何在线添加/更改虚拟磁盘](how_to_add_resize_virtual_disk_on_fly)
+* [八：如何在线添加/移除虚拟机的内存](how_to_add_remove_memory_to_guest_on_fly)
+* [九：如何在线添加/移除虚拟机的vCPU](how_to_add_remove_vcpu_to_guest_on_fly)
+* [十：更改libvirt虚拟机镜像存储路径](change_libvirt_vm_image_store_path)
+* [十一：实现Linux KVM在线迁移](perform_live_migration_on_linux_kvm)
+* [十二：RHEL7 Pacemaker - 配置高可用KVM虚拟机](rhel_7_pacemaker_configuring_ha_kvm_guest)
 
-* [How clone a KVM virtual machine on Ubuntu Server](http://www.havetheknowhow.com/Configure-the-server/KVM-clone-a-vm.html)
+> 本文实践记录 [Clone KVM虚拟机实战](in_action/clone_kvm_vm_in_action)
+
+# 引言
+
+如果你想构建一系列使用相同操作系统和配置的虚拟机，"克隆"（CLONE）是节约每个虚拟机安装时间点最好方式。`virt-clone`是有用的用于克隆虚拟机的工具，支持虚拟机唯一ID和MAC地址（当从现有虚拟机克隆时）。要执行克隆，被克隆的虚拟机需要处于关机状态。你需要在完成克隆虚拟机后使用`virt-sysprep`来执行新虚拟机的主机配置。
+
+# 克隆虚拟机
+
+* 登陆到KVM主机或者管理节点
+* 列出运行的虚拟机
+
+```
+[root@UA-HA ~]# virsh list
+ Id    Name                           State
+----------------------------------------------------
+ 18    UAKVM2                         running
+
+[root@UA-HA ~]#
+```
+
+* 暂停源虚拟机。由于需要确保虚拟机的所有数据和网络I/O已经停止需要执行这个步骤。你也可以关闭虚拟机
+
+```
+[root@UA-HA ~]# virsh suspend UAKVM2
+Domain UAKVM2 suspended
+
+[root@UA-HA ~]# virsh list
+ Id    Name                           State
+----------------------------------------------------
+ 18    UAKVM2                         paused
+[root@UA-HA ~]#
+```
+
+* 克隆虚拟机
+
+```
+[root@UA-HA ~]# virt-clone --connect qemu:///system --original UAKVM2 --name UACLONE --file /var/lib/libvirt/images/UACLONE.qcow2
+WARNING  Setting the graphics device port to autoport, in order to avoid conflicting.
+Allocating 'UACLONE.qcow2'               100% [===================================================]  12 MB/s | 4.0 GB  00:01:19
+Clone 'UACLONE' created successfully.
+[root@UA-HA ~]#
+=================================================|
+Options    |  Value   | Description              |
+=================================================|
+--original | UAKVM2   | Source Virutal Machine   |
+--name     | UACLONE  | New Virtual Machine Name |
+--file     | File_path| New virtual Disk Path    |
+--connect  | qemu:///system | Connect to the KVM hypervisor |
+==================================================
+```
+
+* 恢复源虚拟机的运行
+
+```
+[root@UA-HA ~]# virsh resume UAKVM2
+Domain UAKVM2 resumed
+[root@UA-HA ~]#
+[root@UA-HA ~]#
+[root@UA-HA ~]# virsh list --all
+ Id    Name                           State
+----------------------------------------------------
+ 18    UAKVM2                         running
+ -     UACLONE                        shut off
+[root@UA-HA ~]#
+```
+
+我们已经成功克隆了源虚拟机到新的虚拟机。但是新的克隆虚拟机依然使用了源虚拟机的配置（如主机名）需要清除。
+
+# `virt-sysprep`：准备虚拟机
+
+> **译注** `virt-sysprep` 位于 `libguestfs-tools-c` 软件包（CentOS/RHEL）或 `libguestfs-tools`软件包（Debian/Ubuntu）
+
+`virt-sysprep`用于重置或消除虚拟机的配置以获得全新的OS安装状态。`virt-sysprep`将删除SSH主机密钥，网络MAC地址，主机名以及用户账号。每个步骤都可以按需激活或关闭。`virt-sysprep`修改虚拟机或虚拟磁盘镜像而无需启动VM。
+
+> **译注** `virt-sysprep` 如果只使用 `-d domain_name` 来重置克隆的虚拟机，则会将虚拟机重置成完全如同新安装的状态。通常我们会希望能够在初始化的时候设置一个初始root密码以及主机名，方便后续启动虚拟机后维护，具体参数组合见后述。
+
+```
+[root@UA-HA ~]# virt-sysprep -d UACLONE
+[   0.0] Examining the guest ...
+
+[ 171.0] Performing "abrt-data" ...
+[ 171.0] Performing "bash-history" ...
+[ 171.0] Performing "blkid-tab" ...
+[ 171.0] Performing "crash-data" ...
+[ 171.0] Performing "cron-spool" ...
+[ 171.0] Performing "dhcp-client-state" ...
+[ 171.0] Performing "dhcp-server-state" ...
+[ 171.0] Performing "dovecot-data" ...
+[ 171.0] Performing "logfiles" ...
+[ 172.0] Performing "machine-id" ...
+[ 172.0] Performing "mail-spool" ...
+[ 172.0] Performing "net-hostname" ...
+[ 172.0] Performing "net-hwaddr" ...
+[ 172.0] Performing "pacct-log" ...
+[ 172.0] Performing "package-manager-cache" ...
+[ 172.0] Performing "pam-data" ...
+[ 172.0] Performing "puppet-data-log" ...
+[ 172.0] Performing "rh-subscription-manager" ...
+[ 172.0] Performing "rhn-systemid" ...
+[ 172.0] Performing "rpm-db" ...
+[ 172.0] Performing "samba-db-log" ...
+[ 172.0] Performing "script" ...
+[ 172.0] Performing "smolt-uuid" ...
+[ 172.0] Performing "ssh-hostkeys" ...
+[ 172.0] Performing "ssh-userdir" ...
+[ 172.0] Performing "sssd-db-log" ...
+[ 172.0] Performing "tmp-files" ...
+[ 172.0] Performing "udev-persistent-net" ...
+[ 172.0] Performing "utmp" ...
+[ 172.0] Performing "yum-uuid" ...
+[ 172.0] Performing "customize" ...
+[ 172.0] Setting a random seed
+[ 173.0] Performing "lvm-uuids" ...
+[root@UA-HA ~]#
+[root@UA-HA ~]#
+```
+
+使用以下命令检查`virt-sysprep`工具执行的操作
+
+```
+[root@UA-HA ~]# virt-sysprep --list-operations
+abrt-data * Remove the crash data generated by ABRT
+bash-history * Remove the bash history in the guest
+blkid-tab * Remove blkid tab in the guest
+ca-certificates   Remove CA certificates in the guest
+crash-data * Remove the crash data generated by kexec-tools
+cron-spool * Remove user at-jobs and cron-jobs
+customize * Customize the guest
+dhcp-client-state * Remove DHCP client leases
+dhcp-server-state * Remove DHCP server leases
+dovecot-data * Remove Dovecot (mail server) data
+firewall-rules   Remove the firewall rules
+flag-reconfiguration   Flag the system for reconfiguration
+fs-uuids   Change filesystem UUIDs
+kerberos-data   Remove Kerberos data in the guest
+logfiles * Remove many log files from the guest
+lvm-uuids * Change LVM2 PV and VG UUIDs
+machine-id * Remove the local machine ID
+mail-spool * Remove email from the local mail spool directory
+net-hostname * Remove HOSTNAME in network interface configuration
+net-hwaddr * Remove HWADDR (hard-coded MAC address) configuration
+pacct-log * Remove the process accounting log files
+package-manager-cache * Remove package manager cache
+pam-data * Remove the PAM data in the guest
+puppet-data-log * Remove the data and log files of puppet
+rh-subscription-manager * Remove the RH subscription manager files
+rhn-systemid * Remove the RHN system ID
+rpm-db * Remove host-specific RPM database files
+samba-db-log * Remove the database and log files of Samba
+script * Run arbitrary scripts against the guest
+smolt-uuid * Remove the Smolt hardware UUID
+ssh-hostkeys * Remove the SSH host keys in the guest
+ssh-userdir * Remove ".ssh" directories in the guest
+sssd-db-log * Remove the database and log files of sssd
+tmp-files * Remove temporary files
+udev-persistent-net * Remove udev persistent net rules
+user-account   Remove the user accounts in the guest
+utmp * Remove the utmp file
+yum-uuid * Remove the yum UUID
+[root@UA-HA ~]#
+```
+
+`virt-sysprep`参数：
+
+virt-sysprep 提供附加的选项来配置VM或模版：
+
+```
+ -a file                             Add disk image file
+  --add file                          Add disk image file
+  -c uri                              Set libvirt URI
+  --chmod PERMISSIONS:FILE            Change the permissions of a file
+  --connect uri                       Set libvirt URI
+  -d domain                           Set libvirt guest name
+  --debug-gc                          Debug GC and memory allocations (internal)
+  --delete PATH                       Delete a file or directory
+  --domain domain                     Set libvirt guest name
+  --dry-run                           Perform a dry run
+  --dryrun                            Perform a dry run
+  --dump-pod                          Dump POD (internal)
+  --dump-pod-options                  Dump POD for options (internal)
+  --edit FILE:EXPR                    Edit file using Perl expression
+  --enable operations                 Enable specific operations
+  --firstboot SCRIPT                  Run script at first guest boot
+  --firstboot-command 'CMD+ARGS'      Run command at first guest boot
+  --firstboot-install PKG,PKG..       Add package(s) to install at first boot
+  --format format                     Set format (default: auto)
+  --hostname HOSTNAME                 Set the hostname
+  --install PKG,PKG..                 Add package(s) to install
+  --keep-user-accounts users          Users to keep
+  --link TARGET:LINK[:LINK..]         Create symbolic links
+  --list-operations                   List supported operations
+  --long-options                      List long options
+  --mkdir DIR                         Create a directory
+  --mount-options opts                Set mount options (eg /:noatime;/var:rw,noatime)
+  -n                                  Perform a dry run
+  --no-logfile                        Scrub build log file
+  --no-selinux-relabel                Compatibility option, does nothing
+  --operation                         Enable/disable specific operations
+  --operations                        Enable/disable specific operations
+  --password USER:SELECTOR            Set user password
+  --password-crypto md5|sha256|sha512 Set password crypto
+  -q                                  Don't print log messages
+  --quiet                             Don't print log messages
+  --remove-user-accounts users        Users to remove
+  --root-password SELECTOR            Set root password
+  --run SCRIPT                        Run script in disk image
+  --run-command 'CMD+ARGS'            Run command in disk image
+  --script script                     Script or program to run on guest
+  --scriptdir dir                     Mount point on host
+  --scrub FILE                        Scrub a file
+  --selinux-relabel                   Relabel files with correct SELinux labels
+  --timezone TIMEZONE                 Set the default timezone
+  --update                            Update core packages
+  --upload FILE:DEST                  Upload local file to destination
+  -v                                  Enable debugging messages
+  -V                                  Display version and exit
+  --verbose                           Enable debugging messages
+  --version                           Display version and exit
+  --write FILE:CONTENT                Write file
+  -x                                  Enable tracing of libguestfs calls
+  -help                               Display this list of options
+  --help                              Display this list of options
+```
+
+例如使用`virt-sysprep`来设置root密码和主机名：
+
+```
+[root@UA-HA ~]# virt-sysprep -d UACLONE  --hostname UACLONE --root-password password:123456
+[   0.0] Examining the guest ...
+[  32.0] Performing "abrt-data" ...
+[  32.0] Performing "bash-history" ...
+[  32.0] Performing "blkid-tab" ...
+[  32.0] Performing "crash-data" ...
+[  32.0] Performing "cron-spool" ...
+[  32.0] Performing "dhcp-client-state" ...
+[  32.0] Performing "dhcp-server-state" ...
+[  32.0] Performing "dovecot-data" ...
+[  32.0] Performing "logfiles" ...
+[  33.0] Performing "machine-id" ...
+[  33.0] Performing "mail-spool" ...
+[  33.0] Performing "net-hostname" ...
+[  33.0] Performing "net-hwaddr" ...
+[  33.0] Performing "pacct-log" ...
+[  33.0] Performing "package-manager-cache" ...
+[  33.0] Performing "pam-data" ...
+[  33.0] Performing "puppet-data-log" ...
+[  33.0] Performing "rh-subscription-manager" ...
+[  33.0] Performing "rhn-systemid" ...
+[  33.0] Performing "rpm-db" ...
+[  33.0] Performing "samba-db-log" ...
+[  33.0] Performing "script" ...
+[  33.0] Performing "smolt-uuid" ...
+[  33.0] Performing "ssh-hostkeys" ...
+[  33.0] Performing "ssh-userdir" ...
+[  33.0] Performing "sssd-db-log" ...
+[  33.0] Performing "tmp-files" ...
+[  33.0] Performing "udev-persistent-net" ...
+[  33.0] Performing "utmp" ...
+[  33.0] Performing "yum-uuid" ...
+[  33.0] Performing "customize" ...
+[  33.0] Setting a random seed
+[  33.0] Setting the hostname: UACLONE
+[  33.0] Setting passwords
+[  36.0] Performing "lvm-uuids" ...
+[root@UA-HA ~]#
+```
+
+# 启动虚拟机
+
+* 启动虚拟机
+
+```
+[root@UA-HA ~]# virsh list --all
+ Id    Name                           State
+----------------------------------------------------
+ 18    UAKVM2                         running
+ -     UACLONE                        shut off
+[root@UA-HA ~]# virsh start UACLONE
+Domain UACLONE started
+
+[root@UA-HA ~]#
+```
+
+* 检查虚拟机状态
+
+```
+[root@UA-HA ~]# virsh list
+ Id    Name                           State
+----------------------------------------------------
+ 18    UAKVM2                         running
+ 28    UACLONE                        running
+
+[root@UA-HA ~]#
+```
+
+* 使用`virt-viewer`检查虚拟机的控制台
+
+```
+[root@UA-HA ~]# virt-viewer 28        ------> 28 is VM ID 
+
+** (virt-viewer:10053): WARNING **: Couldn't connect to accessibility bus: Failed to connect to socket /tmp/dbus-6XZ1eVgijP: Connection refused
+
+(virt-viewer:10053): Gdk-CRITICAL **: gdk_window_set_cursor: assertion 'GDK_IS_WINDOW (window)' failed
+```
+
+* 验证主机名是`UACLONE`，你可以看到`virt-sysprep`已经做好了设置
+
+![验证virt-sysprep](/img/virtual/kvm/startup/virt-syspref-proof.jpg)
