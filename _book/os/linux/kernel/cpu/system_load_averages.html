@@ -333,7 +333,20 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.1.2.1.2" data-path="../../process/management/process_priority_with_nice.html">
+        <li class="chapter " data-level="1.3.1.2.1.2" data-path="../../process/management/process_in_run_queue.html">
+            
+                <a href="../../process/management/process_in_run_queue.html">
+            
+                    
+                    运行队列中进程排查方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.2.1.3" data-path="../../process/management/process_priority_with_nice.html">
             
                 <a href="../../process/management/process_priority_with_nice.html">
             
@@ -346,7 +359,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.1.2.1.3" data-path="../../process/management/check_process_memory_usage.html">
+        <li class="chapter " data-level="1.3.1.2.1.4" data-path="../../process/management/check_process_memory_usage.html">
             
                 <a href="../../process/management/check_process_memory_usage.html">
             
@@ -359,7 +372,7 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.1.2.1.4" data-path="../../process/management/top_tips.html">
+        <li class="chapter " data-level="1.3.1.2.1.5" data-path="../../process/management/top_tips.html">
             
                 <a href="../../process/management/top_tips.html">
             
@@ -3050,9 +3063,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.8.2.3.1" data-path="../../../../virtual/kvm/startup/kernel_based_virtual_machine_kvm_overview.md">
+        <li class="chapter " data-level="1.8.2.3.1" data-path="../../../../virtual/kvm/startup/kernel_based_virtual_machine_kvm_overview.html">
             
-                <span>
+                <a href="../../../../virtual/kvm/startup/kernel_based_virtual_machine_kvm_overview.html">
             
                     
                     一：基于内核的虚拟机（KVM）概览
@@ -6640,12 +6653,16 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <p>&#x5728;&#x4F7F;&#x7528;<code>top</code>&#x547D;&#x4EE4;&#x68C0;&#x67E5;&#x7CFB;&#x7EDF;&#x8D1F;&#x8F7D;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;<code>Load averages</code>&#x5B57;&#x6BB5;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x4E2A;&#x5B57;&#x6BB5;&#x5E76;&#x4E0D;&#x662F;&#x8868;&#x793A;CPU&#x7684;&#x7E41;&#x5FD9;&#x7A0B;&#x5EA6;&#xFF0C;&#x800C;&#x662F;&#x5EA6;&#x91CF;&#x7CFB;&#x7EDF;&#x6574;&#x4F53;&#x8D1F;&#x8F7D;&#x3002;</p>
+                                <h1 id="load-average&#x7684;&#x503C;&#x4ECE;&#x54EA;&#x91CC;&#x6765;">load average&#x7684;&#x503C;&#x4ECE;&#x54EA;&#x91CC;&#x6765;</h1>
+<p>&#x5728;&#x4F7F;&#x7528;<code>top</code>&#x547D;&#x4EE4;&#x68C0;&#x67E5;&#x7CFB;&#x7EDF;&#x8D1F;&#x8F7D;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53EF;&#x4EE5;&#x770B;&#x5230;<code>Load averages</code>&#x5B57;&#x6BB5;&#xFF0C;&#x4F46;&#x662F;&#x8FD9;&#x4E2A;&#x5B57;&#x6BB5;&#x5E76;&#x4E0D;&#x662F;&#x8868;&#x793A;CPU&#x7684;&#x7E41;&#x5FD9;&#x7A0B;&#x5EA6;&#xFF0C;&#x800C;&#x662F;&#x5EA6;&#x91CF;&#x7CFB;&#x7EDF;&#x6574;&#x4F53;&#x8D1F;&#x8F7D;&#x3002;</p>
 <p><code>Load averages</code>&#x91C7;&#x6837;&#x662F;&#x4ECE;<code>/proc/loadavg</code>&#x4E2D;&#x83B7;&#x53D6;&#x7684;:</p>
 <pre><code class="lang-bash">2.72 3.03 3.10 7/2241 16303
 </code></pre>
 <p>&#x524D;3&#x4E2A;&#x5B57;&#x6BB5;&#x8868;&#x793A;1&#x5206;&#x949F;&#xFF0C;5&#x5206;&#x949F;&#x548C;15&#x5206;&#x949F;&#x5185;&#x5728;&#x8FD0;&#x884C;&#x961F;&#x5217;&#xFF08;&#x72B6;&#x6001;<code>R</code>&#xFF09;&#x6216;&#x8005;&#x7B49;&#x5F85;&#x78C1;&#x76D8;I/O&#xFF08;&#x72B6;&#x6001;<code>D</code>&#xFF09;&#x7684;&#x4EFB;&#x52A1;&#x6570;&#x91CF;&#x7684;&#x5E73;&#x5747;&#x503C;&#x3002;&#x8FD9;&#x4E2A;&#x6570;&#x503C;&#x548C;<code>uptime</code>&#x547D;&#x4EE4;&#x663E;&#x793A;&#x7684;&#x5E73;&#x5747;&#x8D1F;&#x8F7D;&#x662F;&#x4E00;&#x6837;&#x7684;&#x3002;</p>
-<p>&#x7B2C;4&#x4E2A;&#x5B57;&#x6BB5;&#x5305;&#x542B;&#x4E24;&#x4E2A;&#x901A;&#x8FC7;<code>/</code>&#x5206;&#x9694;&#x7684;&#x6570;&#x503C;&#xFF0C;&#x524D;&#x4E00;&#x4E2A;&#x6570;&#x503C;&#x662F;&#x5F53;&#x524D;&#x8FD0;&#x884C;</p>
+<p>&#x7B2C;4&#x4E2A;&#x5B57;&#x6BB5;&#x5305;&#x542B;&#x4E24;&#x4E2A;&#x901A;&#x8FC7;<code>/</code>&#x5206;&#x9694;&#x7684;&#x6570;&#x503C;&#xFF0C;&#x524D;&#x4E00;&#x4E2A;&#x6570;&#x503C;&#x662F;&#x5F53;&#x524D;&#x53EF;&#x8FD0;&#x884C;&#x7684;&#x5185;&#x6838;&#x8C03;&#x5EA6;&#x5BF9;&#x8C61;&#xFF08;&#x8FDB;&#x7A0B;&#xFF0C;&#x7EBF;&#x7A0B;&#xFF09;&#xFF0C;&#x540E;&#x4E00;&#x4E2A;&#x6570;&#x503C;&#x662F;&#x5F53;&#x524D;&#x5B58;&#x5728;&#x7CFB;&#x7EDF;&#x4E2D;&#x7684;&#x5185;&#x6838;&#x53EF;&#x8C03;&#x5EA6;&#x5BF9;&#x8C61;&#x7684;&#x6570;&#x91CF;&#x3002;</p>
+<p>&#x7B2C;5&#x4E2A;&#x5B57;&#x6BB5;&#x662F;&#x7CFB;&#x7EDF;&#x6700;&#x8FD1;&#x521B;&#x5EFA;&#x7684;&#x8FDB;&#x7A0B;&#x7684;PID&#x3002;</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x770B;&#x5230;load average&#x6570;&#x503C;&#x662F;20&#xFF0C;&#x5219;&#x8868;&#x660E;&#x5E73;&#x5747;&#x6709;20&#x4E2A;&#x8FDB;&#x7A0B;&#x5728;&#x8FD0;&#x884C;&#x6216;&#x7B49;&#x5F85;&#x72B6;&#x6001;&#x3002;&#x6709;&#x53EF;&#x80FD;&#x7CFB;&#x7EDF;&#x6709;&#x5F88;&#x9AD8;&#x7684;&#x8D1F;&#x8F7D;&#x4F46;&#x662F;CPU&#x4F7F;&#x7528;&#x7387;&#x5374;&#x5F88;&#x4F4E;&#xFF0C;&#x6216;&#x8005;&#x8D1F;&#x8F7D;&#x5F88;&#x4F4E;&#x800C;CPU&#x5229;&#x7528;&#x7387;&#x5F88;&#x9AD8;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x4E24;&#x8005;&#x6CA1;&#x6709;&#x76F4;&#x63A5;&#x5173;&#x7CFB;&#x3002;</p>
+<p>&#x5982;&#x679C;&#x4F60;&#x770B;&#x5230;<code>%wa</code>&#x6570;&#x503C;&#x5F88;&#x9AD8;&#x6CFD;&#x8868;&#x660E;&#x4E00;&#x4E9B;&#x8FDB;&#x7A0B;&#x5728;&#x5F02;&#x5E38;&#x5730;&#x4F7F;&#x7528;&#x78C1;&#x76D8;&#xFF0C;&#x8FD9;&#x5BFC;&#x81F4;&#x7CFB;&#x7EDF;&#x975E;&#x5E38;&#x7F13;&#x6162;&#x3002;&#x9700;&#x8981;&#x627E;&#x51FA;&#x8FD9;&#x4E2A;&#x5F02;&#x5E38;&#x72B6;&#x6001;&#x662F;<code>D</code>&#x7684;&#x8FDB;&#x7A0B;&#xFF08;&#x5176;&#x8FDB;&#x7A0B;&#x53D1;&#x8D77;&#x78C1;&#x76D8;io&#x5E76;&#x7B49;&#x5F85;&#x78C1;&#x76D8;IO&#x8FD4;&#x56DE;&#x6240;&#x4EE5;&#x8FDB;&#x5165;D&#x72B6;&#x6001;&#xFF09;&#x3002;</p>
 <h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
 <ul>
 <li><a href="http://unix.stackexchange.com/questions/134381/very-high-cpu-load-but-nothing-significant-in-top" target="_blank">Very high CPU load, but nothing significant in top</a></li>
@@ -6693,7 +6710,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"系统负载Load Averages的含义","level":"1.3.1.4.4.7","depth":5,"next":{"title":"驱动","level":"1.3.1.4.5","depth":4,"path":"os/linux/kernel/driver/README.md","ref":"os/linux/kernel/driver/README.md","articles":[{"title":"内核模式设置KMS","level":"1.3.1.4.5.1","depth":5,"path":"os/linux/kernel/driver/kms.md","ref":"os/linux/kernel/driver/kms.md","articles":[]},{"title":"DKMS动态内核模块支持","level":"1.3.1.4.5.2","depth":5,"path":"os/linux/kernel/driver/dkms.md","ref":"os/linux/kernel/driver/dkms.md","articles":[]}]},"previous":{"title":"Linux 时钟管理","level":"1.3.1.4.4.6","depth":5,"path":"os/linux/kernel/cpu/linux_timer_management.md","ref":"os/linux/kernel/cpu/linux_timer_management.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["disqus","toggle-chapters","livereload"],"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"huatai-gitbooks"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"os/linux/kernel/cpu/system_load_averages.md","mtime":"2016-09-25T16:47:41.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-11-27T15:47:30.228Z"},"basePath":"../../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"系统负载Load Averages的含义","level":"1.3.1.4.4.7","depth":5,"next":{"title":"驱动","level":"1.3.1.4.5","depth":4,"path":"os/linux/kernel/driver/README.md","ref":"os/linux/kernel/driver/README.md","articles":[{"title":"内核模式设置KMS","level":"1.3.1.4.5.1","depth":5,"path":"os/linux/kernel/driver/kms.md","ref":"os/linux/kernel/driver/kms.md","articles":[]},{"title":"DKMS动态内核模块支持","level":"1.3.1.4.5.2","depth":5,"path":"os/linux/kernel/driver/dkms.md","ref":"os/linux/kernel/driver/dkms.md","articles":[]}]},"previous":{"title":"Linux 时钟管理","level":"1.3.1.4.4.6","depth":5,"path":"os/linux/kernel/cpu/linux_timer_management.md","ref":"os/linux/kernel/cpu/linux_timer_management.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["disqus","toggle-chapters","livereload"],"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"huatai-gitbooks"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"os/linux/kernel/cpu/system_load_averages.md","mtime":"2016-12-03T08:43:46.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2016-12-03T09:04:15.985Z"},"basePath":"../../../..","book":{"language":""}});
         });
     </script>
 </div>

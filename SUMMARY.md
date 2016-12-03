@@ -15,6 +15,7 @@
 		* [进程](os/linux/process/README.md)
 			* [进程管理](os/linux/process/management/README.md)
 				* [进程状态标志的含义](os/linux/process/management/process_stat_indicates.md)
+				* [运行队列中进程排查方法](os/linux/process/management/process_in_run_queue.md)
 				* [使用nice调整进程优先级](os/linux/process/management/process_priority_with_nice.md)
 				* [检查进程的内存使用](os/linux/process/management/check_process_memory_usage.md)
 				* [top命令使用tips](os/linux/process/management/top_tips.md)

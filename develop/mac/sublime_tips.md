@@ -55,6 +55,44 @@ import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.
 ⌘（command）、⌥（option）、⇧（shift）、⇪（caps lock）、⌃（control）、↩（return）、⌅（enter）
 ```
 
+# 缩进设置
+
+> 参考 [Indentation Settings](https://www.sublimetext.com/docs/3/indentation.html)
+
+对于程序编写，希望能够用空格来代替tab stop，并且设置4个空格代替一个tab：
+
+| 设置项 | 说明 |
+| ---- | ---- |
+| tab_size | 整数，设置一个tab等同的空格数量 |
+| translate_tabs_to_spaces | 布尔值，当设置为`true`时，按下tab键将替换成指定数量空格 |
+| detect_indentation | 布尔值，当设置为`true`时（默认值），在加载一个文件时将自动计算`tab_size`和`translate_tabs_to_space` |
+| use_tab_stops | 布尔值，当`translate_tabs_to_spaces`设置为`true`，`use_tab_stops`将使用tab和backspace来插入货删除到下一个tab stop |
+
+* 设置文件如下：
+    * Packages/Default/Preferences.sublime-settings
+    * Packages/Default/Preferences (<platform>).sublime-settings
+    * Packages/User/Preferences.sublime-settings
+    * Packages/<syntax>/<syntax>.sublime-settings
+    * Packages/User/<syntax>.sublime-settings
+
+* 缩进检测
+
+当文件被加载时，内容被检查，并且`tab_size`和`translate_tabs_to_spaces`设置将生效。
+
+* 设置实践
+
+在Mac上按下`⌘`+`,`，然后在`Packages/User/Preferences.sublime-settings`配置中设置
+
+```
+{
+    ...
+    // Set to true to insert spaces when tab is pressed
+    "translate_tabs_to_spaces": true,
+}
+```
+
+保存后立即生效，其他设置默认已经满足要求。
+
 # 参考
 
 * [如何优雅地使用Sublime Text](http://www.cnblogs.com/jadeboy/p/5049340.html)
