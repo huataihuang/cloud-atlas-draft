@@ -243,6 +243,14 @@ awk '{sum+=$3}; END  {printf "%f",sum/NR}' ${file}_${f}_v1.xls >> to-plot-p.xls
 
 > `print`会默认加入换行，如果不希望换行，则使用`printf`
 
+# 匹配某列数据
+
+* 过滤出使用`cpu 24`的进程，也就是匹配字段4中数字是`24`的列以后打印匹配行的2列内容
+
+```
+ps -TA -o tid,pid,ppid,psr,cmd | awk '{if($4=='24') print $1" "$5}' | tee cpu_24
+```
+
 # 参考
 
 * [awk - Match a pattern in a file in Linux](http://www.tuicool.com/articles/F7JbEn)

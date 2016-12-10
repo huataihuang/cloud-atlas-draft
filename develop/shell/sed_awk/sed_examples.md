@@ -284,9 +284,17 @@ tr --delete '\n' < input.txt > output.txt
 
 ```
 sed -i '/kernel \/boot/s/$/ clocksource_failover=acpi_pm/' /boot/grub/grub.cfg
+
+sed -i '/vmlinuz-2.6.32/ s/$/ intremap=off/' /boot/grub/grub.conf
 ```
 
-参考 [How to append a string at end of a specific line in a file in bash](http://stackoverflow.com/questions/22159044/how-to-append-a-string-at-end-of-a-specific-line-in-a-file-in-bash)
+> 上述方法简单来说就是先匹配，然后搜索到最后的标志`$`，再进行替换。
+
+参考 
+
+[How to append a string at end of a specific line in a file in bash](http://stackoverflow.com/questions/22159044/how-to-append-a-string-at-end-of-a-specific-line-in-a-file-in-bash)
+
+[Add to the end of a line containing a pattern - with sed or awk](http://stackoverflow.com/questions/9591744/add-to-the-end-of-a-line-containing-a-pattern-with-sed-or-awk)
 
 # 参考
 

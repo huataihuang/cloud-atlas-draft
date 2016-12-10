@@ -23,6 +23,9 @@
 
 > 使用`man ps`可以看到在`PROCESS STATE CODES`段落下有上述进程状态解释
 
+# top和进程的CPU states
+
 # 参考
 
 * [What do the STAT column values in ps mean?](http://askubuntu.com/questions/360252/what-do-the-stat-column-values-in-ps-mean)
+* [Understanding Linux CPU stats](http://blog.scoutapp.com/articles/2015/02/24/understanding-linuxs-cpu-stats)

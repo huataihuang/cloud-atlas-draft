@@ -76,6 +76,18 @@ total kB          192320   16360   12512
 ps aux --sort -rss
 ```
 
+# 检查系统进程中超过cpu阀值和memory阀值的方法
+
+
+```
+MAX_CPU=5
+MAX_MEM=10
+ps aux | sort -rn -k 3 | awk '$3>$MAX_CPU {ot="";i=11;while(i<=NF) {ot=ot" "$i;i++};print $3,ot}'
+ps aux | sort -rn -k 4 | awk '$3>$MAX_MEM {ot="";i=11;while(i<=NF) {ot=ot" "$i;i++};print $4,ot}'
+```
+
+> 上述统计超过5%的CPU usage的进程，还存在一个缺陷，就是没有计算`system`，待完善。
+
 # 参考
 
 * [How to find the memory consumption of a particular process in linux for every 5 seconds](http://stackoverflow.com/questions/14641553/how-to-find-the-memory-consumption-of-a-particular-process-in-linux-for-every-5)
