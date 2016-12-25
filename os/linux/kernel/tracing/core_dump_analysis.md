@@ -34,6 +34,8 @@ echo c | sudo tee /proc/sysrq-trigger
 ipmitool -I lanplus -H <OOB_IP> -U <USERNAME> -P <PASSWORD> chassis power diag
 ```
 
+> [排查XEN服务器hang机core dump](analysis_xen_hang_core_dump)的一个实战案例
+
 # 参考
 
 * [Changing location of core dump](http://stackoverflow.com/questions/16048101/changing-location-of-core-dump)

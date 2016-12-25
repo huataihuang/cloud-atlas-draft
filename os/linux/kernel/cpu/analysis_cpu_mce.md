@@ -1,6 +1,8 @@
 # MCE故障
 
-线上多台服务器连续出现异常宕机重启，在OOB带外日志显示首先出现网卡`bnx2`的`NETDEV WATCHDOG`报告传输队列超时（Call Trace），同时出现CPU `[Hareware Error]` 显示 `Machine Check Exception: 4 Bank 5: be00000000800400`
+线上多台服务器连续出现异常宕机重启，在OOB带外日志显示首先出现网卡`bnx2`的`NETDEV WATCHDOG`报告传输队列超时（Call Trace），同时出现CPU `[Hareware Error]` 显示 `Machine Check Exception: 4 Bank 5: be00000000800400`:
+
+* [#9775121](https://aone.alibaba-inc.com/issue/9775121) 2016-12-22 09:43:59 AY71V e74d10542.cloud.em21(10.153.170.63)
 
 ```
 2016-12-03 19:08:42    [14874902.828670] ------------[ cut here ]------------
@@ -160,5 +162,119 @@
 
 当出现machine check exception (MCE) 的时候，硬件出现问题，此时会设置一个`taint state`（污染状态），一旦设置了内核`已经污染`(`tainted`)，则只能通过重启系统重新加载内核才能unset这个污染状态。
 
+# Machine Check Exceptions (MCE)
+
+主机检测异常是通过主机的CPU处理器检测到的错误。有2种主要的MCE错误类型：警告类错误(notice or warning error)，和致命异常（fatal exception）。
+
+* 警告类错误(notice or warning error)将通过一个"Machine Check Event logged"消息记录到系统日志中，然后可以通过一些Linux哦你工具事后查看。
+* 致命异常（fatal exception）则导致主机停止响应，MCE的详细信息将输出到系统的控制台。
+
+## 哪些会导致MCE错误
+
+常见的MCE错误原因包括：
+
+* 内存错误或ECC(Error Correction Code)问题
+* 冷却不充分/处理器过热
+* 系统总线错误
+* 处理器或硬件的缓存错误
+
+## 如何查看MCE错误信息
+
+如果在控制台或者系统日志中看到"Machine Check Events logged"，可以运行`mcelog`命令从内核读取信息。一旦你运行过`mcelog`，你就不能再运行`mcelog`来查看错误，所以最好将程序输出到文本文件，这样以后还可以分析，例如：
+
+```
+/usr/sbin/mcelog > mcelog.out
+```
+
+一些系统会周期性执行mcelog并将输出信息记录到文件 `/var/log/mcelog`。所以如果你看到"Machine Check Events logged"消息但是`mcelog`没有返回任何数据，请检查`/var/log/mcelog`。
+
+## 分析致命的MCE
+
+一些致命的MCE通常是硬件故障。需要捕获MCE消息，然后在主机恢复以后通过`mcelog`程序分析，以下是一个线上宕机的控制台输出
+
+```
+2016-12-21 16:07:49    [2592938.163474] [Hardware Error]: CPU 6: Machine Check Exception: 0 Bank 8: 88000040000200cf
+2016-12-21 16:07:49    [2592938.163513] Clocksource tsc unstable (delta = -17179860571 ns).  Enable clocksource failover by adding clocksource_failover kernel parameter.
+2016-12-21 16:07:50    [2592938.414712] [Hardware Error]: TSC 0 MISC 98873a2000043000 
+```
+
+将MCE错误信息记录到文本`mce_error`如下
+
+```
+CPU 6: Machine Check Exception: 0 Bank 8: 88000040000200cf
+TSC 0 MISC 98873a2000043000 
+```
+
+然后执行
+
+```
+mcelog --ascii < mce_error
+```
+
+解析显示是内存的可纠正错误（corrected error）
+
+```
+Hardware event. This is not a software error.
+CPU 6 BANK 8
+MISC 98873a2000043000
+MCG status:
+MCi status:
+Corrected error
+MCi_MISC register valid
+MCA: MEMORY CONTROLLER MS_CHANNELunspecified_ERR
+Transaction: Memory scrubbing error
+STATUS 88000040000200cf MCGSTATUS 0
+```
+
+现在我们来分析上文宕机故障中控制台输出的MCE错误消息
+
+```
+CPU 19: Machine Check Exception: 4 Bank 5: be00000000800400
+TSC 7ebbc5c7e698b4 ADDR 1579aa6 
+PROCESSOR 0:206c2 TIME 1480763330 SOCKET 0 APIC 11
+CPU 7: Machine Check Exception: 4 Bank 5: be00000000800400
+TSC 7ebbc5c7e698c8 ADDR 1579aa6 
+PROCESSOR 0:206c2 TIME 1480763330 SOCKET 0 APIC 10
+Machine check: Processor context corrupt
+```
+
+通过`mcelog`分析输出可以看到
+
+```
+Hardware event. This is not a software error.
+CPU 19 BANK 5 TSC 7ebbc5c7e698b4
+MISC 0 ADDR 1579aa6
+TIME 1480763330 Sat Dec  3 19:08:50 2016
+MCG status:MCIP
+MCi status:
+Uncorrected error
+Error enabled
+MCi_MISC register valid
+MCi_ADDR register valid
+Processor context corrupt
+MCA: Internal Timer error
+STATUS be00000000800400 MCGSTATUS 4
+CPUID Vendor Intel Family 6 Model 44
+SOCKET 0 APIC 11
+Hardware event. This is not a software error.
+CPU 7 BANK 5 TSC 7ebbc5c7e698c8
+MISC 0 ADDR 1579aa6
+TIME 1480763330 Sat Dec  3 19:08:50 2016
+MCG status:MCIP
+MCi status:
+Uncorrected error
+Error enabled
+MCi_MISC register valid
+MCi_ADDR register valid
+Processor context corrupt
+MCA: Internal Timer error
+STATUS be00000000800400 MCGSTATUS 4
+CPUID Vendor Intel Family 6 Model 44
+SOCKET 0 APIC 10
+Machine check: Processor context corrupt
+```
+
 # 参考
 
+* [What are Machine Check Exceptions (or MCE)?](http://www.advancedclustering.com/act-kb/what-are-machine-check-exceptions-or-mce/)
+* [怎样诊断Machine-check Exception](http://linuxperf.com/?p=105)

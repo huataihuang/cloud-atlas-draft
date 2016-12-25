@@ -33,6 +33,12 @@ F   UID   PID  PPID PRI  NI    VSZ   RSS WCHAN  STAT TTY        TIME COMMAND
 ...
 ```
 
+* 检查cpu的run queue方法
+
+```
+cat /proc/sched_debug | grep -A1 cpu#  | sed -n '/cpu/{N;s/\n/,/;p}' | sed -r 's/ +/ /g' | sort -k6,6nr |head -5 && cat /proc/loadavg
+```
+
 # 参考
 
 * [How do I see what's in the run queue on GNU/Linux?](http://serverfault.com/questions/147333/how-do-i-see-whats-in-the-run-queue-on-gnu-linux)

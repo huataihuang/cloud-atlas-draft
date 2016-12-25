@@ -307,6 +307,14 @@ done
 
 > 安装好虚拟机初始操作系统之后，可以[clone KVM虚拟机](clone_kvm_vm)
 
+# NAT网络的调整
+
+上述安装配置适合作为一个个人使用的开发工作站，但是如果需要对外提供访问服务，默认的NAT网络就存在限制了。
+
+此外，默认的NAT网络使用了DHCP分配地址，所以启动虚拟机可能每次获得的IP地址不一定相同，对外做端口映射提供服务就存在问题。
+
+* [KVM/libvirt Host主机NAT网络固定DHCP分配和端口映射]()
+
 # 参考
 
 * [Install and use CentOS 7 or RHEL 7 as KVM virtualization host](http://jensd.be/207/linux/install-and-use-centos-7-as-kvm-virtualization-host)
