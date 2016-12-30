@@ -67,10 +67,6 @@ Clone 'devstack' created successfully.
 -rw-r--r-- 1 root root 1.6G Nov 27 15:48 devstack.img
 ```
 
-* 这里有两个疑问：
-  * 被复制出来的镜像`devstack.img`的属主是`root`而不是`qemu`
-  * 复制出的镜像的空间占用只使用了`1.6G`，应该是一个可扩容的镜像
-
 * 克隆windows 2012虚拟机，这里我们要构建日常工作的名为`windev`的虚拟机
 
 ```
@@ -120,6 +116,20 @@ virt-sysprep -d devstack --hostname devstack --root-password password:CHANGE_ME
 > `--root-password password:CHANGE_ME` 表示将初始化主机的root用户密码设置成 `CHANGE_ME`
 >
 > 详细的`virt-sysprep`参考[virt-sysprep man手册](http://libguestfs.org/virt-sysprep.1.html)
+
+* 修订 `devstack` 虚拟机的定义，调整虚拟机最大可分配vCPU和内存，以便后期根据系统负载[动态调整KVM虚拟机内存和vcpu实战](add_remove_vcpu_memory_to_guest_on_fly)
+
+配置修改如下
+
+```
+sudo virsh setmaxmem devstack 32G
+```
+
+通过`virsh edit devstack`修改vCPU配置
+
+```
+  <vcpu placement='static' current='1'>12</vcpu>
+```
 
 * 启动虚拟机`devstack`虚拟机
 

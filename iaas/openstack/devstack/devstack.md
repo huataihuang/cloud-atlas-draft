@@ -52,7 +52,31 @@ SERVICE_PASSWORD=$ADMIN_PASSWORD
 
 自动完成软件包安装和配置，可能需要多次安装（网络是关键）。安装完成后，源代码位于`stack`中，可以进行相关分析和开发。
 
+devstack将安装 keystone, glance, nova, cinder, neutron, 和 horizon。对于使用，可以切换到 `stack` 用户身份以后，进入 `devstack` 目录，然后执行 `source openrc` 设置好操作环境，就可以使用 `openstack` 命令管理 devstaack。
+
 完成后可以访问 http://<SERVER_IP>
+
+# IPv4
+
+对于配置了IPv6的主机，DevStack会直接启动服务监听在IPv6的地址上，反而不监听IPv4。
+
+采用[关闭CentOS 7 IPv6](../../os/linux/redhat/system_administration/network/centos7_disable_ipv6)
+
+# 重启
+
+> 参考 [Cannot restart services on Devstack](https://ask.openstack.org/en/question/1916/cannot-restart-services-on-devstack/)
+
+Devstack不是通过服务方式运行的，而是通过`screen`程序。在成功运行了`stack.sh`之后，如果需要重启任何openstack服务，使用`screen -r`来连接screen。例如，要重启nova网络，则连接screen 9来访问nova网络的screen（使用命令`CTRL+A`和`9`）。要停止nova网络，使用｀CTRL+C`然后再使用向上键再回车。
+
+如果重启了主机，则还是需要再运行一次`stack.sh`脚本。
+
+# devstack环境要求
+
+最初我安装devstack是在kvm虚拟机中，分配了1c1g配置（即1个vcpu 1GB内存的kvm虚拟机），安装过程没有太大资源问题。但是实际运行devstack时候，发现`neutron`虚拟网络非常消耗CPU资源（有3个进程`neutron`服务进程始终在运行），并且使用了近1GB的swap空间。所以准备调整虚拟机的内存河CPU资源：
+
+通过[动态调整KVM Guest内存和CPU资源](add_remove_vcpu_memory_to_guest_on_fly)
+
+如果由于意外中断devstack运行（如强制关机），则需要先运行 `./unstack.sh` 清理环境，然后重启运行 `./stack.sh` 脚本重建会话。
 
 #  参考
 
