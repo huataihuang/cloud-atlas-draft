@@ -78,6 +78,18 @@ Devstack不是通过服务方式运行的，而是通过`screen`程序。在成�
 
 如果由于意外中断devstack运行（如强制关机），则需要先运行 `./unstack.sh` 清理环境，然后重启运行 `./stack.sh` 脚本重建会话。
 
+# 访问
+
+> 我的`devstack`测试环境是安装在[CentOS平台的KVM虚拟机](../../../virtual/kvm/startup/in_action/deploy_kvm_on_centos)，采用的[NAT端口映射方式](../../../virtual/kvm/startup/in_action/kvm_libvirt_static_ip_for_dhcp_and_port_forwarding)，所以访问是 https://devstack:11443 。如果你采用的bridge模式虚拟机或者直接安装在物理主机上，则不需要添加端口`11433`
+
+在本地桌面主机`/etc/hosts`添加访问`devstack`测试环境的域名解析绑定
+
+```
+192.168.1.11  devstack
+```
+
+然后通过 https://devstack
+
 #  参考
 
 * [DevStack文档](http://docs.openstack.org/developer/devstack/)

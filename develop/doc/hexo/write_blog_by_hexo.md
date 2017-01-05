@@ -74,6 +74,28 @@ nvm uninstall 4.6.0
 
 > 此时默认端口监听`4000`，可以通过参数 `-p 3999` 修改监听端口（如果在主机上运行多个服务）
 
+* 升级hexo
+
+使用一段时间，官方软件版本有所更新，可以使用如下命令升级
+
+```
+npm update -g
+```
+
+不过，遇到升级了node.js版本之后，再执行`hexo new "xxxx"`提示模块版本不一致
+
+```
+Error: Module version mismatch. Expected 48, got 46.
+```
+
+解决方法参考 []()
+
+或者参考 [Node.js – Error: Module version mismatch. Expected 48, got 46.](http://blog.jonathanargentiero.com/node-js-error-module-version-mismatch-expected-48-got-46/) 原理类似，在程序目录执行删除模块目录，然后重新安装模块
+
+```
+rm -rf node_modules && npm install
+```
+
 # Typing主题
 
 > 最初，想回归最简单的文字主题，采用 [Maupassant](https://github.com/tufu9441/maupassant-hexo) ，参考 [大道至简——Hexo简洁主题推荐](https://www.haomwei.com/technology/maupassant-hexo.html)进行设置。不过，geekplux的[typing](https://github.com/geekplux/hexo-theme-typing)似乎更为简洁，所以准备入手。

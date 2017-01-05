@@ -21,3 +21,50 @@ Linux 2.6.32-358.el5.x86_64 (server1.example.com) 	12/08/2016 	_x86_64_	(48 CPU)
 ```
 sar -n DEV 1
 ```
+
+> `1`表示每秒检查一次
+
+# 检查历史记录
+
+```
+sar -f /var/log/sa/sa22 -s 21:25:00 -e 21:35:00 -n DEV -i 1
+```
+
+> `-f` 指定读取哪个历史记录文件
+>
+> `-s`和`-e`参数指定数据展示的开始和结束时间
+>
+> `-n DEV -i 1` 检查网络，并且每分钟一次数据的输出
+
+# 检查磁盘负载
+
+`-d` 参数检查磁盘传输
+
+```
+sar -d 
+```
+
+不过因为`sysstat`默认不开启磁盘负载的日志（避免大量磁盘的系统大量记录日志），所以会出现以下报错
+
+```
+Requested activities not available in file /var/log/sa/sa23
+```
+
+解决的方法是修改`sysstat`服务的配置`/etc/sysconfig/sysstat`
+
+```
+SADC_OPTIONS="-d"
+```
+
+然后重启`sysstat`
+
+```
+service sysstat restart
+```
+
+等待数据收集（至少20分钟前），就可以使用`sar -d`了。
+
+# 参考
+
+* [Examples of using SAR command for system monitoring in Linux](http://www.slashroot.in/examples-using-sar-command-system-monitoring-linux)
+* [How do I configure sar to collect disk information (ala -d)?](http://superuser.com/questions/573773/how-do-i-configure-sar-to-collect-disk-information-ala-d)

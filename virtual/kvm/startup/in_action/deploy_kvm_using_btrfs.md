@@ -27,7 +27,7 @@ mkfs.btrfs -f /dev/sda4
 * 检查btrfs文件系统
 
 ```
-btrfs filesystem show /dev/sdb4
+btrfs filesystem show /dev/sda4
 ```
 
 显示输出
@@ -55,10 +55,11 @@ lsof | grep libvirt | grep var
 
 > 如果有虚拟机在运行，则需要先停止虚拟机
 >
-> 此外需要停止`libvirtd`
+> 此外需要停止`libvirtd`和`virtlogd.socket`
 
 ```
 systemctl stop libvirtd
+systemctl stop virtlogd.socket
 ```
 
 完成后再次检查是否还有进程在访问 `/var/libvirt` 目录，确定没有以后则可以执行下一步
@@ -113,7 +114,8 @@ mount /var/lib/libvirt
 # 恢复虚拟化服务
 
 ```
-sysctl start libvirtd
+systemctl start libvirtd
+systemctl start virtlogd.socket
 ```
 
 启动对应的虚拟机，例如

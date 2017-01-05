@@ -27,5 +27,3 @@ pidstat | grep -v PID | grep -v `uname -r` | grep -v "^$" | sort -k 6 | tail -10
 ```
 
 # 参考
-
-* []()

@@ -313,7 +313,7 @@ done
 
 此外，默认的NAT网络使用了DHCP分配地址，所以启动虚拟机可能每次获得的IP地址不一定相同，对外做端口映射提供服务就存在问题。
 
-* [KVM/libvirt Host主机NAT网络固定DHCP分配和端口映射]()
+* [KVM/libvirt Host主机NAT网络固定DHCP分配和端口映射](kvm_libvirt_static_ip_for_dhcp_and_port_forwarding)
 
 # 参考
 
