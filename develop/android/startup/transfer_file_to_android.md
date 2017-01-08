@@ -1,4 +1,4 @@
-# 传输文件
+# android filetransfer传输文件
 
 默认的Android 4.x，当USB连接到主机时，有两种模式：
 
@@ -16,8 +16,24 @@
 
 ![Android File Transfer](/img/develop/android/android_file_transfer.png)
 
+# ADB传输文件
+
+`adb`支持传输文件
+
+* 下载文件到电脑
+
+```
+adb pull /sdcard/video.mp4 C:\Users\Jonathan\Desktop
+```
+
+* 上传文件到手机
+
+```
+adb push C:\Users\Jonathan\Desktop\video.mp4 /sdcard/
+```
+
 
 # 参考
 
 * [Transfer music from a computer to a device](https://support.google.com/googleplay/answer/1101500?hl=en)
-
+* [Android customization – how to transfer files using ADB push and pull commands](http://www.androidauthority.com/android-customization-transfer-files-adb-push-adb-pull-601015/)

@@ -65,7 +65,7 @@
     <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="rhel_7_pacemaker_configuring_ha_kvm_guest.md" />
+    <link rel="next" href="rhel_7_pacemaker_configuring_ha_kvm_guest.html" />
     
     
     <link rel="prev" href="change_libvirt_vm_image_store_path.html" />
@@ -3515,9 +3515,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.9.2.3.12" data-path="rhel_7_pacemaker_configuring_ha_kvm_guest.md">
+        <li class="chapter " data-level="1.9.2.3.12" data-path="rhel_7_pacemaker_configuring_ha_kvm_guest.html">
             
-                <span>
+                <a href="rhel_7_pacemaker_configuring_ha_kvm_guest.html">
             
                     
                     十二：RHEL7 Pacemaker - 配置高可用KVM虚拟机
@@ -7273,6 +7273,28 @@
                                 
                                 <p>&#x5728;KVM&#x4E2D;&#xFF0C;&#x4F60;&#x53EF;&#x4EE5;&#x4ECE;&#x4E00;&#x53F0;&#x4E3B;&#x673A;&#x8FC1;&#x79FB;&#x4E00;&#x4E2A;KVM&#x865A;&#x62DF;&#x673A;&#x5230;&#x53E6;&#x5916;&#x4E00;&#x53F0;&#x4E3B;&#x673A;&#x800C;&#x65E0;&#x987B;&#x5B95;&#x673A;&#x3002;&#x5982;&#x679C;&#x4E24;&#x4E2A;KVM&#x7269;&#x7406;&#x670D;&#x52A1;&#x5668;&#x8BBF;&#x95EE;&#x5171;&#x4EAB;&#x7684;&#x5B58;&#x50A8;&#x6C60;&#xFF0C;KVM&#x5728;&#x7EBF;&#x8FC1;&#x79FB;&#x53EF;&#x4EE5;&#x5B8C;&#x7F8E;&#x8FD0;&#x884C;&#x3002;&#x8981;&#x5728;&#x4E24;&#x4E2A;KVM&#x4E3B;&#x673A;&#x4E0A;&#x8BBF;&#x95EE;&#x5171;&#x4EAB;&#x7684;&#x5B58;&#x50A8;&#x6C60;&#xFF0C;&#x4F60;&#x9700;&#x8981;&#x4F7F;&#x7528;NFS&#x6216;&#x8005;GFS2&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#xFF08;&#x96C6;&#x7FA4;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#xFF09;&#x3002;&#x5728;&#x8FD9;&#x4E2A;&#x6848;&#x4F8B;&#x4E2D;&#xFF0C;&#x6211;&#x4F7F;&#x7528;NFS&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#x6765;&#x5B58;&#x50A8;VM&#x955C;&#x50CF;&#x3002;&#x5728;&#x8FC1;&#x79FB;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;VM&#x7684;&quot;&#x5185;&#x5B58;&quot;&#x5185;&#x5BB9;&#x5C06;&#x590D;&#x5236;&#x5230;&#x76EE;&#x6807;KVM&#x7269;&#x7406;&#x4E3B;&#x673A;&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x67D0;&#x4E2A;&#x65F6;&#x95F4;&#x70B9;&#x76F8;&#x540C;&#x5185;&#x5BB9;&#x65F6;&#x5207;&#x6362;&#x6765;&#x8FC1;&#x79FB;VM&#x3002;&#x6CE8;&#x610F;&#xFF0C;&#x5F53;&#x5728;KVM&#x4E3B;&#x673A;&#x95F4;&#x4F7F;&#x7528;&#x5171;&#x4EAB;&#x6587;&#x4EF6;&#x7CFB;&#x7EDF;&#xFF0C;VM&#x7684;&#x78C1;&#x76D8;&#x955C;&#x50CF;&#x4E0D;&#x5728;&#x901A;&#x8FC7;&#x7F51;&#x7EDC;&#x590D;&#x5236;&#xFF0C;&#x8FD9;&#x6837;&#x4E24;&#x4E2A;KVM&#x7269;&#x7406;&#x4E3B;&#x673A;&#x5C06;&#x8BBF;&#x95EE;&#x76F8;&#x540C;&#x7684;&#x5B58;&#x50A8;&#x6C60;&#x3002;</p>
 <p><img src="../../../img/virtual/kvm/startup/KVM-Live-VM-Migration.jpg" alt="KVM&#x70ED;&#x8FC1;&#x79FB;"></p>
+<h1 id="&#x73AF;&#x5883;">&#x73AF;&#x5883;</h1>
+<ul>
+<li>KVM&#x7269;&#x7406;&#x4E3B;&#x673A; &#x2013; UA-HA &#x548C; UA-HA2</li>
+<li>VM&#x540D;&#x5B57; &#x2013; UAKVM2</li>
+</ul>
+<p>&#x5B58;&#x50A8;&#x6C60;&#xFF1A;</p>
+<pre><code>[root@UA-HA ~]# df -h /kvmpool/
+Filesystem                 Size  Used Avail Use% Mounted on
+192.168.203.134:/kvmstore  1.8G  1.7G   88M  96% /kvmpool
+[root@UA-HA ~]# ssh UA-HA2 df -h /kvmpool/
+Filesystem                 Size  Used Avail Use% Mounted on
+192.168.203.134:/kvmstore  1.8G  1.7G   88M  96% /kvmpool
+[root@UA-HA ~]# ls -lrt /kvmpool
+total 1710924
+-rw------- 1 root root 4295884800 Dec 22 18:07 UAKVM2.qcow2
+[root@UA-HA ~]#
+</code></pre><blockquote>
+<p>&#x4F60;&#x5FC5;&#x987B;&#x5728;KVM&#x4E3B;&#x673A;&#x4E4B;&#x95F4;&#x914D;&#x7F6E;<code>&#x65E0;&#x987B;&#x5BC6;&#x7801;&#x7684;root&#x767B;&#x5F55;ssh</code>&#x6765;&#x7ACB;&#x5373;&#x542F;&#x52A8;&#x8FC1;&#x79FB;&#x4EE5;&#x907F;&#x514D;root&#x7528;&#x6237;&#x5BC6;&#x7801;&#x63D0;&#x793A;&#x3002;</p>
+</blockquote>
+<ul>
+<li>&#x5F53;</li>
+</ul>
 <h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
 <ul>
 <li><a href="http://www.unixarena.com/2015/12/perform-live-migration-on-linux-kvm.html" target="_blank">Perform Live Migration on Linux KVM &#x2013; Part 11</a></li>
@@ -7309,7 +7331,7 @@
                 </a>
                 
                 
-                <a href="rhel_7_pacemaker_configuring_ha_kvm_guest.md" class="navigation navigation-next " aria-label="Next page: 十二：RHEL7 Pacemaker - 配置高可用KVM虚拟机">
+                <a href="rhel_7_pacemaker_configuring_ha_kvm_guest.html" class="navigation navigation-next " aria-label="Next page: 十二：RHEL7 Pacemaker - 配置高可用KVM虚拟机">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -7320,7 +7342,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"十一：实现Linux KVM在线迁移","level":"1.9.2.3.11","depth":4,"next":{"title":"十二：RHEL7 Pacemaker - 配置高可用KVM虚拟机","level":"1.9.2.3.12","depth":4,"path":"virtual/kvm/startup/rhel_7_pacemaker_configuring_ha_kvm_guest.md","ref":"virtual/kvm/startup/rhel_7_pacemaker_configuring_ha_kvm_guest.md","articles":[]},"previous":{"title":"十：更改libvirt虚拟机镜像存储路径","level":"1.9.2.3.10","depth":4,"path":"virtual/kvm/startup/change_libvirt_vm_image_store_path.md","ref":"virtual/kvm/startup/change_libvirt_vm_image_store_path.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["disqus","toggle-chapters","livereload"],"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"huatai-gitbooks"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"virtual/kvm/startup/perform_live_migration_on_linux_kvm.md","mtime":"2017-01-04T15:50:22.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-01-05T00:42:16.094Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"十一：实现Linux KVM在线迁移","level":"1.9.2.3.11","depth":4,"next":{"title":"十二：RHEL7 Pacemaker - 配置高可用KVM虚拟机","level":"1.9.2.3.12","depth":4,"path":"virtual/kvm/startup/rhel_7_pacemaker_configuring_ha_kvm_guest.md","ref":"virtual/kvm/startup/rhel_7_pacemaker_configuring_ha_kvm_guest.md","articles":[]},"previous":{"title":"十：更改libvirt虚拟机镜像存储路径","level":"1.9.2.3.10","depth":4,"path":"virtual/kvm/startup/change_libvirt_vm_image_store_path.md","ref":"virtual/kvm/startup/change_libvirt_vm_image_store_path.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["disqus","toggle-chapters","livereload"],"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"huatai-gitbooks"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"virtual/kvm/startup/perform_live_migration_on_linux_kvm.md","mtime":"2017-01-05T08:17:26.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-01-08T00:43:29.788Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

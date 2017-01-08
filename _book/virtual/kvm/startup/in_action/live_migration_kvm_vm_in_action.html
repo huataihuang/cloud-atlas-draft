@@ -3515,9 +3515,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.9.2.3.12" data-path="../rhel_7_pacemaker_configuring_ha_kvm_guest.md">
+        <li class="chapter " data-level="1.9.2.3.12" data-path="../rhel_7_pacemaker_configuring_ha_kvm_guest.html">
             
-                <span>
+                <a href="../rhel_7_pacemaker_configuring_ha_kvm_guest.html">
             
                     
                     十二：RHEL7 Pacemaker - 配置高可用KVM虚拟机
@@ -7310,7 +7310,145 @@ systemctl start nfs-idmap
 </ul>
 <pre><code>exportfs -a
 </code></pre><h1 id="nfs&#x5BA2;&#x6237;&#x7AEF;&#x6302;&#x8F7D;">NFS&#x5BA2;&#x6237;&#x7AEF;&#x6302;&#x8F7D;</h1>
-<h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
+<ul>
+<li>&#x7F16;&#x8F91;&#x9700;&#x8981;&#x6302;&#x8F7D;&#x5171;&#x4EAB;NFS&#x78C1;&#x76D8;&#x7684;&#x8BBE;&#x7F6E;<code>/etc/fstab</code>&#x914D;&#x7F6E;&#x5C06;&#x5171;&#x4EAB;NFS&#x5377;&#x6302;&#x8F7D;&#x5230;<code>/var/lib/libvirt/nfs-images</code></li>
+</ul>
+<pre><code>192.168.1.1:/var/lib/nfs-data/images  /var/lib/libvirt/nfs-images  nfs  auto,rw,vers=3,hard,intr,tcp,rsize=32768,wsize=32768      0   0
+</code></pre><ul>
+<li>&#x5BA2;&#x6237;&#x7AEF;&#x6302;&#x8F7D;</li>
+</ul>
+<pre><code>mkdir -p /var/lib/libvirt/nfs-images
+mount /var/lib/libvirt/nfs-images
+</code></pre><blockquote>
+<p>&#x6240;&#x6709;&#x4F7F;&#x7528;&#x5171;&#x4EAB;&#x5B58;&#x50A8;&#x7684;KVM&#x4E3B;&#x673A;&#x90FD;&#x6302;&#x8F7D;&#x597D;&#x8FD9;&#x4E2A;NFS&#x5171;&#x4EAB;</p>
+</blockquote>
+<h1 id="&#x914D;&#x7F6E;libvirt&#x7684;vm&#x5B58;&#x50A8;&#x6C60;">&#x914D;&#x7F6E;libvirt&#x7684;VM&#x5B58;&#x50A8;&#x6C60;</h1>
+<p>&#x5C06;&#x9ED8;&#x8BA4;&#x7684;<code>/var/lib/libvirt/images</code>&#x76EE;&#x5F55;&#x5BF9;&#x5E94;&#x7684;<code>default</code>&#x5B58;&#x50A8;&#x6C60;&#x4FEE;&#x6539;&#x5230;&#x65B0;&#x7684;&#x5171;&#x4EAB;&#x5B58;&#x50A8;</p>
+<ul>
+<li>&#x5148;&#x5173;&#x95ED;&#x8FD0;&#x884C;&#x7684;&#x865A;&#x62DF;&#x673A;</li>
+</ul>
+<pre><code>virsh shutdown centos7
+virsh shutdown win2012
+</code></pre><ul>
+<li>&#x68C0;&#x67E5;&#x6240;&#x6709;&#x865A;&#x62DF;&#x673A;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#xFF0C;&#x786E;&#x4FDD;&#x6240;&#x6709;&#x865A;&#x62DF;&#x673A;&#x90FD;&#x5DF2;&#x7ECF;&#x5173;&#x95ED;</li>
+</ul>
+<pre><code>virsh list --all
+</code></pre><ul>
+<li>&#x68C0;&#x67E5;&#x5B58;&#x50A8;&#x6C60;</li>
+</ul>
+<pre><code>virsh pool-list
+</code></pre><p>&#x663E;&#x793A;&#x8F93;&#x51FA;</p>
+<pre><code> Name                 State      Autostart
+-------------------------------------------
+ huatai               active     yes
+ images               active     yes
+ root                 active     yes
+</code></pre><ul>
+<li>&#x68C0;&#x67E5;&#x5B58;&#x50A8;&#x6C60;&#x4FE1;&#x606F; - &#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5B58;&#x50A8;&#x6C60;&#x5BB9;&#x91CF;</li>
+</ul>
+<pre><code>virsh pool-info images
+</code></pre><ul>
+<li>&#x68C0;&#x67E5;&#x5B58;&#x50A8;&#x6C60;&#x8DEF;&#x5F84;</li>
+</ul>
+<pre><code>virsh pool-dumpxml images | grep -i path
+</code></pre><p>&#x8F93;&#x51FA;&#x663E;&#x793A;</p>
+<pre><code>    &lt;path&gt;/var/lib/libvirt/images&lt;/path&gt;
+</code></pre><ul>
+<li>&#x68C0;&#x67E5;&#x6709;&#x54EA;&#x4E9B;VM&#x955C;&#x50CF;&#x5B58;&#x50A8;&#x5728;&#x8FD9;&#x4E2A;&#x8DEF;&#x5F84;&#x4E2D;</li>
+</ul>
+<pre><code>virsh vol-list images
+</code></pre><p>&#x8F93;&#x51FA;&#x663E;&#x793A;</p>
+<pre><code> Name                 Path
+------------------------------------------------------------------------------
+ CentOS-7-x86_64-DVD-1511.iso /var/lib/libvirt/images/CentOS-7-x86_64-DVD-1511.iso
+ centos7.img          /var/lib/libvirt/images/centos7.img
+ win2012.img          /var/lib/libvirt/images/win2012.img
+ win2012.iso          /var/lib/libvirt/images/win2012.iso
+</code></pre><ul>
+<li>&#x505C;&#x6B62;&#x5B58;&#x50A8;&#x6C60;</li>
+</ul>
+<pre><code>virsh pool-destroy images
+</code></pre><ul>
+<li>&#x7F16;&#x8F91;&#x5B58;&#x50A8;&#x6C60;&#x914D;&#x7F6E;</li>
+</ul>
+<pre><code>virsh pool-edit images
+</code></pre><p>&#x7F16;&#x8F91;&#x5185;&#x5BB9;&#xFF0C;&#x5C06;&#x5176;&#x4E2D;&#x7684;&#x5B58;&#x50A8;&#x8DEF;&#x5F84;&#x4FEE;&#x6539;&#x6210;&#x65B0;&#x7684;NFS&#x5171;&#x4EAB;&#x5B58;&#x50A8;&#x8DEF;&#x5F84;</p>
+<pre><code>&lt;pool type=&apos;dir&apos;&gt;
+  &lt;name&gt;images&lt;/name&gt;
+  &lt;uuid&gt;82b69f47-1c20-4e99-9dad-5665181c0d77&lt;/uuid&gt;
+  ...
+  &lt;target&gt;
+    &lt;path&gt;/var/lib/libvirt/nfs-images&lt;/path&gt;
+    ...
+  &lt;/target&gt;
+&lt;/pool&gt;
+</code></pre><ul>
+<li>&#x542F;&#x52A8;&#x5B58;&#x50A8;&#x6C60;</li>
+</ul>
+<pre><code>virsh pool-start images
+</code></pre><ul>
+<li>&#x518D;&#x6B21;&#x68C0;&#x67E5;&#x5B58;&#x50A8;&#x8DEF;&#x5F84;</li>
+</ul>
+<pre><code>virsh pool-dumpxml images | grep -i path
+</code></pre><p>&#x786E;&#x8BA4;&#x4FEE;&#x6539;&#x8DEF;&#x5F84;&#x6B63;&#x786E;</p>
+<pre><code>&lt;path&gt;/var/lib/libvirt/nfs-images&lt;/path&gt;
+</code></pre><ul>
+<li>&#x5C06;VM&#x955C;&#x50CF;&#x4ECE;&#x65E7;&#x8DEF;&#x5F84;&#x8FC1;&#x79FB;&#x5230;&#x65B0;&#x8DEF;&#x5F84;</li>
+</ul>
+<pre><code>mv /var/lib/libvirt/images/* /var/lib/libvirt/nfs-images/
+</code></pre><ul>
+<li>&#x7F16;&#x8F91;VM&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x66F4;&#x65B0;&#x5230;&#x65B0;&#x7684;&#x5B58;&#x50A8;&#x6C60;&#x8DEF;&#x5F84;</li>
+</ul>
+<pre><code>sudo virsh edit centos7
+</code></pre><p>&#x5C06;&#x5B58;&#x50A8;&#x8DEF;&#x5F84;&#x4FEE;&#x6539;&#x5230;&#x5171;&#x4EAB;&#x5B58;&#x50A8;&#x76EE;&#x5F55;</p>
+<pre><code>&lt;source file=&apos;/var/lib/libvirt/nfs-images/centos7.img&apos;/&gt;
+</code></pre><ul>
+<li>&#x7136;&#x540E;&#x542F;&#x52A8;&#x865A;&#x62DF;&#x673A;</li>
+</ul>
+<pre><code>virsh start centos7
+</code></pre><h1 id="kvm&#x70ED;&#x8FC1;&#x79FB;">KVM&#x70ED;&#x8FC1;&#x79FB;</h1>
+<ul>
+<li>&#x6D4B;&#x8BD5;&#x73AF;&#x5883;&#xFF1A;&#x5C06;&#x865A;&#x62DF;&#x673A; <code>centos7</code> &#x4ECE;KVM&#x7269;&#x7406;&#x670D;&#x52A1;&#x5668; <code>test-1-3</code> &#x8FC1;&#x79FB;&#x5230; <code>test-1-4</code> &#x4E0A;&#xFF0C;&#x6211;&#x4EEC;&#x8981;&#x5148;&#x6253;&#x901A;<code>test-1-3</code>&#x767B;&#x5F55;&#x5230;<code>test-1-4</code>&#x7684;&#x514D;&#x5BC6;&#x7801;ssh&#xFF0C;&#x5E76;&#x9A8C;&#x8BC1;ssh&#x767B;&#x5F55;&#x65E0;&#x8BEF;</li>
+</ul>
+<pre><code>ssh test-1-4 &quot;virsh list&quot;
+</code></pre><p>&#x663E;&#x793A;&#x8F93;&#x51FA;</p>
+<pre><code> Id    Name                           State
+----------------------------------------------------
+</code></pre><ul>
+<li><p>&#x5728;&#x865A;&#x62DF;&#x673A;&#x5185;&#x90E8;&#x542F;&#x52A8;ping&#xFF0C;&#x9A8C;&#x8BC1;&#x7F51;&#x7EDC;&#x662F;&#x5426;&#x4F1A;&#x6709;&#x5F71;&#x54CD;</p>
+</li>
+<li><p>&#x4ECE;KVM&#x4E3B;&#x673A;&#xFF0C;<code>test-1-3</code>&#x4E0A;&#x53D1;&#x8D77;&#x70ED;&#x8FC1;&#x79FB;</p>
+</li>
+</ul>
+<pre><code>virsh migrate centos7 qemu+ssh://root@testtfs-1-4/system
+</code></pre><p>&#x63D0;&#x793A;&#x4FE1;&#x606F;</p>
+<pre><code>error: Unsafe migration: Migration may lead to data corruption if disks use cache != none
+</code></pre><p>&#x8981;&#x907F;&#x514D;&#x8FD9;&#x4E2A;&#x62A5;&#x9519;&#xFF0C;&#x9700;&#x8981;&#x5173;&#x95ED;&#x6BCF;&#x4E2A;VM&#x7684;disk I/O cache&#x529F;&#x80FD;&#xFF0C;&#x5373;&#x7F16;&#x8F91;vm</p>
+<pre><code>virsh shutdown centos7
+virsh edit centos7
+</code></pre><p>&#x5728; <code>driver</code>&#x884C;&#x6DFB;&#x52A0;`cache=&apos;none&apos;</p>
+<pre><code>    &lt;disk type=&apos;file&apos; device=&apos;disk&apos;&gt;
+      &lt;driver name=&apos;qemu&apos; type=&apos;qcow2&apos; cache=&apos;none&apos;/&gt;
+      &lt;source file=&apos;/var/lib/libvirt/nfs-images/centos7.img&apos;/&gt;
+      &lt;target dev=&apos;vda&apos; bus=&apos;virtio&apos;/&gt;
+      &lt;address type=&apos;pci&apos; domain=&apos;0x0000&apos; bus=&apos;0x00&apos; slot=&apos;0x06&apos; function=&apos;0x0&apos;/&gt;
+    &lt;/disk&gt;
+</code></pre><p>&#x7136;&#x540E;&#x518D;&#x6B21;&#x542F;&#x52A8;vm</p>
+<pre><code>virsh start centos7
+</code></pre><p>&#x7136;&#x540E;&#x518D;&#x6B21;&#x8FC1;&#x79FB;&#x3002;</p>
+<blockquote>
+<p>&#x53E6;&#x5916;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#x662F;&#x4F7F;&#x7528; <code>--unsafe</code> &#xFF0C;&#x8FD9;&#x6837;&#x5BF9;&#x4E8E;&#x975E;&#x5173;&#x952E;&#x5E94;&#x7528;&#x53EF;&#x4EE5;&#x9002;&#x5408;&#x3002;</p>
+</blockquote>
+<pre><code>virsh migrate centos7 qemu+ssh://root@testtfs-1-4/system --unsafe
+</code></pre><ul>
+<li>&#x7136;&#x540E;&#x5728;<code>test-1-4</code>&#x7269;&#x7406;&#x670D;&#x52A1;&#x5668;&#x4E0A;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x8FC1;&#x79FB;&#x540E;&#x6B63;&#x5E38;&#x8FD0;&#x884C;&#x7684;&#x865A;&#x62DF;&#x673A;</li>
+</ul>
+<pre><code>[root@test-1-4 /root]
+#virsh list
+ Id    Name                           State
+----------------------------------------------------
+ 1     centos7                        running
+</code></pre><h1 id="&#x53C2;&#x8003;">&#x53C2;&#x8003;</h1>
 <ul>
 <li><a href="../change_libvirt_vm_image_store_path">&#x5341;&#xFF1A;&#x66F4;&#x6539;libvirt&#x865A;&#x62DF;&#x673A;&#x955C;&#x50CF;&#x5B58;&#x50A8;&#x8DEF;&#x5F84;</a></li>
 <li><a href="../perform_live_migration_on_linux_kvm">&#x5341;&#x4E00;&#xFF1A;&#x5B9E;&#x73B0;Linux KVM&#x5728;&#x7EBF;&#x8FC1;&#x79FB;</a></li>
@@ -7359,7 +7497,7 @@ systemctl start nfs-idmap
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Linux KVM在线迁移实战","level":"1.9.2.3.13.7","depth":5,"next":{"title":"高可用KVM虚拟机实战","level":"1.9.2.3.13.8","depth":5,"path":"virtual/kvm/startup/in_action/ha_kvm_vm_in_action.md","ref":"virtual/kvm/startup/in_action/ha_kvm_vm_in_action.md","articles":[]},"previous":{"title":"动态调整KVM虚拟机内存和vcpu实战","level":"1.9.2.3.13.6","depth":5,"path":"virtual/kvm/startup/in_action/add_remove_vcpu_memory_to_guest_on_fly.md","ref":"virtual/kvm/startup/in_action/add_remove_vcpu_memory_to_guest_on_fly.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["disqus","toggle-chapters","livereload"],"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"huatai-gitbooks"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"virtual/kvm/startup/in_action/live_migration_kvm_vm_in_action.md","mtime":"2017-01-04T17:00:16.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-01-05T00:42:16.094Z"},"basePath":"../../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Linux KVM在线迁移实战","level":"1.9.2.3.13.7","depth":5,"next":{"title":"高可用KVM虚拟机实战","level":"1.9.2.3.13.8","depth":5,"path":"virtual/kvm/startup/in_action/ha_kvm_vm_in_action.md","ref":"virtual/kvm/startup/in_action/ha_kvm_vm_in_action.md","articles":[]},"previous":{"title":"动态调整KVM虚拟机内存和vcpu实战","level":"1.9.2.3.13.6","depth":5,"path":"virtual/kvm/startup/in_action/add_remove_vcpu_memory_to_guest_on_fly.md","ref":"virtual/kvm/startup/in_action/add_remove_vcpu_memory_to_guest_on_fly.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["disqus","toggle-chapters","livereload"],"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"huatai-gitbooks"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"virtual/kvm/startup/in_action/live_migration_kvm_vm_in_action.md","mtime":"2017-01-05T08:10:46.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-01-08T00:43:29.788Z"},"basePath":"../../../..","book":{"language":""}});
         });
     </script>
 </div>

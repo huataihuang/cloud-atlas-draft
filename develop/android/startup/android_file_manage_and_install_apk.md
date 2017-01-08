@@ -2,7 +2,7 @@
 
 Nexus原生Android系统，默认没有一个文件管理器。但是，并不意味着无法使用文件。
 
-> 前述[使用Android File Transfer传输](transfer_file_to_android.md)文件到`Download`目录，但是打开`Downloads`程序却看不到这两个存放到`.apk`文件。
+> 前述[使用Android File Transfer传输](transfer_file_to_android)文件到`Download`目录，但是打开`Downloads`程序却看不到这两个存放到`.apk`文件。
 
 在`Settings => Storage & USB`设置中有一个`Explore`功能，就是一个文件管理器，可以浏览和使用文件。
 

@@ -70,6 +70,8 @@ sdkmanage "platform-tools"
 * 激活`OEM unlock`
 * 将手机通过USB连接到电脑上，并在提示你`Allow USB debugging`对话框中点击`OK`
 
+> 只有激活了USB debugging之后才能在`adb devices`中看到连接设备
+
 > 以上步骤完成后，就需要unlock手机的bootloader
 
 ## Unlock手机的bootloader

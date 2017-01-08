@@ -88,9 +88,14 @@ npm update -g
 Error: Module version mismatch. Expected 48, got 46.
 ```
 
-解决方法参考 []()
+解决方法参考 [升级Node.js v6.0.0之后无法编译 #1939](https://github.com/hexojs/hexo/issues/1939) [Node.js – Error: Module version mismatch. Expected 48, got 46.](http://blog.jonathanargentiero.com/node-js-error-module-version-mismatch-expected-48-got-46/) 原理类似，在程序目录执行删除模块目录，然后重新安装模块
 
-或者参考 [Node.js – Error: Module version mismatch. Expected 48, got 46.](http://blog.jonathanargentiero.com/node-js-error-module-version-mismatch-expected-48-got-46/) 原理类似，在程序目录执行删除模块目录，然后重新安装模块
+```
+rm -rf node_modules/
+npm i --no-optional
+```
+
+或
 
 ```
 rm -rf node_modules && npm install

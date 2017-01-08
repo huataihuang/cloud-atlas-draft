@@ -2,6 +2,29 @@
 
 ![KVM热迁移](/img/virtual/kvm/startup/KVM-Live-VM-Migration.jpg)
 
+# 环境
+
+* KVM物理主机 – UA-HA 和 UA-HA2
+* VM名字 – UAKVM2
+
+存储池：
+
+```
+[root@UA-HA ~]# df -h /kvmpool/
+Filesystem                 Size  Used Avail Use% Mounted on
+192.168.203.134:/kvmstore  1.8G  1.7G   88M  96% /kvmpool
+[root@UA-HA ~]# ssh UA-HA2 df -h /kvmpool/
+Filesystem                 Size  Used Avail Use% Mounted on
+192.168.203.134:/kvmstore  1.8G  1.7G   88M  96% /kvmpool
+[root@UA-HA ~]# ls -lrt /kvmpool
+total 1710924
+-rw------- 1 root root 4295884800 Dec 22 18:07 UAKVM2.qcow2
+[root@UA-HA ~]#
+```
+
+> 你必须在KVM主机之间配置`无须密码的root登录ssh`来立即启动迁移以避免root用户密码提示。
+
+* 当
 
 # 参考
 
