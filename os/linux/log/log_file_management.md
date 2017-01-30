@@ -126,6 +126,7 @@ Apr 27 00:39:29 example-server logger_test[27478]: 64 bytes from 192.168.0.1: ic
 **logrotate配置参数**
 
 | 参数 | 功能 |
+| ---- | ---- |
 | compress | 通过gzip 压缩转储以后的日志 |
 | nocompress | 不需要压缩时，用这个参数 |
 | copytruncate | 用于还在打开中的日志文件，把当前日志备份并截断 |

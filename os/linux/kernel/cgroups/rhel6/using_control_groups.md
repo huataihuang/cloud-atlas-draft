@@ -336,6 +336,23 @@ cgset --copy-from group1/ group2/
 echo 0-1 > /cgroup/cpu_ane_mem/group1/cpuset.cpus
 ```
 
+举例：假设要设置控制组`agent`内存限制8G
+
+```
+cgset -r memory.limit_in_bytes=8589934592 agent
+```
+
+对应配置类似如下
+
+```
+group agent {
+       ...
+       memory {
+               memory.limit_in_bytes = 8192M;
+       }
+}
+```
+
 # 将一个进程移动到控制组
 
 要将一个进程移入到一个cgroup，使用`cgclassify`命令。例如：

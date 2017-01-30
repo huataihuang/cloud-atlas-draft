@@ -1,3 +1,5 @@
+> 对比使用 Sublime Text, Github开发的 Atom编辑器, 以及传说中的Mac编辑神器textmate2, 微软最新开源的Visual Stuido Code，我最终决定使用功能丰富和快速的Code编辑器。因为Code编辑器使用简便，跨平台开源，功能强大且性能优良。
+
 完整的Sublime Text学习资料可以参考[Sublime Text全程指南](http://www.kancloud.cn/digest/sublime-text-complete-guide)，这个指南覆盖了Sublime Text的常用功能和使用案例，适合入门参考。
 
 > [Sublime Text全程指南](http://www.kancloud.cn/digest/sublime-text-complete-guide)的作者使用[ScreenToGif](http://screentogif.codeplex.com)来录制屏幕制作GIF，适合做编程IDE操作介绍，值得参考。
