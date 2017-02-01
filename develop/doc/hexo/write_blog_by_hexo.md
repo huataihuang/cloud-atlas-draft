@@ -2,7 +2,7 @@
 
 推荐`nvm`来管理`node.js`版本，请参考[nvm官方说明](https://github.com/creationix/nvm)
 
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
 
 > 脚本在 `~/.nvm` 目录下clone了`nvm`的git仓库，并在`~/.bash_profile`， `~/.zshrc`， `~/.profile` 或 `~/.bashrc` 中添加了
 
@@ -10,6 +10,8 @@
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 ```
+
+> 升级`nvm`也可以使用上述安装命令，会自动检测当前系统已经安装的`nvm`版本并使用git升级。
 
 > 如果在Mac OS X中执行`nvm`命令提示`nvm: command not found`，则可能在执行上述脚本的时候，系统中尚未有`~/.bash_profie`，请先执行`touch ~/.bash_profile`，然后再执行一遍安装脚本
 

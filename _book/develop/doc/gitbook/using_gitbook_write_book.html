@@ -7461,10 +7461,13 @@
 </ul>
 <blockquote>
 <p>&#x53C2;&#x8003; <a href="http://www.gtwang.org/2013/12/install-node-js-in-windows-mac-os-x-linux.html" target="_blank">&#x5728; Windows&#x3001;Mac OS X &#x8207; Linux &#x4E2D;&#x5B89;&#x88DD; Node.js &#x7DB2;&#x9801;&#x61C9;&#x7528;&#x7A0B;&#x5F0F;&#x958B;&#x767C;&#x74B0;&#x5883;</a></p>
-<p>&#x6211;&#x524D;&#x671F;<a href="&#x518D;&#x6B21;&#x4F7F;&#x7528;hexo&#x64B0;&#x5199;&#x535A;&#x5BA2;">&#x4F7F;&#x7528;Hexo</a>&#xFF0C;&#x5DF2;&#x7ECF;&#x5B89;&#x88C5;&#x4E86;node&#xFF0C;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x9A8C;&#x8BC1;</p>
+<p>&#x6211;&#x524D;&#x671F;<a href="../write_blog_by_hexo">&#x4F7F;&#x7528;Hexo&#x64B0;&#x5199;boke</a>&#xFF0C;&#x5DF2;&#x7ECF;&#x5B89;&#x88C5;&#x4E86;node&#xFF0C;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x9A8C;&#x8BC1;</p>
 </blockquote>
 <pre><code>node -v
-</code></pre><ul>
+</code></pre><blockquote>
+<p>&#x5982;&#x679C;&#x6CA1;&#x6709;&#x5B89;&#x88C5;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;<code>nvm</code>&#x6765;<a href="../write_blog_by_hexo">&#x7BA1;&#x7406;node.js&#x7248;&#x672C;</a></p>
+</blockquote>
+<ul>
 <li>&#x5B89;&#x88C5;Gitbook</li>
 </ul>
 <p>&#x4F7F;&#x7528;NMP&#x5B89;&#x88C5;Gitbook</p>
@@ -7474,7 +7477,219 @@
 </blockquote>
 <p>&#x5B89;&#x88C5;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x4F7F;&#x7528;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x9A8C;&#x8BC1;&#x662F;&#x5426;&#x5B89;&#x88C5;&#x6210;&#x529F;</p>
 <pre><code>gitbook -V
-</code></pre><h1 id="&#x4F7F;&#x7528;gitbook">&#x4F7F;&#x7528;GitBook</h1>
+</code></pre><blockquote>
+<p>&#x4E0A;&#x8FF0;&#x8FD9;&#x4E2A;&#x547D;&#x4EE4;&#x4F1A;&#x5B89;&#x88C5;&#x7A33;&#x5B9A;&#x7248;&#x672C;&#xFF0C;&#x5982;&#x679C;&#x8981;&#x6307;&#x5B9A;&#x5B89;&#x88C5;&#x7248;&#x672C;&#xFF0C;&#x4F8B;&#x5982;&#x5B89;&#x88C5;alpha&#x7248;&#x672C;&#xFF0C;&#x5219;&#x5148;&#x68C0;&#x67E5;&#x53EF;&#x5B89;&#x88C5;&#x7248;&#x672C;</p>
+</blockquote>
+<pre><code>gitbook ls-remote
+</code></pre><p>&#x7136;&#x540E;&#x5B89;&#x88C5;pre&#x7248;&#x672C;</p>
+<pre><code>gitbook fetch pre
+</code></pre><p>&#x6B64;&#x65F6;&#x4F1A;&#x770B;&#x5230;gitbook&#x88AB;&#x5B89;&#x88C5;&#x5230;<code>$HOME/.gitbook/versions/4.0.0-alpha.4</code>&#x3002;&#x5E76;&#x4E14;&#xFF0C;&#x4E3A;&#x4E86;&#x80FD;&#x591F;&#x9ED8;&#x8BA4;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x7248;&#x672C;&#xFF0C;&#x8FD8;&#x9700;&#x8981;&#x505A;&#x4E00;&#x4E2A;&#x8F6F;&#x94FE;&#x63A5;</p>
+<pre><code>cd $HOME/.gitbook/versions/
+ln -s 4.0.0-alpha.4 latest
+</code></pre><p>&#x6B64;&#x65F6;&#x518D;&#x9A8C;&#x8BC1;&#x7248;&#x672C;&#x5C31;&#x4F1A;&#x770B;&#x5230;</p>
+<pre><code>gitbook -V
+</code></pre><p>&#x663E;&#x793A;&#x8F93;&#x51FA;&#x4F7F;&#x7528;&#x4E86;<code>alpha</code>&#x7248;&#x672C;&#xFF0C;&#x800C;&#x4E0D;&#x4F1A;&#x53BB;&#x5B89;&#x88C5;stable&#x7248;&#x672C;</p>
+<pre><code>CLI version: 2.3.0
+GitBook version: latest (4.0.0-alpha.4)
+</code></pre><h2 id="&#x5347;&#x7EA7;gitbook">&#x5347;&#x7EA7;Gitbook</h2>
+<p>&#x68C0;&#x67E5;&#x5DF2;&#x7ECF;&#x5B89;&#x88C5;&#x7684;&#x7248;&#x672C;</p>
+<pre><code>gitbook ls
+</code></pre><p>&#x67E5;&#x770B;&#x8FDC;&#x7A0B;&#x7248;&#x672C;</p>
+<pre><code>gitbook ls-remote
+</code></pre><p>&#x4EE5;&#x4E0A;&#x663E;&#x793A;gitbook&#x53EF;&#x5B89;&#x88C5;&#x7248;&#x672C;&#xFF0C;&#x5E76;&#x4E14;&#x6709;Tag&#x4E3A;latest&#x7A33;&#x5B9A;&#x7248;&#x672C;&#x548C;pre&#x7684;&#x6D4B;&#x8BD5;&#x7248;&#x672C;&#x3002;</p>
+<p>&#x5B89;&#x88C5;&#x7279;&#x5B9A;&#x7248;&#x672C;&#xFF0C;&#x4F8B;&#x5982;&#x5B89;&#x88C5;alpha&#x7248;&#x672C;</p>
+<pre><code>gitbook fetch 4.0.0-alpha.4
+</code></pre><p>&#x5B89;&#x88C5;&#x9884;&#x53D1;&#x5E03;&#x7248;&#x672C;(&#x6839;&#x636E;<code>gitbook ls-remote</code>&#x63D0;&#x793A;&#x7684;&#x7248;&#x672C;&#x6807;&#x7B7E;)</p>
+<pre><code>gitbook fetch pre
+</code></pre><p>&#x5347;&#x7EA7;&#x6700;&#x65B0;&#x7A33;&#x5B9A;&#x7248;&#x672C;</p>
+<pre><code>gitbook update
+</code></pre><p>&#x5982;&#x679C;&#x8981;&#x4F7F;&#x7528;pre&#x7248;&#x672C;&#xFF0C;&#x5219;&#x8981;&#x4F7F;&#x7528;</p>
+<pre><code>gitbook update pre
+</code></pre><p>&#x5378;&#x8F7D;&#x7A33;&#x5B9A;&#x7248;&#x672C;&#xFF0C;&#x51C6;&#x5907;&#x6539;&#x7528;pre&#x7248;&#x672C;</p>
+<pre><code>gitbook uninstall 3.2.2
+</code></pre><p>&#x8BBE;&#x7F6E;&#x67D0;&#x4E2A;&#x672C;&#x5730;&#x76EE;&#x5F55;&#x4F5C;&#x4E3A;&#x6700;&#x65B0;&#x7248;&#x672C;</p>
+<pre><code>gitbook alias /opt/mygitbook latest
+</code></pre><blockquote>
+<p>&#x4E0A;&#x8FF0;&#x547D;&#x4EE4;&#x5B9E;&#x9645;&#x4E0A;&#x662F;&#x5728; <code>$HOME/.gitbook/versions</code> &#x76EE;&#x5F55;&#x4E0B;&#x7684;&#x591A;&#x4E2A;gitbook&#x7248;&#x672C;&#xFF0C;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x8F6F;&#x94FE;&#x63A5;</p>
+</blockquote>
+<pre><code>latest -&gt; /opt/mygitbook
+</code></pre><p>&#x5982;&#x679C;&#x8981;&#x4F7F;&#x7528;&#x7279;&#x5B9A;&#x7248;&#x672C;&#x6765;build&#x6587;&#x6863;&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;</p>
+<pre><code>gitbook build ./mybook --gitbook=4.0.0-alpha.4
+</code></pre><p>&#x53C2;&#x8003; <a href="https://github.com/GitbookIO/gitbook/blob/master/docs/config.md" target="_blank">Configuration</a> &#x53EF;&#x4EE5;&#x901A;&#x8FC7;&#x8BBE;&#x7F6E;gitbook&#x6587;&#x6863;&#x76EE;&#x5F55;&#x4E0B;&#x7684;<code>book.json</code>&#x6587;&#x4EF6;&#x914D;&#x7F6E;&#x6765;&#x8C03;&#x6574;GitBook&#x7F16;&#x8BD1;&#x6240;&#x4F7F;&#x7528;&#x7684;&#x8F6F;&#x4EF6;&#x7248;&#x672C;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x60F3;&#x4F7F;&#x7528;&#x6700;&#x65B0;&#x7684;<code>4.0.0-alpha.4</code>&#xFF0C;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5982;&#x4E0B;&#x914D;&#x7F6E;</p>
+<pre><code>{
+  &quot;gitbook&quot;: &quot;4.0.0-alpha.4&quot;,
+  ...
+}
+</code></pre><p>&#x8FD9;&#x6837;&#x4F7F;&#x7528;&#x547D;&#x4EE4;<code>gitbook build</code>&#x65F6;&#x5019;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x518D;&#x589E;&#x52A0;<code>--gitbook=4.0.0-alpha.4</code>&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#xFF0C;&#x7B80;&#x5316;&#x547D;&#x4EE4;&#x3002;</p>
+<p>&#x4E0D;&#x8FC7;&#xFF0C;&#x4E3A;&#x4E86;&#x80FD;&#x591F;&#x66F4;&#x52A0;&#x901A;&#x7528;&#xFF0C;&#x5B9E;&#x9645;&#x6211;&#x662F;&#x5728; <code>$HOME/.gitbook/versions</code> &#x6267;&#x884C;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#xFF0C;&#x5C06;<code>4.0.0-alpha.4</code>&#x8F6F;&#x94FE;&#x63A5;&#x6210;<code>latest</code>&#xFF0C;&#x8FD9;&#x6837;&#x540E;&#x7EED;&#x6240;&#x6709;&#x6267;&#x884C;<code>gitbook</code>&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x518D;&#x5F3A;&#x5236;&#x7248;&#x672C;&#x4E86;&#xFF08;&#x4E5F;&#x4E0D;&#x4F1A;&#x518D;&#x53BB;&#x4E0B;&#x8F7D;latest&#x7248;&#x672C;&#xFF09;</p>
+<pre><code>cd $HOME/.gitbook/versions
+unlink latest
+ln -s 4.0.0-alpha.4 latest
+</code></pre><p>&#x6B64;&#x65F6;&#x518D;&#x4F7F;&#x7528;<code>gitbook -V</code>&#x9A8C;&#x8BC1;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5982;&#x4E0B;&#x8F93;&#x51FA;&#x663E;&#x793A;&#x5DF2;&#x7ECF;&#x5347;&#x7EA7;&#x5230;&#x6700;&#x65B0;&#x7684;alpha&#x7248;&#x672C;</p>
+<pre><code>CLI version: 2.3.0
+GitBook version: latest (4.0.0-alpha.4)
+</code></pre><ul>
+<li>&#x5C06;gitbook 3.2.2&#x5347;&#x7EA7;&#x5230;4.0.0-beta&#x7248;&#x672C;&#x540E;&#xFF0C;&#x8FD8;&#x8981;&#x6CE8;&#x610F;&#xFF0C;&#x5982;&#x679C;&#x540C;&#x65F6;&#x5347;&#x7EA7;&#x8FC7;node.js&#x7248;&#x672C;&#xFF0C;&#x9700;&#x8981;&#x5728;node.js&#x4E2D;&#x4F7F;&#x7528;npm&#x5B89;&#x88C5;&#x5347;&#x7EA7;&#x5BF9;&#x5E94;&#x63D2;&#x4EF6;&#xFF1A;</li>
+</ul>
+<pre><code>npm install gitbook-plugin-codeblock-filename -g
+
+npm install react react-dom react-disqus-thread gitbook-plugin-disqus -g
+</code></pre><blockquote>
+<p><code>react react-dom react-disqus-thread gitbook-plugin-disqus</code>&#x8FD9;&#x4E9B;npm&#x5305;&#x9700;&#x8981;&#x4E00;&#x8D77;&#x4F9D;&#x8D56;&#x5B89;&#x88C5;&#xFF0C;&#x4E0A;&#x8FF0;&#x547D;&#x4EE4;&#x4F1A;&#x5168;&#x5C40;&#x5B89;&#x88C5;&#x5230;<code>nvm</code>&#x76EE;&#x5F55;&#x4E0B;&#x3002;</p>
+</blockquote>
+<p>&#x4E0D;&#x8FC7;&#xFF0C;&#x6700;&#x597D;&#x8FD8;&#x662F;&#x5728;&#x6587;&#x6863;&#x76EE;&#x5F55;&#x4E0B;&#x7F16;&#x8F91;&#x597D;<code>book.json</code>&#x6587;&#x4EF6;</p>
+<pre><code>{
+  &quot;gitbook&quot;: &quot;4.0.0-alpha.4&quot;,
+  &quot;plugins&quot;: [&quot;disqus&quot;,&quot;toggle-chapters&quot;],
+  &quot;pluginsConfig&quot;: {
+    &quot;disqus&quot;: {
+      &quot;shortName&quot;: &quot;XXXXXX&quot;
+    }
+  }
+}
+</code></pre><p>&#x7136;&#x540E;&#x6267;&#x884C;&#x4EE5;&#x4E0B;&#x547D;&#x4EE4;&#x5148;&#x5220;&#x9664;&#x6389;&#x65E7;&#x7248;&#x672C;&#x63D2;&#x4EF6;&#xFF0C;&#x7136;&#x540E;&#x91CD;&#x65B0;&#x5B89;&#x88C5;&#x63D2;&#x4EF6;</p>
+<pre><code>rm -rf node_modules/*
+gitbook install
+</code></pre><h2 id="&#x5347;&#x7EA7;&#x5230;400-alpha4&#x4E4B;&#x540E;&#x7684;&#x5904;&#x7406;">&#x5347;&#x7EA7;&#x5230;<code>4.0.0-alpha.4</code>&#x4E4B;&#x540E;&#x7684;&#x5904;&#x7406;</h2>
+<ul>
+<li>&#x5728;&#x6587;&#x6863;&#x76EE;&#x5F55;&#x6267;&#x884C;<code>gitbook serve</code>&#x65F6;&#x5019;&#x51FA;&#x73B0;&#x5982;&#x4E0B;&#x62A5;&#x9519;</li>
+</ul>
+<pre><code>Error: ENOENT: no such file or directory, open &apos;/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/_assets/plugin.js&apos;
+</code></pre><p>&#x89E3;&#x51B3;&#x65B9;&#x6CD5;&#x53C2;&#x8003;&#x5E38;&#x89C4;&#x7684;&#x63D2;&#x4EF6;&#x5B89;&#x88C5;</p>
+<pre><code>cd /Users/huatai/.gitbook/versions/4.0.0-alpha.4
+npm i gitbook-plugin-livereload
+</code></pre><blockquote>
+<p>&#x63D0;&#x793A;<code>gitbook-plugin-livereload</code>&#x662F;&#x5728;<code>/Users/huatai/.gitbook/versions/4.0.0-alpha.4</code>&#x76EE;&#x5F55;&#xFF08;&#x5305;&#x542B;&#x4E86;<code>packages.json</code>&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF09;&#xFF0C;&#x6240;&#x4EE5;&#x5728;&#x8FD9;&#x4E2A;&#x6267;&#x884C;<code>npm i gitbook-plugin-livereload</code>&#x5C31;&#x4F1A;&#x5B89;&#x88C5;&#x6A21;&#x5757;&#x5230;&#x8BE5;&#x76EE;&#x5F55;&#x4E0B;&#x7684;<code>node_modules</code>&#x5B50;&#x76EE;&#x5F55;&#x4E2D;&#x3002;&#x8FD9;&#x662F;npm&#x7684;&#x5E38;&#x89C4;&#x5B89;&#x88C5;&#x65B9;&#x6CD5;&#xFF0C;&#x5E76;&#x4E14;&#x8FD9;&#x4E2A;&#x672C;&#x5730;&#x5B89;&#x88C5;&#x65B9;&#x6CD5;&#x4F1A;&#x8BFB;&#x53D6;<code>package.json</code>&#x6587;&#x4EF6;&#x6765;&#x5B89;&#x88C5;&#x5BF9;&#x5E94;&#x6A21;&#x5757;&#x7248;&#x672C;&#x3002; - &#x53C2;&#x8003; <a href="https://docs.npmjs.com/getting-started/installing-npm-packages-locally" target="_blank">Installing npm packages locally</a></p>
+</blockquote>
+<p>&#x4F46;&#x662F;&#xFF0C;&#x6211;&#x53D1;&#x73B0;&#x4E0A;&#x8FF0;&#x672C;&#x5730;&#x5B89;&#x88C5;<code>gitbook-plugin-livereload</code>&#x6A21;&#x5757;&#x5B9E;&#x9645;&#x4E0A;&#x53EA;&#x5728;<code>node_modules/gitbook-plugin-livereload</code>&#x66F4;&#x65B0;&#x4E86;&#x7F16;&#x8BD1;&#x5B89;&#x88C5;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x64CD;&#x4F5C;&#x65B9;&#x6CD5;&#x5E94;&#x8BE5;&#x662F;&#x8FDB;&#x5165;<code>node_modules/gitbook-plugin-livereload</code>&#x540E;&#x6267;&#x884C;<code>npm install</code>&#x547D;&#x4EE4;&#xFF0C;&#x6240;&#x4EE5;&#x518D;&#x6B21;&#x4FEE;&#x590D;</p>
+<pre><code>cd /Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload
+npm install
+</code></pre><blockquote>
+<p>&#x4E0A;&#x8FF0;&#x8FC7;&#x7A0B;&#x5B58;&#x5728;&#x7F16;&#x8BD1;&#x9519;&#x8BEF;</p>
+</blockquote>
+<pre><code>&gt; spawn-sync@1.0.15 postinstall /Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/node_modules/spawn-sync
+&gt; node postinstall
+
+
+&gt; gitbook-plugin-livereload@4.0.0-alpha.4 prepublish /Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload
+&gt; npm run build-js
+
+
+&gt; gitbook-plugin-livereload@4.0.0-alpha.4 build-js /Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload
+&gt; gitbook-plugin build ./src/index.js ./_assets/plugin.js
+
+events.js:160
+      throw er; // Unhandled &apos;error&apos; event
+      ^
+
+Error: Couldn&apos;t find preset &quot;es2015&quot; relative to directory &quot;/Users/huatai/.gitbook/versions/4.0.0-alpha.4&quot; while parsing file: /Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/src/index.js
+    at /Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/node_modules/babel-core/lib/transformation/file/options/option-manager.js:292:19
+    at Array.map (native)
+    at OptionManager.resolvePresets (/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/node_modules/babel-core/lib/transformation/file/options/option-manager.js:274:20)
+    at OptionManager.mergePresets (/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/node_modules/babel-core/lib/transformation/file/options/option-manager.js:263:10)
+    at OptionManager.mergeOptions (/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/node_modules/babel-core/lib/transformation/file/options/option-manager.js:248:14)
+    at OptionManager.init (/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/node_modules/babel-core/lib/transformation/file/options/option-manager.js:367:12)
+    at File.initOptions (/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/node_modules/babel-core/lib/transformation/file/index.js:216:65)
+    at new File (/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/node_modules/babel-core/lib/transformation/file/index.js:139:24)
+    at Pipeline.transform (/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/node_modules/babel-core/lib/transformation/pipeline.js:46:16)
+    at Babelify._flush (/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/node_modules/babelify/index.js:27:24)
+
+npm ERR! Darwin 16.4.0
+npm ERR! argv &quot;/Users/huatai/.nvm/versions/node/v6.9.4/bin/node&quot; &quot;/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/.bin/npm&quot; &quot;run&quot; &quot;build-js&quot;
+npm ERR! node v6.9.4
+npm ERR! npm  v3.10.9
+npm ERR! code ELIFECYCLE
+npm ERR! gitbook-plugin-livereload@4.0.0-alpha.4 build-js: `gitbook-plugin build ./src/index.js ./_assets/plugin.js`
+npm ERR! Exit status 1
+npm ERR!
+npm ERR! Failed at the gitbook-plugin-livereload@4.0.0-alpha.4 build-js script &apos;gitbook-plugin build ./src/index.js ./_assets/plugin.js&apos;.
+npm ERR! Make sure you have the latest version of node.js and npm installed.
+npm ERR! If you do, this is most likely a problem with the gitbook-plugin-livereload package,
+npm ERR! not with npm itself.
+npm ERR! Tell the author that this fails on your system:
+npm ERR!     gitbook-plugin build ./src/index.js ./_assets/plugin.js
+npm ERR! You can get information on how to open an issue for this project with:
+npm ERR!     npm bugs gitbook-plugin-livereload
+npm ERR! Or if that isn&apos;t available, you can get their info via:
+npm ERR!     npm owner ls gitbook-plugin-livereload
+npm ERR! There is likely additional logging output above.
+
+npm ERR! Please include the following file with any support request:
+npm ERR!     /Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/npm-debug.log
+
+npm WARN gitbook-plugin-livereload@4.0.0-alpha.4 license should be a valid SPDX license expression
+npm ERR! Darwin 16.4.0
+npm ERR! argv &quot;/Users/huatai/.nvm/versions/node/v6.9.4/bin/node&quot; &quot;/Users/huatai/.nvm/versions/node/v6.9.4/bin/npm&quot; &quot;install&quot;
+npm ERR! node v6.9.4
+npm ERR! npm  v3.10.10
+npm ERR! code ELIFECYCLE
+npm ERR! gitbook-plugin-livereload@4.0.0-alpha.4 prepublish: `npm run build-js`
+npm ERR! Exit status 1
+npm ERR!
+npm ERR! Failed at the gitbook-plugin-livereload@4.0.0-alpha.4 prepublish script &apos;npm run build-js&apos;.
+npm ERR! Make sure you have the latest version of node.js and npm installed.
+npm ERR! If you do, this is most likely a problem with the gitbook-plugin-livereload package,
+npm ERR! not with npm itself.
+npm ERR! Tell the author that this fails on your system:
+npm ERR!     npm run build-js
+npm ERR! You can get information on how to open an issue for this project with:
+npm ERR!     npm bugs gitbook-plugin-livereload
+npm ERR! Or if that isn&apos;t available, you can get their info via:
+npm ERR!     npm owner ls gitbook-plugin-livereload
+npm ERR! There is likely additional logging output above.
+
+npm ERR! Please include the following file with any support request:
+npm ERR!     /Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/npm-debug.log
+</code></pre><p>&#x53C2;&#x8003; <a href="http://stackoverflow.com/questions/34819473/error-couldnt-find-preset-es2015-relative-to-directory-users-username" target="_blank">Error: Couldn&apos;t find preset &#x201C;es2015&#x201D; relative to directory &#x201C;/Users/username&#x201D;</a> &#x5148;&#x6267;&#x884C;</p>
+<pre><code>npm install babel-cli babel-preset-es2015
+</code></pre><p>&#x4F46;&#x662F;&#x62A5;&#x9519;&#x4F9D;&#x65E7;&#xFF0C;&#x53E6;&#x5916;&#x53D1;&#x73B0;<code>./_assets/plugin.js</code>&#x6587;&#x4EF6;&#x5185;&#x5BB9;&#x662F;&#x7A7A;&#x7684;</p>
+<p>&#x5C1D;&#x8BD5;&#x91CD;&#x65B0;&#x5B89;&#x88C5;&#x4E00;&#x6B21;&#xFF08;&#x91CD;&#x65B0;&#x5B89;&#x88C5;&#x524D;&#x5148;&#x5168;&#x5C40;&#x5B89;&#x88C5;&#x4E00;&#x6B21; <code>babel-cli babel-preset-es2015</code>&#xFF09;</p>
+<pre><code>gitbook uninstall 4.0.0-alpha.4
+unlink ~/.gitbook/versions/latest
+npm install babel-cli babel-preset-es2015 -g
+
+gitbook fetch pre
+cd ~/.gitbook/versions
+ln -s 4.0.0-alpha.4 latest
+
+cd 4.0.0-alpha.4/node_modules/gitbook-plugin-livereload
+npm install
+</code></pre><p><strong>&#x6CA1;&#x6709;&#x89E3;&#x51B3;&#xFF0C;&#x6682;&#x65F6;&#x653E;&#x5F03;&#x5C1D;&#x8BD5;&#xFF0C;&#x56DE;&#x9000;&#x5230;&#x7A33;&#x5B9A;&#x7248;&#x672C;</strong></p>
+<pre><code>cd ~/.gitbook/versions
+unlink latest
+
+gitbook uninstall 4.0.0-alpha.4
+gitbook update
+</code></pre><blockquote>
+<p>&#x6B64;&#x65F6;&#x5B89;&#x88C5;&#x7248;&#x672C;&#x662F;&#x7A33;&#x5B9A;&#x7248;&#x672C;3.2.2</p>
+</blockquote>
+<p>&#x91CD;&#x65B0;&#x5B89;&#x88C5;&#x6587;&#x6863;&#x76EE;&#x5F55;&#x4E2D;&#x7684;&#x63D2;&#x4EF6;</p>
+<pre><code>cd ~/my_gitbook
+gitbook install
+</code></pre><ul>
+<li>&#x65E0;&#x6CD5;&#x627E;&#x5230;<code>gitbook-core</code>&#x6A21;&#x5757;</li>
+</ul>
+<p>&#x8FD8;&#x6709;&#x62A5;&#x9519;</p>
+<pre><code>Error: Cannot find module &apos;gitbook-core&apos;
+</code></pre><p>&#x5C1D;&#x8BD5;&#x518D;&#x6B21;&#x5B89;&#x88C5;<code>gitbook-core</code>&#x6A21;&#x5757;</p>
+<pre><code>cd /Users/huatai/.nvm/versions/node/v6.9.4/lib/node_modules/gitbook-cli
+npm i gitbook-core -g
+</code></pre><blockquote>
+<p>&#x5FC5;&#x987B;&#x8FDB;&#x5165;<code>lib/node_modules/gitbook-cli</code>&#x624D;&#x80FD;&#x6267;&#x884C;&#x4E0A;&#x8FF0;&#x5B89;&#x88C5;&#x547D;&#x4EE4;&#xFF0C;&#x9700;&#x8981;&#x8BFB;&#x53D6;&#x8BE5;&#x76EE;&#x5F55;&#x4E0B;&#x7684;<code>package.json</code></p>
+</blockquote>
+<ul>
+<li><code>TypeError: Cannot read property &apos;Page&apos; of undefined</code></li>
+</ul>
+<p>&#x4FEE;&#x590D;&#x4E86;<code>gitbook-core</code>&#x6A21;&#x5757;&#x95EE;&#x9898;&#x540E;&#xFF0C;&#x53C8;&#x9047;&#x5230;&#x4E0D;&#x80FD;&#x8BFB;&#x53D6;Page&#x5C5E;&#x6027;&#x95EE;&#x9898;</p>
+<pre><code>error: error while generating page &quot;README.md&quot;:
+
+TypeError: Cannot read property &apos;Page&apos; of undefined
+</code></pre><p>&#x4F7F;&#x7528; <code>gitbook -d serve</code> &#x547D;&#x4EE4;&#x8BE6;&#x7EC6;&#x6392;&#x67E5;&#x663E;&#x793A;&#x9519;&#x8BEF;</p>
+<pre><code>...
+    at /Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/immutable/dist/immutable.js:2701:43
+    at List.__iterate (/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/immutable/dist/immutable.js:2208:13
+</code></pre><p>&#x663E;&#x793A;&#x62A5;&#x9519;&#x548C;&#x6A21;&#x5757;<code>immutable</code>&#x6709;&#x5173;</p>
+<h1 id="&#x4F7F;&#x7528;gitbook">&#x4F7F;&#x7528;GitBook</h1>
 <ul>
 <li><p>&#x521D;&#x59CB;&#x5316;&#x76EE;&#x5F55;<code>cloud-atlas</code></p>
 <pre><code>  gitbook init cloud-atlas
@@ -7735,7 +7950,7 @@ npm install gitbook@2.6.7
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"使用GitBook撰写书籍","level":"1.13.11.1.1","depth":4,"next":{"title":"如何在一台主机同时运行多个GitBook","level":"1.13.11.1.2","depth":4,"path":"develop/doc/gitbook/run_multi_gitbook_in_one_host.md","ref":"develop/doc/gitbook/run_multi_gitbook_in_one_host.md","articles":[]},"previous":{"title":"GitBook","level":"1.13.11.1","depth":3,"path":"develop/doc/gitbook/README.md","ref":"develop/doc/gitbook/README.md","articles":[{"title":"使用GitBook撰写书籍","level":"1.13.11.1.1","depth":4,"path":"develop/doc/gitbook/using_gitbook_write_book.md","ref":"develop/doc/gitbook/using_gitbook_write_book.md","articles":[]},{"title":"如何在一台主机同时运行多个GitBook","level":"1.13.11.1.2","depth":4,"path":"develop/doc/gitbook/run_multi_gitbook_in_one_host.md","ref":"develop/doc/gitbook/run_multi_gitbook_in_one_host.md","articles":[]},{"title":"GitBook评论插件","level":"1.13.11.1.3","depth":4,"path":"develop/doc/gitbook/gitbook_discussions.md","ref":"develop/doc/gitbook/gitbook_discussions.md","articles":[]},{"title":"GitBook单章节展开插件","level":"1.13.11.1.4","depth":4,"path":"develop/doc/gitbook/gitbook_toggle_chapters.md","ref":"develop/doc/gitbook/gitbook_toggle_chapters.md","articles":[]},{"title":"GitBook代码段添加文件名","level":"1.13.11.1.5","depth":4,"path":"develop/doc/gitbook/gitbook_codeblock_filename.md","ref":"develop/doc/gitbook/gitbook_codeblock_filename.md","articles":[]},{"title":"GitBook多国语言","level":"1.13.11.1.6","depth":4,"path":"develop/doc/gitbook/gitbook_multi_language.md","ref":"develop/doc/gitbook/gitbook_multi_language.md","articles":[]},{"title":"GitBook嵌入视频","level":"1.13.11.1.7","depth":4,"path":"develop/doc/gitbook/gitbook_video.md","ref":"develop/doc/gitbook/gitbook_video.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["disqus","toggle-chapters","livereload"],"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"huatai-gitbooks"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"develop/doc/gitbook/using_gitbook_write_book.md","mtime":"2016-12-10T16:51:45.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-01-30T14:52:04.863Z"},"basePath":"../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"使用GitBook撰写书籍","level":"1.13.11.1.1","depth":4,"next":{"title":"如何在一台主机同时运行多个GitBook","level":"1.13.11.1.2","depth":4,"path":"develop/doc/gitbook/run_multi_gitbook_in_one_host.md","ref":"develop/doc/gitbook/run_multi_gitbook_in_one_host.md","articles":[]},"previous":{"title":"GitBook","level":"1.13.11.1","depth":3,"path":"develop/doc/gitbook/README.md","ref":"develop/doc/gitbook/README.md","articles":[{"title":"使用GitBook撰写书籍","level":"1.13.11.1.1","depth":4,"path":"develop/doc/gitbook/using_gitbook_write_book.md","ref":"develop/doc/gitbook/using_gitbook_write_book.md","articles":[]},{"title":"如何在一台主机同时运行多个GitBook","level":"1.13.11.1.2","depth":4,"path":"develop/doc/gitbook/run_multi_gitbook_in_one_host.md","ref":"develop/doc/gitbook/run_multi_gitbook_in_one_host.md","articles":[]},{"title":"GitBook评论插件","level":"1.13.11.1.3","depth":4,"path":"develop/doc/gitbook/gitbook_discussions.md","ref":"develop/doc/gitbook/gitbook_discussions.md","articles":[]},{"title":"GitBook单章节展开插件","level":"1.13.11.1.4","depth":4,"path":"develop/doc/gitbook/gitbook_toggle_chapters.md","ref":"develop/doc/gitbook/gitbook_toggle_chapters.md","articles":[]},{"title":"GitBook代码段添加文件名","level":"1.13.11.1.5","depth":4,"path":"develop/doc/gitbook/gitbook_codeblock_filename.md","ref":"develop/doc/gitbook/gitbook_codeblock_filename.md","articles":[]},{"title":"GitBook多国语言","level":"1.13.11.1.6","depth":4,"path":"develop/doc/gitbook/gitbook_multi_language.md","ref":"develop/doc/gitbook/gitbook_multi_language.md","articles":[]},{"title":"GitBook嵌入视频","level":"1.13.11.1.7","depth":4,"path":"develop/doc/gitbook/gitbook_video.md","ref":"develop/doc/gitbook/gitbook_video.md","articles":[]}]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["disqus","toggle-chapters","livereload"],"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"huatai-gitbooks"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"develop/doc/gitbook/using_gitbook_write_book.md","mtime":"2017-02-01T01:42:21.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-02-01T01:42:15.624Z"},"basePath":"../../..","book":{"language":""}});
         });
     </script>
 </div>

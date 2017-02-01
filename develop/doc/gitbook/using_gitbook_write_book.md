@@ -6,9 +6,11 @@
 
 > 参考 [在 Windows、Mac OS X 與 Linux 中安裝 Node.js 網頁應用程式開發環境](http://www.gtwang.org/2013/12/install-node-js-in-windows-mac-os-x-linux.html)
 >
-> 我前期[使用Hexo](再次使用hexo撰写博客)，已经安装了node，使用以下命令验证
+> 我前期[使用Hexo撰写boke](../write_blog_by_hexo)，已经安装了node，使用以下命令验证
 
     node -v
+
+> 如果没有安装，可以使用`nvm`来[管理node.js版本](../write_blog_by_hexo)
 
 * 安装Gitbook
 
@@ -21,6 +23,342 @@
 安装完成后，使用以下命令验证是否安装成功
 
     gitbook -V
+
+> 上述这个命令会安装稳定版本，如果要指定安装版本，例如安装alpha版本，则先检查可安装版本
+
+```
+gitbook ls-remote
+```
+
+然后安装pre版本
+
+```
+gitbook fetch pre
+```
+
+此时会看到gitbook被安装到`$HOME/.gitbook/versions/4.0.0-alpha.4`。并且，为了能够默认使用这个版本，还需要做一个软链接
+
+```
+cd $HOME/.gitbook/versions/
+ln -s 4.0.0-alpha.4 latest
+```
+
+此时再验证版本就会看到
+
+```
+gitbook -V
+```
+
+显示输出使用了`alpha`版本，而不会去安装stable版本
+
+```
+CLI version: 2.3.0
+GitBook version: latest (4.0.0-alpha.4)
+```
+
+## 升级Gitbook
+
+检查已经安装的版本
+
+```
+gitbook ls
+```
+
+查看远程版本
+
+```
+gitbook ls-remote
+```
+
+以上显示gitbook可安装版本，并且有Tag为latest稳定版本和pre的测试版本。
+
+安装特定版本，例如安装alpha版本
+
+```
+gitbook fetch 4.0.0-alpha.4
+```
+
+安装预发布版本(根据`gitbook ls-remote`提示的版本标签)
+
+```
+gitbook fetch pre
+```
+
+升级最新稳定版本
+
+```
+gitbook update
+```
+
+如果要使用pre版本，则要使用
+
+```
+gitbook update pre
+```
+
+卸载稳定版本，准备改用pre版本
+
+```
+gitbook uninstall 3.2.2
+```
+
+设置某个本地目录作为最新版本
+
+```
+gitbook alias /opt/mygitbook latest
+```
+
+> 上述命令实际上是在 `$HOME/.gitbook/versions` 目录下的多个gitbook版本，创建了一个软链接
+
+```
+latest -> /opt/mygitbook
+```
+
+如果要使用特定版本来build文档，可以使用
+
+```
+gitbook build ./mybook --gitbook=4.0.0-alpha.4
+```
+
+参考 [Configuration](https://github.com/GitbookIO/gitbook/blob/master/docs/config.md) 可以通过设置gitbook文档目录下的`book.json`文件配置来调整GitBook编译所使用的软件版本。例如，想使用最新的`4.0.0-alpha.4`，可以使用如下配置
+
+```
+{
+  "gitbook": "4.0.0-alpha.4",
+  ...
+}
+```
+
+这样使用命令`gitbook build`时候就不需要再增加`--gitbook=4.0.0-alpha.4`作为参数，简化命令。
+
+不过，为了能够更加通用，实际我是在 `$HOME/.gitbook/versions` 执行以下命令，将`4.0.0-alpha.4`软链接成`latest`，这样后续所有执行`gitbook`就不需要再强制版本了（也不会再去下载latest版本）
+
+```
+cd $HOME/.gitbook/versions
+unlink latest
+ln -s 4.0.0-alpha.4 latest
+```
+
+此时再使用`gitbook -V`验证可以看到如下输出显示已经升级到最新的alpha版本
+
+```
+CLI version: 2.3.0
+GitBook version: latest (4.0.0-alpha.4)
+```
+
+* 将gitbook 3.2.2升级到4.0.0-beta版本后，还要注意，如果同时升级过node.js版本，需要在node.js中使用npm安装升级对应插件：
+
+```
+npm install gitbook-plugin-codeblock-filename -g
+
+npm install react react-dom react-disqus-thread gitbook-plugin-disqus -g
+```
+
+> `react react-dom react-disqus-thread gitbook-plugin-disqus`这些npm包需要一起依赖安装，上述命令会全局安装到`nvm`目录下。
+
+不过，最好还是在文档目录下编辑好`book.json`文件
+
+```
+{
+  "gitbook": "4.0.0-alpha.4",
+  "plugins": ["disqus","toggle-chapters"],
+  "pluginsConfig": {
+    "disqus": {
+      "shortName": "XXXXXX"
+    }
+  }
+}
+```
+
+然后执行以下命令先删除掉旧版本插件，然后重新安装插件
+
+```
+rm -rf node_modules/*
+gitbook install
+```
+
+## 升级到`4.0.0-alpha.4`之后的处理
+
+* 在文档目录执行`gitbook serve`时候出现如下报错
+
+```
+Error: ENOENT: no such file or directory, open '/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/_assets/plugin.js'
+```
+
+解决方法参考常规的插件安装
+
+```
+cd /Users/huatai/.gitbook/versions/4.0.0-alpha.4
+npm i gitbook-plugin-livereload
+```
+
+> 提示`gitbook-plugin-livereload`是在`/Users/huatai/.gitbook/versions/4.0.0-alpha.4`目录（包含了`packages.json`配置文件），所以在这个执行`npm i gitbook-plugin-livereload`就会安装模块到该目录下的`node_modules`子目录中。这是npm的常规安装方法，并且这个本地安装方法会读取`package.json`文件来安装对应模块版本。 - 参考 [Installing npm packages locally](https://docs.npmjs.com/getting-started/installing-npm-packages-locally)
+
+但是，我发现上述本地安装`gitbook-plugin-livereload`模块实际上只在`node_modules/gitbook-plugin-livereload`更新了编译安装配置文件，实际上操作方法应该是进入`node_modules/gitbook-plugin-livereload`后执行`npm install`命令，所以再次修复
+
+```
+cd /Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload
+npm install
+```
+
+> 上述过程存在编译错误
+
+```
+> spawn-sync@1.0.15 postinstall /Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/node_modules/spawn-sync
+> node postinstall
+
+
+> gitbook-plugin-livereload@4.0.0-alpha.4 prepublish /Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload
+> npm run build-js
+
+
+> gitbook-plugin-livereload@4.0.0-alpha.4 build-js /Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload
+> gitbook-plugin build ./src/index.js ./_assets/plugin.js
+
+events.js:160
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: Couldn't find preset "es2015" relative to directory "/Users/huatai/.gitbook/versions/4.0.0-alpha.4" while parsing file: /Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/src/index.js
+    at /Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/node_modules/babel-core/lib/transformation/file/options/option-manager.js:292:19
+    at Array.map (native)
+    at OptionManager.resolvePresets (/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/node_modules/babel-core/lib/transformation/file/options/option-manager.js:274:20)
+    at OptionManager.mergePresets (/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/node_modules/babel-core/lib/transformation/file/options/option-manager.js:263:10)
+    at OptionManager.mergeOptions (/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/node_modules/babel-core/lib/transformation/file/options/option-manager.js:248:14)
+    at OptionManager.init (/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/node_modules/babel-core/lib/transformation/file/options/option-manager.js:367:12)
+    at File.initOptions (/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/node_modules/babel-core/lib/transformation/file/index.js:216:65)
+    at new File (/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/node_modules/babel-core/lib/transformation/file/index.js:139:24)
+    at Pipeline.transform (/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/node_modules/babel-core/lib/transformation/pipeline.js:46:16)
+    at Babelify._flush (/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/node_modules/babelify/index.js:27:24)
+
+npm ERR! Darwin 16.4.0
+npm ERR! argv "/Users/huatai/.nvm/versions/node/v6.9.4/bin/node" "/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/.bin/npm" "run" "build-js"
+npm ERR! node v6.9.4
+npm ERR! npm  v3.10.9
+npm ERR! code ELIFECYCLE
+npm ERR! gitbook-plugin-livereload@4.0.0-alpha.4 build-js: `gitbook-plugin build ./src/index.js ./_assets/plugin.js`
+npm ERR! Exit status 1
+npm ERR!
+npm ERR! Failed at the gitbook-plugin-livereload@4.0.0-alpha.4 build-js script 'gitbook-plugin build ./src/index.js ./_assets/plugin.js'.
+npm ERR! Make sure you have the latest version of node.js and npm installed.
+npm ERR! If you do, this is most likely a problem with the gitbook-plugin-livereload package,
+npm ERR! not with npm itself.
+npm ERR! Tell the author that this fails on your system:
+npm ERR!     gitbook-plugin build ./src/index.js ./_assets/plugin.js
+npm ERR! You can get information on how to open an issue for this project with:
+npm ERR!     npm bugs gitbook-plugin-livereload
+npm ERR! Or if that isn't available, you can get their info via:
+npm ERR!     npm owner ls gitbook-plugin-livereload
+npm ERR! There is likely additional logging output above.
+
+npm ERR! Please include the following file with any support request:
+npm ERR!     /Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/npm-debug.log
+
+npm WARN gitbook-plugin-livereload@4.0.0-alpha.4 license should be a valid SPDX license expression
+npm ERR! Darwin 16.4.0
+npm ERR! argv "/Users/huatai/.nvm/versions/node/v6.9.4/bin/node" "/Users/huatai/.nvm/versions/node/v6.9.4/bin/npm" "install"
+npm ERR! node v6.9.4
+npm ERR! npm  v3.10.10
+npm ERR! code ELIFECYCLE
+npm ERR! gitbook-plugin-livereload@4.0.0-alpha.4 prepublish: `npm run build-js`
+npm ERR! Exit status 1
+npm ERR!
+npm ERR! Failed at the gitbook-plugin-livereload@4.0.0-alpha.4 prepublish script 'npm run build-js'.
+npm ERR! Make sure you have the latest version of node.js and npm installed.
+npm ERR! If you do, this is most likely a problem with the gitbook-plugin-livereload package,
+npm ERR! not with npm itself.
+npm ERR! Tell the author that this fails on your system:
+npm ERR!     npm run build-js
+npm ERR! You can get information on how to open an issue for this project with:
+npm ERR!     npm bugs gitbook-plugin-livereload
+npm ERR! Or if that isn't available, you can get their info via:
+npm ERR!     npm owner ls gitbook-plugin-livereload
+npm ERR! There is likely additional logging output above.
+
+npm ERR! Please include the following file with any support request:
+npm ERR!     /Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/gitbook-plugin-livereload/npm-debug.log
+```
+
+参考 [Error: Couldn't find preset “es2015” relative to directory “/Users/username”](http://stackoverflow.com/questions/34819473/error-couldnt-find-preset-es2015-relative-to-directory-users-username) 先执行
+
+```
+npm install babel-cli babel-preset-es2015
+```
+
+但是报错依旧，另外发现`./_assets/plugin.js`文件内容是空的
+
+尝试重新安装一次（重新安装前先全局安装一次 `babel-cli babel-preset-es2015`）
+
+```
+gitbook uninstall 4.0.0-alpha.4
+unlink ~/.gitbook/versions/latest
+npm install babel-cli babel-preset-es2015 -g
+
+gitbook fetch pre
+cd ~/.gitbook/versions
+ln -s 4.0.0-alpha.4 latest
+
+cd 4.0.0-alpha.4/node_modules/gitbook-plugin-livereload
+npm install
+```
+
+**没有解决，暂时放弃尝试，回退到稳定版本**
+
+```
+cd ~/.gitbook/versions
+unlink latest
+
+gitbook uninstall 4.0.0-alpha.4
+gitbook update
+```
+
+> 此时安装版本是稳定版本3.2.2
+
+重新安装文档目录中的插件
+
+```
+cd ~/my_gitbook
+gitbook install
+```
+
+* 无法找到`gitbook-core`模块
+
+还有报错
+
+```
+Error: Cannot find module 'gitbook-core'
+```
+
+尝试再次安装`gitbook-core`模块
+
+```
+cd /Users/huatai/.nvm/versions/node/v6.9.4/lib/node_modules/gitbook-cli
+npm i gitbook-core -g
+```
+
+> 必须进入`lib/node_modules/gitbook-cli`才能执行上述安装命令，需要读取该目录下的`package.json`
+
+* `TypeError: Cannot read property 'Page' of undefined`
+
+修复了`gitbook-core`模块问题后，又遇到不能读取Page属性问题
+
+```
+error: error while generating page "README.md":
+
+TypeError: Cannot read property 'Page' of undefined
+```
+
+使用 `gitbook -d serve` 命令详细排查显示错误
+
+```
+...
+    at /Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/immutable/dist/immutable.js:2701:43
+    at List.__iterate (/Users/huatai/.gitbook/versions/4.0.0-alpha.4/node_modules/immutable/dist/immutable.js:2208:13
+```
+
+显示报错和模块`immutable`有关
+
+
 
 # 使用GitBook
 
