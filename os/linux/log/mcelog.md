@@ -104,6 +104,28 @@ Asset Tag: Dimm0_AssetTag
 Part Number: M393B2G70QH0-YK0
 ```
 
+# `only decoding architectural errors`错误提示
+
+使用比较新型的处理器的环境，执行`mcelog`可能会有如下报错
+
+```
+mcelog: Family 6 Model 4f CPU: only decoding architectural errors
+```
+
+上述硬件平台使用
+
+```
+cpu family	: 6
+model		: 79
+model name	: Intel(R) Xeon(R) CPU E5-2682 v4 @ 2.50GHz
+```
+
+上述报错`only decoding architectural errors`表明mcelog不知道你的CPU，不能够解码该型号的特定错误，但是mcelog仍然能够将错误记录成raw（hex）格式。重要的错误通常是结构相关的，但是有些时候新的结构相关错误加入后，可能就不能看到它被解码。
+
+可以尝试升级到最新的`mcelog`版本，通常可以支持新的硬件架构。
+
+> 参考 [I get a "only decoding architectural errors" message. Does mcelog log all errors? ](http://www.mcelog.org/faq.html#17)
+
 # 参考
 
 * [mcelog官方网站](http://www.mcelog.org)

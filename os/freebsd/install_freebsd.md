@@ -9,10 +9,10 @@ sudo diskutil unmountDisk /dev/disk2s3
 执行镜像写入U盘
 
 ```bash
-sudo dd if=FreeBSD-11.0-CURRENT-amd64-20160518-r300097-memstick.img of=/dev/rdisk2 bs=100m conv=sync
+sudo dd if=FreeBSD-11.0-RELEASE-amd64-memstick.img of=/dev/rdisk2 bs=100m conv=sync
 ```
 
-> `memstick.img`是支持`EFI boot block`启动，所以磁盘
+> `memstick.img`是支持`EFI boot block`启动
 
 # ThinkPad X220
 
@@ -42,8 +42,42 @@ sudo dd if=biosupdate.img of=/dev/rdisk2 bs=1m conv=sync
 
 * 刷先完成后，重启系统，按F1进入BIOS设置，在`Startup`栏设置`UEFI/Legancy Boot`选项中，设置成`UEFI Only`。这是因为X220s不能使用Legacy BIOS从GPT分区启动
 
+# MacBook Air
 
-# 安装注意
+> Mac系统的操作系统更新已经内建包含了Fireware更新，所以通常不需要单独安装升级Fireware。 - 参考 [How to Check and Update Your Mac’s Firmware](http://www.chriswrites.com/how-to-check-and-update-your-macs-firmware/)
+>
+> 不过苹果也提供了独立的[EFI and SMC firmware updates for Intel-based Mac computers](https://support.apple.com/en-us/HT201518)可针对性升级硬件的Fireware。可以对比自己的`Hareware Overview`信息中的`Boot ROM Version`和`SMC Version (system)`版本信息，确定是否需要升级Fireware。
+
+有关在MacBook上安装FreeBSD参考 [Apple MacBook support on FreeBSD](https://wiki.freebsd.org/AppleMacbook)
+
+我的实践是采用`only Installation with ZFS`，类似[在MacBook上安装Gentoo Linux](../linux/gentoo/install_gentoo_on_macbook)，首先在Mac系统中安装rEFInd来管理启动。
+
+> [FreeBSD on a MacBook Pro](https://gist.github.com/mpasternacki/974e29d1e3865e940c53)提供了Preparing for Dual Boot的经验。
+
+MacBook使用EFI stub loader，需要[安装rEFInd](../../../develop/mac/refind)来管理启动
+
+* 首先[下载rEFInd二进制.zip文件](http://www.rodsbooks.com/refind/getting.html)并解压缩
+* 重启主机，在听到chime声音的时候按`Command+R`（进入Mac的recovery模式）
+* 当OS启动后，选择 Utilities -> Terminal
+* 进入到下面的目录（和你存放refind下载解压缩的目录有关，这里假设用户名是`jerry`，所以用户目录就是`/Volume/OS X/Users/jerry`）
+
+```bash
+cd /Volume/OS X/Users/jerry/Downloads/refind-bin-0.10.2
+./refind-install
+```
+
+再次启动系统，再次使用`Command+R`（进入Mac的recovery模式），使用Mac自带的`Disk Utility`划分好用于Linux的分区(即将当前Mac分区缩小)，就可以开始安装双启动系统。
+
+如果想完全使用FreeBSD抛弃Mac，则采用删除Mac分区方法。
+
+当插入FreeBSD memstick之后，使用rEFInd启动系统，会看到有2个启动选项：
+
+* Boot Fallback boot loader from EFI （图标是3个不同颜色圈）
+* Boot FreeBSD (Legacy) from whole disk Volume (图标是FreeBSD的小魔头)
+
+我没有想到居然是使用前者来启动（EFI启动）才能进入FreeBSD安装 - 原来在MacBook平台，必须使用EFI启动模式。
+
+# ThinkPad安装注意
 
 * Booting / disk layout issues
   * The BIOS does not handle GPT-labelled disks that boot via BIOS (default install layout for FreeBSD). It seems to assume that the present of a GPT means it should expect an UEFI partition. Using MBR partition and BSD label with UFS works fine. - x220的BIOS不支持GPT标记的磁盘启动，似乎是对x220而言GPT就是需要UEFI分区。使用BSD分区UFS标记的分区工作正常。
@@ -53,7 +87,16 @@ sudo dd if=biosupdate.img of=/dev/rdisk2 bs=1m conv=sync
 
 验证 FreeBSD 11 alpha 4版本可以安装在ThinkPad X220笔记本，并且会提示该型号笔记本BIOS有bug，可以在Installer中fix
 
-# 安装后操作
+# MacBook Air
+
+* 内置的无线网卡没有识别
+* Mac的USB网卡可以直接识别使用(暂时使用此方式连接网络)
+* 选择ZFS作为文件系统，安装过程中选择AutoZFS自动分配存储池
+* Xorg配置： For the MacBooks you need to use the "intel" Xorg driver. For MacBook Pros you need to use the "radeon" driver. 
+* TouchPad: Use the atp(4) driver in FreeBSD 9.0 to get multi finger tapping, among other things. You should ensure that moused is only attaching to /dev/atp0, not /dev/ums0 too; use ps to check otherwise it will be jerky and unreliable. 
+* System Management Console (SMC for short) is a device that allows you to read the temperatures, fan speed and keyboard backlight status. It also lets you control the fan minimum and maximum speed and the keyboard backlight on/off status. 
+
+# ThinkPad安装后操作
 
 * 安装后无线网卡设置见 [FreeBSD无线网络](freebsd_wireless.md)
 * 安装后安装软件包 [在FreeBSD上安装软件:Packages和Ports](packages_and_ports.md)
@@ -64,6 +107,8 @@ pkg install sudo lsof aria2 tmux
 ```
 
 > `aria2`是多线程下载工具，比wget要快速很多（[5 FASTEST LINUX DOWNLOAD MANAGER/ACCELERATOR PROGRAM](http://www.ubuntubuzz.com/2010/06/5-fastest-linux-download.html)）。使用`axel`也可以，不过没有很方便的安装方法。
+
+# MacBook Air安装后操作
 
 # 参考
 

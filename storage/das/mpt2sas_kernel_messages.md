@@ -1,6 +1,8 @@
-# 现状
+# 常见的`mpt2sas`日志
 
-线上服务器`/var/log/messages`日志骨断显示
+线上服务器`/var/log/messages`日志
+
+* code 0x11
 
 ```
 2016-12-12 17:08:32	mpt2sas0: log_info(0x31110630): originator(PL), code(0x11), sub_code(0x0630)
@@ -9,9 +11,14 @@
 2016-12-12 17:08:36	mpt2sas0: log_info(0x31110630): originator(PL), code(0x11), sub_code(0x0630)
 ```
 
-这个信息是表示存储卡出现问题还是磁盘故障呢？
+* code 0x03
 
+```
+Jan 29 06:30:52 mpt2sas0: log_info(0x3003010a): originator(IOP), code(0x03), sub_code(0x010a)
+Jan 29 06:30:52 mpt2sas0: log_info(0x3003010a): originator(IOP), code(0x03), sub_code(0x010a)
+```
 
+存储是否存在问题呢？
 
 # 参考
 

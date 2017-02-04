@@ -46,7 +46,7 @@ sudo dd if=livedvd-amd64-multilib-20140826.img.dmg of=/dev/rdisk2 bs=100m
 
 ## rEFInd
 
-MacBook使用EFI stub loader，需要[安装rEFInd](../../../develop/mac/refind.md)来管理启动
+MacBook使用EFI stub loader，需要[安装rEFInd](../../../develop/mac/refind)来管理启动
 
 * 首先[下载rEFInd二进制.zip文件](http://www.rodsbooks.com/refind/getting.html)并解压缩
 * 重启主机，在听到chime声音的时候按`Command+R`（进入Mac的recovery模式）

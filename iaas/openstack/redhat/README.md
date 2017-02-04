@@ -1,0 +1,1 @@
+Red Hat 操作系统平台的Openstack实现

@@ -2,15 +2,13 @@
 
 线上多台服务器连续出现异常宕机重启，在OOB带外日志显示首先出现网卡`bnx2`的`NETDEV WATCHDOG`报告传输队列超时（Call Trace），同时出现CPU `[Hareware Error]` 显示 `Machine Check Exception: 4 Bank 5: be00000000800400`:
 
-* [#9775121](https://aone.alibaba-inc.com/issue/9775121) 2016-12-22 09:43:59 AY71V e74d10542.cloud.em21(10.153.170.63)
-
 ```
 2016-12-03 19:08:42    [14874902.828670] ------------[ cut here ]------------
 2016-12-03 19:08:42    [14874902.833622] WARNING: at net/sched/sch_generic.c:261 dev_watchdog+0x263/0x270() (Tainted: GF          ---------------   )
 2016-12-03 19:08:42    [14874902.844875] Hardware name: PowerEdge R510
 2016-12-03 19:08:42    [14874902.849212] NETDEV WATCHDOG: slave0 (bnx2): transmit queue 5 timed out
 2016-12-03 19:08:42    [14874902.856068] Modules linked in: kvm_intel_0 ksplice_etuw1mmg_vmlinux_new ksplice_etuw1mmg havs(F) kvm_intel_1 ksplice_ubnyr3k6_vmlinux_new ksplice_ubnyr3k6 sch_sfq act_police cls_u32 sch_ingress xt_mac xt_state mptctl mptbase nbd tcp_diag inet_diag nfnetlink_queue igb nfnetlink xt_conntrack ipt_REJECT ip6table_filter ip6_tables arpt_nfqueue cls_fw sch_htb ebt_mark ebt_arp arptable_filter arp_tables autofs4 ipmi_devintf ipmi_si ebtable_filter ebtable_nat flow_acl(F) iptable_filter ip_tables nf_conntrack_ipv4 nf_defrag_ipv4 bonding ipv6 8021q garp ext4 jbd2 dm_mirror dm_multipath video output sbs sbshc acpi_pad acpi_ipmi ipmi_msghandler vhost_net(F) macvtap(F) macvlan(F) parport turbo_proxy tun slb_ctk_proxy(F) ruleset patch_cksum kvm flow_mark flow_filter nf_conntrack flow_ctk(F) vpc_session(F) classic_traceroute(F) ebt_fnat(F) ebtable_broute(F) ebtables(F) bridge stp llc avs_hotfix slb_ctk_session alivrouter(F) flow_qos(F) sg power_meter iTCO_wdt iTCO_vendor_support bnx2 serio_raw i7core_edac edac_core dcdbas lpc_ich mfd_core dm_raid45 dm_memcache dm_region_hash dm_log dm_mod shpchp ext3 jbd mbcache virtio_pci virtio_blk virtio virtio_ring raid456 async_pq async_xor xor async_memcpy async_raid6_recov raid6_pq async_tx raid10 raid1 raid0 mpt2sas scsi_transport_sas raid_class hpsa cciss [last unloaded: kvm_intel_0]
-2016-12-03 19:08:43    [14874902.975946] Pid: 0, comm: swapper Tainted: GF          ---------------    2.6.32-358.23.2.ali1233.el5.x86_64 #1
+2016-12-03 19:08:43    [14874902.975946] Pid: 0, comm: swapper Tainted: GF          ---------------    2.6.32-358.el5.x86_64 #1
 2016-12-03 19:08:43    [14874902.986422] Call Trace:
 2016-12-03 19:08:43    [14874902.989201]    [] ? dev_watchdog+0x263/0x270
 2016-12-03 19:08:43    [14874902.995819]  [] ? dev_watchdog+0x263/0x270
@@ -140,7 +138,7 @@
 2016-12-03 19:08:52    [14874912.027876] [Hardware Error]: PROCESSOR 0:206c2 TIME 1480763330 SOCKET 0 APIC 10
 2016-12-03 19:08:52    [14874912.035650] [Hardware Error]: Machine check: Processor context corrupt
 2016-12-03 19:08:52    [14874912.042500] Kernel panic - not syncing: Fatal Machine check
-2016-12-03 19:08:52    [14874912.048401] Pid: 0, comm: swapper Tainted: GF  M    W  ---------------    2.6.32-358.23.2.ali1233.el5.x86_64 #1
+2016-12-03 19:08:52    [14874912.048401] Pid: 0, comm: swapper Tainted: GF  M    W  ---------------    2.6.32-358.el5.x86_64 #1
 2016-12-03 19:08:52    [14874912.058867] Call Trace:
 2016-12-03 19:08:52    [14874912.061632]  <#MC>  [] ? panic+0xd6/0x1d0
 2016-12-03 19:08:52    [14874912.067554]  [] ? notifier_call_chain+0x21/0x90
