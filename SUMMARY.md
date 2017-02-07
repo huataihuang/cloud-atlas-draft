@@ -92,6 +92,7 @@
 					* [EXT文件系统文件数](os/linux/storage/filesystem/ext_filesystem_file_limit.md)
 					* [EXT文件系统误删文件恢复](os/linux/storage/filesystem/ext_filesystem_restore_delete_file.md)
 					* [noatime参数挂载文件系统降低IO](os/linux/storage/filesystem/reduce_io_by_mount_with_noatime.md)
+					* [EXT4文件系统优化](os/linux/storage/filesystem/ext4_tunning.md)
 				* [Btrfs文件系统](os/linux/storage/filesystem/btrfs/README.md)
 					* [Btrfs文件系统快速起步](os/linux/storage/filesystem/btrfs/btrfs_startup.md)
 				* [性能](os/linux/storage/filesystem/performance/README.md)

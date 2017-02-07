@@ -141,6 +141,10 @@ ps r -A
 # 使用`strace`和`gdb`排查程序消耗sys的原因
 
 > 一个应用服务器最高效的方式是尽可能使用用户层CPU时间（或者是`user`或者是`nice`），所以如果CPU时间被用于kernel（system）则表明存在一些设计上或者编码上的缺陷，或者系统此时有很严重的I/O问题。
+>
+> 在`top`或`sar`检查中非常高的`%system`表示程序执行在系统层（内核），这个字段表示消耗在硬件服务和软件中断上的时间。这意味着系统把相当大的时间消耗在内核代码上。
+>
+> 常用debug程序占用高CPU的工具有：`perf`, `sysrq`, `oprofile`, `vmcore` 等。
 
 既然通过上述方法找出了异常的程序，我们现在来排查为何程序这样消耗sys。
 
@@ -205,4 +209,5 @@ crash ./usr/lib/debug/lib/modules/2.6.32-431.20.5.el6.x86_64/vmlinux /var/crash/
 # 参考
 
 * [How To Diagnose High Sys CPU On Linux](https://newspaint.wordpress.com/2013/07/24/how-to-diagnose-high-sys-cpu-on-linux/)
+* [Debugging High CPU Usage Using Perf Tool and vmcore Analysis](https://www.pythian.com/blog/debugging-high-cpu-usage-using-perf-tool-and-vmcore-analysis/)
 * [Debugging High CPU Usage Using Perf Tool and vmcore Analysis](https://www.pythian.com/blog/debugging-high-cpu-usage-using-perf-tool-and-vmcore-analysis/)
