@@ -410,7 +410,6 @@
 		* [加速Time Machine备份速度](develop/mac/time_machine_backup_speed.md)
 		* [在mac上输入特殊字符](develop/mac/input_special_character_on_mac.md)
 		* [为旧主机选择最快的Mac OS X版本](develop/mac/fastest_mac_os_x_version.md)
-		* [和"云"一起使用Mac](develop/mac/work_with_cloud.md)
 	* [shell](develop/shell/README.md)
 		* [bash](develop/shell/bash/README.md)
 			* [shell的特殊变量](develop/shell/bash/special_shell_variable.md)
