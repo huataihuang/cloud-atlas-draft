@@ -1,0 +1,1 @@
+本文参考 [L3 Linux switch](http://brezular.com/category/linux-2/l3-linux-switch/) 系列教程，构件一个完整的Linux三层交换路由器

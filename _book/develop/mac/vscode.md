@@ -1,5 +1,7 @@
 Visual Studio Code微软开发的开源编辑器，及其轻简，同时支持插件，功能强大且流畅至极。
 
+> 参考知乎[Visual Studio Code如何编写运行C、C++？](https://www.zhihu.com/question/30315894)中介绍的[Code Runner](https://marketplace.visualstudio.com/items?itemName=formulahendry.code-runner)，可以比较简单安装好这个插件，不用进行任何配置就能直接编译并运行，默认情况下使用的是GCC和G++。有需要的话也可以更改配置文件来使用其他编译器，比如clang。
+
 # 开发C/C++
 
 参考 [C/C++ for VS Code](https://code.visualstudio.com/docs/languages/cpp)

@@ -74,7 +74,6 @@
 				* [获取XEN内核core dump](os/linux/kernel/tracing/get_xen_kernel_core_dump.md)
 				* [高Sys CPU的排查](os/linux/kernel/tracing/diagnose_high_sys_cpu.md)
 				* [排查XEN服务器hang机core dump](os/linux/kernel/tracing/analysis_xen_hang_core_dump)
-				* [XEN服务器运行ss导致ipv6_addr_copy函数crash](os/linux/kernel/tracing/ipv6_addr_copy_ss_xen_dom0_crash.md)
 		* [设备管理](os/linux/device/README.md)
 			* [udev](os/linux/device/udev/README.md)
 				* [udev设备管理架构](os/linux/device/udev/udev_infrastructure.md)
@@ -106,7 +105,8 @@
 				* [Iptables](os/linux/network/firewall/iptables/README.md)
 					* [Iptables简易指南](os/linux/network/firewall/iptables/iptables_startup.md)
 				* [在CentOS7上添加防火墙端口允许访问](os/linux/network/firewall/open_firewall_port_in_centos7.md)
-
+			* [交换机](os/linux/network/switch/README.md)
+				* [构建Linux三层交换机](os/linux/network/switch/build_l3_switch/README.md)
 		* [备份](os/linux/backup/README.md)
 			* [使用tar备份完整Linux操作系统](os/linux/backup/full_system_backup_with_tar.md)
 			* [使用rsync备份完整Linux操作系统](os/linux/backup/full_system_backup_with_rsync.md)
