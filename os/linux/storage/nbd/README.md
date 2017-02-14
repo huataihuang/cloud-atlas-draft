@@ -1,0 +1,1 @@
+network block device(NBD)驱动使得远程资源看上去就像Linux本地的设备，允许一种廉价和安全的实时镜像构建。
