@@ -206,6 +206,10 @@ crash ./usr/lib/debug/lib/modules/2.6.32-431.20.5.el6.x86_64/vmlinux /var/crash/
 
 分析方法参考 [内核core dump分析](core_dump_analysis)
 
+# 使用perf工具
+
+
+
 # 参考
 
 * [How To Diagnose High Sys CPU On Linux](https://newspaint.wordpress.com/2013/07/24/how-to-diagnose-high-sys-cpu-on-linux/)
