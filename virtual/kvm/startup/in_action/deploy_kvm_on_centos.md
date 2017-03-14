@@ -178,6 +178,42 @@ virt-install \
    --vcpus=1
 ```
 
+* 使用virtio驱动方式(paravirtual)安装Windows
+
+```
+virt-install \
+   --name=win2012desktop \
+   --os-type=windows --os-variant=win2k12r2 \
+   --boot cdrom,hd \
+   --os-type=windows \
+   --network=default,model=virtio \
+   --disk path=/var/lib/libvirt/images/win2016desktop.img,size=16,format=qcow2,bus=virtio,cache=none \
+   --disk device=cdrom,path=/var/lib/libvirt/images/win2012.iso \
+   --disk device=cdrom,path=/var/lib/libvirt/images/virtio-win.iso \
+   --boot cdrom,hd \
+   --graphics vnc --ram=2048 \
+   --vcpus=2
+```
+
+> `osinfo-query os`可以获得`--os-variant`所有支持的参数（参考`man virt-install`）
+>
+> 当前`virtio-win.iso`驱动签名在Windows 2016无法通过，需要先安装非`virtio`模式，安装完成后，关闭驱动签名功能重启系统，并增加`virtio`模式磁盘，使得系统能够安装`virtio`驱动 - [KVM环境安装Windows virtio驱动](../../performance/kvm_performance_tunning_in_action/install_windows_with_virtio)
+
+> 参考：[Creating guests with the virt-install command](http://www.ibm.com/support/knowledgecenter/en/linuxonibm/liabp/liabpusingvirtinstall.htm)
+
+```
+virt-install --connect qemu:///system \
+    --name win7vnc --ram 2048 --vcpus=2 --cpuset=auto \
+    --disk path=win7.img,bus=virtio,size=100,format=qcow2 \
+    --network=network=default,model=virtio,mac=RANDOM \
+    --graphics vnc,port=5900
+    --disk device=cdrom,path=../../isos/virtio-win-0.1-81.iso \
+    --disk device=cdrom,path=../../isos/win7_sp1_ult_64bit/Windows\ 7\ SP1\ Ultimate\ \(64\ Bit\).iso \
+    --os-type=windows --os-variant=win7 --boot cdrom,hd 
+```
+
+> 参考 [windows 7 as kvm guest installation with virtio drivers - detected virtio scsi disk shows wrong capacity](http://serverfault.com/questions/631317/windows-7-as-kvm-guest-installation-with-virtio-drivers-detected-virtio-scsi-d)
+
 # VNC访问
 
 ## VNC监听

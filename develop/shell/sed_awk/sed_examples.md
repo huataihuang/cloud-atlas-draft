@@ -296,6 +296,48 @@ sed -i '/vmlinuz-2.6.32/ s/$/ intremap=off/' /boot/grub/grub.conf
 
 [Add to the end of a line containing a pattern - with sed or awk](http://stackoverflow.com/questions/9591744/add-to-the-end-of-a-line-containing-a-pattern-with-sed-or-awk)
 
+* 将换行符`\n`替换成字符
+
+例如，我有一个文件包含了多个主机名（每行是一个主机名），但是提交到某个平台的时候，格式要求使用`,`分隔，则可以通过sed来替换换行符`\n`
+
+```
+sed ':a;N;$!ba;s/\n/,/g' file
+```
+
+含义如下：
+
+* 创建一个标签（liabel） `:a`
+* 通过添加`N`到当前和下一行的位置
+* 如果在最后一行之前，则创建标签`$!ba`（`$!`表示如果最后一行就不做）
+* 最后将所有换行符替换成`,`
+
+上述命令是使用GNU sed，如果是跨平台，则使用BSD `sed`
+
+```
+sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/,/g'
+```
+
+参考 [How can I replace a newline (\n) using sed?](http://stackoverflow.com/questions/1251999/how-can-i-replace-a-newline-n-using-sed)
+
+> 更为简单的方法是使用`tr`，不过结尾多一个`,`
+
+```
+tr '\n' ',' < input_filename
+```
+
+怎样去除最后一个字符，应该可以使用`sed`或`awk`，不过 [Delete the last character of a string using string manipulation in shell script](http://unix.stackexchange.com/questions/144298/delete-the-last-character-of-a-string-using-string-manipulation-in-shell-script) 提供了一个巧妙的方法，组合利用`rev`命令和`cut`命令。即先将字符串倒转（`rev`），然后用`cut -c 2-`截取出`(n+1)-`之后所有字符，然后再倒转回来
+
+```
+cat input_filename | tr '\n' ',' | rev | cut -c 2- | rev
+```
+
+还有一种方法是使用bash 4.2之后，支持字符串变量切片
+
+```
+a=`cat input_filename | tr '\n' ','`
+echo "${a::-1}"
+```
+
 # 参考
 
 * [sed - 25 examples to delete a line or pattern in a file](http://unix-school.blogspot.com/2012/06/sed-25-examples-to-delete-line-or.html)

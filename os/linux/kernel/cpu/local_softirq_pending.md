@@ -20,7 +20,7 @@ dmesg | grep -i nohz
 [16056.268035] NOHZ: local_softirq_pending 100
 ```
 
-上述输出标志着系统将系统的CPU设置成睡眠状态来替代处理一些软件终端。
+上述输出标志着系统将系统的CPU设置成睡眠状态来替代处理一些软件中断。
 
 这个信息末尾的数字是十六进制格式并且它表示中断的类型，所有已知中断都在内核源代码`include/linux/interrupt.h`中位掩码：
 
@@ -54,3 +54,8 @@ enum
 ```
 
 如果在内核启动grub参数增加了 `nohz=off` 则这个消息将不再显示。
+
+# 参考
+
+* [NO_HZ: Reducing Scheduling-Clock Ticks](https://www.kernel.org/doc/Documentation/timers/NO_HZ.txt)
+* [What does "NOHZ: local_softirq_pending XXX" mean?](https://kb.plesk.com/en/119599)

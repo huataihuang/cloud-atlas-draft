@@ -42,7 +42,29 @@ HP BIOS Configuration Utility (BCU)是免费的提供管理BIOS设置的工具 �
 
 # Inventec （英业达）
 
+# 联想/浪潮（AMI）
 
+联想和浪潮使用AMI的BIOS，可参考联想[Configuring the HX Series appliance](http://systemx.lenovofiles.com/help/index.jsp?topic=%2Fcom.lenovo.conv.8689.doc%2Ft_configuring_hx_appliance.html)手册来修订BIOS
+
+```
+./SCELNX_64 /o /s ./nvram_script.txt 
+```
+
+然后将模版文件复制到需要修改BIOS配置的目标服务器上（要求模版服务器和被修改服务器完全一致的硬件配置），然后执行导入：
+
+```
+./SCELNX_64 /i /s nvram_script.txt
+```
+
+这里有一个[排查CPU核心丢失](cpuinfo_miss_core)的案例，就是通过AMI BIOS设置来解决的。
+
+联想提供了 [Lenovo ToolsCenter Suite CLI](https://pcsupport.lenovo.com/us/en/solutions/ht116433?LinkTrack=Solr)来帮助管理firmware,硬件以及CMM,IMM和Flex-IOM的系统，支持多种操作系统：
+
+> Lenovo ToolsCenter Suite CLI is a command line based 
+> utility, which covers the server management scope includes 
+> firmware configuration, system inventory.
+
+并且 [Lenovo Diagnostic Solutions: Diagnose & Fix](https://pcsupport.lenovo.com/us/en/lenovodiagnosticsolutions/diagnose)提供了服务器诊断和修复工具。
 
 # Sun
 
@@ -54,7 +76,13 @@ AMI是主流的BIOS厂商，提供了BIOS/UEFI工具来设置相应配置（提�
 
 [AMIBIOS Setup Utility System Parameters and Standard Settings](https://computinghardware.web.cern.ch/ComputingHardware/doc/NEC/P570/BIOS-Settings/MS1421_164x_bios_rev0_01.pdf)手册介绍了AMI BIOS设置方法 － [本地文档](img/server/BIOS/MS1421_164x_bios_rev0_01.pdf)
 
+[Aptio UEFI Firmware tool](http://www.tempusfugit.ca/techwatch.ca/aptio.html) 提供了相关连接
+
+不过，没有找到AMI网站直接提供的工具，通常采用的是各个服务器厂商的维护工具来实现AMI BIOS修改。例如，国内的联想、浪潮服务器都使用AMI的BIOS，工具应该是通用的。
+
 > 启动时按`F2`进入AMI BIOS设置
+
+> 浪潮Inspur服务器使用了AMI的BIOS，可以通过工具设置
 
 # Linux通用BIOS查看命令`biosdecode`
 

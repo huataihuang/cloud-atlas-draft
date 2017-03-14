@@ -1,0 +1,1 @@
+Python是非常讲究规范的编程语言，从最初开始编程的时候，建议参考成熟的[Google开源项目风格指南 - Python风格指南](http://zh-google-styleguide.readthedocs.io/en/latest/google-python-styleguide/python_style_rules/)。

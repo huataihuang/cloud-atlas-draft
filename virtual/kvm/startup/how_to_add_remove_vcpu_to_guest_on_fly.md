@@ -392,6 +392,19 @@ NUMA node0 CPU(s):     0-3
 
 以上我们已经在离线情况下成功增加了最大vCPU数量，并在VM运行时增加了分配到vCPU。
 
-# 参考
+# 系列教程编译
 
-* [Linux KVM – How to add /Remove vCPU to Guest on fly ? Part 9](http://www.unixarena.com/2015/12/linux-kvm-how-to-add-remove-vcpu-to-guest-on-fly.html)
+本系列教程根据 [UnixArena Linux KVM](http://www.unixarena.com/category/redhat-linux/linux-kvm) 系列教程编译，共分以下文章：
+
+* [一：基于内核的虚拟机（KVM）概览](kernel_based_virtual_machine_kvm_overview)
+* [二：Redhat企业Linux安装KVM](redhat_enterprise_linux_kvm_installation)
+* [三：RHEL 7.2 配置KVM主机](rhel_7_2_configuring_kvm_hosts)
+* [四：使用命令行启动第一个KVM实例](launch_the_first_kvm_instance_using_cli)
+* [五：使用Virt-Manger(VMM)部署KVM实例](deploy_kvm_instance_using_virt_manger_vmm_gui)
+* [六：如何克隆一个KVM虚拟机并重置该虚拟机](how_to_clone_a_kvm_virtual_machines_and_reset_the_vm)
+* [七：如何在线添加/更改虚拟磁盘](how_to_add_resize_virtual_disk_on_fly)
+* [八：如何在线添加/移除虚拟机的内存](how_to_add_remove_memory_to_guest_on_fly)
+* [九：如何在线添加/移除虚拟机的vCPU](how_to_add_remove_vcpu_to_guest_on_fly)
+* [十：更改libvirt虚拟机镜像存储路径](change_libvirt_vm_image_store_path)
+* [十一：实现Linux KVM在线迁移](perform_live_migration_on_linux_kvm)
+* [十二：RHEL7 Pacemaker - 配置高可用KVM虚拟机](rhel_7_pacemaker_configuring_ha_kvm_guest)

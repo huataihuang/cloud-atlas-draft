@@ -40,4 +40,3 @@ sudo service iptables save
 # 参考
 
 * [centos 7 - open firewall port](http://stackoverflow.com/questions/24729024/centos-7-open-firewall-port)
-
