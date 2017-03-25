@@ -16,4 +16,12 @@ $cat /proc/sys/kernel/printk_ratelimit_burst
 10
 ```
 
+<<<<<<< HEAD
 但是从串口日志来看，这个`ratelimit`有时候生效，有时候又没有效果：有时候可以看到日志中显示
+=======
+但是从串口日志来看，这个`ratelimit`有时候生效，有时候又没有效果：有时候可以看到日志中显示
+
+```
+
+```
+>>>>>>> 78a47b78e0cb2c916896fbee74e4055d38c2ad97

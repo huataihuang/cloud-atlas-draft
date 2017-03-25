@@ -81,8 +81,11 @@
 				* [获取XEN内核core dump](os/linux/kernel/tracing/get_xen_kernel_core_dump.md)
 				* [高Sys CPU的排查](os/linux/kernel/tracing/diagnose_high_sys_cpu.md)
 				* [排查XEN服务器hang机core dump](os/linux/kernel/tracing/analysis_xen_hang_core_dump)
+<<<<<<< HEAD
 				* [vmcore分析案例："kernel BUG at fs/buffer.c:1270"](os/linux/kernel/tracing/vmcore_example_bug_at_fs_buffer_c.md)
 				* [获取MySQL core](os/linux/kernel/tracing/mysql_core.md)
+=======
+>>>>>>> 78a47b78e0cb2c916896fbee74e4055d38c2ad97
 			* [性能](os/linux/kernel/perfmance/README.md)
 				* ["perf samples too long"是什么？](os/linux/kernel/performance/what_is_perf_samples_too_long.md)
 				* [Perf案例(译)](os/linux/kernel/performance/perf_example.md)
@@ -422,7 +425,10 @@
 			* ["PEP 8(E731): do not assign a lambda expression, use a def"](develop/python/startup/assign_lambda_expression.md)
 			* [python的模块和包](develop/python/startup/module_and_package.md)
 			* [python获取系统cpu数量](develop/python/startup/get_cpu_count.md)
+<<<<<<< HEAD
 			* [python nohup后台运行进程](develop/python/startup/run_program_nohup.md)
+=======
+>>>>>>> 78a47b78e0cb2c916896fbee74e4055d38c2ad97
 		* [ConfigParser报错"NoOptionError"](ConfigParser.NoOptionError.md)
 		* [Flask开发Web](develop/python/flask/README.md)
 			* [安装Flask开发环境](develop/python/flask/install.md)
