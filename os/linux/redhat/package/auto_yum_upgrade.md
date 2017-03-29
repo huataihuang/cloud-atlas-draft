@@ -38,7 +38,7 @@
 
 可以配置 `emit_via` 设置发送消息到标准输出或者发送邮件
 
-> 默认的配置中，定时下载所有软件更新包，但不apply，随机时间 360 s
+> `默认的配置中，定时下载所有软件更新包，但不apply`，随机时间 360 s
 
 # 验证服务
 
@@ -53,6 +53,6 @@
 # 参考
 
 * [Enabling automatic updates in Centos 7 and RHEL 7](http://linuxaria.com/howto/enabling-automatic-updates-in-centos-7-and-rhel-7) - 有关CentOS 7的设置修改
-* ( [Automatic Updates in RHEL 6 and CentOS 6](http://samdoran.com/2013/05/17/automatic-updates-in-rhel-6-and-cent-os-6/) - 有关CentOS 6的设置修改，可参考
+* [Automatic Updates in RHEL 6 and CentOS 6](http://samdoran.com/2013/05/17/automatic-updates-in-rhel-6-and-cent-os-6/) - 有关CentOS 6的设置修改，可参考
 * [Automatic package updates in CentOS 6](https://major.io/2012/09/21/automatic-package-updates-in-centos-6/)
 

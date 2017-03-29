@@ -48,9 +48,21 @@ modprobe crasher call_panic=1
 xm dump-core <vm name>
 ```
 
-在`/var/log/dump`目录下即生成虚拟机core文件
+在`/var/xen/dump`目录下即生成虚拟机core文件
 
 > Windows虚拟机的core dump参考[Troubleshooting Virtual Machine Crashes](http://techgenix.com/troubleshooting-virtual-machine-crashes/)和[Windows Bugcheck Analysis](https://social.technet.microsoft.com/wiki/contents/articles/6302.windows-bugcheck-analysis.aspx)
+
+# 检查core文件对应内核版本
+
+```
+sudo strings -n 50 vm_name.core | head -n 30000 | grep -m 1 '^Linux version'
+```
+
+输出
+
+```
+Linux version 2.6.32-279.el6.x86_64 (vm_server_name) (gcc version 4.4.6 20120305 (Red Hat 4.4.6-4) (GCC) ) #1 SMP Fri Jun 22 12:19:21 UTC 2012
+```
 
 # 参考
 
