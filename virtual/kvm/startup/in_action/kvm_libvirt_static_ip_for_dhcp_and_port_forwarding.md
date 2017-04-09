@@ -54,7 +54,23 @@ virsh  net-destroy default
 virsh  net-start default 
 ```
 
-然后再关闭虚拟机（不是直接重启，而是先shutdown虚拟机，确实关闭之后再start）。
+注意：此时原先连接`default`网络的虚拟机的网络都会不通，这是因为这些虚拟机的虚拟网卡没有连接到重建的虚拟网桥上。解决的方法是关闭虚拟机再启动虚拟机（不是直接重启，而是先shutdown虚拟机，确实关闭之后再start），但是更简单的方法是使用如下命令重新简介虚拟网卡到网桥：
+
+`brctl show`检查网桥名字，可以看到是`virbr0`
+
+```
+#brctl show
+bridge name	bridge id		STP enabled	interfaces
+virbr0		8000.525400fa6cfe	yes		virbr0-nic
+```
+
+物理服务器上通过`ifconfig -a`可以看到所有的虚拟机的虚拟机网卡，例如`vnet0`、`vnet1`...，执行以下命令添加连接
+
+```
+brctl addif virbr0 vnet0
+brctl addif virbr0 vnet1
+...
+```
 
 > `/var/lib/libvirt/dnsmasq/` 目录下有 `virbr0.status` 显示当前dnsmasq分配的IP情况。
 >

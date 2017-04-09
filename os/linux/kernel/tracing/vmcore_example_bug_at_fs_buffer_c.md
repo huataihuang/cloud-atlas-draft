@@ -34,6 +34,8 @@ LOAD AVERAGE: 0.29, 0.26, 0.23
        STATE:  (PANIC)
 ```
 
+> CentOS 5的core文件分析时候，遇到报错`crash: cannot resolve: "xtime"`，需要使用`crash version 6.0.5`以上版本（[crash version 6.0.5 is available](crash version 6.0.5 is available)），通常使用CentOS 7自带的crash版本较好，或者从 [crash官网](http://people.redhat.com/anderson/) [下载crash源代码在CentOS5编译安装](compile_crash_in_centos5)。（参考[Linux kdump](https://my.oschina.net/guol/blog/128030)）
+
 首先检查vm crash时候系统日志，输入`dmesg` ，可以看到
 
 ```

@@ -146,6 +146,18 @@ virt-install \
   --cdrom=/var/lib/libvirt/images/CentOS-7-x86_64-DVD-1511.iso
 ```
 
+```
+virt-install \
+  --network bridge:virbr0 \
+  --name centos5 \
+  --ram=2048 \
+  --vcpus=1 \
+  --disk path=/var/lib/libvirt/images/centos5.img,size=10 \
+  --graphics vnc \
+  --os-type=linux --os-variant=rhel5.11 \
+  --cdrom=/var/lib/libvirt/images/CentOS-5.11-x86_64-netinstall.iso
+```
+
 * 举例：安装windows 2012操作系统
 
 ```

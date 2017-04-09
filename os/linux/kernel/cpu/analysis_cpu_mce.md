@@ -1,160 +1,104 @@
-# MCE故障
+> [Intel® 64 and IA-32 Architectures Software Developer Manuals](https://software.intel.com/en-us/articles/intel-sdm)的第15、16章
 
-线上多台服务器连续出现异常宕机重启，在OOB带外日志显示首先出现网卡`bnx2`的`NETDEV WATCHDOG`报告传输队列超时（Call Trace），同时出现CPU `[Hareware Error]` 显示 `Machine Check Exception: 4 Bank 5: be00000000800400`:
+# Machine-check架构
 
-```
-2016-12-03 19:08:42    [14874902.828670] ------------[ cut here ]------------
-2016-12-03 19:08:42    [14874902.833622] WARNING: at net/sched/sch_generic.c:261 dev_watchdog+0x263/0x270() (Tainted: GF          ---------------   )
-2016-12-03 19:08:42    [14874902.844875] Hardware name: PowerEdge R510
-2016-12-03 19:08:42    [14874902.849212] NETDEV WATCHDOG: slave0 (bnx2): transmit queue 5 timed out
-2016-12-03 19:08:42    [14874902.856068] Modules linked in: kvm_intel_0 ksplice_etuw1mmg_vmlinux_new ksplice_etuw1mmg havs(F) kvm_intel_1 ksplice_ubnyr3k6_vmlinux_new ksplice_ubnyr3k6 sch_sfq act_police cls_u32 sch_ingress xt_mac xt_state mptctl mptbase nbd tcp_diag inet_diag nfnetlink_queue igb nfnetlink xt_conntrack ipt_REJECT ip6table_filter ip6_tables arpt_nfqueue cls_fw sch_htb ebt_mark ebt_arp arptable_filter arp_tables autofs4 ipmi_devintf ipmi_si ebtable_filter ebtable_nat flow_acl(F) iptable_filter ip_tables nf_conntrack_ipv4 nf_defrag_ipv4 bonding ipv6 8021q garp ext4 jbd2 dm_mirror dm_multipath video output sbs sbshc acpi_pad acpi_ipmi ipmi_msghandler vhost_net(F) macvtap(F) macvlan(F) parport turbo_proxy tun slb_ctk_proxy(F) ruleset patch_cksum kvm flow_mark flow_filter nf_conntrack flow_ctk(F) vpc_session(F) classic_traceroute(F) ebt_fnat(F) ebtable_broute(F) ebtables(F) bridge stp llc avs_hotfix slb_ctk_session alivrouter(F) flow_qos(F) sg power_meter iTCO_wdt iTCO_vendor_support bnx2 serio_raw i7core_edac edac_core dcdbas lpc_ich mfd_core dm_raid45 dm_memcache dm_region_hash dm_log dm_mod shpchp ext3 jbd mbcache virtio_pci virtio_blk virtio virtio_ring raid456 async_pq async_xor xor async_memcpy async_raid6_recov raid6_pq async_tx raid10 raid1 raid0 mpt2sas scsi_transport_sas raid_class hpsa cciss [last unloaded: kvm_intel_0]
-2016-12-03 19:08:43    [14874902.975946] Pid: 0, comm: swapper Tainted: GF          ---------------    2.6.32-358.el5.x86_64 #1
-2016-12-03 19:08:43    [14874902.986422] Call Trace:
-2016-12-03 19:08:43    [14874902.989201]    [] ? dev_watchdog+0x263/0x270
-2016-12-03 19:08:43    [14874902.995819]  [] ? dev_watchdog+0x263/0x270
-2016-12-03 19:08:43    [14874903.001810]  [] ? warn_slowpath_common+0x98/0xc0
-2016-12-03 19:08:43    [14874903.008319]  [] ? warn_slowpath_fmt+0x6e/0x70
-2016-12-03 19:08:43    [14874903.014570]  [] ? strlcpy+0x4f/0x70
-2016-12-03 19:08:43    [14874903.019952]  [] ? netdev_drivername+0x48/0x60
-2016-12-03 19:08:43    [14874903.026208]  [] ? dev_watchdog+0x263/0x270
-2016-12-03 19:08:43    [14874903.032201]  [] ? scheduler_tick+0xeb/0x250
-2016-12-03 19:08:43    [14874903.038276]  [] ? dev_watchdog+0x0/0x270
-2016-12-03 19:08:43    [14874903.044092]  [] ? run_timer_softirq+0x161/0x340
-2016-12-03 19:08:43    [14874903.050519]  [] ? lapic_next_event+0x1d/0x30
-2016-12-03 19:08:43    [14874903.056682]  [] ? __do_softirq+0xbf/0x220
-2016-12-03 19:08:43    [14874903.062584]  [] ? hrtimer_interrupt+0x11d/0x230
-2016-12-03 19:08:43    [14874903.069010]  [] ? call_softirq+0x1c/0x30
-2016-12-03 19:08:43    [14874903.074827]  [] ? do_softirq+0x65/0xa0
-2016-12-03 19:08:43    [14874903.080463]  [] ? irq_exit+0x7c/0x90
-2016-12-03 19:08:43    [14874903.085932]  [] ? smp_apic_timer_interrupt+0x70/0x9d
-2016-12-03 19:08:43    [14874903.092794]  [] ? apic_timer_interrupt+0x13/0x20
-2016-12-03 19:08:43    [14874903.099306]    [] ? intel_idle+0xe1/0x180
-2016-12-03 19:08:43    [14874903.105668]  [] ? intel_idle+0xc4/0x180
-2016-12-03 19:08:43    [14874903.111399]  [] ? cpuidle_idle_call+0x99/0x140
-2016-12-03 19:08:43    [14874903.117734]  [] ? cpu_idle+0xa8/0xe0
-2016-12-03 19:08:43    [14874903.123197]  [] ? start_secondary+0x226/0x360
-2016-12-03 19:08:43    [14874903.129451] ---[ end trace d5f89fd37f9190bc ]---
-2016-12-03 19:08:43    [14874903.134393] bnx2 0000:01:00.0: slave0: <--- start FTQ dump --->
-2016-12-03 19:08:43    [14874903.140642] bnx2 0000:01:00.0: slave0: RV2P_PFTQ_CTL 00010000
-2016-12-03 19:08:43    [14874903.146715] bnx2 0000:01:00.0: slave0: RV2P_TFTQ_CTL 00020000
-2016-12-03 19:08:43    [14874903.152785] bnx2 0000:01:00.0: slave0: RV2P_MFTQ_CTL 00004000
-2016-12-03 19:08:43    [14874903.158858] bnx2 0000:01:00.0: slave0: TBDR_FTQ_CTL 00004002
-2016-12-03 19:08:43    [14874903.164844] bnx2 0000:01:00.0: slave0: TSCH_FTQ_CTL 00020000
-2016-12-03 19:08:43    [14874903.171056] bnx2 0000:01:00.0: slave0: TDMA_FTQ_CTL 00010002
-2016-12-03 19:08:43    [14874903.177044] bnx2 0000:01:00.0: slave0: TXP_FTQ_CTL 00010002
-2016-12-03 19:08:43    [14874903.182945] bnx2 0000:01:00.0: slave0: TPAT_FTQ_CTL 00010002
-2016-12-03 19:08:43    [14874903.188933] bnx2 0000:01:00.0: slave0: TAS_FTQ_CTL 00010002
-2016-12-03 19:08:43    [14874903.194830] bnx2 0000:01:00.0: slave0: RXP_CFTQ_CTL 00008000
-2016-12-03 19:08:43    [14874903.200817] bnx2 0000:01:00.0: slave0: RXP_FTQ_CTL 00100000
-2016-12-03 19:08:43    [14874903.206720] bnx2 0000:01:00.0: slave0: RLUP_FTQ_CTL 00008000
-2016-12-03 19:08:43    [14874903.212704] bnx2 0000:01:00.0: slave0: COM_COMXQ_FTQ_CTL 00010000
-2016-12-03 19:08:43    [14874903.219126] bnx2 0000:01:00.0: slave0: COM_COMTQ_FTQ_CTL 00020000
-2016-12-03 19:08:43    [14874903.225545] bnx2 0000:01:00.0: slave0: COM_COMQ_FTQ_CTL 00010000
-2016-12-03 19:08:43    [14874903.231881] bnx2 0000:01:00.0: slave0: CP_CPQ_FTQ_CTL 00004000
-2016-12-03 19:08:43    [14874903.238039] bnx2 0000:01:00.0: slave0: RDMA_FTQ_CTL 00010000
-2016-12-03 19:08:43    [14874903.244031] bnx2 0000:01:00.0: slave0: CSCH_CH_FTQ_CTL 00004000
-2016-12-03 19:08:43    [14874903.250279] bnx2 0000:01:00.0: slave0: MCP_MCPQ_FTQ_CTL 00005000
-2016-12-03 19:08:43    [14874903.256612] bnx2 0000:01:00.0: slave0: CPU states:
-2016-12-03 19:08:43    [14874903.261737] bnx2 0000:01:00.0: slave0: 045000 mode b84c state 80001000 evt_mask 500 pc 8001288 pc 8001288 instr 8e030000
-2016-12-03 19:08:43    [14874903.273005] bnx2 0000:01:00.0: slave0: 085000 mode b84c state 80009000 evt_mask 500 pc 8000a5c pc 8000a4c instr 1440fffc
-2016-12-03 19:08:43    [14874903.284263] bnx2 0000:01:00.0: slave0: 0c5000 mode b84c state 80001000 evt_mask 500 pc 8004c14 pc 8004c14 instr 32070001
-2016-12-03 19:08:43    [14874903.295524] bnx2 0000:01:00.0: slave0: 105000 mode b8cc state 80000000 evt_mask 500 pc 8000a9c pc 8000aa4 instr 8821
-2016-12-03 19:08:43    [14874903.306444] bnx2 0000:01:00.0: slave0: 145000 mode b880 state 80004000 evt_mask 500 pc 80009d4 pc 800c6cc instr 0
-2016-12-03 19:08:43    [14874903.317098] bnx2 0000:01:00.0: slave0: 185000 mode b8cc state 80000000 evt_mask 500 pc 8000c6c pc 8000c6c instr 1700ffe1
-2016-12-03 19:08:43    [14874903.328351] bnx2 0000:01:00.0: slave0: <--- end FTQ dump --->
-2016-12-03 19:08:43    [14874903.334425] bnx2 0000:01:00.0: slave0: <--- start TBDC dump --->
-2016-12-03 19:08:43    [14874903.340766] bnx2 0000:01:00.0: slave0: TBDC free cnt: 32
-2016-12-03 19:08:43    [14874903.346404] bnx2 0000:01:00.0: slave0: LINE     CID  BIDX   CMD  VALIDS
-2016-12-03 19:08:43    [14874903.353351] bnx2 0000:01:00.0: slave0: 00    001100  a6d8   00    [0]
-2016-12-03 19:08:43    [14874903.360127] bnx2 0000:01:00.0: slave0: 01    001100  a6d8   00    [0]
-2016-12-03 19:08:43    [14874903.366896] bnx2 0000:01:00.0: slave0: 02    001000  c5f8   00    [0]
-2016-12-03 19:08:43    [14874903.373667] bnx2 0000:01:00.0: slave0: 03    001200  bf80   00    [0]
-2016-12-03 19:08:43    [14874903.380435] bnx2 0000:01:00.0: slave0: 04    001000  9f20   00    [0]
-2016-12-03 19:08:43    [14874903.387208] bnx2 0000:01:00.0: slave0: 05    001000  2218   00    [0]
-2016-12-03 19:08:43    [14874903.393980] bnx2 0000:01:00.0: slave0: 06    001000  2250   00    [0]
-2016-12-03 19:08:43    [14874903.400750] bnx2 0000:01:00.0: slave0: 07    001000  2220   00    [0]
-2016-12-03 19:08:43    [14874903.407524] bnx2 0000:01:00.0: slave0: 08    001000  2238   00    [0]
-2016-12-03 19:08:43    [14874903.414302] bnx2 0000:01:00.0: slave0: 09    001000  2258   00    [0]
-2016-12-03 19:08:43    [14874903.421076] bnx2 0000:01:00.0: slave0: 0a    001000  2228   00    [0]
-2016-12-03 19:08:43    [14874903.427848] bnx2 0000:01:00.0: slave0: 0b    001000  2260   00    [0]
-2016-12-03 19:08:43    [14874903.434628] bnx2 0000:01:00.0: slave0: 0c    001000  2148   00    [0]
-2016-12-03 19:08:43    [14874903.441407] bnx2 0000:01:00.0: slave0: 0d    001000  2150   00    [0]
-2016-12-03 19:08:43    [14874903.448180] bnx2 0000:01:00.0: slave0: 0e    001000  2158   00    [0]
-2016-12-03 19:08:43    [14874903.454952] bnx2 0000:01:00.0: slave0: 0f    001000  2168   00    [0]
-2016-12-03 19:08:43    [14874903.461730] bnx2 0000:01:00.0: slave0: 10    001000  2170   00    [0]
-2016-12-03 19:08:43    [14874903.468501] bnx2 0000:01:00.0: slave0: 11    001000  2180   00    [0]
-2016-12-03 19:08:43    [14874903.475273] bnx2 0000:01:00.0: slave0: 12    001000  2188   00    [0]
-2016-12-03 19:08:43    [14874903.482044] bnx2 0000:01:00.0: slave0: 13    001000  2190   00    [0]
-2016-12-03 19:08:43    [14874903.488816] bnx2 0000:01:00.0: slave0: 14    001000  1938   00    [0]
-2016-12-03 19:08:43    [14874903.495588] bnx2 0000:01:00.0: slave0: 15    001000  1940   00    [0]
-2016-12-03 19:08:43    [14874903.502360] bnx2 0000:01:00.0: slave0: 16    001000  1948   00    [0]
-2016-12-03 19:08:43    [14874903.509131] bnx2 0000:01:00.0: slave0: 17    001000  1950   00    [0]
-2016-12-03 19:08:43    [14874903.515902] bnx2 0000:01:00.0: slave0: 18    001000  17f0   00    [0]
-2016-12-03 19:08:43    [14874903.522674] bnx2 0000:01:00.0: slave0: 19    001000  1800   00    [0]
-2016-12-03 19:08:43    [14874903.529447] bnx2 0000:01:00.0: slave0: 1a    001000  0808   00    [0]
-2016-12-03 19:08:43    [14874903.536220] bnx2 0000:01:00.0: slave0: 1b    001000  0810   00    [0]
-2016-12-03 19:08:43    [14874903.542999] bnx2 0000:01:00.0: slave0: 1c    001000  b780   00    [0]
-2016-12-03 19:08:43    [14874903.549777] bnx2 0000:01:00.0: slave0: 1d    001000  4200   00    [0]
-2016-12-03 19:08:43    [14874903.556548] bnx2 0000:01:00.0: slave0: 1e    001000  b548   00    [0]
-2016-12-03 19:08:43    [14874903.563322] bnx2 0000:01:00.0: slave0: 1f    001000  8040   00    [0]
-2016-12-03 19:08:43    [14874903.570091] bnx2 0000:01:00.0: slave0: <--- end TBDC dump --->
-2016-12-03 19:08:43    [14874903.576253] bnx2 0000:01:00.0: slave0: DEBUG: intr_sem[0] PCI_CMD[00100406]
-2016-12-03 19:08:43    [14874903.583606] bnx2 0000:01:00.0: slave0: DEBUG: PCI_PM[19002008] PCI_MISC_CFG[92000088]
-2016-12-03 19:08:43    [14874903.591827] bnx2 0000:01:00.0: slave0: DEBUG: EMAC_TX_STATUS[00000008] EMAC_RX_STATUS[00000000]
-2016-12-03 19:08:47    [14874907.108434] bnx2 0000:01:00.0: slave0: NIC Copper Link is Up, 1000 Mbps full duplex
-2016-12-03 19:08:43    [14874903.600908] bnx2 0000:01:00.0: slave0: DEBUG: RPM_MGMT_PKT_CTRL[40000088]
-2016-12-03 19:08:43    [14874903.608021] bnx2 0000:01:00.0: slave0: DEBUG: HC_STATS_INTERRUPT_STATUS[015f00a0]
-2016-12-03 19:08:43    [14874903.615886] bnx2 0000:01:00.0: slave0: DEBUG: PBA[00000000]
-2016-12-03 19:08:43    [14874903.621791] bnx2 0000:01:00.0: slave0: DEBUG: MSIX table:
-2016-12-03 19:08:43    [14874903.627518] bnx2 0000:01:00.0: slave0: DEBUG: [0]: fee00618 00000000 00000000 00000000
-2016-12-03 19:08:43    [14874903.635818] bnx2 0000:01:00.0: slave0: DEBUG: [1]: fee00618 00000000 00000001 00000000
-2016-12-03 19:08:43    [14874903.644131] bnx2 0000:01:00.0: slave0: DEBUG: [2]: fee00618 00000000 00000002 00000000
-2016-12-03 19:08:43    [14874903.652433] bnx2 0000:01:00.0: slave0: DEBUG: [3]: fee00618 00000000 00000003 00000000
-2016-12-03 19:08:43    [14874903.660739] bnx2 0000:01:00.0: slave0: DEBUG: [4]: fee00618 00000000 00000004 00000000
-2016-12-03 19:08:43    [14874903.669270] bnx2 0000:01:00.0: slave0: DEBUG: [5]: fee00618 00000000 00000005 00000000
-2016-12-03 19:08:43    [14874903.677572] bnx2 0000:01:00.0: slave0: DEBUG: [6]: fee00618 00000000 00000006 00000000
-2016-12-03 19:08:43    [14874903.685876] bnx2 0000:01:00.0: slave0: DEBUG: [7]: fee00618 00000000 00000007 00000000
-2016-12-03 19:08:43    [14874903.694180] bnx2 0000:01:00.0: slave0: <--- start MCP states dump --->
-2016-12-03 19:08:43    [14874903.701040] bnx2 0000:01:00.0: slave0: DEBUG: MCP_STATE_P0[0003610e] MCP_STATE_P1[0003610e]
-2016-12-03 19:08:43    [14874903.709776] bnx2 0000:01:00.0: slave0: DEBUG: MCP mode[0000b880] state[80000000] evt_mask[00000500]
-2016-12-03 19:08:43    [14874903.719217] bnx2 0000:01:00.0: slave0: DEBUG: pc[0800b220] pc[0800b158] instr[30820800]
-2016-12-03 19:08:43    [14874903.727604] bnx2 0000:01:00.0: slave0: DEBUG: shmem states:
-2016-12-03 19:08:43    [14874903.733505] bnx2 0000:01:00.0: slave0: DEBUG: drv_mb[01030014] fw_mb[00000014] link_status[0000006f] drv_pulse_mb[00004a50]
-2016-12-03 19:08:43    [14874903.745044] bnx2 0000:01:00.0: slave0: DEBUG: dev_info_signature[44564907] reset_type[01005254] condition[0003610e]
-2016-12-03 19:08:43    [14874903.755891] bnx2 0000:01:00.0: slave0: DEBUG: 000001c0: 01005254 42530088 0003610e 00000000
-2016-12-03 19:08:43    [14874903.764630] bnx2 0000:01:00.0: slave0: DEBUG: 000003cc: 00000000 00000000 00000000 00000000
-2016-12-03 19:08:43    [14874903.773370] bnx2 0000:01:00.0: slave0: DEBUG: 000003dc: 00000000 00000000 00000000 00000000
-2016-12-03 19:08:43    [14874903.782112] bnx2 0000:01:00.0: slave0: DEBUG: 000003ec: 00000000 00000000 00000000 00000000
-2016-12-03 19:08:43    [14874903.792028] bnx2 0000:01:00.0: slave0: DEBUG: 0x3fc[00000000]
-2016-12-03 19:08:43    [14874903.798098] bnx2 0000:01:00.0: slave0: <--- end MCP states dump --->
-2016-12-03 19:08:44    [14874903.916087] bnx2 0000:01:00.0: slave0: NIC Copper Link is Down
-2016-12-03 19:08:44    [14874903.922336] bonding: eth0: link status definitely down for interface slave0, disabling it
-2016-12-03 19:08:52    [14874911.977687] [Hardware Error]: CPU 19: Machine Check Exception: 4 Bank 5: be00000000800400
-2016-12-03 19:08:52    [14874911.977777] Clocksource tsc unstable (delta = -8589935096 ns).  Enable clocksource failover by adding clocksource_failover kernel parameter.
-2016-12-03 19:08:52    [14874911.999243] [Hardware Error]: TSC 7ebbc5c7e698b4 ADDR 1579aa6 
-2016-12-03 19:08:52    [14874912.005430] [Hardware Error]: PROCESSOR 0:206c2 TIME 1480763330 SOCKET 0 APIC 11
-2016-12-03 19:08:52    [14874912.013203] [Hardware Error]: CPU 7: Machine Check Exception: 4 Bank 5: be00000000800400
-2016-12-03 19:08:52    [14874912.021686] [Hardware Error]: TSC 7ebbc5c7e698c8 ADDR 1579aa6 
-2016-12-03 19:08:52    [14874912.027876] [Hardware Error]: PROCESSOR 0:206c2 TIME 1480763330 SOCKET 0 APIC 10
-2016-12-03 19:08:52    [14874912.035650] [Hardware Error]: Machine check: Processor context corrupt
-2016-12-03 19:08:52    [14874912.042500] Kernel panic - not syncing: Fatal Machine check
-2016-12-03 19:08:52    [14874912.048401] Pid: 0, comm: swapper Tainted: GF  M    W  ---------------    2.6.32-358.el5.x86_64 #1
-2016-12-03 19:08:52    [14874912.058867] Call Trace:
-2016-12-03 19:08:52    [14874912.061632]  <#MC>  [] ? panic+0xd6/0x1d0
-2016-12-03 19:08:52    [14874912.067554]  [] ? notifier_call_chain+0x21/0x90
-2016-12-03 19:08:52    [14874912.073971]  [] ? __ratelimit+0xbd/0xe0
-2016-12-03 19:08:52    [14874912.079701]  [] ? print_mce+0xf1/0x150
-2016-12-03 19:08:52    [14874912.085338]  [] ? mce_panic+0x20e/0x210
-2016-12-03 19:08:52    [14874912.091062]  [] ? do_machine_check+0x9b8/0x9c0
-2016-12-03 19:08:52    [14874912.097396]  [] ? machine_check+0x1c/0x30
-2016-12-03 19:08:52    [14874912.103293]  [] ? intel_idle+0xb4/0x180
-2016-12-03 19:08:52    [14874912.109015]  <>  [] ? menu_select+0xee/0x370
-2016-12-03 19:08:52    [14874912.115627]  [] ? cpuidle_idle_call+0x99/0x140
-2016-12-03 19:08:52    [14874912.121958]  [] ? cpu_idle+0xa8/0xe0
-2016-12-03 19:08:52    [14874912.127422]  [] ? start_secondary+0x226/0x360
-```
+Pentium 4, Intel Xeon 和 P6家族的处理器实现了一个主机检测架构（machine-check architecture）来提供一种检查和报告硬件（machine）错误的机制，例如：系统总线错误，ECC错误，奇偶错误（parity errors），缓存错误，以及TLB错误。MCE包含了一系列型号特定寄存器（model-specific registers, MSRs）用于设置主机检测以及额外的MSRs组用于记录检查到的错误。
 
-上述Call Trace和Kernel panic的记录中，有一些值得学习和分析的内容：
+处理器通过生成一个主机检测异常（machine-check exception），也就是放弃类异常，来记录检测到的不可修复主机检测错误。主机检测架构的实现并通常不是在产生一个machine-check exception时候允许处理器重启。然而，主机检测异常处理器可以从machine-check MSRs搜集有关主机检测错误的信息。
+
+从45 nm Intel 64 处理器开始CPUID报告DisplayFamily_DisplayModel作为 `06H_1AH`，处理器就可以报告有关主机检测错误的信息并发送一个可编程中断给软件以相应MC错误，引用为修正的主机检测错误中断（CMCI）。
+
+Intel 64处理器支持主机检查架构和CMCI也可以支持一个附加的增强，可命名的，支持从一些不正确的可修复主机检测错误的软件修复。
+
+# Machine-check MSRS
+
+在Pentium 4, Intel Atom, Intel Xeon 和 P6系列有一组全局控制和状态寄存器以及一系列错误报告寄存器组。
+
+![Machine-check MSRs](../../../../img/os/linux/kernel/cpu/Machine-Check_MSRs.png)
+
+每个错误报告组和一个特定硬件单元（或一组硬件单元）相关联。使用`RDMSR`或`WRMSR`来读取或写入这些寄存器。
+
+## Machine-Check全局控制MSRs
+
+主机检测全局控制MSRs包括`IA32_MCG_CAP`，`IA32_MCG_STATUS`和可选的`IA32_MCG_CTL`以及`IA32_MCG_EXT_CTL`。
+
+### `IA32_MCG_CAP` MSR
+
+`IA32_MCG_CAP` MSR是一个提供有关处理器的主机检测架构信息的只读寄存器，以下是寄存器的布局：
+
+![IA32_MCG_CAP Register](../../../../img/os/linux/kernel/cpu/IA32_MCG_CAP_Register.png)
+
+> 这个`IA32_MCG_CAP`提供了处理器的检测功能的描述，也就是读取这个寄存器就可以知道处理器所支持的MCG功能。详细的位说明见手册。
+
+### `IA32_MCG_STATUS` MSR
+
+`IA32_MCG_STATUS` MSR描述了当一个MCE发生以后处理器的当前状态
+
+![IA32_MCG_STATUS Register](../../../../img/os/linux/kernel/cpu/IA32_MCG_STATUS_Register.png)
+
+* `RIPV (restart IP valid) flag, bit 0` - 是否可重启指令指针所引用指令（restart IP valid)标志：这个寄存器位设置时，程序可以可靠地重启这个指令指针引用的压入堆栈的指令。当这个位寄存器位清除时，程序不能可靠地重启压入指令指针所引用指令。
+* `EIPV (erro IP valid) flag, bit 1` - 是否准确表示指令指针引用的指令：这个寄存器位设置时，表示MCE发生时，这个指令指针指向的堆栈中的指令是和错误直接相关的。如果这个标志位没有设置，则指令指针有可能和错误无关。
+* `MCIP (machine check in progress) flag, bit 2` - 标记是否产生了machine-check exception(MCE)。软件可以设置或清除这个标志位。当发生第二次Machine-Check Event(MCE)时候，如果这个MCIP被设置了，则会导致处理器进入shutdown状态。
+* `LMCE_S (local machine check exception signaled), bit 3` - 标记是否发生了一个本地machine-check exception(MCE)。这个标志位设置的时候就宝石这个MCE异常只发生在本逻辑处理器上。
+
+> `IP` 即 `instruction pointer` 指令指针
+
+### `IA32_MSG_CTL` MSR
+
+当`IA32_MCG_CAP` MSR的`MCG_CTL_P`寄存器位被设置时，则`IA32_MCG_CTL` MSR可以使用。
+
+`IA32_MCG_CTL`控制了是否报告主机检测异常（machine-check exceptions, MCE)。如果设置，写入 1s 到这个寄存器激活machine-check功能，并写入所有 0s 关闭machine-chek功能。所有其他数值都是没有定义也没有实现。
+
+### `IA32_MCG_EXT_CTL` MSR
+
+当`IA32_MCG_CAP` MSR的`MCG_LMCE_P`寄存器位被设置时，则`IA32_MCG_EXT_CTL` MSR可以使用。
+
+`IA32_MCG_EXT_CTL.LMCE_EN` (bit 0)允许处理器发送一些MCE信号给系统只有一个单一逻辑处理器。
+
+如果在`IA32_MCG_CAP` 的 `MCG_LMCE_P` 没有设置，或者平台软件没有通过设置`IA32_FEATURE_CONTROL.LMCE_ON` (bit 20)激活`LMCE`，则任何尝试写或者读`IA32_MCG_EXT_CTL`将导致进入`#GP`。 这个`IA32_MCG_EXT_CTL`寄存器在重置时候被清除。
+
+以下是 `IA32_MCG_EXT_CTL` 寄存器布局
+
+![IA32_MCG_EXT_CTL Register](../../../../img/os/linux/kernel/cpu/IA32_MCG_EXT_CTL_Register.png)
+
+* `LMCE_EN (local machine check exception enable) flag, bit 0` - 系统软件设置这个位允许硬件发送一些MCE信号只给一个单处理器。只在平台软件已经配置`IA32_FEATURE_CONTROL`时候系统软件才可以设置`LMCE_EN`。
+
+### 激活Local Machine Check
+
+准备使用LMCE需要同时配置平台软件和系统软件。平台软件可以通过设置`IA32_FEATURE_CONTRL` MSR(MSR地址3AH) 位20(LMCE_ON)来启用`LMCE`。
+
+系统软件必须确保同时 `IA32_FEATURE_CONTROL.Lock`(bit 0)和`IA32_FEATURE_CONTROL.LMCE_ON`(bit 20)在设置`IA32_MCG_EXT_CTL.LMCE_EN`(bit 0)之前已经设置。当系统软件激活LMCE，则硬件将检测是否有一个特别错误可以只发送给一个单一的逻辑处理器。软件不会假设何种类型错误，硬件可以选择作为LMCE发送。
+
+### 错误报告寄存器组
+
+错误报告寄存器组可以包含`IA32_MCi_CTL`，`IA32_MCi_STATUS`，`IA32_MCi_ADDR`和`IA32_MCi_MISC` MSRs。这个报告组的数量是在`IA32_MCG_CAP` MSR(地址0179H)的`[7:0]`位设置。第一个错误报告寄存器（`IA32_MC0_CTL`）总是以地址`400H`开头。
+
+### `IA32_MCi_CTL` MSRs
+
+`IA32_MCi_CTL` MSR控制关于由部分硬件单元（或者硬件单元组）产生的#MC的信号。64位（EEj）的每个位表示一种潜在的错误。设置一个EEj标志激活相应错误的#MC信号，而清除这个位则关闭这种错误的信号。错误日志则会忽略这些寄存器位的设置。处理器在没有实现的位上放弃写入。
+
+![IA32_MCi_CTL Register](../../../../img/os/linux/kernel/cpu/IA32_MCi_CTL_Register.png)
+
+对于P6系列处理器，处理器基于Intel核心微架构（不包括CPUID报告`DisplayFamily_DisplayModel`作为`06H_1AH`以及后续）：操作系统或者决策软件必须`不修改` `IA32_MC0_CTL` MSR寄存器内容。这个寄存器相当于`EBL_CR_POWERON` MSR和控制平台特定错误处理功能。系统特定firmware（BIOS）负责正确初始化`IA32_MC0_CTL` MSR。P6系列处理器只允许写入所有1或者所有0到这个`IA32_MCi_CTL` MSR。
+
+### `IA32_MCi_STATUS` MSRs
+
+每个`IA32_MCi_STATUS` MSR寄存器包含了一个有关主机检测错误的信息，如果这个值(VAL)标记被设置（见下图）。软件负责通过写入`0`明确地清除`IA32_MCi_STATIS` MSRs；然后再写入`1`到`IA32_MCi_STATUS` MSRs寄存器来引发一个一般保护异常（general-protection exception）。
+
+* `MCA`(machine-check architecture) 错误码字段，位`15:0` - 设置主机检测错误情况被发现时的MCA错误码。所有IA-32处理器实现的MCA都是生成相同的MCA定义的错误码。
+* `Model-specific`型号相关的错误码字段，位`31:16` - 设置MCE发生时和处理器型号相关的错误码。这个型号相关的错误码在相同的MCE情况下随不同的处理器而变化。
+* 保留的，错误状态，和其他信息字段，位`56:32` -
+  * 如果`IA32_MCG_CAP.MCG_EMC_P[bit 25]`设置为0，则位`37:32`包含了"其他信息"是特定的并且不是MCE相关的信息。
+  * 如果`IA32_MCG_CAP.MCG_EMC_P`设置为1，则`36:32`就是"其他信息"。如果位`37`是0，则系统firmware不能修改`IA32_MCi_STATUS`，如果位`37`是1，则系统firmware可能已经修改了`IA32_MCi_STATUS`内容。
+  * 如果`IA32_MCG_CAP.MCG_CMCI_P[bit 10]`设置为0，位`52:38`也包含"其他信息"（和`37:32`位相同)
+
+![IA32_MCi_STATUS Register](../../../../img/os/linux/kernel/cpu/IA32_MCi_STATUS_Register.png)
+
+### 主机检查
+
+----
+
+> 在["NETDEV WATCHDOG: slave0 (bnx2): transmit queue 5 timed out"内核Panic排查](os/linux/kernel/cpu/bnx2_transmit_queue_timeed_out_intremap_off)中我们提到了有关MCE错误的排查，本文将综合一些MCE排查的经验和相关技术纲要。
 
 * [污染的内核(tainted kernel)是什么意思](tainted_kernel)
 
@@ -272,7 +216,13 @@ SOCKET 0 APIC 10
 Machine check: Processor context corrupt
 ```
 
+# 原理
+
+
+
 # 参考
 
 * [What are Machine Check Exceptions (or MCE)?](http://www.advancedclustering.com/act-kb/what-are-machine-check-exceptions-or-mce/)
 * [怎样诊断Machine-check Exception](http://linuxperf.com/?p=105)
+* [Decoding Machine Check Exception (MCE) output after a purple screen error (1005184)](https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1005184)
+* [Intel® 64 and IA-32 Architectures Software Developer Manuals](https://software.intel.com/en-us/articles/intel-sdm)的[Intel® 64 and IA-32 Architectures Software Developer’s Manual Volume 3A: System Programming Guide, Part 1](https://software.intel.com/sites/default/files/managed/7c/f1/253668-sdm-vol-3a.pdf)详细介绍了Machine-Check Architecture原理和排查方法（第15、6章）
