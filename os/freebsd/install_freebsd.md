@@ -96,7 +96,7 @@ cd /Volume/OS X/Users/jerry/Downloads/refind-bin-0.10.2
 * TouchPad: Use the atp(4) driver in FreeBSD 9.0 to get multi finger tapping, among other things. You should ensure that moused is only attaching to /dev/atp0, not /dev/ums0 too; use ps to check otherwise it will be jerky and unreliable. 
 * System Management Console (SMC for short) is a device that allows you to read the temperatures, fan speed and keyboard backlight status. It also lets you control the fan minimum and maximum speed and the keyboard backlight on/off status. 
 
-# ThinkPad安装后操作
+# FreeBSD安装后操作
 
 * 安装后无线网卡设置见 [FreeBSD无线网络](freebsd_wireless.md)
 * 安装后安装软件包 [在FreeBSD上安装软件:Packages和Ports](packages_and_ports.md)
@@ -108,10 +108,31 @@ pkg install sudo lsof aria2 tmux
 
 > `aria2`是多线程下载工具，比wget要快速很多（[5 FASTEST LINUX DOWNLOAD MANAGER/ACCELERATOR PROGRAM](http://www.ubuntubuzz.com/2010/06/5-fastest-linux-download.html)）。使用`axel`也可以，不过没有很方便的安装方法。
 
-# MacBook Air安装后操作
+FreeBSD的`sudoers`配置文件默认位于 `/usr/local/etc/sudoers` ，请使用 `visudo` 工具进行编辑。
+
+* 安装编译开发工具
+
+参考 [How to install g++ on FreeBSD?](http://stackoverflow.com/questions/23180725/how-to-install-g-on-freebsd)
+
+```
+pkg install lang/gcc49
+```
+
+> 当前也支持安装 gcc5/6
+
+注意，安装完成`gcc49`之后，执行程序命令是`/usr/local/bin/gcc49`，如果希望默认是使用`gcc49`则执行
+
+```
+cd /usr/local/bin
+ln -s gcc49 gcc
+ln -s g++49 g++
+```
+
+> 注意：FreeBSD是采用LLVM代替了gcc，所以不安装gcc也可以编译
 
 # 参考
 
 * [Installing FreeBSD: Pre-Installation Tasks](https://www.freebsd.org/doc/handbook/bsdinstall-pre.html)
+* [Using bsdinstall](https://www.freebsd.org/doc/handbook/using-bsdinstall.html)
 * [Lenovo Thinkpad X220](https://wiki.freebsd.org/Laptops/Thinkpad_X220)
 * [ThinkPad X220 and the upcoming FreeBSD 10](https://forums.freebsd.org/threads/42716/)

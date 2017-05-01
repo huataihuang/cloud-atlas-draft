@@ -94,7 +94,28 @@ Intel 64处理器支持主机检查架构和CMCI也可以支持一个附加的�
 
 ![IA32_MCi_STATUS Register](../../../../img/os/linux/kernel/cpu/IA32_MCi_STATUS_Register.png)
 
-### 主机检查
+> `IA32_MCi_STATUS` MSR 位`54:53` 标记了系统架构是否正确报告了MCE时间的硬件状态跟踪，其中`01`表示`绿色`提供了事件状态跟踪，`10`表示`黄色`同样也提供了事件状态跟踪（准确度级别低些？），如果是`00`则表示没有对这个事件提供硬件状态跟踪。
+
+* PCC(processor context corrupt)，位`57` - 这个寄存器位设置表示处理器状态可能已经被检测到的错误情况所破坏并且可能不能可靠重启处理器。
+* ADDRV(`IA32_MCi_ADDR`寄存器校验)标志，位`58` - 这个寄存器位设置表示`IA32_MCi_ADDR`寄存器保存了错误发生时的地址。如果被清除，这个位表示`IA32_MCi_ADDR`寄存器要么不支持要么没有包含错误发生时的地址。
+* MISCV (`IA32_MCi_MISC`寄存器校验)标志，位`59` - 这个寄存器位设置表示`IA32_MCi_MISC`寄存器保存了错误发生时的地址。
+* EN(错误激活)标志，位`60` - 表示通过辅助的`IA32_MCi_CTL`寄存器的EEj位来激活错误。
+* UC(错误不可修复)标志，位`61` - 这个寄存器位设置表示处理器不能修复错误情况。如果这个位被清除，则表示处理器可以修复错误。
+* OVER(主机检测溢出，machine check overflow)标志，位`62` - 这个位设置表示前一个错误仍然在错误报告寄存器组（也就是VAL位仍然在`IA32_MCi_STATUS`寄存器中设置）时，又发生了一个主机检测错误。处理器设置`OVER`标志，并且软件负责清理该寄存器位。总的来说，激活的错误将覆写禁用的错误，不可修复错误将覆写可修复错误。不过，不可修复的错误不会覆写前一个不可修复的错误。当`MCG_CMCI_P`被设置，修正的错误可能不会设置`OVER`标志。软件可以依靠在`IA32_MCi_STATUS`[52:38]的错误技术来决定是否增加的可修复错误发生。
+* VAL(`IA32_MCi_STATUS`寄存器校验)标志，位`63` - 这个位设置表示`IA32_MCi_STATUS`寄存器信息是否正确。如果这个标志位设置，处理器将遵循在`IA32_MCi_STATUS`寄存器中的`OVER`标志给出的规则来覆写前一个校验值。处理器设置这个VAL标志位，而软件负责清除它。
+
+### 主机检查溢出（Machine Check Overflow）的覆写规则
+
+以下是缓存中已经记录了事件到MC bank的时候如何处理第2个事件的覆写规则 - 即MC bank的valid位已经设置成1的时候如何处理：
+
+| First Event | Second Event | UC bit | Color | MCA Info |
+| ---- | ---- | ---- | ---- | ---- |
+| 00/green | 00/green | 0 | 00/green | either |
+| 00/green | yellow | 0 | yellow | second error |
+| yellow | 00/green | 0 | yellow | first error |
+| yellow | yellow | 0 | yellow | either |
+| 00/green/yellow | UC | 1 | undefined | second |
+| UC | 00/green/yellow | 1 | undefined | first |
 
 ----
 
@@ -110,6 +131,12 @@ Intel 64处理器支持主机检查架构和CMCI也可以支持一个附加的�
 
 * 警告类错误(notice or warning error)将通过一个"Machine Check Event logged"消息记录到系统日志中，然后可以通过一些Linux哦你工具事后查看。
 * 致命异常（fatal exception）则导致主机停止响应，MCE的详细信息将输出到系统的控制台。
+
+# System Management BIOS (SMBIOS)
+
+System Management BIOS (SMBIOS)规范𨈖已了用于读取存储在主机BIOS中的信息的数据结构（和访问方法）。这个规范是[分布式管理工作组](https://en.wikipedia.org/wiki/Distributed_Management_Task_Force)(Distributed Management Task Force, DMTF)的一个子集。在集成之前，SMBIOS功能称为DMIBIOS，这是因为它是和桌面管理接口（Desktop Management Interface, DMI）交互的。
+
+在Linux内核包含了一个SMBIOS解码器，允许系统管理员检查系统硬件配置并激活或禁用一些特定系统来修复问题，这个方法是基于SMBIOS信息。用户命令工具`dmidecode`和这个检查这个内核数据。通常信息包含了系统生产厂商、型号、序列号、BIOS版本和资产标签，以及很多和系统生产厂商相关的各种信息。这些信息通常包含了针对CPU sockets，扩展插槽（包括AGP, PCI, ISA）以及内存模块查抄，以及I/O端口列表（包括串口，并口和USB）。
 
 ## 哪些会导致MCE错误
 
@@ -129,6 +156,10 @@ Intel 64处理器支持主机检查架构和CMCI也可以支持一个附加的�
 ```
 
 一些系统会周期性执行mcelog并将输出信息记录到文件 `/var/log/mcelog`。所以如果你看到"Machine Check Events logged"消息但是`mcelog`没有返回任何数据，请检查`/var/log/mcelog`。
+
+## 模拟/触发 Machine Check Exception
+
+`mcelog`在[test suite](http://mcelog.org/README.html)提供了一个称为`mce-inject`的工具，[源代码](https://github.com/andikleen/mce-inject)编译`sh make test`
 
 ## 分析致命的MCE
 

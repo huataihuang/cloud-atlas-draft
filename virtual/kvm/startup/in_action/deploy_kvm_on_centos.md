@@ -146,6 +146,75 @@ virt-install \
   --cdrom=/var/lib/libvirt/images/CentOS-7-x86_64-DVD-1511.iso
 ```
 
+## 使用现有磁盘镜像创建虚拟机
+
+* `virt-install`也支持从现有存在的磁盘镜像创建KVM VM，使用`--import`参数：
+
+```
+virt-install -n vmname -r 2048 --os-type=windows   --os-variant=win7 \
+--disk /kvm/images/disk/vmname_boot.img,device=disk,bus=virtio \
+--network bridge=virbr0,model=virtio --vnc --noautoconsole --import
+```
+
+> `–disk /kvm/images/disk/vmname_boot.img,device=disk,bus=virtio`是一个完整定义磁盘镜像路径以及通过`,`分隔的磁盘参数选项。注意，使用`virtio`速度最快但是需要确保windows安装驱动，并且太陈旧的Linux版本不支持。
+>
+> `-w bridge=virbr0,model=virtio` 连接`virbr0`虚拟网桥，并使用`virtio`驱动以获得更好网络性能。如果操作系统不支持，则使用`e1000`或者`rtl8139`。
+>
+> `--noautoconsole` 安装不会自动代开`virt-viewer`来查看控制台已完成安装。这对远程使用SSH系统有用。
+
+* 以前安装过的`dev7.img`镜像重新启用
+
+```
+virt-install \
+  --network bridge:virbr0 \
+  --name dev7 \
+  --os-type=linux \
+  --os-variant=rhel7.3 \
+  --ram=2048 \
+  --vcpus=1 \
+  --disk path=/var/lib/libvirt/images/dev7.img,device=disk,bus=virtio \
+  --network bridge=virbr0,model=virtio \
+  --graphics vnc --noautoconsole --import
+```
+
+* 多磁盘的安装启动案例
+
+```
+virt-install -n vmname -r 2048 --os-type=windows --os-variant=win7 \
+--disk /kvm/images/disk/vmname_boot.img,device=disk,bus=virtio \
+--disk /kvm/images/disk/vmname_data_1.img,device=disk,bus=virtio \
+-w bridge=virbr0,model=virtio --vnc --noautoconsole --import
+```
+
+* LVM磁盘镜像
+
+```
+virt-install -n vmname -r 2048 --os-type=windows --os-variant=win7 \
+--disk /dev/vg_name/lv_name,device=disk,bus=virtio \
+-w bridge=virbr0,model=virtio --vnc --noautoconsole --import
+```
+
+* 非virtio（使用IDE和e1000网卡模拟）
+
+```
+virt-install -n vmname -r 2048 --os-type=windows --os-variant=win7 \
+--disk /kvm/images/disk/vmname_boot.img,device=disk,bus=ide \
+-w bridge=virbr0,model=e1000 --vnc --noautoconsole --import
+```
+
+# 一些其他安装案例
+
+```
+virt-install \
+  --network bridge:virbr0 \
+  --name centos6 \
+  --ram=2048 \
+  --vcpus=1 \
+  --disk path=/var/lib/libvirt/images/centos6.img,size=10 \
+  --graphics vnc \
+  --cdrom=/var/lib/libvirt/images/CentOS-6.9-x86_64-netinstall.iso
+```
+
 ```
 virt-install \
   --network bridge:virbr0 \
@@ -156,6 +225,18 @@ virt-install \
   --graphics vnc \
   --os-type=linux --os-variant=rhel5.11 \
   --cdrom=/var/lib/libvirt/images/CentOS-5.11-x86_64-netinstall.iso
+```
+
+```
+virt-install \
+  --network bridge:virbr0 \
+  --name freebsd10 \
+  --os-type=freebsd --os-variant=freebsd10.1 \
+  --ram=2048 \
+  --vcpus=1 \
+  --disk path=/var/lib/libvirt/images/freebsd10.img,size=10 \
+  --graphics vnc \
+  --cdrom=/var/lib/libvirt/images/FreeBSD-10.3-RELEASE-amd64-disc1.iso
 ```
 
 * 举例：安装windows 2012操作系统
@@ -197,7 +278,6 @@ virt-install \
    --name=win2012desktop \
    --os-type=windows --os-variant=win2k12r2 \
    --boot cdrom,hd \
-   --os-type=windows \
    --network=default,model=virtio \
    --disk path=/var/lib/libvirt/images/win2016desktop.img,size=16,format=qcow2,bus=virtio,cache=none \
    --disk device=cdrom,path=/var/lib/libvirt/images/win2012.iso \
@@ -368,3 +448,4 @@ done
 * [Install and use CentOS 7 or RHEL 7 as KVM virtualization host](http://jensd.be/207/linux/install-and-use-centos-7-as-kvm-virtualization-host)
 * [KVM Virtualization in RHEL 7 Made Easy](https://linux.dell.com/files/whitepapers/KVM_Virtualization_in_RHEL_7_Made_Easy.pdf)
 * [Chapter 9. Installing a Fully-virtualized Windows Guest](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/6/html/Virtualization_Host_Configuration_and_Guest_Installation_Guide/sect-Virtualization_Host_Configuration_and_Guest_Installation_Guide-Windows_Installations-Installing_Windows_XP_as_a_fully_virtualized_guest.html)
+* [KVM Guests: Using Virt-Install to Import an Existing Disk Image](https://www.itfromallangles.com/2011/03/kvm-guests-using-virt-install-to-import-an-existing-disk-image/)
