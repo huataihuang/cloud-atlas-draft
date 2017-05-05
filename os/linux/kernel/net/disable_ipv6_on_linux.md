@@ -28,6 +28,18 @@ net.ipv6.conf.lo.disable_ipv6 = 1
 
 保存配置文件，然后执行 `sysctl -p` 从配置文件加载并刷新配置，也可以重启生效。
 
+但是发现系统启动日志中显示有无法是被内核参数`net.ipv6.conf.all.disable_ipv6`
+
+```
+2017-05-03 16:52:19	Applying ktune sysctl settings:
+2017-05-03 16:52:19	/etc/sysctl.ktune: [FAILED]
+2017-05-03 16:52:19	error: "vm.pagecache" is an unknown key
+2017-05-03 16:52:19	 
+2017-05-03 16:52:19	Applying sysctl settings from /etc/sysctl.conf: [FAILED]
+2017-05-03 16:52:19	error: "net.netfilter.nf_conntrack_tcp_timeout_established" is an unknown key
+2017-05-03 16:52:19	error: "net.ipv6.conf.all.disable_ipv6" is an unknown key
+```
+
 # 关闭IPv6的影响
 
 * 关闭IPv6对sshd的影响
