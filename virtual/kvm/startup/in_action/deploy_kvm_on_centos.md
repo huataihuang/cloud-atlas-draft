@@ -239,6 +239,18 @@ virt-install \
   --cdrom=/var/lib/libvirt/images/FreeBSD-10.3-RELEASE-amd64-disc1.iso
 ```
 
+```
+virt-install \
+  --network bridge:virbr0 \
+  --name ubuntu16 \
+  --os-type=ubuntu --os-variant=ubuntu16.04 \
+  --ram=2048 \
+  --vcpus=1 \
+  --disk path=/var/lib/libvirt/images/ubuntu16.img,size=10 \
+  --graphics vnc \
+  --cdrom=/var/lib/libvirt/images/ubuntu-16.10-server-amd64.iso
+```
+
 * 举例：安装windows 2012操作系统
 
 ```
