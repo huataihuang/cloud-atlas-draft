@@ -1,0 +1,1 @@
+Moses是开源的统计机器翻译引擎(statistical machine translation engine)
