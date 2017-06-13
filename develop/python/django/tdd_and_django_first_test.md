@@ -69,6 +69,41 @@ You have 13 unapplied migration(s). Your project may not work properly until you
 Run 'python manage.py migrate' to apply them.
 ```
 
+尝试 `python manage.py migrate` 则提示
+
+```
+Traceback (most recent call last):
+  File "manage.py", line 17, in <module>
+    "Couldn't import Django. Are you sure it's installed and "
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+```
+
+这个`PYTHONPATH`环境问题参考 [Django installed, but can't import django in python](https://askubuntu.com/questions/250442/django-installed-but-cant-import-django-in-python)
+
+执行命令检查路径
+
+```
+$ python3
+>>> import sys
+>>> sys.path
+['', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python36.zip', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/lib-dynload', '/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages']
+```
+
+需要执行类似
+
+```
+$ PYTHONPATH=/path/to/django/parent/dir python
+>>> import django  # should work now
+```
+
+实际操作可以使用
+
+```
+PTTHONPATH=/Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/site-packages/django python3
+```
+
+> 建议使用 `virtualenv` 来构建环境。 **不过上述错误实际上是我忘记python2没有安装django，需要使用`python3`**
+
 再次运行 `python3 functional_tests.py` 就可以看到Django正常工作的提示界面：
 
 ![Django work](/ime/develop/python/django/django_work.png)
@@ -139,3 +174,76 @@ $ echo "*.pyc" >> .gitignore
 ```
 git commit
 ```
+
+# 第一个测试
+
+```
+#!/usr/bin/env python3
+
+from selenium import webdriver
+import unittest
+
+class NewVisistorTest(unittest.TestCase):
+    def setUp(self):
+        self.browser = webdriver.Firefox()
+ 
+    def tearDown(self):
+        self.browser.quit()
+
+    def test_can_start_a_list_and_retrieve_it_later(self):
+        self.browser.get('http://localhost:8000')
+        self.assertIn('To-Do', self.browser.title)
+        self.fail('finish the test!')
+
+if __name__ == '__main__':
+    unittest.main(warnings='ignore')
+```
+
+* 设置程序运行使用系统中`python3`
+
+```
+#!/usr/bin/env python3
+```
+
+* 测试代码`test_can_start_a_list_and_retrieve_it_later`，所有以`test_`开头的方法都是测试方法，由测试主程序运行。类中可以定义多个测试方法。
+
+* `setUp`和`tearDown`是特殊方法，分别在测试方法之前和之后运行，这里使用两个方法打开和关闭浏览器。这两个方法类似`try/except`依据，如果测试出错，也会运行`tearDown`方法，这样测试结束，Firefox窗口就会关闭。
+
+> 如果`setUp`方法抛出异常，则`tearDown`方法不会运行
+
+* `unittest`提供了很多用于编写测试断言的辅助函数，如`assertEqual`、`assertTrue`和`assertFalse`等，详细参考 http://docs.python.org/3/library/unittest.html
+
+* `if __name__ == '__main__` 是用于检查python程序是否在命令行运行，而不是其他脚本中导入。调用`unittest.main()`启动`unittest`测试运行程序会自动在文件中查找测试类和方法，然后运行。
+
+* `warnings='ignore'`会禁止抛出`ResourceWarning`异常。
+
+执行以上测试，会看到启动Firefox，并输出测试包报告，显示了测试失败的内容
+
+```
+$ ./functional_tests.py
+F
+======================================================================
+FAIL: test_can_start_a_list_and_retrieve_it_later (__main__.NewVisistorTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "./functional_tests.py", line 15, in test_can_start_a_list_and_retrieve_it_later
+    self.assertIn('To-Do', self.browser.title)
+AssertionError: 'To-Do' not found in 'Welcome to Django'
+
+----------------------------------------------------------------------
+Ran 1 test in 3.165s
+
+FAILED (failures=1)
+```
+
+很好，我们现在知道访问的浏览器标题窗口没有`To-Do`关键字
+
+* Selenium测试中还经常使用等待页面加载的指令`implicitly_wait`，以便Selenium能等待页面完全加载。
+
+```
+    def setUp(self):
+        self.browser = webdriver.Firefox()
+        self.browser.implicitly_wait(3)
+```
+
+> `implicitly_wait`不适合所有情况，复杂测试需要显式等待

@@ -177,7 +177,7 @@ $ objdump -r -S -l --disassemble net/dccp/ipv4.o
 
 ## EXT4文件系统`io-error-guard`
 
-最近发现线上系统crash前，出现`io-error-guard: catch 1 continuous bio error.`，然后出现Oops如下
+系统crash前，出现`io-error-guard: catch 1 continuous bio error.`，然后出现Oops如下
 
 ```
 2017-04-08 03:34:51    [29201245.714153] io-error-guard: catch 1 continuous bio error.
@@ -219,31 +219,16 @@ $ objdump -r -S -l --disassemble net/dccp/ipv4.o
 2017-04-08 03:34:51    [29201246.231996]  [] system_call_fastpath+0x16/0x1b
 ```
 
-钟会同学排查 [ECS netoops导致panic问题](https://aone.alibaba-inc.com/issue/10064708) 参考如下：
-
-* 首先从 http://gitlab.alibaba-inc.com/kernel/6u-build 获取alikernel内核代码（内核`2.6.32-358.23.2.ali1203.el5.x86_64`的tag已丢失，从硎无这里获取到对应commit_id）
+* 找到对应内核的debuginfo软件包 kernel-debuginfo-2.6.32-358.xxxx.el5.x86_64.rpm ，并解压出对应的`vmlinux`
 
 ```
-git clone git@gitlab.alibaba-inc.com:kernel/6u-build.git
-cd 6u-build
-git checkout d13aecca99838fcb0c3fd080c2b53e20536aa47d -b feature/taobao-kernel_A_2_6_32_358.23.2.ali1203
-./scripts/seq-patch.py
-```
-
-`注意`：如果执行`./scripts/seq-patch.py`提示信息`Do you have quilt?`则表示系统没有安装`quilt`工具（用于管理patch），可以通过yum安装，也可能AliOS已经安装在`/home/tops/bin/`目录下，将该路径添加到profile中就可以。
-
-> AliKernel代码会生成在 `tmp/linux-2.6.32-358.23.2.el5`
-
-* 从 http://yum.tbsite.net 找到对应内核的debuginfo软件包 [kernel-debuginfo-2.6.32-358.23.2.ali1203.el5.x86_64.rpm](http://yum.corp.taobao.com/taobao/5/x86_64/test/kernel-debuginfo/kernel-debuginfo-2.6.32-358.23.2.ali1203.el5.x86_64.rpm)，并解压出对应的`vmlinux`
-
-```
-rpm2cpio kernel-debuginfo-2.6.32-358.23.2.ali1203.el5.x86_64.rpm | cpio -idv ./usr/lib/debug/lib/modules/2.6.32-358.23.2.ali1203.el5.x86_64/vmlinux
+rpm2cpio kernel-debuginfo-2.6.32-358.xxxx.el5.x86_64.rpm | cpio -idv ./usr/lib/debug/lib/modules/2.6.32-358.xxxx.el5.x86_64/vmlinux
 ```
 
 * 将`vmlinux`放到源代码目录下
 
 ```
-cp ./usr/lib/debug/lib/modules/2.6.32-358.23.2.ali1203.el5.x86_64/vmlinux tmp/linux-2.6.32-358.23.2.el5/
+cp ./usr/lib/debug/lib/modules/2.6.32-358.xxxx.el5.x86_64/vmlinux tmp/linux-2.6.32-358.23.2.el5/
 ```
 
 * 进入源代码目录，使用gdb分析

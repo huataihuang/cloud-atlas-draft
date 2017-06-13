@@ -40,6 +40,28 @@ def get_vcpu_time(vcpu_top_file):
     return vcpu_time
 ```
 
+# 输出命令(subprocess)多行结果到字典
+
+执行一个命令输出的多行结果，可以先转换到列表，然后再将列表中每个字符串分割存储到字典中：
+
+```
+def get_cpu_frequency_data():
+    """
+    获取所有cpu主频  cpupower monitor -m Mperf
+
+    -m 参数指定显示模块，可以通过 -l参数获得支持的模块
+    注意不同平台模块不同，所以要使用 -m 参数，否则输出所有模块的结果列数量不同
+    """
+    cpu_frequency_data_output = []
+    cpu_frequency_data = {}
+    cpu_frequency_data_output = subprocess.check_output("sudo cpupower monitor -m Mperf | grep -Ev 'Mperf|CPU' | awk -F\| '{print $3\" \"$6}'", shell=True).splitlines()
+    for items in cpu_frequency_data_output:
+        key, value = int(items.split()[0]), int(items.split()[1])
+        cpu_frequency_data[key] = value
+        
+    return cpu_frequency_data
+```
+
 # 字典嵌套数组
 
 python的字典非常灵活，其值可以嵌套数组也可以再嵌套字典，而且嵌套无限制。
