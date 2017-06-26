@@ -37,3 +37,20 @@ echo ${array[0]}
 ```
 
 输出内容 `bill`
+
+# 在array每个元素添加字符串
+
+参考 [How to append a string to each element of a Bash array?](https://stackoverflow.com/questions/6426142/how-to-append-a-string-to-each-element-of-a-bash-array)
+
+```
+function gen_vm_rss()
+{
+    time_stamp=`date +%Y-%m-%d" "%H:%M:%S`
+    vm_rss_array=( $(ps aux | grep qemu | grep -v grep | awk '{print $13"|"$6}') )
+    vm_num=${#vm_rss_array[@]}
+    for ((i=0;i<vm_num;i++));do
+        vm_rss_array[i]="$time_stamp|${vm_rss_array[i]}"
+        echo "${vm_rss_array[i]}"
+    done
+}
+```

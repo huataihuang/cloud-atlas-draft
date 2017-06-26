@@ -12,12 +12,58 @@ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 * 执行`vim`命令，然后在命令模式下执行`:PluginInstall`安装插件
 
+在CentOS 7上，系统安装的vim版本是`7.4.160-1`，但是`:PluginInstall`安装时候提示`requires Vim 7.4.1578+`。可以参考 [The Vim repository at GitHub](The Vim repository at GitHub)从源代码编译安装，但是编译需要`requires Vim compiled with Python (2.6+ or 3.3+) support.`：
+
+> 参考 [Report "YouCompleteMe unavailable: requires Vim compiled with Python 2.x support" error #1907](https://github.com/Valloric/YouCompleteMe/issues/1907)
+
+```
+yum install python-devel
+yum install python34-devel
+
+git clone https://github.com/vim/vim.git
+cd src
+./configure --enable-pythoninterp=yes --enable-python3interp=yes
+make
+sudo make install
+```
+
+这样安装完最新的vim 8.0之后，再次在vim中执行`:PluginInstall`即可成功。
+
 * `ycm`需要手工编译出库文件
 
 ```
 cd ~/.vim/bundle/YouCompleteMe
 ./install.py
 ```
+
+> 编译`ycm`需要系统中先安装cmake，并且要求编译器支持C++11。这在CentOS7上编译会存在报错
+
+```
+CMake Error at CMakeLists.txt:180 (message):
+  Your C++ compiler does NOT fully support C++11.
+```
+
+解决的方法参考 [Your C++ compiler does NOT support C++11. #2596](https://github.com/Valloric/YouCompleteMe/issues/2596)，即先安装最新版本的gcc 5.2
+
+```
+tar xzvf gcc-5.2.0.tar.gz
+cd gcc-5.2.0
+./contrib/download_prerequisites
+cd ..
+mkdir objdir
+cd objdir
+$PWD/../gcc-5.2.0/configure --prefix=$HOME/gcc-5.2.0 --enable-languages=c,c++,fortran,go
+make
+make install
+```
+
+然后使用如下方法编译YCM
+
+```
+CXX=~/gcc-5.2.0/bin/c++ ./install.py
+```
+
+
 
 > `macOS`需要先安装[cmake](https://cmake.org/install/)才能编译，如果通过`.dmg`包安装二进制软件包，则需要编辑`~/.bash_profile`添加`export PATH=/Applications/CMake.app/Contents/bin:$PATH`，并执行`. ~/.bash_profile`使环境生效后才能执行上述编译。
 >

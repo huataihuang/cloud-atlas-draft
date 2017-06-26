@@ -9,7 +9,8 @@ OpenStack IaaS是集成了计算，存储和网络资源的服务，提供扩展
 | Networking | neutron | 提供链接服务管理 |
 | Block Storage | cinder | 管理虚拟机的持久化存储卷 |
 | Compute | nova | 在hypervisor节点管理虚拟机 |
-| Image | swift | 允许用户存储和检索文件和随机数据 |
+| Image | glance | 存储虚拟机镜像和卷快照的资源注册服务 |
+| Object Storage | swift | 允许用户存储和检索文件和随机数据 |
 | Telemetry | ceilometer | 提供云计算资源的检测 |
 | Orchestration(编排) | heat | 基于模版的编排引擎支持自动创建戏院堆栈 |
 
