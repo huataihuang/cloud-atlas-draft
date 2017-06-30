@@ -35,12 +35,12 @@ systemctl start nfs-idmap
 服务器端设置NFS卷输出，即编辑 `/etc/exports` 添加：
 
 ```
-/data	10.211.55.0/24(rw,sync,no_root_squash,no_subtree_check)
+/data	192.168.122.0/24(rw,sync,no_root_squash,no_subtree_check)
 ```
 
 > /data – 共享目录
 > 
-> 10.211.55.0/24 – 允许访问NFS的客户端IP地址段
+> 192.168.122.0/24/24 – 允许访问NFS的客户端IP地址段(这里使用是针对libvirt虚拟化NAT网段)
 >
 > rw – 允许对共享目录进行读写
 >
@@ -91,13 +91,13 @@ Hint: Some lines were ellipsized, use -l to show in full.
 Linux挂载NFS的客户端非常简单的命令，先创建挂载目录，然后用 `-t nfs` 参数挂载就可以了
 
 ```
-mount -t nfs  10.211.55.9:/data /data
+mount -t nfs  192.168.122.1:/data /data
 ```
 
 如果要设置客户端启动时候就挂载NFS，可以配置 `/etc/fstab` 添加以下内容
 
 ```
-10.211.55.9:/data    /data  nfs auto,rw,vers=3,hard,intr,tcp,rsize=32768,wsize=32768      0   0
+192.168.122.1:/data    /data  nfs auto,rw,vers=3,hard,intr,tcp,rsize=32768,wsize=32768      0   0
 ```
 
 然后在客户端简单使用以下命令就可以挂载
@@ -109,7 +109,7 @@ mount /data
 如果出现以下类似报错，则检查一下系统是否缺少`mount.nfs`程序，如果缺少，则表明尚未安装`nfs-utils`工具包，需要补充安装后才能作为客户端挂载NFS
 
 ```
-mount: wrong fs type, bad option, bad superblock on 10.211.55.9:/data,
+mount: wrong fs type, bad option, bad superblock on 192.168.122.1:/data,
        missing codepage or helper program, or other error
        (for several filesystems (e.g. nfs, cifs) you might
        need a /sbin/mount.<type> helper program)
@@ -128,39 +128,161 @@ mount.nfs: Connection timed out
 
 参考 [Running NFS Behind a Firewall](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_Linux/7/html/Storage_Administration_Guide/nfs-serverconfig.html#s2-nfs-nfs-firewall-config) 设置防火墙允许访问NFS服务器的服务端口，注意，需要配置NFS服务使用固定端口。
 
-```
-MOUNTD_PORT=port
-# Controls which TCP and UDP port mountd (rpc.mountd) uses.
-
-STATD_PORT=port
-# Controls which TCP and UDP port status (rpc.statd) uses.
-
-LOCKD_TCPPORT=port
-# Controls which TCP port nlockmgr (lockd) uses.
-
-LOCKD_UDPPORT=port
-# Controls which UDP port nlockmgr (lockd) uses.
-```
-
-编辑 `/etc/sysconfig/nfs` 配置文件
-
-```
-# TCP port rpc.lockd should listen on.
-LOCKD_TCPPORT=32803
-# UDP port rpc.lockd should listen on.
-LOCKD_UDPPORT=32769
-
-MOUNTD_PORT=892
-STATD_PORT=662
-```
-
 可以在Linux NFS服务器上执行以下命令获得NFS端口信息
 
 ```
 rpcinfo -p
 ```
 
-需要允许以下端口
+```
+   program vers proto   port  service
+    100000    4   tcp    111  portmapper    <= rpcbind 服务
+    100000    3   tcp    111  portmapper    <= rpcbind 服务
+    100000    2   tcp    111  portmapper    <= rpcbind 服务
+    100000    4   udp    111  portmapper    <= rpcbind 服务
+    100000    3   udp    111  portmapper    <= rpcbind 服务
+    100000    2   udp    111  portmapper    <= rpcbind 服务
+    100024    1   udp  33948  status        <= rpc.statd 服务
+    100024    1   tcp  35264  status        <= rpc.statd 服务
+    100005    1   udp  20048  mountd        <= rpc.mount 服务
+    100005    1   tcp  20048  mountd        <= rpc.mount 服务
+    100005    2   udp  20048  mountd        <= rpc.mount 服务
+    100005    2   tcp  20048  mountd        <= rpc.mount 服务
+    100005    3   udp  20048  mountd        <= rpc.mount 服务
+    100005    3   tcp  20048  mountd        <= rpc.mount 服务
+    100003    3   tcp   2049  nfs
+    100003    4   tcp   2049  nfs
+    100227    3   tcp   2049  nfs_acl
+    100003    3   udp   2049  nfs
+    100003    4   udp   2049  nfs
+    100227    3   udp   2049  nfs_acl
+    100021    1   udp  48508  nlockmgr
+    100021    3   udp  48508  nlockmgr
+    100021    4   udp  48508  nlockmgr
+    100021    1   tcp  38808  nlockmgr
+    100021    3   tcp  38808  nlockmgr
+    100021    4   tcp  38808  nlockmgr
+```
+
+* `rpc.mount`服务端口
+
+通过 `lsof | grep rpc.mount` 命令检查，可以看到`rpc.mount`服务使用的端口是
+
+```
+rpc.mount 27681          root    7u     IPv4           18221951        0t0        UDP *:mountd
+rpc.mount 27681          root    8u     IPv4           18221953        0t0        TCP *:mountd (LISTEN)
+```
+
+这里`*:mountd`可以从`/etc/serives`配置文件中找出对应的端口是`20048`：
+
+```
+#grep mountd /etc/services
+mountd          20048/tcp               # NFS mount protocol
+mountd          20048/udp               # NFS mount protocol
+```
+
+* `rpc.statd`服务端口
+
+`lsof | grep rpc.statd`命令检查可以看到
+
+```
+rpc.statd 27663       rpcuser    8u     IPv4           18236210        0t0        UDP *:33948
+rpc.statd 27663       rpcuser    9u     IPv4           18236212        0t0        TCP *:35264 (LISTEN)
+```
+
+* `rpcbind`服务端口
+
+`lsof | grep rpcbind命令可以查看到
+
+```
+rpcbind   43419           rpc    4u     IPv4              28734        0t0        TCP *:sunrpc (LISTEN)
+rpcbind   43419           rpc    7u     IPv4           11838817        0t0        UDP *:sunrpc
+rpcbind   43419           rpc    8u     IPv4           11838818        0t0        UDP *:766
+```
+
+```
+#grep sunrpc /etc/services
+sunrpc          111/tcp         portmapper rpcbind      # RPC 4.0 portmapper TCP
+sunrpc          111/udp         portmapper rpcbind      # RPC 4.0 portmapper UDP
+```
+
+## 设置RPC服务使用端口
+
+由于NFS需要rpcbind，动态分配RPC服务端口会导致无法配置防火墙规则。
+
+默认情况下，NFS使用的rpcbind使用动态设置RPC服务端口，需要修改以下配置：
+
+* 配置`/etc/sysconfig/nfs`文件来设置RPC服务使用的端口：
+
+```
+# 需要固定端口设置项前面的"#"符号需要去除，以便激活静态配置端口
+
+# Optional arguments passed to rpc.mountd. See rpc.mountd(8)
+RPCMOUNTDOPTS=""
+# Port rpc.mountd should listen on. 
+MOUNTD_PORT=892
+
+# Optional arguments passed to rpc.statd. See rpc.statd(8)
+STATDARG=""
+# Port rpc.statd should listen on.
+STATD_PORT=662
+
+# Outgoing port statd should used. The default is port
+# is random
+STATD_OUTGOING_PORT=2020
+```
+
+* 配置 `/etc/modprobe.d/lockd.conf` 中设置`nlockmgr`服务端口
+
+
+```
+options lockd nlm_tcpport=32768
+options lockd nlm_udpport=32768
+options nfs callback_tcpport=32764  # 可选参数
+```
+
+> 这里`callback_tcpport`是用于`NFSv4.0 callback`，也就是设置`/proc/sys/fs/nfs/nfs_callback_tcpport`，并且还需要设置防火墙允许服务器能够连接客户端的端口`32764`。不过，对于NFSv4.1或更高版本，不需要此步骤，并且在纯NFSv4环境，也不需要`mountd`,`statd`和`lockd`的端口。
+
+> `lockd.conf`配置参考 [Debian SecuringNFS](https://wiki.debian.org/SecuringNFS)
+>
+> 这个参数也可以通过`/etc/sysctl.conf`或者`/etc/sysctl.d/nfs-static-ports.conf`内核参数传递 - 在CentOS 7上，内核参数`fs.nfs.nlm_tcpport`和`fs.nfs.nlm_udpport`默认都是`0`
+
+```
+fs.nfs.nfs_callback_tcpport = 32764
+fs.nfs.nlm_tcpport = 32768
+fs.nfs.nlm_udpport = 32768
+```
+
+* 重新加载NFS配置和服务（貌似`status`服务和`nlockmgr`服务端口不生效）
+
+```
+systemctl restart nfs-config
+systemctl restart nfs-server
+```
+
+再次使用`rpcinfo -p`确认端口配置是否生效。 
+
+* 改为重启以下服务，此时检查发现`status`端口正确改成`662`，但是`nlockmgr`因为内核没有重新加载模块，所以端口没有修改
+
+```
+systemctl restart nfs-idmap
+systemctl restart nfs-lock
+systemctl restart nfs-server
+systemctl restart rpcbind
+```
+
+* 通过`sysctl`修改`nlockmgr`端口，但是发现如果不重新加载内核模块是不能订正`nlockmgr`端口
+
+```
+sysctl -w fs.nfs.nlm_tcpport=32768
+sysctl -w fs.nfs.nlm_udpport=32768
+```
+
+> 暂时没有找到解决方法，所以还是通过重启操作系统来使得`nlockmgr`端口调整到`32768`
+
+
+
+## 配置防火墙端口
 
 > NFS的TCP和UDP端口2049
 >
@@ -174,39 +296,7 @@ rpcinfo -p
 >
 > 设置 `LOCKD_UDPPORT` 的UDP端口
 
-```
-program vers proto   port  service
-100000    4   tcp    111  portmapper
-100000    3   tcp    111  portmapper
-100000    2   tcp    111  portmapper
-100000    4   udp    111  portmapper
-100000    3   udp    111  portmapper
-100000    2   udp    111  portmapper
-100024    1   udp  54305  status
-100024    1   tcp  55604  status
-100005    1   udp  20048  mountd
-100005    1   tcp  20048  mountd
-100005    2   udp  20048  mountd
-100005    2   tcp  20048  mountd
-100005    3   udp  20048  mountd
-100005    3   tcp  20048  mountd
-100003    3   tcp   2049  nfs
-100003    4   tcp   2049  nfs
-100227    3   tcp   2049  nfs_acl
-100003    3   udp   2049  nfs
-100003    4   udp   2049  nfs
-100227    3   udp   2049  nfs_acl
-100021    1   udp  32769  nlockmgr
-100021    3   udp  32769  nlockmgr
-100021    4   udp  32769  nlockmgr
-100021    1   tcp  32803  nlockmgr
-100021    3   tcp  32803  nlockmgr
-100021    4   tcp  32803  nlockmgr
-100011    1   udp    875  rquotad
-100011    2   udp    875  rquotad
-100011    1   tcp    875  rquotad
-100011    2   tcp    875  rquotad
-```
+* 使用`firewalld`的配置方法：
 
 在 Linux NFS 服务器上使用以下命令开启iptables防火墙允许访问以上端口
 
@@ -219,8 +309,8 @@ firewall-cmd --permanent --add-port=892/tcp
 firewall-cmd --permanent --add-port=892/udp
 firewall-cmd --permanent --add-port=662/tcp
 firewall-cmd --permanent --add-port=662/udp
-firewall-cmd --permanent --add-port=32803/tcp
-firewall-cmd --permanent --add-port=32769/udp
+firewall-cmd --permanent --add-port=32768/tcp
+firewall-cmd --permanent --add-port=32768/udp
 ```
 
 在 Linux NFS 服务器上使用以下命令重新加载防火墙规则
@@ -229,8 +319,27 @@ firewall-cmd --permanent --add-port=32769/udp
 firewall-cmd --reload
 ```
 
-> 不过，我实测还是存在访问问题，以后再验证
+* 使用`iptables`的配置方法：
+
+```
+iptables -A INPUT -p tcp -m tcp --dport 2049 -j ACCEPT
+iptables -A INPUT -p udp -m udp --dport 2049 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 111 -j ACCEPT
+iptables -A INPUT -p udp -m udp --dport 111 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 892 -j ACCEPT
+iptables -A INPUT -p udp -m udp --dport 892 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 662 -j ACCEPT
+iptables -A INPUT -p udp -m udp --dport 662 -j ACCEPT
+iptables -A INPUT -p tcp -m tcp --dport 32803 -j ACCEPT
+iptables -A INPUT -p udp -m udp --dport 32769 -j ACCEPT
+```
+
+> 如果要指定接口，也可以加上参数如`-i virbr0-nic`，例如`iptables -A INPUT -i virbr0-nic -p tcp -m tcp --dport 2049 -j ACCEPT`
 
 # 参考
 
 * [Setting Up NFS Server And Client On CentOS 7](http://www.unixmen.com/setting-nfs-server-client-centos-7/)
+
+https://www.howtoforge.com/samba-server-installation-and-configuration-on-centos-7
+
+https://www.unixmen.com/install-configure-samba-server-centos-7/

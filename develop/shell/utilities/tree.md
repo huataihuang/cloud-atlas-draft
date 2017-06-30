@@ -25,6 +25,30 @@ tree -L 2 -d /proc/self/
               for FIFO's, as per ls -F
 ```
 
+# Mac上等同`tree`命令
+
+Mac OS X上没有`tree`工具，可以下载[tree源代码](http://mama.indstate.edu/users/ice/tree/)编译，但是，如果只是为了简单递归展示整个目录树的文件，则可以使用`find`指令：
+
+```
+find .
+```
+
+> 在我的`cloud-atlas-draft`目录下列出所有文本文件，用于整理`summory.md`文档
+
+```
+find . | grep -v ".git" | grep -v "_book" | grep -v "\/img\/"
+```
+
+将显示所有子目录和文件。
+
+也可以使用如下脚本
+
+```
+alias tree="find . -print | sed -e 's;[^/]*/;|____;g;s;____|; |;g'"
+```
+
 # 参考
 
 * [Linux command to print directory structure in the form of a tree](https://stackoverflow.com/questions/3455625/linux-command-to-print-directory-structure-in-the-form-of-a-tree)
+* [Mac OS X equivalent of the Ubuntu “tree” command](https://superuser.com/questions/359723/mac-os-x-equivalent-of-the-ubuntu-tree-command)
+* [Using a Mac Equivalent of Unix “tree” Command to View Folder Trees at Terminal](http://osxdaily.com/2016/09/09/view-folder-tree-terminal-mac-os-tree-equivalent/)

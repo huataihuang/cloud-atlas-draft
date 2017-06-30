@@ -52,6 +52,16 @@ SERVICE_PASSWORD=$ADMIN_PASSWORD
 ./stack.sh
 ```
 
+最新更新版本安装提示错误
+
+```
++inc/python:pip_install:335                sudo -H http_proxy= https_proxy= no_proxy= PIP_FIND_LINKS= SETUPTOOLS_SYS_PATH_TECHNIQUE=rewrite /bin/pip2.7 install -c /opt/stack/requirements/upper-constraints.txt -r /opt/stack/keystone/test-requirements.txt -e /opt/stack/keystone
+Ignoring EditorConfig: markers 'python_version == "3.4"' don't match your environment
+Ignoring EditorConfig: markers 'python_version == "3.5"' don't match your environment
+```
+
+似乎是依赖Python 3.4+以上版本。
+
 自动完成软件包安装和配置，可能需要多次安装（网络是关键）。安装完成后，源代码位于`stack`中，可以进行相关分析和开发。
 
 devstack将安装 keystone, glance, nova, cinder, neutron, 和 horizon。对于使用，可以切换到 `stack` 用户身份以后，进入 `devstack` 目录，然后执行 `source openrc` 设置好操作环境，就可以使用 `openstack` 命令管理 devstaack。

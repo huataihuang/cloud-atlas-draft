@@ -10,64 +10,39 @@ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 
 * 使用[vimrc realpython](/img/vi/vimrc_realpython)或者直接从[VIM and Python - a Match Made in Heaven](https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/)提供的[VIM config](https://github.com/j1z0/vim-config/blob/master/vimrc)保存成`~/.vimrc`
 
+> 以下编译安装vim，过程比较繁杂。不成功的尝试见 [vim编译YouCompleteMe失败记录](try_vim_compile_with_you_complete_me)
+
+> 从源代码编译过程参考 [Building Vim from source](https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source)
+
+
+```
+/usr/lib64/python3.4/config-3.4m
+```
+
 * 执行`vim`命令，然后在命令模式下执行`:PluginInstall`安装插件
 
-在CentOS 7上，系统安装的vim版本是`7.4.160-1`，但是`:PluginInstall`安装时候提示`requires Vim 7.4.1578+`。可以参考 [The Vim repository at GitHub](The Vim repository at GitHub)从源代码编译安装，但是编译需要`requires Vim compiled with Python (2.6+ or 3.3+) support.`：
-
-> 参考 [Report "YouCompleteMe unavailable: requires Vim compiled with Python 2.x support" error #1907](https://github.com/Valloric/YouCompleteMe/issues/1907)
+* 附加屏幕分割配置
 
 ```
-yum install python-devel
-yum install python34-devel
+set splitbelow
+set splitright
 
-git clone https://github.com/vim/vim.git
-cd src
-./configure --enable-pythoninterp=yes --enable-python3interp=yes
-make
-sudo make install
+"split navigations
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 ```
 
-这样安装完最新的vim 8.0之后，再次在vim中执行`:PluginInstall`即可成功。
-
-* `ycm`需要手工编译出库文件
+* 使用nerdtree功能（树状结构文件浏览）
 
 ```
-cd ~/.vim/bundle/YouCompleteMe
-./install.py
+:NERDTree
 ```
 
-> 编译`ycm`需要系统中先安装cmake，并且要求编译器支持C++11。这在CentOS7上编译会存在报错
+----
 
-```
-CMake Error at CMakeLists.txt:180 (message):
-  Your C++ compiler does NOT fully support C++11.
-```
-
-解决的方法参考 [Your C++ compiler does NOT support C++11. #2596](https://github.com/Valloric/YouCompleteMe/issues/2596)，即先安装最新版本的gcc 5.2
-
-```
-tar xzvf gcc-5.2.0.tar.gz
-cd gcc-5.2.0
-./contrib/download_prerequisites
-cd ..
-mkdir objdir
-cd objdir
-$PWD/../gcc-5.2.0/configure --prefix=$HOME/gcc-5.2.0 --enable-languages=c,c++,fortran,go
-make
-make install
-```
-
-然后使用如下方法编译YCM
-
-```
-CXX=~/gcc-5.2.0/bin/c++ ./install.py
-```
-
-
-
-> `macOS`需要先安装[cmake](https://cmake.org/install/)才能编译，如果通过`.dmg`包安装二进制软件包，则需要编辑`~/.bash_profile`添加`export PATH=/Applications/CMake.app/Contents/bin:$PATH`，并执行`. ~/.bash_profile`使环境生效后才能执行上述编译。
->
-> `YouCompleteMe`模块要求`Vim 7.3.598+`以上版本，Mac OS X 10.11自带的vim版本较低，测试使用`brew`安装的`vim`版本会导致python线程crash，所以不推荐。在macOS 10.12 beta版本上测试验证正常。
+# 上述步骤已完成`vim ide for python`，以下步骤不需要执行，仅供参考
 
 ----
 
