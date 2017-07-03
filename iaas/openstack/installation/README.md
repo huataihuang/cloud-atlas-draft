@@ -1,0 +1,1 @@
+OpenStack 在CentOS 7上实践单机部署测试。

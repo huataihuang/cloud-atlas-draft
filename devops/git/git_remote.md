@@ -238,6 +238,46 @@ git branch -d <local_branch>
 git checkout <本地分支名>
 ```
 
+# 放弃修改
+
+如果没有提交到远程库，放弃修改:
+
+* 先查看有哪些commit
+
+```
+git log
+```
+
+例如：
+
+```
+git log
+commit d5c92f618314fb2f8759cfc77e167de3986c3548
+...
+commit 559770899a4e5bd8314a0ea196f433f3103dadbf
+...
+```
+
+> `d5c92f618314fb2f8759cfc77e167de3986c3548`是commit但是尚未push，准备回滚到上一个版本`559770899a4e5bd8314a0ea196f433f3103dadbf`
+
+* 回滚
+
+```
+git reset --hard 559770899a4e5bd8314a0ea196f433f3103dadbf
+```
+
+提示:
+
+```
+HEAD is now at 5597708 fix ...
+```
+
+* 然后再检查
+
+```
+git log
+```
+
 # 参考
 
 * [Git远程操作详解](http://www.ruanyifeng.com/blog/2014/06/git_remote.html)

@@ -1,3 +1,13 @@
+# 说明
+
+Red Hat官方提供了 OpenStack Platform 详细的中文文档 - 最初我还自己从英文翻译，但是后来发现官方中文文档可以帮助快速入门和理解。
+
+OpenStack Platform director是安装管理OpenStack环境的工具，可以提供高效部署的方案。
+
+> 个人计划参考 [OpenStack Installation Tutorial for Red Hat Enterprise Linux and CentOS](https://docs.openstack.org/ocata/install-guide-rdo/index.html) 手工部署集群，然后再参考 [Red Hat OpenStack Platform - DIRECTOR 的安装和使用](https://access.redhat.com/documentation/zh-cn/red_hat_openstack_platform/11/html/director_installation_and_usage/)通过director自动化部署。
+
+# 简介
+
 > 本章节根据 Red Hat产品手册 [Director Installation and Usage](https://access.redhat.com/documentation/en/red-hat-openstack-platform/10/paged/director-installation-and-usage/) 翻译整理
 
 Red Hat OpenStack Platform director是一个安装和管理完整的OpenStack环境的工具集。它主要基于OpenStack TripleO项目，即"OpenStack-On-OpenStack"。这个项目充分利用了OpnStack组件的优点来安装一个完整的OpenStack环境。其包括提供和控制基本系统（control bare metal systems）来作为OpenStack节点的新型OpenStack组件。它提供了一个简单安装完整Red Hat OpenStack平台环境的简洁和鲁棒的方法。

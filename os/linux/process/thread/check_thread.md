@@ -14,6 +14,35 @@ ps -T -p <pid>
 
 在显示输出中，`PID`列就是进程，`SPID`列就是线程
 
+如果只需要获取线程tid，可以使用
+
+```
+ps -o ppid=<pid>
+```
+
+例如`ps -o ppid=768`就可以输出进程pid是768的所有进程和线程id。
+
+还有一个神奇的`-o ppid= `使用方法，如果`-o ppid= `没有带参数，则会输出指定进程的父进程pid
+
+```
+ps -o ppid= 768
+```
+
+显示进程`768`的父进程pid，或者使用`ps -f 768`则可以完整显示进程命令，其中也包含了父进程PPID字段，则通过脚本可以截取字段。
+
+> 参考 [How do I get the parent process ID of a given child process?](https://askubuntu.com/questions/153976/how-do-i-get-the-parent-process-id-of-a-given-child-process)
+
+* 显示所有线程方法：
+
+```
+ps -efj
+```
+
+```
+ps xao pid,ppid,pgid,sid,comm 
+```
+
+
 # 通过`top`检查线程
 
 `top`命令启动的时候，参数`-H`可以显示线程输出。在`top`的交互界面中，`H`按键可以切换`线程`或`进程`视图。

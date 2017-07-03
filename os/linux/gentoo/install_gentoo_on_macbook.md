@@ -666,14 +666,14 @@ MacBook Air 13的Broadcom BCM4360不能使用开源的b43驱动 － 参考[Linux
 
 * 配置802.1q认证
 
-公司内部网络环境使用了802.1q认证。另外，Linux平台公司尚未提供"阿里郎"，所以需要申请设备白名单（MAC地址）之后才能通过设置`wpa_supplicant`配置来实现802.1q认证后使用网络。
+`wpa_supplicant`配置实现802.1q认证后使用网络:
 
 配置`/etc/wpa_supplicant/wpa_supplicant.conf`
 
 	ctrl_interface=/var/run/wpa_supplicant
 	ctrl_interface_group=root
 	network={
-	  ssid="alibaba-inc"
+	  ssid="SSID"
 	  key_mgmt=WPA-EAP
 	  eap=PEAP
 	  phase1="peaplabel=0"
@@ -692,7 +692,7 @@ MacBook Air 13的Broadcom BCM4360不能使用开源的b43驱动 － 参考[Linux
 	ctrl_interface=/var/run/wpa_supplicant
 	ctrl_interface_group=root
 	network={
-	  ssid="alibaba-inc"
+	  ssid="SSID"
 	  key_mgmt=WPA-EAP
 	  eap=PEAP
 	  phase1="peaplabel=0"
