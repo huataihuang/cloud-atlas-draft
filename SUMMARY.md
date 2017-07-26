@@ -420,7 +420,7 @@
 		* [DevStack](iaas/openstack/devstack/README.md)
 			* [DevStack开发环境](iaas/openstack/devstack/deploy_devstack.md)
 		* [安装指南](iaas/openstack/installation/README.md)
-			* [环境](iaas/openstack/#redhat/environment/README.md)
+			* [环境](iaas/openstack/redhat/environment/README.md)
 				* [安全](iaas/openstack/redhat/environment/security.md)
 				* [主机网络](iaas/openstack/redhat/environment/host_networking.md)
 				* [网络时间协议](iaas/openstack/redhat/environment/ntp.md)
