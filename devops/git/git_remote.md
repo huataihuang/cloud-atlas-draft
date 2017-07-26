@@ -238,6 +238,18 @@ git branch -d <local_branch>
 git checkout <本地分支名>
 ```
 
+# 创建分支并推送到远程仓库
+
+> 参考 [How do you create a remote Git branch?](https://stackoverflow.com/questions/1519006/how-do-you-create-a-remote-git-branch)
+
+```
+git checkout -b feature_autofix
+# 修改，并 git commit，然后执行
+git push origin feature_autofix --force
+```
+
+注意：本地分支名字必须和远程分支名字相同，例如，这里分支名字是`feature_autofix`。
+
 # 放弃修改
 
 如果没有提交到远程库，放弃修改:

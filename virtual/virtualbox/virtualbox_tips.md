@@ -20,6 +20,22 @@ VBoxManage clonevm devstack --name centos
 
 上述操作步骤将`devstack`虚拟机完整复制成一个`centos`虚拟机，可以在`~/VirtualBox\ VMs`目录下看到`centos`子目录，其中就是clone出来的新虚拟机磁盘，可以随时导入启动
 
+# 虚拟机磁盘resize
+
+VirtualBox支持虚拟机磁盘调整大小：
+
+```
+VBoxManage modifyhd --resize [new size in MB] [/path/to/vdi]
+```
+
+举例：
+
+```
+VBoxManage modifyhd --resize 32000 /Users/huatai/images/win10.vdi
+```
+
+> 瞬间完成虚拟磁盘resize。
+
 # 参考
 
 * [VirtualBox: Snapshots and Cloning Virtual Machines](https://ryantrotz.com/2011/12/virtualbox-snapshots-and-vmis/)

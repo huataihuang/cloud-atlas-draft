@@ -334,6 +334,38 @@ nmcli connection modify mylink wifi.cloned-mac-address 12:34:56:78:90:ab
 
 #### 802.1X认证
 
+经过实践验证，`nmcli`指令可以完成802.1x配置创建和使用，但是在MAC spoof上实践没有成功生效。待进一步验证。
+
+* 通过`nmcli`创建配置
+
+```
+nmcli con add con-name comlink ifname wlp3s0 type wifi ssid comlink \
+wifi-sec.key-mgmt wpa-eap 802-1x.eap peap 802-1x.phase2-auth mschapv2 \
+802-1x.identity "USERNAME" 802-1x.password "PASSWORD" wifi.cloud-mac-address 12:34:56:78:90:ab
+```
+
+上述命令就可以完整创建 `ifcfg-comlink` 配置和对应的密码配置 `keys-comlink`
+
+> 命令案例参考 [How to connect to an 802.1x wireless network via nmcli](https://unix.stackexchange.com/questions/145366/how-to-connect-to-an-802-1x-wireless-network-via-nmcli)
+
+* 然后执行启动
+
+```
+nmcli connection up comlink
+```
+
+在 `/var/log/wpa_supplicant.log` 有认证日志信息可以作为排查依据（从`ps  aux | grep wpa_supplicant`可以找到对应日志）：
+
+```
+EAP-TLV: TLV Result - Failure
+wlp3s0: CTRL-EVENT-EAP-FAILURE EAP authentication failed
+wlp3s0: CTRL-EVENT-DISCONNECTED bssid=4c:48:da:25:0a:b9 reason=23
+```
+
+---
+
+`以下步骤是手工配置方法`，供参考。建议还是采用`nmcli`命令来创建配置（见前述）
+
 参考 [What’s new with NetworkManager?](https://www.certdepot.net/whats-new-networkmanager/) 提到了Wi-Fi增强中，从 NetworkManager 1.4.0开始，支持指定MAC地址，使用的是 `802-11-wireless.cloned-mac-address`属性：
 
 * MAC地址
@@ -344,24 +376,85 @@ nmcli connection modify mylink wifi.cloned-mac-address 12:34:56:78:90:ab
 
 > 详细参考 [MAC Address Spoofing in NetworkManager 1.4.0](https://blogs.gnome.org/thaller/2016/08/26/mac-address-spoofing-in-networkmanager-1-4-0/)
 
-* 配置 `/etc/NetworkManager/NetworkManager.conf` 添加
+* 配置 `/etc/NetworkManager/NetworkManager.conf` 添加(手工修改配置文件实际应该和`nmcli`指令配置方法相同)
 
 ```
 [device-mac-randomization]
 wifi.scan-rand-mac-address=no
-wifi.cloned-mac-address=12:34:56:78:90:ab
+wifi.cloned-mac-address=12:34:56:78:90:ab  # 这行没有生效
 ```
 
 > `wifi.scan-rand-mac-address=no`似乎和`wifi.mac-address-randomization=1`起的是相同作用？
 
-> 添加`wifi.cloned-mac-address`没有生效，而`nmcli connection modify comlink wifi.cloned-mac-address 12:34:56:78:90:ab`是修改了`/etc/sysconfig/network-scripts/ifcfg-comlink`配置，添加了`MACADDR=12:34:56:78:90:AB`
+> 由于 `/etc/NetworkManager/NetworkManager.conf` 添加`wifi.cloned-mac-address`没有生效，则采用 `nmcli connection modify comlink wifi.cloned-mac-address 12:34:56:78:90:ab`。原来 `nmcli` 是修改了`/etc/sysconfig/network-scripts/ifcfg-comlink`配置，添加了`MACADDR=12:34:56:78:90:AB`
 
-* 配置`/etc/sysconfig/network-scripts/ifcfg-comlink`
+* 配置`/etc/sysconfig/network-scripts/ifcfg-comlink`(如上所述)
 
 假设802.1X认证的AP名字是`comlink`，使用以下命令设置（可选），也可以直接修改配置文件
 
 ```
 nmcli connection modify comlink wifi.cloned-mac-address 12:34:56:78:90:ab
+```
+
+但是，实际操作发现`nmcli`命令设置`wifi.cloned-mac-address`的方法虽然成功在`/etc/sysconfig/network-scripts/ifcfg-comlink`添加了`MACADDR=12:34:56:78:90:AB`，但是操作系统启动后发现，MAC地址只是恢复成了无线网卡实际的MAC地址，而没有实现MAC spoof。
+
+#### 802.1X认证中的MAC spoof
+
+* 虽然`ifcfg-comlink`配置中`MACADDR=12:34:56:78:90:AB`无效，但是可以手工通过`ip link set dev`指令设置无线网卡MAC地址：
+
+```
+ip link set dev wlp3s0 down
+ip link set dev wlp3s0 address 12:34:56:78:90:ab
+ip link set dev wlp3s0 up
+```
+
+> 验证确实能够成功更改无线网卡MAC地址
+
+* 另外实践验证，通过udev rules设置，可以实现操作系统启动网卡时自动更改无线网卡MAC - 这个机制利用了systemd-udev机制。即参考 [MAC address spoofing](https://wiki.archlinux.org/index.php/MAC_address_spoofing) 设置 `/etc/udev/rules.d/75-mac-spoof.rules` :
+
+```
+ACTION=="add", SUBSYSTEM=="net", ATTR{address}=="物理网卡硬件MAC地址", RUN+="/sbin/ip link set dev %k address 12:34:56:78:90:ab"
+```
+
+操作系统重启就可以看到无线网卡MAC地址正确设置成了`12:34:56:78:90:ab`
+
+* 然而，通过`nmcli`命令，没有任何参数时候查看发现，无线网卡的MAC地址立即被随机修改了
+
+```
+wlp3s0: disconnected
+        "Intel Centrino Advanced-N 6205 [Taylor Peak] (Centrino Advanced-N 6205 AGN)"
+        1 connection available
+        wifi (iwlwifi), 94:ED:CD:8E:EB:3F, hw
+```
+
+非常奇怪，从`nmcli`命令查看无线网卡wifi(iwlwifi)设备的MAC地址依然是一个随机MAC地址。
+
+#### 802.1X认证密码文件
+
+在完成了MAC地址修改之后，执行链接AP
+
+```
+nmcli connection up comlink
+```
+
+此时提示错误
+
+```
+Passwords or encryption keys are required to access the wireless network 'comlink'.
+Warnging: password for '802-1x.identity' not given in 'passwd-file' and nmcli cannot ask without '--ask' option.
+Error: Connection activation failed.
+```
+
+这个问题比较奇怪，实际上前述`nmcli con add con-name comlink`实际上已经在配置文件中存储了认证帐号名字和密码。
+
+参考 [802.1x with NetworkManager using nmcli](https://major.io/2016/05/03/802-1x-networkmanager-using-nmcli/) 提供了一种设置帐号密码的方法，就是在`/etc/NetworkManager/system-connections/CONNECTION_NAME`保存密码，即编辑`/etc/NetworkManager/system-connections/comlink`
+
+```
+[connection]
+id=comlink
+
+[802-1x]
+password=YOUR_8021X_PASSWORD
 ```
 
 # 参考

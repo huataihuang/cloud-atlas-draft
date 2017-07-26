@@ -59,6 +59,18 @@ xm usb-add domain host:xx.yy
 xm usb-add xen-guest_example host:14d6:3002
 ```
 
+此时看到物理服务器 `/var/log/xen/qemu-dm-xen-guest_example.log` 日志中有对应
+
+```
+dm-command: usb-add a usb device
+dm-command: usb-add a usb device: host:14d6:3002
+husb: open device 1.3
+husb: config #1 need -1
+husb: 1 interfaces claimed for configuration 1
+husb: grabbed usb device 1.3
+dm-command: finish usb-add a usb device:host:14d6:3002
+```
+
 * 删除设备
 
 语法：

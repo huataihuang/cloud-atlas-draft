@@ -75,6 +75,20 @@ echo $1
 
 Here Document 还有一个用法就是将 `<<` 变为 `<<-`。 使用 `<<-` 的唯一变化就是Here Document 的内容部分每行前面的 `tab` (制表符)将会被删除掉，这种用法是为了编写Here Document的时候可以将内容部分进行缩进，方便阅读代码。
 
+# 多行注释
+
+在shell中，单行注释使用 `#` ，但是多行注释没有标准方法。可以借用here document的方法来实现：
+
+```
+:<<'EOF'
+多行注释
+多行注释
+多行注释
+EOF
+```
+
+这里利用了here document前面的指令，如果是空的话就什么都不执行（`:`）。同时，为了避免注释内容中有存在反引号、变量等导致没有被注释掉，所以还在第一个`EOF`前后加上`''`。
+
 # 参考
 
 * [linux shell 的here document 用法 (cat << EOF)](http://my.oschina.net/u/1032146/blog/146941)
