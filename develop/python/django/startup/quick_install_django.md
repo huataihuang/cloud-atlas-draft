@@ -24,6 +24,8 @@ django运行需要使用的版本见[What Python version can I use with Django?]
 > 以下安装采用EPEL提供的python 3.4
 
 ```
+wge https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+sudo rpm -ivh epel-release-latest-7.noarch.rpm
 sudo yum install python34
 sudo yum install python34-setuptools
 sudo easy_install-3.4 pip

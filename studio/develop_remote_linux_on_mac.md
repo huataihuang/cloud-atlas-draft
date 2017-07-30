@@ -9,3 +9,5 @@
 依次安装完成后，直接使用 SSHFS GUI图形界面就可以将远程ssh登录服务器上的目录挂载到本地目录上。
 
 ![SSHFS](../../img/develop/mac/sshfs.png)
+
+开发环境共享目录设置在物理服务器上，分别通过虚拟机内部网段输出NFS和外部（物理）网段输出sshfs来实现文件交换：[NFS设置和共享目录](nfs_and_share.md)
