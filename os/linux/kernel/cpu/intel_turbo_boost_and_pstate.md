@@ -190,7 +190,7 @@ CPU NODE SOCKET CORE L1d:L1i:L2:L3 ONLINE
 
 `intel_pstate`驱动支持现代Intel处理器的温控。
 
-处理器`P-state`是支持处理器运行在不同电压 和/或 主频级别的能力。总的来说，`P0`是最高新能级别，而`P1`和`P2`等依次节约电能但是带来潜在的性能损失。
+处理器`P-state`是支持处理器运行在不同电压 和/或 主频级别的能力。总的来说，`P0`是最高性能级别，而`P1`和`P2`等依次节约电能但是带来潜在的性能损失。
 
 在Linux内核启动参数中设置`intel_pstate=disable`选项可以强制使用传统遗留的CPU驱动`acpi_cpufreq`。
 

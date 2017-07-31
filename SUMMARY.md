@@ -280,6 +280,7 @@
 		* [CentOS快速部署nginx+php](service/nginx/deploy_nginx_php_on_centos.md)
 		* [h5ai-时尚的HTTP服务器索引](service/nginx/h5ai_web_index.md)
 		* [排查Nginx应用响应时间](service/nginx/tracking_application_response_time_nginx.md)
+		* [设置Django和Nginx uWSGI](service/nginx/setup_django_with_uwsgi_nginx.md)
     * [OpenResty](service/openresty/README.md)
         * [OpenResty安装](service/openresty/server_openresty_install.md)
         * [OpenResty快速起步](service/openresty/server_openresty_startup.md)
