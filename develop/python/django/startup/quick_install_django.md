@@ -78,6 +78,8 @@ source my_env/bin/activate
 
 激活虚拟环境之后，就可以使用`python`代替`python3.6`，以及使用`pip`代替`pip3.6`，方便进行开发。
 
+> 有关在生产环境部署 Nginx+uWSGI+Django 方法参考 [设置Django和Nginx uWSGI](../../../../service/nginx/setup_django_with_uwsgi_nginx.md)
+
 # 参考
 
 * [django Documentation - Quick install guide](https://docs.djangoproject.com/en/1.11/intro/install/)
