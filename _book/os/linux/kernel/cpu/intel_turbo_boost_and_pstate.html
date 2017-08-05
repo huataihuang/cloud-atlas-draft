@@ -1294,12 +1294,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.1.4.6.2" data-path="../memory/page_allocation_failure.html">
+        <li class="chapter " data-level="1.3.1.4.6.2" data-path="../memory/page_allocation_failure_order_1.html">
             
-                <a href="../memory/page_allocation_failure.html">
+                <a href="../memory/page_allocation_failure_order_1.html">
             
                     
-                    内存页分配错误
+                    order 1内存页分配错误
             
                 </a>
             
@@ -1326,6 +1326,19 @@
             
                     
                     检查进程使用内存
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.1.4.6.5" data-path="../memory/drop_caches_and_compact_memory.html">
+            
+                <a href="../memory/drop_caches_and_compact_memory.html">
+            
+                    
+                    缓存清理(drop_caches)和内存压缩(compact_memory)
             
                 </a>
             
@@ -4268,6 +4281,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.7.3.5" data-path="../../../../service/nginx/setup_django_with_uwsgi_nginx.html">
+            
+                <a href="../../../../service/nginx/setup_django_with_uwsgi_nginx.html">
+            
+                    
+                    设置Django和Nginx uWSGI
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -6962,6 +6988,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.13.1.3" data-path="../../../../develop/git/git_merge_local_overwirte.md">
+            
+                <span>
+            
+                    
+                    git merge本地文件覆盖
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -8661,6 +8700,19 @@
             
         </li>
     
+        <li class="chapter " data-level="1.13.12.1.17" data-path="../../../../develop/shell/bash/develop/shell/bash/remove_newline.md">
+            
+                <span>
+            
+                    
+                    移除换行
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -10191,6 +10243,45 @@
             
         </li>
     
+        <li class="chapter " data-level="1.18.5" data-path="../../../../studio/nfs_and_share.html">
+            
+                <a href="../../../../studio/nfs_and_share.html">
+            
+                    
+                    NFS设置和共享目录
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18.6" data-path="../../../../studio/django_dev.html">
+            
+                <a href="../../../../studio/django_dev.html">
+            
+                    
+                    Django开发设置
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.18.7" data-path="../../../../studio/haproxy.html">
+            
+                <a href="../../../../studio/haproxy.html">
+            
+                    
+                    HAProxy端口转发
+            
+                </a>
+            
+
+            
+        </li>
+    
 
             </ul>
             
@@ -10424,7 +10515,7 @@ NUMA node0 CPU(s):     0-23
 <h2 id="p-state">P-state</h2>
 <p>&#x4ECE;Linux Kernel 3.9(2009&#x5E74;4&#x6708;)&#xFF0C;&#x4E00;&#x4E2A;&#x65B0;&#x7684;<a href="intel_pstate">intel_pstate</a>&#x52A0;&#x5165;&#x5230;&#x5185;&#x6838;&#x4E2D;&#xFF0C;&#x4ECE;SandbyBridge&#x5904;&#x7406;&#x5668;&#x5F00;&#x59CB;&#xFF0C;&#x540E;&#x7EED;&#x591A;&#x4EE3;Intel&#x5904;&#x7406;&#x5668;&#x90FD;&#x5F97;&#x5230;&#x4E86;&#x652F;&#x6301;&#x3002;</p>
 <p><code>intel_pstate</code>&#x9A71;&#x52A8;&#x652F;&#x6301;&#x73B0;&#x4EE3;Intel&#x5904;&#x7406;&#x5668;&#x7684;&#x6E29;&#x63A7;&#x3002;</p>
-<p>&#x5904;&#x7406;&#x5668;<code>P-state</code>&#x662F;&#x652F;&#x6301;&#x5904;&#x7406;&#x5668;&#x8FD0;&#x884C;&#x5728;&#x4E0D;&#x540C;&#x7535;&#x538B; &#x548C;/&#x6216; &#x4E3B;&#x9891;&#x7EA7;&#x522B;&#x7684;&#x80FD;&#x529B;&#x3002;&#x603B;&#x7684;&#x6765;&#x8BF4;&#xFF0C;<code>P0</code>&#x662F;&#x6700;&#x9AD8;&#x65B0;&#x80FD;&#x7EA7;&#x522B;&#xFF0C;&#x800C;<code>P1</code>&#x548C;<code>P2</code>&#x7B49;&#x4F9D;&#x6B21;&#x8282;&#x7EA6;&#x7535;&#x80FD;&#x4F46;&#x662F;&#x5E26;&#x6765;&#x6F5C;&#x5728;&#x7684;&#x6027;&#x80FD;&#x635F;&#x5931;&#x3002;</p>
+<p>&#x5904;&#x7406;&#x5668;<code>P-state</code>&#x662F;&#x652F;&#x6301;&#x5904;&#x7406;&#x5668;&#x8FD0;&#x884C;&#x5728;&#x4E0D;&#x540C;&#x7535;&#x538B; &#x548C;/&#x6216; &#x4E3B;&#x9891;&#x7EA7;&#x522B;&#x7684;&#x80FD;&#x529B;&#x3002;&#x603B;&#x7684;&#x6765;&#x8BF4;&#xFF0C;<code>P0</code>&#x662F;&#x6700;&#x9AD8;&#x6027;&#x80FD;&#x7EA7;&#x522B;&#xFF0C;&#x800C;<code>P1</code>&#x548C;<code>P2</code>&#x7B49;&#x4F9D;&#x6B21;&#x8282;&#x7EA6;&#x7535;&#x80FD;&#x4F46;&#x662F;&#x5E26;&#x6765;&#x6F5C;&#x5728;&#x7684;&#x6027;&#x80FD;&#x635F;&#x5931;&#x3002;</p>
 <p>&#x5728;Linux&#x5185;&#x6838;&#x542F;&#x52A8;&#x53C2;&#x6570;&#x4E2D;&#x8BBE;&#x7F6E;<code>intel_pstate=disable</code>&#x9009;&#x9879;&#x53EF;&#x4EE5;&#x5F3A;&#x5236;&#x4F7F;&#x7528;&#x4F20;&#x7EDF;&#x9057;&#x7559;&#x7684;CPU&#x9A71;&#x52A8;<code>acpi_cpufreq</code>&#x3002;</p>
 <h2 id="c-state">C-state</h2>
 <p><code>C-state</code>&#x662F;idle power saving&#x72B6;&#x6001;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;P-state&#x7684;&#x76F8;&#x53CD;&#x72B6;&#x6001;&#xFF0C;&#x662F;&#x6267;&#x884C;&#x8282;&#x7535;&#x7684;&#x72B6;&#x6001;&#x3002;</p>
@@ -10719,7 +10810,7 @@ PKG |CORE|CPU | C3   | C6   | PC3  | PC6  || C0   | Cx   | Freq || POLL | C1-S
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Intel Turbo Boost技术和intel_pstate","level":"1.3.1.4.4.8","depth":5,"next":{"title":"intel_pstate驱动详解","level":"1.3.1.4.4.9","depth":5,"path":"os/linux/kernel/cpu/intel_pstate.md","ref":"os/linux/kernel/cpu/intel_pstate.md","articles":[]},"previous":{"title":"Linux 时钟管理","level":"1.3.1.4.4.7","depth":5,"path":"os/linux/kernel/cpu/linux_timer_management.md","ref":"os/linux/kernel/cpu/linux_timer_management.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["disqus","toggle-chapters","livereload"],"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"huatai-gitbooks"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"os/linux/kernel/cpu/intel_turbo_boost_and_pstate.md","mtime":"2017-07-26T04:02:25.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-07-26T06:42:56.567Z"},"basePath":"../../../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Intel Turbo Boost技术和intel_pstate","level":"1.3.1.4.4.8","depth":5,"next":{"title":"intel_pstate驱动详解","level":"1.3.1.4.4.9","depth":5,"path":"os/linux/kernel/cpu/intel_pstate.md","ref":"os/linux/kernel/cpu/intel_pstate.md","articles":[]},"previous":{"title":"Linux 时钟管理","level":"1.3.1.4.4.7","depth":5,"path":"os/linux/kernel/cpu/linux_timer_management.md","ref":"os/linux/kernel/cpu/linux_timer_management.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["disqus","toggle-chapters","livereload"],"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"huatai-gitbooks"},"livereload":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"toggle-chapters":{}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"os/linux/kernel/cpu/intel_turbo_boost_and_pstate.md","mtime":"2017-07-31T15:29:22.000Z","type":"markdown"},"gitbook":{"version":"3.2.2","time":"2017-08-05T10:01:09.904Z"},"basePath":"../../../..","book":{"language":""}});
         });
     </script>
 </div>

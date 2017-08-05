@@ -9,7 +9,6 @@ vm.min_free_kbytes = 512000
 vm.zone_reclaim_mode = 1
 ```
 
-> 参考
->
-> * [CentOS 6: strange page allocation failure messages](http://serverfault.com/questions/494756/centos-6-strange-page-allocation-failure-messages)
-> * []
+# 参考
+
+* [CentOS 6: strange page allocation failure messages](http://serverfault.com/questions/494756/centos-6-strange-page-allocation-failure-messages)
