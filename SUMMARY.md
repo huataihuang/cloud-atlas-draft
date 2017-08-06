@@ -691,5 +691,6 @@
 	* [远程开发Linux服务器程序](studio/develop_remote_linux_on_mac.md)
 	* [NFS设置和共享目录](studio/nfs_and_share.md)
 	* [Django开发设置](studio/django_dev.md)
+	* [部署Nginx+uwsgi运行Django](studio/nginx_uwsgi.md)
 	* [HAProxy端口转发](studio/haproxy.md)
 * [Who am I?](whoami.md)
