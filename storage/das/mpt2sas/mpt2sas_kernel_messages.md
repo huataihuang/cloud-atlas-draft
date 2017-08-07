@@ -18,6 +18,12 @@ Jan 29 06:30:52 mpt2sas0: log_info(0x3003010a): originator(IOP), code(0x03), sub
 Jan 29 06:30:52 mpt2sas0: log_info(0x3003010a): originator(IOP), code(0x03), sub_code(0x010a)
 ```
 
+[Driver mpt2sas0 spam dmesg - mpt2sas0: log_info(0x30030110): originator(IOP), code(0x03), sub_code(0x0110) ](https://bugs.launchpad.net/ubuntu/+source/linux/+bug/844555) 提供了排查思路：
+
+* 在运行 `sas2ircu-status` 时会出现上述消息
+* Dell提供了一个内建的检测工具可以检查SAS相关故障码
+* Russell McOrmond (russell-flora) wrote on 2012-07-11: 更新存储卡的firmware可以修复这个问题
+
 # `0x31111000`
 
 ```
