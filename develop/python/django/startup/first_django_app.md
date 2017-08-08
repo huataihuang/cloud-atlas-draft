@@ -638,6 +638,49 @@ def index(request):
 # Leave the rest of the views (detail, results, vote) unchanged
 ```
 
+这里主要的问题是：页面设计是硬编码到视图的。如果需要修改页面样式，需要修改Python代码。所以使用Django模板系统来分离Python中的设计来创建视图。
+
+首先在`polls`目录下创建目录`templates`，因为Django会在这个目录下查找模板。
+
+项目的[TEMPLATES](https://docs.djangoproject.com/en/1.11/ref/settings/#std:setting-TEMPLATES)设置描述了Django如何加载和渲染末按。默认设置文件配置了一个`DjangoTemplates`后端，其[APP_DIRS](https://docs.djangoproject.com/en/1.11/ref/settings/#std:setting-TEMPLATES-APP_DIRS)选项设置为`True`。按照惯例，`DjangoTemplates`在每个[INSTALLED_APPS](https://docs.djangoproject.com/en/1.11/ref/settings/#std:setting-INSTALLED_APPS)的`templates`子目录查找。
+
+在`pools/`子目录下创建`templates`目录，然后再在这个目录下创建`polls`，并在其中存放一个`index.html`。也就是，模板文件是`polls/templates/polls/index.html`。因为`app_directories`模板加载器将会按照上述路径工作，所以引用这个模板只需要使用`polls/index.html`。
+
+```html
+{% if latest_question_list %}
+    <ul>
+    {% for question in latest_question_list %}
+        <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+```
+
+然后更新`polls/views.py`中的`index`视图引用上述模板：
+
+```python
+from django.http import HttpResponse
+from django.template import loader
+
+from .models import Question
+
+
+def index(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    template = loader.get_template('polls/index.html')
+    context = {
+        'latest_question_list': latest_question_list,
+    }
+    return HttpResponse(template.render(context, request))
+```
+
+上述代码加载称为`polls/index.html`的模板，然后传递它一个上下文，这个上下文就是映射模板变量名到Pyton对象的目录映射。
+
+现在浏览器加载访问`/polls/`就会看到类表展示，并且有问题的详细页面信息的超链接。
+
+
 # 参考
 
 * [Writing your first Django app, part 1](https://docs.djangoproject.com/en/1.11/intro/tutorial01/)
