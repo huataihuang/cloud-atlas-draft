@@ -546,6 +546,98 @@ admin.site.register(Question)
 
 > 如果"Date published"显示的时间不是你实际创建时间，则表明前面设置`TIME_ZONE`设置错误。
 
+# 视图
+
+在Django中，web页面和其他内容都是通过视图view来传递的，每个视图都是通过一个简单的Python功能（或方法，例如在基于类的视图中）来表述。Django将通过检查请求的URL来选择视图。
+
+# 编写更多视图
+
+在`polls/views.py`中增加更多的视图：
+
+```python
+def detail(request, question_id):
+    return HttpResponse("You're looking at question %s." % question_id)
+
+def results(request, question_id):
+    response = "You're looking at the results of question %s."
+    return HttpResponse(response % question_id)
+
+def vote(request, question_id):
+    return HttpResponse("You're voting on question %s." % question_id)
+```
+
+对应于新的视图，需要在`url()`调用中添加`polls.urls`，所以在`polls/urls.py`
+
+```python
+from django.conf.urls import url
+
+from . import views
+
+urlpatterns = [
+    # ex: /polls/
+    url(r'^$', views.index, name='index'),
+    # ex: /polls/5/
+    url(r'^(?P<question_id>[0-9]+)/$', views.detail, name='detail'),
+    # ex: /polls/5/results/
+    url(r'^(?P<question_id>[0-9]+)/results/$', views.results, name='results'),
+    # ex: /polls/5/vote/
+    url(r'^(?P<question_id>[0-9]+)/vote/$', views.vote, name='vote'),
+]
+```
+
+从浏览器中查看诸如`/polls/34/`，则将运行`detail()`方法并吸纳是URL中指定的ID，而`/polls/34/results/`和`/polls/34/vote/`也是如此显示相应的results和vote页面。
+
+当请求web网站`/polls/34/`，Django将加载`mysite.urls`方法，因为在`mysite`子目录下的`settings.py`中设置了`ROOT_URLCONF = 'mysite.urls'`。Django找到模拟改为`urlpatterns`变量（在`urls.py`文件中），然后依次转换正则表达式。
+
+当找到`^polls/`匹配，它就会剥离出匹配的文本`polls/`并发送剩下的文本`34/`给`polls.urls`的URLconf进行进一步处理，见 `mysite/urls.py` 中代码：
+
+```
+urlpatterns = [
+    url(r'^polls/', include('polls.urls')),
+    ...
+]
+```
+
+然后就会匹配`polls/urls.py`文件中的`r'^(?P<question_id>[0-9]+)/$'`，这样就会调用`detial()`视图，类似:
+
+```python
+detail(request=<HttpRequest object>, question_id='34')
+```
+
+这里的`question_id='34'`是从`(?P<question_id>[0-9]+)`得到的。使用围绕一个样式（pattern）的圆括号(parentheses)可以"捕获"(captures)通过样式匹配的文本，然后发送文本作为视图功能的参数。`?P<question_id>`定义了用于标识匹配的样式来定义名字；而`[0-9]+`则是匹配一系列数字的正则表达式。
+
+由于URLyangshi是正则表达式，所以它没有任何限制。通常不需要加上诸如`.html`的URL，除非你想要这样也行，如：
+
+```
+url(r'^polls/latest\.html$', views.index),
+```
+
+不过，不要这样做，这很笨拙。
+
+# 编写视图实际完成工作
+
+每个视图负责做两件事情之一：返回一个[HttpResponse](https://docs.djangoproject.com/en/1.11/ref/request-response/#django.http.HttpResponse)对象包含请求页面的内容，或者抛出一个异常，诸如[Http404](https://docs.djangoproject.com/en/1.11/topics/http/views/#django.http.Http404)。其余随你所愿。
+
+视图可以从数据库中读取记录；视图可以使用一个模板系统，例如Django的模板，或者使用第三方Python模板系统。视图可以生成一个PDF文件，输出XML，动态创建一个ZIP文件，甚至任何使用Python库可以完成的事情。
+
+所有Django期望的是[HttpResponse](https://docs.djangoproject.com/en/1.11/ref/request-response/#django.http.HttpResponse)或一个异常。
+
+由于使用方便，可以使用Django自己的数据库API。这里使用了一个新的`index()`视图，显示最新的5个poll问题，通过逗号分隔，按照发布时间。`polls/views.py`
+
+```python
+from django.http import HttpResponse
+
+from .models import Question
+
+
+def index(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    output = ', '.join([q.question_text for q in latest_question_list])
+    return HttpResponse(output)
+
+# Leave the rest of the views (detail, results, vote) unchanged
+```
+
 # 参考
 
 * [Writing your first Django app, part 1](https://docs.djangoproject.com/en/1.11/intro/tutorial01/)

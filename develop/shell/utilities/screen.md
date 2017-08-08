@@ -36,6 +36,8 @@ Screen 会话的连接，可以用 `screen -p ID` 命令重新连接特定的窗
 
 ![screen屏幕分隔](/img/os/utility/Gnuscreen.png)
 
+去除split出来的`region`使用快捷键`Ctrl-a X`
+
 **C/P模式和操作**
 
 使用快捷键`Ctrl-a <Esc>`或者`Ctrl-a [`可以进入copy/paste模式，这个模式下可以像在vi中一样移动光标，并可以使用空格键设置标记。其实在这个模式下有很多类似vi的操作，譬如使用/进行搜索，使用y快速标记一行，使用w快速标记一个单词等。关于C/P模式下的高级操作，其文档的这一部分有比较详细的说明。
@@ -88,3 +90,4 @@ pssh -ih nc_list 'screen -S strace_example_program -d -m sudo strace -o example_
 * [WikiPedia: GNU Screen](https://en.wikipedia.org/wiki/GNU_Screen)
 * [linux 技巧：使用 screen 管理你的远程会话](https://www.ibm.com/developerworks/cn/linux/l-cn-screen/)
 * [The Antidesktop](http://freecode.com/articles/the-antidesktop) 一个有趣的桌面替代方案
+* [screen key](http://www.pixelbeat.org/lkdb/screen.html) - 这篇文档常用快捷键
