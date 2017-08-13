@@ -528,6 +528,7 @@
 			* [python字典内容添加到列表](develop/python/startup/append_hash_content_to_list.md)
 			* [python site-packages简介](develop/python/startup/site-packages.md)
 			* [python去除字符串换行](develop/python/startup/remove_last_characer.md)
+			* [Python程序Daemon化](develop/python/startup/unix_daemonize.md)
 		* [ConfigParser报错"NoOptionError"](ConfigParser.NoOptionError.md)
 		* [Flask开发Web](develop/python/flask/README.md)
 			* [安装Flask开发环境](develop/python/flask/install.md)
