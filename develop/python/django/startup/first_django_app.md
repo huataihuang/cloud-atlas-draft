@@ -680,6 +680,96 @@ def index(request):
 
 现在浏览器加载访问`/polls/`就会看到类表展示，并且有问题的详细页面信息的超链接。
 
+## render()快捷方式
+
+一个非常常用的风格是从一个template模板加载，填写一个context上下文，然后返回一个[HttpResponse](https://docs.djangoproject.com/en/1.11/ref/request-response/#django.http.HttpResponse)对象作为渲染模板的结果。Django提供一个快捷方式，一下是完整的 index() 视图：
+
+`polls/views.py`:
+
+```python
+from django.shortcuts import render
+
+from .models import Question
+
+
+def index(request):
+    latest_question_list = Question.objects.order_by('-pub_date')[:5]
+    context = {'latest_question_list': latest_question_list}
+    return render(request, 'polls/index.html', context)
+```
+
+[render()](https://docs.djangoproject.com/en/1.11/topics/http/shortcuts/#django.shortcuts.render)功能捕获请求对象作为第一个参数，模板名称作为第2个参数，即一个目录作为可选的第3个参数。返回一个使用给定context上下文渲染的模板作为HttpResponse对象。
+
+## 404错误页面
+
+`polls/view.py`
+
+```python
+from django.http import Http404
+from django.shortcuts import render
+
+from .models import Question
+# ...
+def detail(request, question_id):
+    try:
+        question = Question.objects.get(pk=question_id)
+    except Question.DoesNotExist:
+        raise Http404("Question does not exist")
+    return render(request, 'polls/detail.html', {'question': question})
+```
+
+这里提供了一个 [Http404](https://docs.djangoproject.com/en/1.11/topics/http/views/#django.http.Http404)异常，如果请求的ID不存在对应问题的话。
+
+`polls/templates/polls/detail.html`:
+
+```python
+{{ question }}
+```
+
+## [get_object_or_404()](https://docs.djangoproject.com/en/1.11/topics/http/shortcuts/#django.shortcuts.get_object_or_404)
+
+一个常用的方式是使用 [get()](https://docs.djangoproject.com/en/1.11/ref/models/querysets/#django.db.models.query.QuerySet.get) 和在对象不存在时返回 [Http404](https://docs.djangoproject.com/en/1.11/topics/http/views/#django.http.Http404)
+
+以下是 `detail()` 视图的重写：
+
+`polls/views.py`
+
+```python
+from django.shortcuts import get_object_or_404, render
+
+from .models import Question
+# ...
+def detail(request, question_id):
+    question = get_object_or_404(Question, pk=question_id)
+    return render(request, 'polls/detail.html', {'question': question})
+```
+
+这里[get_object_or_404()](https://docs.djangoproject.com/en/1.11/topics/http/shortcuts/#django.shortcuts.get_object_or_404)功能使用一个Django模块作为第一个参数并且一个关键词参数作为随意数字，传递给[get()](https://docs.djangoproject.com/en/1.11/ref/models/querysets/#django.db.models.query.QuerySet.get)模式管理的功能。如果对象不存在则返回[Http404](https://docs.djangoproject.com/en/1.11/topics/http/views/#django.http.Http404)
+
+这里去掉了前面的`ObjectDoesNotExist`异常处理，代之以`get_object_or_404()`实现了Django的一种维护丢失关系的处理快速模式的设计目标。（理解为约定俗成规则？）
+
+这里的`get_list_or_404()`功能只使用了`get_object_or_404()`，异常使用`filter()`代替了`get()`，则在list是空的时候返回`Http404`。
+
+# 使用模板系统
+
+返回到`detail()`视图，给出上下文变量的question，这里有一个`polls/detail.html`模板类似，
+
+`polls/templates/polls/detail.html`:
+
+```html
+<h1>{{ question.question_text }}</h1>
+<ul>
+{% for choice in question.choice_set.all %}
+    <li>{{ choice.choice_text }}</li>
+{% endfor %}
+</ul>
+```
+
+这里模板系统使用dot-lookup语法来访问变量属性。在这个阿尼中 `{{ question.question_text }}`，首先Django对对象`question`使用一个字典查询。失败，就尝试一个属性查询，对这个案例就是成功的。如果属性查询失败，它将尝试列表索引（list-index）查询。
+
+模式调用发生在 `{% for %}` 循环：`question.choice_set.all`是作为`question.choice_set.all()` 的Python代码解释的，它将返回一个`Choice`对象并符合`{% for %}`标签的使用。
+
+详细模板使用见 [template guide](https://docs.djangoproject.com/en/1.11/topics/templates/)
 
 # 参考
 
