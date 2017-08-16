@@ -43,6 +43,8 @@
 			* [Linux资源管理](os/linux/kernel/cgroups/README.md)
 				* [Cgroup快速起步](os/linux/kernel/cgroups/startup/README.md)
 					* [如何限制进程使用的内存](os/linux/kernel/cgroups/startup/limit_process_memory.md)
+					* [Cgroup的CPU使用统计控制器](os/linux/kernel/cgroups/startup/cpu_accounting_controller.md)
+					* [Cgroup v2简介](os/linux/kernel/cgroups/startup/cgroup_v2.md)
 				* [在RHEL6中的Cgroups](os/linux/kernel/cgroups/rhel6/README.md)
 					* [RHEL6 Cgroups概述](os/linux/kernel/cgroups/rhel6/introduction.md)
 					* [RHEL6 使用控制组](os/linux/kernel/cgroups/rhel6/using_control_groups.md)
