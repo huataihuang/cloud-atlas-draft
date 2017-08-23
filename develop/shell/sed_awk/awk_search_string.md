@@ -46,6 +46,20 @@ awk -F "[<>]" '/ip/ && /[0-9]./ {print $3}' ip.xml
 * `&&` 符号表示同时满足两个搜索条件，即字符串中既包含"ip"又包含"数字+."；如果要表示`或`逻辑，就使用`||`
 * 支持正则表达`[]`
 
+再举个简单的例子，假如要读取一个配置文件 `config.ini` 中键值对，并累加计数，即读取出数值是1的时候，加上1等于2再回写配置文件
+
+```bash
+val=`awk -F= "/^$key=/{print \\$2}" $CONFIG_FILE`
+
+if [ -z "$val" ]; then
+    val=1
+    echo "$key=$val" >> $CONFIG_FILE
+else
+    let val+=1
+    sed -i 's/^\('$key'=\).*$/\1'$val'/' $CONFIG_FILE
+fi
+```
+
 # 输出大于某值的行
 
 案例文件内容
