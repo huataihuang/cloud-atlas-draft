@@ -77,6 +77,7 @@
 				* ["NETDEV WATCHDOG: slave0 (bnx2): transmit queue 5 timed out"内核Panic排查](os/linux/kernel/cpu/bnx2_transmit_queue_timeed_out_intremap_off.md)
 				* [Intel Skylake/Kaby Lake处理器系列简介](os/linux/kernel/cpu/skylake_kaby_lake_processors.md)
 				* [Intel Skylake/Kaby Lake处理器超线程bug及处理](os/linux/kernel/cpu/skylake_kaby_lake_processors_broken_hyper-threading.md)
+				* [dmidecode分析](os/linux/kernel/cpu/dmidecode.md)
 			* [驱动](os/linux/kernel/driver/README.md)
 				* [内核模式设置KMS](os/linux/kernel/driver/kms.md)
 				* [DKMS动态内核模块支持](os/linux/kernel/driver/dkms.md)

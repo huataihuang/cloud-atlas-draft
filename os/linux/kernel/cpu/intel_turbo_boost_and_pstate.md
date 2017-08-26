@@ -404,7 +404,7 @@ turbostat
 
 这里参数：
 
-* `Avg_MHz`是平局主频，基于`APERF`
+* `Avg_MHz`是平均主频，基于`APERF`
 * `Busy%`表示处理器繁忙百分比
 * `Bzy_MHz`是实际的busy frequency，基于`MPERF`
 * `TSC_MHz`是固定主频，TSC基于[Time Stamp Counter](https://en.wikipedia.org/wiki/Time_Stamp_Counter)
