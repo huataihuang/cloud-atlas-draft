@@ -63,7 +63,40 @@ ACPI设备在被修改时将自动引用正确的端口。
 
 # libvirt panic device
 
-libvirt
+libvirt从1.2.1开始，只针对QEMU和KVM提供了panic设备，可以从QEMU guest接收panic通知。
+
+这个功能对于以下类型guest总是激活：
+
+* pSeries guests，因为是通过guest firmware实现的
+* S390 guests，因为是作为S390架构的集成部分
+
+对于以上guest类型，libvirt自动在domain XML中添加了一个`panic`元素。
+
+使用panic配置案例：
+
+```
+...
+<devices>
+  <panic model='hyperv'/>
+  <panic model='isa'>
+    <address type='isa' iobase='0x505'/>
+  </panic>
+</devices>
+...
+```
+
+## model
+
+选项`model`属性执行了提供panic设备的类型，当缺乏基于hypervisor和guest架构的这个属性，则使用panic model:
+
+* `isa` - 针对ISA pvpanic设备
+* `pseries` - 默认只针对pSeries guests
+* `hyperv` - 针对Hyper-V crash CPU特性，从1.3.0开始提供给QEMU和KVM
+* `s390` - 默认这对S390 guests，从1.3.5开始提供
+
+## address
+
+panic的地址，默认是`0x505`。大多数用户不需要指定地址，并且对于`s390`，`pseres`和`hyperv` models是不可使用的这个参数。
 
 # 参考
 
