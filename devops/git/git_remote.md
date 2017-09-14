@@ -290,6 +290,7 @@ HEAD is now at 5597708 fix ...
 git log
 ```
 
+<<<<<<< HEAD
 ----
 
 # Git查看、删除、重命名远程分支和tag
@@ -317,9 +318,60 @@ git push origin --delete tag master-7u
 * 删除不存在对应远程分支的本地分支
 
 
+=======
+# 合并分支
+
+```
+git merge hoxfix
+```
+
+将hotfix分支合并到当前分支中
+
+# 删除分支
+
+```
+git branch -d hotfix
+```
+
+删除分支hotfix，`-d`选项只能删除被当前分支所合并过的分支，要强制删除没有被合并过的分支，使用参数`-D`
+
+# 重命名分支
+
+```
+git branch -m oldbranch newbranch
+```
+
+`-M`用来强制重命名，如newbranch已经存在的时候。
+
+# 查看分支间的不同
+
+```
+git diff branchName
+```
+
+查看当前分支和branchName分支中间的差异。也可以使用`git diff branch1 branch2`来查看两个分支间的差异。
+
+如果要比较文件，则使用
+
+```
+git diff <branchA>:<fileA> <branchB>:<fileB>
+```
+
+# 合并冲突
+
+如果在不同的分支中都修改了同一个的同一部分，git就无法干净地把两者合并到一起。
+
+任何包含未解决冲突的文件都会以未合并（unmerged）的状态列出。git会在有冲突的文件中加入标准的冲突解决标记，可以通过它们来手工定位并解决这些冲突。
+
+在解决了所有文件里的所有冲突后，运行`git add`把它们标记为已解决状态（也就是快照保存到暂存区域）。因为一旦暂存，就表示冲突已经解决。
+>>>>>>> dbea222d972cded70b0df29dee87746651954c17
 
 # 参考
 
 * [Git远程操作详解](http://www.ruanyifeng.com/blog/2014/06/git_remote.html)
 * [How to clone all remote branches in Git?](http://stackoverflow.com/questions/67699/how-to-clone-all-remote-branches-in-git)
+<<<<<<< HEAD
 * [Git查看、删除、重命名远程分支和tag](https://blog.zengrong.net/post/1746.html)
+=======
+* [git branch](http://www.cnblogs.com/gbyukg/archive/2011/12/12/2285425.html)
+>>>>>>> dbea222d972cded70b0df29dee87746651954c17
