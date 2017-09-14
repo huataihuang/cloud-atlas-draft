@@ -290,7 +290,36 @@ HEAD is now at 5597708 fix ...
 git log
 ```
 
+----
+
+# Git查看、删除、重命名远程分支和tag
+
+在处理远程分支时，有时候需要删除不需要的远程分支。
+
+* 检查远程分支
+
+```
+git branch -a
+```
+
+* 删除远程分支
+
+```
+git push origin --delete master-7u
+```
+
+* 删除tag
+
+```
+git push origin --delete tag master-7u
+```
+
+* 删除不存在对应远程分支的本地分支
+
+
+
 # 参考
 
 * [Git远程操作详解](http://www.ruanyifeng.com/blog/2014/06/git_remote.html)
 * [How to clone all remote branches in Git?](http://stackoverflow.com/questions/67699/how-to-clone-all-remote-branches-in-git)
+* [Git查看、删除、重命名远程分支和tag](https://blog.zengrong.net/post/1746.html)
