@@ -68,6 +68,8 @@ virsh suspend guest_name
 virsh resume guest_name
 ```
 
+# 虚拟机链接
+
 # 参考
 
 * [How To Manage KVM Virtual Machines Using Virsh](http://acidborg.wordpress.com/2010/02/19/how-to-manage-kvm-virtual-machines-using-virsh/)

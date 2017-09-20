@@ -22,14 +22,14 @@ yum install libaio* gcc wget make
 * 下载软件包
 
 ```
-wget http://brick.kernel.dk/snaps/fio-2.18.tar.gz
+wget http://brick.kernel.dk/snaps/fio-git-latest.tar.gz
 ```
 
 * 编译安装
 
 ```
-tar xfz fio-2.18.tar.gz
-cd fio-2.18
+tar xfz fio-git-latest.tar.gz
+cd fio
 ./configure
 make
 sudo make install

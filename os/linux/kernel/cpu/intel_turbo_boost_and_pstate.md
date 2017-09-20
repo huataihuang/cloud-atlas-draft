@@ -52,6 +52,18 @@ Turbo Boost Max技术哈支持设置应用程序可以使用的CPU性能的百�
 
 Intel处理器从单核发展到多核提供了在同一个物理CPU核运行2个线程的[Hpyer-threading](https://en.wikipedia.org/wiki/Hyper-threading)以及[Turbo Boost](https://en.wikipedia.org/wiki/Intel_Turbo_Boost)来提供最大性能。处理器核型可以完全关闭（CPU HALT, 主频降到0）来节约电能消耗，并且根据很多因素，如工作负载和问题，来调整处理器核心的工作主频。能耗是现代处理器设计的重要组成。
 
+## 内核激活Intel P-state
+
+内核启动参数需要激活P-state驱动后才能使用Turbo Boost功能。详细内核参数配置方法参考[在Grub2中修改内核启动参数](../../redhat/system_administration/grub2/change_kernel_parameter_in_grub2)
+
+* 修改`/etc/default/grub`配置行`GRUB_CMDLINE_LINUX`添加`intel_idle.max_cstate=1 intel_pstate=enable processor.max_cstate=1`
+
+* 执行配置生效
+
+```
+grub2-mkconfig -o /boot/grub2/grub.cfg
+```
+
 ## 安装工具
 
 ```
@@ -544,6 +556,22 @@ nohup yes > /dev/null &
 ```
 for i in `seq 0 23`;do taskset -c $i sh ./yes.sh;done
 ```
+
+# 异常排查
+
+* 系统内核明确设置了`intel_pstate=enable`但是启动之后，依然出现如下报错
+
+```
+#cpupower frequency-info
+analyzing CPU 0:
+  no or unknown cpufreq driver is active on this CPU
+
+#cpupower info
+System does not support Intel's performance bias setting
+analyzing CPU 0:
+```
+
+BIOS开启turbo没有成功导致。
 
 # 参考
 

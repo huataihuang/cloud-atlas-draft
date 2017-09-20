@@ -31,6 +31,35 @@ $sudo dmidecode -t 4 | grep CPU
 	Version: Intel(R) Xeon(R) Platinum 8163 CPU @ 2.50GHz
 ```
 
+# 检查内存信息
+
+`dmidecode -t memory` 指令可以用来检查内存规格信息，例如主频等：
+
+```
+Handle 0x0046, DMI type 17, 34 bytes
+Memory Device
+	Array Handle: 0x0036
+	Error Information Handle: Not Provided
+	Total Width: 72 bits
+	Data Width: 64 bits
+	Size: 16384 MB
+	Form Factor: DIMM
+	Set: None
+	Locator: CPU1_D1
+	Bank Locator: CPU1_Bank7
+	Type: DDR3
+	Type Detail: Registered (Buffered)
+	Speed: 1600 MHz
+	Manufacturer: Hynix Semiconducto
+	Serial Number: 24CFB72A
+	Asset Tag: Dimm7_AssetTag
+	Part Number: HMT42GR7BFR4A-PB
+	Rank: 2
+	Configured Clock Speed: 1600 MHz
+```
+
+> 也可以使用 `sudo dmidecode --type 17` 来显示内存相关信息（注意：前述内存信息中就有`Handle 0x0046, DMI type 17, 34 bytes`，显示内存就是`DMI type 17`）
+
 # 参考
 
 * [How to determine the number of cpu/cores in redhat linux.](https://www.redhat.com/archives/redhat-list/2011-August/msg00007.html)

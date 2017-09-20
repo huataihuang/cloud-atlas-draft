@@ -13,5 +13,5 @@ current_time = (datetime.datetime.now() - datetime.timedelta(minutes=1)).strftim
 recent_myapp_log_file = /var/log/current_myapp.log
 
 mdisk_log_output_cmd = "tail -%s %s | grep '%s' | tee %s " % (myapp_log_line, myapp_log_file, current_time, recent_myapp_log_file)
-    myapp_log_output = subprocess.check_output(myapp_log_output_cmd, shell=True).splitlines()
+myapp_log_output = subprocess.check_output(myapp_log_output_cmd, shell=True).splitlines()
 ```

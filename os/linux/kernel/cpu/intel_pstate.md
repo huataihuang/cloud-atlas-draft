@@ -91,6 +91,10 @@ Intel Speed Shift Technology (HWP)
 
 Intel `P-State`驱动程序属于后一类，它实现了`setpolicy()`回调。
 
+# 启动激活Intel P-State
+
+> 见[Intel Turbo boost和p-State](intel_turbo_boost_and_pstate)
+
 # 参考
 
 * [Balancing Power and Performance in the Linux Kernel](https://events.linuxfoundation.org/sites/events/files/slides/LinuxConEurope_2015.pdf) - Intel开源中心提供的有关能耗和性能平衡的介绍文档
