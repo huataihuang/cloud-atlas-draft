@@ -290,6 +290,35 @@ HEAD is now at 5597708 fix ...
 git log
 ```
 
+<<<<<<< HEAD
+----
+
+# Git查看、删除、重命名远程分支和tag
+
+在处理远程分支时，有时候需要删除不需要的远程分支。
+
+* 检查远程分支
+
+```
+git branch -a
+```
+
+* 删除远程分支
+
+```
+git push origin --delete master-7u
+```
+
+* 删除tag
+
+```
+git push origin --delete tag master-7u
+```
+
+* 删除不存在对应远程分支的本地分支
+
+
+=======
 # 合并分支
 
 ```
@@ -335,9 +364,14 @@ git diff <branchA>:<fileA> <branchB>:<fileB>
 任何包含未解决冲突的文件都会以未合并（unmerged）的状态列出。git会在有冲突的文件中加入标准的冲突解决标记，可以通过它们来手工定位并解决这些冲突。
 
 在解决了所有文件里的所有冲突后，运行`git add`把它们标记为已解决状态（也就是快照保存到暂存区域）。因为一旦暂存，就表示冲突已经解决。
+>>>>>>> dbea222d972cded70b0df29dee87746651954c17
 
 # 参考
 
 * [Git远程操作详解](http://www.ruanyifeng.com/blog/2014/06/git_remote.html)
 * [How to clone all remote branches in Git?](http://stackoverflow.com/questions/67699/how-to-clone-all-remote-branches-in-git)
+<<<<<<< HEAD
+* [Git查看、删除、重命名远程分支和tag](https://blog.zengrong.net/post/1746.html)
+=======
 * [git branch](http://www.cnblogs.com/gbyukg/archive/2011/12/12/2285425.html)
+>>>>>>> dbea222d972cded70b0df29dee87746651954c17
