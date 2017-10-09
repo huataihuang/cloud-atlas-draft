@@ -2,7 +2,7 @@
 
 推荐`nvm`来管理`node.js`版本，请参考[nvm官方说明](https://github.com/creationix/nvm)
 
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
 
 > 脚本在 `~/.nvm` 目录下clone了`nvm`的git仓库，并在`~/.bash_profile`， `~/.zshrc`， `~/.profile` 或 `~/.bashrc` 中添加了
 
@@ -21,6 +21,8 @@ export NVM_DIR="$HOME/.nvm"
 > 2016年2月测试在一些插件兼容性上使用最细的 v5.x 会产生异常，此外，在gitbook的运行中发现，使用 node v5.x 出现cpu资源占用较高问题。不过，我在2016年10月采用最简单的typing模版时，使用最新的`6.7.0`系列发现无法正常显示，所以还是采用了4.6.0
 >
 > 如果使用[node.js官方pkg包](http://nodejs.org)安装，会在系统级别安装到`/usr/local`目录下，但是对于hexo安装，总是需要使用sudo权限，非常不方便。所以推荐使用`nvm`作为node.js的包管理。
+
+> `按照hexo官方文档，应该安装node.js的稳定版本` - `nvm install stable`
 
 ## 升级node.js
 
@@ -116,6 +118,8 @@ rm -rf node_modules && npm install
 
     cd themes/typing
 	git pull
+
+> [landscape](https://github.com/hexojs/hexo-theme-landscape)这个默认主题也不错，除了代码高亮不是很舒服，作为写个人博客还是很适合的。
 
 # 使用hexo
 
@@ -215,6 +219,10 @@ jekyll是GitHub官方支持的Pages工具，基于Ruby，由于github巨大的�
 > 考虑到每个人的生活是多面的，我准备使用`hexo`(`typing` theme)来构建生活的blog，而使用`jekyll`来构建偏向技术的blog。
 
 > 参考 [FarBox、Jekyll、Octopress、ghost、marboo、Hexo、Medium、Logdown、prose.io，这些博客程序有什么特点？](https://www.zhihu.com/question/21981094)
+
+# 其他blog
+
+如果没有被墙，其实用[twitter](https://twitter.com/)记录碎片化的思绪，用[tumblr](https://www.tumblr.com/)撰写生活随笔，是非常惬意和轻松的事情。
 
 # 参考
 

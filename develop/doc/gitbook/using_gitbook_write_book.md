@@ -10,17 +10,26 @@
 
     node -v
 
-> 如果没有安装，可以使用`nvm`来[管理node.js版本](../write_blog_by_hexo)
+> 如果没有安装，可以使用`nvm`来[管理node.js版本](../write_blog_by_hexo)。注意：安装稳定版本
+
+```
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
+nvm install stable
+```
+
+安装node.js之后，使用`which node`可以看到安装目录是用户目录下`~/.nvm/versions/node/v8.6.0/bin/node`
 
 * 安装Gitbook
 
-使用NMP安装Gitbook
+使用NMP安装Gitbook - 参考 [gitbllk-cli](https://www.npmjs.com/package/gitbook-cli)
 
-    npm install gitbook-cli -g
+    npm install -g gitbook-cli
 
-> 请使用`nvm`来安装node，这样可以在自己的用户目录下安装和管理各种版本node，就可以避免安装系统目录node，也就不需要使用`sudo`命令。如果使用系统范围的`node.js`，需要使用命令`sudo npm install gitbook -g`
+> 请使用`nvm`来安装node，这样可以在自己的用户目录下安装和管理各种版本node，就可以避免安装系统目录node，也就不需要使用`sudo`命令。
+>
+> (不建议使用系统的`node.js`)如果使用系统范围的`node.js`，需要使用命令`sudo npm install gitbook -g`
 
-安装完成后，使用以下命令验证是否安装成功
+安装完成后，使用以下命令验证是否安装成功，如果还没有安装gitbook（如前述只安装了`gitbook-cli`）则会自动安装稳定版本
 
     gitbook -V
 
