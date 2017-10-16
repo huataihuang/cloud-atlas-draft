@@ -68,9 +68,27 @@ virsh suspend guest_name
 virsh resume guest_name
 ```
 
-# 虚拟机链接
+* 保存一个guest
+
+```bash
+virsh save centos7 /var/lib/libvirt/images/centos7-save.img
+```
+
+> 这里将停止虚拟机并保存数据都文件(但是我使用`virsh list`显示`centos7`依然是running状态)
+
+# 虚拟机磁盘设备
+
+`virsh domblklist`可以输出磁盘设备清单，实际上，这个命令和`virsh dumpxml`中输出的磁盘设备是一致的，但是输出较清晰
+
+```
+ # virsh domblklist f17-base
+Target     Source
+---------------------------------------------
+vda        /export/vmimages/f17-base.qcow2
+```
 
 # 参考
 
 * [How To Manage KVM Virtual Machines Using Virsh](http://acidborg.wordpress.com/2010/02/19/how-to-manage-kvm-virtual-machines-using-virsh/)
 * [Virsh Command Reference](http://libvirt.org/sources/virshcmdref/html-single/)
+* [Live-disk-backup-with-active-blockcommit](http://wiki.libvirt.org/page/Live-disk-backup-with-active-blockcommit)

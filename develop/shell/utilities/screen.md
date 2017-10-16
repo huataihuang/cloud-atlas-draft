@@ -83,6 +83,54 @@ Screen 会话的连接，可以用 `screen -p ID` 命令重新连接特定的窗
 pssh -ih nc_list 'screen -S strace_example_program -d -m sudo strace -o example_program.strace -p `pgrep example_program`'
 ```
 
+# Cannot open your terminal
+
+当时用sudo切换到普通用户身份执行`screen`指令时，会遇到报错
+
+```bash
+Cannot open your terminal '/dev/pts/135' - please check.
+```
+
+这个报错原因是因为你通过其他用户身份登录到系统终端中，然后执行了`sudo su`指令，此时`tty`终端设备并没有随着身份切换而改变，所以切换身份后用户无法访问终端设备文件。
+
+用以下方法可以验证：
+
+* 首先登录到系统中，执行`tty`命令可以查看到终端设备名：
+
+```
+#tty
+/dev/pts/135
+```
+
+* 然后切换身份到`admin`用户再次执行`tty`命令则看到终端设备名不变，依然是`/dev/pts/135`
+
+```
+#su - admin
+-bash: ulimit: open files: cannot modify limit: Operation not permitted
+
+$tty
+/dev/pts/135
+```
+
+解决方法有以下几种：
+
+* 退出系统，直接用需要使用`screen`指令的用户身份登录系统，这样使用`screen`命令就不会有无法访问`/dev/pts/XXX`权限问题
+* 直接修改设备权限，例如`chmod 777 /dev/pts/135`，但是这个方法存在安全隐患，不建议使用
+* 推荐的解决方法：使用`script /dev/null`指令，这样用户的`tty`设备就会切换到其他终端设备。
+
+案例：
+
+```
+$script /dev/null
+Script started, file is /dev/null
+bash: ulimit: open files: cannot modify limit: Operation not permitted
+
+$tty
+/dev/pts/189
+```
+
+此时使用`screen`指令就不会存在权限错误问题。
+
 # 参考
 
 * [对话 UNIX: 使用 Screen 创建并管理多个 shell](http://www.ibm.com/developerworks/cn/aix/library/au-gnu_screen/index.html)
@@ -91,3 +139,4 @@ pssh -ih nc_list 'screen -S strace_example_program -d -m sudo strace -o example_
 * [linux 技巧：使用 screen 管理你的远程会话](https://www.ibm.com/developerworks/cn/linux/l-cn-screen/)
 * [The Antidesktop](http://freecode.com/articles/the-antidesktop) 一个有趣的桌面替代方案
 * [screen key](http://www.pixelbeat.org/lkdb/screen.html) - 这篇文档常用快捷键
+* [解决Screen出现Cannot open your terminal ‘/dev/pts/0’问题](https://blog.ttionya.com/article-1318.html) 和 [Solve screen error "Cannot open your terminal '/dev/pts/0' - please check"](https://makandracards.com/makandra/2533-solve-screen-error-cannot-open-your-terminal-dev-pts-0-please-check) 提供了解决`Cannot open your terminal '/dev/pts/0'`报错的方法

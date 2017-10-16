@@ -37,11 +37,19 @@ libvirt有一个机制可以自动保存guest crash dump到指定目录（可以
 >
 > 在Windows虚拟机内部使用`Device Manager`管理器，找到`Storage controllers`下的`Red Hat VirtIO SCSI controller`设备，然后双击打开，并查看`Driver`面板中显示的`Driver Version`(驱动版本)，例如`62.61.101.58001`(`Driver Date`是`8/3/2016`)，对应的virtio驱动iso就是可以查看 http://www.linux-kvm.org/page/WindowsGuestDrivers/Download_Drivers
 
+## pvpanic环境要求
+
+| 软件 | 版本 | 说明 |
+| ---- | ---- | ---- |
+| qemu | 1.6 | |
+| libvirt | 1.2.1 | |
+| virtio |  virtio-win-0.1.103-2 | 2015年5月5日发布 |
+
 # qemu pvpanic
 
 pvpanic设备是一个模拟的ISA设备，通过这个设备guest panic事件被发送给qemu，并且生成一个QMP事件。这允许管理程序（例如，libvirt）被通知并响应这个事件。
 
-管理程序有一个选项来等待`GUEST_PANICKED`事件，并且/或 polling guest-panicked运行状态，来获取何时出现pvpanic设备被panic事件触发。
+管理程序有一个选项来等待`GUEST_PANICKED`事件，并且/或 polling `guest-panicked`运行状态，来获取何时出现pvpanic设备被panic事件触发。
 
 ## ISA接口
 

@@ -15,7 +15,7 @@ hdiutil convert -format UDRW -o livedvd-amd64-multilib-20140826.img livedvd-amd6
 > OS X的`hdiutil`支持各种镜像文件的转换，例如`.iso`文件的格式，称为`UDTO`，则可以使用如下命令转换`img`文件到`iso`文件，类似如下：
 
 ```bash
-convert -format UDTO -o Fedora-Server-DVD-x86_64-23.iso Fedora-Server-DVD-x86_64-23.img
+hdiutil convert -format UDTO -o Fedora-Server-DVD-x86_64-23.img Fedora-Server-DVD-x86_64-23.iso
 ```
 
 * 检查当前可用设备，可以看到插入的U盘的对应设备
