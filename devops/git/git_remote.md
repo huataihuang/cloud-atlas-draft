@@ -147,7 +147,7 @@ git checkout -b <新建的本地分支名>  <远程分支名>
 实际操作如下
 
 ```
-git checkout -b master-7u origin/master_7u
+git checkout -b master_7u origin/master_7u
 ```
 
 如果要跟踪多个远程仓库，可以使用 `git remote` 命令

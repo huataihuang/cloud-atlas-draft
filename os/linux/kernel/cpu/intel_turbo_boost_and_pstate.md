@@ -242,6 +242,17 @@ Usage: 776606
 Duration: 14056122480
 ```
 
+> 注意：系统必须加载了`intel_idle`驱动之后才能使用`-m Idle_Stats`模块，才能列出支持的`C-state`，否则输出如下：
+
+```
+$sudo cpupower idle-info
+CPUidle driver: none
+CPUidle governor: menu
+
+Analyzing CPU 0:
+CPU 0: No idle states
+```
+
 * `cpupower monitor -l`可以列出所有可以监控的模块（也就是`cpupower monitor`输出的所有列可以按照模块来过滤选择）
 
 ```
@@ -285,7 +296,7 @@ PKG |CORE|CPU | POLL | C1-S
 cat /proc/cpuinfo
 ```
 
-* 检查处理器主频
+* 检查处理器主频`cpupower frequency-info`
 
 ```
 #cpupower frequency-info
@@ -304,6 +315,23 @@ analyzing CPU 0:
     Supported: yes
     Active: yes
 ```
+
+> 注意：使用`cpupower frequency-info`显示的当前cpu 0主频是一个约数，不精确且有延迟。最好采用 `cpupower monitor -m Mperf` 检查能够获取精确的CPU主频，且即使没有使用`intel_pstate`驱动也能够准确获取频率。
+
+* 检查处理器主频`cpupower monitor -m Mperf`
+
+```
+$sudo cpupower monitor -m Mperf
+              |Mperf
+PKG |CORE|CPU | C0   | Cx   | Freq
+   0|   0|   0|  7.85| 92.15|  2820
+   0|   0|  32|  0.38| 99.62|  2825
+   0|   1|   1| 42.75| 57.25|  2891
+   0|   1|  33|  6.98| 93.02|  2890
+...
+```
+
+> 可以看到`Cx`显示的就是处理器idle的状态
 
 ## Turbo Boost MSR
 
@@ -535,6 +563,8 @@ PKG |CORE|CPU | C3   | C6   | PC3  | PC6  || C0   | Cx   | Freq || POLL | C1-S
 echo active |sudo tee /sys/devices/system/cpu/intel_pstate/status
 ```
 
+# 神
+
 # 测试
 
 > 在上述调整处理器主频过程中，可以通过脚本不断压测处理器，以得到处理器主频值。
@@ -556,6 +586,8 @@ nohup yes > /dev/null &
 ```
 for i in `seq 0 23`;do taskset -c $i sh ./yes.sh;done
 ```
+
+> 对于进程pid，可以采用 `taskset -cp <cpu N> <pid>` 来设置进程`<pid>`到处理器`<cpu N>`运行。
 
 # 异常排查
 
@@ -580,3 +612,4 @@ BIOS开启turbo没有成功导致。
 * [How Intel Turbo Boost Works](http://www.makeuseof.com/tag/forced-induction-intel-turbo-boost-works-technology-explained/)
 * [Intel CPUs: P-state, C-state, Turbo Boost, CPU frequency, etc.](https://haypo.github.io/intel-cpus.html)
 * [Balancing Power and Performance in the Linux Kernel](https://events.linuxfoundation.org/sites/events/files/slides/LinuxConEurope_2015.pdf) - Intel开源中心提供的有关能耗和性能平衡的介绍文档
+* [Suse doc: System Analysis and Tuning Guide > Power Management](https://doc.opensuse.org/documentation/leap/tuning/html/book.sle.tuning/cha.tuning.power.html)

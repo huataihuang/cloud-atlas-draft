@@ -15,6 +15,18 @@ set softtabstop=4   " Sets the number of columns for a TAB
 set expandtab       " Expand TABs to spaces
 ```
 
+# 显示编辑文件中的TAB
+
+在编辑文档时，文档中包含tab往往无法分辨，在vim中可以定义显示特殊字符的方法：
+
+```bash
+set list
+set listchars=tab:>-
+```
+
+此时，如果文档中有tab符号，则会显示成`>---`，便于检查。
+
 # 参考
 
 * [Redefine tab as 4 spaces](http://stackoverflow.com/questions/1878974/redefine-tab-as-4-spaces)
+* [Displaying tabs as characters](https://vi.stackexchange.com/questions/422/displaying-tabs-as-characters)

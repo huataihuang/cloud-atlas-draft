@@ -27,6 +27,14 @@ sudo: unable to execute /etc/init.d/my_service_script: Success
 
 观察发现对方传输给我的shell脚本中，每一行末尾都显示了一个`$`符号。但是很奇怪，并没有看到`^M`
 
+可以使用`cat -v filename`来显示详细的信息，包含隐藏字符。
+
+转换windows文档可以使用`dos2unix`命令：
+
+```
+dos2unix filename.txt
+```
+
 # 参考
 
-* []()
+* [File format](http://vim.wikia.com/wiki/File_format)

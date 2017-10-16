@@ -1,6 +1,6 @@
 shell中使用shift指令可以将shell脚本的参数左移，这样可以在不知道位置变量个数情况下逐个处理参数。在 shift 命令执行前变量 `$1` 的值在 shift 命令执行后就不可用了。
 
-```
+```bash
 #测试 shift 命令(x_shift.sh)
 until [ $# -eq 0 ]
 do
@@ -11,13 +11,13 @@ done
 
 执行以上程序x_shift.sh：
 
-```
+```bash
 $./x_shift.sh 1 2 3 4
 ```
 
 结果显示如下：
 
-```
+```bash
 第一个参数为: 1 参数个数为: 4
 第一个参数为: 2 参数个数为: 3
 第一个参数为: 3 参数个数为: 2
@@ -26,7 +26,7 @@ $./x_shift.sh 1 2 3 4
 
 下面代码用 until 和 shift 命令计算所有命令行参数的和。
 
-```
+```bash
 #shift 上档命令的应用(x_shift2.sh)
 if [ $# -eq 0 ]
 then
