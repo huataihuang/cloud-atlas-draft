@@ -31,4 +31,4 @@ cd /Volume/OS X/Users/jerry/Downloads/refind-bin-0.10.2
 
 下一步[在MacBook上安装Gentoo Linux](../../os/linux/gentoo/install_gentoo_on_macbook.md)实现双启动后的Gentoo Linux安装。
 
-> 当前流行的[GPU CUDA开发也可以使用MacBook Pro的NVIDIA GeForce GT 750M](https://www.researchgate.net/post/What_are_the_required_configuration_of_a_PC_to_run_Cuda)。
+> 当前流行的[GPU CUDA开发也可以使用MacBook Pro的NVIDIA GeForce GT 750M](https://www.researchgate.net/post/What_are_the_required_configuration_of_a_PC_to_run_Cuda)，参考[CUDA GPUs](https://developer.nvidia.com/cuda-gpus)说明：NVIDIA GeForce GT 750M支持CUDA 3.0，并且根据当前[Installing TensorFlow on Ubuntu:NVIDIA requirements to run TensorFlow with GPU support](https://www.tensorflow.org/install/install_linux#NVIDIARequirements)介绍，TensorFlow运行支持GPU要求的最低版本恰好是GPU card with CUDA Compute Capability 3.0 or higher，即可以在MacBook Pro上进行基本的GPU开发以及TensorFlow的开发。
