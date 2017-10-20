@@ -25,11 +25,20 @@ typedef enum {
 
 如果没有启用`pvpanic`驱动，当guest内部出现kernel panic，则在host主机上使用 `virsh domstate --reason <name>` 却只能显示 `running (booted)`。
 
+> 启用`pvpanic`设备之后，当guest内部出现kernel panic，则host主机上 `virsh domstate --reason <name>` 可以查看到`crashed`信息
+
+```bash
+#virsh domstate --reason <name>
+running (crashed)
+```
+
 从[qemu 1.6](https://wiki.qemu.org/ChangeLog/1.6) （ [libvirt 从 1.2.1支持加入isa设备pvpanic](https://libvirt.org/formatdomain.html#elementsPanic)）开始实现了`-device pvpanic`（可以激活或者关闭）：qemu将pvpanic设备输出给guest，Linux guest可以在出现kernel panic时候写入这个设备，此时qemu就转发这个crash事件给libvirt。libvirt可以控制如何响应这个事件：重启或关闭guest，执行core dump等。
 
 > 检查`qemu`版本：`qemu-kvm --version`。不过参考 [Re: [libvirt] virsh domstate output when kvm killed vs guest OS panic](https://www.redhat.com/archives/libvir-list/2013-September/msg00322.html) ：qemu 1.6不能很好处理pvpanic，所以可能需要进一步检查各个版本代码和release note。
 
 libvirt有一个机制可以自动保存guest crash dump到指定目录（可以在`/etc/libvirt/qemu.conf`配置存储dump位置，默认是`/var/lib/libvirt/qemu/dump`目录），当为guest实例激活了panic device时，就不需要在guest系统内部运行kdump，可以直接在host上获取到虚拟机的crash dump。注意： **如果在guest同时激活了kdump和pvpanic，则kdump优先于pvpanic。**
+
+> 注意：guest内部激活kdump和pvpanic时，当发生crash事件，kdump会捕获并处理crash，但是host主机的libvirtd就无法获得这个触发信息，则日志不能记录。只有guest内部关闭了kdump之后，host主机才能获得pvpanic信号。
 
 同样原理，在virtio驱动中提供了windows驱动，这样windows guest也能够触发qemu event - [pvpanic/: QEMU pvpanic device driver (build virtio-win-0.1.103-2 and later) ](https://fedoraproject.org/wiki/Windows_Virtio_Drivers) - 该版本是 2015年5月5日发布
 

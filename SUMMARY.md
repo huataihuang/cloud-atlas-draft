@@ -161,6 +161,8 @@
 			* [防火墙](os/linux/security/firewall/README.md)
 				* [Linux防火墙简介](os/linux/security/firewall/instrduce_firewalld.md)
 		* [Red Hat](os/linux/redhat/README.md)
+			* [Fedora](os/linux/redhat/fedora/README.md)
+				* [在Fedora中使用BCM4360无线网卡](os/linux/redhat/fedora/use_bcm4360_wifi_in_fedora.md)
 			* [系统管理](os/linux/redhat/system_administration/README.md)
 				* [Grub 2 boot loader](os/linux/redhat/system_administration/grub2/README.md)
 					* [在grub2中切换默认启动内核](os/linux/redhat/system_administration/grub2/switch_default_kernel_in_grub2.md)
