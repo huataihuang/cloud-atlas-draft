@@ -2,7 +2,7 @@
 
 [Broadcom b43驱动](https://wireless.wiki.kernel.org/en/users/Drivers/b43)可以用于 Broadcom SoftMAC chipsets 但是不支持 BCM4360芯片。可以使用wl驱动来代替。
 
-# 方法一：编译（建议使用这个方法）
+# 方法一：编译（该方法未测试成功）
 
 安装方法参考[No wifi after kernel upgrade](https://ask.fedoraproject.org/en/question/69411/no-wifi-after-kernel-upgrade/)即：
 
@@ -18,7 +18,7 @@ Building and installing wl-kmod
 
 确系统中有wl驱动加载
 
-# 方法二：脚本
+# 方法二：脚本（未验证）
 
 [Broadcom BCM4360 not working in Fedora 24](https://www.reddit.com/r/Fedora/comments/4t3psm/broadcom_bcm4360_not_working_in_fedora_24/)提供了一个安装BCM4360驱动方法：
 
@@ -83,7 +83,7 @@ echo 'wl' | sudo tee /etc/modules-load.d/wl.conf
 # Connect to a Wi-Fi network via NetworkManager...
 ```
 
-# 方法三：wl驱动（该方法适合最终用户，方便通过软件仓库二进制方式安装）
+# 方法三：wl驱动（非常简便，推荐）
 
 参考 [Running Broadcom BCM4630 on Fedora 19](https://ask.fedoraproject.org/en/question/34399/running-broadcom-bcm4630-on-fedora-19/)
 
@@ -98,8 +98,51 @@ echo 'wl' | sudo tee /etc/modules-load.d/wl.conf
 
 > 上述两个软件包依赖非常多，所以需要通过添加repo方式来安装
 
+* 添加rpmfusion repo源
+
+```bash
+yum localinstall http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+yum localinstall http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+```
+
+* 更新系统
+
+```
+yum update
+```
+
+* 重启
+
+```
+reboot
+```
+
+* 安装网卡驱动
+
+```
+yum install kernel-devel akmod-wl
+
+sudo akmods
+```
+
+* 完成后如果没有wifi设备，手动加载
+
+检查模块
+
+```
+sudo lsmod | grep wl
+```
+
+如果模块没有加载则执行命令
+
+```
+sudo modprobe wl
+```
+
+
 # 参考
 
+* [(Macbook Air)BCM4360网卡Linux(Ubuntu/Fedora)驱动安装总结](http://m.aichengxu.com/linux/1111974.htm) - 推荐：实践验证该文档Fedora 26上可行
 * [Broadcom BCM4360 not working in Fedora 24](https://www.reddit.com/r/Fedora/comments/4t3psm/broadcom_bcm4360_not_working_in_fedora_24/)
 * [No wifi after kernel upgrade](https://ask.fedoraproject.org/en/question/69411/no-wifi-after-kernel-upgrade/)
 * [Broadcom b43驱动](https://wireless.wiki.kernel.org/en/users/Drivers/b43)

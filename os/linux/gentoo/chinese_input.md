@@ -62,3 +62,14 @@ LC_CTYPE=zh_CN.UTF-8
 再启动chromium，就可以看到能够输入中文了。
 
 > 此外，还发现原先在`xfce4-terminal`中无法切换中文输入，现在也可以输入中文了。并且还保留了英文的界面，非常完美。
+
+# Fedora 26 LXQt环境中文
+
+Fedora 26 LXQt环境中文已经非常完善，默认安装已经完全支持中文显示，不需要任何设置。此时只需要安装 `fcitx-qt5` 和 `fcitx` 就可以，但是，如果默认的 `LANG=en_US.utf8` 同样会带来无法切换中文输入的问题。
+
+解决方法是编辑`/etc/locale.conf`，添加一行 `LC_CTYPE` 设置为中文就可以，重启主机就可以实现中文fcitx切换。
+
+```
+LANG="en_US.UTF-8"
+LC_CTYPE="zh_CN.UTF-8"
+```
