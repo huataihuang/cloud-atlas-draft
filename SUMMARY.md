@@ -726,6 +726,8 @@
 	* [重置Kindle Paperwhite](read/reset_kindle_paperwhite.md)
 	* [使用calibre去除kindle drm](read/calibre_remove_drm.md)
 * [附录：个人工作室构建](studio/README.md)
+	* [MacBook双操作系统启动macOS+Linux](studio/macbook_dual_boot_macos_linux.md)
+	* [使用Fedora作为开发平台](studio/fedora_develop_studio.md)
 	* [无线网络设置](studio/wifi.md)
 	* [帐号、ssh和sudo设置](studio/account_ssh_and_sudo.md)
 	* [部署OpenStack](studio/deploy_openstack.md)

@@ -25,7 +25,27 @@ unzip DeDRM_tools.zip
 
 解压缩以后，在 `DeDRM_calibre_plugin` 目录下有 calibre 的插件，其中 `DeDRM_plugin.zip` 就是可以直接安装使用的。
 
-> Open calibre's Preferences dialog.  Click on the "Plugins" button.  Next, click on the button, "Load plugin from file".  Navigate to the unzipped DeDRM_tools folder and, in the folder "DeDRM_calibre_plugin", find the file "DeDRM_plugin.zip".  Click to select the file and select "Open".  Click "Yes" in the "Are you sure?" dialog box. Click the "OK" button in the "Success" dialog box.
+在calibre的Preferences对话框中，点击"Plugins"按钮。然后，点击"Load plugin from file"，找到刚才下载并解压缩的`DeDRM_tools`目录，在其子目录"DeDRM_calibre_plugin"找到一个"DeDRM_plugin.zip"。点击这个文件并选择"Open"。然后在"Are you sure?"对话框中点击"Yes"并确认加载这个插件。（提示有安全性因患，务必使用可靠来源的插件）
+
+> 注意：有可能在安装了DeDRM插件之后，每次使用Calibre依然提示文件有DRM保护无法读取。此时请仔细参考DeDRM Tools的说明文档。
+
+如果是从Kindle设备或者从亚马逊的web网站下载 - 在亚马逊网站的"管理我的内容和设备"页面，每个文件都有一个"通过电脑下载USB传输"。推荐使用这个方法下载，下载时会提示 "从下拉列表中选择一个设备"，实际上，这个步骤就是亚马逊根据你的注册设备为下载文件加上DRM加密。
+
+为了能够通过DeDRM Tools移除DRM，一定要在Preferences对话框的插件页面，再次选择DeDRM Tools插件，然后点击`Customize Plugin`按钮，此时会弹出一个`Customize DeDRM`对话框。需要按照你设备选择对应按钮，这样就可以添加设备的序列号。这个序列号非常重要，没有则无法移除DRM。
+
+> 通常在Kindle的设备信息中可以找到序列号
+
+```
+kindle paperwrite 1 / 2：
+中文版：首页 — 菜单（右上角的三道杠） — 设置 — 菜单（右上角三道杠） — 设备信息
+英文版：Home — Menu — Settings — Menu — Device Info
+kindle 4 / kindle touch：
+home — menu — setting — 第二页的Device Info里的“Serial Number:”
+Kindle 1 / 2 / 3 / Keyboard / DX / DXG：
+home — menu — settings — 屏幕右下角会显示序列号（未证实）
+```
+
+注意
 
 把Kindle for PC下载的那些azw文件添加到Calibre即可（直接拖进去吧），DeDRM插件会自动去除azw文件的DRM保护并转换成原始格式（azw3或者mobi、prc等）。
 
@@ -35,3 +55,4 @@ unzip DeDRM_tools.zip
 
 * [用Calibre导入Kindle电子书并去除DRM保护](https://www.librehat.com/importing-kindle-books-with-calibre-and-remove-drm-protection/) - 本文参考，作为支持正版，该文章建议只将移除DRM保护方法用于合法自购的电子书
 * [Calibre DRM Removal Plugin, Calibre Remove DRM from EPUB Kindle](http://www.epubsoft.com/calibre-drm-removal-calibre-remove-drm.html) - epubsoft提供了一个移除DRM的Calibre插件，不过我 **没有试用过**
+* [DeDRM 完美破解去除 AZW 格式电子书 DRM 保护 – Kindle伴侣](http://bbs.feng.com/read-htm-tid-11303089.html)
