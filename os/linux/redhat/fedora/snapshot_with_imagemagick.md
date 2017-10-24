@@ -17,6 +17,7 @@ sudo yum install ImageMagick xclip
 * 为方便使用，采用`~/bin/snapshot.sh`脚本
 
 ```bash
+#!/usr/bin/bash
 snapshot_time=`date +%Y-%m-%d_%H:%M:%S`
 snapshot_file=/home/huatai/Documents/snapshot/${snapshot_time}.png
 import $snapshot_file
@@ -26,7 +27,9 @@ xclip -selection clipboard -t image/png -i $snapshot_file
 
 而且，采用LXQt环境下的快捷键`alt+a`，这样只要在任何情况下按下`alt+a`就可以截图到指定目录下并以时间为文件名保存。
 
-注意，脚本中对文件名要设置完全路径，不能使用类似`~`来指代用户home目录。
+> 注意:
+> * 脚本中对文件名要设置完全路径，不能使用类似`~`来指代用户home目录。
+> * 脚本开头必须使用`#!/usr/bin/bash`解释器，或者`#!/usr/bin/python`，否则快捷键无法生效。
 
 # 参考
 
