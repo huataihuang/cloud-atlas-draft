@@ -2,6 +2,10 @@
 
 在工作桌面中，选择过Xfce（Linus的选择）也使用过LXDE，最终权衡兼容（兼容Gnome和KDE）以及速度，选择LXDE的演进版本LXQt。
 
+> [What are the best Linux desktop environments for developers?](https://www.slant.co/topics/4345/~linux-desktop-environments-for-developers)有一个投票推荐给开发人员使用的桌面，排首位的是Xfce，其次是LXDE，LXQt排在第五。不过，这个网站的评选倒是能让人了解一些常用的桌面。如果希望美观和轻量级，偏向于模拟Mac的话，可以选择[Pantheon](https://elementary.io/)（elementary OS的默认桌面，和macOS非常相近）。
+>
+> [Linux桌面环境终极指南](http://developer.51cto.com/art/201503/467300.htm)编译了Network World网站内的Linux老牌拥护者Bryan Lunduke对比桌面系统的评测，推荐的就是elementary OS的Pantheon。
+
 # 基础操作系统
 
 ```bash
@@ -64,6 +68,18 @@ yum install shutter
 >
 > 相关软件在[archlinux:Taking a screenshot](https://wiki.archlinux.org/index.php/taking_a_screenshot)有一个汇总简介，可以参考。此外，图片编辑软件在[Simple image editor?](https://askubuntu.com/questions/164473/simple-image-editor)一文有推荐和介绍，[Pinta](https://pinta-project.com/pintaproject/pinta/)是一个替代gimp的图片编辑软件，适合作简单绘图编辑。
 
+* 安装电子书转换和阅读软件
+
+```
+yum install calibre
+```
+
+> Linux上没有原生的Kindle，所以即使购买了正版kindle电子书，却只能在Kindle设备或者Windows/Mac/iOS上阅读，实在是非常不便。可以在购买了kindle电子书后，通过calibre转换成去除DRM的`mobi.`或`epub.`电子书，就能够在Linux上自由阅读。**注意：请尊重版权，只对自己购买的正版书籍转换并只用于自己阅读！**
+>
+> 参考[使用calibre去除kindle DRM](../read/calibre_remove_drm)
+>
+> FBreader是跨平台的轻量级epub/mobi阅读软件；也可以选择KDE环境的[Okular](http://okular.kde.org/)界面更为美观。 - 参考[Linux版EPUB阅读器](https://linux.cn/article-4943-1.html)。不过，FBreader在打开较大的epub文件时有时会缓慢甚至不刷新;Okular则在显示calibre转换的epub图片排版存在一些异常。所以，如果已经安装了calebre，则还是直接选择使用calibre自带的epub阅读器。
+
 * 安装其他必要应用软件
 
 ```bash
@@ -96,6 +112,7 @@ cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 作为小众操作系统，Linux桌面还缺乏一些重量级并且难以离弃的应用软件。但是，比较幸运的是，如果你使用的是一些大厂的App，则通常他们的web App做得也很不错，基本达到原声App的水准：
 
 * [微信](https://wx.qq.com/)
+* [[qq]](http://w.qq.com/)
 * [钉钉](https://im.dingtalk.com/)
 * [icloud](https://www.icloud.com/)
 * [印象笔记](https://www.evernote.com)

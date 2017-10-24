@@ -18,6 +18,8 @@ Google了相关信息，共享书籍的方法概括如下：
 
 > 请尊重版权，开发者提供开源工具是为了正当的知识和文化传播，并不是支持盗版！
 
+* 安装Calibre DeDRM tools插件
+
 ```
 curl https://github.com/apprenticeharper/DeDRM_tools/archive/master.zip -o DeDRM_tools.zip
 unzip DeDRM_tools.zip
@@ -28,6 +30,8 @@ unzip DeDRM_tools.zip
 在calibre的Preferences对话框中，点击"Plugins"按钮。然后，点击"Load plugin from file"，找到刚才下载并解压缩的`DeDRM_tools`目录，在其子目录"DeDRM_calibre_plugin"找到一个"DeDRM_plugin.zip"。点击这个文件并选择"Open"。然后在"Are you sure?"对话框中点击"Yes"并确认加载这个插件。（提示有安全性因患，务必使用可靠来源的插件）
 
 > 注意：有可能在安装了DeDRM插件之后，每次使用Calibre依然提示文件有DRM保护无法读取。此时请仔细参考DeDRM Tools的说明文档。
+
+* 重要：设置DeDRM tools的kindle序列号
 
 如果是从Kindle设备或者从亚马逊的web网站下载 - 在亚马逊网站的"管理我的内容和设备"页面，每个文件都有一个"通过电脑下载USB传输"。推荐使用这个方法下载，下载时会提示 "从下拉列表中选择一个设备"，实际上，这个步骤就是亚马逊根据你的注册设备为下载文件加上DRM加密。
 
@@ -50,6 +54,8 @@ home — menu — settings — 屏幕右下角会显示序列号（未证实）
 把Kindle for PC下载的那些azw文件添加到Calibre即可（直接拖进去吧），DeDRM插件会自动去除azw文件的DRM保护并转换成原始格式（azw3或者mobi、prc等）。
 
 > Calibre支持[send to kindle](https://www.amazon.com/gp/sendtokindle)（即[Kindle Personal Documents Service](https://www.amazon.com/gp/help/customer/display.html?nodeId=200767340)，非常方便把各种文档通过电子邮件方式发送给Kindle设备阅读），这样可以将中国区购买的Kindle书籍转换成去除DRM的`.mobi`文档发送到美国区Kindle设备，方便自己的学习。
+
+转换支持epub和mobi格式输出，epub通用性较好，可以输出到其他阅读软件（如苹果的ibook）中阅读，但是似乎转换图片排版有些异常;mobi格式则保持原有排版格式（本身就是kindle的无加密格式），但是转换后似乎丢失内容索引，阅读时转跳章节不便。
 
 # 参考
 
