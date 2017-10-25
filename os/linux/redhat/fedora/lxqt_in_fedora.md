@@ -52,7 +52,21 @@ yum install firefox chromium
 
 * 截屏软件
 
-暂时选择[shutter](http://shutter-project.org/preview/screenshots/)
+为了实现轻量级截图，采用ImageMagick结合LXQt桌面快捷键实现截屏，非常快速方便。
+
+```
+yum install ImageMagick
+```
+
+只需要执行简单的命令就可以截取鼠标划出的窗口区域内容
+
+```
+import /home/huatai/snapshot/`date +%Y-%m-%d_%H:%M:%S`.png
+```
+
+> 详细方法和脚本参考 [使用ImageMagick截屏](snapshot_with_imagemagick)
+
+如果需要完善的截屏并编辑图片，则选择[shutter](http://shutter-project.org/preview/screenshots/)。如果只是截图，则可以参考[使用ImageMagick截屏](snapshot_with_imagemagick)
 
 ```
 yum install shutter
@@ -67,6 +81,12 @@ yum install shutter
 > [gscreenshot](https://github.com/thenaterhood/gscreenshot)是一个轻量级gtk前端截屏软件，并且可以通过快捷键发送给图片编辑软件。
 >
 > 相关软件在[archlinux:Taking a screenshot](https://wiki.archlinux.org/index.php/taking_a_screenshot)有一个汇总简介，可以参考。此外，图片编辑软件在[Simple image editor?](https://askubuntu.com/questions/164473/simple-image-editor)一文有推荐和介绍，[Pinta](https://pinta-project.com/pintaproject/pinta/)是一个替代gimp的图片编辑软件，适合作简单绘图编辑。
+
+* 安装字符串发送工具（节约生命）`xdotool` - 参考[向X window程序发送字符串](../../x/send_string_to_x)
+
+```
+yum install xdotool
+```
 
 * 安装电子书转换和阅读软件
 
