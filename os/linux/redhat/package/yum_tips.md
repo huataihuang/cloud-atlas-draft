@@ -64,6 +64,7 @@ proxy_password=qwerty
 RuntimeError: Cannot locate gluster packages, possible cause is incorrect channels
 2016-06-10 11:38:59 ERROR otopi.context context._executeMethod:165 Failed to execute stage 'Setup validation': Cannot locate gluster packages, possible cause is incorrect channels
 ```
+
 我检查了是可以安装`glusterfs`和`glusterfs-cli`软件包的，但是`yum search vdsm`却只有`vdsm-jsonrpc-java.noarch`，不像以前安装的ovrit节点有大量的`vdsm`软件包。[Ovirt 3.5 problem adding GlusterFS servers](http://permalink.gmane.org/gmane.comp.emulators.ovirt.user/26370) 提示需要检查服务器即诶单是否有`vdsm-gluster`软件包。
 
 检查 `/usr/share/ovirt-host-deploy/plugins/ovirt-host-deploy/gluster/packages.py` 果然有：
@@ -106,5 +107,13 @@ gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-ovirt-3.5
 ```
 
-> 总之，使用`yum list 软件包`名字可以找寻出对应的阮籍那仓库，也就可以进一步排查问题的原因
+> 总之，使用`yum list 软件包`名字可以找寻出对应的软件仓库，也就可以进一步排查问题的原因
 
+# 避免升级部分软件包
+
+如果由于一些原因需要保持系统中某些软件包不升级，如兼容性，特定测试，则可以通过在`/etc/yum.conf`中添加 `exclude=`配置行来跳过：
+
+```
+## Exclude following Packages Updates ##
+exclude=perl php python
+```

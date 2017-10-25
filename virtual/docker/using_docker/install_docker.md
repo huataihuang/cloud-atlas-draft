@@ -2,18 +2,7 @@ Docker需要3.10以上内核运行，即RHEL/CentOS 7以上发行版内核。
 
 > 实际我采用Fedora 26发行版自带的Docker版本，虽然不是最新版本，但是方便维护和升级，并且解决了软件包依赖关系，由社区提供支持。
 
-# 通过脚本安装Docker
-
-可以通过 https://get.docker.com 提供的脚本来自动安装 Docker:
-
-```bash
-curl -fsSL get.docker.com -o get-docker.sh
-sh get-docker.sh
-```
-
-> 执行下载的`get-docker.sh`脚本之前务必检查脚本内容，避免安全问题。
-
-在使用Docker 时，建议以宽容（permissive）模式运行 SELinux，这样 SELinux 将只把错误写进日志，而非强制执行。如果以强制（enforcing）模式运行 SELinux，那么很有可能在执行书中的范例时，会遇到各种莫名其妙的“权限不足”（Permission Denied）错误。
+# 设置SELinux
 
 * 查看SELinux模式：
 
@@ -38,6 +27,28 @@ sudo setenforce 0
 SELINUX=permissive
 ```
 
+# 通过脚本安装Docker
+
+可以通过 https://get.docker.com 提供的脚本来自动安装 Docker:
+
+```bash
+curl -fsSL get.docker.com -o get-docker.sh
+sh get-docker.sh
+```
+
+> 执行下载的`get-docker.sh`脚本之前务必检查脚本内容，避免安全问题。
+
+在使用Docker 时，建议以宽容（permissive）模式运行 SELinux，这样 SELinux 将只把错误写进日志，而非强制执行。如果以强制（enforcing）模式运行 SELinux，那么很有可能在执行书中的范例时，会遇到各种莫名其妙的“权限不足”（Permission Denied）错误。
+
+
+# 通过yum/dnf安装
+
+* 通过发行版安装docker
+
+```
+sudo dnf install docker
+```
+
 # 启动docker
 
 * 启动docker
@@ -50,6 +61,23 @@ sudo systemctl start docker
 
 ```
 sudo systemctl enable docker
+```
+
+# 无需sudo即可以运行docker的设置
+
+使用`docker`指令连接docker服务默认是通过sock，所以用户需要有对`/var/run/docker.sock`读写的权限。否则会出现如下报错
+
+```
+Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get http://%2Fvar%2Frun%2Fdocker.sock/v1.26/containers/json: dial unix /var/run/docker.sock: connect: permission denied
+```
+
+检查可以看到`/var/run/docker.sock`需要属于`root`组才能读写，所以如果要无需sudo，则需要将用户加入到`root`组即可。注意，这可能存在安全隐患，所以谨慎使用，仅建议个人自己的测试主机上使用，生产环境还是使用sudo较为稳妥。
+
+> 可能需要重启主机使上述设置生效
+
+```
+$ ls -lh /var/run/docker.sock
+srw-rw----. 1 root root 0 Oct 25 21:16 /var/run/docker.sock
 ```
 
 # 在Mac OS和Windows上安装Docker
