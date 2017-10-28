@@ -6,6 +6,16 @@
 >
 > [Linux桌面环境终极指南](http://developer.51cto.com/art/201503/467300.htm)编译了Network World网站内的Linux老牌拥护者Bryan Lunduke对比桌面系统的评测，推荐的就是elementary OS的Pantheon。
 
+# macOS 和 Fedora双操作系统启动
+
+在MacBook Pro上安装Linux是通过[rEFInd](http://www.rodsbooks.com/refind/installing.html)来实现安装的。类似以前在[MacBook上安装Gentoo](../../gentoo/install_gentoo_on_macbook)，先在macOS中运行安装rEFInd，这样就可以控制启动从盘安装Fedora。
+
+不过，Fedora默认安装覆盖了rEFInd的分区信息，导致无法启动到macOS，所以在Fedora中，再次安装rEFInd，运行：
+
+```
+sudo rpm -Uvh refind-0.11.2-1.x86_64.rpm
+```
+
 # 基础操作系统
 
 ```bash
@@ -147,3 +157,4 @@ cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 * [Fedora 15/16 安装后需要做的28件事](http://liyi593730139.blog.163.com/blog/static/176474247201332691139165/)
 * [My Experiences Installing and Using LXQt-desktop in Lubuntu](http://www.emmestech.com/linux/lxqt.html)
 * [Linux下LCD屏幕字体显示优化--dpi设置及sub-pixel次像素微调](http://xxb.is-programmer.com/2008/7/25/dpi.4260.html) - 这篇文档对dpi有详细解释
+* [Minimal LXQt installation](https://wiki.manjaro.org/index.php?title=Minimal_LXQt_installation) - Manjaro（基于ArchLinux的发行版）提供了有关LXQt平台最小化安装以及基础软件的介绍，此外还提供了一个[Qt应用程序列表](https://wiki.manjaro.org/index.php?title=List_of_Qt_Applications)介绍了很多知名或小众的Qt软件
