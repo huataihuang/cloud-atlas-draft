@@ -32,7 +32,11 @@ yum install kernel-devel akmod-wl
 
 * 桌面字体使用`文泉驿微米黑` 12号字体
 * Font hinting设置Slight, Resoution(DPI) 125 （参考 [设置Linux桌面环境，实现HiDPI显示支持](http://www.linuxidc.com/Linux/2014-08/105997.htm)）
-* 
+* 默认使用PCManFM文件管理器打开文件目录
+
+> 在安装了Visual Stuido Code（VSC）之后，会为目录添加一个快捷方式使用VSC来打开，由于VSC在PCManFM文件管理器之后安装，所以优先级会高于PCManFM，导致Firefox/Chromium浏览器都使用VSC去显示文件目录非常不便。
+> 
+> 解决方法是在PCManFM文件管理器中鼠标右击一次目录图标，然后选择`Open with...` => `Other Application`，并在对话框中选择PCManFM，并勾选`Set selected application as default action of this file type`就可以了。
 
 # 应用软件安装
 

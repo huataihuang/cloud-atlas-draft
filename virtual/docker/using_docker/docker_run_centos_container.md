@@ -19,7 +19,10 @@ sudo docker images
 可以看到如下输出
 
 ```
-
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+docker.io/centos    7                   196e0ce0c9fb        5 weeks ago         197 MB
+docker.io/centos    6                   5dedbd63518e        6 weeks ago         194 MB
+docker.io/centos    5                   1ae98b2c895d        14 months ago       285 MB
 ```
 
 # 启动各版本创建一个基础容器
@@ -85,8 +88,28 @@ yum update
 yum -y install which mlocate net-tools rsyslog file ntp ntpdate \
 wget tar bzip2 screen sysstat unzip nfs-utils parted lsof man bind-utils \
 gcc gcc-c++ make telnet flex autoconf automake ncurses-devel crontabs \
-zlib-devel git
+zlib-devel git openssh-clients openssh-server initscripts
 ```
+
+> 默认的docker镜像中不安装ssh客户端（5）或ssh服务器（7），并且CentOS 7不安装 `initscripts` 软件包，则会缺乏`/etc/rc.d/init.d/functions`这样的`/etc/init.d`目录下`sysv`基础脚本，会导致一些传统脚本失效或报错。
+
+* CentOS 5/6激活sshd
+
+```
+/etc/init.d/sshd start
+chkconfig sshd on
+```
+
+* CentOS 7激活sshd
+
+```
+ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa
+/usr/sbin/sshd
+```
+
+> 
+
+> 实际轻量级微服务部署的docker，不需要安装如此多的软件，应该部署一个精简容器，只启动必要的服务 - 下次实践一个Django容器
 
 # 制作镜像
 
@@ -127,4 +150,29 @@ sudo docker run -it --hostname dev6 --name dev6 local:centos6 /bin/bash
 
 ```
 sudo docker run -it --hostname dev7 --name dev7 local:centos7 /bin/bash
+```
+
+# 通过Dockerfile创建镜像
+
+上述手工完成的工作，可以改写成Dockerfile如下
+
+* Dockerfile
+
+```
+FROM docker.io/centos:5
+MAINTAINER vincent huatai <vincent@huatai.me>
+
+RUN yum clean all
+RUN yum -y update
+
+RUN yum -y install which mlocate net-tools rsyslog file ntp ntpdate \
+wget tar bzip2 screen sysstat unzip nfs-utils parted lsof man bind-utils \
+gcc gcc-c++ make telnet flex autoconf automake ncurses-devel crontabs \
+zlib-devel git openssh-clients openssh-server initscripts
+```
+
+* 执行命令
+
+```
+docker build -t local:centos5 .
 ```

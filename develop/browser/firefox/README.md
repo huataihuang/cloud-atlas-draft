@@ -1,0 +1,1 @@
+Firefox是从Mozilla发展而来，而Mozilla则继承了WEB浏览器先锋Netscape的基因。
