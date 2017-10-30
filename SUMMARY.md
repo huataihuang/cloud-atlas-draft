@@ -682,6 +682,7 @@
 			* [使用Sphinx构建Python程序文档](develop/doc/sphinx/sphinx_for_python_doc.md)
 	* [编程架构](develop/architecture/README.md)
 		* [RESTful开发架构](develop/architecture/restful/README.md)
+			* [RESTful简介](develop/architecture/restful/introduce_restful.md)
 			* [理解RESTful架构](develop/architecture/restful/think_restful.md)
 * [DevOps](devops/README.md)
 	* [Git](devops/git/README.md)
