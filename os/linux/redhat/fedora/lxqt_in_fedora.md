@@ -8,13 +8,7 @@
 
 # macOS 和 Fedora双操作系统启动
 
-在MacBook Pro上安装Linux是通过[rEFInd](http://www.rodsbooks.com/refind/installing.html)来实现安装的。类似以前在[MacBook上安装Gentoo](../../gentoo/install_gentoo_on_macbook)，先在macOS中运行安装rEFInd，这样就可以控制启动从盘安装Fedora。
-
-不过，Fedora默认安装覆盖了rEFInd的分区信息，导致无法启动到macOS，所以在Fedora中，再次安装rEFInd，运行：
-
-```
-sudo rpm -Uvh refind-0.11.2-1.x86_64.rpm
-```
+参考 [在MacBook Pro上实现Fedora和macOS双系统](multiboot_fedora_and_macOS)
 
 # 基础操作系统
 

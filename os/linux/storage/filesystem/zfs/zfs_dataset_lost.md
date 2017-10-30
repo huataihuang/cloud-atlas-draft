@@ -60,10 +60,6 @@ spl                    92203  3 zfs,zcommon,znvpair
 
 异常服务器再次重启，这次启动以后能够看到zfs的卷，但是发现docker目录下空
 
-```
-
-```
-
 检查系统日志
 
 ```
@@ -164,7 +160,7 @@ zfs mount rpool/docker
 
 这样完成挂载数据恢复成功。
 
-
+> 详细磁盘故障问题排查，参考[ZFS故障磁盘替换](zfs_replace_disk)
 
 # 参考
 
