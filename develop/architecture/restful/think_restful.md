@@ -24,6 +24,8 @@ https://api.example.com/v1/employees
 
 * 对于资源的具体操作类型，由HTTP动词表示
 
+RESTful架构风格规定，数据的元操作，即`CRUD`(增读改删)(create, read, update和delete,即数据的增删查改)操作，分别对应于HTTP方法：GET用来获取资源，POST用来新建资源（也可以用于更新资源），PUT用来更新资源，DELETE用来删除资源
+
 常用的HTTP动词有下面五个（括号里是对应的SQL命令）:
 
 ```
@@ -181,6 +183,10 @@ Authentication指用户认证，Permission指权限机制，这两点是使RESTf
 常用的认证机制是`Basic Auth`和`OAuth`，RESTful API 开发中，除非API非常简单，且没有潜在的安全性问题，否则，认证机制是必须实现的，并应用到API中去。
 
 Basic Auth非常简单，很多框架都集成了Basic Auth的实现，自己写一个也能很快搞定，OAuth目前已经成为企业级服务的标配，其相关的开源实现方案[非常丰富](http://oauth.net/2/)（[更多](https://github.com/search?utf8=%E2%9C%93&q=oauth)）。
+
+**由于RESTful风格的服务是无状态的，认证机制尤为重要。**常用的认证机制包括 session auth(即通过用户名密码登录)，basic auth，token auth和OAuth，服务开发中常用的认证机制为后三者。
+
+> 参考[RESTful认证和权限机制浅析](restful_authentication_and_permission)
 
 ## CORS
 

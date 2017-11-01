@@ -684,6 +684,7 @@
 		* [RESTful开发架构](develop/architecture/restful/README.md)
 			* [RESTful简介](develop/architecture/restful/introduce_restful.md)
 			* [理解RESTful架构](develop/architecture/restful/think_restful.md)
+			* [RESTful认证和权限机制浅析](develop/architecture/restful/restful_authentication_and_permission.md)
 * [DevOps](devops/README.md)
 	* [Git](devops/git/README.md)
 		* [git分支的新建与合并](devops/git/git_branch_create_and_merge.md)

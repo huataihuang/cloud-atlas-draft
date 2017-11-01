@@ -26,6 +26,12 @@ URI只代表资源的实体，不代表它的形式。严格地说，有些网�
 
 > 注意：URI是资源，`表现层描述`应该在HTTP头部信息中设置。例如使用`curl`请求资源，提交的HTTP头部信息参数`-H "Accept: version=2,application/json" -H "Content-Type: application/json"`
 
+资源是以json(或其他Representation)为载体的、面向用户的一组数据集，资源对信息的表达倾向于概念模型中的数据：
+
+  * 资源总是以某种Representation为载体显示的，即序列化的信息
+  * 常用的Representation是json(推荐)或者xml（不推荐）等
+  * Representation 是REST架构的表现层
+
 * 状态转化（State Transfer）
 
 互联网通信协议HTTP协议，是一个无状态协议。这意味着，所有的状态都保存在服务器端。因此，**如果客户端想要操作服务器，必须通过某种手段，让服务器端发生"状态转化"（State Transfer）。而这种转化是建立在表现层之上的，所以就是"表现层状态转化"。**
