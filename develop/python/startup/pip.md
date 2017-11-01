@@ -32,6 +32,8 @@ curl https://bootstrap.pypa.io/get-pip.py | python
 
 如果用户没有root权限，或者不能修改系统级别的Python安装，则可以通过以下方法在个人工作目录下部署Python工作环境
 
+> 对于线上部署，建议使用非root账号部署应用，采用`virtualenv`是最佳选择
+
 ### 安装virtualenv
 
 ```bash
@@ -102,6 +104,10 @@ sudo easy_install virtualenv
 对于一些特定版本的python，可以用指定版本号来跟随`pip`，如`${version}`替换成`2`,`3`,`3.4`等
 
 	pip${version} install some-package-name
+
+> 古老而稳定并且已经End of Life的CentOS 5系列，操作系统的默认是[Python版本2.4.3，对于Django"不友好"需要安装Python 2.7](../django/startup/quick_install_django)，但是即使是EPEL也只提供Python 2.6版本。
+>
+> 参考[在古老的CentOS 5上安装Python 5以及virtualenv环境](install_python_2.7_and_virtualenv_in_centos_5)实践笔记。
 
 # 参考
 
