@@ -87,6 +87,42 @@ Failed to connect: org.bluez.Error.Failed
 [CHG] Device A4:E9:75:0C:5B:9B Connected: no
 ```
 
+> 经过反复测试，终于搞明白了步骤和原因：
+>
+> 当Magic Mouse和macOS配对之后，会抹去原先和Fedora Linux配对的信息；所以切换到Linux之后，需要再次配对。但是，Fedora的bluetooth（单方面）保留了上次配对的信息，所以再次配对就显示`Failed to pair: org.bluez.Error.AlreadyExists`。然而，由于Magic Mouse方没有对应的配对信息，所以就无法正常连接，显示`Failed to connect: org.bluez.Error.Failed`。
+
+**解决重新配对的正确方法是先`remove`掉Fedora中残留的无效配对信息**，具体操作方法如下：
+
+```
+# bluetoothctl
+[NEW] Controller B8:E8:56:33:E4:8B DevStudio [default]
+...
+[NEW] Device A4:E9:75:0C:5B:9B Magic Mouse 2
+Agent registered
+...
+[bluetooth]# remove A4:E9:75:0C:5B:9B   <== 先删除掉以前残留的配对信息
+[DEL] Device A4:E9:75:0C:5B:9B Magic Mouse 2
+Device has been removed
+... <== 有可能需要再次开关Magic Mouse，因为只有刚开始启用Magic Mouse时候才有配对机会
+[bluetooth]# trust A4:E9:75:0C:5B:9B    <== 信任Magic Mouse蓝牙设备
+[CHG] Device A4:E9:75:0C:5B:9B Trusted: yes
+Changing A4:E9:75:0C:5B:9B trust succeeded
+[bluetooth]# pair A4:E9:75:0C:5B:9B     <== 配对Magic Mouse
+Attempting to pair with A4:E9:75:0C:5B:9B
+[CHG] Device A4:E9:75:0C:5B:9B Connected: yes
+[CHG] Device A4:E9:75:0C:5B:9B UUIDs: 00001124-0000-1000-8000-00805f9b34fb
+[CHG] Device A4:E9:75:0C:5B:9B UUIDs: 00001200-0000-1000-8000-00805f9b34fb
+[CHG] Device A4:E9:75:0C:5B:9B ServicesResolved: yes
+[CHG] Device A4:E9:75:0C:5B:9B Paired: yes
+Pairing successful
+[CHG] Device A4:E9:75:0C:5B:9B ServicesResolved: no
+[CHG] Device A4:E9:75:0C:5B:9B Connected: no
+[CHG] Device A4:E9:75:0C:5B:9B Class: 0x000580
+[CHG] Device A4:E9:75:0C:5B:9B Icon: input-mouse
+[CHG] Device A4:E9:75:0C:5B:9B Connected: yes
+```
+
+当配对成功以后，Magic Mouse就连接上，可以正常使用。
 
 # 图形界面（可选）
 
@@ -121,3 +157,4 @@ modprobe hid_magicmouse emulate_scroll_wheel=Y
 * [Archlinux: Bluetooth](https://wiki.archlinux.org/index.php/bluetooth)
 * [Using the Apple Magic Mouse with Ubuntu (16.0.4)](http://sneclacson.blogspot.com/2016/09/using-apple-magic-mouse-with-ubuntu-1604.html) - 介绍了使用Magic Mouse V1的经验
 * [AppleMagicTrackpad](https://wiki.ubuntu.com/Multitouch/AppleMagicTrackpad)
+* [Archlinux: Bluetooth mouse](https://wiki.archlinux.org/index.php/bluetooth_mouse)
