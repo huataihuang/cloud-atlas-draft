@@ -417,6 +417,7 @@
 			* [安装Docker](virtual/docker/using_docker/install_docker.md)
 			* [Docker快速起步](virtual/docker/using_docker/docker_first_step.md)
 			* [使用Docker快速部署不同版本CentOS容器](virtual/docker/using_docker/docker_run_centos_container.md)
+			* [映射Docker容器内服务端口提供外部服务](virtual/docker/using_docker/mapping_docker_container_port.md)
 			* [Docker架构](virtual/docker/using_docker/docker_infrastructure.md)
 			* [在开发中应用Docker](virtual/docker/using_docker/docker_in_develop_environment.md)
 	* [Kubernetes](virtual/kubernetes/README.md)
