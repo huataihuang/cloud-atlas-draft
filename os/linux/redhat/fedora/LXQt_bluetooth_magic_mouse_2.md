@@ -38,6 +38,56 @@ sudo hcitool cc A4:E9:75:0C:5B:9B
 
 此时就可以在Linux图形界面中使用MagicMouse 2，不过，比较遗憾的是，对MagicMouse V2的支持有限，中键的模拟（双指滑动）不能实现。
 
+## 二次配对Magic Mouse v2的问题
+
+由于[在MacBook Pro上实现Fedora和macOS双启动](fedora/multiboot_fedora_and_macOS)切换到macOS之后，使用lighting线为macOS和Magic Mouse做了配对。但是切换回Fedora Linux之后，就发现无法再次连接Magic Mouse了：
+
+以下为使用`bluetoothctl`操作记录，可以看到`connect`设备时候报错
+
+```
+# bluetoothctl 
+[NEW] Controller B8:E8:56:33:E4:8B DevStudio [default]
+[NEW] Device A4:E9:75:0C:5B:9B Magic Mouse 2  <== 使用过bluetoothctl pair
+Agent registered
+[bluetooth]# list
+Controller B8:E8:56:33:E4:8B DevStudio [default]
+[bluetooth]# scan on    <== 扫描周边蓝牙设备
+Discovery started
+[CHG] Controller B8:E8:56:33:E4:8B Discovering: yes
+...
+[bluetooth]# devices    <== 列出所有设备
+Device A4:E9:75:0C:5B:9B Magic Mouse 2
+Device 46:DC:35:60:93:BF 46-DC-35-60-93-BF
+....
+```
+
+由于一直没有响应，所以尝试再次配对，但是显示失败，已经配对过了
+
+```
+[bluetooth]# pair A4:E9:75:0C:5B:9B
+Attempting to pair with A4:E9:75:0C:5B:9B
+Failed to pair: org.bluez.Error.AlreadyExists
+```
+
+设置信任设备
+
+```
+[bluetooth]# trust A4:E9:75:0C:5B:9B
+Changing A4:E9:75:0C:5B:9B trust succeeded
+[NEW] Device 7A:36:0D:98:4C:E8 7A-36-0D-98-4C-E8
+```
+
+再次尝试连接Magic Mouse发现失败
+
+```
+[bluetooth]# connect A4:E9:75:0C:5B:9B
+Attempting to connect to A4:E9:75:0C:5B:9B
+[CHG] Device A4:E9:75:0C:5B:9B Connected: yes
+Failed to connect: org.bluez.Error.Failed
+[CHG] Device A4:E9:75:0C:5B:9B Connected: no
+```
+
+
 # 图形界面（可选）
 
 要方便使用，安装图形界面程序还是有必要的。
@@ -61,7 +111,7 @@ sudo hcitool cc A4:E9:75:0C:5B:9B
 
 
 ```
-modprobe hid-magicmouse emulate_scroll_wheel=Y
+modprobe hid_magicmouse emulate_scroll_wheel=Y
 ```
 
 这种方式加载了`hid-magicmouse`之后，就可以在MacBook Pro上使用MagicPad的双指滑动的手势，不过，对MagicMouse 2则无效。
