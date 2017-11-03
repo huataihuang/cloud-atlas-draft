@@ -9,6 +9,7 @@
 * 可扩展性，插件丰富。
 * 广泛使用，文档丰富。
 
+![django REST framework](../../../img/develop/python/django/rest_framework/logo.png)
 
 # 参考
 
