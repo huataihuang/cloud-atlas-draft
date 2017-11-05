@@ -173,10 +173,54 @@ nvidia-installer -v |grep version
 uname -a
 
 lspci |grep -E "VGA|3D"
-``
+```
 
 > 注意：如果安装过nVidia驱动，需要升级驱动，驱动安装程序会要求切换到终端界面才可进行，可以采用前述`systemctl set-default multi-user.target`切换到字符见面，完成升级后再systemctl set-default graphical.target`。也可以参考[启动进入终端模式](../system_administration/grub2/boot_in_terminal_mode)在启动时临时进入终端模式。
+
+## 内核启动后如果加载nVidia驱动失败
+
+如果新内核启动后加载nVida驱动失败，可以先启动到终端模式，然后使用以下命令针对当前内核重新编译安装驱动
+
+```
+sudo sh ./<DRIVER>.run -k
+```
+
+安装完成后重启系统就可以正确针对当前内核加载nVidia驱动。
+
+# DKMS和nVidia驱动随内核更新
+
+每次升级内核都要手工重新编译安装nVidia驱动是非常繁琐的，解决方法是nVidia > 304版本后，可以将驱动模块注册到DKMS，这样DKMS就会管理和在每次安装新内核时候编译nVidia驱动。
+
+* 安装DKMS（也可能系统已经安装）
+
+```
+sudo dnf install dkms
+```
+
+* 重新以DKMS宣咸安装nVidia驱动
+
+```
+sudo sh ./<DRIVER>.run --dkms
+```
+
+此后就不再需要手工安装驱动了，每次升级内核都会自动编译并安装对应内核的驱动。
+
+检查DKMS是否正常：
+
+```
+dkms status
+```
+
+输出类似
+
+```
+nvidia, 384.98, 4.13.10-200.fc26.x86_64, x86_64: installed
+nvidia, 384.98, 4.13.9-200.fc26.x86_64, x86_64: installed
+```
+
+> 其他nVidia驱动安装工具的参数可以通过 `sh ./<DRIVER>.run --advanced-options`检查。
 
 # 参考
 
 * [Fedora 26/25/24 nVidia Drivers Install Guide](https://www.if-not-true-then-false.com/2015/fedora-nvidia-guide/)
+* [nVidia driver reset after each kernel update](https://askubuntu.com/questions/492217/nvidia-driver-reset-after-each-kernel-update)
