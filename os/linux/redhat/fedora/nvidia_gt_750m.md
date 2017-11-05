@@ -175,6 +175,8 @@ uname -a
 lspci |grep -E "VGA|3D"
 ``
 
+> 注意：如果安装过nVidia驱动，需要升级驱动，驱动安装程序会要求切换到终端界面才可进行，可以采用前述`systemctl set-default multi-user.target`切换到字符见面，完成升级后再systemctl set-default graphical.target`。也可以参考[启动进入终端模式](../system_administration/grub2/boot_in_terminal_mode)在启动时临时进入终端模式。
+
 # 参考
 
 * [Fedora 26/25/24 nVidia Drivers Install Guide](https://www.if-not-true-then-false.com/2015/fedora-nvidia-guide/)

@@ -175,6 +175,7 @@
 				* [Grub 2 boot loader](os/linux/redhat/system_administration/grub2/README.md)
 					* [在grub2中切换默认启动内核](os/linux/redhat/system_administration/grub2/switch_default_kernel_in_grub2.md)
 					* [修改grub2启动内核参数](os/linux/redhat/system_administration/grub2/change_kernel_parameter_in_grub2.md)
+					* [启动进入终端模式](os/linux/redhat/system_administration/grub2/boot_in_terminal_mode.md)
 				* [OpenMLI](os/linux/redhat/system_administration/openlmi/README.md)
 				* [Systemd](os/linux/redhat/system_administration/systemd/README.md)
 					* [systemd修改主机名](os/linux/redhat/system_administration/systemd/change_hostname_by_systemd.md)
