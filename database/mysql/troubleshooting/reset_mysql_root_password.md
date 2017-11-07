@@ -42,7 +42,14 @@ MySQL 5.7.5及以前版本
 SET PASSWORD FOR 'root'@'localhost' = PASSWORD('MyNewPass');
 ```
 
-* 完成账号密码重置之后，就可以停止MySQL服务，然后再次正常启动MySQL服务（不要使用`--skip-grant-tables`和`--skip-networking`参数）
+* 完成账号密码重置之后，就可以停止MySQL服务，然后再次正常启动MySQL服务（不要使用`--skip-grant-tables`和`--skip-networking`参数）:
+
+```
+mysql> flush privileges;
+mysql> shutdown;
+```
+
+> 建议使用命令`shutdown`来关闭数据库，强制杀掉数据库进程可能有数据不完整
 
 # 参考
 

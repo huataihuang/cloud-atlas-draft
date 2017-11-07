@@ -51,7 +51,7 @@ source venv/bin/activate
 安装django
 
 ```
-pip install Django
+pip install django
 ```
 
 ## 安装django 2.0所需python3.5+ （备选参考）
