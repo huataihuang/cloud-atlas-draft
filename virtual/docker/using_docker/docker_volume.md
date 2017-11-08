@@ -46,7 +46,7 @@ docker volume inspect share-data
 
 ```
 docker run -it -p 22 -p 8005:8000 --memory=512M --cpus="1.5" --hostname dev5 --name dev5 \
--v share-dat:/data local:dev5_django /bin/bash
+-v share-data:/data local:dev5_django /bin/bash
 ```
 
 > `local:dev5_django`本地的镜像

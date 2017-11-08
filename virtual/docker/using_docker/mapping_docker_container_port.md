@@ -35,7 +35,7 @@ docker rm dev5
 docker volume create share-data
 
 docker run -it -p 22 -p 8005:8000 --memory=512M --cpus="1.5" --hostname dev5 --name dev5 \
--v share-dat:/data local:dev5_django /bin/bash
+-v share-data:/data local:dev5_django /bin/bash
 ```
 
 > 通过`dev5`创建了镜像`local:dev5_django`，然后删除掉容器，再用镜像启动新的容器实现端口映射

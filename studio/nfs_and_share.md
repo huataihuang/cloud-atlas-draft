@@ -59,6 +59,50 @@ ln -s /nfs-data/dev-7/huatai/works ~/works
 
 这样`huatai`用户登录系统后，只需要简单访问`~/works`目录，就可以将该目录作为开发目录使用，并且与其他虚拟机共享，也可以通过sshfs访问这个物理服务器共享目录。
 
+# Docker共享目录
+
+```
+docker volume create share-data
+
+docker run -it -p 22 --memory=2048M --cpus=2 、
+--hostname dev5 --name dev5 \
+-v share-data:/data local:dev5_django /bin/bash
+```
+
+> 详细的[Docker卷](../virtual/docker/using_docker/docker_volume)
+>
+> Docker容器的外部TCP访问通过host主机[HAProxy](../service/proxy/mysql_load_balancing_haproxy)实现，这样可以不必依赖复杂的[Docker端口映射](../virtual/docker/using_docker/mapping_docker_container_port)。
+
+# sshfs
+
+* 桌面电脑的用户账号是`huatai`(uid=1000,gid=1000)，远程服务器的用户账号是`admin`(uid=505,gid=505)；所有容器中用户账号都是`admin`(uid=505,gid=505)
+* 桌面通过`ssh admin@server_ip`访问服务器，挂载sshfs，这样就可以统一访问所有的虚拟机的数据目录
+
+> 远程服务器运行Docker环境，所有容器共享卷位于 `/var/lib/docker/volumes/share-data/_data` - 参考 [Docker卷](../virtual/docker/using_docker/docker_volume)
+
+* 远程服务器目录权限设置
+
+> 远程docker需要配合设置：首先将`admin`用户加入到`root`用户组，然后修改docker目录使得`root`组用户能够访问 - 这是因为Docker目录的安全设置，默认只有root用户可以访问俄，root组则只能只读访问，修改以后，则root组用户可以在其中子目录中读写文件，方便远程共享访问。
+
+```
+chmod 751 /var/lib/docker
+chmod 750 /var/lib/docker/volumes
+```
+
+* 执行sshfs挂载
+
+```
+sshfs admin@192.168.1.12:/var/lib/docker/volumes/share-data/_data /home/huatai/Documents/devstack/share-data -C
+```
+
+> 如果远程主机的ssh端口是9876，则`sshfs`命令还可以加上参数`-p 9876`
+
+* 卸载sshfs挂载
+
+```
+fusermount -u /home/huatai/Documents/devstack/share-data
+```
+
 # 参考
 
 * [CentOS 7 NFS设置](../service/nfs/setup_nfs_on_centos7)
