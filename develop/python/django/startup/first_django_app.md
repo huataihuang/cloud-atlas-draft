@@ -96,6 +96,8 @@ Invalid HTTP_HOST header: '192.168.1.156:8000'. You may need to add '192.168.1.1
 ALLOWED_HOSTS = ['192.168.1.156', 'localhost', '127.0.0.1']
 ```
 
+> 如果是放宽所有服务器可以设置`ALLOWED_HOSTS = ['*']`
+
 # 创建polls应用
 
 以上是创建了`mysite`项目，接下来需要在项目中创建应用：每个应用就是按照一系列约定编写的python包。Django有一个工具可以自动生成app的基本目录结构，这样就可以聚焦在编写代码而不是创建目录。

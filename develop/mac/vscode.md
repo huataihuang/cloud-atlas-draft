@@ -71,6 +71,40 @@ Visual Studio Code微软开发的开源编辑器，及其轻简，同时支持�
 
 > 详细参考 [Configuring launch.json for C/C++ debugging](https://github.com/Microsoft/vscode-cpptools/blob/master/launch.md)
 
+# 开发Python
+
+VS Code通过插件可以非常好支持Python开发。不过，很多时候，我们会通过virtualenv虚拟环境来构建python开发环境，此时需要告诉VS Code在哪里找到特定版本的python，否则会导致VS Code无法找到对应python模块，就会错误高亮显示一些提示（如开发Django程序时候，提示`[pylint] E0401:Unable to import 'django.conf.'`），带来不必要的困扰。
+
+举例，开发Django，先使用如下命令构建一个django开发虚拟环境：
+
+```
+sudo dnf install python2-virtualenv
+```
+
+```
+virtualenv venv2
+source venv2/bin/active
+
+pip install django
+pip install djangorestframework
+pip install mysqlclient
+```
+
+然后在VS Code中设置`Perference >> Settings`
+
+```
+{
+    ...
+    "python.pythonPath": "/home/huatai/venv2/bin/python"
+}
+```
+
+之后，VS Code就能够正确识别Django的模块。
+
+> 使用Python virtualenv虚拟环境开发Python有一个非常好的地方就是VS Code会根据Python代码的语法检查等功能安装对应插件模块，例如 `pylint`，就不需要安装到系统目录，避免了权限问题。
+
+> 参考 [Python Path and Version](https://github.com/DonJayamanne/pythonVSCode/wiki/Python-Path-and-Version)
+
 # 编辑代码
 
 ## 代码风格

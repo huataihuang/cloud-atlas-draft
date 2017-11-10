@@ -79,7 +79,7 @@ self._initial_pragma_fk = c.fetchone()[0]
 self._initial_pragma_fk = 0  # c.fetchone()[0]
 ```
 
-* 创建一个名为`admin`用户，使用密码`password123`
+* 创建一个名为`admin`用户，使用密码`MyPass`
 
 ```
 python manage.py createsuperuser
@@ -107,6 +107,13 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 ```
 
 注意这里使用超链接`HyperlinkedModelSerializer`。可以使用主键和一些其他关系，不过超链接是一个良好的RESTful设计。
+
+> 注意：这里如果没有使用`from django.db import models`，则会出现报错
+
+```
+    model = User
+NameError: name `User` is not defined
+```
 
 # 视图
 

@@ -86,7 +86,12 @@ project/
 
 Jeff Knupp写过很多有关Python编程经验的blog，有关Djgango的结构先后有3篇，特别是[Starting a Django 1.6 Project the Right Way](https://jeffknupp.com/blog/2013/12/18/starting-a-django-16-project-the-right-way/)，分析很详尽，可作为初学者解惑的起步。
 
+# 混合Djiango REST framework和常规Web结构
+
+现代网站混合了
+
 # 参考
 
 * [How do you structure your Django project?](https://www.reddit.com/r/django/comments/2tar4q/how_do_you_structure_your_django_project/)
 * [Starting a Django 1.6 Project the Right Way](https://jeffknupp.com/blog/2013/12/18/starting-a-django-16-project-the-right-way/)
+* [Django REST framework how to structure your app](http://danielhnyk.cz/django-rest-framework-how-to-structure-your-app/)

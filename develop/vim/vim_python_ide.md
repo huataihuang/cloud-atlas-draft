@@ -1,3 +1,13 @@
+# RHEL/CentOS vim安装
+
+在RHEL/CentOS发行版中，包含了以下软件包可以提高python开发效率
+
+```
+sudo yum install vim-enhanced vim-syntastic-python.noarch
+```
+
+> 安装vim增强包和语法扩展包之后，再使用`vim`编辑Python文件可以得到较好的语法高亮作用。
+
 # 快速起步
 
 > 本段落是快速完成Python Vim IDE设置的步骤，具体解释见本段落后的内容。本段落目标是尽快开始
