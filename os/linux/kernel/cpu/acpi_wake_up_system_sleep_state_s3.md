@@ -113,6 +113,8 @@ for device in XHC EHC1 EHC2; do
 done
 ```
 
+> 将上述设置添加到启动`/etc/rc.local`脚本中，参考[systemd管理rc.local启动](../../redhat/system_administration/systemd/rc_local)
+
 # 参考
 
 * [Ubuntu wakes up after few seconds of sleep](https://askubuntu.com/questions/598236/ubuntu-wakes-up-after-few-seconds-of-sleep)

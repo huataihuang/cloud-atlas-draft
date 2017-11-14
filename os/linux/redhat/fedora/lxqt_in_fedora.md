@@ -108,10 +108,28 @@ yum install calibre
 >
 > FBreader是跨平台的轻量级epub/mobi阅读软件；也可以选择KDE环境的[Okular](http://okular.kde.org/)界面更为美观。 - 参考[Linux版EPUB阅读器](https://linux.cn/article-4943-1.html)。不过，FBreader在打开较大的epub文件时有时会缓慢甚至不刷新;Okular则在显示calibre转换的epub图片排版存在一些异常。所以，如果已经安装了calebre，则还是直接选择使用calibre自带的epub阅读器。
 
+* To-Do List(GTD)
+
+> 在Mac/iPhone上，使用的是OmniFocus，功能异常丰富的应用软件。其实在Linux，比较好的方法是使用跨平台的web工具，或许使用Evernote就能够满足基本的需求。[Farewell OmniFocus, welcome org-mode](https://www.osomac.com/2013/06/03/farewell-omnifocus/)提出了一个有意思的解决方法，使用开源的[Taskwarrior](https://taskwarrior.org/)来实现GTD，纯文本轻量级的解决方法。如果要同步可以采用云盘。
+
+Taskwarrior 采用json格式记录，可以通过自己开发程序扩展，可以部署自己的服务器和客户端，而且持续活跃开发。此外，也有第三方在线的同步服务 - 
+
+```
+yum install task
+```
+
+> 其他Linux平台的GTD软件可参考 [Alternatives to OmniFocus for Linux with any license](https://alternativeto.net/software/omnifocus/?platform=linux)，其中推荐的[Fluxday](http://fluxday.io/)是一个Apache Licence开源的基于Ruby的WEB工具，不过运行环境比较复杂（需要MySQL/MariaDB Server），对于团队协作比较适合。
+
 * 安装其他必要应用软件
 
 ```bash
 yum install wget sysstat keepassx
+```
+
+* 安装Office软件 - 无法避免的应用MS-Office三件套替代使用LibreOffice（也可以使用基于Koffice发展出的calligra，似乎更轻量级但是使用习惯和MS-Office不同，不习惯）
+
+```bash
+yum install libreoffice-calc libreoffice-writer libreoffice-impress
 ```
 
 * 安装微软Visual Studio Code - 微软拥抱开源提供的一款跨平台非常优秀的轻量级代码编辑器

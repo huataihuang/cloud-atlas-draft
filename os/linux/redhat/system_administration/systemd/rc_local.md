@@ -12,7 +12,24 @@
 Warning: Journal has been rotated since unit was started. Log output is incomplete or unavailable.
 ```
 
-可以看到上述输出中采用的兼容`rc.local`的方法是配置了`systemd`配置文件`/usr/lib/systemd/system/rc-local.service`，其内容如下
+如果执行`sudo systemctl status rc-local`出现如下信息
+
+```
+The unit files have no installation config (WantedBy, RequiredBy, Also, Alias
+settings in the [Install] section, and DefaultInstance for template units).
+This means they are not meant to be enabled using systemctl.
+Possible reasons for having this kind of units are:
+1) A unit may be statically enabled by being symlinked from another unit's
+   .wants/ or .requires/ directory.
+2) A unit's purpose may be to act as a helper for some other unit which has
+   a requirement dependency on it.
+3) A unit may be started when needed via activation (socket, path, timer,
+   D-Bus, udev, scripted systemctl call, ...).
+4) In case of template units, the unit is meant to be enabled with some
+   instance name specified.
+```
+
+则编辑兼容`rc.local`的`systemd`配置文件`/usr/lib/systemd/system/rc-local.service`，其内容如下
 
 ```
 [Unit]
@@ -26,6 +43,8 @@ ExecStart=/etc/rc.d/rc.local start
 TimeoutSec=0
 RemainAfterExit=yes
 ```
+
+然后再次执行`sudo systemctl enable rc-local`
 
 `/etc/rc.local`则是`/etc/rc.d/rc.local`的软链接：
 
