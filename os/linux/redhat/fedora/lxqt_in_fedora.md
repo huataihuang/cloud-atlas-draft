@@ -142,6 +142,12 @@ dnf check-update
 sudo dnf install code
 ```
 
+* 文件（代码）对比(diff)工具 -Meld （可选）
+
+> 轻量级文件对比工具，支持Git, Mercurial, Subversion, Bazaar，并且支持文件合并和修改。不过，微软的Visual Studio Code已经内建了文件对比功能，所以该工具可以不安装。
+>
+> 其他Linux平台文件对比工具可以参考 [9 Best File Comparison and Difference (Diff) Tools for Linux](https://www.tecmint.com/best-linux-file-diff-tools-comparison/)
+
 * 安装Dropbox
 
 ```bash

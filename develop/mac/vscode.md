@@ -107,6 +107,22 @@ pip install mysqlclient
 
 # 编辑代码
 
+## 文件对比
+
+> 参考[How to Compare files in Visual Studio Code ?](http://dailydotnettips.com/2015/06/04/how-to-compare-files-in-visual-studio-code/)
+
+VS Code支持工作文件案的对比，并且允许以不同模式对比更改。可以使用文件导航侧边栏或者使用命令"`Files:Compare Opened File with`"。在代码对比窗口可以选择`In Line Mode`或者`Merged Mode`。
+
+* 首先选择要对比的第一个文件`settings.json`（案例文件名），右击鼠标，选择菜单`Select for Compare`
+
+![vscode选择对比文件](../../img/develop/mac/vscode_file_compare_1.png)
+
+* 然后再在文件侧边导航栏选择要对比的第二个文件，右击鼠标，选择菜单`Compare with 'settings.json'`（即和第一个选择文件对比）
+
+![vscode选择对比文件](../../img/develop/mac/vscode_file_compare_2.png)
+
+默认时`side by side`对比，也可以切换成`Inline View`。
+
 ## 代码风格
 
 `C/C++ extension for Visual Studio Code`支持[clang-format](http://clang.llvm.org/docs/ClangFormat.html)代码风格。
