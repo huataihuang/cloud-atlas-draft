@@ -22,9 +22,11 @@ INSTALLED_APPS = [
 
 ```
 
-上述模板包解压缩以后将`portal-1a`目录中的内容移动存放到django项目的 `dashboard/templates` 目录下
+上述模板包解压缩以后将`portal-1a`目录中的内容包括：
 
+```
 
+```
 # 参考
 
 * []()

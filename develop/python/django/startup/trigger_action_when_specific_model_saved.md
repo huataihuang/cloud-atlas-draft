@@ -188,6 +188,37 @@ class ProfilesConfig(AppConfig):
 default_app_config = 'cmdbox.profiles.apps.ProfilesConfig'
 ```
 
+## `instance`使用（补充）
+
+现在有一个问题，就是如果通过`Signals`触发了某个动作，而这个动作恰好就是要处理刚才`Model`中`post_save`保存的那行记录，该如何处理呢？
+
+这里甬道的就是`instance`，这个`instance`就是刚才保存的那行数据库记录。举例：
+
+* `signals.py`
+
+```python
+# -*- coding: utf-8 -*-
+from __future__ import unicode_literals
+
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+from notify.views import send_msg
+from .models import PizzaCooked
+
+@receiver(post_save, sender=PizzaCooked)
+def create_pizzacooked_notify(sender, instance, created, **kwargs):
+    if created:
+        customer = instance.customer
+        pizza_name = instance.pizza_name
+        pizza_size = instance.pizza_size
+        cook_time = instance.cook_time
+        msg = "通知：\r亲爱的%s，您订购的 %s %s 披萨已经于 %s 制作完成，请取用" % (customer, pizza_name, pizza_size, cook_time)
+        send_msg(msg)
+```
+
+以上案例，即通过Signal的`post_save`触发消息发送，其中消息发送内容就是从`instance`也就是数据库插入数据字段组合得到。
+
 # Django内建信号
 
 以下是一些有用的Django信号（常用）

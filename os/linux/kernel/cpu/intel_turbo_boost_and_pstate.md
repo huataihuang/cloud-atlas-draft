@@ -563,7 +563,33 @@ PKG |CORE|CPU | C3   | C6   | PC3  | PC6  || C0   | Cx   | Freq || POLL | C1-S
 echo active |sudo tee /sys/devices/system/cpu/intel_pstate/status
 ```
 
-# 神
+# 电源管理策略
+
+* 检查当前电源管理可选的策略列表
+
+```
+cpupower frequency-info --governors
+```
+
+可以看到`intel_pstate`支持的cpufreq策略只有两种`performance`和`powersave`。
+
+* 检查当前激活的电源管理策略
+
+```
+cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
+```
+
+可以看到输出
+
+```
+powersave
+```
+
+* 修改成`performance`策略：
+
+```
+sudo cpupower frequency-set -g performance
+```
 
 # 测试
 

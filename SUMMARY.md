@@ -166,6 +166,7 @@
 		* [Red Hat](os/linux/redhat/README.md)
 			* [Fedora](os/linux/redhat/fedora/README.md)
 				* [在MacBook Pro上实现Fedora和macOS双启动](os/linux/redhat/fedora/multiboot_fedora_and_macOS.md)
+				* [使用DNF对Fedora进行系统大版本升级](os/linux/redhat/fedora/fedora_system-upgrade_by_dnf.md)
 				* [在Fedora中使用BCM4360无线网卡](os/linux/redhat/fedora/use_bcm4360_wifi_in_fedora.md)
 				* [Fedora设置fcitx中文输入](os/linux/redhat/fedora/use_fcitx_in_fedora.md)
 				* [GoldenDict和英中字典设置](os/linux/redhat/fedora/goldendict_for_chinese.md)
