@@ -174,6 +174,7 @@
 				* [使用ImageMagick截屏](os/linux/redhat/fedora/snapshot_with_imagemagick.md)
 				* [在LXQt桌面平铺窗口](os/linux/redhat/fedora/tile_window_in_lxqt.md)
 				* [nVidia GT 750M显卡](os/linux/redhat/fedora/nvidia_gt_750m.md)
+				* [使用Dragon Player播放mp4视频](os/linux/redhat/fedora/dragon_player_with_mp4.md)
 			* [系统管理](os/linux/redhat/system_administration/README.md)
 				* [Grub 2 boot loader](os/linux/redhat/system_administration/grub2/README.md)
 					* [在grub2中切换默认启动内核](os/linux/redhat/system_administration/grub2/switch_default_kernel_in_grub2.md)
