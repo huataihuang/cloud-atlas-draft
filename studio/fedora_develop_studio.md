@@ -2,9 +2,12 @@
 
 选择和服务器CentOS兼容的Fedora 26作为桌面开发环境，以便能能够兼容服务器环境，同时能够采用最新的内核和软件进行开发学习。
 
+> Fedora是一个快速迭代活跃升级的桌面系统，并且支持跨大版本的系统升级（例如：Fedora 27发布之后，可以[使用DNF对Fedora进行系统大版本升级](../os/linux/redhat/fedora/fedora_system-upgrade_by_dnf)）
+
 # 安装Fedora操作系统
 
 
+> 运行Fedora桌面只是一个基础起步，我并不希望直接在桌面中运行各种服务器软件，并且把操作系统搞得非常复杂和混乱。使用[Docker](docker)是一个非常好的开发测试环境。
 
 # 参考
 

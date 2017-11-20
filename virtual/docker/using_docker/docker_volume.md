@@ -45,7 +45,7 @@ docker volume inspect share-data
 * 使用`-v <volume_name>:/<container_path>`来映射卷给容器使用
 
 ```
-docker run -it -p 22 -p 8005:8000 --memory=512M --cpus="1.5" --hostname dev5 --name dev5 \
+docker run -it -p 22 -p 8000:8000 --memory=512M --cpus="1.5" --hostname dev5 --name dev5 \
 -v share-data:/data local:dev5_django /bin/bash
 ```
 

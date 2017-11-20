@@ -33,7 +33,7 @@ docker.io/centos    5                   1ae98b2c895d        14 months ago       
 sudo docker run -it --hostname centos5 --name centos5 docker.io/centos:5 /bin/bash
 ```
 
-注意：CentOS 5已经停止镜像，只能通过 http://vault.centos.org/5.11/ 下载更新，所以编辑 `/etc/yum.repos.d/CentOS-Vault.repo`（之需要这个配置文件就可以）
+注意：CentOS 5已经停止镜像，但是可以通过 http://vault.centos.org/5.11/ 下载更新，所以编辑 `/etc/yum.repos.d/CentOS-Vault.repo`（只需要这个配置文件就可以）
 
 ```
 [C5.11-base]
@@ -63,6 +63,14 @@ baseurl=http://vault.centos.org/5.11/centosplus/$basearch/
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
 enabled=1
+```
+
+> 补充：
+>
+> 但是CentOS 5系列依然缺少一些基础软件（例如`git`），可参考[CentOS 5平台通过yum安装git](../../../os/linux/redhat/package/install_git_on_centos5_using_yum)方法，添加EPEL的软件仓库作为补充：
+
+```
+sudo rpm -Uvh http://dl.fedoraproject.org/pub/epel/5/i386/epel-release-5-4.noarch.rpm
 ```
 
 ## CentOS6容器

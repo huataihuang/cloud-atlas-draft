@@ -10,7 +10,7 @@
 yum install centos-release-scl
 ```
 
-> 从[Atomic项目](http://www.projectatomic.io)的虚拟容器看，容器操作系统做了定制，似乎google搜索到有振铎Python2.7的rpm发布，可尝试。
+> 从[Atomic项目](http://www.projectatomic.io)的虚拟容器看，容器操作系统做了定制，似乎google搜索到有针对Python2.7的rpm发布，可尝试。
 
 # 源代码编译安装Python 2.7
 

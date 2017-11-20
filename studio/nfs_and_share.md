@@ -64,10 +64,12 @@ ln -s /nfs-data/dev-7/huatai/works ~/works
 ```
 docker volume create share-data
 
-docker run -it -p 22 --memory=2048M --cpus=2 、
+docker run -it -p 22 --memory=2048M --cpus=2 \
 --hostname dev5 --name dev5 \
 -v share-data:/data local:dev5_django /bin/bash
 ```
+
+> 如果原先的docker容器已经在运行，则可以先制作镜像，然后通过镜像再次启动容器以便能够共享存储
 
 > 详细的[Docker卷](../virtual/docker/using_docker/docker_volume)
 >

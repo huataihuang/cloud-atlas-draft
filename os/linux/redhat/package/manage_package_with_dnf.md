@@ -194,7 +194,7 @@ dnf distro-sync
 def reinstall nano
 ```
 
-* 混棍某个特定的软件版本
+* 回滚某个特定的软件版本
 
 ```
 dnf downgrade acpid
@@ -218,6 +218,26 @@ DNF通过一些插件提供了安装debuginfo包或下载仓库中RPM的功能
 | yum-config-manager | dnf config-manager | dnf-plugins-core |
 | yumdownloader | dnf download | dnf-plugins-core |
 | repo-graph | dnf repograph | dnf-plugins-extras-repograph |
+
+# 删除软件包同时清理系统中不再需要的依赖包
+
+当删除某个不需要的软件包的时候，如何清理掉系统中因这个软件包而安装的一系列依赖软件包？
+
+`yum-utils`工具[package-cleanup](https://linux.die.net/man/1/package-cleanup)提供了列出"leaf nodes"软件包的功能，这些依赖软件可以通过以下命令清理
+
+```
+package-cleanup --leaves
+```
+
+从Fedora 18开始，可以简化成`yum autoremove`或者`yum remove --setopt=clean_requirements_on_remove=1`。所以最简单的命令方法是`yum autoremove <package>`
+
+> 参考[Remove unused packages](https://unix.stackexchange.com/questions/40179/remove-unused-packages)
+
+实际上，dnf提供了这个`autoremove`功能：
+
+```
+dnf autoremove <package>
+```
 
 # 参考
 

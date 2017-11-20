@@ -105,6 +105,12 @@ yum localinstall http://download1.rpmfusion.org/free/fedora/rpmfusion-free-relea
 yum localinstall http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
 ```
 
+或者使用命令（参考[在Fedora中播放mp4视频](play_with_mp4_in_fedora)）：
+
+```
+su -c 'dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm'
+```
+
 * 更新系统
 
 ```
