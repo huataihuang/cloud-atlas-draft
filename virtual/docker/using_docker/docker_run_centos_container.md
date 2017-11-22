@@ -63,7 +63,26 @@ baseurl=http://vault.centos.org/5.11/centosplus/$basearch/
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
 enabled=1
+
+[base-source]
+name=CentOS-$full_releasever - Base source
+baseurl=http://vault.centos.org/5.11/os/Source/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
+priority=1
+enabled=1
+
+
+[updates-source]
+name=CentOS-$full_releasever - Updates Source
+baseurl=http://vault.centos.org/5.11/updates/Source/
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-5
+priority=1
+enabled=1
 ```
+
+> 这里同时激活了`base-source`和`updates-source`源，可以方便下载SRPM进行自己的编译安装。
 
 > 补充：
 >

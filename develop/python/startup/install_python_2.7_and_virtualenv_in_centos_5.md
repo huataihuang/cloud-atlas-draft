@@ -41,17 +41,19 @@ zlib-devel git openssh-clients openssh-server initscripts
 ```bash
 # Python 2.7.14:
 wget http://python.org/ftp/python/2.7.14/Python-2.7.14.tar.xz
-tar xf Python-2.7.14.tar.xz
+xz -d Python-2.7.14.tar.xz
+tar xf Python-2.7.14.tar
 cd Python-2.7.14
 ./configure --prefix=/usr/local --enable-unicode=ucs4 --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib"
-make && make altinstall
+make && sudo make altinstall
 
 # Python 3.6.3:
 wget http://python.org/ftp/python/3.6.3/Python-3.6.3.tar.xz
-tar xf Python-3.6.3.tar.xz
+xz -d Python-3.6.3.tar.xz
+tar xf Python-3.6.3.tar
 cd Python-3.6.3
 ./configure --prefix=/usr/local --enable-shared LDFLAGS="-Wl,-rpath /usr/local/lib"
-make && make altinstall
+make && sudo make altinstall
 ```
 
 > CentOS 5自带的tar版本是1.15.1，还不支持`.xz`文件的解压缩参数`-J`，所以需要单独安装`xz`工具解压缩`.xz`文件之后，再使用`tar xf`命令解包。

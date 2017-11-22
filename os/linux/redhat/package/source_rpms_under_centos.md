@@ -20,7 +20,19 @@ yum install yum-utils
 >
 > 使用`dnf`包管理器的时候不需要安装`yum-utils`，可以用`dnf download`来代替`yumdownloader`
 
-# 安装软件包的源代码包
+# CentOS 获取SRPM软件包（可选）
+
+SRPM可以从以下上游获取：
+
+http://ftp.redhat.com/pub/redhat/linux/enterprise/
+
+对于早期的CentOS 5 或者 CentOS 4，可以从以下网站获取SRPM:
+
+http://vault.centos.org/
+
+> 参考[Rebuild a Source RPM](https://wiki.centos.org/HowTos/RebuildSRPM)
+
+# CentOS/Fedora安装软件包的源代码包
 
 * 首先查看提供命令的软件包，例如`syslog-ng`命令的软件包
 

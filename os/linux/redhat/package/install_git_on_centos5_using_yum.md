@@ -28,11 +28,12 @@ yum install --enablerepo=webtatic git-all
 ```
 yum -y install zlib-devel openssl-devel cpio expat-devel gettext-devel
 wget https://github.com/git/git/archive/master.zip
-tar -xzvf ./git-1.7.8.tar.gz
-cd ./git-1.7.8
+unzip master.zip
+cd ./git-master
+make configure
 ./configure
 make
-make install 
+sudo make install 
 ```
 
 # 参考

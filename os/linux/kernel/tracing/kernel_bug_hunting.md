@@ -265,7 +265,7 @@ gdb vmlinux
 
 ## 用户虚拟机crash分析
 
-在 [AY1307061945475866c5 crash分析](https://aone.alibaba-inc.com/issue/10613682)，用户的虚拟机crash的core文件通过`crash`工具检查可以看到`PANIC: "Kernel panic - not syncing: stack-protector: Kernel stack is corrupted in: ffffffffa016087c"`。
+用户的虚拟机crash的core文件通过`crash`工具检查可以看到`PANIC: "Kernel panic - not syncing: stack-protector: Kernel stack is corrupted in: ffffffffa016087c"`。
 
 从 `dmesg` 日志可以看到
 
