@@ -565,6 +565,7 @@
 		* [Python快速起步](develop/python/startup/README.md)
 			* [pip包管理](develop/python/startup/pip.md)
 			* [在古老的CentOS 5上安装Python 2.7以及virtualenv环境](develop/python/startup/install_python_2.7_and_virtualenv_in_centos_5.md)
+			* [安装阿里云对象存储OSS Python SDK和osscmd](develop/python/startup/install_aliyun_oss_python_sdk_and_osscmd.md)
 			* [__init__.py文件](develop/python/startup/module_init.md)
 			* [python编程风格](develop/python/startup/python_style.md)
 			* [python中文本编码](develop/python/startup/python_encoding.md)
