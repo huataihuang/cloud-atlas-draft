@@ -50,8 +50,8 @@ libvirt有一个机制可以自动保存guest crash dump到指定目录（可以
 
 | 软件 | 版本 | 说明 |
 | ---- | ---- | ---- |
-| qemu | 1.6 | |
-| libvirt | 1.2.1 | |
+| qemu | 1.6 | 2013年8月15日发布 |
+| libvirt | 1.2.1 | 2014年1月16日发布 |
 | virtio |  virtio-win-0.1.103-2 | 2015年5月5日发布 |
 
 # qemu pvpanic

@@ -12,6 +12,18 @@ log_filters="3:remote 4:event 3:json 3:rpc"
 log_outputs="1:file:/var/log/libvirt/libvirtd.log"
 ```
 
+> 以上配置采用了`DEBUG`模式，会打印大量的排查日志。
+
+在生产环境中，可以采用默认的`log_level = 3`，此外，参考[Bug 920614 - decrease libvirtd log level ](https://bugzilla.redhat.com/show_bug.cgi?id=920614)，可以设置不同对象的不同日志过滤级别：
+
+```
+log_level = 3
+log_filters="3:virobject 3:virfile 2:virnetlink 3:cgroup 3:event 3:json 1:libvirt 1:util 1:qemu"
+log_outputs="1:file:/var/log/libvirt/libvirtd.log"
+```
+
+> 目前测试[pvpanic](../qmeu/libvirt_pvpanic)似乎发现，如果没有设置`qemu`的`DEBUG`级别日志，则[虚拟机串口控制台](../devices/vm_serial_console)不能输出信息。待进一步验证。
+
 * 重启libvirtd服务
 
 ```bash
