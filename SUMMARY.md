@@ -754,6 +754,7 @@
 		* [git远程操作](devops/git/git_remote.md)
 		* [git和dropbox冲突](devops/git/git_with_dropbox_data_corruption.md)
 		* [针对不同域名git push时使用指定SSH key](devops/git/git_specify_ssh_key.md)
+		* [git忽略文件mode修改](devops/git/git_ignore_chmod_changes.md)
 	* [Gerrit](devops/gerrit/README.md)
 	* [Gitlab](devops/gitlab/README.md)
 		* [部署使用的ssh key](devops/gitlab/deploy_key.md)
