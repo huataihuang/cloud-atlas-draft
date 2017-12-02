@@ -50,6 +50,8 @@
 >
 > 通常情况下不需要手工设置。
 
+# guest虚拟机内部设置串口输出
+
 * kvm虚拟机（guest）内部设置GRUB，向内核传递如下参数
 
 ```
@@ -62,15 +64,17 @@ kernel ..... serial=tty0 console=ttyS0,115200n8
 kernel ..... console=ttyS0,115200
 ```
 
-以下是在CentOS 7上设置GRUB2的举例：
+## CentOS 7 grub2 设置串口输出
 
-首先编辑`/etc/default/grub`设置如下
+> 在CentOS 7上使用GRUB2
+
+* 首先编辑`/etc/default/grub`设置如下
 
 ```
 GRUB_CMDLINE_LINUX="crashkernel=auto rd.lvm.lv=centos/root rd.lvm.lv=centos/swap serial=tty0 console=ttyS0,115200n8 rhgb quiet"
 ```
 
-然后执行
+* 然后执行
 
 ```
 grub2-mkconfig -o /boot/grub2/grub.cfg
@@ -91,6 +95,18 @@ ttyS0
 ```
 
 > 在`CentOS 7`中默认已设置
+
+## CentOS 6 grub 设置串口输出
+
+> 在CentOS 6上使用grub
+
+* 直接编辑`/boot/grub/menu.lst`
+
+```
+    kernel /boot/vmlinuz-2.6.32-642.11.1.el6.x86_64 ... serial=tty0 console=ttyS0,115200n8
+```
+
+重启虚拟机即生效
 
 # guest虚拟机控制台输出到host主机日志
 

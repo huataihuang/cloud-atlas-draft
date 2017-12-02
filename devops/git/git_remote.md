@@ -316,6 +316,9 @@ git push origin --delete tag master-7u
 
 * 删除不存在对应远程分支的本地分支
 
+```
+git fetch -p
+```
 
 # 合并分支
 
