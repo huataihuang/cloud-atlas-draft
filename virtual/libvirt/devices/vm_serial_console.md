@@ -94,7 +94,7 @@ error: operation failed: Active console session exists for this domain
 ttyS0
 ```
 
-> 在`CentOS 7`中默认已设置
+重启虚拟机。
 
 ## CentOS 6 grub 设置串口输出
 
@@ -106,7 +106,41 @@ ttyS0
     kernel /boot/vmlinuz-2.6.32-642.11.1.el6.x86_64 ... serial=tty0 console=ttyS0,115200n8
 ```
 
-重启虚拟机即生效
+* kvm虚拟机（guest）内部编辑`/etc/securetty`添加如下行，允许`root`从`ttyS0`设备登陆：
+
+```
+ttyS0
+```
+
+重启虚拟机。
+
+## Ubuntu 16/14，
+
+> 在Ubuntu 16/14，Debian 9/8/7 都使用GRUB2，类似CentOS 7。不过，ubuntu/debian提供了`update-grub`指令更新`grub.cfg`配置文件。([Configure GRUB2 Boot Loader Settings In Ubuntu 16.04](https://www.ostechnix.com/configure-grub-2-boot-loader-settings-ubuntu-16-04/))
+
+* 编辑`/etc/default/grub`在`GRUB_CMDLINE_LINUX`行添加`serial=tty0 console=ttyS0,115200n8`，案例如下
+
+```
+GRUB_CMDLINE_LINUX=" net.ifnames=0 serial=tty0 console=ttyS0,115200n8"
+```
+
+* 执行以下命令生成`grub.cfg`配置
+
+```
+update-grub
+```
+
+> 在Ubuntu 16上，`update-grub2`命令实际是`update-grub`执行程序的一个软链接。
+
+* kvm虚拟机（guest）内部编辑`/etc/securetty`添加如下行，允许`root`从`ttyS0`设备登陆：
+
+```
+ttyS0
+```
+
+## SUSE
+
+> SUSE也使用GRUB2，配置方法类似。参考 [Configure kernel core dump capture](https://www.novell.com/support/kb/doc.php?id=3374462)
 
 # guest虚拟机控制台输出到host主机日志
 

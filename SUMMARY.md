@@ -342,6 +342,8 @@
 		* [NTP服务基础配置](service/ntp/basic_ntp_config.md)
 		* [ntpq错误"Request timed out"排查](service/ntp/ntpq_timed_out_nothing_received.md)
 		* [ntp_gettime() returns code 5 (ERROR)](ntp_gettime_returns_code_5_error.md)
+	* [aria2](service/aria2/README.md)
+		* [使用多协议多线程下载工具aria2](service/aria2/multi-protocol_multi-source_download_tool_aria2.md)
 * [安全](security/README.md)
 	* [VPN](security/vpn/README.md)
 		* [OpenConnect](security/vpn/openconnect/README.md)
