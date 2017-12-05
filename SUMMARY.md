@@ -344,6 +344,7 @@
 		* [ntp_gettime() returns code 5 (ERROR)](ntp_gettime_returns_code_5_error.md)
 	* [aria2](service/aria2/README.md)
 		* [使用多协议多线程下载工具aria2](service/aria2/multi-protocol_multi-source_download_tool_aria2.md)
+		* [使用aria2 WEB前端yaaw](service/aria2/aris2_with_yaaw.md)
 * [安全](security/README.md)
 	* [VPN](security/vpn/README.md)
 		* [OpenConnect](security/vpn/openconnect/README.md)
