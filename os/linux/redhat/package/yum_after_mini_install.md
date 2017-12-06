@@ -3,7 +3,7 @@
 # CentOS 7
 
 ```bash
-yum -y install nmap-ncat mlocate net-tools rsyslog file ntp ntpdate \
+yum -y install which sudo nmap-ncat mlocate net-tools rsyslog file ntp ntpdate \
 wget tar bzip2 tmux sysstat unzip nfs-utils parted lsof man bind-utils \
 gcc gcc-c++ make telnet flex autoconf automake ncurses-devel crontabs \
 zlib-devel git

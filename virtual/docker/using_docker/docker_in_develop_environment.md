@@ -50,7 +50,7 @@ COPY app /app
 CMD ["python", "identidock.py"]
 ```
 
-以上Dockerfile使用Python 3的官方基础镜像，并在镜像基础之上安装 Flask ，然后复制代码金曲，并运行identidock代码。
+以上Dockerfile使用Python 3的官方基础镜像，并在镜像基础之上安装 Flask ，然后复制代码进去，并运行identidock代码。
 
 > 许多流行的编程语言，例如 Python、Go 和 Ruby，它们的官方仓库中都有多个变种镜像以供不同用途：
 >

@@ -258,3 +258,9 @@ RUN chmod 700 /root/.ssh
 ```
 docker build -t local:centos5 .
 ```
+
+* 从构建的镜像启动容器
+
+```
+docker run -itd --hostname dev5 --name dev5 local:centos5 /bin/bash
+```

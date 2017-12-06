@@ -119,6 +119,64 @@ GNU `sed` 提供了一个`--follow-symlinks`参数，可以检测修改的是软
 
 详细排查参考[如何避免sed -i破坏文件的软链接](../../../../../develop/shell/sed_awk/prevent_sed_-i_from_destroying_symlinks)
 
+# rc.local执行报错`Exec format error` -- **`rc-local`脚本第一行必须设置解释器**
+
+设置了 `rc.local` 只写了一句命令用于设置电源
+
+```
+echo XHC1 | sudo tee /proc/acpi/wakeup
+```
+
+之后重启并没有执行，检查`systemctl status rc-local` 显示错误如下：
+
+```
+Dec 06 08:24:54 DevStudio systemd[1]: Starting /etc/rc.local Compatibility...
+Dec 06 08:24:54 DevStudio systemd[850]: rc-local.service: Failed at step EXEC spawning /etc/rc.local: Exec format error
+Dec 06 08:24:54 DevStudio systemd[1]: rc-local.service: Control process exited, code=exited status=203
+Dec 06 08:24:54 DevStudio systemd[1]: Failed to start /etc/rc.local Compatibility.
+Dec 06 08:24:54 DevStudio systemd[1]: rc-local.service: Unit entered failed state.
+Dec 06 08:24:54 DevStudio systemd[1]: rc-local.service: Failed with result 'exit-code'.
+Dec 06 08:27:50 DevStudio systemd[1]: /etc/systemd/system/rc-local.service:11: Support for option SysVStartPriority= has been removed and it
+```
+
+尝试重新执行一次`systemctl restart rc-local`，然后再查看状态`systemctl status rc-local.service`依然失败。
+
+通过`journalctl -xe`检查可以看到`systemd`执行提示`/etc/rc.local could not be executed and failed`
+
+```
+Dec 06 08:34:05 DevStudio systemd[1]: Starting /etc/rc.local Compatibility...
+-- Subject: Unit rc-local.service has begun start-up
+-- Defined-By: systemd
+-- Support: https://lists.freedesktop.org/mailman/listinfo/systemd-devel
+-- 
+-- Unit rc-local.service has begun starting up.
+Dec 06 08:34:05 DevStudio audit[1]: SERVICE_START pid=1 uid=0 auid=4294967295 ses=4294967295 subj=system_u:system_r:init_t:s0 msg='unit=rc-lo
+Dec 06 08:34:05 DevStudio audit[7184]: ANOM_ABEND auid=1000 uid=0 gid=0 ses=2 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=
+Dec 06 08:34:05 DevStudio systemd[7185]: rc-local.service: Failed at step EXEC spawning /etc/rc.local: Exec format error
+-- Subject: Process /etc/rc.local could not be executed
+-- Defined-By: systemd
+-- Support: https://lists.freedesktop.org/mailman/listinfo/systemd-devel
+-- 
+-- The process /etc/rc.local could not be executed and failed.
+-- 
+-- The error number returned by this process is 8.
+Dec 06 08:34:05 DevStudio systemd[1]: rc-local.service: Control process exited, code=exited status=203
+Dec 06 08:34:05 DevStudio systemd[1]: Failed to start /etc/rc.local Compatibility.
+-- Subject: Unit rc-local.service has failed
+-- Defined-By: systemd
+-- Support: https://lists.freedesktop.org/mailman/listinfo/systemd-devel
+-- 
+-- Unit rc-local.service has failed.
+-- 
+-- The result is failed.
+Dec 06 08:34:05 DevStudio systemd[1]: rc-local.service: Unit entered failed state.
+Dec 06 08:34:05 DevStudio systemd[1]: rc-local.service: Failed with result 'exit-code'.
+```
+
+原因参考 [The after.local.service fails to start with exec format error](https://www.suse.com/support/kb/doc/?id=7017128) 即`rc.local`必须在脚本开头设置shell解释器。我们日常已经登陆到系统shell中，所以执行没有问题。但是systemd启动时是不知道使用哪个shell来作为解释器的，所以会失败。
+
+在`rc.local`开头添加一行`#!/bin/bash`重启验证问题解决。
+
 # 参考
 
 * [How to Enable /etc/rc.local with Systemd](https://www.linuxbabe.com/linux-server/how-to-enable-etcrc-local-with-systemd)
