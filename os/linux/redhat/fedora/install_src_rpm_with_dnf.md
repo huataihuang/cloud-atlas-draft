@@ -10,6 +10,8 @@
 dnf download --source libvirt
 ```
 
+如果是`yum-utils`则使用`yumdownloader --source libvirt`
+
 > 将在当前用户目录下下载`libvirt`源代码包
 
 * 创建一个rpm开发目录结构
@@ -35,6 +37,8 @@ rpm -ivh libvirt-3.7.0-2.fc27.src.rpm
 ```
 sudo dnf builddep libvirt
 ```
+
+如果是`yum-utils`则使用`sudo yum-builddep libvirt`
 
 * 检查`~/rpmbuild/SPECS`，然后解压缩源代码和apply补丁
 

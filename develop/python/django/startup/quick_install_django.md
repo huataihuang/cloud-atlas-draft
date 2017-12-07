@@ -17,6 +17,8 @@ django运行需要使用的版本见[What Python version can I use with Django?]
 
 参考 [How to get Django](https://www.djangoproject.com/download/) 中有关django supported versions说明，对于生产环境，建议采用LTS版本 1.11 以及预计2019年Q1发布2.2版本，可保持较长的产品生命周期。
 
+[Django发布线路图](../../../../img/develop/python/django/startup/django-release-roadmap.png)
+
 当前[django官方文档](https://docs.djangoproject.com/)以1.11版本为基准，所以开发使用1.11文档比较齐全。
 
 采用Python 3.4运行Django可以使得后续升级到Django 2.2时Python版本语法无需重大转换。

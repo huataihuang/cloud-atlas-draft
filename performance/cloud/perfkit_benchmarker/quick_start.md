@@ -28,14 +28,34 @@
 
 # 安装PerfKit
 
+> 部署和官方文档略有不同，采用python virtualenv来实现 - 从root切换到admin后建立virtualenv
+
+```
+curl https://bootstrap.pypa.io/get-pip.py | python2.7
+pip2.7 install virtualenv
+
+su - admin
+virtualenv /home/admin/venv2
+
+source venv2/bin/activate
+```
+
 从GitHub下载Perkit Benchmarker:
 
 ```
+cd ~
 wget https://github.com/GoogleCloudPlatform/PerfKitBenchmarker/archive/v1.13.0.zip
 unzip v1.13.0.zip
 ```
 
 # 安装PerfKit Benchmarker依赖
+
+安装依赖：
+
+```
+cd PerfKitBenchmarker-1.13.0
+pip install -r requirements.txt
+```
 
 * 如果全局安装依赖
 
@@ -43,6 +63,61 @@ unzip v1.13.0.zip
 cd /path/to/PerfKitBenchmarker
 sudo pip install -r requirements.txt
 ```
+
+# 访问不同的云计算
+
+## 阿里云
+
+> 参考[AliCloud](https://github.com/GoogleCloudPlatform/PerfKitBenchmarker#install-alicloud-cli-and-setup-authentication)步骤
+
+* 安装python开发环境
+
+```
+sudo yum install python-devel
+```
+
+此外需要安装以下一些依赖开发库
+
+```
+sudo yum install libffi-devel.x86_64
+sudo yum install openssl-devel.x86_64
+pip install 'colorama<=0.3.3'
+```
+
+* 安装aliyuncli工具和ECS的python SDK
+
+```
+pip install -r perfkitbenchmarker/providers/alicloud/requirements.txt
+```
+
+> 注意：需要编译C程序，所以需要`yum groupinstall -y "development tools"`
+
+* 检查验证AliCloud已经安装
+
+```
+aliyuncli --help
+
+aliyuncli ecs help
+```
+
+* 登陆[AliCloud console](https://home.console.alicloud.com/#/)创建访问`access credentials`（即`AccessKeys`），得到对应的 "Access Key ID" 和 "Access Key Secret" 
+
+* 配置命令行
+
+```
+aliyuncli configure
+```
+
+# 运行一个简单的Benchmark
+
+* 在AliCloud运行Benchmark
+
+```
+./pkb.py --cloud=AliCloud --machine_type=ecs.s2.large --benchmarks=iperf
+```
+
+> 不能使用RAM认证方式：
+
 
 # 参考
 
