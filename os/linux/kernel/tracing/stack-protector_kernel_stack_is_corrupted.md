@@ -1,19 +1,12 @@
 虚拟机crash的一个案例，类似参考 [vmcore分析案例："kernel BUG at fs/buffer.c:1270"](vmcore_example_bug_at_fs_buffer_c) 使用crash分析
 
-```
-rpm2cpio kernel-debuginfo-2.6.32-279.el6.x86_64.rpm | cpio -idv ./usr/lib/debug/lib/modules/2.6.32-279.el6.x86_64/vmlinux
-
-crash ./usr/lib/debug/lib/modules/2.6.32-279.el6.x86_64/vmlinux 2017-0326-0343.02-AY1307061945475866c5.155086.33872.482.core
-```
-
-i-25rbugoxp
+首先获取core对应虚拟机的内核版本
 
 ```
-wget http://debuginfo.centos.org/6/x86_64/kernel-debuginfo-2.6.32-431.23.3.el6.x86_64.rpm
-rpm2cpio kernel-debuginfo-2.6.32-431.23.3.el6.x86_64.rpm | cpio -idv ./usr/lib/debug/lib/modules/2.6.32-431.23.3.el6.x86_64/vmlinux
-
-crash ./usr/lib/debug/lib/modules/2.6.32-431.23.3.el6.x86_64/vmlinux 2017-0411-1125.13-i-25rbugoxp.1495982.761845.2046.core
+sudo strings -n 50 2017-0411-0913.48-i-23ljwikin.301864.118695.897.core | head -n 30000 | grep -m 1 '^Linux version'
 ```
+
+假设内核版本是 `2.6.32-573.22.1.el6.x86_64` 使用以下命令获取debuginfo包以获得对应的`vmlinux`：
 
 ```
 export kernel_version=2.6.32-573.22.1.el6.x86_64

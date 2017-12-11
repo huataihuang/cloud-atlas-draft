@@ -110,7 +110,52 @@ mysqlclient-1.3.12-cp27-cp27mu-linux_x86_64.whl is not a supported wheel on this
 
 检查服务器，发现只安装了`mysql-libs-5.5.17-1.el5.remi`，所以考虑升级MySQL
 
+> [CentOS 5.7建议安装社区版本的MySQL 5.7](../../../../database/mysql/install_and_upgrade/install_mysql5.7_in_centos_5)
 
+```
+unzip mysql-5.7-community.zip
+cd mysql-5.7-community
+
+sudo rpm -e mysql-libs-5.5.17-1.el5.remi.x86_64 --nodeps
+sudo rpm -ivh mysql*.rpm
+```
+
+然后下载源代码编译
+
+```
+tar xfz mysqlclient-1.3.12.tar.gz
+cd mysqlclient-1.3.12
+python setup.py install
+```
+
+> 通过源代码安装了`mysqlclient`之后，可以从`wheelhouse`目录下移除`mysqlclient-1.3.12-cp27-cp27mu-linux_x86_64.whl`
+
+# 启动MySQL服务
+
+```
+/etc/init.d/mysqld start
+```
+
+如果数据库密码不正确，则执行[MySQL Root用户密码重置](../../../../database/mysql/troubleshooting/reset_mysql_root_password)
+
+# 恢复Django应用
+
+```
+cd ~/django_project
+```
+
+* 执行检查和同步迁移数据库
+
+```
+python manage.py check
+python manage.py migrate
+```
+
+* 运行django服务
+
+```
+python manage.py runserver 0.0.0.0:8000
+```
 
 # 参考
 

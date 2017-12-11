@@ -22,6 +22,8 @@ kill `cat /var/lib/mysql/host_name.pid`
 /usr/sbin/mysqld --skip-grant-tables --skip-networking
 ```
 
+> 系统中`mysql`用户是不可登陆的账号（`/etc/passwd`中`mysql`账号默认设置`mysql:x:27:27:MySQL Server:/var/lib/mysql:/bin/false`），所以上述命令使用`root`用户身份执行时，可以加上`sudo -u mysql`，以便切换运行于`mysql`账号。
+
 * 在另外一个本地终端上输入`mysql`命令，此时无需密码连接到数据库执行密码重置
 
 首先在mysql客户端，告诉服务器重新加载授权表，这样就可以进行账号管理：
@@ -42,7 +44,7 @@ MySQL 5.7.5及以前版本
 SET PASSWORD FOR 'root'@'localhost' = PASSWORD('MyNewPass');
 ```
 
-* 完成账号密码重置之后，就可以停止MySQL服务，然后再次正常启动MySQL服务（不要使用`--skip-grant-tables`和`--skip-networking`参数）:
+* 完成账号密码重置之后，就可以停止MySQL服务，然后再次正常启动MySQL服务（不要使用`--skip-grant-tables`和`--skip-networking`参数，可以直接使用系统脚本启动`/etc/init.d/mysqld start`）:
 
 ```
 mysql> flush privileges;
