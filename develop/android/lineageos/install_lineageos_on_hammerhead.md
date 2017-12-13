@@ -37,6 +37,8 @@ fastboot devices
 fastboot oem unlock
 ```
 
+> 只有`oem unlock`之后才能够安装自定义编译的非官方操作系统
+
 * 如果设备没有自动重启，则手工重启。重启以后手机就已经是unlock了。
 
 * 当手机重启完毕后，你需要重新激活USB debug
@@ -84,6 +86,8 @@ adb push filename.zip /sdcard/
 adb push lineage-14.1-20171201_032348-UNOFFICIAL-hammerhead.zip /sdcard/
 ```
 
+> 推荐使用以上方法 - 如果不需要保留设备数据，可以通过TWRP将设备存储和缓存中所有数据清理掉。然后在recovery模式下，使用上述命令推送image之后，再推送Open GApps。两者都通过TWRP的install完成安装就可以获得一个完全干净的系统。
+
 > 这里可能出现一个报错（原因未知，重新刷了TWRP,没有再遇到过，似乎和自己编译的recovery.img有关）
 
 ```
@@ -115,6 +119,16 @@ adb push ~/adb_keys /data/misc/adb/adb_keys
 
 # 使用sideload方式刷入ROM(成功)
 
+> 使用`sideload`方式并不推荐，曾将尝试过在Android 6.0.1的手机上使用，切换到recovery时候，采用`sideload`提示：
+
+```
+connecting...
+falling back to older sideload method...
+error: no devices/emulators found
+```
+
+此时采用`adb push lineage-14.1-20171201_032348-UNOFFICIAL-hammerhead.zip /sdcard/`则可以恢复
+
 * 启动手机到Recovery模式
 
 * 使用菜单擦除cache,system,然后又选择了factory reset - 实际上把整个系统完全擦除干净了（也导致无法从`/sdcard/`目录安装）
@@ -132,6 +146,8 @@ adb sideload lineage-14.1-20171201_032348-UNOFFICIAL-hammerhead.zip
 ```
 
 相当于完全重新刷新系统
+
+
 
 # 安装Open GApps
 

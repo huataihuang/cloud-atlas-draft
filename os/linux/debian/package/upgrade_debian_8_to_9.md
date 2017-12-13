@@ -47,6 +47,16 @@ dpkg -C
 apt-mark showhold
 ```
 
+## 更新到Debian Stretch的软件仓库
+
+现在开始正式的系统完全升级，首先将软件包索引同步成新Debian Stretch源。这个步骤是通过修改`/etc/apt/source.list`文件，包含Debian stretch软件包仓库。
+
+首先备份原先的`/etc/apt/sources.list`
+
+```
+cp /etc/apt/sources.list /etc/apt/sources.list.bak
+```
+
 * 修改软件仓库源
 
 然后使用命令`apt edit-sources`或使用`vim`编辑`/etc/apt/sources.list`文件，简单地将`jessie`关键字修改成`stretch`
@@ -91,15 +101,7 @@ apt-get dist-upgrade
 
 完成之后，系统就升级到了Stretch版本（Debian 9）
 
-# 更新到Debian Stretch的软件仓库
-
-现在开始正式的系统完全升级，首先将软件包索引同步成新Debian Stretch源。这个步骤是通过修改`/etc/apt/source.list`文件，包含Debian stretch软件包仓库。
-
-首先备份原先的`/etc/apt/sources.list`
-
-```
-
-```
+> 可以清理掉不需要的软件包 `apt autoremove`
 
 # 参考
 

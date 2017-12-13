@@ -55,6 +55,24 @@ docker run -it -p 22 -p 8000:8000 --memory=512M --cpus="1.5" --hostname dev5 --n
 >
 > `-p 22 -p 8005:8000`容器端口映射
 
+如果已经运行了一个没有设置使用卷的容器，要如何给这个容器添加共享的存储卷呢？
+
+方法是先给这个容器制作镜像快照，然后销毁容器，再使用镜像快照创建一个新的容器，在创建时映射卷给容器使用。（比较纠结^_^）
+
+以下是一个案例：(假设容器名字是`myapp`，需要映射共享的卷`data`)
+
+```
+docker commit myapp local:myapp
+
+docker stop myapp
+docker rm myapp
+
+docker volume create share-data
+
+docker run -it -p 22 -p 22 -p 8005:80005 --memory=512M --cpus="1.5" --hostname myapp --name myapp \
+-v share-data:/data local:myapp /bin/bash
+```
+
 # 参考
 
 * [docker docs: Use volumes](https://docs.docker.com/engine/admin/volumes/volumes/)

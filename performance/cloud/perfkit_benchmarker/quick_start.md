@@ -113,11 +113,23 @@ aliyuncli configure
 * 在AliCloud运行Benchmark
 
 ```
-./pkb.py --cloud=AliCloud --machine_type=ecs.s2.large --benchmarks=iperf
+./pkb.py --cloud=AliCloud --machine_type=ecs.t5-lc1m2.small --benchmarks=iperf
 ```
 
-> 不能使用RAM认证方式：
+> 不能使用RAM子账号
 
+注意：执行AliCloud测试前，首先编辑`perfkitbenchmarker/configs/default_config_constants.yaml` 将对应`AliCloud`的配置部分设置好需要开设的规格和区域。规格和区域请参考手工开设的虚拟机：
+
+```yaml
+  AliCloud:
+    machine_type: ecs.t5-lc1m2.small
+    zone: cn-qingdao-c
+    image: null
+```
+
+主要的
+
+完成日志记录在类似 `/tmp/perfkitbenchmarker/runs/152a8305/pkb.log`
 
 # 参考
 
