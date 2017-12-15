@@ -132,6 +132,12 @@ yum install wget sysstat keepassx
 yum install libreoffice-calc libreoffice-writer libreoffice-impress
 ```
 
+* RSS阅读器
+
+如果你也是重度RSS新闻订阅者，在Linux桌面也有对应的应用程序 - [RSSOwl](http://www.rssowl.org/)（这是一个Java程序，跨平台）。但是，这个程序并不支持Feddly。
+
+如果是Feedly用户，则通过WEB方式访问。
+
 * 安装微软Visual Studio Code - 微软拥抱开源提供的一款跨平台非常优秀的轻量级代码编辑器
 
 ```bash
@@ -161,13 +167,17 @@ cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 
 # 应用软件的web替换
 
-作为小众操作系统，Linux桌面还缺乏一些重量级并且难以离弃的应用软件。但是，比较幸运的是，如果你使用的是一些大厂的App，则通常他们的web App做得也很不错，基本达到原声App的水准：
+作为小众操作系统，Linux桌面还缺乏一些重量级并且难以离弃的应用软件。但是，比较幸运的是，如果你使用的是一些大厂的App，则通常他们的web App做得也很不错，基本达到原生App的水准：
 
 * [微信](https://wx.qq.com/)
-* [[qq]](http://w.qq.com/)
+* [QQ](http://w.qq.com/)
 * [钉钉](https://im.dingtalk.com/)
 * [icloud](https://www.icloud.com/)
 * [印象笔记](https://www.evernote.com)
+
+> [5 Best Evernote Alternatives For Linux](https://itsfoss.com/5-evernote-alternatives-linux/)介绍了5个Evernote替代软件
+  * [Laverna](https://github.com/Laverna/laverna)是一个纯JS的应用程序，可以和dropbox同步，非常巧妙的一个Markdown工具。结合自建的OwnCloud可以实现个人的云存储。
+  * [TagSpaces](https://www.tagspaces.org/) 提供了跨平台的文档组织工具，分为开源社区版本和收费pro版本。其中开源版本提供了基本的tag方式，文档组织比较美观。不过，我感觉借鉴这个思路或许通过Linux自带的文件属性也能够实现。此外，EverNote提供了很好的文档tag标记也是非常稳定的。
 
 # 参考
 

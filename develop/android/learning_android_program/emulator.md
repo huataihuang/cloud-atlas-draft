@@ -14,7 +14,9 @@ Android Emulator 运行完整的 Android 系统堆栈（一直深入至内核级
 
 AVD 包括硬件配置文件、系统映像、存储区域、皮肤和其他属性。
 
-> 可能需要使用最新版本的A
+# 模拟器Crash
+
+发现不论选择32位还是64位的System Image，启动模拟器都是运行`qemu-system-i386`，并且都出现crash：
 
 ```
 Operating system: Linux
@@ -54,9 +56,9 @@ Thread 14 (crashed)
     Possible instruction pointers:
 ```
 
-# 创建AVD
+但是手工直接执行`/usr/bin/qemu-system-i386`指令是能够启动模拟器窗口（直到显示没有启动磁盘）
 
-* 
+# 创建AVD
 
 * 启动Virtual Device Configuration
 
@@ -64,7 +66,7 @@ Thread 14 (crashed)
 
 或者，从 Android Studio 中运行您的应用。在 Select Deployment Target 对话框中，点击 Create New Emulator。
 
-
+> 在墙内安装Android Virtual Device时下载System Image非常缓慢，甚至难以完成。所以尝试[离线（手工）安装Android System Image](install_android_system_image_offline)
 
 # 参考
 
