@@ -118,4 +118,5 @@ firewall-cmd --reload
 # 参考
 
 * [tianjianchn/install-shadowsocks.sh](https://gist.github.com/tianjianchn/888a610036c743c4aba2ea1e82f4a216) - 在CentOS上安装Shadowsocks的脚本，采用直接安装第三方repo提供的rpm安装
+* [在 CentOS 7 下安装配置 shadowsocks](http://morning.work/page/2015-12/install-shadowsocks-on-centos-7.html) - 较为详细的采用Python版本的ShadowSocks
 * [阿里云centos 7下搭建shadowsocks](https://segmentfault.com/a/1190000010639190)
