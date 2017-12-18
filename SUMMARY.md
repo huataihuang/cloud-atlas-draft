@@ -575,6 +575,7 @@
 		* [学习Android开发](develop/android/learning_android_program/README.md)
 			* [Android应用是如何编译和运行的](develop/android/how_android_apps_are_built_and_run.md)
 			* [Android开发环境](develop/android/learning_android_program/develop_env.md)
+			* [adb(Android Debug Bridge)和Android数据存储](develop/android/learning_android_program/adb_and_android_data.md)
 			* [在Android模拟器上运行应用](develop/android/learning_android_program/emulator.md)
 			* [离线（手工）安装Android System Image](develop/android/learning_android_program/install_android_system_image_offline)
 			* [配置Android模拟器使用硬件加速](develop/android/hardware_acceleration_for_android_emulator.md)

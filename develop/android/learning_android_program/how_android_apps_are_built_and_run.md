@@ -78,6 +78,8 @@ public com.hfad.bitsandpizzas.MainActivity();
 
 `adb`进程将启动一个网络socket，并且监听在端口`5037`的命令。每个输入的`adb`命令都将发送指令给这个端口。
 
+> 默认`adb`访问android是非root权限，所以有些目录不能直接读取。如果要访问需要root权限的目录，可以在主机上先执行`adb root`重启`adbd`服务使之具有root权限，就可以访问Android设备的任何目录。参考[Android: adb: Permission Denied](https://stackoverflow.com/questions/7399028/android-adb-permission-denied))
+
 ## `.apk`文件被传输到设备
 
 `adb`命令用于传输`.apk`文件到Android设备的文件系统中。这个位置是在app的`package-name`定义的。所以，如果包的名字是`com.hfad.bitsandpizzas`，则这个`.apk`文件将位于`/data/app/com.hfad.bitsandpizzas`
