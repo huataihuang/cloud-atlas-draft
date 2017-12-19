@@ -37,6 +37,10 @@ echo $DISPLAY
 export DISPLAY="localhost:10.0"
 ```
 
+> 注意：如果使用了[ssh多路传输multiplexing加速](../../../service/ssh/multiplexing)技术，务必需要清理掉本地的ssh `ControlPath`文件，重新ssh登陆，否则新的ssh客户端访问选项`X11Forwarding`无法生效。
+
+要验证`X11Forwarding`是否正常工作，可以在服务器上执行一个简单的X Window程序，看是否能否正常显示在本地客户端桌面。例如，使用`xev`程序（一个简单显示鼠标位置的X程序）。
+
 # ssh进行X转发解决"untrusted X11 forwarding"
 
 在使用 `ssh -X SERVER_IP` 时服务器提示

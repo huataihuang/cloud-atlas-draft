@@ -22,3 +22,7 @@ pip install qcloudapi-sdk-python
 pip install qcloudcli
 ```
 
+# PerfKit BenchMarker代码结构
+
+参考 [PerfKit Benchmarker增加新的云服务商](../perfkit_benchmarker_add_new_cloud_provider) 主要的代码结构可以从现有的代码结构中clone出来，然后修改命令。因为云服务商的系统架构大同小异，例如，可以从阿里云`providers/alicloud`中clone出`providers/qcloud`。
+
