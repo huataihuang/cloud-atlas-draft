@@ -76,6 +76,7 @@ Deploy Linux 2.0开始支持[init](https://en.wikipedia.org/wiki/Init) system，
 * 手机必须ROOT
 * Installation Type : File
 * File syste: ext2
+* 磁盘空间要使用`10G` - 在安装`kali-linux-full`这个meta包验证发现，空间需求超过了6GB
 * 选择桌面环境，VNC，SSH Server，以及X Server作为可选包。但是不要选择Kali Components
 * 不要将用户名修改成 root
 * 可以挂载Android文件系统，方便进行开发：但是不要挂载`/data`目录，该目录下很多系统目录会导致`df`命令显示`/cache`等目录无法访问。所以，该为挂载`/data/data`目录，就可以访问Android中的很多应用数据。
@@ -112,6 +113,8 @@ resize2fs /mnt/sdcard/linux.img 6144M
 ```
 
 > 注意：这里`resize2fs`需要给出实际设置的更改文件系统大小，例如这里是`6144M`（6GB），否则还是会保持原来的空间大小。（测试了在`linuxdeploy`设置安装镜像文件设置成6G，但是实际安装时候依然生成了2G的空间（BUG？），还是通过上述方法调整的镜像文件系统大小。）
+>
+> 另外，根据实际经验，如果要安装`kali-linux-full`需要超过6G空间，建议10G。
 >
 > 参考[How to resize ext3 image files](https://unix.stackexchange.com/questions/36123/how-to-resize-ext3-image-files)
 >

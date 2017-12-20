@@ -597,6 +597,7 @@
 			* [在hammerhead(Nexus 5)上安装LineageOS](develop/android/lineageos/install_lineageos_on_hammerhead.md)
 		* [Android和Linux合体](develop/android/linux/README.md)
 			* [在Android中运行Linux](develop/android/linux/deploy_linux_on_android.md)
+			* [在Android中部署ssh服务](develop/android/linux/deploy_ssh_server_for_android.md)
 			* [在Android上部署Linux开发环境](develop/android/linux/linux_develop_environment_on_android.md)
 			* [容器模式在Linux中安装和运行Android Apps(APKs)](develop/android/linux/install_and_run_android_apps_on_linux_in_container.md)
 		* [BlueTooth](develop/android/bluetooth/README.md)
