@@ -161,7 +161,7 @@ Error: failed to start containers: dev5
 
 ```
 rpm -e docker-ce
-dnf install docker docker-common container-selinux docker-selinux docker-engin
+dnf install docker docker-common container-selinux
 ```
 
 这个发行版安装的`docker`则可以通过如下命令启动

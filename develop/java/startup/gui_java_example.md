@@ -26,7 +26,13 @@ IDEA的GUI Designer使得开发者能够以期望的布局和绑定类以及对�
 
 在创建GUI form和dialog之前，选择一个将要存储form的包。可能需要首先创建一个包，建议将from和dialog作为实现它们功能的类存储在同一个包里面。
 
-> 和Eclipse不同，IDEA的GUI Designer通过交互界面创建窗口之后，可以使用组合键 `Alt+Insert`（Windows）或者`ctrl+n`(MacOS)  就可以对窗体绑定class - 参考[Creating and Disposing of a Form's Runtime Frame](https://www.jetbrains.com/help/idea/creating-and-disposing-of-a-form-s-runtime-frame.html)和[What is the equivalent of “Alt-Insert” in IntelliJ for Mac OS X?](https://stackoverflow.com/questions/12405564/what-is-the-equivalent-of-alt-insert-in-intellij-for-mac-os-x)
+和Eclipse不同，IDEA的GUI Designer通过交互界面创建窗口之后，可以使用组合键 `Alt+Insert`（Windows）或者`ctrl+n`(MacOS)  就可以对窗体绑定class。此时会弹出一个对话框，用于输入绑定的类：
+
+![GUI对象绑定class](../../../img/develop/java/startup/ctrl_n_bonding_class.png)
+
+> 参考[Creating and Disposing of a Form's Runtime Frame](https://www.jetbrains.com/help/idea/creating-and-disposing-of-a-form-s-runtime-frame.html)和[What is the equivalent of “Alt-Insert” in IntelliJ for Mac OS X?](https://stackoverflow.com/questions/12405564/what-is-the-equivalent-of-alt-insert-in-intellij-for-mac-os-x)
+
+## 绑定
 
 # 参考
 
