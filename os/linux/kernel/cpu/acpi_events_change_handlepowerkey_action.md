@@ -46,6 +46,8 @@ systemctl restart systemd-logind
 
 > `hibernate`还需要更多配置（配置磁盘存储内存内容），这里采用比较简单的`suspend`。
 
+> 在[通过systemd设置禁止合上笔记本屏幕suspend](../../redhat/system_administration/systemd/disable_suspend_when_close_laptop_lid)采用了相同的原理。
+
 # 参考
 
 * [archLinux: Power management](https://wiki.archlinux.org/index.php/Power_management)

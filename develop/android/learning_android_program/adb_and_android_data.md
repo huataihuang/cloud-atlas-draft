@@ -223,6 +223,18 @@ adb shell cmd package dump-profiles package
 adb pull /data/misc/profman/package.txt
 ```
 
+# 关闭手机
+
+`adb shell`指令可以用于关闭手机：
+
+```
+adb shell reboot -p
+```
+
+`-p`参数表示`--poweroff`，此时会关闭手机电源。
+
+> 参考 [How can I shutdown my Android phone using an adb command?](https://android.stackexchange.com/questions/47989/how-can-i-shutdown-my-android-phone-using-an-adb-command)
+
 ----
 
 # root权限访问Android设备

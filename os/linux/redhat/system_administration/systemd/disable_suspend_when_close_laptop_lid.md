@@ -25,6 +25,8 @@ HandleLidSwitch=suspend
 HandleHibernateKey=hibernate
 ```
 
+> 上述配置方法原理和[修改ACPI事件：更改电源键默认操作](../../../kernel/cpu/acpi_events_change_handlepowerkey_action)原理是相同的，即通过`systemd`修改电源管理策略。
+
 # 参考
 
 * [How to disable auto suspend when I close laptop lid?](https://unix.stackexchange.com/questions/52643/how-to-disable-auto-suspend-when-i-close-laptop-lid)
