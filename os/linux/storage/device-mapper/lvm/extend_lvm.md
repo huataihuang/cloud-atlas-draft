@@ -149,6 +149,8 @@ sudo tune2fs -l /dev/mapper/fedora-home | grep resize_inode
 Filesystem features:      has_journal ext_attr resize_inode dir_index filetype needs_recovery extent 64bit flex_bg sparse_super large_file huge_file uninit_bg dir_nlink extra_isize
 ```
 
+> 减小LVM卷分区的操作参考[缩小lvm卷](decrease_lvm)
+
 # 参考
 
 * [Extending a logical volume](http://tldp.org/HOWTO/LVM-HOWTO/extendlv.html)

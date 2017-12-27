@@ -123,6 +123,8 @@
 				* [iotop监视磁盘访问](os/linux/storage/disk/iotop.md)
 			* [LVM](os/linux/storage/lvm/README.md)
 				* [Linux卷管理](os/linux/storage/lvm/linux_lvm.md)
+				* [扩展lvm卷](os/linux/storage/lvm/extend_lvm.md)
+				* [缩小lvm卷](os/linux/storage/lvm/decrease_lvm.md)
 				* [在Gentoo上使用LVM](os/linux/storage/lvm/using_lvm_on_gentoo.md)
 			* [文件系统](os/linux/storage/filesystem/README.md)
 				* [EXT文件系统](os/linux/storage/filesystem/ext/README.md)
