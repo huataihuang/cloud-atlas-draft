@@ -2,7 +2,9 @@
 
 我的笔记本安装了双操作系统，有时候希望能够切换到MacOS平台，同时在切换回Linux时候能够保持离开时的工作桌面。
 
-本文是参考Arch Linux文档[Power management/Suspend and hibernate (简体中文)](https://wiki.archlinux.org/index.php/Power_management/Suspend_and_hibernate_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))的一个摘要笔记和实践记录，方便自己的工作。
+本文是参考Arch Linux文档[Power management/Suspend and hibernate (简体中文)](https://wiki.archlinux.org/index.php/Power_management/Suspend_and_hibernate_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87))和[Enabling Hibernation in Fedora 23](https://baldpenguin.blogspot.com/2016/03/enabling-hibernation-in-fedora-23.html)的一个摘要笔记和实践记录。
+
+实现了Hibernate之后，在双操作系统之间切换非常方便，hibernate之后会切断电源，这样启动时候也是grub界面，但是进入桌面时候就会看出差异：和MacOS一样，每次都回到最初的工作状态，实在是居家旅行编码的一大利器！
 
 # 挂起、睡眠和休眠的区别
 

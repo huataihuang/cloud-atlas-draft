@@ -44,9 +44,11 @@ HandlePowerKey=suspend
 systemctl restart systemd-logind
 ```
 
-> `hibernate`还需要更多配置（配置磁盘存储内存内容），这里采用比较简单的`suspend`。
+> `hibernate`还需要更多配置（配置磁盘存储内存内容），但是如果[在MacBook Pro安装Fedora和macOS双启动](../../redhat/fedora/multiboot_fedora_and_macOS)，则使用`hibernate`就具有非常大的优势：只要按一下电源键就可以将当前Linux工作状态保存并关机，再次启动笔记本就可以在两种操作系统之间切换，并且回到Linux桌面时完全恢复原有工作状态，带来了极大的效率提升。
+>
+> 详细的`hibernate`睡眠设置见[通过systemd设置fedora系统hibernate休眠](../../redhat/system_administration/systemd/hibernate_with_fedora_in_laptop)
 
-> 在[通过systemd设置禁止合上笔记本屏幕suspend](../../redhat/system_administration/systemd/disable_suspend_when_close_laptop_lid)采用了相同的原理。
+> 在[通过systemd设置禁止合上笔记本屏幕suspend](../../redhat/system_administration/systemd/disable_suspend_when_close_laptop_lid)采用了相同的原理，则是针对将笔记本电脑作为开发服务器使用，实现合上屏幕不进入休眠，始终在线运行的设置方法。
 
 # 参考
 
