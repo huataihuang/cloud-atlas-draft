@@ -42,7 +42,9 @@ drwxr-xr-x 2 admin admin 155 Aug 31  2015 js
 
 ```python
 from django.conf.urls import include, url
-from . import views
+# from . import views  <= 注释掉这行，去除根目录下views，改为引用dashboard下的views
+from dashboard import urls as dashboard_urls
+from dashboard import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
@@ -65,6 +67,15 @@ TEMPLATES = [
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static') #增加这一行
+```
+
+并安装这个定制的APP:
+
+```python
+INSTALLED_APPS = [
+    ...
+    'dashboard',
+]
 ```
 
 * 然后修改一下`index.html`将一些静态文件加载代码设置从`static`变量（也就是在`settings.py`中设置的）开始加载

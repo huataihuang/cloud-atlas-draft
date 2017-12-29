@@ -115,7 +115,14 @@ resize2fs /dev/mapper/fedora-home
 mount /dev/mapper/fedora-home /home
 ```
 
-> 同样的操作也针对`/dev/mapper/swapper`操作，扩展swap空间。
+> 同样的操作也针对`/dev/mapper/swapper`操作，扩展swap空间:
+
+```
+swapoff /dev/fedora/swap
+lvextend -L +10.25G /dev/fedora/swap
+mkswap /dev/fedora/swap
+swapon /dev/fedora/swap
+```
 
 # 参考
 

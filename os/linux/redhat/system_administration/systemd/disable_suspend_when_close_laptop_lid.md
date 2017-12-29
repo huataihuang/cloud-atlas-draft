@@ -18,7 +18,7 @@ systemdctl restart systemd-logind
 
 `HandlePowerKey=, HandleSuspendKey=, HandleHibernateKey=, HandleLidSwitch=` 控制了logind如何处理系统电源管理和睡眠键以及屏幕开阖时候触发的动作，例如系统电源关闭或者suspend。设置值可以是`ignore`，`poweroff`，`reboot`，`halt`，`kexec`，`suspend`，`hybrid-sleep` 和 `lock`。如果设置了`ignore`，就不会处理任何这些键。如果设置`lock`则会锁定屏幕。只有输入设备具有`power-switch` udev标签才会监视键盘和屏幕开阖事件。默认设置：
 
-```
+```bash
 HandlePowerKey=poweroff
 HandleSuspendKey=suspend
 HandleLidSwitch=suspend
