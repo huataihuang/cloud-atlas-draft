@@ -13,8 +13,6 @@ pip install lipsum
 pip install lorem-ipsum-generator
 ```
 
-
-
 * 在Django设置`settings.py`中添加`INSTALLED_APPS`:
 
 ```python
@@ -76,7 +74,9 @@ urlpatterns = [
 
 # 创建新的layout
 
+暂时没有解决，并且[本地运行django-dash demo](run_django-dash_demo_locally)未达到预期，所以暂时放弃，回到原先采用的[django前端案例--Portal](../startup/django_frontend_portal_example)中采用的比较简单的方式实现。
 
+另外，尝试改为[Django的dashboard](../django_dashboard/README)中借鉴的[call-for-service](https://github.com/RTIInternational/call-for-service)项目来实现。
 
 # 参考
 

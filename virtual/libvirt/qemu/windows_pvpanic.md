@@ -2,10 +2,11 @@
 
 > 在测试Windows系统Crash是否能够触发pvpanic事件的关键点是模拟触发Windows crash，其余的环境设置和[CentOS pvpanic实现和测试](centos7_pvpanic)相似。
 
-对于Windows物理服务器，主要有两种方法人工触发Crash来获取memory dump:
+对于Windows物理服务器，人工触发Crash来获取memory dump:
 
 * 设置`NMICrashDump`，通过使用一个硬件级别的远程管理接口来触发
 * 设置`CrashOnCtrlScroll`，通过特定组合键来触发
+* 使用NotMyFault
 * 使用Bang! -- Crash on Demand Utility
 * 使用WinDbg
 
@@ -14,6 +15,10 @@
 在虚拟化环境中，主要采用软件方法来触发。
 
 # 触发Windows crash的工具
+
+## NotMyFault(推荐)
+
+微软提供了一个用于触发crash，hang以及引发内核内存泄露的工具[NotMyFault](https://docs.microsoft.com/en-us/sysinternals/downloads/notmyfault)。
 
 ## BANG
 

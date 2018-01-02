@@ -22,3 +22,12 @@ Node为服务端JavaScript提供了一个事件驱动的、异步的平台。
 # 参考
 
 * [深入浅出Node.js（一）：什么是Node.js](http://www.infoq.com/cn/articles/what-is-nodejs)
+
+----
+
+# Dashboard界面
+
+搜索可以发现，很多美观的Dashboard交互界面都是采用node.js开发的，侧面证明node.js在开发web交互界面的优势。（甚至很难找到python开发的dashboard）：
+
+* [PatternFly](https://github.com/patternfly/patternfly)
+  * [Copr, Dist Git and Patternfly](https://blog.samalik.com/copr-dist-git-and-patternfly/) - Fedora项目采用 Dist Git和Patternfly开发了用于编译Fedora rpm包的平台

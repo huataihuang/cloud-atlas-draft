@@ -44,7 +44,19 @@ anbox-installer
 
 在[Fix Snap Error: cannot change profile for the next exec call: No such file or directory](https://itsfoss.com/fix-snap-error/)提出了解决snap包安装的方法：因为snap是通过Ubuntu提供的，高度依赖Ubuntu，不能够支持所有（主要是较新的）Linux内核。只有通过Ubuntu提供的Linux内核才能保证Snap正常工作。该文档建议安装Ubuntu发行版提供的Linux内核来修复这个问题。
 
-> 有关在Fedora中部署Anbox待解决
+参考[Fedora 28: cannot install "anbox-installer": classic confinement is not yet supported #427](https://github.com/anbox/anbox/issues/427)尝试从`edge`通道安装
+
+* 删除anbox-installer，然后重新安装
+
+```
+snap remove anbox-installer
+
+snap install --devmode --edge anbox
+```
+
+> [anbox 官网提供了一个安装视频](https://anbox.io/)
+
+不过，虽然`anbox`安装完成，但是通过`anbox system-info`显示缺少`binder`和`ashmem`模块。并没有找到在Fedora平台编译安装这两个模块的文档，当前仅有ubuntu平台额可以支持anbox的编译安装。
 
 # 参考
 

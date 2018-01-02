@@ -2,13 +2,21 @@
 
 # 触发crash dump
 
-## 方法A -- `NMICrashDump` (斯和远程管理的服务器硬件)
+## 方法1 -- NotMyFault
+
+微软提供了一个用于触发crash，hang以及引发内核内存泄露的工具[NotMyFault](https://docs.microsoft.com/en-us/sysinternals/downloads/notmyfault)。特别适合用来学习如何标识和诊断设备驱动和硬件故障，以及使用它来触发蓝屏dump。
+
+配合[Windows Debugger (WinDbg)](https://developer.microsoft.com/en-us/windows/hardware/download-windbg)调试和分析内核异常。
+
+> 推荐使用这个工具
+
+## 方法2 -- `NMICrashDump` (斯和远程管理的服务器硬件)
 
 一些服务器硬件提供了通过硬件中断触发crash（以获得memory dump）的方法，通常是使用一个硬件级别的远程管理接口来触发 。详细请参考 [How to generate a complete crash dump file or a kernel crash dump file by using an NMI on a Windows-based system](https://support.microsoft.com/en-us/help/927069/how-to-generate-a-complete-crash-dump-file-or-a-kernel-crash-dump-file)
 
 简单来说，就是先设置`NMICrashDump`注册表值，然后使用特定的硬件远程管理接口来触发crash。
 
-## 方法B -- `CrashOnCtrlScroll`
+## 方法3 -- `CrashOnCtrlScroll`
 
 [CrashOnCtrlScroll](https://docs.microsoft.com/en-us/windows-hardware/drivers/debugger/forcing-a-system-crash-from-the-keyboard)是Windows提供的一种通过键盘驱动和内核配合，在特定按键组合情况下，触发主机crash（以获得memory dump）的技术。
 

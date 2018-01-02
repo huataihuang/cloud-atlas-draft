@@ -476,6 +476,7 @@
 	* [Kubernetes](virtual/kubernetes/README.md)
 		* [Kubernetes设计架构](virtual/kubernetes/kubernetes_infrastructure.md)
 	* [Atomic](virtual/atomic/README.md)
+	* [LXD](virtual/lxd/README.md)
 	* [VirtualBox](virtual/virtualbox/README.md)
 		* [VirtualBox使用Tips](vitual/virtualbox/virtualbox_tips.md)
 	* [macOS平台虚拟化](virtual/macos/README.md)
