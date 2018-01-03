@@ -19,3 +19,6 @@ Martin Fowler说过，"持续集成并不能消除Bug，而是让它们非常容
 # 参考
 
 * [持续集成是什么？](http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html)
+* [维基百科:持续交付](https://zh.wikipedia.org/zh-cn/%E6%8C%81%E7%BA%8C%E4%BA%A4%E4%BB%98)
+* [如何理解持续集成、持续交付、持续部署？](https://www.zhihu.com/question/23444990)
+* [谈谈持续集成，持续交付，持续部署之间的区别](http://blog.flow.ci/cicd_difference/)

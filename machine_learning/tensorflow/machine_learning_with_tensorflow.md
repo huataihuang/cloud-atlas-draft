@@ -52,3 +52,6 @@ TensorFlow的计算模型是有向图（directed graph），其中每个节点�
 * TensorFlow 是用于定义机器学习模型、用数据训练模型，并将模型导出供后续使用的API。主要的API均可通过Python访问。
 * TensorBoard 是一个包含在任意标准TensorFlow安装中的图可视化软件。
 * TensorFlow Serving 接收输入数据，并将之送入预训练的模型，然后将模型的输出结果返回。TensorFlow Serving完全是用C++编写的，其API也只能通过C++访问。
+
+> TensorFlow的灵活性之一体现在它可轻松扩展到计算性能不高的系统中。例如，它可在安卓设备以及像树莓派（Raspberry Pi）这样的微型计算机中运行。TensorFlow代码库中包含了一个在安卓系统中运行预训练模型的例程。
+
