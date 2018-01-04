@@ -701,6 +701,8 @@
 				* [使用django-tables2展示HTML表](develop/python/django/startup/use_django-table2.md)
 				* [django特定model保存记录时触发动作](develop/python/django/startup/trigger_action_when_specific_model_saved.md)
 				* [django前端案例--Portal](develop/python/django/startup/django_frontend_portal_example.md)
+			* [轻量级Django](develop/python/django/lightweight_django/README.md)
+				* [Hello World](develop/python/django/lightweight_django/hello_world.md)
 			* [Django REST framework](develop/python/django/rest_framework/README.md)
 				* [Django REST framework概述](develop/python/django/rest_framework/introduce_django_rest_framework.md)
 				* [Django REST framework快速起步](develop/python/django/rest_framework/django_rest_framework_quickstart.md)
