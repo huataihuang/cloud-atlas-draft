@@ -19,6 +19,10 @@
 
 > 从今天起，做一个写代码的人
 
+# Fedora开发
+
+Fedora提供了一个快速开始语言开发的文档：[Languages & databases - Languages and their modules available in Fedora. Installing databases and their configuration.](https://developer.fedoraproject.org/tech.html)，可以方便你开始。
+
 # 参考
 
 * [Google 开源项目风格指南 (中文版)](https://zh-google-styleguide.readthedocs.io/en/latest/)

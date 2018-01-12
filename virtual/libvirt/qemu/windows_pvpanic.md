@@ -64,8 +64,17 @@
 
 # 测试
 
+## NotMyFault
+
+
+
+## BANG
+
+[BANG! -- Crash on Demand Utility](http://www.osronline.com/article.cfm?article=153)
+
 * 在Windows 2012（x86_64）可以选择`vlh\AMD64\osrbang.exe`
 
 ![windows crash bang](../../../img/virtual/libvirt/qemu/windows_crash_bang.png)
 
 运行程序后点击`Crash Now`按钮，此时即发生Windows Crash。并且可以在host物理服务器的`/var/log/libvirt/libvirtd.log`日志中观察到对应的虚拟机`emit panic`日志。
+

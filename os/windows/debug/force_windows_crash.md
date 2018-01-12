@@ -8,7 +8,7 @@
 
 配合[Windows Debugger (WinDbg)](https://developer.microsoft.com/en-us/windows/hardware/download-windbg)调试和分析内核异常。
 
-> 推荐使用这个工具
+> 推荐使用这个工具。例如，在[Windows pvpanic实现和测试](../../../virtual/libvirt/qemu/windows_pvpanic)就采用该工具模拟触发虚拟机crash。
 
 ## 方法2 -- `NMICrashDump` (斯和远程管理的服务器硬件)
 

@@ -1,6 +1,6 @@
 # RHEL/CentOS vim安装
 
-在RHEL/CentOS发行版中，包含了以下软件包可以提高python开发效率
+在RHEL/CentOS/Fedora发行版中，包含了以下软件包可以提高python开发效率
 
 ```
 sudo yum install vim-enhanced vim-syntastic-python.noarch
@@ -12,26 +12,43 @@ sudo yum install vim-enhanced vim-syntastic-python.noarch
 
 > 本段落是快速完成Python Vim IDE设置的步骤，具体解释见本段落后的内容。本段落目标是尽快开始
 
-* 安装[Vundle](https://github.com/gmarik/Vundle.vim)扩展管理器
+* 安装[Vundle](https://github.com/VundleVim/Vundle.vim)扩展管理器
 
 ```
-git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 ```
+
+> [VIM and Python - a Match Made in Heaven](https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/)这篇文章提供了非常详细的配置方法，并且提供了
 
 * 使用[vimrc realpython](/img/vi/vimrc_realpython)或者直接从[VIM and Python - a Match Made in Heaven](https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/)提供的[VIM config](https://github.com/j1z0/vim-config/blob/master/vimrc)保存成`~/.vimrc`
 
-> 以下编译安装vim，过程比较繁杂。不成功的尝试见 [vim编译YouCompleteMe失败记录](try_vim_compile_with_you_complete_me)
+* 使用`vim`命令启动vim，然后执行如下命令安装插件：
+
+```
+:PluginInstall
+```
+
+> 如果vim版本过低或者vim编译时没有支持Python，则需要从源代码重新编译，过程比较繁杂。不成功的尝试见 [vim编译YouCompleteMe失败记录](try_vim_compile_with_you_complete_me)。在fedora 27环境中，发行版提供的vim版本已经满足要求，可以省略这部分。
 
 > 从源代码编译过程参考 [Building Vim from source](https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source)
 
+* 编译`ycm_core`（YouCompleteMe）
+
+> `YoucompleteMe`插件安装后还需要编译一个`ycm_core`的库，这样可以快速语义分析补全或者函数变量快速转跳。编译需要`cmake`以及`python`开发的头文件
 
 ```
-/usr/lib64/python3.4/config-3.4m
+yum install cmake
+yum install python2-devel python3-devel
 ```
 
-* 执行`vim`命令，然后在命令模式下执行`:PluginInstall`安装插件
+```
+cd ~/.vim/bundle/YouCompleteMe
+./install.py --system-libclang --clang-completer --go-completer --js-completer
+```
 
-* 附加屏幕分割配置
+> 注意：我采用的是Fedora系统自带的libclang(`--system-libclang`)。完整的编译安装请参考[vim编译配置"YouCompleteMe"](vim_ycm)
+
+* 在`.vimrc`附加屏幕分割配置，这样就可以简化分割窗口的转跳，例如，原先使用`ctrl+w ctrl+j`才能调到下面的分割窗口，现在只需要简化成`ctrl+j`
 
 ```
 set splitbelow
@@ -49,6 +66,71 @@ nnoremap <C-H> <C-W><C-H>
 ```
 :NERDTree
 ```
+
+# 增加配置
+
+> [vim进阶 | 使用插件打造实用vim工作环境](https://www.jianshu.com/p/56385f4f95f5)这篇文章是基于vundle的插件管理设置，推荐参考
+
+* 取消备份
+
+```
+"disable backup
+set nobackup
+set noswapfile
+```
+
+* 默认文件编码utf-8
+
+```
+"file encode
+set encoding=utf-8
+```
+
+* 设置查找
+
+```
+"search
+set ic
+set hls
+set is
+```
+
+* 显示调整
+
+突出显示当前行
+
+```
+"highlight current line
+set cursorline
+```
+
+启动 vim 时关闭折叠代码
+
+```
+set nofoldenable
+```
+
+* 设置NERDTree
+  * (未启用)默认启用`NERDTree`
+  * 设置切换快捷键`ctrl-n`
+  * 启用最小UI
+  * 显示隐含文件（以`.`开头文件和目录）
+  * (未启用)控制台启动时启动`NETDTree`
+  * (未启用)启动`NERDTree`后将光标切换到文件
+
+```
+"autocmd vimenter * NERDTree
+map <C-n> :NERDTreeToggle<CR>
+let NERDTreeMinimalUI = 1
+let NERDTreeShowHidden = 1
+
+"let g:nerdtree_tabs_open_on_console_startup = 1
+"let g:nerdtree_tabs_focus_on_files = 1
+```
+
+# 增加其他插件
+
+> [VIM and Python - a Match Made in Heaven](https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/)专注于Python，但是我也需要其他的插件来支持功能，所以在`call vundle#end()`行之前插入有关插件的配置
 
 ----
 
@@ -328,3 +410,4 @@ Solarized携带了两种theme，一种是dark，一种是light，切换非常方
 
 * [VIM and Python - a Match Made in Heaven](https://realpython.com/blog/python/vim-and-python-a-match-made-in-heaven/)
 * [vim安装YouCompleteMe 插件](http://www.cnblogs.com/junnyfeng/p/3633697.html)
+* [vim进阶 | 使用插件打造实用vim工作环境](https://www.jianshu.com/p/56385f4f95f5)
