@@ -117,3 +117,21 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-ovirt-3.5
 ## Exclude following Packages Updates ##
 exclude=perl php python
 ```
+
+# `yum update`和`yum upgrade`的差别
+
+> 参考 [yum update和upgrade的区别？](https://segmentfault.com/q/1010000008228111)
+
+`yum update`和`yum upgrade`的功能是一样的，都是将需要更新的package更新至软件源中的最新版。唯一不同是：`yum upgrade`会删除旧版本的package，而`yum update`则会保留。
+
+注意！如果你的某些软件依赖旧版本的package，请使用`yum update`。
+
+在[yum equivalent to apt-get upgrade vs apt-get dist-upgrade?](https://serverfault.com/questions/298146/yum-equivalent-to-apt-get-upgrade-vs-apt-get-dist-upgrade/298158#298158)有详细说明：
+
+`yum update`只是升级软件包到新版本。例如，`foo-awesome`淘汰替换了`foo`，但是`yum update`不会将`foo`更改升级成`foo-awesome`。必须加上`--obsoletes`这个开关这样`yum update`才会进行扩展检查来提供更新路径。
+
+而`yum upgrade`则相当于`yum --obsoletes update`，也就是可以直接将旧软件包体换成新的软件包，这样`foo`就会被升级体换成`foo-awesome`。通常，由于某些软件依赖旧版本软件包来运行，则应该使用`yum update`，如果没有这种旧版兼容要求，则可以使用`yum upgrade`，以便能够使用最新的软件体系。
+
+> 在线维护的服务器，通常求稳定，可能使用`yum update`较安全一些。此外，需要做好完整的兼容稳定性测试。
+
+如果希望`yum update`时避免更新内核，可以使用`yum --exclude=kernel* update`。见前述**避免升级部分软件包**，通过配置文件`yum.conf`也可以达到相同效果。

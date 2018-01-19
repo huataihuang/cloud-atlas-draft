@@ -4,6 +4,32 @@
 
 # 安装
 
+## Fedora安装sphinx-doc
+
+> 参考[Fedora developer: Sphinx](https://developer.fedoraproject.org/tech/languages/python/sphinx.html)
+
+For Python 2:
+
+```
+sudo dnf install python2-sphinx
+```
+
+For Python 3:
+
+```
+sudo dnf install python3-sphinx
+```
+
+## 通过virtualenv安装
+
+> 参考[Document your Django projects: reStructuredText and Sphinx](http://www.marinamele.com/2014/03/document-your-django-projects.html)
+
+```
+pip install sphinx
+```
+
+## MacOS 安装sphinx-doc
+
 > 以下实践在Mac OS X上完成，基本方法和Linux类似
 
 Mac OS X 已经自带了python，不过没有安装`pip`，需要先通过`easy_install`安装`pip`，进而安装`sphinx-doc`
@@ -18,7 +44,8 @@ sudo pip install sphinx
 在mac上安装遇到报错
 
 ```
-OSError: [Errno 1] Operation not permitted: '/tmp/pip-sGSJDx-uninstall/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/six-1.4.1-py2.7.egg-info'
+OSError: [Errno 1] Operation not permitted: '/tmp/pip-sGSJDx-uninshpinx
+ stall/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/six-1.4.1-py2.7.egg-info'
 ```
 
 这个报错在 [Six issue when installing package #3165](https://github.com/pypa/pip/issues/3165) 有解释和解决方法：
@@ -168,3 +195,4 @@ sphinx-build -b html source build
 # 参考
 
 * [Sphinx for Python documentation](http://gisellezeno.com/tutorials/sphinx-for-python-documentation.html)
+* [Document your Django projects: reStructuredText and Sphinx](http://www.marinamele.com/2014/03/document-your-django-projects.html)
