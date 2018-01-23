@@ -62,7 +62,7 @@ pip install --ignore-installed six
 * 保护进程不被代码注入，运行时附加（类似debugging）和DTrace
 * 拒绝没有签名的内核扩展
 
-通过添加一个扩展的文件属性，或者通过将文件或目录加入到`/System/Library/Security/rootless.conf`来设置保护属性。保护的目录包括 `/System`, `/bin`, `/sbin`, `/usr`。以及从`/etc`, `/tmp`, `var` 符号链接到`/private/etc`, '/privaate/tmp' 和 `/private/var` 来实现保护。
+通过添加一个扩展的文件属性，或者通过将文件或目录加入到`/System/Library/Security/rootless.conf`来设置保护属性。保护的目录包括 `/System`, `/bin`, `/sbin`, `/usr`。以及从`/etc`, `/tmp`, `var` 符号链接到`/private/etc`, `/private/tmp` 和 `/private/var` 来实现保护。
 
 系统完整性保护只有在系统分区之外才能整个或部分禁止。Apple在recovery system或从安装盘启动时候提供的终端窗口中，可以执行`csrutil`命令行工具。安装macOS时候，installer将任何位于标记为系统目录中的组件移动到`/Library/SystemMigration/History/Migration-[some UUID]/QuarantineRoot/`。通过保护系统目录，系统文件和目录只能在Apple软件更新的时候自动维护。所以，这种权限修复没有在Disk Utility和相应的diskutil操作中提供。
 

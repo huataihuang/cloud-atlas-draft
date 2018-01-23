@@ -1,3 +1,28 @@
+# 实践案例
+
+在一个Django开发项目`virtman`中，采用[Sphinx-doc](http://www.sphinx-doc.org)来构建项目说明文档。
+
+Django项目目录结构示例：
+
+```
+.
+|-- README.md
+|-- api
+|   |-- admin.py
+|   |-- models.py
+|   |-- serializers.py
+|   |-- signals.py
+|   |-- views.py
+|-- notify
+|   |-- admin.py
+|   |-- apps.py
+|   |-- models.py
+|   |-- views.py
+`-- virtman
+    |-- urls.py
+    |-- views.py
+```
+
 # 安装
 
 使用virtualenv安装
@@ -159,7 +184,7 @@ django.setup()
    notify/views
 ```
 
-上述`index.rst`中，每个`.rst`文件对应都建立一个索引。注意`/`之前是目录，之后是`xxs.rst`文件（如`models.rst`），即如`api/models.rst`。这样的文件结构是完全和Django项目文件一一对应。
+上述`index.rst`中，每个`.rst`文件对应都建立一个索引。注意`/`之前是目录，之后是`xxs.rst`文件（如`models.rst`），即如`api/models.rst`。这样的文件结构是完全和Django项目文件一一对应（需要对哪个`.py`程序抽取注释就创建对应的目录树定义）。
 
 * 建立索引文件之后，再按照目录创建和django的project以及app相同的目录结构和对应程序的文档，这样就可以指引Sphinx去抽取对应程序中的类和模块的注释说明。
 
@@ -199,7 +224,7 @@ touch api/models.rst
 
 ```reStructredText
 api.models module
-======
+=====================
 
 .. automodule:: api.models
     :members:
@@ -212,6 +237,8 @@ api.models module
 * 再次执行`make html`
 
 之后就可以在输出目录看到抽取的Python程序中的函数说明文档。
+
+
 
 # 参考
 
