@@ -32,6 +32,19 @@ adb pull /sdcard/video.mp4 C:\Users\Jonathan\Desktop
 adb push C:\Users\Jonathan\Desktop\video.mp4 /sdcard/
 ```
 
+# 使用网络通过浏览器下载文件到手机
+
+在个人电脑上，使用Python内置的`SimpleHTTPServer`模块可以启动一个简单的web下载服务器：
+
+```
+python -m SimpleHTTPServer 8000
+```
+
+> 监听在端口`8000`上，在Android使用浏览器访问`http://<host_ip>:8000`就可以看到共享的目录下文件。
+
+注意：下载文件位于`Downloads`目录下，不能直接被Android中其他应用程序读取。例如，`.pdf`下载到`Downloads`目录下就不能直接通过`kindle`加载阅读。但是，只要把文件移动到`Documents`目录下就可以直接通过Kindle进行浏览。
+
+> Kindle支持`pdf`和没有DRM加密的电子书阅读，所以只要把文件存放到`Documents`目录下，就可以通过Kindle阅读，不需要安装第三方软件。
 
 # 参考
 
