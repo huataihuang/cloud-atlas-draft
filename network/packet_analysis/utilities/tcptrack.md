@@ -75,22 +75,6 @@ tcptrack -i eth0 'src or dst 87.xx.xx.18'
 
 既然我们要分析导致千兆物理网卡拥塞的原因，就需要分析网络流量中的端口（协议/服务）以及对应的IP对，以便找到流量burst的根源。
 
-* 下载对应的`tcptrack`
-
-RHEL/CentOS 5
-
-```
-curl -o /usr/bin/tcptrack http://060307-pub.oss-cn-hangzhou-zmf.aliyuncs.com/tcptrack_5
-chmod 755 /usr/bin/tcptrack
-```
-
-RHEL/CentOS 7
-
-```
-curl -o /usr/bin/tcptrack http://060307-pub.oss-cn-hangzhou-zmf.aliyuncs.com/tcptrack_7
-chmod 755 /usr/bin/tcptrack
-```
-
 * 分别开两个终端针对`eth0`网卡和`eth1`接口（网卡bonding)进行分析
 
 ```

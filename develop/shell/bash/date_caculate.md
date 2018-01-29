@@ -17,7 +17,7 @@ echo $interval
 
 时间差计算可以使用上述 `expr $Sys_data - $In_data` ，也可以使用单括号运算符`$()`：
 
-```
+```bash
 interval=$($Sys_data - $In_data)
 ```
 
@@ -49,9 +49,28 @@ date --date="-1 days" +"%Y-%m-%d %H:%M"
 
 > `-d`和`--date`等同
 
+# 日期格式的转换
+
+在前面的两个案例中，`date`命令有一个很重要和有用的参数`-d`，这个参数的含义是让`date`命令不是从当前时钟读取，而是从指定变量读取。正是有了这个变量，上述案例才能从各个变量中获取值，然后利用`+`符号进行格式转换。
+
+最常用的方式就是把两个时间变量转换成秒（`+%s`）然后进行相减计算，例如，从日志文件中获取时间戳，然后和当前时间进行相减计算，以获知日志时间和当前的时间差距。
+
+另外，GNU coreutils >= 5.3还支持支持一种类似以下的`@`格式
+
+```bash
+date -d @1234567890
+```
+
+可以从时间秒格式传换出时间格式。上述格式还可以使用变量：
+
+```bash
+date -d @${i} +"%T"
+```
+
 # 参考
 
 * [SHELL中计算时间差方法](http://blog.csdn.net/foxliucong/article/details/4225008)
 * [linux shell 时间运算以及时间差计算方法](http://www.cnblogs.com/chengmo/archive/2010/07/13/1776473.html)
 * [date 十分钟前](http://bbs.chinaunix.net/thread-3611669-1-1.html)
 * [shell指定时间的N分钟前怎么计算](http://bbs.chinaunix.net/thread-4067928-1-1.html)
+* [Convert date formats in bash](https://stackoverflow.com/questions/6508819/convert-date-formats-in-bash)

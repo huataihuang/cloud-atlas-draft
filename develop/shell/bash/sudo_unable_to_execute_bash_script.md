@@ -29,7 +29,32 @@ sudo: unable to execute /etc/init.d/my_service_script: Success
 
 可以使用`cat -v filename`来显示详细的信息，包含隐藏字符。
 
-转换windows文档可以使用`dos2unix`命令：
+参考 [View line-endings in a text file](https://stackoverflow.com/questions/3569997/view-line-endings-in-a-text-file)，使用 `:set list` 也是只能看到`$`，实际上无法看到`\r`。
+
+> 在`DOS/Windows`操作系统，换行符是`\r\n`，而在`Linux/Unix`换行符是`\n`。
+
+
+可以通过grep命令找出存在`\r`换行符的行
+
+```bash
+grep -r $'\r' *
+```
+
+> 这里`-r`参数可以递归扫描整个目录，`$''`则是c风格的escape。
+
+如果是文本文件，可以通过`tr`命令移除 `\r`
+
+```bash
+tr -d $'\r' < filename>
+```
+
+也可以使用GNU `sed`
+
+```bash
+sed $'s/\r//' -i filename
+```
+
+* 转换windows文档可以使用`dos2unix`命令：
 
 ```
 dos2unix filename.txt
@@ -37,4 +62,6 @@ dos2unix filename.txt
 
 # 参考
 
+* [View line-endings in a text file](https://stackoverflow.com/questions/3569997/view-line-endings-in-a-text-file)
+* [grep to find files that contain ^M (Windows carriage return)](https://superuser.com/questions/194668/grep-to-find-files-that-contain-m-windows-carriage-return)
 * [File format](http://vim.wikia.com/wiki/File_format)

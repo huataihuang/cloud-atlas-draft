@@ -43,6 +43,22 @@ python manage.py runserver 0:8000
 pip install uwsgi
 ```
 
+也可以参考 [Installing uWSGI](http://uwsgi-docs.readthedocs.io/en/latest/Install.html) 手工下载安装
+
+```
+wget https://projects.unbit.it/downloads/uwsgi-2.0.15.tar.gz
+tar xfz uwsgi-2.0.15.tar.gz
+cd uwsgi-2.0.15
+
+python uwsgiconfig.py --build
+```
+
+编译以后在当前目录下有生成一个`uwsgi`二进制文件，将这个二进制文件复制到virtualenv的执行目录下，例如`~/venv2/bin/`就安装完成了：
+
+```
+cp uwsgi ~/venv2/bin/
+```
+
 * 基本测试
 
 创建一个`test.py`：
@@ -170,6 +186,12 @@ server {
 
 ```
 sudo ln -s ~/path/to/your/mysite/mysite_nginx.conf /etc/nginx/sites-enabled/
+```
+
+如果是老版本nginx，则将自定义文件软链接到`/etc/nginx/conf.d/`目录下
+
+```
+sudo ln -s ~/virtman/virtman_nginx.conf /etc/nginx/conf.d/
 ```
 
 * 部署静态文件
