@@ -328,3 +328,7 @@ initrd          /boot/initrd.img-4.10.0-28-generic
 
 linux16 /vmlinuz-3.10.0-327.ali2014.alios7.x86_64 root=UUID=96219e3e-c371-47a9-baaf-cc2b1b9f8b33 ro console=tty0 console=ttyS1,115200
 
+# 参考
+
+* [AndersonIncorp/fix.sh](https://gist.github.com/AndersonIncorp/3acb1d657cb5eba285f4fb31f323d1c3)
+* [GRUB rescue problem after deleting Ubuntu partition! [duplicate]](https://askubuntu.com/questions/493826/grub-rescue-problem-after-deleting-ubuntu-partition)

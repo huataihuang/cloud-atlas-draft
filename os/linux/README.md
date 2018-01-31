@@ -33,6 +33,9 @@ Linux的历史和自由软件和开源软件息息相关，如果你想真正了
 * 内核版本更新：ubuntu 16.04为4.4；ubuntu 18.04预计为4.15，可以使用最新的内核特性
 * 利用Ubuntu更为丰富的软件包进行开发
 * 启用嵌套虚拟化技术，在Ubuntu内部嵌套运行CentOS，以获得Red Hat系列运维和开发经验
+* Ubuntu的社区文档以及[StackOverflow活跃程度](https://insights.stackoverflow.com/trends?tags=ubuntu%2Ccentos%2Credhat)远高于RHEL/CentOS，方便个人学习探索
+
+> [Red Hat付费客户支持网站解决知识库](https://access.redhat.com/)提供了大量的解决方案，如果有企业支持建议选择，文档质量比社区更好。
 
 > 参考[RHEL 8 Speculation ???](http://centosfaq.org/centos/rhel-8-speculation/)讨论，按照RHEL7终止于2019Q4，则RHEL8可能会在2018Q4发布，倒推6个月 beta周期，则RHEL 8beta可能在2018Q2发布。所以有可能Fedora 27将作为RHEL 8的基础。
 >

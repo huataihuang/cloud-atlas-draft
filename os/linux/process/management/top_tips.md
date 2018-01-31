@@ -89,6 +89,12 @@ top -u tecmint
 
 在`top`中，按下`z`，则会高亮显示正在运行的进程
 
+# 显示线程
+
+启动`top -H`，则显示完整线程。如果要观察指定进程的线程，则使用`top -H -p <pid>`
+
+> 参考[How to view threads of a process on Linux](http://ask.xmodulo.com/view-threads-process-linux.html)
+
 # 显示完整的进程路径
 
 默认启动只显示一个短命令作为进程展示，要显示完整的路径命令，只要按下`c`
