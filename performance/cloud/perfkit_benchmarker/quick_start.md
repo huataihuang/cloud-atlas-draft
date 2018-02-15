@@ -108,6 +108,8 @@ aliyuncli ecs help
 aliyuncli configure
 ```
 
+执行上述配置就可以输入前面在[AliCloud console](https://home.console.alicloud.com/#/)创建的`AccessKeys`完成客户端配置。
+
 # 运行一个简单的Benchmark
 
 * 在AliCloud运行Benchmark

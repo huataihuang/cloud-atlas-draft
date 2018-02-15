@@ -315,20 +315,167 @@ insmod normal
 normal
 ```
 
+检查分区UUID
+
+```
+grub> ls (hd0,gpt4)                                                             
+        Partition hd0,gpt4: Filesystem type ext* - Last modification time       
+2018-01-28 22:46:34 Sunday, UUID 79140412-5137-45cc-81a5-58a8a7dac4d9 -         
+Partition start at 53481472KiB - Total size 180949575.5KiB
+```
+
 继续加载
 
-linux /boot/vmlinuz-4.10.0-28-generic root=UUID=b513f893-96ca-494c-8634-0ce8eb7dc13 ro 
-
 ```
-kernel          /boot/vmlinuz-4.10.0-28-generic root=UUID=b513f893-96ca-494c-8634-0ce8eb7dc135 ro console=tty0 console=ttyS0,115200n8
-initrd          /boot/initrd.img-4.10.0-28-generic
+linux /boot/vmlinuz-4.10.0-28-generic root=UUID=79140412-5137-45cc-81a5-58a8a7dac4d9 ro console=tty0 console=ttyS0,115200n8
 ```
 
-3.10.0-327.ali2014.alios7.x86_64
+也是报错
 
-linux16 /vmlinuz-3.10.0-327.ali2014.alios7.x86_64 root=UUID=96219e3e-c371-47a9-baaf-cc2b1b9f8b33 ro console=tty0 console=ttyS1,115200
+```
+error: file `/boot/vmlinuz-4.10.0-28-generic' not found.
+```
+
+参考 [GRUB rescue on legacy BIOS systems](https://www.pcsuggest.com/grub-rescue-legacy-bios/)
+
+* 检查所有可用的磁盘分区和文件系统
+
+```
+grub> ls -l
+...
+error: file `/usr/lib/grub/i386-pc/cpio.mod' not found.                         
+error: file `/usr/lib/grub/i386-pc/cbfs.mod' not found.                         
+error: file `/usr/lib/grub/i386-pc/btrfs.mod' not found.                        
+error: file `/usr/lib/grub/i386-pc/bfs.mod' not found.                          
+error: file `/usr/lib/grub/i386-pc/afs.mod' not found.                          
+error: file `/usr/lib/grub/i386-pc/affs.mod' not found.                         
+No known filesystem detected - Sector size 512B - Total size 234431064KiB       
+        Partition hd0,gpt4: Filesystem type ext* - Last modification time       
+2018-01-28 22:46:34 Sunday, UUID 79140412-5137-45cc-81a5-58a8a7dac4d9 -         
+Partition start at 53481472KiB - Total size 180949575.5KiB                      
+        Partition hd0,gpt3: Filesystem type ext* - Label `/' - Last             
+modification time 2018-01-29 06:43:17 Monday, UUID                              
+96219e3e-c371-47a9-baaf-cc2b1b9f8b33 - Partition start at 1052672KiB - Total    
+size 52428800KiB                                                                
+        Partition hd0,gpt2: Filesystem type ext* - Label `/boot' - Last         
+modification time 2018-01-29 02:34:03 Monday, UUID                              
+5f67c5f1-be04-406e-964c-f49f8b8e940c - Partition start at 4096KiB - Total size  
+1048576KiB                                                                      
+        Partition hd0,gpt1: No known filesystem detected - Partition start at   
+1024KiB - Total size 3072KiB                                                    
+Device hd1: No known filesystem detected - Sector size 512B - Total size        
+390711384KiB
+```
+
+* 尝试启动
+
+```
+set root=(hd0,4)
+linux (hd0,4)/boot/vmlinuz-4.10.0-28-generic root=UUID=b513f893-96ca-494c-8634-0ce8eb7dc135 ro console=tty0 console=ttyS0,115200n8
+initrd (hd0,4)/boot/initrd.img-4.10.0-28-generic
+```
+
+依然找不到
+
+* 发现可以通过指定`(hd0,2)`包含CentOS `/boot`分区来启动
+
+```
+grub> set root=(hd0,3)
+grub> linux (hd0,2)/vmlinuz-3.10.0-327.ali2014.alios7.x86_64 root=UUID=96219e3e-c371-47a9-baaf-cc2b1b9f8b33 ro console=tty0 console=ttyS1,115200
+grub> initrd (hd0,2)/initramfs-3.10.0-327.el7.x86_64.img
+```
+
+然后可以尝试启动CentOS系统了
+
+```
+grub> boot
+```
+
+# CentOS启动
+
+CentOS启动
+
+```
+...
+[  185.715802] dracut-initqueue[749]: Warning: dracut-initqueue timeout - starting timeout scripts
+[  186.221782] dracut-initqueue[749]: Warning: dracut-initqueue timeout - starting timeout scripts
+[  186.727769] dracut-initqueue[749]: Warning: dracut-initqueue timeout - starting timeout scripts
+[  187.233784] dracut-initqueue[749]: Warning: dracut-initqueue timeoWarning: /dev/disk/by-uuid/96219e3e-c371-47a9-baaf-cc2b1b9f8b33 does not exist
+
+Generating "/run/initramfs/rdsosreport.txt"
+
+
+Entering emergency mode. Exit the shell to continue.
+Type "journalctl" to view system logs.
+You might want to save "/run/initramfs/rdsosreport.txt" to a USB stick or /boot
+after mounting them and attach it to a bug report.
+
+
+dracut:/#
+```
+
+# 重新开始
+
+`reboot`之后重新开始
+
+检查当前配置：
+
+```
+grub rescue> set                                                                
+cmdpath=(hd0)                                                                   
+prefix=(hd0,gpt3)/boot/grub                                                     
+root=hd0,gpt3
+```
+
+
+
+```
+grub rescue> ls                                                                 
+(hd0) (hd0,gpt4) (hd0,gpt3) (hd0,gpt2) (hd0,gpt1) (hd1)
+```
+
+加载grub模块
+
+```
+grub rescue> set prefix=(hd0,gpt3)/usr/lib/grub
+grub rescue> insmod normal
+grub rescue> normal
+```
+
+进入常规模式后，检查设备uuuid
+
+```
+grub> ls -l                                                                     
+Device hd0: No known filesystem detected - Sector size 512B - Total size        
+234431064KiB                                                                    
+        Partition hd0,gpt4: Filesystem type ext* - Last modification time       
+2018-01-28 22:46:34 Sunday, UUID 79140412-5137-45cc-81a5-58a8a7dac4d9 -         
+Partition start at 53481472KiB - Total size 180949575.5KiB                      
+        Partition hd0,gpt3: Filesystem type ext* - Label `/' - Last             
+modification time 2018-01-29 06:43:17 Monday, UUID                              
+96219e3e-c371-47a9-baaf-cc2b1b9f8b33 - Partition start at 1052672KiB - Total    
+size 52428800KiB                                                                
+        Partition hd0,gpt2: Filesystem type ext* - Label `/boot' - Last         
+modification time 2018-01-29 02:34:03 Monday, UUID                              
+5f67c5f1-be04-406e-964c-f49f8b8e940c - Partition start at 4096KiB - Total size  
+1048576KiB                                                                      
+        Partition hd0,gpt1: No known filesystem detected - Partition start at   
+1024KiB - Total size 3072KiB                                                    
+Device hd1: No known filesystem detected - Sector size 512B - Total size        
+390711384KiB
+```
+
+
+
+```
+grub> linux (hd0,2)/vmlinuz-3.10.0-327.ali2014.alios7.x86_64 root=/dev/sda3 ro console=tty0 console=ttyS1,115200
+grub> initrd (hd0,2)/initramfs-3.10.0-327.el7.x86_64.img
+```
+
+> 不知道为何Ubuntu使用的是 ttyS1，而不是ttyS0。如果设置了`ttyS0`反而无法显示输出信息
 
 # 参考
 
 * [AndersonIncorp/fix.sh](https://gist.github.com/AndersonIncorp/3acb1d657cb5eba285f4fb31f323d1c3)
 * [GRUB rescue problem after deleting Ubuntu partition! [duplicate]](https://askubuntu.com/questions/493826/grub-rescue-problem-after-deleting-ubuntu-partition)
+* [Rescue GRUB when grub.cfg is missing or corrupted](https://www.pcsuggest.com/grub-rescue-legacy-bios/)

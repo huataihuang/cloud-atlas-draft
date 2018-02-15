@@ -22,7 +22,33 @@ pip install qcloudapi-sdk-python
 pip install qcloudcli
 ```
 
+# 配置账号
+
+```
+qcloudcli configure
+```
+
+# 命令行工具
+
+[腾讯云命令行工具（CLI）](https://cloud.tencent.com/product/cli)
+
+```
+qcloudcli cvm help
+```
+
 # PerfKit BenchMarker代码结构
 
 参考 [PerfKit Benchmarker增加新的云服务商](../perfkit_benchmarker_add_new_cloud_provider) 主要的代码结构可以从现有的代码结构中clone出来，然后修改命令。因为云服务商的系统架构大同小异，例如，可以从阿里云`providers/alicloud`中clone出`providers/qcloud`。
 
+
+注意：执行QCloud测试前，首先编辑`perfkitbenchmarker/configs/default_config_constants.yaml` 将对应`QCloud`的配置部分设置好需要开设的规格和区域。规格和区域请参考手工开设的虚拟机：
+
+```yaml
+  QCloud:
+    machine_type: cvm.s1.small1
+    zone: ap-guangzhou-3
+    image: null
+```
+
+> * [实例规格概述](https://cloud.tencent.com/document/product/213/115)
+> * [可用区列表](https://cloud.tencent.com/document/product/213/9452#zone)

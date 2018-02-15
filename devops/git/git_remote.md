@@ -290,7 +290,71 @@ HEAD is now at 5597708 fix ...
 git log
 ```
 
-----
+## 放弃修改并更新远程分支（方法一）
+
+> 参考 [git 远程分支回滚](http://blog.csdn.net/u013399759/article/details/52212436)
+
+和前文所述的放弃本地commit步骤所差异的是增加了删除远程分支和用回滚后的本地分支重建远程分支：
+
+* 先查看有哪些commit
+
+```
+git log
+```
+
+* 建议先备份一次本地分支
+
+```
+git branch the_branch_backup
+```
+
+* 回滚本地分支
+
+```
+git reset --hard 559770899a4e5bd8314a0ea196f433f3103dadbf
+```
+
+> 如果要回最近的3次提交，则使用命令`git reset --hard HEAD~3`
+
+* 删除远程分支
+
+```
+git push origin :the_branch
+```
+
+注意，这里分支名字前面有一个`:`
+
+如果是master分支，使用命令是
+
+```
+git push origin :master
+```
+
+但是，远程仓库的master如果是保护分支将报错，请去掉对分支的保护设置：
+
+```
+remote: GitLab: You are  allowed  to  deleted protected branches from this project. To http://gitlab.mogujie.org/shihao/afanty.git ! [remote rejected] master (pre-receive hook declined) error: failed to push some refs to 'http://gitlab.mogujie.org/xxxx/xxxx.git'
+```
+
+* 重新创建远程master分支(这跟第１次提交本地代码库给远程仓库的命令一样)
+
+```
+git push origin master
+```
+
+## 放弃修改并更新远程分支（方法二简单，推荐）
+
+* 本地代码回滚到上一版本（或者指定版本）
+
+```
+git reset --hard HEAD~1
+```
+
+* 加入`-f`参数，强制提交，远程端将强制跟新到reset版本
+
+```
+git push -f origin master 
+```
 
 # Git查看、删除、重命名远程分支和tag
 

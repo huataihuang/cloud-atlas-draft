@@ -12,3 +12,6 @@
 * [Why you should be using strace – Brandon Wamboldt](https://brandonwamboldt.ca/why-you-should-be-using-strace-1457/)
 * [Linux application/script debugging with 'strace'](https://ma.ttias.be/linux-application-script-debugging-with-strace/)
 * [markus-perl/php-strace · GitHub](https://github.com/markus-perl/php-strace)
+* [Linux application/script debugging with ‘strace’](https://ma.ttias.be/linux-application-script-debugging-with-strace/)
+* [The Magic of strace](http://chadfowler.com/2014/01/26/the-magic-of-strace.html)
+* [Using strace and lsof to track down process hangs](http://mharrytemp.blogspot.com/2011/10/using-strace-and-lsof-to-track-down.html)
