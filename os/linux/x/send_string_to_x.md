@@ -9,7 +9,7 @@ X window平台提供了一个[xdotool](http://www.semicomplete.com/projects/xdot
 ```bash
 #!/usr/bin/bash
 windowid=$(xdotool getwindowfocus)
-sleep 0.5 && xdotool windowactivate --sync $windowid type 'text'
+sleep 0.1 && xdotool windowactivate --sync $windowid type 'text'
 ```
 
 在LXQt管理桌面快捷键中创建一个新的快捷键`Meta-t`，则在Windows或Mac系统按下`Window`键/`Command`键加上`t`键，就会向当前窗口发送`text`这个字符串。只需要修改一下脚本，替换成你希望输入的大段文本，就可以一键输入大量的文字，堪称节约生命的神器。
