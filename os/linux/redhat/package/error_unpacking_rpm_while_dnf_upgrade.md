@@ -16,3 +16,8 @@ Failed:
 
 Error: Transaction failed
 ```
+
+参考[Bug 1506704 - Nothing in Fedora 27+ grub2 obsoletes/provides grub2-efi-modules (breaks upgrades)](https://bugzilla.redhat.com/show_bug.cgi?id=1506704)
+
+
+不过，我感觉我在双启动Mac OSX 和 Fedora中可能不许要这个软件包，因为启动时候通过Mac电脑掉`option`键可以切换系统。所以删除这个软件包后测试依然可以通过`option`键启动时切换Mac OSX和Fedora。

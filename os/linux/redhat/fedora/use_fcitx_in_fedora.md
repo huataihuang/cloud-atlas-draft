@@ -43,6 +43,31 @@ LC_CTYPE="zh_CN.UTF-8"
 cp /usr/share/applications/fcitx.desktop ~/.config/autostart/fcitx.desktop
 ```
 
+# switch to ibus
+
+最近一次Fedora升级后fcitx无法正常呼出，所以切换到ibus输入法：
+
+> 参考[What is the Preferred Method for Installing a Chinese Input Method Editor (IME) in Fedora 22?](https://ask.fedoraproject.org/en/question/69947/what-is-the-preferred-method-for-installing-a-chinese-input-method-editor-ime-in-fedora-22/)
+
+
+```
+dnf remove fcitx-qt5 fcitx fcitx-configtool fcitx-libpinyin
+mv ~/.xprofile ~/.xprofile.bak
+rm -f ~/.config/autostart/fcitx.desktop
+
+sudo dnf install ibus-setup ibus-pinyin ibus-qt
+
+cat << EOF > ~/.xprofile
+export GTK_IM_MODULE=ibus
+export QT_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+EOF
+
+ibus-setup
+```
+
+> 另外，需要设置`ibus-daemon`在桌面系统启动时启动。
+
 # 参考
 
 * [fcitx官方wiki:配置（其他）](https://fcitx-im.org/wiki/Configure_(Other)/zh-hans) - 本文设置主要参考该文档

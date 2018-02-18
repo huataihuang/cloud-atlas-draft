@@ -235,6 +235,7 @@
 				* [使用tar包手工安装多重启动的ubuntu](os/linux/ubuntu/install/deploy_multi_boot_ubuntu_from_tarball_manually.md)
 				* [Ubuntu的Hardware Enablement(HWE)内核](os/linux/ubuntu/install/ubuntu_hardware_enablement_kernel.md)
 				* ["admin"账号已被Ubuntu保留无法使用](os/linux/ubuntu/install/admin_reserved_by_ubuntu.md)
+				* [在U盘上安装Ubuntu](os/linux/ubuntu/install/install_ubuntu_to_usb_stick.md)
 		* [Kali](os/linux/kali/README.md)
 			* [创建Kali镜像仓库](os/linux/kali/create_mirror_repository_from_kali.md)
 			* [通过VNC访问Kali Linux](os/linux/kali/vnc_access_kali_linux.md)

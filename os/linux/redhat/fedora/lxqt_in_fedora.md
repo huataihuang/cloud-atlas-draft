@@ -1,10 +1,12 @@
 作为Linux系统管理员和后端服务软件开发人员，压榨系统的每一分潜力用于运算和服务是乐此不疲的游戏。对于桌面，不追求过分的铉酷，追求简洁美观且尽可能轻量级的图形交互，是一种本能的审美观。
 
-在工作桌面中，选择过Xfce（Linus的选择）也使用过LXDE，最终权衡兼容（兼容Gnome和KDE）以及速度，选择LXDE的演进版本LXQt。
+在工作桌面中，选择过Xfce（Linus的选择）也使用过LXDE，在安装Fedora时权衡兼容（兼容Gnome和KDE）以及速度，选择LXDE的演进版本LXQt。
 
-> [What are the best Linux desktop environments for developers?](https://www.slant.co/topics/4345/~linux-desktop-environments-for-developers)有一个投票推荐给开发人员使用的桌面，排首位的是Xfce，其次是LXDE，LXQt排在第五。不过，这个网站的评选倒是能让人了解一些常用的桌面。如果希望美观和轻量级，偏向于模拟Mac的话，可以选择[Pantheon](https://elementary.io/)（elementary OS的默认桌面，和macOS非常相近）。
+> [What are the best Linux desktop environments for developers?](https://www.slant.co/topics/4345/~linux-desktop-environments-for-developers)有一个投票推荐给开发人员使用的桌面，排首位的是Xfce，其次是LXDE，LXQt排在第五。不过，这个网站的评选倒是能让人了解一些常用的桌面。如果希望美观和轻量级，偏向于模拟Mac的话，可以选择[Pantheon](https://elementary.io/)（elementary OS的默认桌面，和macOS非常相近）。我参考这个评选，如果开箱即用，平衡轻量级和易用性则选择Xfce（LXQt比Xfce占用资源更少，但是功能Xfce较丰富）。
 >
-> [Linux桌面环境终极指南](http://developer.51cto.com/art/201503/467300.htm)编译了Network World网站内的Linux老牌拥护者Bryan Lunduke对比桌面系统的评测，推荐的就是elementary OS的Pantheon。
+> [Linux桌面环境终极指南](http://developer.51cto.com/art/201503/467300.htm)编译了Network World网站内的Linux老牌拥护者Bryan Lunduke对比桌面系统的评测，推荐的就是elementary OS的Pantheon。但是我感觉这个项目开发比较封闭。
+
+后期我选择Linux from Scratch时，自己编译则可能会选择[i3wm](https://i3wm.org/)这种更为简练的平铺窗口管理器。在[YouTube的i3 window manager screencast](https://www.youtube.com/watch?v=Wx0eNaGzAZU)介绍了这个窗口管理器使用方法。
 
 # macOS 和 Fedora双操作系统启动
 

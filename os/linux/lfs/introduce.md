@@ -4,11 +4,15 @@ LFS 系统需要在一个已经安装好的 Linux 发行版（比如 Debian、Op
 
 除了将一个独立发行版安装到你的电脑上之外，你也可以使用商业发行版的 LiveCD。
 
-> 我采用从Ubuntu官方下载LTS版本ISO，然后通过[转换ISO文件为启动U盘](https://www.linux.com/blog/how-burn-iso-usb-drive)，然后启动笔记本电脑，再通过这个U盘运行的Ubuntu系统来编译安装LFS：
+例如使用LiveCD，可以通过[转换ISO文件为启动U盘](https://www.linux.com/blog/how-burn-iso-usb-drive)，然后启动笔记本电脑，再通过这个U盘运行的Ubuntu系统来编译安装LFS：
 
 ```
-sudo dd bs=4M if=ubuntu-gnome-16.04.3-desktop-amd64.iso of=/dev/sdb
+sudo dd bs=4M if=xubuntu-16.04.3-desktop-amd64.iso of=/dev/sdb
 ```
+
+然后使用Live-CD启动电脑作为host主机，安装相应的编译工具链，进行LFS部署。
+
+不过，我实际采用了在[U盘中安装XUbtunu系统](../ubuntu/install/install_ubuntu_to_usb_stick)的方法来实现host主机。
 
 # 资源
 
