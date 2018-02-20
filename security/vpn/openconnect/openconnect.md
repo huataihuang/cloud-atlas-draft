@@ -4,10 +4,18 @@ OpenConnnect也可以配合[OpenConnect VPN Server - ocserv](deploy_ocserv_vpn_s
 
 # Linux使用openconnect
 
+* Gentoo安装
+
 可以安装 `openconnect` 以及 `networkmanager-openconnect`，然后就可以通过`nm-applet`（network manager的托盘图标）来配置。注意，安装以后需要重启 `NetworkManager.service`。
 
 ```bash
 emerge --ask net-misc/openconnect
+```
+
+* Ubuntu安装
+
+```
+sudo apt-get install openconnect
 ```
 
 # 连接
