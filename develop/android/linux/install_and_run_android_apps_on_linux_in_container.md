@@ -16,7 +16,7 @@ Anbox使用Linux namespaces（user, pid, uts, net, mount, ipc）来运行一个�
 
 [Anbox FAQ: You say Anbox is convergent. Does it run on phones today?](https://anbox.io/#collapse7) 介绍了[UBports](https://ubports.com/)（Ubuntu Touch的后续开源项目，提供了在Nexus 5上运行Ubuntu Touch系统）和[LuneOS](http://webos-ports.org/wiki/Main_Page)（WebOS的后续开源项目，提供了在Nexux5上运行WebOS），都是很有趣的开源项目。
 
-> 从前景来看，这个项目应该有比较好的发展，关注中...
+详细的Anbox实践参考[Anbox - 运行在Linux中的Android容器](anbox/README.md)
 
 # Shashlik（另一个开源项目）
 
