@@ -984,4 +984,5 @@
 	* [Django开发设置](studio/django_dev.md)
 	* [部署Nginx+uwsgi运行Django](studio/nginx_uwsgi.md)
 	* [HAProxy端口转发](studio/haproxy.md)
+	* [使用wekan作为Trello类型的"看板"管理自己的工作](studio/wekan_trello-like_kanban.md)
 * [Who am I?](whoami.md)
