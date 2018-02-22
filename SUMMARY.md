@@ -185,6 +185,7 @@
 				* [定制LXQt桌面菜单（添加新应用启动）](os/linux/redhat/fedora/lxqt_main_menu_add_application.md)
 				* [使用ImageMagick截屏](os/linux/redhat/fedora/snapshot_with_imagemagick.md)
 				* [在LXQt桌面平铺窗口](os/linux/redhat/fedora/tile_window_in_lxqt.md)
+				* [在Fedora中切换桌面环境](os/linux/redhat/fedora/switch_desktop_environments_in_fedora.md)
 				* [nVidia GT 750M显卡](os/linux/redhat/fedora/nvidia_gt_750m.md)
 				* [在Fedora中播放mp4视频](os/linux/redhat/fedora/play_with_mp4_in_fedora.md)
 				* [在Fedora的chromium中播放flash](os/linux/redhat/fedora/chromium_play_flash_in_fedora.md)
