@@ -60,6 +60,41 @@ fatal: could not set 'core.filemode' to 'true'
 
 不过，上述sshfs挂载的远程服务器目录能够正常读写文件，所以改为在服务器端直接使用git绕开问题。
 
+## sshfs挂载时报错`Transport endpoint is not connected`
+
+> 这个报错可能和使用多路复用有关，在这个操作中，我使用了Jetbrains的DataGrip工具，通过ssh tunnel访问远程服务器上Docker容器中的mysql。此时再使用sshfs挂载远程服务器的目录时提示报错
+
+```
+sshfs admin@192.168.44.11:/var/lib/docker/volumes/share-data/_data /home/huatai/Documents/devstack/share-data -C
+```
+
+报错
+
+```
+fuse: bad mount point `/home/huatai/Documents/devstack/share-data': Transport endpoint is not connected
+```
+
+此时`df`命令并不能看到挂载的远程目录，但是使用`mount`命令可以看到远程目录已经挂载
+
+```
+admin@30.17.44.11:/var/lib/docker/volumes/share-data/_data on /home/huatai/Documents/devstack/share-data type fuse.sshfs (rw,nosuid,nodev,relatime,user_id=1000,group_id=1000)
+```
+
+解决方法参考[Transport endpoint is not connected](https://stackoverflow.com/questions/24966676/transport-endpoint-is-not-connected)
+
+强制卸载
+
+```
+fusermount -uz /home/huatai/Documents/devstack/share-data
+```
+
+> * `-u` 表示umount
+> * `-z` 表示force强制
+
+然后就可以再次挂载
+
+[sshfs: Transport endpoint is not connected](http://slopjong.de/2013/04/26/sshfs-transport-endpoint-is-not-connected/)提供的解决方法是增加一个`-o allow_other`参数允许非root用户挂载，不过要修改`/etc/fuse.conf`配置，取消`user_allow_other`的注释。
+
 # 参考
 
 * [SSHFS](https://wiki.archlinux.org/index.php/SSHFS)

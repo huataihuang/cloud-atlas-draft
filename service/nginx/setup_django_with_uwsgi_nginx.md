@@ -313,18 +313,7 @@ vacuum          = true
 uwsgi --ini mysite_uwsgi.ini
 ```
 
-最初我按照教程设置
-
-```
-# Django's wsgi file
-module          = project.wsgi
-```
-
-遇到报错
-
-```
-ImportError: No module named 'project.wsgi'
-```
+注意：对于不使用virtualenv的环境，`base = /home/huatai/works/mysite`需要改成 `chdir = /home/huatai/works/mysite`，这样，uWSGI会使用`chdir`替代当前目录。
 
 # 参考
 
