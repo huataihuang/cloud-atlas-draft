@@ -108,7 +108,14 @@ aliyuncli ecs help
 aliyuncli configure
 ```
 
+> `aliyuncli configure`可以[配置访问帐号的Access Key](https://help.aliyun.com/document_detail/30001.html?spm=a2c4g.11186623.6.574.4mt3hQ)
+
 执行上述配置就可以输入前面在[AliCloud console](https://home.console.alicloud.com/#/)创建的`AccessKeys`完成客户端配置。
+
+> 请参考[阿里云命令行工具帮助](https://help.aliyun.com/product/29991.html?spm=a2c4g.11186623.3.1.Ou3UXG)
+
+使用命令可以参考 [复杂命令示例](https://help.aliyun.com/document_detail/30015.html?spm=a2c4g.11186631.6.582.kV9CKE) 也就是 `aliyuncli ecs` 后面所有的传递参数实际上就是OpenAPI的包装，需要完整参考SDK中的命令可以使用Jetbrains PyCharm浏览AliYun Python SDK(`aliyunsdkecs/request/v20140526`下对应程序代码，命令传递实际上即为Python程序)
+
 
 # 运行一个简单的Benchmark
 

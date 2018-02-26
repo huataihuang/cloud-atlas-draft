@@ -379,6 +379,33 @@ make html
 
 生成的文档输出到`docs`目录下的`_build/html/`子目录中
 
+# PEP 8
+
+Jetbrains 默认支持PEP 8代码风格检查
+
+## 缩进不符合规范
+
+```
+PEP 8: indentation is not a multiple of four
+```
+
+解决的方法有两种：
+
+* 重新格式化代码(推荐)：选择`Code`菜单，然后选择`Reformat Code`就能够执行代码重新格式化，以符合标准。如果要修改通用的代码风格，例如每行缩进的空格数量，可以使用`Code Style -> Python`，可以调整缩进成词，空格，回行，空白行。在设置中可以搜索`pep`来关闭PEP8特定的设置。 - 参考 [How to get rid of all the underlines that indicates a typo or too many spaces?](https://intellij-support.jetbrains.com/hc/en-us/community/posts/206602045-How-to-get-rid-of-all-the-underlines-that-indicates-a-typo-or-too-many-spaces-)
+* 忽略(不推荐)：在任何提示信息的高亮代码行按下`Alt-Enter`，然后选择`Ignore errors like this`，这样就会在`pycodestyle.py`中加入W191到黑名单，忽略所有PEP8警告。 - 参考 [get rid of PEP8 indentation warning in docstrings](https://intellij-support.jetbrains.com/hc/en-us/community/posts/115000005224-get-rid-of-PEP8-indentation-warning-in-docstrings)
+
+## 函数名不符合规范
+
+> 参考[What is the naming convention in Python for variable and function names?](https://stackoverflow.com/questions/159720/what-is-the-naming-convention-in-python-for-variable-and-function-names)
+
+Python PEP8对于函数名和变量要求全部采用小写字母，单词间分隔采用下划线`_`；只有在遗留代码中已经存在混合大小写命名情况才使用mixedCase。
+
+要忽略已经存在的这种变量或函数大小写，可以采用类似前述处理缩进忽略方法，按下`Alt-Enter`然后选择`Ignore errors like this`。
+
+另一种方法参考 [function name should be lowercase](http://blog.csdn.net/u012706792/article/details/71787492)，使用菜单`File –>Settings–>Editor–>Inspections–>Python–>PEP 8 naming convention violation`
+
+![PyCharm中忽略PEP8警告](../../../img/develop/python/style/ignore_pep8_warning_settings_in_pycharm.png)
+
 # 参考
 
 * [Open Sourcing a Python Project the Right Way](https://jeffknupp.com/blog/2013/08/16/open-sourcing-a-python-project-the-right-way/)

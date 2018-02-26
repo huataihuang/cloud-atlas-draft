@@ -2,6 +2,12 @@
 
 > 然而，上述方法似乎在新版本操作系统中会引发用户帐号异常（无法登录），虽然我还没有找到原因。所以，目前准备采用`usermod`和`groupmod`工具来调整，方法如下：
 
+* 修改admin组的gid为1000
+
+```
+groupmod -g 1000 admin
+```
+
 * 修改用户uid到新的id 1000
 
 ```
@@ -12,12 +18,6 @@ usermod -u 1000 admin
 
 ```
 usermod -g 1000 admin
-```
-
-* 修改admin组的gid为1000
-
-```
-groupmod -g 1000 admin
 ```
 
 * 在`/home`目录下将admin用户的目录修改属主

@@ -46,15 +46,71 @@ pip install qcloudapi-sdk-python
 
 > 参考文档：[启动实例](https://cloud.tencent.com/document/api/213/9386)
 
-## `cvm`常用`action`
+# 命令行操作CVM
 
+* 检查帮助
+
+```bash
+qcloudcli cvm help
 ```
 
+* 通过 `qcloudcli addprofile` 命令添加新账号；
+* 通过 `qcloudcli showconfigure` 查看账号信息；
+
+## 创建vm
+
+* 创建了一台广州二区（zoneId=100002）的内存为1G（mem=1）的1核（cpu=1）服务器，使用的镜像Id为1，数据盘大小为10G（storageSize=10） 
+
+```bash
+qcloudcli cvm RunInstancesHour --zoneId 100002 --cpu 1 --mem 1 --imageId 1 --storageSize 10
 ```
 
-# 代码案例
+显示输出
+
+```
+{
+    "codeDesc": "Success", 
+    "message": "", 
+    "code": 0, 
+    "unInstanceIds": [
+        "ins-g5towv5a"
+    ]
+}
+```
+
+* 命令查看当前账号的云服务器资源
+
+```
+qcloudcli cvm DescribeInstances
+```
+
+> 默认开启的虚拟机没有公网IP地址
+>
+> `--imageId 1`是`CentOS 6.2 64位`
+
+> 详细的创建实例方法参考[创建实例（按量计费）](https://cloud.tencent.com/document/api/213/1350)
+
+* 创建带公网虚拟机
+
+```
+qcloudcli cvm RunInstancesHour --zoneId 100002 --cpu 1 --mem 1 --imageId 1 --storageSize 0 --bandwidthType PayByTraffic --bandwidth 1
+```
+
+> `--storageSize`是必须项，这里设置0
+>
+> `--bandwidthType PayByTraffic --bandwidth 1`公网按量计费，带宽1M
+
+* 创建虚拟机以及密钥
+
+```
+```
+
+# 销毁vm
+
+
 
 # 参考
 
 * [云API SDK  Python](https://cloud.tencent.com/document/developer-resource/494/7244)
 * [GigHub: qcloudapi-sdk-python](https://github.com/QcloudApi/qcloudapi-sdk-python)
+* [命令行工具CLI](https://cloud.tencent.com/product/cli)
