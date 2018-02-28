@@ -24,3 +24,15 @@ rm: unrecognized option '--exclude=data'
 Try 'rm ./'--exclude=data'' to remove the file ‘--exclude=data’.
 Try 'rm --help' for more information.
 ```
+
+StackExchange上有人提供了简单的解决方法，原来`--`空白的时候表示关闭处理命令行参数，即可以通过如下命令删除：
+
+```
+rm -- --exclude=data
+```
+
+在shell中使用空白的`--`居然能够停止参数解析，实在是神奇...
+
+# 参考
+
+* [How do I delete a file whose name begins with “-” (hyphen a.k.a. dash or minus)?](https://unix.stackexchange.com/questions/1519/how-do-i-delete-a-file-whose-name-begins-with-hyphen-a-k-a-dash-or-minus)

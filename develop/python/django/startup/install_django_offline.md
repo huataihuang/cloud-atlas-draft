@@ -96,6 +96,32 @@ Successfully installed pip-9.0.1 wheel-0.30.0
 
 然后再次执行`pip install wheelhouse/*`即可以成功。
 
+## `XXXX.whl is not a supported wheel on this platform`
+
+在执行`pip install wheelhouse/*`的时候，有些包安装会提示错误，例如：
+
+```
+MarkupSafe-1.0-cp27-cp27mu-linux_x86_64.whl is not a supported wheel on this platform.
+```
+
+开始我以为是操作系统不同，实际对比了操作系统版本完全一致。差别只是Python版本，目标服务器的Python版本较低是 2.7.8，而源服务器的Python版本是2.7.14。但是，相同的大版本2.7，应该是通用才对啊。
+
+参考 [pip安装报错：is not a supported wheel on this platform](https://www.cnblogs.com/nice-forever/p/5371906.html) 和 [Cannot install numpy from wheel format](https://stackoverflow.com/questions/28107123/cannot-install-numpy-from-wheel-format?rq=1)，可以通过以下命令来验证兼容的关键字
+
+```
+import pip; print(pip.pep425tags.get_supported())
+```
+
+由于其中没有包含`cp27mu`所以导致拒绝安装。(`cp`表示`CPython`)
+
+实际上可以通过重新命名`.whl`包名字来绕开这个问题：
+
+```
+mv MarkupSafe-1.0-cp27-cp27mu-linux_x86_64.whl MarkupSafe-1.0-cp27-none-linux_x86_64.whl
+```
+
+然后就可以正常安装和使用了。
+
 ## Python `mysqlclient` 安装
 
 上述`pip install wheelhouse/*`还有一个报错提示
