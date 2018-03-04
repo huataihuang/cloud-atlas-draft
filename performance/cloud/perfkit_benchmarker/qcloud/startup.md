@@ -52,3 +52,4 @@ qcloudcli cvm help
 
 > * [实例规格概述](https://cloud.tencent.com/document/product/213/115)
 > * [可用区列表](https://cloud.tencent.com/document/product/213/9452#zone)
+> * [错误码](https://cloud.tencent.com/document/api/377/4173#1.E3.80.81.E5.85.AC.E5.85.B1.E9.94.99.E8.AF.AF.E7.A0.81)

@@ -1,0 +1,1 @@
+[dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html)提共一个本地DNS服务，以及支持DHCPv6和PXE的DHCP服务，以及提供一个TFTP服务。dnsmasq被设计成一个轻量级并且适合作为路由器、防火墙组件的服务。dnsmasq也被配置成缓存DNS查询来提供DNS查询速度。
