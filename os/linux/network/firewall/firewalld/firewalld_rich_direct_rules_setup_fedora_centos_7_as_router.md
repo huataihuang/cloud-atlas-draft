@@ -303,6 +303,15 @@ public (active)
 	rule family="ipv4" source address="192.168.0.0/24" masquerade
 ```
 
+# 小结
+
+要实现CentOS 7/Fedora作为路由器来NAT masquerade提供内部网络主机访问因特网，需要以下步骤：
+
+* 内外网卡分别设置到不同的zone区域
+* 在内部网卡上（`dmz`或者`home`）设置`--add-service`开启允许访问的网路服务
+* 在外部网卡上（`public`）启用`masquerade`
+* 设置内核`net.ipv4.ip_forward=1`
+
 # Routing with Direct Rules
 
 待续

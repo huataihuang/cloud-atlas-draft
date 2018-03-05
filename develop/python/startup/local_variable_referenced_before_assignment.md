@@ -126,7 +126,7 @@ UnboundLocalError: local variable 'x' referenced before assignment
                 type_base = typeKey
 
         instance_type_all = INSTANCETYPE_STRING.split(".")[1]
-        instance_type_cpu, instance_type_mem = instance_type_all.split(type_base)       # 异常报错在这一行
+        instance_type_cpu, instance_type_mem = instance_type_all.split(type_base)
         if "X" in instance_type_cpu:
             cpu_multiple = instance_type_cpu.split("X")[0]
             instance_cpu = cpu_base * cpu_multiple
@@ -136,11 +136,32 @@ UnboundLocalError: local variable 'x' referenced before assignment
         instance_mem = instance_type_mem
 ```
 
-这里在函数`_Create(self)`的前面首先申请变量`cpu_base`和`type_base`是全局变量，可以绕过这个问题。
+这里在函数`_Create(self)`的前面首先申请变量`cpu_base`和`type_base`是全局变量，似乎可以绕过这个问题。但是实际上还是会出现其他异常
 
-但是，为何这里会出现异常的`UnboundLoaclError`呢？明明使用``
+为何这里会出现异常的`UnboundLoaclError`呢？原因在
 
+```python
+            if typeKey in INSTANCETYPE_STRING:
+                cpu_base = cpu_base_set[typeKey]
+                type_base = typeKey
+```
 
+可以看到，只有满足了条件之后，才会对数据进行赋值。也就是说，如果`typeKey`没有包含在`INSTANCETYPE_STRING`（取决于用户输入的参数），就会导致没有对local变量赋值，就直接行`instance_type_all.split(type_base)`。这就是程序的逻辑错误：
+
+任何时候，一定要进行用户输入数据的校验。如果采用if判断，一定要考虑`是/否`两种情况。对于没有成功的判断，一定要有异常处理。
+
+Python是一种弱类型语言，所以变量类型要小心处理。
+
+实际解决方法，需要采用在用户输入入口进行字符串判断，以及在`if`判断中增加异常处理：
+
+```python
+        for typeKey in cpu_base_set.keys():
+            if typeKey in INSTANCETYPE_STRING:
+                cpu_base = cpu_base_set[typeKey]
+                type_base = typeKey
+            else:
+                ...
+```
 
 # 参考
 

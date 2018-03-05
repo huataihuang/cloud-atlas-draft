@@ -202,7 +202,31 @@ firewall-cmd --permanent --zone=public --add-masquerade
 firewall-cmd --reload
 ```
 
+# 软件包安装
+
+如果采用最小的raspberry pi安装镜像，安装以后还需要一些工具包，可以参考[Debian最小化安装后的软件包安装建议](../../os/linux/debian/package/debian_mini_install_packages_suggest)
+
+```
+sudo apt install screen wget curl bzip2 xz-utils sysstat unzip nfs-common ssh \
+mlocate dnsutils git gcc g++ make sudo curl flex autoconf automake python
+```
+
+# 时区
+
+默认时区是UTC，和中国差距8小时，所以需要修改时区：
+
+```
+sudo unlink /etc/localtime
+sudo ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+```
+
+这样就能看到正确的时间显示。
+
+# 其他
+
 接下来，通过硬盘扩展卡，为树莓派添加一个大容量硬盘，[从USB硬盘启动树莓派](boot_from_usb_storage_on_raspberry_pi)构建一个完整的微型服务器。
+
+
 
 # 参考
 
