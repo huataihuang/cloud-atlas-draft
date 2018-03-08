@@ -1,0 +1,1 @@
+Transparent Hugepages(透明大页，THP)

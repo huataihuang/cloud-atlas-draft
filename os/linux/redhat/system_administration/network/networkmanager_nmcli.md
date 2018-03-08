@@ -157,6 +157,8 @@ nmcli connection edit <connection name>
 
 # 实践笔记
 
+## wifi连接
+
 * 新增加一个wifi类型连接，连接到名为`mylink`的AP上
 
 ```
@@ -209,6 +211,93 @@ nmcli con up mylink
 ```
 Device 'wlp3s0' successfully activated with 'cc54be34-0ad5-4bc7-ad76-f7f33ef8bc2c'
 ```
+
+## 有线网络连接
+
+* 检查连接
+
+```
+nmcli connection show
+```
+
+显示输出中包含了无线网路和有线网络，还有虚拟化的网桥设备：
+
+```
+NAME         UUID                                  TYPE             DEVICE  
+my-wifi      5da2cedb-9de5-4c4e-9234-113782cf334c  802-11-wireless  wlp3s0  
+docker0      d5dfebe9-1add-44bb-878b-ca09af6765af  bridge           docker0 
+virbr0       3c524f19-6e07-4345-9226-032f7391cc6f  bridge           virbr0  
+enp0s25      4061cb98-e121-3caf-8936-fcd0a3d52549  802-3-ethernet   --      
+```
+
+* 显示设备状态 - 可以看到有线网络尚未配置，显示是`disconnected`状态：
+
+```
+nmcli device status
+```
+
+显示输出
+
+```
+DEVICE       TYPE      STATE         CONNECTION  
+docker0      bridge    connected     docker0     
+virbr0       bridge    connected     virbr0      
+wlp3s0       wifi      connected     my-wifi 
+enp0s25      ethernet  disconnected  --          
+veth2f89e14  ethernet  unmanaged     --          
+veth6b20dc6  ethernet  unmanaged     --
+...
+```
+
+* 现在我们要配置`enp0s25`这个有线网卡设备：
+
+```
+nmcli con add con-name pi ifname enp0s25 type ethernet ip4 192.168.0.1/24
+```
+
+显示配置成功：
+
+```
+Connection 'pi' (20a0a86b-2a50-4bbd-aec9-c90839284b15) successfully added.
+```
+
+此时在`/etc/sysconfig/network-scripts/ifcfg-pi`下添加了设备配置：
+
+```
+TYPE=Ethernet
+PROXY_METHOD=none
+BROWSER_ONLY=no
+BOOTPROTO=none
+IPADDR=192.168.0.1
+PREFIX=24
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=yes
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_FAILURE_FATAL=no
+IPV6_ADDR_GEN_MODE=stable-privacy
+NAME=pi
+UUID=20a0a86b-2a50-4bbd-aec9-c90839284b15
+DEVICE=enp0s25
+ONBOOT=yes
+```
+
+* 网卡已经激活，可以通过`ifconfig`看到如下输出：
+
+```
+enp0s25: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.0.1  netmask 255.255.255.0  broadcast 192.168.0.255
+        inet6 fe80::a274:bf98:53db:b0f4  prefixlen 64  scopeid 0x20<link>
+        ether f0:de:f1:9b:0c:7b  txqueuelen 1000  (Ethernet)
+        RX packets 24442  bytes 1577896 (1.5 MiB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 7739  bytes 1372682 (1.3 MiB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+        device interrupt 20  memory 0xf2500000-f2520000 
+```
+
+这个有线网卡是配置是为了[树莓派快速起步](../../../../../develop/raspberry_pi/raspberry_pi_quick_start)准备的连接树莓派开发测试网段的笔记本网卡配置。然后可以参考[Firewalld丰富而直接的规则：设置Fedora/CentOS 7作为路由器](../../../network/firewall/firewalld/firewalld_rich_direct_rules_setup_fedora_centos_7_as_router)设置一个NAT masquerade，允许树莓派网段访问外网。
 
 ## 配置文件解析
 
