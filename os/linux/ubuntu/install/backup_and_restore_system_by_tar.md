@@ -88,11 +88,38 @@ sudo tar -xvpzf /path/to/backup.tar.gz -C /media/whatever --numeric-owner
 * `-C <directory>` 告知tar在解压缩文件之前先进入指定`<directory>`目录，这样就会恢复在这目录下。这里的案例是将文件恢复到`/media/whatever`目录，也就是挂载分区的目录
 * `--numeric-owner` 告诉tar恢复文件的owner帐号数字，而不是匹配用于恢复系统的用户名帐号。
 
-* 恢复之后还需要恢复没有包含在`--one-file-system`中的一些系统目录
+## 恢复步骤
+
+* 如果你能够通过live-cd启动主机，建议采用chroot方式进入恢复后的操作系统目录（这里假设`/media/sda5`）
 
 ```
-mkdir /proc /sys /mnt /media
+mount -t proc proc /media/sda5/proc
+mount --rbind /sys /media/sda5/sys
+mount --make-rslave /media/sda5/sys
+mount --rbind /dev /media/sda5/dev
+mount --make-rslave /media/sda5/dev
 ```
+
+> `--make-rslave`参数在后面安装的systemd支持所需
+
+进入Ubuntu系统
+
+```
+chroot /media/sda5 /bin/bash
+source /etc/profile
+export PS1="(chroot) $PS1"
+```
+
+>（实际可忽略）恢复之后可能还需要恢复没有包含在`--one-file-system`中的一些系统目录
+
+```
+cd /media/sda5
+mkdir proc sys mnt media
+```
+
+* 如果是在不同的主机上恢复系统，需要修改`/etc/fstab`以及`/boot/grub`
+
+例如`/boot/grub/grub.cfg`中所有原 `root=UUID=3db306b6-2d5e-4e4c-8d22-4fe70ce0d0a4` 需要修改成新的分区UUID `root=`
 
 ## 恢复GRUB
 
@@ -107,13 +134,22 @@ dpkg-reconfigure grub-pc
 
 * 接收服务器
 
-确保接收服务器已经挂载磁盘目录`/mnt/disk`
+> 以下案例假设恢复到分区`/dev/sda5`
+
+确保接收服务器已经挂载磁盘`/dev/sda5`目录`/media/sda5`
 
 ```
-nc -l 1024 | sudo tar -xvpzf - -C /media/whatever
+mkdir /media/sda5
+mount /dev/sda5 /media/sda5
+```
+
+```
+nc -l 1024 | sudo tar -xvpzf - -C /media/sda5
 ```
 
 > 这个命令中`-`字符表示`tar`接收从标准输入而不是一个文件，这里的标准输入是从pipe管道
+
+这里如果出现报错`Ncat: socket: Address family not supported by protocol QUITTING.`请检查一下服务器是否禁止了`IPv6`，默认情况下`nc`会尝试同时使用`IPv4`和`IPv6`。
 
 * 发送服务器
 
