@@ -46,6 +46,8 @@ sudo dnf system-upgrade reboot
 
 以上等待升级完成即可，重启两次后即进入Fedora 27系统。
 
+> 注意：从Fedora 26升级到27以后，内核不会更新，虽然每次都会安装新的内核软件包。解决方法参考[升级到Fedora 27之后内核安装后不更新grub问题处理](since_fedora_27_update_new_kernels_not_show_in_grub)
+
 # 参考
 
 * [DNF system upgrade](https://fedoraproject.org/wiki/DNF_system_upgrade)

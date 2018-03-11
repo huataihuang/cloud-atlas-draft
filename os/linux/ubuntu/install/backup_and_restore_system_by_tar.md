@@ -130,6 +130,36 @@ chroot /media/whatever
 dpkg-reconfigure grub-pc
 ```
 
+不过，我遇到问题还是无法启动。感觉对于EFI启动，需要单独一个独立分区，类似原先CentOS安装那样。
+
+> [How to Repair, Restore, or Reinstall Grub 2 with a Ubuntu Live CD or USB](http://howtoubuntu.org/how-to-repair-restore-reinstall-grub-2-with-a-ubuntu-live-cd)提供了一个修复方法：
+
+```
+grub-install /dev/sdX
+
+grub-install --recheck /dev/sdX
+
+update-grub
+```
+
+此外，在CentOS论坛有一篇[multi boot with Ubuntu](https://www.centos.org/forums/viewtopic.php?t=15774)可以参考，方法是先安装CentOS，然后再安装Ubntu。最后在Ubuntu的`/etc/grub.d/40_custom`中添加CentOS内容
+
+```bash
+#!/bin/sh
+exec tail -n +3 $0
+# This file provides an easy way to add custom menu entries.  Simply type the
+# menu entries you want to add after this comment.  Be careful not to change
+# the 'exec tail' line above.
+###
+menuentry "Centos-5.4" {
+set root=(hd0,[b]1[/b])
+chainloader +1
+}
+```
+
+然后执行`sudo update-grub`或者`sudo update-grub2`就可以双启动。
+
+
 # 从网络恢复
 
 * 接收服务器
