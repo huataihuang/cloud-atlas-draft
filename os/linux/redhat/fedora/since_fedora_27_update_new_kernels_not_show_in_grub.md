@@ -1,3 +1,9 @@
+> **`警告`**
+>
+> 本人实践中遇到问题，导致Mac / Fedora双启动无进入Fedora Linux系统。由于时间精力不足，暂时采用macOS工作，这个问题以后有时间或机会再排查。
+>
+> **请勿直接采用本文方法，仅供参考**
+
 [使用dnf对Fedora进行系统大版本升级](os/linux/redhat/fedora/fedora_system-upgrade_by_dnf.md)后，操作系统从Fedora 26升级到了Fedora 27，但是发现每次内核安装新版本之后都不更新grub，导致内核版本始终停留在原先Fedora 26所使用的内核。
 
 解决的方法是重新安装`grub2-tools`，然后再次运行`grub2-mkconfig -o /boot/grub2/grub.cfg`:
