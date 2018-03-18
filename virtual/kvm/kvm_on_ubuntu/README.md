@@ -1,0 +1,1 @@
+本章节参考Ubuntu官方文档[KVM](https://help.ubuntu.com/community/KVM)，在Ubuntu 16.0.

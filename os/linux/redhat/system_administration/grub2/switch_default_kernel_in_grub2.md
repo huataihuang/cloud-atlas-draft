@@ -29,6 +29,8 @@ saved_entry=CentOS Linux (3.10.0-514.21.2.el7.x86_64) 7 (Core)
 #grub2-set-default 1
 ```
 
+> 这里也可以使用`grub2-set-default "CentOS Linux (3.10.0-327.ali2010.alios7.x86_64) 7 (Core)"`，这样使用`grub2-editenv list`就会显示`saved_entry=CentOS Linux (3.10.0-327.ali2010.alios7.x86_64) 7 (Core)`。实际上，这个配置写入在`/boot/grub2/grubenv`文件中，可以直接通过`sudo cat /boot/grub2/grubenv`查看。
+
 * 再次检查确认启动项
 
 ```

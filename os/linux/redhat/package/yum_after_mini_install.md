@@ -4,7 +4,7 @@
 
 ```bash
 yum -y install which sudo nmap-ncat mlocate net-tools rsyslog file ntp ntpdate \
-wget tar bzip2 tmux sysstat unzip nfs-utils parted lsof man bind-utils \
+wget tar bzip2 screen sysstat unzip nfs-utils parted lsof man bind-utils \
 gcc gcc-c++ make telnet flex autoconf automake ncurses-devel crontabs \
 zlib-devel git
 ```

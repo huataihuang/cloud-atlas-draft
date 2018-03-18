@@ -22,6 +22,8 @@ sudo dd if=FreeBSD-11.0-RELEASE-amd64-memstick.img of=/dev/rdisk2 bs=100m conv=s
 * 文档中记载X220不能在BIOS设置Legacy boot的设置下从GPT分区启动 - [Problems with the Thinkpad X220 and GPT, UEFI, MBR and Legacy BIOS Booting](http://blog.jamiek.it/2011/10/problems-with-thinkpad-x220-and-gpt.html) / [Installing Gentoo on a ThinkPad X220](http://www.thinkwiki.org/wiki/Installing_Gentoo_on_a_ThinkPad_X220) (这篇文档提供了有关BIOS更新的信息：包括如何更新BIOS) / [ThinkPad X220 4290型 Windows 7 32位驱动（最新的BIOS 1.42-1.24下载）](http://think.lenovo.com.cn/support/driver/newdriversdownlist.aspx?yt=pt&categoryid=3091100&CODEName=4290&SearchType=1&wherePage=2&SearchNodeCC=ThinkPad+X220&osid=231)
 * 对于PC-BSD，有记录显示 `MBR + GRUB + ZFS - PC-BSD 10-R2: Successful!` ，可能需要使用MBR方式来磁盘分区进行安装
 
+> 官方[ThinPad X220驱动下载](http://think.lenovo.com.cn/support/driver/newdriversdownlist.aspx?yt=pt&categoryid=9787&CODEName=ThinkPad%20X220&SearchType=0&wherePage=2)
+
 ## 升级BIOS
 
 * 从 [ThinkPad X220 4290型 官方支持（最新的BIOS 1.42-1.24下载）](http://think.lenovo.com.cn/support/driver/newdriversdownlist.aspx?yt=pt&categoryid=3091100&CODEName=4290&SearchType=1&wherePage=2&SearchNodeCC=ThinkPad+X220&osid=231) 下载 BIOS升级光盘iso文件
