@@ -46,9 +46,9 @@ pip install uwsgi
 也可以参考 [Installing uWSGI](http://uwsgi-docs.readthedocs.io/en/latest/Install.html) 手工下载安装
 
 ```
-wget https://projects.unbit.it/downloads/uwsgi-2.0.15.tar.gz
-tar xfz uwsgi-2.0.15.tar.gz
-cd uwsgi-2.0.15
+wget https://projects.unbit.it/downloads/uwsgi-2.0.17.tar.gz
+tar xfz uwsgi-2.0.17.tar.gz
+cd uwsgi-2.0.17
 
 python uwsgiconfig.py --build
 ```

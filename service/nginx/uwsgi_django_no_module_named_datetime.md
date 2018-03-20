@@ -18,6 +18,8 @@ unable to load app 0 (mountpoint='') (callable not found or import error)
 
 此外，通过WEB访问显示错误`Internal Server Error`
 
+> 尝试了两次迁移Docker容器，出现的报错信息完全一样。
+
 # 排查
 
 * 去除uwsgi，直接通过Django访问是正常的
@@ -29,6 +31,8 @@ python manage.py runserver 0:8000
 是什么原因导致的加载错误？
 
 > 容器从主机A迁移到主机B，由于主机B上的用户uid/gid和主机A迁移过来的容器中uid/gid不同同，我曾经做过一次[通过工具usermod和groupmod修改用户帐号名/uid/gid](../../develop/shell/utilities/usermod_groupmod)
+>
+> 不过，第二次尝试迁移Docker容器，没有执行过更改用户uid/gid，一样报错。
 
 * 尝试手工启动uwsgi:（`my_django_app`是Django项目）
 
@@ -149,3 +153,54 @@ daemonize      = /home/admin/venv2/my_django_app.log
 日志中报错同上
 
 目前基本判断还是Docker迁移的问题，这次排查对daemonize方式运行uwsgi有了了解，另外摸索了Django的配置，看来官方文档配置是最准确的，还需要再改进改进。
+
+# 重建virtualenv环境
+
+[ImportError: No module named datetime](https://stackoverflow.com/questions/26031160/importerror-no-module-named-datetime)提到了解决方法，原因是操作系统升级以后导致的问题。
+
+> 我的容器迁移应该没有操作系统变化才对。不过，virtualenv的环境中的python是2.7.14版本，而操作系统似乎升级过（当前是CentOS 5.11），python版本是2.4.3
+
+```
+mv ~/venv2 ~/venv2.bak
+
+virtualenv venv2
+source venv2/bin/activate
+```
+
+但是，我发现重新创建一次virtualenv虚拟环境，显示的Python版本依然是 2.7.14
+
+* 重新从项目中获取需要的模块重新安装
+
+参考了 [Rebuilding a Virtualenv](https://help.pythonanywhere.com/pages/RebuildingVirtualenvs/) 使用以下方法找出依赖的软件包：
+
+```bash
+source venv2.bak/bin/activate
+cd my_project   # 进入项目目录
+pip freeze > requirements.txt
+```
+
+然后重新安装需要的依赖
+
+```
+pip install -r requirements.txt
+```
+
+# 重新安装uwsgi
+
+* 安装uWSGI
+
+```
+pip install uwsgi
+```
+
+# 其他模块安装
+
+经过重建virtualenv，以及重新安装了uwsgi之后，确实可以正确运行了。不过，我也发现使用`pip freeze > requirements.txt`并没有完全包含所有使用的模块。例如，使用到的`django-url-filter`没有列出，手工安装
+
+```
+pip install django-url-filter
+```
+
+# 参考
+
+* [ImportError: No module named datetime](https://stackoverflow.com/questions/26031160/importerror-no-module-named-datetime)

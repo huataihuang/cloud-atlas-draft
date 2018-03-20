@@ -66,6 +66,8 @@ grub2-mkconfig -o /boot/grub2/grub.cfg
 
 ## 安装工具
 
+* CentOS/RHEL安装工具
+
 ```
 yum install -y util-linux kernel-tools
 ```
@@ -76,6 +78,16 @@ yum install -y util-linux kernel-tools
 | cpupower | kernel-tools | 检查和设置处理器能耗管理、主频等 |
 | turbostat | kernel-tools | 监控处理器负载、主频、温度、内存使用等 |
 | rdmsr / wrmsr | msr-tools | 读写MSR寄存器 |
+
+* Debian/Ubuntu安装工具
+
+```
+apt install linux-tools-generic
+```
+
+> Debian/Ubuntu安装的内核工具是针对不同内核来安装的，所以有 `linux-tools-generic` 和 `linux-tools-generic-hwe` 以及 `linux-tools-virtual` 等等不同工具包。
+>
+> `cpupower`属于`linux-tools-common`软件包，在安装`linux-tools-generic`会依赖安装。
 
 ## 检查处理器信息
 

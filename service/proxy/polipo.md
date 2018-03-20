@@ -37,3 +37,27 @@ polipo proxyAddress=0.0.0.0
 ```
 
 > **注意：监听所有网络接口存在被滥用的风险，请注意在内网安全环境下使用！**
+
+# 配置Polipo
+
+> 在Ubuntu上安装部署polipo，配置参考`/usr/share/doc/polipo/examples/config.sample`
+
+* 配置`/etc/polipo/config`
+
+```ini
+proxyAddress = "0.0.0.0"
+allowedClients = 127.0.0.1, 192.168.0.0/24
+
+# Uncomment this if you want to use a parent proxy:
+# parentProxy = "squid.example.org:3128"
+
+# Uncomment this if you want to use a parent SOCKS proxy:
+# socksParentProxy = "localhost:9050"
+# socksProxyType = socks5
+```
+
+* 启动
+
+```
+systemctl start polipo
+```

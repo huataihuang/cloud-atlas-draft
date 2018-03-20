@@ -109,8 +109,8 @@ listen status
     stats enable
     stats uri /
     stats realm Strictly\ Private
-    stats auth A_Username:YourPassword
-    stats auth Another_User:passwd
+    stats auth user1:User1_Password
+    stats auth user2:User2_Password
 ```
 
 * 启动haproxy
