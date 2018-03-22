@@ -81,7 +81,7 @@ docker commit myapp local:myapp
 docker stop myapp
 docker rm myapp
 
-docker run -it -p 221:22 -p 801:80 -p 4431:443 -p 8081:8080 --hostname myapp \
+docker run -it -p 221:22 -p 801:80 -p 4431:443 -p 8081:8080 -p 33061:3306 --hostname myapp \
 --name myapp -v share-data:/data local:myapp /bin/bash
 ```
 
