@@ -88,6 +88,80 @@ Device         Boot Start      End  Sectors  Size Id Type
 
 * 划分USB磁盘分区
 
+使用`fdisk`对磁盘分区，则`msdos`分区表就不会建立`PARTUUID`。但是我测试直接使用`UUID`替代`PARTUUID`来指引设置启动分区没有成功。所以改为`parted`来划分分区，看看能否增加`PARTUUID`
+
+```
+# parted --align optimal /dev/sda
+(parted) rm 2
+(parted) rm 1
+(parted) mkpart primary fat32 2048s 50M
+(parted) align-check optimal 1
+1 aligned
+(parted) unit s
+(parted) print
+Model: JMicron Generic (scsi)
+Disk /dev/sda: 976773168s
+Sector size (logical/physical): 512B/512B
+Partition Table: msdos
+Disk Flags:
+
+Number  Start  End     Size    Type     File system  Flags
+ 1      2048s  98303s  96256s  primary  fat32        lba
+(parted) mkpart primary ext4 98304 30G
+(parted) align-check optimal 2
+2 aligned
+(parted) print
+Model: JMicron Generic (scsi)
+Disk /dev/sda: 976773168s
+Sector size (logical/physical): 512B/512B
+Partition Table: msdos
+Disk Flags:
+
+Number  Start   End        Size       Type     File system  Flags
+ 1      2048s   98303s     96256s     primary  fat32        lba
+ 2      98304s  58593279s  58494976s  primary  ext4         lba
+
+(parted) unit MB
+(parted) print
+Model: JMicron Generic (scsi)
+Disk /dev/sda: 500108MB
+Sector size (logical/physical): 512B/512B
+Partition Table: msdos
+Disk Flags:
+
+Number  Start   End      Size     Type     File system  Flags
+ 1      1.05MB  50.3MB   49.3MB   primary  fat32        lba
+ 2      50.3MB  30000MB  29949MB  primary  ext4         lba
+```
+
+> 4k对齐参考[How to align partitions for best performance using parted](https://rainbow.chard.org/2013/01/30/how-to-align-partitions-for-best-performance-using-parted/)，其中参数查看`/dev/sda`，所以第一个分区起始扇区选择`2048s`:
+
+```
+root@raspberrypi:~# cat /sys/block/sda/queue/optimal_io_size
+0
+root@raspberrypi:~# cat /sys/block/sda/queue/minimum_io_size
+512
+root@raspberrypi:~# cat /sys/block/sda/alignment_offset
+0
+root@raspberrypi:~# cat /sys/block/sda/queue/physical_block_size
+512
+```
+
+> 注意：这里划分`/dev/sda2`只分配30G给操作系统使用，因为我准备把剩余的空间作为存储空间，将在后续使用卷管理来维护，并构建Ceph存储。
+
+此时退出`parted`程序，可以看到`parted`工具在划分磁盘分区时候，确实创建了`PARTUUID`（神奇）：
+
+```
+root@raspberrypi:~# blkid /dev/sda
+/dev/sda: PTUUID="1a99ca08" PTTYPE="dos"
+root@raspberrypi:~# blkid /dev/sda1
+/dev/sda1: UUID="5F6A-6FC8" TYPE="vfat" PARTUUID="1a99ca08-01"
+root@raspberrypi:~# blkid /dev/sda2
+/dev/sda2: PARTUUID="1a99ca08-02"
+```
+
+但是，此时看不到`UUID`。`UUID`则在`mkfs.ext4 /dev/sda2`之后就会标记上。
+
 > 我感觉使用`tar`方法也应该能够从SD卡中复制出完整的磁盘分区内容到USB磁盘。和普通的PC不同，树莓派会默认尝试搜索可以启动的分区（默认会从SD卡启动，15秒之后将尝试从USB存储启动，即前面修改的配置）。
 
 注意：一定要有一个fat分区用于存放`/boot`分区内容，因为UEFI启动默认会寻找vfat分区内容来启动。
@@ -98,14 +172,14 @@ Units: sectors of 1 * 512 = 512 bytes
 Sector size (logical/physical): 512 bytes / 512 bytes
 I/O size (minimum/optimal): 512 bytes / 512 bytes
 Disklabel type: dos
-Disk identifier: 0x5e878358
+Disk identifier: 0x148374e0
 
-Device     Boot  Start      End  Sectors Size Id Type
-/dev/sda1         2048   104447   102400  50M  c W95 FAT32 (LBA)
-/dev/sda2       104448 63019007 62914560  30G 83 Linux
+Device     Boot Start      End  Sectors  Size Id Type
+/dev/sda1        2048    98303    96256   47M  c W95 FAT32 (LBA)
+/dev/sda2       98304 58593279 58494976 27.9G 83 Linux
 ```
 
-  * 如果使用`dd`命令复制磁盘分区，所以要确保`/dev/sda1`磁盘分区大于源SD卡分区`/dev/mmcblk0p2`。
+  * 如果使用`dd`命令复制磁盘分区，所以要确保`/dev/sda2`磁盘分区大于源SD卡分区`/dev/mmcblk0p2`。
   * 如果使用`tar`方式复制磁盘文件系统，则目标分区只要能够容纳源`/dev/mmcblk0p2`文件就可以
 
 ## 通过`dd`复制磁盘（我没有采用这个方法）
@@ -136,21 +210,31 @@ sudo tar -xpzf /backup.tar.gz -C /mnt --numeric-owner
 
 注意：上述备份的`/backup.tar.gz`没有包含`/boot`分区内容。需要先挂载`/mnt/boot`分区之后，再从源分区复制(这个分区是启动分区，必须是`vfat`文件系统)
 
+> 注意：在执行了`mkfs.ext4 /dev/sda2`之后，再使用`blkid /dev/sda2`就能够看到`UUID`，这个`UUID`是文件系统UUID：
+
 ```
-mkfs.vfat /dev/sda1
+root@raspberrypi:~# blkid /dev/sda2
+/dev/sda2: UUID="b2e461e7-5a68-434d-bda1-c7c137e8c38e" TYPE="ext4" PARTUUID="1a99ca08-02"
+```
+
+```bash
+# mkfs.vfat /dev/sda1  <= 这里没有指定FAT32文件系统，默认格式化是FAT16
+# 检查发现`fdisk`虽然可以通过`c`这个type来标记分区为FAT32，但是如果`mkfs.fat`不指定`-F32`参数
+# 会导致文件系统还是`fat16`文件系统，虽然用`fdisk -l`看不出，但是`parted`则能够看到是`fat16`
+mkfs.fat -F32 /dev/sda1
 mount /dev/sda1 /mnt/boot
 (cd /boot && tar cf - .)|(cd /mnt/boot && tar xf -)
 ```
 
->  注意：要避免包含目录，使用`--exclude`参数。参考[Exclude Multiple Directories When Creating A tar Archive](https://www.question-defense.com/2012/06/13/exclude-multiple-directories-when-creating-a-tar-archive)。但是我使用如下命令依然包含了不需要的目录，最后还是参考了Ubuntu的[使用tar方式备份和恢复系统](../../os/linux/ubuntu/install/backup_and_restore_system_by_tar)来实现tar方式复制系统成功。
+>  注意：要避免包含目录，使用`--exclude`参数。参考[Exclude Multiple Directories When Creating A tar Archive](https://www.question-defense.com/2012/06/13/exclude-multiple-directories-when-creating-a-tar-archive)。但是我使用如下命令依然包含了不需要的目录（**`失败`**），最后还是参考了Ubuntu的[使用tar方式备份和恢复系统](../../os/linux/ubuntu/install/backup_and_restore_system_by_tar)来实现tar方式复制系统成功。
 
 ```
 (cd / && tar cf - --exclude "/mnt" --exclude "/sys" --exclude "/proc" --exclude "/lost+found" --exclude "/tmp" .)|(cd /mnt && tar xf -)
 ```
 
-# 配置修改（实际无需）
+# 配置修改
 
-注意：如果你将`/`系统通过`tar`方式备份，然后恢复到USB磁盘的不同分区（例如，原先是`/dev/mmcblk0p2`，恢复时没有对应恢复到`/dev/sda2`，而是其他分区`/dev/sda3` 则需要修改对应启动配置）
+> 注意：除非使用`dd`来复制SD卡到HDD才能保持原有的`PARTUUID`，否则使用`parted`划分分区以及使用`mkfs`创建文件系统，都会使得目标磁盘的`UUID`和`PARTUUID`变化。则需要修改启动配置文件反映分区标识的变化。
 
 * 检查当前SD卡的分区UUID，例如如下：
 
@@ -165,17 +249,40 @@ pi@raspberrypi:/boot $ sudo blkid /dev/mmcblk0
 /dev/mmcblk0: PTUUID="5e878358" PTTYPE="dos"
 ```
 
+> 有点疑惑：`/dev/mmcblk0`使用`parted`检查显示是`msdos`分区表，但是使用`blkid`检查可以看到具有`PARTUUID`。参考[Persistent block device naming](https://wiki.archlinux.org/index.php/persistent_block_device_naming)，原文介绍`GPT`分区表支持`PARTUUID`。不过，我实践发现树莓派默认安装的系统使用的是`msdos`分区表，但是也具有`PARTUUID`。测试验证发现，通过使用`parted`工耦划分磁盘分区就会有`PARTUUID`。
+>
+> 以下是`/dev/mmcblk0`在`parted`中`print`输出
+
+```
+Model: SD SD32G (sd/mmc)
+Disk /dev/mmcblk0: 31.5GB
+Sector size (logical/physical): 512B/512B
+Partition Table: msdos
+Disk Flags:
+
+Number  Start   End     Size    Type     File system  Flags
+ 1      4194kB  47.7MB  43.5MB  primary  fat32        lba
+ 2      48.2MB  31.5GB  31.4GB  primary  ext4
+```
+
 上述可以看到
 
 | 分区 | PARTUUID |
 | `/dev/mmcblk0p1` | `5e878358-01` |
 | `/dev/mmcblk0p2` | `5e878358-02` |
 
-经过实践，发现树莓派把USB磁盘`/dev/sda`的分区`sda1`和`sda2`也写成了相同的`5e878358-01`和`5e878358-02`。所以实践中，我没有修改配置。
+> 我测试发现，如果使用`dd`命令来复制磁盘分区，则HDD磁盘的`/dev/sda1`和`/dev/sda2`的`PARTUUID`会和原先的TF卡完全相同，即依然保持`5e878358-01`和`5e878358-02`。这样就不用修改HDD文件系统中的配置。
 
-如果磁盘`PARTUUID`不同，则要修改对应配置`/boot/cmdline.txt`和`/etc/fstab`。
+但是通过磁盘`parted`和`mkfs.ext4`创建的HDD文件系统，然后再通过`tar`恢复操作系统。此时磁盘`PARTUUID`和`UUID`不同，则要修改对应配置`/boot/cmdline.txt`和`/etc/fstab`。例如：
 
-* 对比当前`/boot/cmdline.txt`配置文件，可以看到配置内容如下
+```bash
+root@raspberrypi:~# blkid /dev/sda1
+/dev/sda1: UUID="47D1-C570" TYPE="vfat" PARTUUID="1a99ca08-01"
+root@raspberrypi:~# blkid /dev/sda2
+/dev/sda2: UUID="b2e461e7-5a68-434d-bda1-c7c137e8c38e" TYPE="ext4" PARTUUID="1a99ca08-02"
+```
+
+* 检查`/boot/cmdline.txt`配置文件，可以看到原先配置内容如下
 
 ```
 pi@raspberrypi:/boot $ cat cmdline.txt
@@ -184,25 +291,16 @@ dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=5e878358-
 
 这里可以看到`root=PARTUUID=5e878358-02`就是SD卡的分区`/dev/mmcblk0p2`对应的`PARTUUID="5e878358-02"`
 
-* 同样我们检查USB磁盘的分区UUID，注意，我们要将启动指向分区`/dev/sda2`，因为这个分区就是从`/dev/mmcblk0p2`通过`tar`方式复制出来的，所以需要修改启动参数
+* 根据前述检查USB磁盘的分区`UUID`，即`e3f5b3fb-297c-44fe-b763-566b51b87524`，注意，我们要将启动指向分区`/dev/sda2`，因为这个分区就是从`/dev/mmcblk0p2`通过`tar`方式复制出来的。修改`/mnt/boot/cmdline.txt`（该文件位于`/dev/sda2`这个HDD分区文件系统中）
 
 ```
-blkid /dev/sda2
+dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=1a99ca08-02 rootfstype=ext4 elevator=cfq fsck.repair=yes rootwait
 ```
 
-输出显示
-
-```
-/dev/sda2: UUID="c2ad4a2b-800b-438f-a1a7-07b95cf09d2c" TYPE="ext4" PARTUUID="5e878358-02"
-```
-
-> 这里的`PARTUUID="5e878358-02"`就是我们后面要修改的启动配置中的指定启动分区
-
-* 修改`/mnt/boot/cmdline.txt`配置文件，修改成
-
-```
-dwc_otg.lpm_enable=0 console=serial0,115200 console=tty1 root=PARTUUID=5e878358-02 rootfstype=ext4 elevator=deadline fsck.repair=yes rootwait
-```
+> 这里修改了2个地方：
+> 
+> * `root=PARTUUID=e3f5b3fb-297c-44fe-b763-566b51b87524` 指向HDD磁盘分区`/dev/sda2`表示从USB外接的硬盘启动
+> * `evevator=cfq` 是修改原先针对SSD/SDCARD/TFCARD这类固态硬盘优化参数`deadline`，现在修改成针对HDD硬盘优化参数`cfq`
 
 * 修改`/mnt/etc/fstab`配置文件，修改`/`行中`PARTUUID`内容
 
@@ -212,7 +310,9 @@ PARTUUID=5e878358-01  /boot           vfat    defaults          0       2
 PARTUUID=5e878358-02  /               ext4    defaults,noatime  0       1
 ```
 
-**非常奇怪**，发现SD卡分区的`PARTUUID`居然和USB磁盘的`PARTUUID`完全一致，这样都不需要修改配置了。
+* 关机，然后取出TF卡，再次加电，此时树莓派将从外接USB的HDD磁盘启动
+
+> 测试下来，如果再次使用TF卡，依然能够优先从TF卡启动树莓派。只有TF卡不可用时候，才会从USB HDD启动。
 
 # 参考
 

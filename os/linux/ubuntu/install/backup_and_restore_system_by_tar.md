@@ -130,7 +130,13 @@ chroot /media/whatever
 dpkg-reconfigure grub-pc
 ```
 
-不过，我遇到问题还是无法启动。感觉对于EFI启动，需要单独一个独立分区，类似原先CentOS安装那样。
+遇到无法启动的问题则需要确保：
+
+* UEFI启动的分区必须是FAT32，独立分区（`/dev/sda1`），并且挂载到`/boot`，这样才能够启动
+* 如果是多Linux操作系统启动，需要把多个操作系统到启动内核都复制到同一个`/boot`分区
+* 设置内核启动参数中`root=PARTUUID=5e878358-02`，应该使用的是分区UUID，这个分区UUID是`parted`划分分区时候创建的标记
+
+> 详细参考我的实践
 
 > [How to Repair, Restore, or Reinstall Grub 2 with a Ubuntu Live CD or USB](http://howtoubuntu.org/how-to-repair-restore-reinstall-grub-2-with-a-ubuntu-live-cd)提供了一个修复方法：
 

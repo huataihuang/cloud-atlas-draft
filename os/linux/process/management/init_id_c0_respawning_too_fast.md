@@ -118,7 +118,7 @@ kill -SIGHUP 1
 或者使用以下命令使得`init`重新初始化并重新读取`/etc/inittab`文件：
 
 ```
-telnit q
+telinit q
 ```
 
 # 参考
