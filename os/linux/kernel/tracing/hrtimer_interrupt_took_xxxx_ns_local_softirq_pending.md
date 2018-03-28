@@ -4,7 +4,7 @@
 
 # 排查
 
-* 虚拟机`ifccustview-1-42` （10.31.109.102）
+* 虚拟机日志检查
 
 `dmesg`中可以发现有如下异常的日志：
 
@@ -19,61 +19,12 @@ NOHZ: local_softirq_pending 100
 检查`/var/log/messages`可以看到：
 
 ```
-Mar  7 22:38:41 ifccustview-1-42 kernel: NOHZ: local_softirq_pending 100
-Mar 22 08:38:31 ifccustview-1-42 kernel: NOHZ: local_softirq_pending 100
-Mar 25 09:22:12 ifccustview-1-42 kernel: NOHZ: local_softirq_pending 100
+Mar  7 22:38:41 exampleserver-1 kernel: NOHZ: local_softirq_pending 100
+Mar 22 08:38:31 exampleserver-1 kernel: NOHZ: local_softirq_pending 100
+Mar 25 09:22:12 exampleserver-1 kernel: NOHZ: local_softirq_pending 100
 ```
 
-> 更早的系统messages日志已经轮转消失了
-
-* 虚拟机`ifccustview-1-129` (i-l5sbvnuje6ylfb8i2k72 10.31.108.88) 日志为0，不过也可以从`dmesg`中看到：
-
-```
-NOHZ: local_softirq_pending 100
-hrtimer: interrupt took 1996427 ns
-NOHZ: local_softirq_pending 100
-```
-
-* 虚拟机`ifccustview-1-56` (i-l5sa0ftth6wlayi7684f 10.31.109.64) 没有上述`dmesg`信息。不过，根据aone中记录，这个虚拟机的情况似乎不同，当时有staragent发布的问题。
-
-* 虚拟机`ifccustview-1-52` (i-l5sid7ajv83iqeha77zv 10.31.109.95)有类似没有争抢，负载不高，但是依然出现连接抖动
-
-`dmesg`信息
-
-```
-NOHZ: local_softirq_pending 100
-NOHZ: local_softirq_pending 100
-NOHZ: local_softirq_pending 100
-NOHZ: local_softirq_pending 100
-NOHZ: local_softirq_pending 100
-NOHZ: local_softirq_pending 100
-NOHZ: local_softirq_pending 100
-NOHZ: local_softirq_pending 100
-hrtimer: interrupt took 856243 ns
-```
-
-对应`messages`日志
-
-```
-Mar 26 18:01:55 ifccustview-1-52 kernel: hrtimer: interrupt took 856243 ns
-```
-
-* 虚拟机`ifccustview-1-53` (10.31.109.65) 在3月5日有过抖动，发布了autocg之后没有抖动记录
-
-从`messages`日志看3月5日以及之后都没有出现过。由于3月4日之前的messages日志没有了，只能看到dmesg中有 
-
-```
-hrtimer: interrupt took 171247 ns
-NOHZ: local_softirq_pending 100
-```
-
-# 推测
-
-推测autocg发布确实改善了上述出现`hrtimer: interrupt took xxxx ns`以及`NOHZ: local_softirq_pending 100`。但是依然有少量虚拟机在特定情况下依然会触发上述报错，当上述报错出现时，会导致虚拟机网络ping没有延迟，也没有负载变化，但是网络tcp连接出现问题。
-
-这个问题可能需要从虚拟机内核来解决。
-
-# 参考
+## 内核相关
 
 [NOHZ: local_softirq_pending 100](https://forum.proxmox.com/threads/nohz-local_softirq_pending-100.11855/)提到了 `NOHZ: local_softirq_pending 100` 有可能是Red Hat Kernel 6.2.32 分支的bug。
 
