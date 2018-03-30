@@ -18,11 +18,20 @@ Polipo具有一下一些特点：
 
 #  安装Polipo
 
-从Git软件仓库扩去源代码
+从Git软件仓库扩取源代码
 
 ```bash
 git clone https://github.com/jech/polipo.git
 ```
+
+然后编译：
+
+```bash
+cd polipo
+make
+```
+
+编译之后，当前目录下就有一个可执行文件`polipo`
 
 如果想使用二进制执行代码，Debian系有直接发行包，RedHat软件包需要从第三方获取，Mac OS X可以使用 [DarwinPorts](http://www.macports.org/)
 
