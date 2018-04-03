@@ -2,6 +2,8 @@
 
 > 不要问我为何要这么折腾在手机中运行一个安全黑客发行版本的Kali Linux，而且还要通过远程图形方式访问。为何不简简单单在电脑上安装一个操作系统，甚至最低端的计算机硬件性能也远好于Nexus 5这个几年前发布的手机。不为什么，就是为了好玩，为了探索不可能。。。
 
+> [在树莓派Zero W上运行Kali Linux](../../../develop/raspberry_pi/running_kali_linux_on_raspberry_pi_zero_w)可以实现随插随用的安全扫描Linux系统，也是一个非常好玩的应用场景。
+
 其实，VNC远程访问Linux服务器是非常古老的技术，但是这个技术一直有着简单实用的价值，直到今天依然是远程访问 Linux/Unix 服务器图形系统的利器。在虚拟化平台，也使用[远程访问VNC](../../../virtual/libvirt/remote_vnc)来访问虚拟机的控制台桌面。
 
 此外，另外一种适合Linux/Mac客户端的远程图形桌面访问方式是使用X Window原生的远程访问模式，例如[从ma上访问远程X window](../x/remote_x_from_mac)，甚至都不需要使用vnc客户端，只需要客户端和服务器都是相似架构的X Window系统就可以了。

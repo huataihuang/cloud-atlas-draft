@@ -9,10 +9,12 @@
 ## 树莓派
 
 * [从USB存储启动树莓派](../../develop/raspberry_pi/boot_from_usb_storage_on_raspberry_pi)
-* [树莓派Zero设置USB网络通讯(Ethernet Gadget)](develop/raspberry_pi/raspberry_pi_zero_ethernet_gadget.md)
-* [在树莓派Zero W上运行Kali Linux](develop/raspberry_pi/running_kali_linux_on_raspberry_pi_zero_w.md)
-* [通过VNC访问Kali Linux](os/linux/kali/vnc_access_kali_linux.md)
-* [定制Kali Linux桌面i3窗口管理器](os/linux/kali/customise_kali_linux_i3_window_manager.md)
+* [树莓派Zero设置USB网络通讯(Ethernet Gadget)](../../develop/raspberry_pi/raspberry_pi_zero_ethernet_gadget.md)
+* [在树莓派Zero W上运行Kali Linux](../../develop/raspberry_pi/running_kali_linux_on_raspberry_pi_zero_w.md)
+* [Kali Linux初始化](../../os/linux/kali/initial_kali_linux.md)
+* [矫正Kali Linux时间](../../os/linux/kali/update_kali_linux_time.md)
+* [通过VNC访问Kali Linux](../../os/linux/kali/vnc_access_kali_linux.md)
+* [定制Kali Linux桌面fluxbox窗口管理器](../../os/linux/kali/customise_kali_linux_fluxbox_window_manager.md)
 
 ## Ubuntu
 
@@ -24,7 +26,7 @@
 * [Intel Turbo Boost技术和intel_pstate](../../os/linux/kernel/cpu/intel_turbo_boost_and_pstate)
 * [使用ufw配置NAT masquerade](../../os/linux/network/firewall/ufw/nat_masquerade_in_ufw)
 * [Ubuntu 16 NFS设置](../../service/nfs/setup_nfs_on_ubuntu16.md)
-* [DNSmasq快速起步](service/dns/dnsmasq/dnsmasq_quick_startup.md) - 在网关上提供DNS服务
+* [DNSmasq快速起步](../../service/dns/dnsmasq/dnsmasq_quick_startup.md) - 在网关上提供DNS服务
 
 ## macOS
 
