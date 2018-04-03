@@ -4,6 +4,8 @@ Django作为WEB开发框架，默认使用SQLite作为开发数据库。生产�
 
 # 安装MySQL
 
+## CentOS
+
 * 通过MySQL官方仓库安装 https://dev.mysql.com/downloads/repo/yum/
 
 ```
@@ -22,6 +24,22 @@ mysql-community-devel
 ```
 mysql_secure_installation
 ```
+
+## macOS
+
+在macOS上，要安装mysqlclient for django，需要首先通过`brew`安装mysql软件，设置环境后才能够使用`pip install mysqlclient`。否则会出现报错`EnvironmentError: mysql_config not found`:
+
+> 在macOS平台使用Jetbrains的PyCharm来开发Django，需要安装对应的`mysqlclient`。安装方法参考[Install mysqlclient for Django Python on Mac OS X Sierra](https://stackoverflow.com/questions/43612243/install-mysqlclient-for-django-python-on-mac-os-x-sierra)
+
+```
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+brew install mysql
+source venv2/bin/activate
+pip install mysqlclient
+```
+
+> 这里执行`source venv2/bin/activate`是为了激活Python virtualenv环境
 
 # 准备数据库
 
