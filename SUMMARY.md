@@ -652,6 +652,7 @@
 			* [架构](iaas/openstack/redhat/architecture/README.md)
 				* [组件](iaas/openstack/redhat/architecture/components.md)
 				* [架构案例](iaas/openstack/redhat/architecture/example_architecture.md)
+		* [华为OpenStack](iaas/openstack/huawei/README.md)
 	* [oVirt](iaas/ovirt/README.md)
 		* [oVirt架构](iaas/ovirt/ovirt_infrastructure.md)
 		* [oVirt存储管理](iaas/ovirt/ovirt_storage.md)

@@ -107,7 +107,7 @@ def people(request):
 
 > 使用`RequestConfig`自动从`reuqest.GET`取出值并相应过更新表格。这样数据就会整齐和页面化。
 
-* 然后将查询集(queryset)传递给`{% render_table %}`而不是传递给table instance：
+* 然后将查询集(`queryset`)传递给`render_table`而不是传递给table instance：
 
 ```html
 {# tutorial/templates/tutorial/people.html #}

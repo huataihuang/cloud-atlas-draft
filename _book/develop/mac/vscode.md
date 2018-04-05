@@ -71,7 +71,57 @@ Visual Studio Code微软开发的开源编辑器，及其轻简，同时支持�
 
 > 详细参考 [Configuring launch.json for C/C++ debugging](https://github.com/Microsoft/vscode-cpptools/blob/master/launch.md)
 
+# 开发Python
+
+VS Code通过插件可以非常好支持Python开发。不过，很多时候，我们会通过virtualenv虚拟环境来构建python开发环境，此时需要告诉VS Code在哪里找到特定版本的python，否则会导致VS Code无法找到对应python模块，就会错误高亮显示一些提示（如开发Django程序时候，提示`[pylint] E0401:Unable to import 'django.conf.'`），带来不必要的困扰。
+
+举例，开发Django，先使用如下命令构建一个django开发虚拟环境：
+
+```
+sudo dnf install python2-virtualenv
+```
+
+```
+virtualenv venv2
+source venv2/bin/active
+
+pip install django
+pip install djangorestframework
+pip install mysqlclient
+```
+
+然后在VS Code中设置`Perference >> Settings`
+
+```
+{
+    ...
+    "python.pythonPath": "/home/huatai/venv2/bin/python"
+}
+```
+
+之后，VS Code就能够正确识别Django的模块。
+
+> 使用Python virtualenv虚拟环境开发Python有一个非常好的地方就是VS Code会根据Python代码的语法检查等功能安装对应插件模块，例如 `pylint`，就不需要安装到系统目录，避免了权限问题。
+
+> 参考 [Python Path and Version](https://github.com/DonJayamanne/pythonVSCode/wiki/Python-Path-and-Version)
+
 # 编辑代码
+
+## 文件对比
+
+> 参考[How to Compare files in Visual Studio Code ?](http://dailydotnettips.com/2015/06/04/how-to-compare-files-in-visual-studio-code/)
+
+VS Code支持工作文件案的对比，并且允许以不同模式对比更改。可以使用文件导航侧边栏或者使用命令"`Files:Compare Opened File with`"。在代码对比窗口可以选择`In Line Mode`或者`Merged Mode`。
+
+* 首先选择要对比的第一个文件`settings.json`（案例文件名），右击鼠标，选择菜单`Select for Compare`
+
+![vscode选择对比文件](../../img/develop/mac/vscode_file_compare_1.png)
+
+* 然后再在文件侧边导航栏选择要对比的第二个文件，右击鼠标，选择菜单`Compare with 'settings.json'`（即和第一个选择文件对比）
+
+![vscode选择对比文件](../../img/develop/mac/vscode_file_compare_2.png)
+
+默认时`side by side`对比，也可以切换成`Inline View`。
 
 ## 代码风格
 

@@ -23,6 +23,14 @@ grep -n "pattern" filename.txt
 6:line_y yyyyyy
 ```
 
+# 忽略二进制文件和跳过不需要检查的目录
+
+`-I`参数可以忽略二进制文件的过滤（因为我们需要过滤的是代码文本），`-r`可以递归检查所有子目录，`--exclude-dir`可以跳过不需要检查的目录。举例如下：
+
+```
+grep -rI --exclude-dir="_book" "centos5" *
+```
+
 # 参考
 
 * [GREP如何提取文件中第一个相关匹配](http://bbs.chinaunix.net/thread-3590779-1-1.html)
