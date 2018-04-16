@@ -346,6 +346,14 @@ sudo service logstash configtest
 
 > 这条命令不知道如何验证，在CentOS7 systemd环境下应该有所不同
 
+## Logstash 使用 grok 过滤
+
+日志数据一般都是非结构化数据，而且包含很多不必要的信息，所以需要在 Logstash 中添加过滤插件对 Filebeat 发送的数据进行结构化处理。
+
+使用 grok 正则匹配把那些看似毫无意义、非结构化的日志数据解析成可查询的结构化数据，是目前 Logstash 解析过滤的最好方式。
+
+Grok 的用户不需要从头开始写正则。ELK github 上已经写好了很多有用的模式，比如日期、邮箱地址、IP4/6、URL 等。具体可参考[logstash-patterns-core/patterns/grok-patterns](https://github.com/logstash-plugins/logstash-patterns-core/blob/master/patterns/grok-patterns)。除此之外，还有 [grok 正则表达式的debug 在线工具](http://grokdebug.herokuapp.com/)，能方便快速检验所写表达式是否正确。
+
 # Filebeat
 
 ## Beats简介
@@ -382,7 +390,7 @@ Filebeat作为代理在服务器上运行，监视日志目录或指定日志文
 yum install filebeat
 ```
 
-或者手工安装
+或者手工安装(例如在CentOS 5上安装)
 
 ```
 curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.2.3-x86_64.rpm
@@ -492,6 +500,12 @@ sudo systemctl start filebeat
 sudo systemctl enable filebeat
 ```
 
+## Filebeat 实现 log rotation
+
+Filebeat 默认支持 log rotation，但需要注意的是，Filebeat 不支持使用 NAS 或挂载磁盘保存日志的情况。因为在 Linux 系列的操作系统中，Filebeat 使用文件的 inode 信息判断当前文件是新文件还是旧文件。如果是 NAS 或挂载盘，同一个文件的 inode 信息会变化，导致 Filebeat 无法完整读取 log。
+
+
+
 # Kibana配置模版
 
 * 在Elasticsearch中加载索引模版
@@ -523,3 +537,4 @@ setup.template.fields: "path/to/fields.yml"
 
 * [Elasticsearch Reference [6.2] » Getting Started » Installation](https://www.elastic.co/guide/en/elasticsearch/reference/current/_installation.html)
 * [How To Install Elasticsearch, Logstash, and Kibana (ELK Stack) on CentOS 7](https://www.digitalocean.com/community/tutorials/how-to-install-elasticsearch-logstash-and-kibana-elk-stack-on-centos-7)
+* [ELK+Filebeat 集中式日志解决方案详解](https://www.ibm.com/developerworks/cn/opensource/os-cn-elk-filebeat/index.html)

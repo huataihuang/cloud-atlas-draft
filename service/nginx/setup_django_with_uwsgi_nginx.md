@@ -217,6 +217,14 @@ python manage.py collectstatic
 
 执行该命令之后，会自动在`/home/huatai/works/mysite` 下创建 `static` 子目录
 
+**`注意`** 当修改了js文件，需要重新刷新静态文件（否则会导致无法看到修改内容）：
+
+```
+python manage.py collectstatic --noinput --clear
+```
+
+> 参考[Django won't refresh staticfiles](https://stackoverflow.com/questions/27911070/django-wont-refresh-staticfiles)
+
 * 重新启动nginx
 
 ```

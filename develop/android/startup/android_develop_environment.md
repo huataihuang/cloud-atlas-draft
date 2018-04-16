@@ -30,6 +30,16 @@
 
 > 上述安装过程即满足了刷新Android Image需求，同时也是准备Android开发环境。
 
+## 安装Androd Studio
+
+在macOS上安装Android Studio，选择默认安装，其中有一个安装HAXM组件失败：
+
+```
+Running Intel® HAXM installer
+2018-04-05 21:51:03.098 HAXM installation[74586:4581895] Copy Rights Failed: -60006
+2018-04-05 21:51:03.099 HAXM installation[74586:4581895] Cannot grant admin right for HAXM installation!
+HAXM installation failed. To install HAXM follow the instructions found at: https://software.intel.com/android/articles/installation-instructions-for-intel-hardware-accelerated-execution-manager-mac-os-x
+```
 
 # 参考
 

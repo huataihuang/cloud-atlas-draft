@@ -2,7 +2,7 @@
 
 [mkusb - tool to create boot drives](https://help.ubuntu.com/community/mkusb)是一个易于使用的clone iso镜像或压缩镜像文件到U盘的工具。底层使用`dd`工具，目标设备是固态存储设备，通常时USB设备。
 
-这个该哦那句提供了一种将iso文件clone到存储设备并使之能够作为启动设备，提供一种混合iso文件。
+这个工具提供了一种将iso文件clone到存储设备并使之能够作为启动设备，提供一种混合iso文件。
 
 > 注意：目标设备的数据会被完全抹去！！！
 
@@ -60,6 +60,25 @@ tmpfs           370M   36K  370M   1% /run/user/999
 这样启动后就可以直接在Live环境读写，并且可以安装软件修改配置，所有的系统修改在下次重启后依然存在。几乎就可以认为是一个完整的操作系统了，非常方便做一些定制修改（例如安装一个`openssh-server`方便远程登录操作），以便能够重复使用作为安装U盘。
 
 > 以上测试在MacBook Air上构建Xubuntu 16.04.3 LTS版本LiveCD persistent模式成功，非常赞！
+
+# 软件更新
+
+在使用U盘运行Ubuntu时候，执行`apt update`更新软件会有以下报错信息：
+
+```
+** (appstreamcli:4638): CRITICAL **: Error while moving old database out of the way.
+AppStream cache update failed.
+```
+
+参考 [Unable to 'apt-get dist-upgrade' on a persistent Ubuntu 16.04 USB](https://askubuntu.com/questions/761592/unable-to-apt-get-dist-upgrade-on-a-persistent-ubuntu-16-04-usb)
+
+```
+sudo chmod -R a+rX,u+w /var/cache/app-info/xapian/default
+```
+
+然后就可以执行软件更新。
+
+> 不过，不建议升级Live persistent USB stick系统（因为太多更新软件包可能导致问题），而是建议直接将Ubuntu安装到U盘来实现稳定的U盘启动Ubuntu。
 
 # 其他
 
