@@ -48,6 +48,8 @@ wget https://github.com/GoogleCloudPlatform/PerfKitBenchmarker/archive/v1.13.0.z
 unzip v1.13.0.zip
 ```
 
+> `v1.13.0`是2017年10月17日发布，但在2018年4月中下旬验证Google Cloud Platform发现有创建网络接口不兼容问题，改为采用master分支部署。
+
 # 安装PerfKit Benchmarker依赖
 
 安装依赖：

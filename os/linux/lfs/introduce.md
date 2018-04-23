@@ -14,6 +14,13 @@ sudo dd bs=4M if=xubuntu-16.04.3-desktop-amd64.iso of=/dev/sdb
 
 不过，我实际采用了在[U盘中安装XUbtunu系统](../ubuntu/install/install_ubuntu_to_usb_stick)的方法来实现host主机。
 
+注意：host主机需要安装好必要的编译工具，以下是我在最小化安装Ubuntu之后安装的软件包：
+
+```
+apt-get install wget bzip2 sysstat unzip nfs-common ssh \
+mlocate dnsutils git gcc g++ make sudo curl flex autoconf automake
+```
+
 # 资源
 
 如果通过 FAQ 不能解决你遇到的问题，接下来你可以搜索邮件列表： http://www.linuxfromscratch.org/search.html。 

@@ -109,6 +109,14 @@ sudo easy_install virtualenv
 >
 > 参考[在古老的CentOS 5上安装Python 5以及virtualenv环境](install_python_2.7_and_virtualenv_in_centos_5)实践笔记。
 
+# 升级所有pip软件包
+
+```bash
+pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
+```
+
+> 参考[Upgrading all packages with pip](https://stackoverflow.com/questions/2720014/upgrading-all-packages-with-pip)
+
 # 参考
 
 * [pip (package manager)](https://en.wikipedia.org/wiki/Pip_%28package_manager%29)

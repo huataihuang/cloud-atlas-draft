@@ -35,8 +35,20 @@ mkpart primary 2048s 100%
 1 aligned
 ```
 
+`parted`通过`--align`参数来支持对齐：
+
+* `none` - 通过磁盘类型最小对齐
+* `cylinder` - 对齐分区到柱面
+* `minimal` - 通过磁盘拓扑信息来最小化对齐
+* `optimal` - 通过磁盘拓扑信息优化对齐
+
+```
+parted -a optimal /dev/sda mkpart primary 0% 4096MB
+```
+
 # 参考
 
 * [How to align partitions for best performance using parted](https://rainbow.chard.org/2013/01/30/how-to-align-partitions-for-best-performance-using-parted/)
 * [GPT 分区 4k 扇区对齐和 UEFI 引导](http://lvii.github.io/system/2013/10/26/parted-gpt-4k-sector-align-and-uefi/)
 * [Align GPT partitions on 4K sector disks](http://blog.kihltech.com/2014/02/align-gpt-partitions-on-4k-sector-disks/)
+* [Create partition aligned using parted](https://unix.stackexchange.com/questions/38164/create-partition-aligned-using-parted)

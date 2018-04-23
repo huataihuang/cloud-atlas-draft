@@ -430,6 +430,30 @@ git diff <branchA>:<fileA> <branchB>:<fileB>
 
 在解决了所有文件里的所有冲突后，运行`git add`把它们标记为已解决状态（也就是快照保存到暂存区域）。因为一旦暂存，就表示冲突已经解决。
 
+# 检查修改
+
+先使用 `git log` 检查修改历史，可以看到修改的历史
+
+```
+commit 6919690e642ede8bf8caf1dd7b9d13199edfc6d4
+Author: ABC <abc@gmail.com>
+Date:   Mon Sep 11 11:54:05 2017 +0800
+
+    Change 2# XXXXXXX
+
+commit a29f0dc33a7f1ed471d28b8ad6d812d4df293538
+Author: XYZ <xyz@google.com>
+Date:   Fri Sep 8 11:19:50 2017 -0700
+
+    Change 1# XXXXXX
+```
+
+然后根据commit的标识串就可以查看具体的修改，例如这里`Change 2#`的修改：
+
+```
+git show 6919690e642ede8bf8caf1dd7b9d13199edfc6d4
+```
+
 # 参考
 
 * [Git远程操作详解](http://www.ruanyifeng.com/blog/2014/06/git_remote.html)

@@ -53,3 +53,9 @@ qcloudcli cvm help
 > * [实例规格概述](https://cloud.tencent.com/document/product/213/115)
 > * [可用区列表](https://cloud.tencent.com/document/product/213/9452#zone)
 > * [错误码](https://cloud.tencent.com/document/api/377/4173#1.E3.80.81.E5.85.AC.E5.85.B1.E9.94.99.E8.AF.AF.E7.A0.81)
+
+# 限制
+
+腾讯云的自动测试主要的限制有：
+
+* 对EIP的每日申请限制：([每个腾讯云账户每个地域每天申购次数为 配额数*2 次。](https://cloud.tencent.com/document/product/213/5733#.E8.A7.84.E5.88.99.E4.B8.8E.E9.99.90.E5.88.B6))
