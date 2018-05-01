@@ -105,6 +105,39 @@ pip install mysqlclient
 
 > 参考 [Python Path and Version](https://github.com/DonJayamanne/pythonVSCode/wiki/Python-Path-and-Version)
 
+## Sphinx文档
+
+在Python开发中，支持采用[Sphinx-doc](http://www.sphinx-doc.org/en/master/)作为开发文档。VS Code有一个[vscode-restructuredtext](https://github.com/vscode-restructuredtext/vscode-restructuredtext)支持reStructureText文档语法高亮和页面预览。
+
+需要注意的是，这个插件不是安装完就可以直接实现预览的，必须完成以下几个步骤：
+
+* 系统安装Sphinx支持 - 这里可以参考[使用Sphinx构建Python程序文档](../doc/sphinx/sphinx_for_python_doc)安装，以下是Mac上安装(切换到`root`用户)：
+
+```bash
+easy_install pip
+pip install --ignore-installed six
+pip install --ignore-installed pyparsing
+pip install sphinx
+pip install sphinx_rtd_theme
+```
+
+> 这里`--ignore-installed`两个模块是因为这两个模块是macOS内建的，不能通过`pip`卸载和升级
+
+* 在VS Code中配置添加
+
+```json
+{
+    "restructuredtext.builtDocumentationPath" : "${workspaceRoot}/build/html",
+    "restructuredtext.confPath"               : "${workspaceRoot}/source"
+}
+```
+
+> 参考 [nable to open 'Preview 'manual.rst'': Error #64](https://github.com/vscode-restructuredtext/vscode-restructuredtext/issues/64)
+
+完成之后即可以在VS Code中预览
+
+![预览resturcturedtext](../../img/develop/mac/vscode-restructuredtext.png)
+
 # 编辑代码
 
 ## 文件对比

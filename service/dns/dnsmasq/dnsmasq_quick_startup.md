@@ -39,6 +39,56 @@ interface=eth2
 
 > dnsmasq默认关闭dhcp服务，要激活dhcp服务需要将dhcp相关行注释去除。 （[Disable dhcp service in dnsmasq](https://serverfault.com/questions/351962/disable-dhcp-service-in-dnsmasq)）
 
+# 设置DNS解析
+
+对于局域网内服务器DNS解析，DNSmasq提供了非常简单明了的配置方法：`/etc/hosts`和`/etc/resolv.conf`。
+
+`/etc/hosts`是主机静态解析配置文件，DNSmasq通过读取这个配置文件，将解析配置加载后提供网络服务，这样就可以对整个局域网提供DNS解析，也就不再需要将相同的`/etc/hosts`配置文件复制到各个主机上（同步配置）：
+
+```
+127.0.0.1	localhost
+192.168.0.100	devstack.huatai.me	devstack
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+192.168.0.11  pi1.huatai.me pi1
+192.168.0.12  pi1.huatai.me pi2
+192.168.0.13  pi1.huatai.me pi3
+```
+
+`/etc/resolv.conf`是解析器配置文件，DNSmasq根据这个配置文件可以找到转发DNS，以便解析非本域的主机名，例如，www.baidu.com 或者 www.apple.com等等。
+
+```
+nameserver 127.0.0.1
+search huatai.me
+```
+
+> 注意：在Debian中，不建议直接修改`/etc/resolv.conf`，而是修改`/etc/network/interfaces`配置文件，其中配置项会在系统启动时对应修改`/etc/resolv.conf`:
+
+```
+# The primary network interface
+auto enp0s25
+iface enp0s25 inet static
+        address 192.168.0.1
+        netmask 255.255.255.0
+        network 192.168.0.0
+        broadcast 192.168.0.255
+        #gateway 192.168.0.1
+        # dns-* options are implemented by the resolvconf package, if installed
+        dns-nameservers 202.96.209.133
+        dns-search huatai.me
+```
+
+这样启动后`/etc/resolv.conf`就会修改成：
+
+```
+nameserver 202.96.209.133
+search huatai.me
+```
+
 # 启动
 
 * 激活系统启动时启动
@@ -56,3 +106,4 @@ sudo systemctl start dnsmasq
 # 参考
 
 * [archlinux: dnsmasq](https://wiki.archlinux.org/index.php/dnsmasq)
+* [Dnsmasq setup](http://www.thekelleys.org.uk/dnsmasq/docs/setup.html)

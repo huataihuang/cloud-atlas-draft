@@ -15,6 +15,7 @@
 * [矫正Kali Linux时间](../../os/linux/kali/update_kali_linux_time.md)
 * [通过VNC访问Kali Linux](../../os/linux/kali/vnc_access_kali_linux.md)
 * [定制Kali Linux桌面fluxbox窗口管理器](../../os/linux/kali/customise_kali_linux_fluxbox_window_manager.md)
+* [在树莓派上部署Ceph集群](../../storage/ceph/deploy/deploy_ceph_on_raspberry_pi)
 
 ## Ubuntu
 
@@ -25,8 +26,9 @@
 * [导入和到处Docker容器（跨主机迁移）](../../virtual/docker/using_docker/export_and_import_containers_with_docker)
 * [Intel Turbo Boost技术和intel_pstate](../../os/linux/kernel/cpu/intel_turbo_boost_and_pstate)
 * [使用ufw配置NAT masquerade](../../os/linux/network/firewall/ufw/nat_masquerade_in_ufw)
-* [Ubuntu 16 NFS设置](../../service/nfs/setup_nfs_on_ubuntu16.md)
-* [DNSmasq快速起步](../../service/dns/dnsmasq/dnsmasq_quick_startup.md) - 在网关上提供DNS服务
+* [Ubuntu 16 NFS设置](../../service/nfs/setup_nfs_on_ubuntu16)
+* [DNSmasq快速起步](../../service/dns/dnsmasq/dnsmasq_quick_startup) - 在网关上提供DNS服务
+* [在Ubuntu系统部署NTP服务](../../service/ntp/deploy_ntp_daemon_on_ubuntu)
 
 ## macOS
 

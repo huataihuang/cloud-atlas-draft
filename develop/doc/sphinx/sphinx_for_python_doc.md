@@ -179,7 +179,7 @@ Creating file source/modules.rst.
 
 
 ```
-sphinx-build -b html -o source build
+sphinx-build -b html source build
 ```
 
 使用浏览器打开 `docs/build/html/index.html` 阅读文档，也可以同步到web网站提供访问。
