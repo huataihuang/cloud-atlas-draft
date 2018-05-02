@@ -18,7 +18,7 @@ microcode修订是一个递增的版本号 - 你只能更新更高版本的软�
 
 一旦microcode更新通过`IA32_UCODE_WRITE`完成，BIOS通常发出`CPUID`指令然后读取`IA32_UCODE_REV`的`MSR`。如果获得的修订版本号增加了，就表示补丁正确完成。
 
-# 如何更新
+# 更新微码概述
 
 从2008年开始，Intel周期性发布包含每个处理器的最新更新的DAT文件。在此之前，microcode更新数据包是通过开源工具`microcode_ctl`的一部分来发布的。
 
@@ -32,7 +32,133 @@ Intel驱动下载中心提供了[Linux Processor Microcode Data File](https://do
 CONFIG_MICROCODE_EARLY=y
 ```
 
-micorcode需要通过`bootloader`加载，
+micorcode需要通过`bootloader`加载
+
+# 更新微码详解
+
+内核有一个x86 microcode loader机制支持在OS内部加载微码。这样可以在主机厂商停止OEM支持之后继续更新微码，并且支持无需重启就更新微码。
+
+x86 microcode loader支持3种加载模式：
+
+## 更新微码方式一： Early load microcode
+
+内核可以在启动过程的早期更新微码。Early load microcode 可以在内核启动时在出现CPU问题之前修复CPU错误。
+
+Early load microcode是存储在`initrd`文件中，在内核启动时，从initrd文件读取微码加载到CPU核心。
+
+在结合到initrd镜像中的microcode格式是非压缩的cpio格式，是跟随着initrd镜像（有可能压缩）。此时loader会在启动时处理这种结合格式的initrd镜像。
+
+在cpio中的microcode命名：
+
+```
+on Intel: kernel/x86/microcode/GenuineIntel.bin
+on AMD : kernel/x86/microcode/AuthenticAMD.bin
+```
+
+在BSP（BootStrapping Processor）启动过程（pre-SMP），内核扫描initrd中的微码文件。如果微码匹配主机的CPU，就会在BSP过程中应用到所有应用程序处理器（APs, Application Processors）。
+
+loader也会保存匹配上的微码到内存中，这样，当CPU从睡眠状态恢复时，就会将缓存的微码补丁应用上去。
+
+以下时一个如何处理initrd微码的脚本，不过通常是由发行版本来处理的，不需要自己执行：
+
+```bash
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    echo "You need to supply an initrd file"
+    exit 1
+fi
+
+INITRD="$1"
+
+DSTDIR=kernel/x86/microcode
+TMPDIR=/tmp/initrd
+
+rm -rf $TMPDIR
+
+mkdir $TMPDIR
+cd $TMPDIR
+mkdir -p $DSTDIR
+
+if [ -d /lib/firmware/amd-ucode ]; then
+        cat /lib/firmware/amd-ucode/microcode_amd*.bin > $DSTDIR/AuthenticAMD.bin
+fi
+
+if [ -d /lib/firmware/intel-ucode ]; then
+        cat /lib/firmware/intel-ucode/* > $DSTDIR/GenuineIntel.bin
+fi
+
+find . | cpio -o -H newc >../ucode.cpio
+cd ..
+mv $INITRD $INITRD.orig
+cat ucode.cpio $INITRD.orig > $INITRD
+
+rm -rf $TMPDIR
+```
+
+系统需要将微码软件包安装到`/lib/firmware`目录，或者直接从处理器厂商网站下载微码。
+
+## 更新微码方式二： late loading
+
+有两种传统的用户空间接口可以用来加载微码，或者通过 `/dev/cpu/micorcode` 或者通过sysfs的文件入口 `/sys/devices/system/cpu/microcode/reload`。
+
+当前`/dev/cpu/microcode`方式已经被废弃，因为它需要一个特殊的用户空间工具来实现。
+
+较为简单的方法是，将发行版的微码包安装好以后，然后以`root`用户身份执行如下命令：
+
+```
+echo 1 > /sys/devices/system/cpu/microcode/reload
+```
+
+此时加载机制将查看 `/lib/firmware/{intel-ucode,amd-ucode}`目录，也就是默认发行版已经将微码存放在这些目录下。
+
+也可以手工安装微码，如果拿到的是rpm包，可以使用以下命令将rpm解开：
+
+```
+rpm2cpio microcode_XXXX_el7.noarch.rpm | cpio -idmv
+```
+
+然后将解压缩之后`lib/firmware/XX-xx`子目录手工复制到 `/lib/firmware/intel-ucode` 目录下。
+
+不过，此时微码尚未生效，需要执行一次
+
+```
+echo 1 > /sys/devices/system/cpu/microcode/reload
+```
+
+执行以后使用 `dmesg | grep microcode` 可以看到类似
+
+```
+...
+[300889.237741] microcode: CPU0 sig=0x406f1, pf=0x1, revision=0xb000021
+[300889.242919] microcode: CPU0 updated to revision 0xb00002e, date = 2018-04-19
+...
+```
+
+此时通过`cat /proc/cpuinfo`可以看到升级微码前版本
+
+```
+microcode	: 0xb000021
+```
+
+升级后微码版本
+
+```
+microcode	: 0xb00002e
+```
+
+## 更新微码方式三： Builtin microcode
+
+loader也支持builtin microcode，也就是常规的嵌入firmware方式，即 `CONFIG_EXTRA_FIRMWARE`，当前仅支持64位系统。
+
+以下是案例：
+
+```
+CONFIG_EXTRA_FIRMWARE="intel-ucode/06-3a-09 amd-ucode/microcode_amd_fam15h.bin"
+CONFIG_EXTRA_FIRMWARE_DIR="/lib/firmware"
+```
+
+不过，上述方法不灵活，要求重新编译内核来升级微码，对于CPU厂商经常更新微码的情况，非常麻烦。
 
 # 验证microcode在启动时已经更新
 
@@ -74,3 +200,4 @@ cpu MHz		: 2299.910
 * [Notes on Intel Microcode Updates](http://inertiawar.com/microcode/) - 这篇文档非常详尽，建议阅读
 * [ArchLinux wiki: Microcode](https://wiki.archlinux.org/index.php/microcode)
 * [Intel microcode](https://wiki.gentoo.org/wiki/Intel_microcode)
+* [linux/Documentation/x86/microcode.txt](https://github.com/torvalds/linux/blob/master/Documentation/x86/microcode.txt)
