@@ -18,11 +18,34 @@
 
 ## NotMyFault(推荐)
 
-微软提供了一个用于触发crash，hang以及引发内核内存泄露的工具[NotMyFault](https://docs.microsoft.com/en-us/sysinternals/downloads/notmyfault)。
+微软提供了一个用于触发crash，hang以及引发内核内存泄露的工具
+
+[NotMyFault](https://docs.microsoft.com/en-us/sysinternals/downloads/notmyfault)。
+
+
+## QEMU QMP `inject-nmi`(推荐)
+
+QEMU的底层协议 QENU Machine Protocol (QMP)可以通过 libvirt 的 `qemu-monitor-command` 命令访问。QMP指令`inject-nmi`可以触发Windows虚拟机出现一个蓝屏core dump
+
+触发命令如下：
+
+```bash
+virsh qemu-monitor-command win2016 --pretty '{"execute":"inject-nmi"}'
+```
+
+> 这里`execute`表示执行`inject-nmi`指令（完全是JSON格式），此时就会在Windows虚拟机的VNC桌面看到触发了一个蓝屏。
+
+> 参考 [Multiple ways to access QEMU Machine Protocol (QMP)](https://kashyapc.wordpress.com/2013/03/31/multiple-ways-to-access-qemu-machine-protocol-qmp/)
 
 ## BANG
 
 [BANG! -- Crash on Demand Utility](http://www.osronline.com/article.cfm?article=153) 是一个非常简单实用的工具，可以根据不同的Windows版本触发crash。
+
+* 在Windows 2012（x86_64）可以选择`vlh\AMD64\osrbang.exe`
+
+![windows crash bang](../../../img/virtual/libvirt/qemu/windows_crash_bang.png)
+
+运行程序后点击`Crash Now`按钮，此时即发生Windows Crash。并且可以在host物理服务器的`/var/log/libvirt/libvirtd.log`日志中观察到对应的虚拟机`emit panic`日志。
 
 ## WinDbg
 
@@ -61,20 +84,3 @@
 * 正确安装了驱动之后，则Windows会正确识别出设备`QEMU PVPanic Device`如下：
 
 ![virtio-win的pvpianc设备驱动完成](../../../img/virtual/libvirt/qemu/update_pvpanic_driver_finish.png)
-
-# 测试
-
-## NotMyFault
-
-
-
-## BANG
-
-[BANG! -- Crash on Demand Utility](http://www.osronline.com/article.cfm?article=153)
-
-* 在Windows 2012（x86_64）可以选择`vlh\AMD64\osrbang.exe`
-
-![windows crash bang](../../../img/virtual/libvirt/qemu/windows_crash_bang.png)
-
-运行程序后点击`Crash Now`按钮，此时即发生Windows Crash。并且可以在host物理服务器的`/var/log/libvirt/libvirtd.log`日志中观察到对应的虚拟机`emit panic`日志。
-

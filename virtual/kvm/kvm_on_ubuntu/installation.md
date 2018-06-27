@@ -1,6 +1,6 @@
 # 安装前
 
-运行KVM前，需要确定处理器是否支持硬件虚拟化，Intel或AMD处理器分别称其未`VT-x`和`AMD-V`
+运行KVM前，需要确定处理器是否支持硬件虚拟化，Intel或AMD处理器分别称其为`VT-x`和`AMD-V`
 
 ```
 egrep -c '(vmx|svm)' /proc/cpuinfo
@@ -56,7 +56,13 @@ uname -m
 
 ## 安装必要软件包
 
-> 以下为服务器版本安装KVM，无需X服务器
+采用如下安装方法（Ubuntu 16.04及以上版本）
+
+```
+sudo apt install qemu-kvm libvirt-bin virtinst
+```
+
+> 以下为原文档推荐安装软件包，但我实际没有采用这个安装方法（主要是采用了redhat的`virt-install`安装工具）
 
 Lucid (10.04) 及以后版本
 
@@ -74,7 +80,7 @@ sudo aptitude install kvm libvirt-bin ubuntu-vm-builder bridge-utils
 
 * `libvirt-bin`提供`libvirtd`用于通过libvirt管理qemu和kvm
 * 后端使用`qemu-kvm`（早期Kamic及更早版本使用`kvm`）
-* `ubuntu-vm-builder`命令行工具提供构建虚拟机
+* `ubuntu-vm-builder`命令行工具提供构建虚拟机，这个工具并不好用，还是使用`virt-install`(通过`virtinst`软件包)较为方便
 * `bridge-utils`提供虚拟机网络的网桥
 
 ## 添加用户到用户组
@@ -108,9 +114,9 @@ $ sudo ls -la /var/run/libvirt/libvirt-sock
 srwxrwx--- 1 root libvirtd 0 Mar 15 04:20 /var/run/libvirt/libvirt-sock
 ```
 
-注意：上述`libvirt-sock`文件对于libvirtd`组用户是可以读写执行的`，所以才能够以普通用户身份运行`virsh`命令。
+注意：上述`libvirt-sock`文件对于`libvirtd`组用户是可以读写执行的，所以才能够以普通用户身份运行`virsh`命令。
 
-此外可能在创建虚拟机时遇到问题，责检查`kvm`设备的属猪：
+此外可能在创建虚拟机时遇到问题，则检查`kvm`设备的属主：
 
 ```
 $ ls -lh /dev/kvm
@@ -132,4 +138,4 @@ modprobe -a kvm
 
 # 参考
 
-* [ KVM/Installation](https://help.ubuntu.com/community/KVM/Installation)
+* [KVM/Installation](https://help.ubuntu.com/community/KVM/Installation)

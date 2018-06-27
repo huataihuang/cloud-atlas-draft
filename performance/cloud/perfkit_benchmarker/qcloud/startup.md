@@ -28,6 +28,18 @@ pip install qcloudcli
 qcloudcli configure
 ```
 
+> 腾讯的qcloudcli配置必须指定Region，也就是只能对单个区域进行操作，如果要对不同区域操作，需要设置独立的运行环境
+
+> 可支持的Region Id: `gz,hk,ca,sh,shjr,bj,sg`:
+>
+> * `gz` - 广州
+> * `hk` - **香港**
+> * `ca` - **多伦多**
+> * `sh` - 上海
+> * `shjr` - 上海金融
+> * `bj` - 北京
+> * `sg` - **新加坡**
+
 # 命令行工具
 
 [腾讯云命令行工具（CLI）](https://cloud.tencent.com/product/cli)

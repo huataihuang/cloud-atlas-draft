@@ -30,7 +30,7 @@ KVM通过为guest虚拟机提供一个paravirtual时钟（`kvm-clock`）来避�
 默认情况下，guest使用以下方式和hypervisor之间进行时间同步：
 
 * guest系统启动时，会从模拟的实时时钟（emulated Real Time Clock, RTC）读取时间
-* 当NTP西诶初始化之后，它将自动同步guest时钟。之后，随着常规的guest操作，NTP在guest内部执行时钟校准
+* 当NTP服务初始化之后，它将自动同步guest时钟。之后，随着常规的guest操作，NTP在guest内部执行时钟校准
 * 当guest在暂停（pause）或者还原进程之后继续，通过管理软件（例如[virt-manager](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/virtualization_deployment_and_administration_guide/chap-Managing_guests_with_the_Virtual_Machine_Manager_virt_manager)）发出一个同步guest时钟到指定值的指令。这个同步工作值在[QEMU guest agent](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/virtualization_deployment_and_administration_guide/chap-QEMU_Guest_Agent)安装在guest系统中并且支持这个功能的时候才会工作。这个guest时钟同步的值通常就是host主机的时钟值。
 
 # 稳定时间戳计数器（Constant Time Stamp Counter, TSC）

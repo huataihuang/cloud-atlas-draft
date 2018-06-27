@@ -31,7 +31,7 @@ Ceph集群组件如下：
 
 * monitor - 监控集群健康
 * osd - 文件存储
-* mds - 在CephFS中使用
+* mds - 在CephFS中使用，即[ceph metadata server daemon](http://docs.ceph.com/docs/master/man/8/ceph-mds/)
 
 > 最好将`mon`和`osd`分开安装，避免同时故障引发判断错误（假设网络故障），由于案例中只有3个Raspberry Pi设备，所以`mon`和`osd`是并列部署在每个节点上：
 
@@ -58,8 +58,87 @@ Ceph集群组件如下：
 
 # 安装
 
+> 当前Raspbian版本是9.4，即`stretch`版本，请参考 [Ceph Get Packages](http://docs.ceph.com/docs/master/install/get-packages/) 设置仓库配置。
+
+我的实践是参考官方 [Ceph Get Packages](http://docs.ceph.com/docs/master/install/get-packages/) 来完成，以官方安装方法为准。
+
+* 安装release.asc key
+
+```
+wget -q -O- 'https://download.ceph.com/keys/release.asc' | sudo apt-key add -
+```
+
+* 添加debian源：
+
+```
+sudo apt-add-repository 'deb https://download.ceph.com/debian-luminous/ {codename} main'
+```
+
+> Raspbian没有`apt-add-repository`，所以采用如下命令直接添加`/etc/apt/sources.list.d/ceph.list`
+
+```
+echo deb https://download.ceph.com/debian-luminous/ $(lsb_release -sc) main | sudo tee /etc/apt/sources.list.d/ceph.list
+```
+
+注意，对于ARM处理器，需要 Google的memory profiling tools(google-perftools)
+
+```
+echo deb https://download.ceph.com/packages/google-perftools/debian  $(lsb_release -sc) main | sudo tee /etc/apt/sources.list.d/google-perftools.list
+```
+
+> 不过，最近发现ceph官方网站移除了google-perftools，
+
+* 安装
+
+```
+apt install ceph ceph-deploy
+```
+
+> 如果要使用CephFS，则还需要安装`ceph-mds`软件包。默认会同时安装`xfsprogs`，因为Ceph缺省使用XFS作为底层文件系统。
+
+# 部署Ceph
+
+Ceph提供了一个`ceph-deploy`工具用于部署和管理Ceph集群，依赖的是ssh执行命令，所以需要打通3个主机的SSH密钥免密码登陆。
+
+> 详细的`ceph-deploy`使用手册参考[man: ceph-deploy](http://docs.ceph.com/docs/hammer/man/8/ceph-deploy/)
+
+在使用`ceph-deploy`之前，我们先创建一个`ceph`账号（在每个服务器上执行），并给予`完全的sudo访问权限`：
+
+```
+groupadd -g 501 ceph
+useradd -g 501 -u 501 -s /bin/bash -d /home/ceph -m ceph
+
+echo 'ceph ALL = (root) NOPASSWD:ALL' > /etc/sudoers.d/ceph
+```
+
+在作为`Admin`角色的`pi1`主机上，切换到`ceph`用户账号执行`ssh-keygen`命令，生成密钥对，注意`paraphrase`项留空以便无需密码输入。
+
+```
+su -s /bin/bash - ceph
+ssh-keygen
+```
+
+* 作为`ceph`用户，将ssh公钥复制到所有主机，包括自己：
+
+```
+su -s /bin/bash - ceph
+for h in pi1 pi2 pi3;do ssh-copy-id ${h};done
+```
+
+> 复制完成后，在所有主机的`~/.ssh`目录下可以看到`authorized_keys`文件包含`pi1`的公钥，这样就可以从`pi1`主机无密码ssh登陆到集群所有主机上。
+
+* 作为`ceph`用户，需要创建一个`ceph-deploy`目录
+
+```bash
+cd ~
+mkdir ceph-deploy && cd ceph-deploy
+ceph-deploy new --public-network 192.168.0.0/24 pi1 pi2 pi3
+```
+
+> `ceph-deploy`提供将初始配置文件复制到集群节点
 
 # 参考
 
 * [Ceph Cluster Raspian (english version)](https://blog.raveland.org/post/raspian_ceph.en/) - 详细的安装步骤
 * [Ceph Explained - With Raspberry Pis: Demonstration of Ceph on a Raspberry Pi cluster](https://media.ccc.de/v/1428-ceph-explained-with-raspberry-pis#t=2) - SuSE的Sven Seeberg的演讲视频，在[YouTube上也有](https://www.youtube.com/watch?v=9jjUygE8Wk4)（油管视频有机器提供的字幕），不过这个演讲没有提供实际的部署方法，并且我个人感觉解释不详尽
+* []()

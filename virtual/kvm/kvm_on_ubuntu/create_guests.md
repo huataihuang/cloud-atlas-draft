@@ -1,6 +1,6 @@
 # 概述
 
-在Ubuntu上创建KVM虚拟机有以下集中方式：
+在Ubuntu上创建KVM虚拟机有以下几种方式：
 
 * [virt-manager](http://virt-manager.et.redhat.com/): GUI工具
 * [virt-install](http://www.howtoforge.com/installing-kvm-guests-with-virt-install-on-ubuntu-8.10-server): Red Hat开发的python脚本，需要安装`virtinst`包
@@ -13,6 +13,41 @@
 # 创建虚拟机
 
 参考[在CentOS中部署KVM](../startup/in_action/deploy_kvm_on_centos)
+
+
+## 安装Ubuntu 18.04 LTS (Bionic Beaver)
+
+> 赞！终于找到正确的串口安装方法（`--console pty,target_type=serial --extra-args 'console=ttyS0,115200n8 serial'`）
+
+```bash
+virt-install \
+--name ubuntu1804 \
+--ram 2048 \
+--disk path=/var/lib/libvirt/images/ubuntu1804.qcow2,size=10 \
+--vcpus 1 \
+--os-type linux \
+--os-variant ubuntu16.04 \
+--network bridge=virbr0 \
+--graphics none \
+--console pty,target_type=serial \
+--location 'http://mirrors.163.com/ubuntu/dists/bionic/main/installer-amd64/' \
+--extra-args 'console=ttyS0,115200n8 serial'
+```
+
+> 不过要注意，这个串口安装过程完成后，操作系统启动后依然不是默认从串口输出的，需要定制内核启动参数。虚拟机串口输出设置请参考[访问VM控制台](../startup/in_action/access_vm_console)
+
+> 参考 [Easy headless KVM deployment with virt-install](https://blog.zencoffee.org/2016/06/easy-headless-kvm-deployment-virt-install/) 和 [Installing Virtual Machines with virt-install, plus copy pastable distro install one-liners](https://raymii.org/s/articles/virt-install_introduction_and_copy_paste_distro_install_commands.html) ，[virt-install(1) - Linux man page](https://linux.die.net/man/1/virt-install)
+>
+> 我尝试采用了`--console pty,target_type=virtio`表明采用virtio类型串口，`--extra-args 'console=tty0 console=ttyS0,115200'`，但是无法在控制台输入，提示
+
+```
+WARNING  Did not find 'console=hvc0' in --extra-args, which is likely required to see text install output from the guest.
+```
+
+然而，我修改成 `--extra-args 'console=hvc0 console=ttyS0,115200'`依然是相同提示信息，只不过终端输出了更多的启动硬件检测信息，但是没有登陆控制台。
+
+所以还是按照[Easy headless KVM deployment with virt-install](https://blog.zencoffee.org/2016/06/easy-headless-kvm-deployment-virt-install/)设置。
+
 
 ## 终端安装模式
 
@@ -94,6 +129,8 @@ virt-install \
 > 如果使用`--os-variant centos7`会出现 `ERROR    Error validating install location: Distro 'centos7' does not exist in our dictionary`报错，原来这个参数是根据`osinfo-query os`输出确定的。可以使用`rhl7.3`
 >
 > 参考 [Installing Virtual Machines with virt-install, plus copy pastable distro install one-liners](https://raymii.org/s/articles/virt-install_introduction_and_copy_paste_distro_install_commands.html)
+
+> 可以尝试一下参考前面Ubuntu串口安装方法
 
 ----
 

@@ -14,7 +14,65 @@ grubby --update-kernel=ALL --args="console=ttyS0"
 
 然后重启操作系统
 
-## 已经测试：RHEL可以使用`systemctl`来激活`serial-getty@ttyS0.service`
+----
+
+# 通过内核参数设置串口输出
+
+CentOS/Debian/Ubuntu等Linux都支持通过内核参数来设置串口输出，基本方法就是在内核参数添加`console=tty0 console=ttyS0,115200n8`。
+
+> 注意：网上有些早期文档建议设置`serial=tty0 console=ttyS0,115200n8`，但是实践发现，通过VNC访问虚拟时会导致控制台输出在serial串口，VNC无法访问。只有订正为`console=tty0 console=ttyS0,115200n8`才能解决。
+>
+> 类似亚马逊AWS的虚拟机内核参数都是使用了`console=tty0 console=ttyS0,115200n8`，能够保证串口输出内容记录到物理服务器，提供故障排查。
+
+## CentOS 7使用grub2
+
+* 编辑`/etc/default/grub`在`GRUB_CMDLINE_LINUX`行添加`serial=tty0 console=ttyS0,115200n8`，案例如下
+
+```
+GRUB_CMDLINE_LINUX="crashkernel=auto rhgb quiet net.ifnames=0 console=tty0 console=ttyS0,115200n8"
+```
+
+* 执行以下命令生成`grub.cfg`配置
+
+```
+grub2-mkconfig -o /boot/grub2/grub.cfg
+```
+
+重启虚拟机生效。
+
+## CentOS 6.x
+
+> 在CentOS 6上使用grub
+
+* 直接编辑`/boot/grub/menu.lst`
+
+```
+    kernel /boot/vmlinuz-2.6.32-642.11.1.el6.x86_64 ... console=tty0 console=ttyS0,115200n8
+```
+
+重启虚拟机。
+
+## Ubuntu 16
+
+> Ubuntu 16 使用GRUB2，和CentOS7 类似
+
+* 编辑`/etc/default/grub`在`GRUB_CMDLINE_LINUX`行添加`console=tty0 console=ttyS0,115200n8`，案例如下
+
+```
+GRUB_CMDLINE_LINUX=" net.ifnames=0 console=tty0 console=ttyS0,115200n8"
+```
+
+* 执行以下命令更新`grub.cfg`配置
+
+```
+update-grub
+```
+
+重启虚拟机生效。
+
+----
+
+# 已经测试：RHEL可以使用`systemctl`来激活`serial-getty@ttyS0.service`
 
 RHEL/CentOS7和Ubuntu 15.04都使用了`systemd`，所以也可以直接使用`systemctl`来启用Guest虚拟机的控制台，方法相同
 

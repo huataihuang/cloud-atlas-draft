@@ -30,6 +30,11 @@
 * [DNSmasq快速起步](../../service/dns/dnsmasq/dnsmasq_quick_startup) - 在网关上提供DNS服务
 * [在Ubuntu系统部署NTP服务](../../service/ntp/deploy_ntp_daemon_on_ubuntu)
 
+## 虚拟化
+
+* [Ubuntu环境KVM](../../virtual/kvm/kvm_on_ubuntu/README)
+* [在KVM嵌套虚拟化环境配置DevStack](../../virtual/kvm/nested_virtualization/configure_devstack_with_kvm-based_nested_virtualizaton)
+
 ## macOS
 
 * [Mac OS X挂载NFS共享](../../develop/mac/mount_nfs_share)

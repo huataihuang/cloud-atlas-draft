@@ -10,8 +10,8 @@ server3.example.com     file_name_3
 
 在bash中有一个非常简单的通过while循环将每行数据的列值赋予变量的方法：
 
-```
-while read nc file
+```bash
+while read nc file;do
     echo $nc
     echo $file
     ....

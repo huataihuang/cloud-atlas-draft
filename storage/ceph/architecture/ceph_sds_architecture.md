@@ -2,7 +2,7 @@
 
 Ceph是一个真正对统一存储解决方案：从单一统一软件层提供对象、块和文件存储。
 
-Ceph底层并不存在块和文件对管理，而是管理对象并且在对象智商支持基于块和文件的存储。Ceph中的对象通过唯一对标识符进行寻址，并且存储在一个扁平对寻址空间。由于剔除了传统文件系统中的元数据操作，对象存储提供了无限对规模扩展和性能提升。
+Ceph底层并不存在块和文件对管理，而是管理对象并且在对象只支持基于块和文件的存储。Ceph中的对象通过唯一对标识符进行寻址，并且存储在一个扁平对寻址空间。由于剔除了传统文件系统中的元数据操作，对象存储提供了无限对规模扩展和性能提升。
 
 > 传统存储系统每次读写操作都需要查询巨大的元数据表，这对于海量文件存储会导致性能瓶颈，也会限制系统对扩展性。
 >
@@ -20,4 +20,23 @@ Ceph采用数据副本方式，而不使用RAID，这样能够客服基于RAID�
 
 Ceph采用加权机制选择磁盘，所以不同容量的磁盘不会造成问题。
 
+# Ceph组件
+
+* Monitor - `ceph-mon`
+* Manager - `ceph-mgr`
+* `OSD` - `ceph-osd` Ceph对象存储服务(object storage daemon)
+* `MDS` - `ceph-mds` Ceph存储元数据(stores metadata)，用于实现POSIX文件系统
+
+
 ## Ceph块存储
+
+## `新`存储后端引擎 - BlueStore
+
+2017年，Ceph引入了[新的存储后端BlueStore](https://ceph.com/community/new-luminous-bluestore/)。BlueStore存储引擎提供了更好的性能（写入性能2x），完全的数据校验，和内建的压缩功能。
+
+从Ceph Luminous v12.2.z开始，Ceph OSD使用BlueStore作为默认存储后端，并且在ceph-disk, ceph-deploy和ceph-ansible时默认使用。
+
+# 参考
+
+* 「Ceph分布式存储学习指南」
+* [Ceph Document](http://docs.ceph.com/)

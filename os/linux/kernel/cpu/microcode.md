@@ -147,6 +147,11 @@ microcode	: 0xb000021
 microcode	: 0xb00002e
 ```
 
+### `late loading`更新微码的注意点
+
+`late loading`更新微码是在用户空间实现的，所以系统启动后，会在较晚的时候加载。这可能会带来一个问题：
+如果某个内核模块依赖于修复微码以后特性，并且内核模块先于microcode生效，则可能会引起系统异常。
+
 ## 更新微码方式三： Builtin microcode
 
 loader也支持builtin microcode，也就是常规的嵌入firmware方式，即 `CONFIG_EXTRA_FIRMWARE`，当前仅支持64位系统。
@@ -195,9 +200,29 @@ cpu MHz		: 2299.910
 
 其中`microcode`版本显示`0x710`就是操作系统启动时加载的microcode更新的版本。
 
+## 启动时microcode更新阶段
+
+操作系统启动时，微码更新可能会分2个阶段，例如微码`0x200004a`刷新可以看到分为`updated early`阶段，大约时启动时0.6秒~2秒内，到7秒时候开始第二阶段：
+
+```
+#dmesg | grep microcode
+[    0.000000] CPU0 microcode updated early to revision 0x200004a, date = 2018-03-28
+[    0.664059] CPU1 microcode updated early to revision 0x200004a, date = 2018-03-28
+...
+[    1.975245] CPU47 microcode updated early to revision 0x200004a, date = 2018-03-28
+...
+[    7.053195] microcode: CPU0 sig=0x50654, pf=0x80, revision=0x200004a
+[    7.059795] microcode: CPU1 sig=0x50654, pf=0x80, revision=0x200004a
+```
+
 # 参考
 
 * [Notes on Intel Microcode Updates](http://inertiawar.com/microcode/) - 这篇文档非常详尽，建议阅读
 * [ArchLinux wiki: Microcode](https://wiki.archlinux.org/index.php/microcode)
 * [Intel microcode](https://wiki.gentoo.org/wiki/Intel_microcode)
 * [linux/Documentation/x86/microcode.txt](https://github.com/torvalds/linux/blob/master/Documentation/x86/microcode.txt)
+* [How to update CPU microcode in Linux](https://www.pcsuggest.com/update-cpu-microcode-in-linux/)
+* [archlinux: Microcode](https://wiki.archlinux.org/index.php/microcode)
+* [debian: Microcode](https://wiki.debian.org/Microcode)
+* [gentoo linux: Intel microcode](https://wiki.gentoo.org/wiki/Intel_microcode)
+* [How to load new Intel microcode](https://www.linuxquestions.org/questions/slackware-14/how-to-load-new-intel-microcode-4175621053/) - 有关处理Slackware 64平台的microcode，解决Meltdown和Spectre

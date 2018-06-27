@@ -44,77 +44,99 @@ MySQL复制使用了2个线程：`IO_THREAD`和`SQL_THREAD`：
 
 ```
 mysql> show master status;
-+------------------+--------------+------------------+------------------------------------------------------------------+
-| File | Position  | Binlog_Do_DB | Binlog_Ignore_DB | Executed_Gtid_Set                                                |
-+------------------+--------------+------------------+------------------------------------------------------------------+
-| mysql-bin.018196 | 15818564     |                  | bb11b389-d2a7-11e3-b82b-5cf3fcfc8f58:1-2331947                   |
-+------------------+--------------+------------------+------------------------------------------------------------------+
++------------------+-----------+--------------+-------------------+-------------------+
+| File             | Position  | Binlog_Do_DB | Binlog_Ignore_DB  | Executed_Gtid_Set |
++------------------+-----------+--------------+-------------------+-------------------+
+| mysql-bin.000002 | 157689756 | perfree      | PerfreeTest,mysql |                   |
++------------------+-----------+--------------+-------------------+-------------------+
+1 row in set (0.00 sec)
 ```
 
 * 在slave主机上检查
 
 ```
+mysql> show slave status\G;
 *************************** 1. row ***************************
-Slave_IO_State: Queueing master event to the relay log
-Master_Host: master.example.com
-Master_User: repl
-Master_Port: 3306
-Connect_Retry: 60
-Master_Log_File: mysql-bin.018192
-Read_Master_Log_Pos: 10050480
-Relay_Log_File: mysql-relay-bin.001796
-Relay_Log_Pos: 157090
-Relay_Master_Log_File: mysql-bin.018192
-Slave_IO_Running: Yes
-Slave_SQL_Running: Yes
-Replicate_Do_DB:
-Replicate_Ignore_DB: 
-Replicate_Do_Table:
-Replicate_Ignore_Table:
-Replicate_Wild_Do_Table:
-Replicate_Wild_Ignore_Table:
-Last_Errno: 0
-Last_Error:
-Skip_Counter: 0
-Exec_Master_Log_Pos: 5395871
-Relay_Log_Space: 10056139
-Until_Condition: None
-Until_Log_File:
-Until_Log_Pos: 0
-Master_SSL_Allowed: No
-Master_SSL_CA_File:
-Master_SSL_CA_Path:
-Master_SSL_Cert:
-Master_SSL_Cipher:
-Master_SSL_Key:
-Seconds_Behind_Master: 230775
+               Slave_IO_State: Waiting for master to send event
+                  Master_Host: 47.89.245.126
+                  Master_User: perfree
+                  Master_Port: 3306
+                Connect_Retry: 60
+              Master_Log_File: mysql-bin.000002
+          Read_Master_Log_Pos: 157687292
+               Relay_Log_File: mysqld-relay-bin.001258
+                Relay_Log_Pos: 366507
+        Relay_Master_Log_File: mysql-bin.000002
+             Slave_IO_Running: Yes
+            Slave_SQL_Running: Yes
+              Replicate_Do_DB: perfree
+          Replicate_Ignore_DB:
+           Replicate_Do_Table:
+       Replicate_Ignore_Table:
+      Replicate_Wild_Do_Table:
+  Replicate_Wild_Ignore_Table:
+                   Last_Errno: 0
+                   Last_Error:
+                 Skip_Counter: 0
+          Exec_Master_Log_Pos: 157687292
+              Relay_Log_Space: 366844
+              Until_Condition: None
+               Until_Log_File:
+                Until_Log_Pos: 0
+           Master_SSL_Allowed: No
+           Master_SSL_CA_File:
+           Master_SSL_CA_Path:
+              Master_SSL_Cert:
+            Master_SSL_Cipher:
+               Master_SSL_Key:
+        Seconds_Behind_Master: 0
 Master_SSL_Verify_Server_Cert: No
-Last_IO_Errno: 0
-Last_IO_Error:
-Last_SQL_Errno: 0
-Last_SQL_Error:
-Replicate_Ignore_Server_Ids:
-Master_Server_Id: 2
-Master_UUID: bb11b389-d2a7-11e3-b82b-5cf3fcfc8f58:2-973166
-Master_Info_File: /var/lib/mysql/i1/data/master.info
-SQL_Delay: 0
-SQL_Remaining_Delay: NULL
-Slave_SQL_Running_State: Reading event from the relay log
-Master_Retry_Count: 86400
-Master_Bind:
-Last_IO_Error_Timestamp:
-Last_SQL_Error_Timestamp:
-Master_SSL_Crl:
-Master_SSL_Crlpath:
-Retrieved_Gtid_Set: bb11b389-d2a7-11e3-b82b-5cf3fcfc8f58:2-973166
-Executed_Gtid_Set: bb11b389-d2a7-11e3-b82b-5cf3fcfc8f58:2-973166,
-ea75c885-c2c5-11e3-b8ee-5cf3fcfc9640:1-1370
-Auto_Position: 1
+                Last_IO_Errno: 0
+                Last_IO_Error:
+               Last_SQL_Errno: 0
+               Last_SQL_Error:
+  Replicate_Ignore_Server_Ids:
+             Master_Server_Id: 1
+                  Master_UUID: 58283a0c-8ad8-11e7-a193-00163e007b7e
+             Master_Info_File: /var/lib/mysql/master.info
+                    SQL_Delay: 0
+          SQL_Remaining_Delay: NULL
+      Slave_SQL_Running_State: Slave has read all relay log; waiting for the slave I/O thread to update it
+           Master_Retry_Count: 86400
+                  Master_Bind:
+      Last_IO_Error_Timestamp:
+     Last_SQL_Error_Timestamp:
+               Master_SSL_Crl:
+           Master_SSL_Crlpath:
+           Retrieved_Gtid_Set:
+            Executed_Gtid_Set:
+                Auto_Position: 0
+1 row in set (0.00 sec)
+
+ERROR:
+No query specified
 ```
 
-这里可以看到，在`slave`主机上，
+这里可以看到，Master上的binlog文件是 `mysql-bin.000002` ，同样在Slave上检查可以看到 `Master_Log_File: mysql-bin.000002`，这说明主备之间binlog文件是同步的（如果落后，slave文件编号会比master小，就说明有部分binlog没有传输过来）。但是，即使`binlog`文件名同步了，`Position`不一致的话，依然说明slave落后于master。
 
+注意，在slave上：
 
+```
+Read_Master_Log_Pos: 157687292
+...
+Exec_Master_Log_Pos: 157687292
+```
+
+由于slave上Read的日志文件位置和Exec的日志文件位置完全一致(当前都是`157687292`)，则说明slave上回放sql是完全及时的，只是slave上位置比master上的位置`157689756`要小，就说明master和slave之间的网络连接和传输不佳。
+
+等待一段时间，则当slave上的Pos追上master的Position，数据就同步了。
+
+另外，对于网络连接不佳，可以参考 [MySQL主从延迟原因以及解决方案](http://blog.51cto.com/lyanhong/1914288) 适当调整参数：
+
+```
+–slave-net-timeout=seconds  #默认3600秒
+–master-connect-retry=seconds   #默认60秒
+```
 
 # 参考
 

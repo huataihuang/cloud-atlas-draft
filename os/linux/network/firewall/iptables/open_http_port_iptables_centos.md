@@ -13,7 +13,7 @@ iptables -L
 要显示更相信信息和数字列表（方便后续插入新的规则），增加`v`和`n`参数
 
 ```
-iptables --line --vnL
+iptables --line -vnL
 ```
 
 输出显示

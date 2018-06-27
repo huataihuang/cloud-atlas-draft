@@ -135,6 +135,20 @@ sudo systemctl start vncserver@1
 sudo systemctl status vncserver@1
 ```
 
+# VNC客户端的选择和使用
+
+从ubuntu 12开始，默认的vnc客户端是[Vinagre](https://en.wikipedia.org/wiki/Vinagre)。该软件支持多种协议 VNC，RDP，SPICE。
+
+对于轻量级发行版xubuntu，建议使用`xvnc4viewer` (RealVNC viewer)，安装非常小巧，功能也很单一。不过，在访问远程vnc桌面时，本地鼠标和远程桌面鼠标不能重合非常麻烦，影响操作效率。（这个鼠标重合问题可以通过改用`Vinagre`来解决）
+
+> `xvnc4viewer`功能非常简洁，甚至连菜单也没有，直接通过命令行运行，例如，访问192.168.1.218的5904端口： `xvncviewer 192.168.1.218:5904`。
+>
+> 注意：需要向vnc发送`ctrl-alt-del`时，需要在客户端按下`F8`按键，通过菜单来选择
+
+要使用方便，还是使用默认的`vinagre`客户端更为方便，虽然底层也使用`xvnc4viewer`来实现VNC协议，但是很好解决了本地和远程鼠标一致的问题，非常方便。需要注意的是，默认会将本地鼠标和键盘完全映射发送给远程服务器，如果要鼠标键盘脱离远程连接，需要同时按下`ctrl+alt`按键。
+
 # 参考
 
 * [How to Install and Configure VNC on Ubuntu 16.04](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-16-04)
+* [VNC/Clients](https://help.ubuntu.com/community/VNC/Clients)
+* [Best VNC/remote desktop application?](https://askubuntu.com/questions/438002/best-vnc-remote-desktop-application)

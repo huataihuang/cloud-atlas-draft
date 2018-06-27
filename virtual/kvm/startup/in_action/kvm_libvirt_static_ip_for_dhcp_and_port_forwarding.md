@@ -180,10 +180,13 @@ while [ `ps -e | grep -c libvirtd` -lt 1 ]; do
 done
 sleep 10
 # Set up custom iptables rules.
+
+# iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 1122 -j ACCEPT
 iptables -t nat -I PREROUTING -p tcp -d 192.168.1.100 --dport 1122 -j DNAT --to-destination 192.168.122.11:22
+
+# iptables -A INPUT -p tcp -m state --state NEW -m tcp --dport 1180 -j ACCEPT
 iptables -t nat -I PREROUTING -p tcp -d 192.168.1.100 --dport 1180 -j DNAT --to-destination 192.168.122.11:80
 iptables -I FORWARD -m state -d 10.0.0.0/24 --state NEW,RELATED,ESTABLISHED -j ACCEPT
-) &
 ```
 
 > 这里`192.168.1.100`是物理服务器的对外IP地址，我们需要把访问物理服务器的端口映射到虚拟机(注意，使用了特别的端口`1180`和`1122`以避免和物理服务器冲突)
