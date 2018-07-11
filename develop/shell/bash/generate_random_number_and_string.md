@@ -6,6 +6,12 @@
 echo $RANDOM
 ```
 
+如果希望上述生成的数字限制在一个给定范围，可以采用取模方式，例如，以下返回数字是`0~9`之间随机：
+
+```
+echo $(($RANDOM % 10))
+```
+
 另外一种方法是采用`/dev/random`和`/dev/urandom`设备接口通过内核来随机产生数字：
 
 ```bash
@@ -44,3 +50,4 @@ echo $RANDOM | md5sum | cut -c 1-9
 
 * [Bash Shell Generate Random Numbers](http://www.cyberciti.biz/faq/bash-shell-script-generating-random-numbers/)
 * [BASH - Generate a Random String](http://utdream.org/post.cfm/bash-generate-a-random-string)
+* [Bash: How to generate a random number within given boundaries](https://makandracards.com/makandra/17289-bash-how-to-generate-a-random-number-within-given-boundaries)

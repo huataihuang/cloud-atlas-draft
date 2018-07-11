@@ -144,6 +144,8 @@ perf stat -e 'kvm:*' -a -- sleep 1
 ## 使用 `perf kvm --host stat live`
 
 > `perf kvm --host stat live` 这个方式观察主机非常方便
+>
+> `perf kvm`是特定指令，针对kvm进行性能分析
 
 发现一个问题，在执行 `perf kvm --host stat live` 时发现，大量都`VM-EXIT`工作都消耗在`IO_INSTRUCTION`，并且有大量的`MSR_READ`和`MSR_WRITE`
 

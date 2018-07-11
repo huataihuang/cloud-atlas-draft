@@ -35,6 +35,8 @@ hostnamectl set-hostname devstack
 
 此时再查看`hostname`命令则显示输出为`devstack`，并且上述修改也是持久化的修改，可以看到`/etc/hostname`内容被修改成`devstack`。
 
+注意 `/etc/hosts` 中配置建议同步修改，以便`hostname -i`能够正确反向解析。
+
 > 和以往传统的`hostname devstack`只修改当前动态主机名，不持久化配置不同，`hostnamectl set-hostname`默认（没有使用参数时）是同时修改动态的主机名和持久化保存配置的，避免了系统管理员疏忽忘记持久化配置。
 
 * `hostnamectl set-hostname`的2个参数：`--static`，`--pretty`

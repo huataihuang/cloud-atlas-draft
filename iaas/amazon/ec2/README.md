@@ -15,3 +15,9 @@ Amazon EC2 提供以下功能：
 * 可以创建的虚拟网络，这些网络与其余 AWS 云在逻辑上隔离，并且可以选择连接私有的网络，也称为 Virtual Private Cloud (VPC)
 
 > 参考[什么是 Amazon EC2？](http://docs.aws.amazon.com/zh_cn/AWSEC2/latest/UserGuide/concepts.html)
+
+# 测试网络速度
+
+[EC2 Reachability Test](http://ec2-reachability.amazonaws.com/)提供了AWS的EC2在全球服务器的可测试IP地址列表。可以在你本地尝试ping，检查到哪里的网络更快，方便选择合适的region。
+
+> 在中国大陆，到美国西部的网络更快一些，`North California`约160ms。

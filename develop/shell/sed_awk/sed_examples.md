@@ -338,6 +338,27 @@ a=`cat input_filename | tr '\n' ','`
 echo "${a::-1}"
 ```
 
+* 占位符替换思路
+
+当需要向海量服务器部署配置脚本，但是配置脚本中某些字符串和服务器主机名相关（需要改成主机名），则可以模仿`puppet`之类的配置管理工具，采用配置文件中占位符方式来实现。
+
+即预先分发的配置文件中包含一些特定的预先占好位置的变量字符串（具有特征，如全大写，或者有特殊符号），在分发完成后，采用pssh命令对配置文件中占位符变量进行替换。
+
+举例：配置文件 `/etc/example.conf` 内容如下：
+
+```bash
+...
+console name='HOSTNAME' dev='/dev/null' opts='-o example'
+```
+
+> `HOSTNAME`就是需要替换的占位符变量
+
+通过`pscp`分发完配置文件到所有服务器之后，就可以通过以下`pssh`命令将每个主机的主机名提取出来，然后用实际主机名替换`HOSTNAME`：
+
+```
+pssh -ih server_list "HOST=\$(hostname);sudo sed -i \"s/HOSTNAME/\$HOST/\" /etc/example.conf"
+```
+
 # 参考
 
 * [sed - 25 examples to delete a line or pattern in a file](http://unix-school.blogspot.com/2012/06/sed-25-examples-to-delete-line-or.html)

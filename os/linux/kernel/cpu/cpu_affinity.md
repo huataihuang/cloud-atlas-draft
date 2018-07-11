@@ -87,7 +87,21 @@ taskset -p 2 4299
 >
 > 如果要绑定多个cpu，例如绑定到`cpu 0,1,2,3,4,7`对应的掩码就是`10011111`，转换成16进制就是`9f`，所以命令就是`taskset -p 9f 4229`
 
-**`taskset`的参数感觉有点反直觉，`-p`参数后有两种参数可以设置，`cpus`和`pid`，没有`cpus`的时候就是显示，有`cpus`就是设置进程绑定到指定cpu**
+## 更好的设置方法
+
+实际上最好结合`-c`参数指定cpu，`-p`参数指定进程pid。如果不使用`-p`参数，则可以直接使用命令
+
+```
+taskset -c 2,4,6,8 -p 4299
+```
+
+> 这里 `4299` 是进程pid
+
+也可以直接使用命令
+
+```
+taskset -c 2,4,6,8 ping -i 0.1 192.168.1.81
+```
 
 # 参考
 
@@ -95,3 +109,4 @@ taskset -p 2 4299
 * [Chapter 6. Affinity](https://access.redhat.com/documentation/en-US/Red_Hat_Enterprise_MRG/1.3/html/Realtime_Reference_Guide/chap-Realtime_Reference_Guide-Affinity.html)
 * [Linux CPU affinity](http://blog.csdn.net/yfkiss/article/details/7464968)
 * [管理处理器的亲和性（affinity）](http://www.ibm.com/developerworks/cn/linux/l-affinity.html)
+* [How to run program or process on specific CPU cores on Linux](http://xmodulo.com/run-program-process-specific-cpu-cores-linux.html)

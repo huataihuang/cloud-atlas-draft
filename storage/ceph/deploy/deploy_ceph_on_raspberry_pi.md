@@ -37,11 +37,11 @@ Ceph集群组件如下：
 
 | 主机名 | IP | 功能 |
 | ---- | ---- | ---- |
-| pi1 | 192.168.0.11 | Admin/Monitor/OSD |
-| pi2 | 192.168.0.12 | Monitor/OSD |
-| pi3 | 192.168.0.13 | Monitor/OSD |
+| store-1 | 192.168.0.11 | Admin/Monitor/OSD |
+| store-2 | 192.168.0.12 | Monitor/OSD |
+| store-3 | 192.168.0.13 | Monitor/OSD |
 
-> `pi1`作为`admin`角色，将在这个节点运行`ceph-deploy`
+> `store-1`作为`admin`角色，将在这个节点运行`ceph-deploy`
 
 # 主机设置
 
@@ -111,7 +111,7 @@ useradd -g 501 -u 501 -s /bin/bash -d /home/ceph -m ceph
 echo 'ceph ALL = (root) NOPASSWD:ALL' > /etc/sudoers.d/ceph
 ```
 
-在作为`Admin`角色的`pi1`主机上，切换到`ceph`用户账号执行`ssh-keygen`命令，生成密钥对，注意`paraphrase`项留空以便无需密码输入。
+在作为`Admin`角色的`store-1`主机上，切换到`ceph`用户账号执行`ssh-keygen`命令，生成密钥对，注意`paraphrase`项留空以便无需密码输入。
 
 ```
 su -s /bin/bash - ceph
@@ -122,23 +122,24 @@ ssh-keygen
 
 ```
 su -s /bin/bash - ceph
-for h in pi1 pi2 pi3;do ssh-copy-id ${h};done
+for h in store-1 store-2 store-3;do ssh-copy-id ${h};done
 ```
 
-> 复制完成后，在所有主机的`~/.ssh`目录下可以看到`authorized_keys`文件包含`pi1`的公钥，这样就可以从`pi1`主机无密码ssh登陆到集群所有主机上。
+> 复制完成后，在所有主机的`~/.ssh`目录下可以看到`authorized_keys`文件包含`store-1`的公钥，这样就可以从`store-1`主机无密码ssh登陆到集群所有主机上。
 
 * 作为`ceph`用户，需要创建一个`ceph-deploy`目录
 
 ```bash
 cd ~
 mkdir ceph-deploy && cd ceph-deploy
-ceph-deploy new --public-network 192.168.0.0/24 pi1 pi2 pi3
+ceph-deploy new --public-network 192.168.0.0/24 store-1 store-2 store-3
 ```
 
-> `ceph-deploy`提供将初始配置文件复制到集群节点
+> `ceph-deploy`提供将初始配置文件`ceph.conf`复制到集群节点。
+>
+> 部署日志记录在当前目录的`ceph-deploy-ceph.log`
 
 # 参考
 
 * [Ceph Cluster Raspian (english version)](https://blog.raveland.org/post/raspian_ceph.en/) - 详细的安装步骤
 * [Ceph Explained - With Raspberry Pis: Demonstration of Ceph on a Raspberry Pi cluster](https://media.ccc.de/v/1428-ceph-explained-with-raspberry-pis#t=2) - SuSE的Sven Seeberg的演讲视频，在[YouTube上也有](https://www.youtube.com/watch?v=9jjUygE8Wk4)（油管视频有机器提供的字幕），不过这个演讲没有提供实际的部署方法，并且我个人感觉解释不详尽
-* []()
