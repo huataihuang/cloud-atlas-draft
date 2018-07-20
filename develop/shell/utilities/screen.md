@@ -14,11 +14,35 @@ export SCREENDIR="/var/run/screen"
 
 # screen使用tips
 
+## screen窗口
+
 按 `Ctrl-a`，然后在当前窗口中按双引号键（`"`），就可以看到会话中可用窗口的列表
 
 终止当前窗口的方法是，在窗口的 shell 提示上输入 `exit`，或者按键盘快捷键 `Ctrl-a`，然后按 `k`（小写的字母 `K`，代表 “kill”）。如果使用后一种方法，那么在窗口底部会出现一个警告，要求您确认要杀死此窗口。按 `y`（小写的字母 Y，代表 “yes”）确认，或按 `n`（小写的字母 N，代表 “no”）拒绝。
 
-指定窗口名称的方法是，激活窗口，按 `Ctrl-a A`（大写的字母 `A`，代表 “Annotate”），根据需要按 Backspace 删除现有的名称，然后在提示上输入一个有意义的名称
+* 指定窗口名称
+
+指定窗口名称的方法：激活窗口，按 `Ctrl-a A`（大写的字母 `A`，代表 “Annotate”），根据需要按 Backspace 删除现有的名称，然后在提示上输入一个有意义的名称
+
+* 修改窗口编号
+
+由于screen支持`0~9`的10个快捷窗口切换，所以窗口编号非常重要。如果有部分窗口关闭，空出了`0~9`之间的编号，则可以修改其他窗口来填补这个编号。
+
+修改方法：激活窗口，按 `Ctrl-a`，然后输入`:number x`（`x`就是新窗口编号数字）
+
+* 修改窗口顺序
+
+如果要重排窗口顺序，按下`Ctrl-a`，然后输入`:windowlist`。此时在显示的窗口列表中，使用`.`将窗口下移，使用`,`将窗口上移。
+
+## screen复制和粘贴
+
+> 参考 [How to copy the GNU Screen copy buffer to the clipboard?](https://stackoverflow.com/questions/16111548/how-to-copy-the-gnu-screen-copy-buffer-to-the-clipboard)
+
+* 进入`screen`的复制模式： `Ctrl-a`，然后按下`[`
+* 此时可以通过类似vi的方式进行光标移动
+* 在需要复制的行，按下`space`空格按键，表示选择。然后再按下`j`或者`k`上下移动光标，复制需要复制的所有行
+* 再次按下`space`空格按键，结束复制。此时两次`space`按键之间的所有行都被复制到缓存中
+* 粘贴命令是 `Ctrl-a`，然后按下`]`，内容复制到当前位置
 
 ## screen配置
 
@@ -272,3 +296,4 @@ $tty
 * [解决Screen出现Cannot open your terminal ‘/dev/pts/0’问题](https://blog.ttionya.com/article-1318.html) 和 [Solve screen error "Cannot open your terminal '/dev/pts/0' - please check"](https://makandracards.com/makandra/2533-solve-screen-error-cannot-open-your-terminal-dev-pts-0-please-check) 提供了解决`Cannot open your terminal '/dev/pts/0'`报错的方法
 * [GNU Screen splitting](https://tomlee.co/2011/10/gnu-screen-splitting/)
 * [How to Split Terminal Screen in Linux Ubuntu 14.04](http://sourcedigit.com/12480-split-terminal-screen-linux-ubuntu-14-04/) 这篇文章详细介绍了tmux和screen分割屏幕的操作方法，可以参考使用
+* [How to re-order windows, change the scroll shortcut, and modify the status bar contents in GNU Screen?](https://serverfault.com/questions/244294/how-to-re-order-windows-change-the-scroll-shortcut-and-modify-the-status-bar-c/282279)

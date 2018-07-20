@@ -36,7 +36,7 @@ uptime | tr -d " " | awk -F "[:,]" '{print $8" "$9" "$10}'
 
 NO
 
-shell支持
+# shell支持多变量同时赋值方法一
 
 ```bash
 read a b c <<<$(echo 1 2 3) ; echo "$a|$b|$c"
@@ -65,6 +65,29 @@ $echo $load15
 1.73
 ```
 
+> 上述shell方法测试可行，不过有一个比较奇怪的地方，在vim中编辑显示`$()`会提示不正常的颜色，并且导致后续shell脚本代码代码高亮不正常，似乎存在语法问题：
+
+![多变量赋值1](../../../img/develop/shell/bash/multiple_variable_asignment_1.png)
+
+但是，修改成下述方法二，则语法高亮显示正常：
+
+![多变量赋值2](../../../img/develop/shell/bash/multiple_variable_asignment_2.png)
+
+# shell支持多变量同时赋值方法二
+
+以下脚本是将虚拟机规格 `2c8g` 计算转换成实际的`CORES`和`MEMORY`变量值
+
+```bash
+read CORES MEMORY < <(echo $vm_size | awk -F"[a-zA-Z]" '{print $1" "$2}')
+
+MEMORY=$(($MEMORY*1024))
+echo "CORES: $CORES"
+echo "MEMORY: $MEMORY"
+```
+
+第一个 `<` 是定向  第二个`<()`是进程替换
+
 # 参考
 
 * [Linux bash: Multiple variable assignment](https://stackoverflow.com/questions/1952404/linux-bash-multiple-variable-assignment)
+* [shell给多个变量赋值的方法总结](https://www.cnblogs.com/sunss/archive/2011/02/09/1950268.html)

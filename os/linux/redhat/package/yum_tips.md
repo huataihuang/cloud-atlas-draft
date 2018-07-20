@@ -5,30 +5,28 @@
 以下举例寻找哪个软件包提供了命令`lssubsys`
 
 ```bash
-yum provides lssubsys
+yum provides pstack
 
-yum whatprovides lssubsys
+yum whatprovides pstack
 ```
 
 输出显示
 
 ```bash
-Loaded plugins: fastestmirror
+Loaded plugins: branch, fastestmirror
 Loading mirror speeds from cached hostfile
- * base: ftp.sjtu.edu.cn
- * extras: ftp.sjtu.edu.cn
- * updates: mirrors.skyshe.cn
-base/7/x86_64/filelists_db                               | 6.2 MB     00:11
-extras/7/x86_64/filelists_db                             | 258 kB     00:01
-updates/7/x86_64/filelists_db                            | 1.9 MB     00:04
-libcgroup-tools-0.41-8.el7.x86_64 : Command-line utility programs, services and
-                                  : daemons for libcgroup
-Repo        : base
+alios.7u2.base.x86_64/x86_64/filelists_db      | 6.7 MB  00:00:00
+ops.7.noarch/7/filelists_db                    | 182 kB  00:00:00
+ops.7.x86_64/7/x86_64/filelists_db             | 309 kB  00:00:00
+taobao.7.noarch.stable/filelists_db            |  48 kB  00:00:00
+taobao.7.x86_64.stable/filelists_db            |  11 MB  00:00:00
+gdb-7.6.1-80.1.alios7.x86_64 : A GNU source-level debugger for C, C++, Fortran, Go and other languages
+Repo        : alios.7u2.base.x86_64
 Matched from:
-Filename    : /usr/bin/lssubsys
+Filename    : /usr/bin/pstack
 ```
 
-可以看到`lscgroup-tools`软件包提供了该工具命令。
+可以看到`gdb`软件包提供了该`pstack`工具命令。
 
 > 参考[How to find out which package a file belongs to?](http://unix.stackexchange.com/questions/4705/how-to-find-out-which-package-a-file-belongs-to)
 

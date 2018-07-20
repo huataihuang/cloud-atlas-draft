@@ -1,6 +1,8 @@
 # 需求
 
-如何
+为了能够集中管理，通常我们会采用 syslog 的网络模式，将日志通过网络传输给集中的日志服务器进行存储。
+
+不过，我想尝试一下，是否能够通过NFS这样的共享存储，将日志文件集中存储。
 
 # sysemd-journal日志
 
@@ -12,9 +14,40 @@
 
 这里有一个巧妙的参数`auto`，这个参数和持久化参数`persistent`效果是相同的，都是将日志存储到磁盘。但是如果磁盘目录 `/var/log/journal` 不存在，`auto`就不会创建该目录，而是将日志写入到内存文件系统`/run/log/journal`。
 
-所以，只要将 `/var/log/journal` 改为一个软链接指向 NFS 挂载的 `/cn_nfs/` 中一个子目录 `log/journal` 。此时，系统刚启动时，NFS尚未挂载，软链接无法写入数据。
+所以，只要将 `/var/log/journal` 改为一个软链接指向 NFS 挂载的 `/cn_nfs/` 中一个子目录 `log/journal` 。此时，系统刚启动时，NFS尚未挂载，软链接无法写入数据。此时`systemd-journal`将缓存日志在系统内存中，直到NFS存储挂载完成，目录可以写入，则日志会记录到NFS中。
+
+注意：需要设置 `Storage=auto` 而不是 `Storage=persistent` 。因为`persistent`会在NFS尚未启动就绪时（当时还不存在 `/var/log/journal` 软链接所指向的目录）直接创建目录？
 
 # syslog-ng日志
 
-`/etc/syslog-ng/syslog-ng.conf` 记录了
+`/etc/syslog-ng/syslog-ng.conf` 有类似原理的配置：
 
+```js
+options {
+        flush_lines (0);
+        threaded(no);
+        time_reopen (10);
+        log_fifo_size (10000);
+        chain_hostnames (no);
+        use_dns (no);
+        use_fqdn (yes);
+        keep_hostname (yes);
+        keep_timestamp(no);
+        create_dirs (yes);  # 默认会创建目录
+        dir_perm(0755);
+        owner("root");
+        group("adm");
+        perm(0640);
+        stats_freq(0);
+};
+```
+
+其中选项配置 `create_dirs (yes);` 修改成 `create_dirs (no);` 是否也能在系统启动时如果NFS没有就绪，暂时缓存在内存中，等待NFS就绪后再写入远程存储？
+
+# 阅读非系统默认目录下的journal日志
+
+对于远程存储到NFS服务器上的主机journal日志，需要使用`journalctl`工具来阅读。需要注意的是，`journalctl`如果没有指定目录或文件，默认是阅读自己系统目录 ``
+
+# 参考
+
+* [Howto inspect systemd system.journal from another system](https://unix.stackexchange.com/questions/199988/howto-inspect-systemd-system-journal-from-another-system)

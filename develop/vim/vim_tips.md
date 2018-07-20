@@ -29,6 +29,22 @@
 :set shiftwidth=2
 ```
 
+* 设置语法高亮
+
+vim会根据文件扩展名来判断文件类型，并启用对应的语法高亮。不过，有时候文件扩展名可能和内容类型不同，例如，在脚本公共部分使用了命名`common.inc`，则vim不会自动使用shell的语法高亮。临时解决方法是执行：
+
+```
+:set syn=sh
+```
+
+或者
+
+```
+:set filetype=sh
+```
+
+> 参考[How to highlight Bash scripts in Vim?](http://stackoverflow.com/questions/2576687/how-to-highlight-bash-scripts-in-vim)
+
 # Ctags 的使用
 
 * 首先在你程序的顶级目录下运行：`ctags -R`，这样会在当前目录下生成tags文件
