@@ -12,6 +12,14 @@ curl -k https://<SERVER_IP>/API/xyz -H 'Content-Type: application/json' -d @/var
 
 > `-k` 表示`--insecure`，不校验服务器SSL安全性
 
+# 提交字段内容null
+
+提交json数据，字段也可以是`null`（例如暂时不知道的字段）:
+
+```bash
+curl -k -u user_name:user_password -H "Accept: version=2,application/json" -H "Content-Type: application/json" -X POST -d '{"name": "tom", "phone": null, "address": "x road, y room", "crash_time": "2018-07-26 06:48:02"}' http://myapp.com/api/contact/
+```
+
 # 参考
 
 * [How to POST file contents using cURL?](https://superuser.com/questions/1054742/how-to-post-file-contents-using-curl)

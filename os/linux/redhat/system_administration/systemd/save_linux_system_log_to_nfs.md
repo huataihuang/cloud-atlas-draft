@@ -40,13 +40,52 @@ options {
         perm(0640);
         stats_freq(0);
 };
+
+#syslog-ng client configure,log source is only from local
+source s_sys {
+    system();
+    internal();
+};
+
+include /etc/syslog-ng/conf.d;
+include /etc/syslog-ng/remote_server.conf;
+
+destination d_sys_cons      { file("/dev/console"); };
+destination d_sys_mesg      { file("/var/log/messages"); };
+destination d_sys_auth      { file("/var/log/secure"); };
+destination d_sys_mail      { file("/var/log/maillog" flush_lines(10)); };
+destination d_sys_spol      { file("/var/log/spooler"); };
+destination d_sys_boot      { file("/var/log/boot.log"); };
+destination d_sys_cron      { file("/var/log/cron"); };
+destination d_sys_kern      { file("/var/log/kern"); };
+destination d_sys_mlal      { file("/dev/tty0"); };
 ```
 
 其中选项配置 `create_dirs (yes);` 修改成 `create_dirs (no);` 是否也能在系统启动时如果NFS没有就绪，暂时缓存在内存中，等待NFS就绪后再写入远程存储？
 
+实践验证`create_dirs (no);`确实可以避免NFS没有就绪之前就创建子目录（而是由NFS服务器上创建好目录，输出给客户端使用）。以下是在`web-ws1`主机上配置，先挂载远程服务器的NFS输出到本地的`/nfs_share`目录，然后在NFS服务器的共享目录下为每个主机，例如这里是`web-ws1`创建`web-ws1/var/log`目录。这样`web-ws1`主机就可以把自己的系统日志存储到远程NFS服务器上（或者NAS服务器）：
+
+```js
+options {
+        ...
+        create_dirs (no);  # 关闭创建目录功能，避免NFS尚未就绪就在本地目录下创建目录
+        ...
+};
+...
+destination d_sys_cons      { file("/dev/console"); };
+destination d_sys_mesg      { file("/nfs_share/web-ws1/var/log/messages"); };
+destination d_sys_auth      { file("/nfs_share/web-ws1/var/log/secure"); };
+destination d_sys_mail      { file("/nfs_share/web-ws1/var/log/maillog" flush_lines(10)); };
+destination d_sys_spol      { file("/nfs_share/web-ws1/var/log/spooler"); };
+destination d_sys_boot      { file("/nfs_share/web-ws1/var/log/boot.log"); };
+destination d_sys_cron      { file("/nfs_share/web-ws1/var/log/cron"); };
+destination d_sys_kern      { file("/nfs_share/web-ws1/var/log/kern"); };
+destination d_sys_mlal      { file("/dev/tty0"); };
+```
+
 # 阅读非系统默认目录下的journal日志
 
-对于远程存储到NFS服务器上的主机journal日志，需要使用`journalctl`工具来阅读。需要注意的是，`journalctl`如果没有指定目录或文件，默认是阅读自己系统目录 ``
+对于远程存储到NFS服务器上的主机journal日志，需要使用`journalctl`工具来阅读。需要注意的是，`journalctl`如果没有指定目录或文件，默认是阅读自己系统目录。不过`journalctl`支持`-D dir`参数可以读取特定目录下日志。
 
 # 参考
 
