@@ -42,6 +42,60 @@ export LIBVIRT_LOG_OUTPUTS="1:file:/tmp/libvirt_client.log"
 
 如果问题和domain相关，还需要查看`/var/log/libvirt/qemu/$dom.log`
 
+# 运行时设置libvirt的debug级别
+
+由于重启libvirt服务在线上环境是很麻烦的，特别是重启可能导致当前异常小时。所以可以通过libvirt管理API在运行状态时打开debug log。这个功能需要使用`libvirt-admin`软件包：
+
+```
+virt-admin domain-log-filters
+```
+
+默认输出
+
+```
+ Logging filters: 3:remote 4:json 4:rpc
+```
+
+修改设置成debug模式：
+
+```
+virt-admin daemon-log-filters "1:util 1:libvirt 1:storage 1:network 1:nodedev 1:qemu"
+```
+
+此外还可以修改日志输出位置：
+
+```
+virt-admin daemon-log-outputs
+```
+
+默认设置：
+
+```
+Logging outputs: 3:syslog:libvirtd
+```
+
+可以修改日志输出位置：
+
+```
+virt-admin daemon-log-outputs "1:file:/var/log/libvirt/libvirtd.log"
+```
+
+要去除任何日志记录（不建议这样设置），可以使用
+
+```
+# virt-admin daemon-log-filters ""
+ Logging filters: 
+```
+
+也可设置不使用日志文件而改为使用journal 日志
+
+```
+# virt-admin daemon-log-outputs
+ Logging outputs: 1:file:/var/log/libvirt/libvirtd.log
+# virt-admin daemon-log-outputs ""
+ Logging outputs: 2:journald
+```
+
 # 参考
 
 * [libvirt DebugLogs](https://wiki.libvirt.org/page/DebugLogs)

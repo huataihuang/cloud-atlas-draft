@@ -275,7 +275,7 @@ kdump: saving vmcore complete
 
 * 启用unknown NMI panic
 
-> 注意，在使用unkonwn NMI panic触发crah的之前，同样要现如前述配置好系统kdump
+> 注意，在使用unkonwn NMI panic触发crash的之前，同样要现如前述配置好系统kdump
 
 ```
 sudo systemctl restart kdump

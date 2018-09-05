@@ -336,7 +336,7 @@ iodepth_batch_complete=8
 exitall
 [test]
 filename=/dev/nvdisk0
-numjobs=1
+numjobs= 1
 ```
 
 fio任务配置里面有几个点需要非常注意：
@@ -382,9 +382,163 @@ strace -p 22454
 
 另外，使用 `iostat -dx 1` 来确认iodepth符合设备特性
 
+# fio多设备/多任务
+
+通常有两种方法时下对多个设备同时压测：
+
+* 单一"任务"具有多个设备
+* 每个设备一个任务
+
+对于单一任务，`iodepth`参数是对所有设备一致的；而使用每个设备一个任务，则可以设置不通的`iodepth`。
+
+如果使用单一任务，则所有访问设备同等对待，不管各个设备不同的响应时间。这就类似使用了一个卷管理或者RAID设备，此时操作性能受限于最慢的设备。
+
+> 这种模式会观察到所有设备的读写速率一致（最慢设备值）
+
+以下是8个文件设备分布：
+
+```ini
+[global]
+bs=8k
+iodepth=128
+direct=1
+ioengine=libaio
+randrepeat=0
+group_reporting
+time_based
+runtime=60
+filesize=6G
+
+[job1]
+rw=randread
+filename=/dev/sdb:/dev/sdc:/dev/sdd:/dev/sde:/dev/sdf:/dev/sdg:/dev/sdh:/dev/sdi
+name=random-read
+```
+
+> 注意：如果如果配置为设备文件，例如`/dev/sdb`则不需要挂载文件系统。设备文件已经挂载，则需要使用 allow_mounted_write 参数。
+
+如果要在windows平台使用fio，则对于裸设备的名字，因该是 `\\.\PhysicalDrive1` 表示 `/dev/sdb`， `\\.\PhysicalDrive2` 表示 `/dev/sdc`，依次类推。例如上述配置
+
+```
+filename=/dev/sdb:/dev/sdc:/dev/sdd:/dev/sde:/dev/sdf:/dev/sdg:/dev/sdh:/dev/sdi
+```
+
+改写成
+
+```
+filename=\\.\PhysicalDrive1:\\.\PhysicalDrive2:\\.\PhysicalDrive3:\\.\PhysicalDrive4:\\.\PhysicalDrive5:\\.\PhysicalDrive6:\\.\PhysicalDrive7:\\.\PhysicalDrive8
+```
+
+> 参考[FIO (Flexible I/O Tester) Part5 – Direct I/O or buffered (page cache) or raw performance?](http://tfindelkind.com/2015/08/10/fio-flexible-io-tester-part5-direct-io-or-buffered-page-cache-or-raw-performance/)
+
+另一种方法是每个设备一个独立任务，相互间完全独立。每个设备可以指定不同的iodepth，则设备会获得不同的性能值:
+
+```ini
+[global]
+bs=8k
+iodepth=16
+direct=1
+ioengine=libaio
+randrepeat=0
+group_reporting
+time_based
+runtime=60
+filesize=2G
+
+[job1]
+rw=randread
+filename=/dev/sdb
+name=raw=random-read
+[job2]
+rw=randread
+filename=/dev/sda
+name=raw=random-read
+[job3]
+rw=randread
+filename=/dev/sdd
+name=raw=random-read
+[job4]
+rw=randread
+filename=/dev/sde
+name=raw=random-read
+[job5]
+rw=randread
+filename=/dev/sdf
+name=raw=random-read
+[job6]
+rw=randread
+filename=/dev/sdg
+name=raw=random-read
+[job7]
+rw=randread
+filename=/dev/sdh
+name=raw=random-read
+[job8]
+rw=randread
+filename=/dev/sdi
+name=raw=random-read
+```
+
+但是，非常奇怪，我发现上述配置启动后只执行第一个磁盘的IO压力，难道是要顺序执行？
+
 # gfio
 
+# fio for windows
 
+[fio](https://github.com/axboe/fio)官方介绍了第三方移植的Windows版本[fio](https://www.bluestop.org/fio/)，提供了类似的解决方案。
+
+# fio 参数
+
+* `numjobs=2` 这个数值建议设置成等于服务器cpu核心数量
+
+* `--bs=64k` 这个数值越大则吞吐量（throughput）越大
+
+* 如何激活校验
+
+fio校验必须同时激活读写，所以不能设置 `rw=randwrite` ，否则会导致以下报错表示只有写没有读是无法校验的。
+
+```
+fio: verification read phase will never start because write phase uses all of runtime
+```
+
+修改成 `rw=randrw` 就可以修复，另外可以增加配套参数 `rwmixread=75` 设置75%读，25%写。
+
+* 如何支持libaio引擎
+
+`libaio`是内核支持的高性能异步存储引擎，建议使用，这也是主流数据库使用的存储引擎。
+
+```
+fio: looks like your file system does not support direct=1/buffered=0
+fio: destination does not support O_DIRECT
+```
+
+fio任务配置里面有几个点需要非常注意：
+
+1. libaio工作的时候需要文件direct方式打开。
+2. 块大小必须是扇区(512字节)的倍数。
+3. userspace_reap提高异步IO收割的速度。
+4. ramp_time的作用是减少日志对高速IO的影响。
+5. 只要开了direct,fsync就不会发生。
+
+> [Fio压测工具和io队列深度理解和误区](http://blog.yufeng.info/archives/2104)
+
+这里可以在执行 `fio` 时使用 `--debug=io` 来查看详细的IO过程。实践发现，如果没有显式配置`ioengine=libaio`，则不管设置`iodepth=N`是多少，IO下发的时候，都是`iodepth=1`，例如：
+
+```
+io       26317 queue: io_u 0x25ab000: off=0x9880000,len=0x80000,ddir=1,file=/dev/vdb
+io       26317 complete: io_u 0x25ab000: off=0x9880000,len=0x80000,ddir=1,file=/dev/vdb
+io       26317 fill: io_u 0x25ab000: off=0xb180000,len=0x80000,ddir=0,file=/dev/vdc
+io       26317 prep: io_u 0x25ab000: off=0xb180000,len=0x80000,ddir=0,file=/dev/vdc
+io       26317 queue: io_u 0x25ab000: off=0xb180000,len=0x80000,ddir=0,file=/dev/vdc
+io       26317 complete: io_u 0x25ab000: off=0xb180000,len=0x80000,ddir=0,file=/dev/vdc
+io       26317 calling ->commit(), depth 1
+```
+
+所以，实际在测试系统时，一定要将`libaio`引擎激活，以便能够正确模拟测试。
+
+* `fio: io_u error on file /dev/vdb: No space left on device`
+
+在使用`libaio`引擎时遇到上述报错。汗，实际上是忘记添加磁盘导致的
 
 # 参考
 
@@ -395,3 +549,5 @@ strace -p 22454
 * [Fio Output Explained](https://tobert.github.io/post/2014-04-17-fio-output-explained.html) - 这篇文档详细说明了fio输出信息的解释，可供参考
 * [Fio压测工具和io队列深度理解和误区](http://blog.yufeng.info/archives/2104) - 淘宝褚霸写的解析
 * [fio性能测试工具新添图形前端gfio](http://blog.yufeng.info/archives/tag/fio)
+* [Multiple devices/jobs in fio](https://www.n0derunner.com/2014/06/multiple-devicesjobs-in-fio/)
+* [IOPS: Benchmarking Disk I/O – AWS vs DigitalOcean](https://dzone.com/articles/iops-benchmarking-disk-io-aws-vs-digitalocean)

@@ -87,6 +87,18 @@ Target     Source
 vda        /export/vmimages/f17-base.qcow2
 ```
 
+# 虚拟机网卡设备信息
+
+`virsh domiflist`可以输出网络设备信息。这个命令和`virsh dumpxml`中输出的网络设备是一致的，但是输出较清晰
+
+```
+#virsh domiflist f17-base
+Interface  Type       Source     Model       VPort      MAC
+-------------------------------------------------------------------
+0003db     vhostuser  -          virtio      vp.0003db  00:16:3e:00:03:db
+0003d2     vhostuser  -          virtio      vp.0003d2  00:16:3e:00:03:d2
+```
+
 # 参考
 
 * [How To Manage KVM Virtual Machines Using Virsh](http://acidborg.wordpress.com/2010/02/19/how-to-manage-kvm-virtual-machines-using-virsh/)

@@ -359,6 +359,30 @@ console name='HOSTNAME' dev='/dev/null' opts='-o example'
 pssh -ih server_list "HOST=\$(hostname);sudo sed -i \"s/HOSTNAME/\$HOST/\" /etc/example.conf"
 ```
 
+# sed多个匹配
+
+sed支持一次检查多个匹配，实际上就是sed多个指令的意思。注意：指令之间使用`;`分隔：
+
+```
+sed -i '/PATTERN_1/d;PATTERN_2/d;PATTERN_3/d;/^$/d' myfile.txt
+```
+
+# sed转换文档实现unix2dos
+
+* unix2dos
+
+```
+sed 's/$'"/`echo \\\r`/" disk.txt > disk_dos.txt
+```
+
+* dos2unix
+
+```
+sed 's/^M$//' disk_dos.txt > disk.txt
+```
+
+> 参考 [HowTo: UNIX / Linux Convert DOS Newlines CR-LF to Unix/Linux Format](https://www.cyberciti.biz/faq/howto-unix-linux-convert-dos-newlines-cr-lf-unix-text-format/)
+
 # 参考
 
 * [sed - 25 examples to delete a line or pattern in a file](http://unix-school.blogspot.com/2012/06/sed-25-examples-to-delete-line-or.html)

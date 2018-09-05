@@ -27,6 +27,35 @@ nc: connect to 127.0.0.1 port 5902 (tcp) failed: Connection refused
 nc: connect to 127.0.0.1 port 5903 (tcp) failed: Connection refused
 ```
 
+注意，现在使用的nmap netcat 不支持参数`-z`，需要在版本 ncat 7.25beta2才引入了`-z`参数，但是只能扫描一个端口，连续端口扫描需要使用nmap。解决的方法是采用以下脚本
+
+```
+ncat google.com 80 </dev/null >/dev/null && echo "yes"
+```
+
+# 搭建端口转发
+
+> 参考 [Forwarding ports using netcat](https://29a.ch/2009/5/10/forwarding-ports-using-netcat)
+
+```
+nc -l -p $localport -c "nc $remotehost $remoteport"
+```
+
+例如：
+
+```
+nc -l -p 8888 -c "nc example.com 8888"
+```
+
+不过，实际现在采用的netcat软件包，需要采用如下命令：
+
+> 参考 [Using netcat in windows to forward a tcp door to another machine](https://serverfault.com/questions/332217/using-netcat-in-windows-to-forward-a-tcp-door-to-another-machine/504259#504259)
+
+```
+netcat -L example.com:8888 -p 8888 -vvv
+```
+
 # 参考
 
 * [How to Check Remote Ports are Reachable Using ‘nc’ Command](https://www.tecmint.com/check-remote-port-in-linux/)
+* [Check if remote host/port is open - Can't use GNU Netcat nor NMap - RHEL 7](https://serverfault.com/questions/788934/check-if-remote-host-port-is-open-cant-use-gnu-netcat-nor-nmap-rhel-7)

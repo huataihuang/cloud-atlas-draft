@@ -3,14 +3,11 @@
 一直想构建一个Ceph集群，虽然使用KVM虚拟机环境，也可以实现多个节点的集群，但是，没有实际物理硬件，无法满足自己的"机械之心"对精巧设备的向往。通过廉价的树莓派，个人可以构建一个精巧的云存储系统，也为构建One Personal Cloud提供一个分布式存储基础。
 
 > 有关硬件的思考请参考[为何我会选择树莓派组件Ceph集群](../hardware/README)：
-
-
-
-已经有不少人实践过在树莓派上运行Ceph集群，例如 SuSE的Sven Seeberg 在openSUSE Conference 2017上演示了采用树莓派构建的Ceph集群。从现场展示的机器来看，应该是采用了TF卡这种固态存储设备来实现的大约18个节点的集群。
-
-
+>
+> 已经有不少人实践过在树莓派上运行Ceph集群，例如 SuSE的Sven Seeberg 在openSUSE Conference 2017上演示了采用树莓派构建的Ceph集群。从现场展示的机器来看，应该是采用了TF卡这种固态存储设备来实现的大约18个节点的集群。
+>
 > 当前TF卡的价格也相对较低，但是容量比不上HDD硬盘，如果只是演示Ceph on Raspberry Pis，则采用TF卡作为存储也可以。
-
+>
 > Sven Seeberg 的Ceph on Raspberry Pis集群还使用了三色的LED来展示集群的监控状态。这个思路对于产品化有借鉴作用，例如IDC机房现场可以通过简单的LED或者液晶屏指示信息做硬件判断。
 > 
 > 我准备用ELK来实现Ceph集群的可视化监控。
@@ -86,7 +83,7 @@ echo deb https://download.ceph.com/debian-luminous/ $(lsb_release -sc) main | su
 echo deb https://download.ceph.com/packages/google-perftools/debian  $(lsb_release -sc) main | sudo tee /etc/apt/sources.list.d/google-perftools.list
 ```
 
-> 不过，最近发现ceph官方网站移除了google-perftools，
+> 参考[Google perftools usage with ceph](http://www.yangguanjun.com/2015/10/30/google-perftools-usage-with-ceph/)
 
 * 安装
 
@@ -139,7 +136,14 @@ ceph-deploy new --public-network 192.168.0.0/24 store-1 store-2 store-3
 >
 > 部署日志记录在当前目录的`ceph-deploy-ceph.log`
 
+* 安装Ceph软件包
+
+```bash
+
+```
+
 # 参考
 
 * [Ceph Cluster Raspian (english version)](https://blog.raveland.org/post/raspian_ceph.en/) - 详细的安装步骤
+* [Ceph官方：Storage Cluster Quick Start](http://docs.ceph.com/docs/mimic/start/quick-ceph-deploy/)
 * [Ceph Explained - With Raspberry Pis: Demonstration of Ceph on a Raspberry Pi cluster](https://media.ccc.de/v/1428-ceph-explained-with-raspberry-pis#t=2) - SuSE的Sven Seeberg的演讲视频，在[YouTube上也有](https://www.youtube.com/watch?v=9jjUygE8Wk4)（油管视频有机器提供的字幕），不过这个演讲没有提供实际的部署方法，并且我个人感觉解释不详尽

@@ -14,6 +14,33 @@ cut -d':' -f1 /etc/passwd
 grep "/bin/bash" /etc/passwd | cut -d':' -f1,6
 ```
 
+# 获取字符串部分字符
+
+```bash
+command | cut -c1-8
+```
+
+切出命令输出的前8个字符
+
+> [Grabbing the first [x] characters for a string from a pipe](https://unix.stackexchange.com/questions/3454/grabbing-the-first-x-characters-for-a-string-from-a-pipe)
+
+另外也有一些方法只获得前8个字符：
+
+```bash
+command | head -c8
+
+command | awk '{print substr($0,1,8);exit}' 
+
+command | sed 's/^\(........\).*/\1/;q'
+```
+
+如果是bash，还可以：
+
+```bash
+var=$(command)
+echo ${var:0:8}
+```
+
 # 分隔(delimiter)符使用`tab`的`cut`方法
 
 如果字段之间是使用TAB来分隔的，有以下两种方法使用`cut`

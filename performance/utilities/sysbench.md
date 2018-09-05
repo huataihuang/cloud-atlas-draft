@@ -1,3 +1,14 @@
+# sysbench
+
+[sysbench](https://github.com/akopytov/sysbench)是给予LuaJIT的多线程性能测试工具。通常用于测试数据库性能，但是也可以创建抽象的负载负载用于测试多种场景:
+
+* `oltp_*.lua` 一系列OLTP类的数据库压测
+* `fileio` 文件系统层对压测
+* `cpu` 简单的CPU压测
+* `memory` 内存访问压测
+* `threads` 基于线程的调度器压测
+* `mutex` 一个POSIX mutex压测
+
 # 安装
 
 [sysbench测试案例](https://wiki.mikejung.biz/Sysbench)提供了多种平台的安装方法，例如，可以通过EPEL
@@ -8,6 +19,10 @@
 curl -s https://packagecloud.io/install/repositories/akopytov/sysbench/script.rpm.sh | sudo bash
 sudo yum -y install sysbench
 ```
+
+## 源代码安装
+
+
 
 # 压测案例
 
@@ -61,3 +76,5 @@ Threads fairness:
 * [sysbench GitHub文档](https://github.com/akopytov/sysbench)
 * [sysbench测试案例](https://wiki.mikejung.biz/Sysbench)
 * [How To Benchmark Your System (CPU, File IO, MySQL) With sysbench](https://www.howtoforge.com/how-to-benchmark-your-system-cpu-file-io-mysql-with-sysbench)
+* [Gentoo: Sysbench](https://wiki.gentoo.org/wiki/Sysbench)
+* [sysbench](https://github.com/akopytov/sysbench)

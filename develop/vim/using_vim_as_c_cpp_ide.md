@@ -108,3 +108,4 @@ set shell=/bin/bash
 # 参考
 
 * [Using Vim for C/C++ development efficiently](http://ankursinha.in/blog/2015/06/12/vim-c-plugins.html)
+* [JBakamovic/yavide](https://github.com/JBakamovic/yavide) 提供了在图形界面vim实现的现代IDE

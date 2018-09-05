@@ -252,7 +252,38 @@ adb shell reboot -p
 
 > 需要`root`权限才能够访问其他应用数据目录
 
+# 切换`Lock bootloader`和`Unlock bootloader`
+
+* 首先在手机中激活开发者模式，然后信任USB连接的主机Mac地址，这样才能调试Android手机
+
+此时，使用 `adb devices` 可以看到链接设备
+
+* 输入以下命令启动到bootloader状态
+
+```
+adb reboot-bootloader
+```
+
+* 要解锁Bootloader，输入命令：
+
+```
+fastboot flashing unlock
+```
+
+* 要重新锁定
+
+```
+fastboot flashing lock
+```
+
+然后使用音量键切换答复选项，再按下电源键确认。
+
+> **`警告`** 在`Lock bootloader`和`Unlock bootloader`模式间切换会擦除手机中所有数据。所以务必提前做好数据备份，否则不要做上述切换操作!!!
+
+
 # 参考
 
 * [Android调试桥](https://developer.android.com/studio/command-line/adb.html)
 * [Where Android apps store data?](https://android.stackexchange.com/questions/47924/where-android-apps-store-data)
+* [How to Unlock and Lock Bootloader in Nexus 6p?](https://www.howtodroid.com/2016/05/how-to-unlock-and-lock-bootloader-nexus6p.html)
+* [Re-lock bootloader without erase?](https://forum.xda-developers.com/pixel-2/help/lock-bootloader-erase-t3754072)
