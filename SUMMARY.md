@@ -1039,7 +1039,7 @@
 			* [shell函数tips](develop/shell/sed_awk/function.md)
 			* [生成随机数和随机字符串](develop/shell/bash/generate_random_number_and_string.md)
 			* [shell中使用数组](develop/shell/bash/array.md)
-			* [shell中一行行读取文本方法](develop/shell/bash/read_line_by_line_from_file.md)
+			* [shell中读取文件到bash数组](develop/shell/bash/read_line_by_line_from_file_into_array.md)
 			* [列出所有cron定时任务](develop/shell/bash/develop/shell/bash/list_all_cron_jobs.md)
 			* [在shell中计算](develop/shell/bash/calculate_in_shell.md)
 			* [在bash计算](develop/shell/bash/develop/shell/bash/calculate_in_bash.md)

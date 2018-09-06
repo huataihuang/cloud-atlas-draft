@@ -34,7 +34,7 @@ ncurses-libs ncurses-compat-libs ImageMagick-devel libstdc++-devel bison gnupg l
 
 ```
 LineageOS 11.0-13.0: OpenJDK 1.7 (install openjdk-7-jdk)
-LineageOS 14.1: OpenJDK 1.8 (install openjdk-8-jdk)
+LineageOS 14.1-15.1: OpenJDK 1.8 (install openjdk-8-jdk)
 ```
 
 # 创建目录
@@ -79,6 +79,14 @@ cd ~/android/lineage
 repo init -u https://github.com/LineageOS/android.git -b cm-14.1
 ```
 
+[Nexus 5 hammerhead 支持lineage os 15 (Android 8 oro)](https://www.getdroidtips.com/lineage-os-15-nexus-5/) 或者 [Nexus 5 hammerhead 支持lineage os 16 (Android 9 Pie)](https://alldroidtips.com/install-android-9-pie-on-nexus-5/) ，可以直接下载已经编译的ROM。不过，当前lineage os 16版本对nexus 5支持存在问题。（[Nexus 5 AOSP 9.0.0 r3 Pie(alpha)](https://forum.xda-developers.com/google-nexus-5/development/rom-nexus-5-aosp-9-0-0-r3-pie-t3834390)）
+
+当前可以安装
+
+```
+repo init -u git://github.com/LineageOS/android.git -b lineage-15.1
+```
+
 # 下载源代码
 
 使用以下命令下载源代码：
@@ -98,6 +106,12 @@ LineageOS manifests包括repo的默认合理配置，建议使用。例如，默
 ```
 source build/envsetup.sh
 breakfast hammerhead
+```
+
+编译15.1遇到报错，暂时未解决
+
+```
+build/make/core/product_config.mk:234: error: Can not locate config makefile for product "lineage_hammerhead".
 ```
 
 > 与aosp编译类似，编译前同样需要引入环境，所以要执行`source build/envsetup.sh`，这样才能准备好编译，包括`croot`和`brunch`
