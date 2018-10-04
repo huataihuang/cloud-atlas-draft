@@ -1023,7 +1023,7 @@
 		* [从safari中导出打开的tab](develop/mac/migrate_open_tabs_from_safari.md)
 		* [bird进程](develop/mac/bird_process.md)
 		* [在Mac上双启动方式安装Linux](develop/mac/dual_boot_linux_on_mac.md)
-		* [创建OS X EICapitan启动安装U盘](develop/mac/create_os_x_el_capitan_boot_install_drive.md)
+		* [创建macOS启动安装U盘](develop/mac/create_macos_boot_install_drive.md)
 		* [rEFInd工具详解](develop/mac/refind.md)
 		* [加速Time Machine备份速度](develop/mac/time_machine_backup_speed.md)
 		* [在mac上输入特殊字符](develop/mac/input_special_character_on_mac.md)
