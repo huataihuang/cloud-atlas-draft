@@ -14,7 +14,7 @@ Google了相关信息，共享书籍的方法概括如下：
 
 # `请支持正版！本文方法只建议用于自己购买的正版书籍并只用于自己阅读！`
 
-[dedrm-ebook-tools(DRM Removal Tools for eBooks)](https://github.com/psyrendust/dedrm-ebook-tools) 最早是为了保存 [Apprentice Alf's Blog](http://www.apprenticealf.wordpress.com/) 提供（景德镇居民无法访问的WordPress网站）提供的工具，但是目前因为apprenticeharper从2015年开始也建立了GitHub仓库，所以已经不再更新维护。当前可以直接从 [apprenticeharper/DeDRM_tools](https://github.com/apprenticeharper/DeDRM_tools)获取最新的插件工具。
+[dedrm-ebook-tools(DRM Removal Tools for eBooks)](https://github.com/psyrendust/dedrm-ebook-tools) 最早是为了保存 [Apprentice Alf's Blog](http://www.apprenticealf.wordpress.com/)（景德镇居民无法访问的WordPress网站）提供的工具，但是目前因为apprenticeharper从2015年开始也建立了GitHub仓库，所以已经不再更新维护。当前可以直接从 [apprenticeharper/DeDRM_tools](https://github.com/apprenticeharper/DeDRM_tools)获取最新的插件工具。
 
 > 请尊重版权，开发者提供开源工具是为了正当的知识和文化传播，并不是支持盗版！
 

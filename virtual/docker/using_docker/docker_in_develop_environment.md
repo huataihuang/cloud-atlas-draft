@@ -50,6 +50,15 @@ COPY app /app
 CMD ["python", "identidock.py"]
 ```
 
+> 如果要使用最新版本，可以在上述Dockerfile中不指定版本
+
+```dockerfile
+From python:3
+
+RUN pip install Flask
+...
+```
+
 以上Dockerfile使用Python 3的官方基础镜像，并在镜像基础之上安装 Flask ，然后复制代码进去，并运行identidock代码。
 
 > 许多流行的编程语言，例如 Python、Go 和 Ruby，它们的官方仓库中都有多个变种镜像以供不同用途：
@@ -119,7 +128,7 @@ CMD ["uwsgi", "--http", "0.0.0.0:9090", "--wsgi-file", "/app/identidock.py", \
 docker build -t identidock .
 ```
 
-> 注意：这里再次使用了同名的`identidock`作为构建容器镜像的名字。那么docker会如何处理重名的镜像呢？是报错么？
+> 注意：这里再次使用了同名的`identidock`作为构建 **容器镜像** 的名字。那么docker会如何处理重名的镜像呢？是报错么？
 >
 > 不是，docker构建了新的同名镜像，并且把老的镜像改名成`<none>`
 

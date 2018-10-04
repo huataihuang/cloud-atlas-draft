@@ -40,16 +40,23 @@ fastboot reboot
 
 # 上传ROM zip和GApps
 
-> [GApps下载方法](https://www.cyanogenmods.org/forums/topic/gapps-lineageos-15-android-oreo-roms/)
+* 下载[Unofficial LineageOS 15.1 for Nexus 5](https://forum.xda-developers.com/google-nexus-5/development/rom-lineageos-15-1-nexus-5-t3756643)
 
 ```
 adb push lineage-15.1-20180901-UNOFFICIAL-hammerhead.zip /sdcard/
 ```
 
-* Google Apps 可以选择安装[Nano](https://github.com/opengapps/opengapps/wiki/Nano-Package)或者[Pico](https://github.com/opengapps/opengapps/wiki/Pico-Package) - 出于最小化安装并且很多Google服务在墙内无法使用，所以我选择安装Pico包。
+* Google Apps 可以选择[Pico](https://github.com/opengapps/opengapps/wiki/Pico-Package) - 出于最小化安装并且很多Google服务在墙内无法使用，所以我选择安装Pico包。
 
-* 安装[OpenConnect for Android](https://github.com/cernekee/ics-openconnect) - 失败，旧版本无法
+> [GApps下载方法](https://www.cyanogenmods.org/forums/topic/gapps-lineageos-15-android-oreo-roms/)
 
+* 安装[OpenConnect for Android](https://github.com/cernekee/ics-openconnect)
+
+# 必须解决Google账号设置（翻墙）
+
+最初刷新好软件包之后，一直没有办法通过浏览器下载文件，每次下载文件都是显示在文件管理器中`queued`状态。而且，设置了google账号之后，依然无法从Google Play安装软件。
+
+偶然发现，很可能是最初因为无法连接Google服务（被墙），所以跳过了LineageOS初次安装后的初始设置步骤。这个设置步骤很可能做了一些系统的必须设置，跳过这个设置会导致无法通过Download Manager下载文件。通过`adb`将[OpenConnect for Android](https://github.com/cernekee/ics-openconnect)推送到手机内部，然后翻墙，重新初始化之后才能正常工作。
 
 # 参考
 

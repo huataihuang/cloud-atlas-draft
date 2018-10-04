@@ -12,6 +12,11 @@ Mac OS X支持在线安装操作系统：在按下电源的同时安装`option`�
 sudo /Applications/Install\ OS\ X\ El\ Capitan.app/Contents/Resources/createinstallmedia --volume /Volumes/ElCapInstaller --applicationpath /Applications/Install\ OS\ X\ El\ Capitan.app --nointeraction
 ```
 
+> macOS 10.14及以上版本不再使用 `--applicationpath` 参数，例如，在macOS Majave版本，我使用了如下命令创建U盘：
+
+```
+sudo /Applications/Install\ macOS\ Mojave.app/Contents/Resources/createinstallmedia --volume /Volumes/macOS_mojave --nointeraction
+```
 
 # 参考
 

@@ -11,12 +11,16 @@
 如果不实用MacVim GUI，建议使用MacVim.app包中的Vim程序（`MacVim.app/Contents/MacOS/Vim`）。为确保使用mvim，从[MacVim](https://github.com/macvim-dev/macvim/releases)安装目录复制出`mvim`脚本，复制到`/usr/local/bin/mvim`，然后建立一个软连接：
 
 ```
+if [ ! -d /usr/local/bin ];then sudo mkdir -p /usr/local/bin;fi
+
 cd /usr/local/bin
 
-ln -s /Applications/MacVim.app/Contents/bin/mvim mvim
+sudo ln -s /Applications/MacVim.app/Contents/bin/mvim mvim
 
-ln -s /usr/local/bin/mvim vim
+sudo ln -s /usr/local/bin/mvim vim
 ```
+
+> 默认 `/usr/local/bin` 路径优先于 `/usr/bin`，所以上述软连接方式可以不修改系统的`/usr/bin/vim`而使用最新安装的`MacVim`
 
 * 使用[Vundle](https://github.com/VundleVim/Vundle.vim#about)安装YouCompleteMe
 

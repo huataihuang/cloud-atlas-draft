@@ -108,7 +108,7 @@ source build/envsetup.sh
 breakfast hammerhead
 ```
 
-编译15.1遇到报错，暂时未解决
+编译15.1遇到报错，暂时未解决。所以最后采用 [UNOFFICIAL LineageOS 15.1 for Nexus 5](https://forum.xda-developers.com/google-nexus-5/development/rom-lineageos-15-1-nexus-5-t3756643)提供的ROM刷新安装
 
 ```
 build/make/core/product_config.mk:234: error: Can not locate config makefile for product "lineage_hammerhead".

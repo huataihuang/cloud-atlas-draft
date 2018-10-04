@@ -57,6 +57,56 @@ Netperf可以模拟两种UDP的流量模式：
 
 **由于UDP传输的不可靠性，在使用netperf时要确保发送的缓冲区大小不大于接收缓冲区大小，否则数据会丢失，netperf将给出错误的结果。** 因此，对于接收到分组的统计不一定准确，需要结合发送分组的统计综合得出结论。
 
+# Netperf安装
+
+> 以下安装在RHEL 7.5上实践
+
+* 准备编译环境
+
+```
+yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+yum -y install which sudo nmap-ncat mlocate net-tools rsyslog file ntp ntpdate \
+wget tar bzip2 screen sysstat unzip nfs-utils parted lsof man bind-utils \
+gcc gcc-c++ make telnet flex autoconf automake ncurses-devel crontabs \
+zlib-devel git
+```
+
+* 下载源代码和编译
+
+```
+wget https://github.com/HewlettPackard/netperf/archive/netperf-2.7.0.tar.gz
+
+tar xfz netperf-2.7.0.tar.gz
+cd netperf-netperf-2.7.0
+
+./configure
+make
+sudo make install
+```
+
+# Netperf 服务端
+
+netperf和iperf类似，采用客户服务器体系。首先需要在服务器端启动服务：
+
+```
+netserver -D
+```
+
+默认监听端口 `12865` ，请注意需要设置防火墙允许这个端口访问
+
+也可以指定服务器监听端口，参数`-p`
+
+```
+netserver -D -p 4444
+```
+
+此时使用客户端可以指定端口连接
+
+```
+netperf -H server -p 4444 -l 60
+```
+
 # Netperf的命令行参数
 
 分服务端程序`netserver`和客户端程序`netperf`，首先在服务器段启动`netserver`监听(也可以让inetd或xinetd来自动启动`netserver`)，然后就可以在客户端启动`netperf`对服务器进行网路流量压测，可以非常方便得到性能指标。
@@ -72,6 +122,14 @@ netperf [global options] -- [test-specific options]
 * `-H host` ：指定远端运行netserver的server IP地址。
 * `-l testlen`：指定测试的时间长度（秒）
 * `-t testname`：指定进行的测试类型，包括`TCP_STREAM`，`UDP_STREAM`，`TCP_RR`，`TCP_CRR`，`UDP_RR`
+
+* 测试案例举例：
+
+```
+netperf -t UDP_RR -H $server_ip -l 180 -- -r 1,1 -D
+
+netperf -t TCP_STREAM -H $server_ip -l 180 -- -m 1024
+```
 
 # Netperf测试网络性能
 
@@ -281,3 +339,4 @@ netperf -H 10.1.1.1 -t UDP_STREAM -l 360000000 -- -m 200 -R 1
 
 * [netperf 与网络性能测量](https://www.ibm.com/developerworks/cn/linux/l-netperf/)
 * [Error in running netperf udp stream over openvpn](http://stackoverflow.com/questions/11981480/error-in-running-netperf-udp-stream-over-openvpn)
+* [CentOS安装netperf](https://jeoygin.org/2012/03/02/centos-install-netperf/)
