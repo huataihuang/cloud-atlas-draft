@@ -33,9 +33,14 @@ sudo /Applications/Install\ OS\ X\ El\ Capitan.app/Contents/Resources/createinst
 
 ![createinstallmedia](../../img/develop/mac/macos-mojave-installer-usb-terminal.jpg)
 
-然后
+注意：安装过程和以往不同，不是类似以前，在按下启动按钮同时安装`option`键来选择从U盘启动安装（这样会导致显示需要update系统，但是无法成功），而是：
+
+* 启动`System Preferences`
+* 选择`Startup disk`然后选择刚才创建见U盘安装磁盘
+
 
 # 参考
 
 * [How to Create a OS X El Capitan Boot Installer USB Flash Drive](http://osxdaily.com/2015/09/30/create-os-x-el-capitan-boot-install-drive/)
 * [How to create a bootable macOS Mojave 10.14 USB install drive](https://9to5mac.com/2018/06/18/how-to-create-a-bootable-macos-mojave-10-14-usb-install-drive-video/)
+* [How to сlean install macOS Mojave 10.14](https://setapp.com/how-to/clean-install-macos-mojave)
