@@ -30,6 +30,8 @@ Docker for Mac包括：
 * Docker Machine
 * Kitematic
 
+从Docker Store下载 [Docker Community Edition for Mac](https://store.docker.com/editions/community/docker-ce-desktop-mac)
+
 ![Abort Docker for Mac](../../../img/virtual/docker/docker_for_mac/abort_docker_for_mac.png)
 
 > 当前最新版本的Docker for Mac已经内建安装了Kubernetes，也可以直接激活使用（通过Docker的Preferences菜单，其中`Kubernetes`页面有激活和设置功能）

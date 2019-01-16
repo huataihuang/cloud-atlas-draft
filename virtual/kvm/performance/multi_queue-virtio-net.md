@@ -40,6 +40,8 @@
 
 > ` -L --set-channels` - 设置指定网络设备的通道数量（the numbers of channels）
 
+在阿里云官网，提供了有关在[虚拟机内部启用多队列的参考文档](https://help.aliyun.com/document_detail/52559.html)
+
 # 实践
 
 * 在没有设置`virtio-vhost`多队列之前，通过`ps aux | grep vhost`可以看到对应虚拟机`vm-1`的`vhost`只有2个进程（单队列有一个收网络包的进程和一个发网络包进程）（当前虚拟机`qemu`进程号是`17060`）

@@ -1,3 +1,5 @@
+> 简化和实用的处理日志请参考[Python日志处理基础](../log/python_logging_basic)
+
 Python非常容易实现日志功能，因为提供了`logging`模块方便开发者在代码事件中添加日志调用。事件是通过可选的包含变量的描述信息所组成。事件还有一个重要的特性是可以设置日志级别。
 
 # 什么时候使用`logging`
@@ -17,7 +19,7 @@ logging.info('I told you so')  # will not print anything
 # 日志记录到文件
 
 ```python
-mport logging
+import logging
 logging.basicConfig(filename='example.log',level=logging.DEBUG)
 logging.debug('This message should go to the log file')
 logging.info('So should this')

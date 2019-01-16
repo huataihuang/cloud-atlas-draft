@@ -18,6 +18,14 @@ ipmitool mc reset cold
 ipmitool -I lanplus -H IP -U username -P password mc reset cold
 ```
 
+## Ubuntu的ipmi
+
+```bash
+apt install ipmitool
+```
+
+
+
 # 远程访问终端
 
 ```bash
@@ -45,7 +53,6 @@ ipmitool raw 0x00 0x08 0x05 0x80 0x04 0x00 0x00 0x00
 
 # 推荐临时启动PXE
 ipmitool chassis bootdev pxe
-
 ipmitool chassis bootparam set bootflag force_pxe
 ```
 
@@ -53,9 +60,7 @@ ipmitool chassis bootparam set bootflag force_pxe
 
 ```bash
 ipmitool raw 0x00 0x08 0x05 0x80 0x18 0x00 0x00 0x00
-
 ipmitool chassis bootdev bios
-
 ipmitool chassis bootparam set bootflag force_bios
 ```
 

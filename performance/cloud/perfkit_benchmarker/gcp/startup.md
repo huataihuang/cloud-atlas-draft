@@ -20,6 +20,8 @@ curl https://sdk.cloud.google.com | bash
 gcloud auth login
 ```
 
+> 如果结束测试，请在 Google Cloud 的 "IAM和管理" 面板中，在"设置"栏关停掉使用的项目。Google Cloud会在一段时间后清理掉该账号资源。
+
 # 激活Compute Engine API
 
 开始时候Compute Engine API尚未激活，此时直接执行测试会提示错误：

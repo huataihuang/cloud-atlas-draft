@@ -2,7 +2,23 @@
 
 [Sphinx Doc](http://www.sphinx-doc.org) 最初是作为Python代码文档自动生成工具，现在也开始支持C/C++，以及计划支持更多语言程序文档的创建。由于文档撰写格式优雅，逐渐作为技术文档的撰写平台使用。
 
+Sphinx使用Python编写，并且支持Python 3.5+。
+
 # 安装
+
+## Debian/Ubuntu
+
+For Python 2:
+
+```
+apt-get install python-sphinx
+```
+
+For Python 3:
+
+```
+apt-get install python3-sphinx
+```
 
 ## Fedora安装sphinx-doc
 
@@ -22,6 +38,13 @@ sudo dnf install python3-sphinx
 
 ## 通过virtualenv安装
 
+注意：在CentOS或者macOS环境，如果同时安装了python 2和python 3，则会有`pip2`和`pip3`，都可以安装各自的`virtualenv`。不过，系统只有一个`/usr/local/bin/virtualenv`，这个工具有一个参数`-p PYTHON_EXE, --python=PYTHON_EXE`可以用来指定Python解析器，例如 `--python=python3.5`。默认是使用`/bin/python3.6`。
+
+```
+virtualenv venv3
+. venv3/bin/activate
+```
+
 > 参考[Document your Django projects: reStructuredText and Sphinx](http://www.marinamele.com/2014/03/document-your-django-projects.html)
 
 ```
@@ -37,6 +60,16 @@ Mac OS X 已经自带了python，不过没有安装`pip`，需要先通过`easy_
 ```
 sudo easy_install pip
 sudo pip install sphinx
+```
+
+注意：如果直接通过[Python官方网站](https://www.python.org)下载安装 `macOS 64-bit installer`，则会直接提供 `pip` （当前已经不再推荐使用easy_install来安装pip了，因为高版本Python已经自带pip来取代easy_install）
+
+以下是macOS + Python 3.7 执行：(参考官方安装方法)
+
+```
+virtualenv venv3
+. venv3/bin/active
+pip install -U sphinx
 ```
 
 > 安装`sphinx`需要root权限，否则无法写入`/Library/Python/2.7/site-packages`目录
@@ -67,6 +100,70 @@ pip install --ignore-installed six
 系统完整性保护只有在系统分区之外才能整个或部分禁止。Apple在recovery system或从安装盘启动时候提供的终端窗口中，可以执行`csrutil`命令行工具。安装macOS时候，installer将任何位于标记为系统目录中的组件移动到`/Library/SystemMigration/History/Migration-[some UUID]/QuarantineRoot/`。通过保护系统目录，系统文件和目录只能在Apple软件更新的时候自动维护。所以，这种权限修复没有在Disk Utility和相应的diskutil操作中提供。
 
 > 参考 [System Integrity Protection](https://en.wikipedia.org/wiki/System_Integrity_Protection)
+
+# Linux Kernel Document
+
+Linux Kernel Documents使用了sphinx来构建，请参考指导文档 [How to write kernel documentation](https://www.kernel.org/doc/html/latest/doc-guide/index.html)
+
+可以通过git方式下载源代码，并且从不同的tag获取对应版本的内核源代码（包括文档）
+
+```
+cd /usr/src/kernels
+git clone https://github.com/torvalds/linux.git
+
+git checkout v4.20  # 注意：此时是Tag v4.20
+git branch -b v4.20 # 转换成本地分支
+```
+
+```
+virtualenv venv3
+. venv3/bin/activate
+pip install -r /usr/src/kernels/linux/Documentation/sphinx/requirements.txt
+```
+
+生成文档
+
+```
+cd /usr/src/kernels/linux
+make htmldocs
+```
+
+注意：一定要在内核源代码根目录下执行上述`make htmldocs`命令。不要在`Documentation`子目录下执行，否则会报错（参考 [Generating html linux documentation with sphinx](https://unix.stackexchange.com/questions/436953/generating-html-linux-documentation-with-sphinx) ）：
+
+```
+make: *** empty variable name.  Stop.
+make: *** [cleandocs] Error 2
+```
+
+输出的文档内容位于`Documentation/output`目录下，可以通过浏览器浏览。
+
+## 单独选译内核文档
+
+由于我对内核部分文档比较感兴趣，所以准备做一些选译，则采用如下方法复制出部分文档目录：
+
+```bash
+src_doc_dir=/usr/src/kernels/linux/Documentation
+dst_doc_dir=/home/huatai/github/kernel-doc
+
+cp $src_doc_dir/index.rst $dst_doc_dir/
+cp $src_doc_dir/conf.py $dst_doc_dir/
+cp -R $src_doc_dir/sphinx $dst_doc_dir/
+cp -R $src_doc_dir/admin-guide $dst_doc_dir/
+cp -R $src_doc_dir/kernel-hacking $dst_doc_dir/
+cp -R $src_doc_dir/doc-guide $dst_doc_dir/
+cp -R $src_doc_dir/vm $dst_doc_dir/
+cp -R $src_doc_dir/trace $dst_doc_dir/
+```
+
+这样就可以使用如下命令来构建文档：
+
+```
+sphinx-build -b html . output
+```
+
+输出的文档位于 `output` 子目录，可以很方便做文档翻译。
+
+注意：Linux Kernel Documentation使用了sphinx 1.4.9，其中有语法和最新版本不兼容。所以在部署到 [Read the Docs](https://readthedocs.org) 网站时候，需要使用 `Advanced Settings`，指定 Requirements files: `sphinx/requirements.txt` ，以及指定 Python configuration file: `conf.py`，否则会导致编译错误。
 
 # 创建文档
 

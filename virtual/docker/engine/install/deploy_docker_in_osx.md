@@ -1,5 +1,7 @@
 > 作为开发运维人员，很多人喜欢[使用Mac OS X作为自己的工作平台](../../../../develop/mac/README.md)，我也不例外 ^_^
 
+> 本文是早期采用Docker Toolbox（也就是VirtualBox虚拟机来运行Docker）的方案，当前最新版本的Docker已经可以采用类似KVM的Hypervisor，即[bhyve](../../../bhyve/README)来运行，性能更佳。详细的最新版本Docker for macOS请参考[Docker for Mac快速起步](../../docker_for_mac/docker_for_mac_startup)。
+
 Docker虽然不支持在Linux之外的操作系统直接运行（因为其底层技术和Linux内核紧密结合），但是可以通过在其他操作系统，如Mac OS X、Windows等，借助其他虚拟机（如VirtualBox，VMware）内部运行的Linux来运行Docker。在Mac OS X上，Docker通过[Docker Toolbox](https://www.docker.com/toolbox)来方便部署Docker容器。
 
 Docker Toolbox包括了以下Docker工具：

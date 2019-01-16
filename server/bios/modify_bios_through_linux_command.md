@@ -42,7 +42,9 @@ HP BIOS Configuration Utility (BCU)是免费的提供管理BIOS设置的工具 �
 
 # Inventec （英业达）
 
-# 联想/浪潮（AMI）
+# 
+
+# Foxconn (富士康)/联想/浪潮（AMI）
 
 联想和浪潮使用AMI的BIOS，可参考联想[Configuring the HX Series appliance](http://systemx.lenovofiles.com/help/index.jsp?topic=%2Fcom.lenovo.conv.8689.doc%2Ft_configuring_hx_appliance.html)手册来修订BIOS
 

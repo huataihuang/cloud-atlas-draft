@@ -16,7 +16,7 @@ kern.hv_support: 1
 
 以下是使用Hypervisor Framework API创建和运行具有一个或多个虚拟CPU的简单生命周期：
 
-[macOS Hypervisor VM生命周期](macos_hypervisor_vm_life_cycle.png)
+![macOS Hypervisor VM生命周期](../../../img/virtual/bhyve/macos/macos_hypervisor_vm_life_cycle.png)
 
 在任务启动是，创建一个VM，映射任务的虚拟地址空间范围到虚拟机的guest物理地址空间，并创建POSIX线程。然后，创建一个或多个虚拟CPU，在一个POSIX线程上运行任务，处理VMEXIT事件，然后销毁虚拟CPU。当虚拟CPU被销毁后，终止POSIX线程，unmap内存region，并最终销毁VM。
 

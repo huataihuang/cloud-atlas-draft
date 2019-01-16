@@ -1,3 +1,5 @@
+# 准备libvirt编译环境
+
 在[使用dnf安装源代码rpm](../../../os/linux/redhat/fedora/install_src_rpm_with_dnf)过程中，安装好了libvirt的源代码，并且相应安装了编译所需的环境：
 
 ```
@@ -12,6 +14,141 @@ sudo dnf builddep libvirt
 ```
 sudo dnf groupinstall -y "development tools"
 ```
+
+## 手工安装libvirt编译环境
+
+如果需要独立手工安装libvirt编译环境可以参考如下方法安装必要的编译开发依赖软件包：
+
+```
+yum install -y radvd libpcap-devel readline-devel iscsi-initiator-utils avahi-devel dbus-devel audit-libs-devel xhtml1-dtds gnutls-devel
+
+yum install -y xmlto asciidoc hmaccalc newt-devel perl pesignelfutils-devel binutils-devel pciutils-devel
+
+yum install -y pesign elfutils-devel perl-ExtUtils*
+
+yum install -y glib2-devel iasl libuuid-devel texinfo cyrus-sasl cyrus-sasl-devel libpng-devel pixman pixman-devel perl perl-podlators numactl-devel libaio-devel
+
+yum install -y yajl-devel.x86_64 libxml2-devel.x86_64 gnutls-devel.x86_64 device-mapper-devel.x86_64 libpciaccess-devel.x86_64 libnl-devel.x86_64
+
+yum install -y wget gcc git gdb automake
+```
+
+# 编译libvirt
+
+```
+./autobuild.sh
+```
+
+如果自定义代码中有些不太完善的代码，可能会有编译报错，再通过以下方法忽略部分错误：
+
+```bash
+#!/bin/sh
+
+if [ "$1" == "init" ]; then
+	echo "aclocal"
+	aclocal -I /usr/share/aclocal -I ./gnulib/m4/
+	echo "autoheader"
+	autoheader
+	echo "automake"
+	automake
+	echo "autoconf"
+	autoconf
+	echo "start configure"
+fi
+
+./configure \
+ --disable-rpath \
+ --disable-static \
+ --disable-werror \
+ --enable-debug=no \
+ --disable-werror\
+ --with-qemu \
+ --with-yajl \
+ --prefix=/usr \
+ --libdir=/usr/lib64 \
+ --sysconfdir=/etc \
+ --localstatedir=/var \
+ --without-openvz \
+ --without-vmware \
+ --without-vbox \
+ --with-python \
+ --without-hyperv \
+ --with-parallels \
+ --with-numactl \
+ --with-lxc \
+ --without-libxl \
+ --without-xen \
+ --without-xenapi \
+ --without-selinux \
+ --with-gnutls \
+ --with-remote \
+ --with-init-script=redhat \
+ --without-secdriver-selinux \
+ --with-libvirtd \
+ --with-macvtap \
+ --with-sysctl \
+ --with-driver-modules \
+ --with-packager-version=test188 \
+ LDFLAGS="-Wl,--as-needed" \
+ PYTHON=/usr/bin/python
+```
+
+```bsh
+make
+make install
+```
+
+另外，需要手工复制python使用的库文件，否则python客户端无法操作
+
+```
+yes | cp ./python/.libs/libvirtmod.so /usr/local/python/lib/python2.7/site-packages/
+yes | cp ./python/.libs/libvirtmod_qemu.so /usr/local/python/lib/python2.7/site-packages/
+yes | cp ./python/libvirt.py /usr/local/python/lib/python2.7/site-packages/
+yes | cp ./python/format_xml.py /usr/local/python/lib/python2.7/site-packages/
+yes | cp ./python/libvirt_qemu.py /usr/local/python/lib/python2.7/site-packages/
+```
+
+## 编译报错处理
+
+* `error: jump skips variable initialization [-Werror=jump-misses-init]`
+
+编译libvirt报错：
+
+```bash
+../../src/util/viravs.c: In function 'virAvsRpcGetMigrateInfo':
+../../src/util/viravs.c:382:9: error: jump skips variable initialization [-Werror=jump-misses-init]
+         goto cleanup;
+         ^
+../../src/util/viravs.c:441:1: note: label 'cleanup' defined here
+ cleanup:
+ ^
+../../src/util/viravs.c:428:9: note: 'info_len' declared here
+     int info_len = strlen(migrate_info_tmp) + 1;
+         ^
+../../src/util/viravs.c:388:9: error: jump skips variable initialization [-Werror=jump-misses-init]
+         goto cleanup;
+         ^
+```
+
+代码部分:
+
+```c
+    if (json_cmd == NULL)
+        goto cleanup;
+        ...
+
+cleanup:
+    virJSONValueFree(reply);
+    if (json_cmd)
+        free(json_cmd);
+
+    return ret;
+}
+```
+
+在 `configure` 时使用参数 `--disable-werror` 可以忽略上述错误
+
+# 编译libvirt的rpm包
 
 以下是在Fedora 27平台编译`libvirt`的过程：
 

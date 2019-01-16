@@ -4,8 +4,6 @@
 
 对于Dell的R510服务器，其使用的[Intel 5500 and 5520 chipsets (revision 0x13) and the Intel X58 chipset (revisions 0x12, 0x13, 0x22)存在Interrupt remapping的缺陷](https://www.novell.com/support/kb/doc.php?id=7014344)，需要在BIOS上关闭。
 
-10.153.171.88 r69f04459.cloud.cm10 ay71v  oob:100.126.5.69
-
 > Dell服务器BIOS（参考）
 
 ```

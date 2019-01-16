@@ -22,6 +22,12 @@ TCP拥塞减轻算法（TCP congestion-avoidance algorithm）是冲突控制的�
 
 > 参考 [TCP congestion control](https://en.wikipedia.org/wiki/TCP_congestion_control) 介绍了多种TCP拥塞控制的算法，例如 [TCP Westwood+](https://en.wikipedia.org/wiki/TCP_congestion_control#TCP_Westwood.2B)
 
+# BBR (Bottleneck Bandwidth and RTT)
+
+BBR(瓶颈带宽和RTT)是一种新型拥塞控制算法，由Google的软件工程师开发，也是Google的持续尝试通过TCP协议加速Internet的尝试。
+
+详细实践请参考[通过BBR TCP拥塞控制算法加速Internet速度](boost_linux_internet_speed_with_tcp_bbr)
+
 # 参考
 
 * [TCP congestion control](https://en.wikipedia.org/wiki/TCP_congestion_control)

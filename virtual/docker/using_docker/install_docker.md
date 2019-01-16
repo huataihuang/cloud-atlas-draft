@@ -38,7 +38,7 @@ sh get-docker.sh
 
 > 执行下载的`get-docker.sh`脚本之前务必检查脚本内容，避免安全问题。
 
-在使用Docker 时，建议以宽容（permissive）模式运行 SELinux，这样 SELinux 将只把错误写进日志，而非强制执行。如果以强制（enforcing）模式运行 SELinux，那么很有可能在执行书中的范例时，会遇到各种莫名其妙的“权限不足”（Permission Denied）错误。
+在使用Docker 时，建议以宽容（permissive）模式运行 SELinux，这样 SELinux 将只把错误写进日志，而非强制执行。如果以强制（enforcing）模式运行 SELinux，会遇到各种莫名其妙的“权限不足”（Permission Denied）错误。
 
 
 # 通过yum/dnf安装
@@ -72,6 +72,12 @@ Got permission denied while trying to connect to the Docker daemon socket at uni
 ```
 
 检查可以看到`/var/run/docker.sock`需要属于`root`组才能读写，所以如果要无需sudo，则需要将用户加入到`root`组即可。注意，这可能存在安全隐患，所以谨慎使用，仅建议个人自己的测试主机上使用，生产环境还是使用sudo较为稳妥。
+
+如果安装版本设置了docker用户组，则可以将用户添加到docker用户组组来避免需要使用sudo命令执行Docker:
+
+```
+sudo usermod -aG docker $USER
+```
 
 > 可能需要重启主机使上述设置生效
 

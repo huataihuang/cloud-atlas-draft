@@ -1,5 +1,39 @@
 发行版为了系统安全，默认在物理服务器上不能访问KVM虚拟机，所以使用`virsh console vm_name`是没有任何输出内容的。
 
+# 虚拟机串口
+
+默认libvirt创建虚拟机的串口设备如下，保证了串口可以访问的硬件设备基础：
+
+```xml
+    <serial type='pty'>
+      <source path='/dev/pts/1'/>
+      <target type='isa-serial' port='0'>
+        <model name='isa-serial'/>
+      </target>
+      <alias name='serial0'/>
+    </serial>
+    <console type='pty' tty='/dev/pts/1'>
+      <source path='/dev/pts/1'/>
+      <target type='serial' port='0'/>
+      <alias name='serial0'/>
+    </console>
+```
+
+如果要从硬件上关闭虚拟机console访问，可以将串口设备重定向到文件，这样就可以避免系统管理员访问（安全隐患），同时提供系统日志输出：
+
+```xml
+      <serial type='file'>
+        <source path='/var/log/libvirt/vm_console/example-vm.log'/>
+        <target port='0'/>
+      </serial>
+      <console type='file'>
+        <source path='/var/log/libvirt/vm_console/example-vm.log'/>
+        <target type='serial' port='0'/>
+      </console>
+```
+
+----
+
 # RHEL/CentOS 7
 
 在虚拟机内部，在`/boot/grub2/grub.cfg`最后添加`console=ttyS0`

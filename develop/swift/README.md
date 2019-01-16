@@ -1,5 +1,7 @@
 系统学习Swift语言
 
+Github上的这份[Swift 语言指南](https://github.com/ipader/SwiftGuide)提供了很多参考资料索引。
+
 # 参考
 
 * 『Mastering Swift 3 - Linux』

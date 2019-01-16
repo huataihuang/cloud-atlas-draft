@@ -1,3 +1,17 @@
+# 个人经验
+
+实践下来发现xhyve运行环境非常苛刻，对于虚拟机内核或者版本兼容性较差，最新版本的CentOS/Ubuntu无法启动安装（应该和内核相关）。不过，网上参考文档显示早期版本CentOS/Ubuntu/FreeBSD可以比较完善地安装运行。
+
+实际上Docker和OpenShift都有几个开源项目基于xhyve开发，例如 OpenShift 可以在MacOS环境基于Docker运行，就是运行在xhyve中 - [Minishift / Setting Up the Virtualization Environment / macOS](https://docs.okd.io/latest/minishift/getting-started/setting-up-virtualization-environment.html#for-macos)。
+
+我折腾了好几个最新发行版安装都失败，所以目前感觉投入和产出性价比很低，不如直接采用Docker for macOS来运行需要的开发环境，除了内核，应该其他都能够满足测试开发要求。并且有很多项目基于Docker运行，通用性很好：
+
+> [machine-drivers/docker-machine-driver-xhyve](https://github.com/machine-drivers/docker-machine-driver-xhyve#install)
+
+只有需要开发内核才需要运行在完全的VM中，此时使用xhyve比较合适。
+
+# 简介
+
 x86虚拟化技术指在x86架构硬件虚拟化技术，允许在安全和高效的基础上并行共享x86处理器资源给多个操作系统。
 
 1990年代，x86虚拟化技术完全是软件实现的，然而到2006年，Intel(VT-x)和AMD(AMD-V)引入了硬件虚拟化技术简化了虚拟化软件并提供了一定的性能提升。

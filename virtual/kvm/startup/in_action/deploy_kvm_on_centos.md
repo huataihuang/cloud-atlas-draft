@@ -123,6 +123,20 @@ virt-install \
   --extra-args="console=tty0 console=ttyS0,115200"
 ```
 
+以下命令增加了磁盘类型`qcow2`，推荐使用：
+
+```
+virt-install \
+  --network bridge:virbr0 \
+  --name centos7 \
+  --ram=4096 \
+  --vcpus=2 \
+  --disk path=/var/lib/libvirt/images/centos7.qcow2,format=qcow2,bus=virtio,cache=none,size=16 \
+  --graphics none \
+  --location=http://mirrors.163.com/centos/7/os/x86_64/ \
+  --extra-args="console=tty0 console=ttyS0,115200"
+```
+
 * `--graphics none` 这个参数表示不使用VNC来访问VM的控制台，而是使用VM串口的字符控制台。如果希望使用X window的图形界面来安装VM操作系统，则可以忽略这个参数
 * `--location=http://mirrors.163.com/centos/7/os/x86_64/` 这个是指定通过网络的CentOS 7安装目录进行安装。如果你使用本地的iso安装，可以修改成 `--cdrom /root/CentOS-7-x86_64-DVD-1511.iso`
 * `--extra-args="console=tty0 console=ttyS0,115200"` 这个`extra-args`是传递给OS installer的内核启动参数(注意：这个`extra-args`参数只能用于`--location`)。这里因为需要连接到VM的串口，所以要传递内核对应参数启动串口。此外，可以指定kickstart文件，这样就可以不用交互而自动完成安装，如
@@ -131,9 +145,11 @@ virt-install \
 --extra-args="ks=http://my.server.com/pub/ks.cfg console=tty0 console=ttyS0,115200"
 ```
 
-> 遇到一个奇怪问题，上述命令使用`--graphics vnc`虽然可以用vnc连接，但是到了`Started D-Bus System Message Bus`之后字符界面停止了。
+早期发型版本使用上述串口安装总有安装问题（例如安装初始化控制台无输出），不过最近测试了一下 CentOS 7.5.1804 则可以正常工作。安装过程完全采用字符终端，操作有些繁琐，但是对虚拟机内存要求可以很低（图形界面安装至少需要1G以上内存）。
 
-改为直接通过下载的iso镜像安装初始操作系统
+上述安装是通过 `virsh console` 连接到虚拟机的串口控制台实现的，安装完成后，需要`detach`断开串口控制台: `CTRL+Shift+]` ，这就可以返回host主机的控制台。
+
+> 测试CentOS 7早期版本遇到一个奇怪问题，命令使用`--graphics vnc`虽然可以用vnc连接，但是到了`Started D-Bus System Message Bus`之后字符界面停止了。改为直接通过下载的iso镜像安装初始操作系统
 
 ```
 virt-install \

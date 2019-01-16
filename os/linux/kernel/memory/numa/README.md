@@ -1,0 +1,1 @@
+本章节综合VMware资料和RedHat资料

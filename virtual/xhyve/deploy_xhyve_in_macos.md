@@ -2,6 +2,7 @@
 
 # bhyve架构
 
+```
                                                            Linux
                I/O        VM control       FreeBSD        NetBSD
                                                           OpenBSD
@@ -29,7 +30,55 @@
                          |         Interrupts         |
                          +----------------------------+
                           vmm.ko
+```
 
+# 安装xhyve
+
+xhyve hypervisor安装有多种方法，最简单的是通过homebrew:
+
+```
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+brew update
+brew install --HEAD xhyve
+```
+
+> [Homebrew](https://brew.sh/)官方提供了安装指南
+
+> `--HEAD`在brew命令中确保总是获得最新修改，即使homebrew数据库还没有更新。
+
+如果重新安装，`brew`也提供了`reinstall`命令，即 `brew reinstall xhyve`
+
+---
+
+如果使用MacPorts则简单执行
+
+```
+sudo port selfupdate
+sudo port install xhyve
+```
+
+最后，也可以自行编译：
+
+```
+git clone https://github.com/machyve/xhyve.git
+cd xhyve
+xcodebuild
+```
+
+编译后执行程序位于 `build/Release/xhyve`。 在最新的 macOS Mojave 10.14.1 编译成功，运行 `xhyve -h`失败，显示
+
+```
+Killed: 9
+```
+
+> 目前采用 homebrew 安装的 xhyve
+
+# 使用xhyve
+
+```
+xhyve -h
+```
 
 # 在xhyve中运行Tiny Core Linux
 
@@ -44,9 +93,16 @@ make
 
 关闭虚拟机的方法是执行 `sudo halt`
 
-# 在xhyve中运行Ubuntu
+* [在xhyve中运行RHEL/CentOS](virtual/xhyve/run_rhel_centos_in_xhyve.md)
+* [在xhyve中运行Debian/Ubuntu](virtual/xhyve/run_debian_ubuntu_in_xhyve.md)
 
 # 参考
 
 * [xhyve.org](https://github.com/mist64/xhyve)
-* [Running Mac OS X El Capitan and macOS Sierra on QEMU/KVM](https://github.com/kholia/OSX-KVM) 提供了在KVM环境中运行macOS的方法
+* [Set up xhyve with Ubuntu 16.04](https://gist.github.com/mowings/f7e348262d61eebf7b83754d3e028f6c) 建议参考
+* [Install an Ubuntu 16.04 VM on macOS using xhyve](https://github.com/rimusz-lab/xhyve-ubuntu)
+* [Virtualization on Mac OS X using Vagrant (Part 2)](https://medium.com/@fiercelysw/virtualization-on-mac-os-x-using-vagrant-part-2-3173efc754a8) - 最好的方式：启动xhyve，并使用vagrant来管理，则标准化，更为易用
+
+----
+
+* [Running Mac OS X El Capitan and macOS Sierra on QEMU/KVM](https://github.com/kholia/OSX-KVM) 提供了在KVM环境中运行macOS的方法（反过来哦，和我这里实践不同，是在Ubuntu中运行macOS）
