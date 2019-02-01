@@ -72,7 +72,7 @@ Ansible还有一个标准模块`shell`，这个模块看上去和`command`模块
 
 * command模块
 
-command模块执行命令跟随一系列空格分隔的参数。注意`command`不是通过shell执行的，所以不能使用环境变零 `SHOME` 以及操作符 `<`，`>`，`|` 和 `&`。其他则和shell没有区别
+command模块执行命令跟随一系列空格分隔的参数。注意`command`不是通过shell执行的，所以不能使用环境变零 `$HOME` 以及操作符 `<`，`>`，`|` 和 `&`。其他则和shell没有区别
 
 * shell模块
 

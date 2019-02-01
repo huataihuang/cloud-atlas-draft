@@ -25,18 +25,9 @@ gollum
 
 # Mac平台安装gollum
 
-提示报错
+在macOS上安装 gollum 会出现需要依赖 icu4c 的报错，参考 [gollum installation](https://github.com/gollum/gollum/wiki/Installation)
 
-```
-ERROR:  Error installing gollum:
-	ERROR: Failed to build gem native extension.
-
-    /System/Library/Frameworks/Ruby.framework/Versions/2.0/usr/bin/ruby extconf.rb
-checking for main() in -licui18n... no
-checking for main() in -licui18n... no
-```
-
-根据 [gollum installation](https://github.com/gollum/gollum/wiki/Installation)
+> 需要切换到root用户身份安装
 
 ```
 brew install icu4c
@@ -55,8 +46,11 @@ For compilers to find this software you may need to set:
 ```
 
 ```
-sudo gem install charlock_holmes -- --with-icu-dir=/usr/local/opt/icu4c
-sudo gem install gollum
+gem install charlock_holmes -- --with-icu-dir=/usr/local/opt/icu4c
+gem install gollum
 ```
 
 安装完成后，就可以直接启动gollum，可以通过web编辑markdown或者reStructureText格式文档，非常直观方便。
+
+## macOS 安装gollum
+

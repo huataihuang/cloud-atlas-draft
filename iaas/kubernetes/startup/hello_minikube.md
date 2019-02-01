@@ -5,3 +5,4 @@
 > 当前最新版本的Docker for Mac已经内建安装了Kubernetes，也可以直接激活使用（通过Docker的Preferences菜单，其中`Kubernetes`页面有激活和设置功能）
 
 ![docker kubernetes](../../../img/virtual/docker/docker_for_mac/docker_kubernetes.png)
+

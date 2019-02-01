@@ -9,6 +9,8 @@ GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'password' WITH GRANT OP
 FLUSH PRIVILEGES;
 ```
 
+> 已验证，在 `GRANT` 命令中，需要在字符串 `root` `%` 和 `password` 的前后加上单引号，否则会报错。
+
 并且在配置`my.cnf`文件中设置
 
 ```ini

@@ -3,3 +3,5 @@
 Sphinx使用[reStructuredText](http://docutils.sourceforge.net/rst.html)语法，相对MarkDown语法要复杂很多，但也功能更为强大。
 
 [Riv: Take Notes in rst](https://github.com/gu-fan/riv.vim) 是一个vim插件，可以实时显示vim所编辑的rst文件效果，可以结合使用。
+
+[build-me-the-docs-please](https://build-me-the-docs-please.readthedocs.io/en/latest/index.html) 是我偶尔搜索 Sphinx + PlantUML 看到的一个知识管理、issue管理的经验分享文档，非常详尽，可以参考。

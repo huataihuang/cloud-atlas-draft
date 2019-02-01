@@ -12,7 +12,7 @@ Linux的历史和自由软件和开源软件息息相关，如果你想真正了
 
 每个公司生产环境可能选择不同的发行版体系，可能主要是RedHat体系（包括CentOS）或者Debian体系（包括Ubuntu）。
 
-在[]()中对Ubuntu Server和Enterprise Linux(RHEL,CentOS等)做了一个对比，加上我自己的理解如下：
+我自己的理解如下：
 
 * Ubuntu Server基于Debian testing版本开发，所以内核版本和软件包版本要比Red Hat Enterprise Linux新很多，当然也带了一定的稳定性风险。
 * Ubuntu Server采用的是升级软件包策略来更新服务器，能够保持服务器软件包以最新的版本来修复bug和安全漏洞。带来的优点是能够获得最新的功能以及bug修复，但是也同时带来了软件兼容性问题，这个兼容性问题特指你的应用所依赖的旧版本的库或者特性，如果你的应用软件能够随着开源社区进化而同步开发更新，则使用Ubuntu Server会带来较大的好处。
@@ -23,6 +23,10 @@ Linux的历史和自由软件和开源软件息息相关，如果你想真正了
 * Fedora作为Red Hat的社区试验版本，采用的软件版本比较激进，所以面向REHL/CentOS的开发建议同样在RHEL/CentOS上开发(至少要完整测试) -- 有可能下一版本RHEL依然和当前版本Fedora不同（不兼容）。
 
 > RHEL/CentOS可以采用Fedora项目提供的[EPEL软件仓库](http://fedoraproject.org/wiki/EPEL)来安装比较新（高版本）的应用软件和库，部分弥补了RHEL/CentOS软件因致力于稳定性采用的久经验证但较为落后的软件版本。
+
+一些有特色的发行版（你可以尝试更多，选择你的选择）：
+
+* [Tiny Core Linux](http://tinycorelinux.net) - 一个高多模块化的Linux版本（核心11M，基本图形版只有16M），致力于采用最新内核，精简的X桌面（默认使用基于FLTK的Flwm窗口管理系统，轻量级到极致）来实现一个非常迷你的系统。目前看X86平台活跃在发布，不过树莓派平台有一段时间没有更新了。
 
 ## 我的选择
 

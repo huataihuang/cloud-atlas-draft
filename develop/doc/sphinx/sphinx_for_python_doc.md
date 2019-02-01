@@ -38,17 +38,32 @@ sudo dnf install python3-sphinx
 
 ## 通过virtualenv安装
 
-注意：在CentOS或者macOS环境，如果同时安装了python 2和python 3，则会有`pip2`和`pip3`，都可以安装各自的`virtualenv`。不过，系统只有一个`/usr/local/bin/virtualenv`，这个工具有一个参数`-p PYTHON_EXE, --python=PYTHON_EXE`可以用来指定Python解析器，例如 `--python=python3.5`。默认是使用`/bin/python3.6`。
+### CentOS
+
+在CentOS如果同时安装了python 2和python 3，则会有`pip2`和`pip3`，都可以安装各自的`virtualenv`。不过，系统只有一个`/usr/local/bin/virtualenv`，这个工具有一个参数`-p PYTHON_EXE, --python=PYTHON_EXE`可以用来指定Python解析器，例如 `--python=python3.5`。默认是使用`/bin/python3.6`。
 
 ```
 virtualenv venv3
 . venv3/bin/activate
 ```
 
+### macOS
+
+在macOS上安装了Python官方的macOS版本Python 3.7，则会在用户目录下`~/.bash_profile`添加路径，确保首先调用Python3.7
+
+```
+# Setting PATH for Python 3.7
+# The original version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.7/bin:${PATH}"
+```
+
+此时执行`virtualenv`则会执行`/Library/Frameworks/Python.framework/Versions/3.7/bin/virtualenv`确保生成的是Python 3的虚拟环境
+
 > 参考[Document your Django projects: reStructuredText and Sphinx](http://www.marinamele.com/2014/03/document-your-django-projects.html)
 
 ```
 pip install sphinx
+pip install sphinx_rtd_theme
 ```
 
 ## MacOS 安装sphinx-doc
@@ -70,6 +85,8 @@ sudo pip install sphinx
 virtualenv venv3
 . venv3/bin/active
 pip install -U sphinx
+
+pin install sphinx_rtd_theme
 ```
 
 > 安装`sphinx`需要root权限，否则无法写入`/Library/Python/2.7/site-packages`目录

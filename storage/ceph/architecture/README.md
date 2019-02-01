@@ -8,7 +8,7 @@ Dell，SUSE和Canonical（即Ubuntu母公司）为OpenStack云解决方案提供
 
 > 在云计算中，对于每个分布式组件都必须能够扩展以及自动完成部署。Ceph通过和这些配置管理工具兼容，实现了云计算的集成。
 
-# YouRTube上资源
+# YouTube上资源
 
 * [Ceph Intro & Architectural Overview](https://www.youtube.com/watch?v=7I9uxoEhUdY&index=7&list=WL&t=0s) 是一个非常入门的介绍，对于 Ceph 的RADOS和CRUSH原理做了简洁的介绍，并且分别介绍了 Ceph 的不同接口：librados, radosgw, cephfs 等，对于理解Ceph能够做什么有很好的帮助。
 

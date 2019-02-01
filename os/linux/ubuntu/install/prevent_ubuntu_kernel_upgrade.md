@@ -27,6 +27,13 @@ linux-image-extra-4.4.0-131-generic set on hold.
 linux-image-4.4.0-131-generic set on hold.
 ```
 
+有了冻结(hold)，当然也有解除冻结：
+
+```
+sudo apt-mark unhold 4.4.0-131-generic
+```
+
 # 参考
 
 * [How to I prevent Ubuntu from kernel version upgrade and notification?](https://askubuntu.com/questions/938494/how-to-i-prevent-ubuntu-from-kernel-version-upgrade-and-notification/938523)
+* [How can you unhold (remove a hold on) a package?](https://askubuntu.com/questions/164587/how-can-you-unhold-remove-a-hold-on-a-package)

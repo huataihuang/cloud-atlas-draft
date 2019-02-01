@@ -6,7 +6,7 @@
 
 其实，VNC远程访问Linux服务器是非常古老的技术，但是这个技术一直有着简单实用的价值，直到今天依然是远程访问 Linux/Unix 服务器图形系统的利器。在虚拟化平台，也使用[远程访问VNC](../../../virtual/libvirt/remote_vnc)来访问虚拟机的控制台桌面。
 
-此外，另外一种适合Linux/Mac客户端的远程图形桌面访问方式是使用X Window原生的远程访问模式，例如[从ma上访问远程X window](../x/remote_x_from_mac)，甚至都不需要使用vnc客户端，只需要客户端和服务器都是相似架构的X Window系统就可以了。
+此外，另外一种适合Linux/Mac客户端的远程图形桌面访问方式是使用X Window原生的远程访问模式，例如[从mac上访问远程X window](../x/remote_x_from_mac)，甚至都不需要使用vnc客户端，只需要客户端和服务器都是相似架构的X Window系统就可以了。
 
 # 准备
 

@@ -72,7 +72,17 @@ xcodebuild
 Killed: 9
 ```
 
-> 目前采用 homebrew 安装的 xhyve
+不过，我使用 make 编译生成的 `build/xhyve` 可以运行，并且能够启动 `4.15` 内核，但显示不能找到磁盘设备：
+
+```
+Gave up waiting for root file system device.  Common problems:
+ - Boot args (cat /proc/cmdline)
+   - Check rootdelay= (did the system wait long enough?)
+ - Missing modules (cat /proc/modules; ls /dev)
+ALERT!  /dev/vda1 does not exist.  Dropping to a shell!
+```
+
+> **目前采用 homebrew 安装的 xhyve**
 
 # 使用xhyve
 

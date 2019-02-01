@@ -24,7 +24,7 @@ VMware Tools 以下列格式提供：
 * 操作系统特定软件包(OSP)：VMware 为特定 Linux 分发包版本构建和提供可下载的二进制软件包。OSP 通常针对早期版本提供，如 RHEL 6。Linux 的大多数当前版本都包含 Open VM Tools，无需单独安装 OSP。
 * Open VM Tools(OVT)：它是面向 Linux 分发包维护人员和虚拟设备供应商的 VMware Tools 开源实施。OVT 通常包含在常见 Linux 分发包的当前版本中，允许管理员与 Linux 软件包一起轻松安装和更新 VMware Tools。
 
-# 使用YUM安装
+# 使用YUM安装（推荐）
 
 现在发行版已经包含了vmware tools
 

@@ -1,3 +1,24 @@
+# X11.app
+
+[XQuartz](https://en.wikipedia.org/wiki/XQuartz)是Apple公司提供的X Server，实现了X Window系统。最初X11.app是随着Mac OS X 10.2 Jaguar一起发行的。但是从OS X 10.8 Mountain Lion开始，苹果公司放弃了X11.app，而是采用开源的XQuarz项目来发布。
+
+最新的XQuarz稳定版本是2.7.11，发布时间是2016-10-29。XQuartz不提供高分辨率的Retina显示X11应用，只支持2D图形硬件加速，通过Aqua实现硬件OpenGL加速和集成。
+
+> [OroborOSX](http://oroborosx.sourceforge.net/) 是一个已经不在开发的X11 for Mac OS X（2004年），实现了一个在Mac OS X上运行的XDarwin系统，算是一个有意思的开源项目。
+
+# 使用XQuartz
+
+* 从[XQuartz](https://www.xquartz.org)官方网站下载最新的 XQuartz-2.7.11.dmg 安装，安装以后需要log out然后再log in一次系统后就会将XQuartz作为默认X Window
+* 启动XQuartz之后，需要通过XQuartz内置的Terminal来登陆远程Linux服务器，这样才能在登陆之后看到正确的X11Forwarding结果，也就是登陆Linux系统后，检查环境变量：
+
+```
+env | grep DISPLAY
+```
+
+显示输出是 `DISPLAY=localhost:10.0`。如果没有使用XQuartz中的Terminal来远程ssh到服务器上，而是使用macOS内建的terminal，则不会有上述环境变量，并且即使登陆Linux服务器后手工输入环境变量 `export DISPLAY="localhost:10.0"` 也不能工作。
+
+> 详细的客户端和服务器端配置见下文
+
 # ssh方式使用X远程访问
 
 在Linux服务器上`/etc/ssh/sshd_config`添加设置
@@ -41,7 +62,7 @@ export DISPLAY="localhost:10.0"
 
 要验证`X11Forwarding`是否正常工作，可以在服务器上执行一个简单的X Window程序，看是否能否正常显示在本地客户端桌面。例如，使用`xev`程序（一个简单显示鼠标位置的X程序）。
 
-> 尝试了杂服务器运行`code`开发IDE，但是发现窗口刷新性能实在太差，无法满足使用要求。所以对于复杂的交互图形界面，使用X window远程模式实用性较低。甚至不如直接在本地sshfs挂载远程服务器目录，然后在本地运行`code`进行开发（这种模式解决了图形问题，但是磁盘io是一个较大的瓶颈，如果有大量的文件搜索则效率很低）。
+> 尝试了在Linux服务器运行`code`开发IDE(通过无线局域网)，但是发现窗口刷新性能实在太差，无法满足使用要求。（不过，如果是高速网络或者虚拟机通过sockets端口访问可能可以满足性能。）所以对于复杂的交互图形界面，使用X window远程模式实用性较低。甚至不如直接在本地sshfs挂载远程服务器目录，然后在本地运行`code`进行开发（这种模式解决了图形问题，但是磁盘io是一个较大的瓶颈，如果有大量的文件搜索则效率很低）。
 
 # ssh进行X转发解决"untrusted X11 forwarding"
 
