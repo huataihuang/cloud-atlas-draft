@@ -1,5 +1,9 @@
 在ThinkPadX220笔记本上安装CentSO 7操作系统，系统安装过程自动配置了wifi。然而，和原先[Mac上安装Gentoo Linux](../../../gentoo/install_gentoo_on_macbook)不同，当前RHEL/CentOS 7采用NetworkManager来管理网络，虽然也使用了`wpa_supplicent`程序，但是配置文件做了很大调整。既熟悉又陌生的配置方法，让我很是迷惑了一阵。
 
+> 强烈推荐使用NetworkManager，因为我发现，最新的操作系统发行版，不论是 CentOS 7 还是 Ubuntu 18.0.4，默认都采用了NetworkManager来管理网络，配置方法已经不同。
+>
+> 实际上使用 `nmcli` 配置也不复杂，只需要一条命令就可以生成配置文件，重启NetworkManager就可以正常工作。
+
 本文是采用NetworkManager命令行操作的经验总结，也是适应开源技术发展的学习实践。
 
 > `nmcli`是NetworkManager命令行管理工具。

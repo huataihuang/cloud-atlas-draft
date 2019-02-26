@@ -51,6 +51,9 @@ hdiutil attach tmp.iso
 mkdir install
 cp /Volumes/CDROM/linux ./install/
 cp /Volumes/CDROM/initrd.gz ./install/
+
+# After finish copy
+umount /Volumes/CDROM
 ```
 
 * 创建磁盘镜像文件
@@ -89,10 +92,13 @@ sh install.sh
 
 # 安装
 
-* 过程Tips
-  * 安装全程采用字符终端交互，通过TAB键切换，主要是选择语言（English）和locate，我都采用默认。在选择安装下载的镜像网站则选择中国。
-  * 磁盘分区采用完全使用整块磁盘，EXT4文件系统（之前划分文件系统构建btrfs可能有性能问题）
-  * 只选择安装OpenSSH server，这样镜像是最基本系统，后续再不断叠加按需安装
+## 过程Tips
+
+* 安装全程采用字符终端交互，通过TAB键切换，主要是选择语言（English）和locate，我都采用默认。在选择安装下载的镜像网站则选择中国。
+
+* 磁盘分区需要使用整个磁盘分区并设置为EXT4文件系统。我测试了使用`/dev/vda2`采用btrfs文件系统，但是启动失败（见下文记述的失败经历）
+
+* 只选择安装OpenSSH server，这样镜像是最基本系统，后续再不断叠加按需安装
 
 * 安装最后的 `Finish the installation -> Installation complete` 步骤，注意不要直接回车 `<Continue>` ，而是要选择 `<Go Back>`
 
@@ -141,7 +147,9 @@ nc 192.168.64.5 1234 | tar x
 #!/bin/bash
 KERNEL="boot/vmlinuz-4.15.0-45-generic"
 INITRD="boot/initrd.img-4.15.0-45-generic"
-CMDLINE="earlyprintk=serial console=ttyS0 acpi=off root=/dev/vda1 ro"
+#DON'T use 'acpi=off', refer https://github.com/machyve/xhyve/issues/161
+#CMDLINE="earlyprintk=serial console=ttyS0 acpi=off root=/dev/vda1 ro" 
+CMDLINE="earlyprintk=serial console=ttyS0 root=/dev/vda1 ro"
 UUID="-U 8e7af180-c54d-4aa2-9bef-59d94a1ac572" # A UUID will ensure we get a consistent ip address assigned
 # Guest Config
 CPU="-c 2"
@@ -162,7 +170,33 @@ sudo /Users/huatai/github/xhyve/build/xhyve $UUID $ACPI $CPU $MEM $PCI_DEV $LPC_
 sh run.sh
 ```
 
-* 依然出现hung问题，并且无法识别磁盘
+**以上测试成功，目前可以运行Ubuntu 18操作系统了**
+
+* 恢复虚拟机网络的脚本`masq.sh`
+
+在macOS物理主机上运行任何VPN程序，在退出VPN时候会导致虚拟机网路无法连接，则通过如下脚本恢复网络
+
+```bash
+#!/bin/bash
+interfaces=( $(netstat -in | egrep 'utun\d .*\d+\.\d+\.\d+\.\d+' | cut -d ' ' -f 1) )
+rulefile="rules.tmp"
+echo "" > $rulefile
+sudo pfctl -a com.apple/tun -F nat
+for i in "${interfaces[@]}"
+do
+  RULE="nat on ${i} proto {tcp, udp, icmp} from 192.168.64.0/24 to any -> ${i}"
+  echo $RULE >> $rulefile
+done
+sudo pfctl -a com.apple/tun -f $rulefile
+```
+
+----
+
+**以下仅供参考，实际上是失败的经历**
+
+# 失败经历记录
+
+* 我测试了`CMDLINE`包含了`acpi=off`会出现有时候hung有时候无法识别磁盘
 
 ```
 Begin: Loading essential drivers ... done.
@@ -251,4 +285,63 @@ starting version 239
 [  242.706218] R13: 000055f8ee28e240 R14: 0000000000020000 R15: 000055f8ee2907a0
 ```
 
-* http://cdimage.ubuntu.com/netboot/disco/ 最新的 19.04 网络安装镜像
+上述问题通过 去除`acpi=off`参数启动 正常，请参考 [Install Ubuntu 18 by netinstall is good, but boot from virtio_blk vda hang #161](https://github.com/machyve/xhyve/issues/161)
+
+# 去除`acpi=off`参数启动
+
+这次我参考我提交issue的 John-K 答复，去除了 `acpi=off` 参数启动，不过，我使用的是btrfs文件系统，挂载为`/dev/vda2`
+
+```bash
+#!/bin/bash
+KERNEL="boot/vmlinuz-4.15.0-45-generic"
+INITRD="boot/initrd.img-4.15.0-45-generic"
+#CMDLINE="earlyprintk=serial console=ttyS0 acpi=off root=/dev/vda1 ro"
+CMDLINE="earlyprintk=serial console=ttyS0 root=/dev/vda2 ro"
+UUID="-U 8e7af180-c54d-4aa2-9bef-59d94a1ac572" # A UUID will ensure we get a consistent ip address assigned
+# Guest Config
+CPU="-c 2"
+MEM="-m 2G"
+PCI_DEV="-s 0:0,hostbridge -s 31,lpc"
+NET="-s 2:0,virtio-net,en0"
+IMG_HDD="-s 4:0,virtio-blk,ubuntu18.img"
+LPC_DEV="-l com1,stdio"
+ACPI="-A"
+
+# and now run
+sudo /Users/huatai/github/xhyve/build/xhyve $UUID $ACPI $CPU $MEM $PCI_DEV $LPC_DEV $NET $IMG_HDD -f kexec,$KERNEL,$INITRD,"$CMDLINE"
+```
+
+但是启动时能够扫描到磁盘设备，但是挂载设备失败。不过磁盘设备正常，所以我再次尝试采用整个磁盘划分一个分区，格式化EXT4验证是正常的。所以，需要放弃使用btrfs文件系统。
+
+```
+[    2.130618] Btrfs loaded, crc32c=crc32c-intel
+Scanning for Btrfs filesystems
+[    2.138923] BTRFS: device label rootfs devid 1 transid 4736 /dev/vda2
+done.
+Begin: Will now check root file system ... fsck from util-linux 2.31.1
+[/bin/fsck.btrfs (1) -- /dev/vda2] fsck.btrfs -a /dev/vda2
+done.
+[    2.156745] BTRFS info (device vda2): disk space caching is enabled
+[    2.157698] BTRFS info (device vda2): has skinny extents
+done.
+Begin: Running /scripts/local-bottom ... done.
+Begin: Running /scripts/init-bottom ... mount: mounting /dev on /root/dev failed: No such file or directory
+mount: mounting /dev on /root/dev failed: No such file or directory
+done.
+mount: mounting /run on /root/run failed: No such file or directory
+run-init: opening console: No such file or directory
+Target filesystem doesn't have requested /sbin/init.
+run-init: opening console: No such file or directory
+run-init: opening console: No such file or directory
+run-init: opening console: No such file or directory
+run-init: opening console: No such file or directory
+run-init: opening console: No such file or directory
+No init found. Try passing init= bootarg.
+[    2.231328] clocksource: Switched to clocksource tsc
+
+
+BusyBox v1.27.2 (Ubuntu 1:1.27.2-2ubuntu3) built-in shell (ash)
+Enter 'help' for a list of built-in commands.
+
+(initramfs)
+```

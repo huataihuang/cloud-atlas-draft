@@ -33,6 +33,16 @@ Docker 平台拥有两个不同部分：负责创建与运行容器的 Docker �
 
 对实施快速迭代开发模式的开发者来说，Docker 容器能迅速启动至关重要，因为他们可以很快看到代码变更后的结果。容器能保障的可移植性及隔离特性，使得开发与运维部门之间更容易协作，因为开发者知道他们的代码在不同环境下都能工作，而运维部门只需专注于容器的托管及服务编排，而无需担心任何关于代码的事。
 
+## Docker带来的DevOps改变
+
+在Docker技术诞生前，DevOps已经存在10年之久（ [A Short History Lesson in DevOps — And Where It’s Going](https://www.bluematador.com/blog/short-history-lesson-devops-where-its-going/) ）。然而，整个开发、部署、持续交付的流程结合了不同的软件和技术，诸如 虚拟机、配置管理工具、软件编译系统、软件包管理系统以及复杂的库依赖。这些工具的组合令人眼花缭乱，需要特定的工程师来维护，并且缺乏统一的解决方案。
+
+[Docker in Practice](https://www.amazon.cn/dp/B079GQV832) 的示意图非常形象：
+
+![结合DevOps的Docker](../../../img/virtual/docker/using_docker/devops_with_docker.png)
+
+
+
 # 一些Docker产品
 
 * Docker Swarm 是一个 Docker 集群管理工具
@@ -60,3 +70,4 @@ Docker 1.8 版本引入了“内容信任”（`content trust`）特性，能够
 **系统复杂度而言，微服务是把双刃剑。每个单独的微服务都应该易于理解和修改，但是，在一个拥有几十到几百个这类服务的系统中，组件之间的交互会导致整体的复杂度增加。**
 
 > 容器具有的轻量级和速度的优势，使得其非常适合微服务架构。
+

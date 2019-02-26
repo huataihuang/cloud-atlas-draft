@@ -14,9 +14,33 @@
   * iperf3支持TCP和UDP
   * iperf3提供了不同版本支持不同平台 - [下载](https://iperf.fr/iperf-download.php)
 
+# 源代码安装
+
+```
+tar xfz iperf-3.6.tar.gz
+cd iperf-3.6
+./configure
+make
+make install
+```
+
+# 二进制安装
+
+## Ubuntu安装
+
+软件仓库已经包含了iperf3
+
+```
+apt update
+apt-cache search iperf3
+apt install iperf3
+```
+
 # 使用
 
 * 服务器端启动：
+
+iperf2使用如下命令启动
 
 ```
 iperf -s -D
@@ -24,7 +48,15 @@ iperf -s -D
 
 > `-D`表示后台服务模式，`-s`表示服务器端
 
+对于iperf3，执行指定端口监听
+
+```
+iperf3 -s -p 5201 -D
+```
+
 * 客户端
+
+iperf2测试
 
 ```
 iperf -c 172.16.9.249 -t 86400 -l 8k -i 10
@@ -39,6 +71,39 @@ iperf -c 172.16.9.249 -t 86400 -l 8k -i 10
 上述命令会将整个带宽打满，所以很容易获得网络性能。
 
 此外，`-b`参数可以限制流量，例如`-b 200M`就限制200Mb流量。不过，对于`iperf2`只支持UDP流量限流。
+
+iperf3测试
+
+```
+iperf3 -c 192.168.101.1 -t 60 -l 8k -i 10 -b 500M -p 5201 -R
+```
+
+> * `-t`表示持续时间，600秒就是10分钟
+> * `-l 8k`表示8k缓存
+> * `-i 10`表示每10秒打印一个信息
+> * `-b 500M`表示最高带宽500Mb/s
+> * `-p 5201`表示端口
+> * `-R`表示反向，也就是从服务器下载
+
+测试输出
+
+```
+Reverse mode, remote host 192.168.101.1 is sending
+[  5] local 192.168.101.81 port 60690 connected to 192.168.101.1 port 5201
+[ ID] Interval           Transfer     Bitrate
+[  5]   0.00-10.00  sec   709 KBytes   580 Kbits/sec
+[  5]  10.00-20.00  sec   636 KBytes   521 Kbits/sec
+[  5]  20.00-30.00  sec   875 KBytes   717 Kbits/sec
+[  5]  30.00-40.00  sec  1.16 MBytes   975 Kbits/sec
+[  5]  40.00-50.00  sec  1.04 MBytes   874 Kbits/sec
+[  5]  50.00-60.00  sec   853 KBytes   699 Kbits/sec
+- - - - - - - - - - - - - - - - - - - - - - - - -
+[ ID] Interval           Transfer     Bitrate         Retr
+[  5]   0.00-60.00  sec  5.43 MBytes   759 Kbits/sec    0             sender
+[  5]   0.00-60.00  sec  5.21 MBytes   728 Kbits/sec                  receiver
+
+iperf Done.
+```
 
 * 自动重连
 

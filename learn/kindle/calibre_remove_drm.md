@@ -16,13 +16,15 @@ Google了相关信息，共享书籍的方法概括如下：
 
 [dedrm-ebook-tools(DRM Removal Tools for eBooks)](https://github.com/psyrendust/dedrm-ebook-tools) 最早是为了保存 [Apprentice Alf's Blog](http://www.apprenticealf.wordpress.com/)（景德镇居民无法访问的WordPress网站）提供的工具，但是目前因为apprenticeharper从2015年开始也建立了GitHub仓库，所以已经不再更新维护。当前可以直接从 [apprenticeharper/DeDRM_tools](https://github.com/apprenticeharper/DeDRM_tools)获取最新的插件工具。
 
+请参考 [DeDRM_tools/FAQs.md](https://github.com/apprenticeharper/DeDRM_tools/blob/master/FAQs.md) 进行安装，其中面向最终用户的软件包发布可以从 [releases page](https://github.com/apprenticeharper/DeDRM_tools/releases) 下载到。
+
 > 请尊重版权，开发者提供开源工具是为了正当的知识和文化传播，并不是支持盗版！
 
 * 安装Calibre DeDRM tools插件
 
 ```
-curl https://github.com/apprenticeharper/DeDRM_tools/archive/master.zip -o DeDRM_tools.zip
-unzip DeDRM_tools.zip
+curl https://github.com/apprenticeharper/DeDRM_tools/releases/download/v6.6.2/DeDRM_tools_6.6.2.zip -o DeDRM_tools_6.6.2.zip
+unzip DeDRM_tools_6.6.2.zip
 ```
 
 解压缩以后，在 `DeDRM_calibre_plugin` 目录下有 calibre 的插件，其中 `DeDRM_plugin.zip` 就是可以直接安装使用的。
