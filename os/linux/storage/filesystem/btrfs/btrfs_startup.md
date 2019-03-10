@@ -90,11 +90,16 @@ mkdir /data
 mount /dev/sda4 /data
 ```
 
-* 如果要启用btrfs的压缩功能（默认是`zlib`），可以使用`-o compress=`参数。默认的`zlib`压缩方式的压缩比较高，如使用`lzo`压缩方式则速度较快且CPU负载较轻。使用压缩模式，特别是`lzo`压缩模式，可以提高数据通过性能。注意，btrfs不会压缩已经在应用层压缩过的文件（如视频，音乐，图像等）
+* 如果要启用btrfs的压缩功能（默认是`zlib`）
+
+可以使用`-o compress=`参数。默认的`zlib`压缩方式的压缩比较高，如使用`lzo`压缩方式则速度较快且CPU负载较轻。使用压缩模式，特别是`lzo`压缩模式，可以提高数据通过性能。注意，btrfs不会压缩已经在应用层压缩过的文件（如视频，音乐，图像等）。
+
+如果内核版本 v4.14+ ，则推荐使用 zstd 压缩算法。
 
 ```
 mount -o compress=lzo /dev/sda4 /data
 mount -o compress=zlib /dev/sda4 /data
+mount -o compress=zstd /dev/sda4 /data
 mount -o compress /dev/sda4 /data
 ```
 
@@ -103,6 +108,10 @@ mount -o compress /dev/sda4 /data
 ```
 /dev/sda4    /data    btrfs    defaults,compress=lzo  0    1
 ```
+
+> 注意：根据btrfs官方文档 [Compression](https://btrfs.wiki.kernel.org/index.php/Compression) 目前已经支持3种压缩算法，并且从内核 v.4.14 开始，可以采用 ZSTD 压缩算法，能够获得性能和压缩率的较好平衡。具体对比可以参考 [Btrfs Zstd Compression Benchmarks On Linux 4.14](https://www.phoronix.com/scan.php?page=article&item=btrfs-zstd-compress&num=4)
+>
+> 如果没有指定算法，默认的压缩算法是zlib
 
 # 文件系统故障恢复
 

@@ -1,3 +1,9 @@
+> 如果只是简单将 .iso 文件转换成 USB安装盘，则可以参考 [3 Easy Ways To Create Bootable USB Media From ISO In Ubuntu Linux](https://fossbytes.com/create-bootable-usb-media-from-iso-ubuntu/)，在Ubuntu平台，有专门的工具可以做这个转换。其中比较简单的工具是 `Startup Disk Creator` 可以通过以下命令安装:
+
+```
+sudo apt install usb-creator-gtk
+```
+
 # `mkusb`工具
 
 [mkusb - tool to create boot drives](https://help.ubuntu.com/community/mkusb)是一个易于使用的clone iso镜像或压缩镜像文件到U盘的工具。底层使用`dd`工具，目标设备是固态存储设备，通常时USB设备。

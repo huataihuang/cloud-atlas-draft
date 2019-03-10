@@ -11,7 +11,7 @@ HandleLidSwitch=ignore
 * 然后重新加载`logind.conf`配置以便生效：
 
 ```bash
-systemdctl restart systemd-logind
+systemctl restart systemd-logind
 ```
 
 在`logind.conf`的man中有如下相关信息：

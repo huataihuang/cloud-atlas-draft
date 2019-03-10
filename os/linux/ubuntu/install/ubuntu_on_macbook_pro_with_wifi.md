@@ -126,6 +126,88 @@ sudo apt-get update
 sudo apt-get --reinstall install bcmwl-kernel-source
 ```
 
+不过，目前启动时候 `dmesg -T` 依然有一个内核call trace：
+
+```
+[三 3月  6 14:18:32 2019] IPv6: ADDRCONF(NETDEV_CHANGE): wlp3s0: link becomes ready
+[三 3月  6 14:18:41 2019] WARNING: CPU: 7 PID: 578 at net/wireless/sme.c:945 cfg80211_roamed+0x217/0x230 [cfg80211]
+[三 3月  6 14:18:41 2019] Modules linked in: rfcomm xt_CHECKSUM iptable_mangle ipt_MASQUERADE iptable_nat nf_nat_ipv4 nf_nat nf_conntrack_ipv4 nf_defrag_ipv4 xt_conntrack nf_conntrack ipt_REJECT nf_reject_ipv4 xt_tcpudp bridge stp llc ebtable_filter ebtables devlink ip6table_filter ip6_tables iptable_filter bpfilter cmac bnep nls_iso8859_1 snd_hda_codec_hdmi joydev applesmc input_polldev intel_rapl x86_pkg_temp_thermal intel_powerclamp coretemp kvm_intel kvm irqbypass crct10dif_pclmul crc32_pclmul ghash_clmulni_intel pcbc snd_hda_codec_cirrus snd_hda_codec_generic aesni_intel aes_x86_64 crypto_simd snd_hda_intel cryptd glue_helper wl(POE) snd_hda_codec snd_hda_core snd_hwdep btusb btrtl snd_pcm btbcm btintel bluetooth snd_seq_midi snd_seq_midi_event snd_rawmidi intel_cstate snd_seq ecdh_generic bcm5974 input_leds
+[三 3月  6 14:18:41 2019]  intel_rapl_perf snd_seq_device snd_timer snd bdc_pci cfg80211 soundcore mei_me mei acpi_als kfifo_buf apple_gmux sbs industrialio mac_hid apple_bl sbshc sch_fq_codel parport_pc ppdev lp parport ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear hid_apple hid_generic usbhid hid nouveau gpio_ich mxm_wmi wmi i2c_algo_bit ttm drm_kms_helper syscopyarea sysfillrect sysimgblt uas fb_sys_fops ahci drm usb_storage libahci lpc_ich thunderbolt video
+[三 3月  6 14:18:41 2019] CPU: 7 PID: 578 Comm: wl_event_handle Tainted: P           OE     4.18.0-15-generic #16-Ubuntu
+[三 3月  6 14:18:41 2019] Hardware name: Apple Inc. MacBookPro11,3/Mac-2BD1B31983FE1663, BIOS 149.0.0.0.0 09/17/2018
+[三 3月  6 14:18:41 2019] RIP: 0010:cfg80211_roamed+0x217/0x230 [cfg80211]
+[三 3月  6 14:18:41 2019] Code: 00 00 00 49 8d 4d 70 4c 89 f7 45 0f b6 85 90 00 00 00 6a 02 48 8b 36 e8 37 95 fd ff 48 89 43 08 5a 48 85 c0 0f 85 2f fe ff ff <0f> 0b eb 82 0f 0b 48 8b 73 08 49 8b 7d 00 e8 56 90 fd ff e9 6e ff
+[三 3月  6 14:18:41 2019] RSP: 0018:ffffb7f9027d3db0 EFLAGS: 00010246
+[三 3月  6 14:18:41 2019] RAX: 0000000000000000 RBX: ffffb7f9027d3e00 RCX: 0000000000000002
+[三 3月  6 14:18:41 2019] RDX: 0000000000000002 RSI: 00000000fffffe01 RDI: ffffffffc098e916
+[三 3月  6 14:18:41 2019] RBP: ffffb7f9027d3de0 R08: 000000000000000b R09: 0000000000000000
+[三 3月  6 14:18:41 2019] R10: ffffb7f9027d3e00 R11: ffff96d8a4dd6f7a R12: 00000000006000c0
+[三 3月  6 14:18:41 2019] R13: ffff96d8a2962400 R14: ffff96d8a4dd62e0 R15: dead000000000100
+[三 3月  6 14:18:41 2019] FS:  0000000000000000(0000) GS:ffff96d8bf3c0000(0000) knlGS:0000000000000000
+[三 3月  6 14:18:41 2019] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[三 3月  6 14:18:41 2019] CR2: 00005645356ca378 CR3: 0000000224e0a004 CR4: 00000000001606e0
+[三 3月  6 14:18:41 2019] Call Trace:
+[三 3月  6 14:18:41 2019]  wl_bss_roaming_done.isra.25+0xd6/0x110 [wl]
+[三 3月  6 14:18:41 2019]  ? wl_bss_roaming_done.isra.25+0xd6/0x110 [wl]
+[三 3月  6 14:18:41 2019]  wl_notify_roaming_status+0x44/0x60 [wl]
+[三 3月  6 14:18:41 2019]  ? down_interruptible+0x33/0x60
+[三 3月  6 14:18:41 2019]  wl_event_handler+0x6c/0x150 [wl]
+[三 3月  6 14:18:41 2019]  kthread+0x120/0x140
+[三 3月  6 14:18:41 2019]  ? wl_notify_scan_status+0x230/0x230 [wl]
+[三 3月  6 14:18:41 2019]  ? kthread_bind+0x40/0x40
+[三 3月  6 14:18:41 2019]  ret_from_fork+0x35/0x40
+[三 3月  6 14:18:41 2019] ---[ end trace b08b28e0c4c50fa4 ]---
+[三 3月  6 14:18:53 2019] WARNING: CPU: 1 PID: 578 at net/wireless/sme.c:945 cfg80211_roamed+0x217/0x230 [cfg80211]
+[三 3月  6 14:18:53 2019] Modules linked in: rfcomm xt_CHECKSUM iptable_mangle ipt_MASQUERADE iptable_nat nf_nat_ipv4 nf_nat nf_conntrack_ipv4 nf_defrag_ipv4 xt_conntrack nf_conntrack ipt_REJECT nf_reject_ipv4 xt_tcpudp bridge stp llc ebtable_filter ebtables devlink ip6table_filter ip6_tables iptable_filter bpfilter cmac bnep nls_iso8859_1 snd_hda_codec_hdmi joydev applesmc input_polldev intel_rapl x86_pkg_temp_thermal intel_powerclamp coretemp kvm_intel kvm irqbypass crct10dif_pclmul crc32_pclmul ghash_clmulni_intel pcbc snd_hda_codec_cirrus snd_hda_codec_generic aesni_intel aes_x86_64 crypto_simd snd_hda_intel cryptd glue_helper wl(POE) snd_hda_codec snd_hda_core snd_hwdep btusb btrtl snd_pcm btbcm btintel bluetooth snd_seq_midi snd_seq_midi_event snd_rawmidi intel_cstate snd_seq ecdh_generic bcm5974 input_leds
+[三 3月  6 14:18:53 2019]  intel_rapl_perf snd_seq_device snd_timer snd bdc_pci cfg80211 soundcore mei_me mei acpi_als kfifo_buf apple_gmux sbs industrialio mac_hid apple_bl sbshc sch_fq_codel parport_pc ppdev lp parport ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear hid_apple hid_generic usbhid hid nouveau gpio_ich mxm_wmi wmi i2c_algo_bit ttm drm_kms_helper syscopyarea sysfillrect sysimgblt uas fb_sys_fops ahci drm usb_storage libahci lpc_ich thunderbolt video
+[三 3月  6 14:18:53 2019] CPU: 1 PID: 578 Comm: wl_event_handle Tainted: P        W  OE     4.18.0-15-generic #16-Ubuntu
+[三 3月  6 14:18:53 2019] Hardware name: Apple Inc. MacBookPro11,3/Mac-2BD1B31983FE1663, BIOS 149.0.0.0.0 09/17/2018
+[三 3月  6 14:18:53 2019] RIP: 0010:cfg80211_roamed+0x217/0x230 [cfg80211]
+[三 3月  6 14:18:53 2019] Code: 00 00 00 49 8d 4d 70 4c 89 f7 45 0f b6 85 90 00 00 00 6a 02 48 8b 36 e8 37 95 fd ff 48 89 43 08 5a 48 85 c0 0f 85 2f fe ff ff <0f> 0b eb 82 0f 0b 48 8b 73 08 49 8b 7d 00 e8 56 90 fd ff e9 6e ff
+[三 3月  6 14:18:53 2019] RSP: 0018:ffffb7f9027d3db0 EFLAGS: 00010246
+[三 3月  6 14:18:53 2019] RAX: 0000000000000000 RBX: ffffb7f9027d3e00 RCX: 0000000000000012
+[三 3月  6 14:18:53 2019] RDX: 0000000000000002 RSI: 00000000fffffe01 RDI: ffffffffc098e916
+[三 3月  6 14:18:53 2019] RBP: ffffb7f9027d3de0 R08: 000000000000000b R09: 0000000000000000
+[三 3月  6 14:18:53 2019] R10: ffffb7f9027d3e00 R11: ffff96d8a4dd6f7a R12: 00000000006000c0
+[三 3月  6 14:18:53 2019] R13: ffff96d8a2962400 R14: ffff96d8a4dd62e0 R15: dead000000000100
+[三 3月  6 14:18:53 2019] FS:  0000000000000000(0000) GS:ffff96d8bf240000(0000) knlGS:0000000000000000
+[三 3月  6 14:18:53 2019] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[三 3月  6 14:18:53 2019] CR2: 00007f3ca2d9c000 CR3: 0000000224e0a005 CR4: 00000000001606e0
+[三 3月  6 14:18:53 2019] Call Trace:
+[三 3月  6 14:18:53 2019]  wl_bss_roaming_done.isra.25+0xd6/0x110 [wl]
+[三 3月  6 14:18:53 2019]  ? wl_bss_roaming_done.isra.25+0xd6/0x110 [wl]
+[三 3月  6 14:18:53 2019]  wl_notify_roaming_status+0x44/0x60 [wl]
+[三 3月  6 14:18:53 2019]  ? down_interruptible+0x33/0x60
+[三 3月  6 14:18:53 2019]  wl_event_handler+0x6c/0x150 [wl]
+[三 3月  6 14:18:53 2019]  kthread+0x120/0x140
+[三 3月  6 14:18:53 2019]  ? wl_notify_scan_status+0x230/0x230 [wl]
+[三 3月  6 14:18:53 2019]  ? kthread_bind+0x40/0x40
+[三 3月  6 14:18:53 2019]  ret_from_fork+0x35/0x40
+[三 3月  6 14:18:53 2019] ---[ end trace b08b28e0c4c50fa5 ]---
+[三 3月  6 14:20:47 2019] aufs 4.18-20180910
+[三 3月  6 14:20:47 2019] kauditd_printk_skb: 31 callbacks suppressed
+[三 3月  6 14:20:47 2019] audit: type=1400 audit(1551853247.918:43): apparmor="STATUS" operation="profile_load" profile="unconfined" name="docker-default" pid=4011 comm="apparmor_parser"
+[三 3月  6 14:20:47 2019] Bridge firewalling registered
+[三 3月  6 14:20:47 2019] Initializing XFRM netlink socket
+[三 3月  6 14:20:47 2019] IPv6: ADDRCONF(NETDEV_UP): docker0: link is not ready
+```
+
+由于报错中有 IPv6 相关，所以尝试关闭IPv6:
+
+* 配置 `/etc/sysctl.d/10-ipv6-disalbe.conf` 内容如下:
+
+```
+net.ipv6.conf.all.disable_ipv6 = 1
+```
+
+然后执行
+
+```
+sysctl -p /etc/sysctl.d/10-ipv6-disalbe.conf
+```
+
+此时再检查 `ip addr` 可以看到所有接口的IPv6地址都消失。
+
 # 参考
 
 * [WifiDocs/Driver/bcm43xx](https://help.ubuntu.com/community/WifiDocs/Driver/bcm43xx)

@@ -18,6 +18,8 @@ Ubuntu Budgie安装过程的分区类型设置，其中有一项设置类型就�
 
 MacBook Air 2010 later版本硬件使用了Nvdia 驱动，这样[图形界面登陆失败](https://bugs.launchpad.net/ubuntubudgie/+bug/1675830)，解决方法是[安装Nvidia 390驱动](https://askubuntu.com/questions/223501/ubuntu-gets-stuck-in-a-login-loop)。
 
+> 请参考我在MacBook Pro上运行[Ubuntu 18.10安装NVIDIA驱动](install_nvidia_drivers_on_ubuntu_18_10)，主要为了解决笔记本电脑Hibernate时候图形桌面冻结问题。
+
 默认安装的 `nvidia-current` 可能会安装错误的驱动，所以需要搜索实际视频卡的最新兼容驱动，即使用 `sudo apt-cache search nvidia-[0-9]+$` 找到可用软件包，然后手工安装：
 
 ```
@@ -70,6 +72,23 @@ sudo apt install nvidia-340
 
 不过，Nvidia 的官方驱动 [Linux x64 (AMD64/EM64T) Display Driver Version: 	340.107](https://www.nvidia.com/Download/driverResults.aspx/135161/en-us) 就是版本 nvdia-340 ，看上去就是默认安装版本。
 
+# 针对MacBook Pro的Budgie调整(可选)
+
+Ubuntu Budgie可以在MacBook Pro上非常顺畅运行，不过，针对MacBook Pro硬件（Retina屏幕）有一些调整建议：
+
+- 默认安装采用了整体放到200%方式（ `Perferences > Displays > Scale` ）来避免Retian屏幕字体过小的问题，这种设置对眼睛确实比较舒适，不过也带来了可视内容减少的问题。我改为 100% ，即原始屏幕分辨率。此时字体会过小，但是窗口（包括Titlle等）会比较合适
+
+  - 如果使用 [Synergy](https://symless.com/synergy) 像我一样把第二块屏幕置于上方较远距离，则:
+    - 默认的放到 200% 非常合适用于阅读文档，甚至可以再将默认字体调小2号
+    - firefox显示是独立调整的，建议放大到 200%
+
+- 默认Budgie Theme是 `Pocillo` ，是浅色菜单，由于现在比较倾向于Dark模式来保护视力，所以选择安装 `Arc Design` 黑暗模式Theme （ `System Tools > Budgie Themes > Arc Design` ）
+- 默认字体在100%的scale模式下会显示过小，所以调整字体（ `System Tools > Budgie Desktop Settings > Fonts` ）
+
+  - Monospace - Ubuntu Mono Regular 13 调整为 16
+  - Interface - Ubuntu Regular 11 调整为 13
+  - Documents - Sans Regular 11 调整为 13
+  - Window Titles - Ubuntu Bold 11 调整为 13
 
 
 # 之前的失败尝试

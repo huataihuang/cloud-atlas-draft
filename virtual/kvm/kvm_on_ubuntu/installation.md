@@ -56,7 +56,15 @@ uname -m
 
 ## 安装必要软件包
 
-采用如下安装方法（Ubuntu 16.04及以上版本）
+采用如下安装方法
+
+Ubuntu 18.10及以上版本
+
+```
+sudo apt install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils virtinst
+```
+
+Ubuntu 16.04及以上版本
 
 ```
 sudo apt install qemu-kvm libvirt-bin virtinst

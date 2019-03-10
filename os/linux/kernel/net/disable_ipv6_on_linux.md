@@ -96,6 +96,26 @@ sysctl -p /etc/sysctl.d/ipv6.conf
 dracut -f
 ```
 
+# 在Ubuntu 18.10上实践
+
+在Ubuntu 18上实践采用 sysctl 配置可行
+
+* 编辑 `/etc/sysctl.d/10-ipv6-disalbe.conf` 内容如下
+
+```
+net.ipv6.conf.all.disable_ipv6 = 1
+```
+
+然后执行
+
+```
+sudo sysctl -p /etc/sysctl.d/10-ipv6-disalbe.conf
+```
+
+此时所有接口的IPv6地址都消失。
+
+但是我发现重启系统后依然恢复了IPv6，所以改为使用
+
 # 其他配置
 
 * 如果禁用IPv6，则修改`/etc/hosts`注释掉
