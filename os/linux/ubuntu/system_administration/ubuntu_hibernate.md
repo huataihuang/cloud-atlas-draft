@@ -175,7 +175,6 @@ GRUB_CMDLINE_LINUX="no_console_suspend initcall_debug ipv6.disable=1 nouveau.bla
 sudo systemctl
 ```
 
-
 # 尝试升级驱动（无效）
 
 * 另一种方法可能和升级切换到 Nvidia 驱动需要重新生成xorg配置有关，即简单运行:
@@ -290,6 +289,266 @@ sudo ubuntu-drivers autoinstall
 ```
 
 而尝试了Xfce4界面，虽然没有core dump，但是一旦退出也是出现无法返回终端问题。所以，从总体来看18.10的Xorg可能存在比较大问题。
+
+# Xubuntu系统Hibernate
+
+重新安装了完整的Xubuntu系统，按照上述方法（也整理记录在 [Ubuntu Hibernate休眠](https://github.com/huataihuang/cloud-atlas/blob/master/source/studio/ubuntu_hibernate.rst) )，使用的是 Xfce4 桌面（不过，这次直接使用Xubuntu发行版所以 Xfce4 桌面组件会比较完整）。
+
+在使用了 `s2disk` 能够正常保存状态到磁盘，但是启动同样也出现了返回到图形界面后冻结无响应的现象（已经看到完整的桌面图形界面）。
+
+检查了系统日志，发现系统依然去加载 `nouveau` 驱动出现报错，但是我明明已经[安装了Nvdia的闭源驱动](../install/install_nvidia_drivers_on_ubuntu_18_10)来取代 `nouveau` 驱动的:
+
+```
+3月 14 08:57:11 xcloud kernel: sd 1:0:0:0: [sda] Starting disk
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: fault 01 [WRITE] at 000000000048e000 engine 05 [BAR2] clien
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: fault 01 [WRITE] at 000000000048c000 engine 05 [BAR2] clien
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: PBDMA0: 80000000 [SIGNATURE] ch 3 [007f8a7000 Xorg[1745]] s
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: PBDMA0: 80000000 [SIGNATURE] ch 3 [007f8a7000 Xorg[1745]] s
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: PBDMA0: 80000000 [SIGNATURE] ch 3 [007f8a7000 Xorg[1745]] s
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: PBDMA0: 80000000 [SIGNATURE] ch 3 [007f8a7000 Xorg[1745]] s
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: PBDMA0: 80000000 [SIGNATURE] ch 3 [007f8a7000 Xorg[1745]] s
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: PBDMA0: 80000000 [SIGNATURE] ch 3 [007f8a7000 Xorg[1745]] s
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: PBDMA0: 80044000 [GPPTR PBENTRY SIGNATURE] ch 3 [007f8a7000
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: PBDMA0: 80004000 [GPPTR SIGNATURE] ch 3 [007f8a7000 Xorg[17
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: PBDMA0: 80000000 [SIGNATURE] ch 3 [007f8a7000 Xorg[1745]] s
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: PBDMA0: 80000000 [SIGNATURE] ch 3 [007f8a7000 Xorg[1745]] s
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: fault 00 [READ] at 0000000000000000 engine 07 [HOST0] clien
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: channel 3: killed
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: runlist 0: scheduled for recovery
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 08:57:11 xcloud kernel: usb 2-4: Disable of device-initiated U1 failed.
+3月 14 08:57:11 xcloud kernel: usb 2-4: Disable of device-initiated U2 failed.
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 08:57:11 xcloud kernel: ata1: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+3月 14 08:57:11 xcloud kernel: ata1.00: unexpected _GTF length (8)
+3月 14 08:57:11 xcloud kernel: ata1.00: unexpected _GTF length (8)
+3月 14 08:57:11 xcloud kernel: ata1.00: configured for UDMA/133
+3月 14 08:57:11 xcloud kernel: nouveau 0000:01:00.0: DRM: GPU lockup - switching to software fbcon
+3月 14 08:57:11 xcloud kernel: usb 1-8: reset full-speed USB device number 2 using xhci_hcd
+3月 14 08:57:11 xcloud kernel: usb 1-12: reset full-speed USB device number 3 using xhci_hcd
+3月 14 08:57:11 xcloud kernel: usb 1-8.3: reset full-speed USB device number 6 using xhci_hcd
+3月 14 08:57:11 xcloud kernel: Restarting kernel threads ...
+```
+
+参考 完全卸载掉nouveau:
+
+```
+sudo apt-get --purge remove xserver-xorg-video-nouveau
+```
+
+然后执行`sudo apt autoremove`卸载掉无需的程序包:
+
+```
+libxatracker2 libxvmc1 xserver-xorg-video-amdgpu xserver-xorg-video-ati xserver-xorg-video-fbdev
+  xserver-xorg-video-intel xserver-xorg-video-qxl xserver-xorg-video-radeon xserver-xorg-video-vesa
+  xserver-xorg-video-vmware
+```
+
+检查了一下系统还有一个名字和nouveau可能有关的软件包 `apt list --installed | grep nouveau`：
+
+```
+libdrm-nouveau2/cosmic,now 2.4.95-1 amd64 [installed,automatic]
+```
+
+不过根据 `apt list --installed | grep cosmic | grep drm` 搜索，似乎每个显卡驱动都会有这样一个cosmic包，这个包可能是针对nvidia显卡的，所以不动它。
+
+重新测试了一次`s2disk`，然后按下电源按钮恢复，在出现了Xfce的淡紫色背景奔跑的耗子之后，屏幕切换到终端节点，显示了一行字符串:
+
+```
+s2disk: returned to userspace
+```
+
+此时能够通过ssh远程登陆主机，但是主机的界面停留在这行字符串，并没有返回到图形界面。
+
+检查日志发现启动日志依然有调用 `nouveau` 的提示：
+
+```
+3月 14 09:32:19 xcloud kernel: ACPI: EC: event unblocked
+3月 14 09:32:19 xcloud kernel: ACPI: button: The lid device is not compliant to SW_LID.
+3月 14 09:32:19 xcloud kernel: sd 1:0:0:0: [sda] Starting disk
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: fault 01 [WRITE] at 0000000000487000 engine 05 [BAR2] clien
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: PBDMA0: 80000000 [SIGNATURE] ch 2 [007f8e3000 Xorg[1749]] s
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: PBDMA0: 80000000 [SIGNATURE] ch 2 [007f8e3000 Xorg[1749]] s
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: PBDMA0: 80000000 [SIGNATURE] ch 2 [007f8e3000 Xorg[1749]] s
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: PBDMA0: 80000000 [SIGNATURE] ch 2 [007f8e3000 Xorg[1749]] s
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 09:32:19 xcloud kernel: thunderbolt 0000:08:00.0: resetting error on 0:b.
+3月 14 09:32:19 xcloud kernel: thunderbolt 0000:08:00.0: 0:b: hotplug: scanning
+3月 14 09:32:19 xcloud kernel: thunderbolt 0000:08:00.0: 0:b: hotplug: no switch found
+3月 14 09:32:19 xcloud kernel: thunderbolt 0000:08:00.0: resetting error on 0:c.
+3月 14 09:32:19 xcloud kernel: thunderbolt 0000:08:00.0: 0:c: hotplug: scanning
+3月 14 09:32:19 xcloud kernel: thunderbolt 0000:08:00.0: 0:c: hotplug: no switch found
+3月 14 09:32:19 xcloud kernel: usb 2-4: Disable of device-initiated U1 failed.
+3月 14 09:32:19 xcloud kernel: usb 2-4: Disable of device-initiated U2 failed.
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 09:32:19 xcloud kernel: ata1: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+3月 14 09:32:19 xcloud kernel: ata1.00: unexpected _GTF length (8)
+3月 14 09:32:19 xcloud kernel: ata1.00: unexpected _GTF length (8)
+3月 14 09:32:19 xcloud kernel: ata1.00: configured for UDMA/133
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: DRM: GPU lockup - switching to software fbcon
+3月 14 09:32:19 xcloud kernel: usb 1-12: reset full-speed USB device number 3 using xhci_hcd
+3月 14 09:32:19 xcloud kernel: usb 1-8: reset full-speed USB device number 2 using xhci_hcd
+3月 14 09:32:19 xcloud kernel: usb 1-8.3: reset full-speed USB device number 6 using xhci_hcd
+3月 14 09:32:19 xcloud kernel: input: bcm5974 as /devices/pci0000:00/0000:00:14.0/usb1/1-12/1-12:1.2/input/input15
+3月 14 09:32:19 xcloud kernel: Restarting kernel threads ...
+...
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: SCHED_ERROR 01 []
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: fault 00 [READ] at 0000005fa0a4b000 engine 0b [HOST4] clien
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: channel 0: killed
+3月 14 09:32:19 xcloud kernel: nouveau 0000:01:00.0: fifo: runlist 4: scheduled for recovery
+...
+```
+
+奇怪，难道需要在内核上完全屏蔽加载`nouveau`驱动么？
+
+检查发现系统确实自动加载了 `nouveau` 内核驱动（即使我已经安装了`nvidia`驱动):
+
+```
+$ lsmod | grep nouveau
+nouveau              1875968  3
+mxm_wmi                16384  1 nouveau
+wmi                    24576  2 mxm_wmi,nouveau
+i2c_algo_bit           16384  1 nouveau
+ttm                   106496  1 nouveau
+drm_kms_helper        172032  1 nouveau
+drm                   458752  6 drm_kms_helper,ttm,nouveau
+video                  45056  2 apple_gmux,nouveau
+```
+
+再仔细检查了一下 `lspci -vvv` 输出，发现当前实际上使用的是 `nouvuau` 驱动，奇怪，我明明安装了nvidia:
+
+```
+01:00.0 VGA compatible controller: NVIDIA Corporation GK107M [GeForce GT 750M Mac Edition] (rev a1) (prog-if 00 [VGA controller])
+	Subsystem: Apple Inc. GK107M [GeForce GT 750M Mac Edition]
+	Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR- FastB2B- DisINTx+
+	Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort- <MAbort- >SERR- <PERR- INTx-
+	Latency: 0, Cache Line Size: 256 bytes
+	Interrupt: pin A routed to IRQ 50
+	Region 0: Memory at c0000000 (32-bit, non-prefetchable) [size=16M]
+	Region 1: Memory at 80000000 (64-bit, prefetchable) [size=256M]
+	Region 3: Memory at 90000000 (64-bit, prefetchable) [size=32M]
+	Region 5: I/O ports at 1000 [size=128]
+	Expansion ROM at c1000000 [disabled] [size=512K]
+	Capabilities: <access denied>
+	Kernel driver in use: nouveau
+	Kernel modules: nvidiafb, nouveau
+```
+
+汗，我忘记重装了Xubuntu之后，并没有重新安装Nvidia驱动。
+
+## 切换到字符界面
+
+* 编辑 `/etc/default/grub`
+
+```
+#GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
+GRUB_CMDLINE_LINUX_DEFAULT="text"
+GRUB_CMDLINE_LINUX="ipv6.disable=1 acpi_osi=Windows"
+```
+
+> 这里的 `acpi_osi=Windows` 应该是我上次就添加的，目前看这个参数是有效的，启动以后不再包BIOS错误
+
+然后执行 `sudo update-grub`
+
+* 修改systemd启动级别:
+
+```
+rm /etc/systemd/system/default.target
+ln -s /lib/systemd/system/runlevel3.target /etc/systemd/system/default.target
+```
+
+* 重启系统
+
+```
+sudo shutdown -r now
+```
+
+* 重新安装Nvidia驱动
+
+```
+sudo apt install ubuntu-drivers-common
+ubuntu-drivers devices
+sudo ubuntu-drivers autoinstall
+```
+
+安装了Nvidia驱动之后，可以检查 `/etc/modprobe.d/` 目录下配置。不过我没有发现 nouveau 加入blacklist，但是发现 nvidiafb 被加入balcklist。不过，确实没有加载nouveau内核模块:
+
+```
+01:00.0 VGA compatible controller: NVIDIA Corporation GK107M [GeForce GT 750M Mac Edition] (rev a1) (prog-if 00 [VGA controller])
+	Subsystem: Apple Inc. GK107M [GeForce GT 750M Mac Edition]
+	Control: I/O+ Mem+ BusMaster+ SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR- FastB2B- DisINTx-
+	Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast >TAbort- <TAbort- <MAbort- >SERR- <PERR- INTx-
+	Latency: 0
+	Interrupt: pin A routed to IRQ 16
+	Region 0: Memory at c0000000 (32-bit, non-prefetchable) [size=16M]
+	Region 1: Memory at 80000000 (64-bit, prefetchable) [size=256M]
+	Region 3: Memory at 90000000 (64-bit, prefetchable) [size=32M]
+	Region 5: I/O ports at 1000 [size=128]
+	[virtual] Expansion ROM at c1000000 [disabled] [size=512K]
+	Capabilities: <access denied>
+	Kernel driver in use: nvidia
+	Kernel modules: nvidiafb, nouveau, nvidia_drm, nvidia
+```
+
+果然，现在可以正常从 `s2disk` 恢复过来。不过，字符界面`startx`启动X之后，虽然能够`s2disk`，但是退出X会导致黑屏，这个我怀疑是我图形界面设置问题，恢复改成默认图形界面运行级别可以规避这个问题。
+
+## 集成到systemd（失败）
+
+* 编辑 hibernate 服务:
+
+   sudo systemctl edit systemd-hibernate.service
+
+* 复制粘贴以下代码::
+
+   [Service]
+   ExecStart=
+   ExecStartPre=-/bin/run-parts -v -a pre /usr/lib/systemd/system-sleep
+   ExecStart=/usr/sbin/s2disk
+   ExecStartPost=-/bin/run-parts -v --reverse -a post /usr/lib/systemd/system-sleep
+
+.. note::
+
+   配置会添加到 ``/etc/systemd/system/systemd-hibernate.service.d/override.conf``
+
+> 这个方法实际上是 [archlinux:hibernate](https://wiki.archlinux.org/index.php/Uswsusp#With_pm-utils) 文档中提供的。
+
+* 重新加载并测试
+
+```
+sudo systemctl daemon-reload
+sudo systemctl hibernate
+```
+
+测试发现失败返回时候黑屏，检查发现实际上系统缺少 `/usr/lib/systemd/system-sleep`。参考 [systemd-suspend.service](https://www.freedesktop.org/software/systemd/man/systemd-suspend.service.html)，应该需要安装对应软件包。
+
+
+
+# 集成到 pm-utils
+
+
 
 # 参考
 

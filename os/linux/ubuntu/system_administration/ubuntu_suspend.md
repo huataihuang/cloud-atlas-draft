@@ -54,7 +54,9 @@ Mar 10 13:28:04 xcloud kernel: ACPI Error: Method parse/execution failed \_PR.CP
 
 参考 [What does the kernel boot parameter “set acpi_osi=Linux” do?](https://askubuntu.com/questions/28848/what-does-the-kernel-boot-parameter-set-acpi-osi-linux-do) 来看，这个是因为BIOS会查询操作系统的类型，例如 Windows/Linux/Darwin ，所以这里应该让Linux操作系统返回给BIOS表示自己是Darwin（macOS）。
 
+在 [What do the kernel parameters acpi_osi=linux and acpi_backlight=vendor do?](https://unix.stackexchange.com/questions/110624/what-do-the-kernel-parameters-acpi-osi-linux-and-acpi-backlight-vendor-do) 有详细摘录了 Kernel 参数的说明：
 
+从参考文档来看，确实应该在MacBook上设置 `acpi_osi=Windows` 以便BIOS避免发送给系统有关macOS的查询指令。
 
 # 参考
 
