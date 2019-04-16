@@ -2,7 +2,7 @@
 
 一种不同的multiplexing是在相同端口处理多种协议。[sslh](http://www.rutschle.net/tech/sslh.shtml)就是这样处理SSL和SSH。它可以分辨出进入的是哪种协议，并转发到响应的服务。这样就可以在同一个端口同时处理HTTPS和SSH。注意，这个方法并不是实际掩藏SSH，扫描端口监听的工具[scanssh](https://en.wikibooks.org/wiki/OpenSSH/Third_Party_Utilities#scanssh)依然可以发现SSH。但是这个方法可以在防火墙后使用较少的端口来提供多种服务。
 
-* 首先安装web服务器，并且配置它接受HTTPS。确保这个服务只监听在localhost。当然夜可以配置它监听在非标准端口，如`2443`。
+* 首先安装web服务器，并且配置它接受HTTPS。确保这个服务只监听在localhost。当然也可以配置它监听在非标准端口，如`2443`。
 * 设置SSH服务接受端口22的连接。这个监听端口可以是任意端口，但是22是标准端口。
 * 创建一个非特权用户运行`sslh`
 * 最后安装和启动sslh服务，监听在端口443，并转发到localhost的HTTPS和SSH

@@ -66,6 +66,25 @@ ENTRYPOINT /usr/sbin/sshd && /bin/bash
 
 > [最新的构建Python virtualenv的Dockerfile](https://github.com/huataihuang/devops/tree/master/centos/7/python2.7)
 
+* 命令行运行
+
+如果在在命令行运行多个命令，例如执行virtualenv中的python脚本，则需要使用 `/bin/bash -c "XXX;YYY;ZZZ"方式:
+
+```
+docker run \
+ --runtime=nvidia \
+ --rm \
+ -ti \
+ -v "${PWD}:/app" \
+ --user huatai \
+ local:tensorflow-cuda3.0 \
+ /bin/bash -c "cd /home/huatai; . venv3/bin/activate; \
+ python /app/benchmark.py cpu 10000"
+```
+> `--user` 参数表示在容器中切换到 `huatai` 用户身份；通过 `/bin/bash -c` 可以在运行多条命令，这样可以切换Python的virtualenv环境，并执行python脚本。
+>
+> 参考 [docker run <IMAGE> <MULTIPLE COMMANDS>](https://stackoverflow.com/questions/28490874/docker-run-image-multiple-commands)
+
 # 更完善的Dockerfile
 
 [Docker and Virtualenv? A clean way to locally install python dependencies with pip in Docker](http://blog.theodo.fr/2015/04/docker-and-virtualenv-a-clean-way-to-locally-install-python-dependencies-with-pip-in-docker/) 提供了使用`docker-compose`文件来构建Python virtualenv环境以及服务器部署的方法，后续再参考实践。
