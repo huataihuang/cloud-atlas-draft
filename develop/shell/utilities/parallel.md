@@ -25,7 +25,7 @@ grep pattern bigfile.txt
 可以这样：
 
 ```
-cat bigfile.txt | parallel  --pipe grep 'pattern'
+cat bigfile.txt | parallel --pipe grep 'pattern'
 ```
 
 或者这样：
