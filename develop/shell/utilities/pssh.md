@@ -87,6 +87,8 @@ Host *.eu-west-1.compute.amazonaws.com
     IdentityFile ~/.ssh/ec2.pem
 ```
 
+> 不过，最好的方法还是采用 keychain 来解决密钥认证，实际上就不需要使用 `-x` 参数来扩展。
+
 ## 对于密码保护的密钥
 
 对于密码保护的密钥，建议使用 keychain 来解决密码输入

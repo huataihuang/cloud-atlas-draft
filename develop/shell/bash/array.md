@@ -196,6 +196,54 @@ function gen_vm_rss()
 }
 ```
 
+# 向函数传递数组
+
+之前写了一个简单的脚本，传递一个文件名列表数组给函数，但是发现在函数中，只接收到数组的第一个元素值：
+
+```bash
+function download_package() {
+    local package_list=$1
+
+    for package in $package_list; do
+        wget -q $package
+    done
+}
+
+package_list=(
+http://mirrors.163.com/centos/7.6.1810/os/x86_64/Packages/samba-4.8.3-4.el7.x86_64.rpm
+http://mirrors.163.com/centos/7.6.1810/os/x86_64/Packages/samba-client-4.8.3-4.el7.x86_64.rpm
+http://mirrors.163.com/centos/7.6.1810/os/x86_64/Packages/samba-client-libs-4.8.3-4.el7.x86_64.rpm
+http://mirrors.163.com/centos/7.6.1810/os/x86_64/Packages/samba-common-4.8.3-4.el7.noarch.rpm
+http://mirrors.163.com/centos/7.6.1810/os/x86_64/Packages/samba-common-libs-4.8.3-4.el7.x86_64.rpm
+http://mirrors.163.com/centos/7.6.1810/os/x86_64/Packages/samba-common-tools-4.8.3-4.el7.x86_64.rpm
+http://mirrors.163.com/centos/7.6.1810/os/x86_64/Packages/samba-libs-4.8.3-4.el7.x86_64.rpm
+)
+
+download_package $package_list
+```
+
+通过debug方式打印函数 `download_package()` 中变量 `$package_list` ，发现确实只拿到了数组的第一个元素值。 
+
+这个错误是因为传递给函数的数组实际上是空格分割的多个字符串，这样数组实际上就变成了传递给函数的多个变量`$1 $2 $3 $4 $5 $6 $7`，导致在函数内部如果以为数组是一个变量传递进来，只取 `$1` 是拿不到完整的数组的。
+
+解决方法参考 [Passing Array to Function in Bash shell](https://www.nixcraft.com/t/passing-array-to-function-in-bash-shell/460) 也就是传递数组时，在数组外围加上引号，这样就转变成1个字符串变量。再在函数内部把这个单一字符串转换回数组:
+
+```bash
+function download_package() {
+    local package_list=( $(echo "$1") )
+
+    for package in $package_list; do
+        wget -q $package
+    done
+}
+
+package_list=(
+...
+)
+
+download_package "$(echo ${package_list[@]})"
+```
+
 # 参考
 
 * [shell数组的定义与应用](http://www.361way.com/shell-array/4965.html)
