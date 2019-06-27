@@ -6,6 +6,7 @@
 
 ```bash
 HandleLidSwitch=ignore
+HandleLidSwitchDocked=ignore #这行设置是默认的
 ```
 
 * 然后重新加载`logind.conf`配置以便生效：
@@ -26,6 +27,8 @@ HandleHibernateKey=hibernate
 ```
 
 > 上述配置方法原理和[修改ACPI事件：更改电源键默认操作](../../../kernel/cpu/acpi_events_change_handlepowerkey_action)原理是相同的，即通过`systemd`修改电源管理策略。
+
+对于外接屏幕的笔记本，合上屏幕以后，还可以 [设置屏幕关闭](disable_screen_on_lid_close) ，这样可以进一步减少能源消耗，也降低笔记本温度。
 
 # 参考
 

@@ -102,7 +102,86 @@ drm                   349210  6 ast,ttm,drm_kms_helper,nouveau,nvidia_drm
 i2c_core               40582  8 ast,drm,igb,i2c_i801,drm_kms_helper,i2c_algo_bit,nvidia,nouveau
 ```
 
-解决方法是先停止使用GPU的容器
+解决方法是先停止使用GPU的容器，然后再次执行安装程序，不过观察nvida模块，虽然 `nvidia_uvm` 已经没有引用，但是依然有其他nvidia模块在使用中。
+
+```
+nvidia_uvm            743489  0
+nvidia_drm             52986  0
+nvidia_modeset        790163  1 nvidia_drm
+nvidia              11944297  65 nvidia_modeset,nvidia_uvm
+drm_kms_helper        125056  3 ast,nouveau,nvidia_drm
+drm                   349210  6 ast,ttm,drm_kms_helper,nouveau,nvidia_drm
+i2c_core               40582  8 ast,drm,igb,i2c_i801,drm_kms_helper,i2c_algo_bit,nvidia,nouveau
+```
+
+尝试再次执行 `sudo bash NVIDIA-Linux-x86_64-396.26.run` ，虽然依然提示内核模块无法完全卸载，但是执行之后检查nvidia内核模块，发现已经有部分卸载，只有以下 nvidia 内核模块没有卸载
+
+```
+nvidia              11944297  63
+i2c_core               40582  8 ast,drm,igb,i2c_i801,drm_kms_helper,i2c_algo_bit,nvidia,nouveau
+```
+
+尝试手工卸载 nvidia 内核模块：
+
+```
+#rmmod nvidia
+rmmod: ERROR: Module nvidia is in use
+```
+
+这里有一个问题，是谁在使用nvidia模块？
+
+```
+lsof | grep /dev/nvidia
+```
+
+可以看到
+
+```
+nvidia-sm  90622           root    3u      CHR            195,255       0t0    1450492 /dev/nvidiactl
+nvidia-sm  90622           root    6u      CHR              195,0       0t0    1450493 /dev/nvidia0
+nvidia-sm  90622           root    8u      CHR              195,1       0t0    1424023 /dev/nvidia1
+nvidia-sm  90622           root   10u      CHR              195,0       0t0    1450493 /dev/nvidia0
+nvidia-sm  90622           root   11u      CHR              195,1       0t0    1424023 /dev/nvidia1
+nvidia-sm  90622           root   12u      CHR              195,0       0t0    1450493 /dev/nvidia0
+nvidia-sm  90622           root   13u      CHR              195,1       0t0    1424023 /dev/nvidia1
+nvidia-do 109043           root  mem       CHR              195,1              1424023 /dev/nvidia1
+nvidia-do 109043           root  mem       CHR              195,0              1450493 /dev/nvidia0
+nvidia-do 109043           root    3u      CHR            195,255       0t0    1450492 /dev/nvidiactl
+nvidia-do 109043           root    4u      CHR              195,0       0t0    1450493 /dev/nvidia0
+nvidia-do 109043           root    5u      CHR              195,1       0t0    1424023 /dev/nvidia1
+...
+```
+
+排序后检查
+
+```
+lsof | grep /dev/nvidia | awk '{print $2}' | sort -u
+```
+
+输出显示有两个进程
+
+```
+109043
+90622
+```
+
+再检查是哪个进程在使用
+
+```
+for i in `lsof | grep /dev/nvidia | awk '{print $2}' | sort -u`;do ps aux | grep $i;done
+```
+
+可以看到是docker进程在使用
+
+```
+root     109043  0.0  0.0 10150412 10164 ?      Sl   17:10   0:03 /opt/ali-iaas/docker/plugins/nvidia-docker -s /run/docker/plugins/nvidia-docker/
+root      90622  0.0  0.0  14416  1236 ?        S    May23   4:42 nvidia-smi --query-gpu=index,utilization.gpu,utilization.memory --format=csv,noheader -lms 500
+```
+
+停止docker服务可以看到 `nvidia-docker` 进程退出，另外一个 `nvidia-smi` 是 [NVIDIA System Management Interface的命令行工具](https://developer.nvidia.com/nvidia-system-management-interface)，用于管理和监控NVIDIA GPU设备。
+
+
+
 
 # 参考
 

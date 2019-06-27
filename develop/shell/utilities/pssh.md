@@ -70,6 +70,45 @@ pip install pssh
 pssh -ih ceph-hosts -l root -A "uptime"
 ```
 
+# 忽略服务器密钥
+
+在批量处理主机时，如果需要每个服务器都确认服务器密钥是不现实的，这里就需要使用ssh的一个参数 `-O StrictHostKeyChecking=no` ，这个参数也可以传递给pssh
+
+```
+pssh -O StrictHostKeyChecking=no -ih sigma-eu95_ip -l huatai -A "uptime"
+```
+
+# 并发
+
+pssh和pscp支持并发，但是在macOS上并发执行，例如 `-p 100` 则出现报错
+
+```
+    do_pscp(hosts, localargs, remote, opts)
+  File "/usr/local/Cellar/pssh/2.3.1/libexec/bin/pscp", line 80, in do_pscp
+    statuses = manager.run()
+  File "/usr/local/Cellar/pssh/2.3.1/lib/python2.7/site-packages/psshlib/manager.py", line 75, in run
+    self.update_tasks(writer)
+  File "/usr/local/Cellar/pssh/2.3.1/lib/python2.7/site-packages/psshlib/manager.py", line 133, in update_tasks
+    self._start_tasks_once(writer)
+  File "/usr/local/Cellar/pssh/2.3.1/lib/python2.7/site-packages/psshlib/manager.py", line 146, in _start_tasks_once
+    task.start(self.taskcount, self.iomap, writer, self.askpass_socket)
+  File "/usr/local/Cellar/pssh/2.3.1/lib/python2.7/site-packages/psshlib/task.py", line 99, in start
+    close_fds=False, preexec_fn=os.setsid, env=environ)
+  File "/usr/local/Cellar/python@2/2.7.16/Frameworks/Python.framework/Versions/2.7/lib/python2.7/subprocess.py", line 394, in __init__
+    errread, errwrite)
+  File "/usr/local/Cellar/python@2/2.7.16/Frameworks/Python.framework/Versions/2.7/lib/python2.7/subprocess.py", line 938, in _execute_child
+    self.pid = os.fork()
+OSError: [Errno 35] Resource temporarily unavailable
+```
+
+我修订成 `-p 10` 能够缓解，但是多次运行脚本依然出现问题。参考 [OSError: [Errno 35] Resource temporarily unavailable](https://github.com/sprintly/Sprintly-GitHub/issues/37) 这个问题和macOS的默认文件句柄数量限制有关。解决方法是放宽限制:
+
+```
+sudo launchctl limit maxfiles 1000000 1000000
+```
+
+不过，需要重新登陆一次（或者关闭iterm终端，重新启动一次iterm）。但是，似乎并没有完全解决这个问题，退出iterm2，重新启动后再次执行脚本完成。似乎是资源释放问题。
+
 # 使用ssh密钥登陆
 
 对于使用SSH密钥的登陆方式，需要使用参数 `-x` 来使用扩展ssh参数指定密钥登陆，举例：

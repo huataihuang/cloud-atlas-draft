@@ -3,7 +3,7 @@
 * `file1 - file2`
 
 ```
-grep -vFf file 2 file1
+grep -vFf file2 file1
 ```
 
 > -f StringFile 指定包含字符串的文件。

@@ -1,5 +1,15 @@
 Nexus 6P是Google在Nexus品牌转换到Pixel之前最后一款Nexus手机，可以说是Nexus的绝唱（虽然存在很多不足）。
 
+> 强烈建议你不要购买这款手机（即使二手非常便宜），在国内无法使用移动4G的volte。高版本的Android更新后会自动激活volte，然而运营商的volte配置没有包含，意味着这款手机只能通过2G语音通话（因为现在移动的2G/3G网络覆盖极差）升级到高版本自动启用的4G volte也是聋子的耳朵。
+> 
+> 以上为自己切身体验。
+
+> 参考 [Nexus6p国际版本完整支持移动网络，大家怎么看？](https://www.zhihu.com/question/36037687) 国际版是支持移动全波段的。但是参考 [Nexus 6P (H1512) can't use VoLTE on China Mobile(CMCC)](https://support.google.com/nexus/forum/AAAANseOu18-fE4S8hNXNM/?hl=en&gpf=%23!msg%2Fnexus%2F-fE4S8hNXNM%2F_ql706WJAgAJ&msgid=_ql706WJAgAJ) 可以看到Nexus 6P无法开启VoLTE，所以使用价值大大降低。
+
+> 我个人的使用体验来说：Nexus 6P国际版使用中国移动网络的LTE 4G功能完全没有问题，上网速度正常（较快）。但是不能开启VoLTE使得这款手机不适合作为主力机使用，如果电话量少且不在意因2G语音通话问题，可以考虑作为阅读、上网的备用机。
+
+警告：这款手机的电池消耗极大，由于用户投诉不断，Google已经对官网渠道购买的这款手机作出赔偿。然而，这个利好消息对海淘的我们没有用处，悲伤。
+
 # 优点
 
 - 大屏幕（废话）
@@ -108,11 +118,12 @@ adb -d shell sh /data/data/me.piebridge.brevent/brevent.sh
 
 # Nexus 6P的问题
 
-* 4G无法打电话问题
+* 4G无法打电话问题（实际是无法使用中国移动VoLTE，只能使用2G通话）
 
-最近发现Nexus 6P显示信号满格，而且能够LTE方式4G上网，但是却无法打电话。恰好刚去维修过屏幕，以为是维修问题。但是，搜索到 [6P升级后，4G情况下无法接打电话](http://bbs.gfan.com/android-8421977-3-1.html) 讨论，原因是某个升级导致的问题，可以通过升级到最新ROM修复（有提示升级到 `官方N4F26T包` 解决）。我测试了一下，确实发现手机4G不能打电话，但是强制使用2G是通话正常的。所以，准备通过OTA方式刷机解决这个问题。
+Nexus 6P硬件支持VoLTE，并且在国外运营商使用证实是可以正常使用VoLTE。但是很不幸，这个功能和大陆用户无关，原因是Android系统中没有包含大陆运营商的VoLTE配置，至少中国移动是完全无法使用VoLTE。
 
 # 参考
 
 * [[Update: Not dead yet] Death of the Nexus: Final guaranteed OTA updates hit Nexus 6P and 5X](https://9to5google.com/2018/11/07/nexus-6p-and-5x-final-guaranteed-updates/)
 * [告别Android卡顿、耗电——黑域使用教程](https://zhuanlan.zhihu.com/p/28118279) - 详细使用黑域方法参考 https://jianyv.com/br/br.pdf
+* [Pixel中文网：Nexus 6p](http://www.pixcn.cn/nexuspress/nexus6p/)

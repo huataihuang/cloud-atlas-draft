@@ -19,6 +19,21 @@ sudo -u \#501 ls -lh /home/huatai/
 
 > 上例是`admin`用户临时使用`huatai`用户（`uid=501`）身份查看其HOME目录内容。
 
+# sudo的密码参数
+
+对于sudo执行时需要密码的情况，如果需要在脚本命令中执行，显然无法手工输入密码。此时需要采用
+
+```
+echo <password> | sudo -S <command>
+```
+
+例如
+
+```
+./configure && make && echo <password> | sudo -S make install && halt
+```
+
 # 参考
 
 * [Run a shell script as another user that has no password](https://askubuntu.com/questions/294736/run-a-shell-script-as-another-user-that-has-no-password)
+* [sudo with password in one command line?](https://superuser.com/questions/67765/sudo-with-password-in-one-command-line)

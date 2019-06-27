@@ -115,6 +115,36 @@ directly.
 
 默认的theme比较简陋，选择 [sphinx_rtd_theme](https://github.com/snide/sphinx_rtd_theme) 作为基础文档风格
 
+> 参考 [sphinx-navtree](https://buildmedia.readthedocs.org/media/pdf/sphinx-navtree/latest/sphinx-navtree.pdf)
+>
+> In the Read the Docs theme, the maximum number of visible levels in the navigation pane is currently fixed to 4. Evenif the theme had an option for this, the Sphinx API only supports specifying a single value for the entire tree.
+>
+> 我在撰写文档时发现，确实左边导航栏只能显示4层结构，超过4层无法浏览，有些情况确实很麻烦。搜索发现，在 [Read the Docs - Configuration: Theme options](https://sphinx-rtd-theme.readthedocs.io/en/stable/configuring.html) 有选项：
+
+```
+html_theme_options = {
+  ...
+  'navigation_depth': 4,
+  ...
+}
+```
+
+但是上述设置会导致最后一级展开以后，显示的是最顶层的样子，非常难看。是我设置错误了么？ [Show entire toctree in Read The Docs sidebar](https://stackoverflow.com/questions/27669376/show-entire-toctree-in-read-the-docs-sidebar) 有提到:
+
+> For depths higher than 4, the sidebar seems to miss-behave. Topics will not properly indent relative to parent topics, for example. – AmiguelS Dec 21 '17 at 11:39
+
+尝试升级 
+
+```
+pip install --upgrade pip
+pip install --upgrade sphinx_rtd_theme
+```
+
+但是升级以后，依然没有解决问题，请参考github上issue [navigation_depth, collapsing, and local vs remote builds](https://github.com/rtfd/sphinx_rtd_theme/issues/457)
+
+-----
+
+
 ```
 pip install sphinx_rtd_theme
 ```

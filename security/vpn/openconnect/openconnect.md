@@ -42,7 +42,9 @@ brew update
 brew install openconnect
 ```
 
-安装[Mac OS X TUN/TAP](http://tuntaposx.sourceforge.net/)
+> 要升级openconnect，则使用 `brew upgrade openconnect`
+
+> 可选安装[Mac OS X TUN/TAP](http://tuntaposx.sourceforge.net/) ？：当前tuntap已经不支持最新macOS，不过我发现直接使用 openconnect 就可以，忘记是否是自己安装了tuntap还是当前openconnect已经包含。待以后再验证。
 
 运行openconnect需要sudo，因为它需要修改DNS，可以通过以下方法加上无需密码的sudo权限
 
@@ -56,7 +58,7 @@ sudo visudo -f /etc/sudoers
 %admin  ALL=(ALL) NOPASSWD: /usr/local/bin/openconnect
 ```
 
-为避免访问自签名服务器出现的高进，可以通过将服务器证书导出存放到客户端`~/.ssh/<certificate name>.pem`，然后通过命令访问
+为避免访问自签名服务器出现的告警，可以通过将服务器证书导出存放到客户端`~/.ssh/<certificate name>.pem`，然后通过命令访问
 
 ```bash
 sudo openconnect --user=<VPN username> --cafile=<.pem file from step 4.3> <your vpn hostname>
