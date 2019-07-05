@@ -16,6 +16,8 @@ grep -vFf file2 file1
 grep -Ff file1 file2
 ```
 
+**不过，上述文件相减的方法存在漏洞： 192.168.1.111 和 192.168.1.11 / 192.168.1.1 会认为是相同行？**
+
 # 参考
 
 * [如何实现两个文件相减的功能（剔除](https://blog.csdn.net/crazyhacking/article/details/8637880)

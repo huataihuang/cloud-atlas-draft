@@ -8,7 +8,7 @@
 >
 > 在Linux平台可跳过本段操作
 
-如果不实用MacVim GUI，建议使用MacVim.app包中的Vim程序（`MacVim.app/Contents/MacOS/Vim`）。为确保使用mvim，从[MacVim](https://github.com/macvim-dev/macvim/releases)安装目录复制出`mvim`脚本，复制到`/usr/local/bin/mvim`，然后建立一个软连接：
+如果不使用MacVim GUI，建议使用MacVim.app包中的Vim程序（`MacVim.app/Contents/MacOS/Vim`）。为确保使用mvim，从[MacVim](https://github.com/macvim-dev/macvim/releases)安装目录复制出`mvim`脚本，复制到`/usr/local/bin/mvim`，然后建立一个软连接：
 
 ```
 if [ ! -d /usr/local/bin ];then sudo mkdir -p /usr/local/bin;fi
@@ -21,6 +21,10 @@ sudo ln -s /usr/local/bin/mvim vim
 ```
 
 > 默认 `/usr/local/bin` 路径优先于 `/usr/bin`，所以上述软连接方式可以不修改系统的`/usr/bin/vim`而使用最新安装的`MacVim`
+
+**注意**
+
+在升级到最新的macOS 10.15之后，系统默认自带的vim版本已经非常新，可以不再使用macvim。
 
 # 基本语法高亮设置
 
