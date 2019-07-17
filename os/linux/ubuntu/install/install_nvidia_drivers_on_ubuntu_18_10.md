@@ -56,7 +56,11 @@ model    : BCM4360 802.11ac Wireless Network Adapter
 driver   : bcmwl-kernel-source - distro non-free
 ```
 
-也可以采用第三方的 `graphics-drivers` PPA仓库，提供了beta版本的显卡驱动（nvidia-driver-396）:
+## 安装最新的驱动
+
+* 采用 `graphics-drivers` PPA仓库，提供了beta版本的显卡驱动（nvidia-driver-418）:
+
+> 这个软件仓库也是由ubuntu维护，但是提供了最新的Nvidia驱动
 
 ```
 sudo add-apt-repository ppa:graphics-drivers/ppa
@@ -70,6 +74,8 @@ ubuntu-drivers devices
 ```
 sudo ubuntu-drivers autoinstall
 ```
+
+> 不过，目前测试升级到418版本nvidia驱动，依然没有实现 `vbetool dpms off` ，需要再探索。
 
 安装完成后，再次检查 `lspci -vvv` 可以看到驱动替换成闭源驱动
 

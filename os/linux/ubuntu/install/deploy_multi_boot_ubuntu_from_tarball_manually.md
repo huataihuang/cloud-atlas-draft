@@ -184,9 +184,11 @@ GRUB_SERIAL_COMMAND="serial --speed=115200 --unit=0 --word=8 --parity=no --stop=
 
 ```
 sudo -s
-for f in dev dev/pts proc ; do mount --bind /$f /media/$f ; done
+for f in dev dev/pts proc sys; do mount --bind /$f /media/$f ; done
 chroot /media
 ```
+
+> 注意，这里 mount 需要包含 /sys ，否则在后面 `upgrade-grub` 会出现大量的 `device node not found` 报错。参考: [How to restore GRUB after restoring Debian from backup?](https://unix.stackexchange.com/questions/397927/how-to-restore-grub-after-restoring-debian-from-backup)
 
 * 手工修改`/boot/grub/menu.lst`设置如下
 

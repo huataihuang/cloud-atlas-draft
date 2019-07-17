@@ -1,3 +1,53 @@
+# bonding模式
+
+参考 [Linux Network bonding – setup guide](https://www.cloudibee.com/network-bonding-modes/) 和 [What are the Network Bonding Modes In CentOS / RHEL](https://www.thegeekdiary.com/what-are-the-network-bonding-modes-in-centos-rhel/)
+
+```
+    mode=0 (Balance Round Robin)
+    mode=1 (Active backup)
+    mode=2 (Balance XOR)
+    mode=3 (Broadcast)
+    mode=4 (802.3ad)
+    mode=5 (Balance TLB)
+    mode=6 (Balance ALB)
+```
+
+验证bonding模式
+
+```
+cat /proc/net/bonding/bond0 
+```
+
+例如输出:
+
+```
+Ethernet Channel Bonding Driver: v3.7.1 (April 27, 2011)
+
+Bonding Mode: fault-tolerance (active-backup)
+Primary Slave: eth0 (primary_reselect always)
+Currently Active Slave: eth0
+MII Status: up
+MII Polling Interval (ms): 100
+Up Delay (ms): 0
+Down Delay (ms): 0
+
+Slave Interface: eth0
+MII Status: up
+Speed: 1000 Mbps
+Duplex: full
+Link Failure Count: 0
+Permanent HW addr: 90:b1:1c:54:a1:e0
+Slave queue ID: 0
+
+Slave Interface: eth1
+MII Status: up
+Speed: 1000 Mbps
+Duplex: full
+Link Failure Count: 0
+Permanent HW addr: 90:b1:1c:54:a1:e1
+Slave queue ID: 0
+```
+
 # `ad_select`概述
 
 在Bonding驱动v3.4.0，增加了一个802.3AD模式（mode 4）的参数来实现aggreator选择。

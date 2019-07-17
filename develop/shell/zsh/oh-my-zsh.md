@@ -8,6 +8,46 @@ zsh兼容bash，并且可以通过插件增强功能。为了能够方便使用�
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 ```
 
+## 修改用户目录属主需要重新设置oh my zsh安全
+
+我修改了 `/home/huatai` 目录的属主id，重新登陆发现提示
+
+```
+zsh compinit: insecure directories, run compaudit for list.
+```
+
+如果忽略安全警告，则会提示
+
+```
+zsh compinit: insecure directories, run compaudit for list.
+Ignore insecure directories and continue [y] or abort compinit [n]? y[oh-my-zsh] Insecure completion-dependent directories detected:
+drwxrwsr-x 2 root staff 4096 Jul 10 09:47 /usr/local/share/zsh/site-functions
+
+[oh-my-zsh] For safety, we will not load completions from these directories until
+[oh-my-zsh] you fix their permissions and ownership and restart zsh.
+[oh-my-zsh] See the above list for directories with group or other writability.
+
+[oh-my-zsh] To fix your permissions you can do so by disabling
+[oh-my-zsh] the write permission of "group" and "others" and making sure that the
+[oh-my-zsh] owner of these directories is either root or your current user.
+[oh-my-zsh] The following command may help:
+[oh-my-zsh]     compaudit | xargs chmod g-w,o-w
+
+[oh-my-zsh] If the above didn't help or you want to skip the verification of
+[oh-my-zsh] insecure directories you can set the variable ZSH_DISABLE_COMPFIX to
+[oh-my-zsh] "true" before oh-my-zsh is sourced in your zshrc file.
+```
+
+这个问题是因为一个空的 `/usr/local/share/zsh/site-functions` 导致，删除这个目录避免安全告警。
+
+* 增加主机名显示
+
+默认ozsh没有显示主机名和登陆账号，参考 [zsh prompt and hostname](https://stackoverflow.com/questions/30199068/zsh-prompt-and-hostname) 在 `~/.zshrc` 添加:
+
+```
+export PROMPT='%(!.%{%F{yellow}%}.)$USER@%{$fg[white]%}%M ${ret_status} %{$fg[cyan]%}%c%{$reset_color%} $(git_prompt_info)'
+```
+
 # 插件
 
 Oh My Zsh包含了常用插件用于增强系统，但是你需要在 `.zshrc`中激活(默认只激活了git)

@@ -22,7 +22,7 @@ yum install dnf
 
 # DNF包管理器使用
 
-* 查看DNF包管理器的版本
+* c
 
 ```
 dnf --version
@@ -182,7 +182,7 @@ dnf groupremove 'EDucational Software'
 dnf --enablerepo=epel install phpmyadmin
 ```
 
-* 更新软件包都最新的稳定发行版：这个命令可以通过所有可用的软件源更新系统中所有已经安装的软件包到罪行的稳定版本
+* 更新软件包都最新的稳定发行版：这个命令可以通过所有可用的软件源更新系统中所有已经安装的软件包到最新的稳定版本
 
 ```
 dnf distro-sync

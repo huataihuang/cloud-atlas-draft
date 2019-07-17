@@ -165,7 +165,6 @@ chainloader +1
 
 然后执行`sudo update-grub`或者`sudo update-grub2`就可以双启动。
 
-
 # 从网络恢复
 
 * 接收服务器
