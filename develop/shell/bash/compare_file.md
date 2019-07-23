@@ -42,6 +42,12 @@ fi
 cat file1 file2 | sort | uniq -u
 ```
 
+如果要获得两个文件的交集则使用
+
+```
+cat file1 file2 | sort | uniq -d
+```
+
 # 参考
 
 * [Bash script to compare two files](https://www.linuxquestions.org/questions/linux-newbie-8/bash-script-to-compare-two-files-563836/)

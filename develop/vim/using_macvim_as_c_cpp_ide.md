@@ -1,5 +1,7 @@
 [YouCompleteMe(YCM)](http://www.alexeyshmalko.com/2014/youcompleteme-ultimate-autocomplete-plugin-for-vim/)是一个快速自动完成代码输入的vim引擎。支持Clang, C/C++/Ojbective-C/Objective-C++，以及C#, Python（Jedi-based completion engine）
 
+> 我现在[在macOS平台使用vim作为IDE](using_vim_as_ide_in_macos)
+
 # 安装
 
 > 参考[YouCompleteMe README.md#installation](https://github.com/Valloric/YouCompleteMe/blob/master/README.md#installation)
@@ -8,7 +10,7 @@
 
 * 首先安装最新版本[MacVim](https://github.com/macvim-dev/macvim/releases)
 
-如果不实用MacVim GUI，建议使用MacVim.app包中的Vim程序（`MacVim.app/Contents/MacOS/Vim`）。为确保使用mvim，从[MacVim](https://github.com/macvim-dev/macvim/releases)安装目录复制出`mvim`脚本，复制到`/usr/local/bin/mvim`，然后建立一个软连接：
+如果不使用MacVim GUI，建议使用MacVim.app包中的Vim程序（`MacVim.app/Contents/MacOS/Vim`）。为确保使用mvim，从[MacVim](https://github.com/macvim-dev/macvim/releases)安装目录复制出`mvim`脚本，复制到`/usr/local/bin/mvim`，然后建立一个软连接：
 
 ```
 if [ ! -d /usr/local/bin ];then sudo mkdir -p /usr/local/bin;fi

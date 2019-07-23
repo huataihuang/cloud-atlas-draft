@@ -188,6 +188,14 @@ yum update
 
 > 由于当前CentOS 7.6大多数软件包版本都比alios新，所以几乎所有软件都会替换成标准的社区版本。
 
+* 有残留文件 `/usr/lib64/rpm-plugins/systemd_inhibit.so` 会导致rpm卸载报错
+
+```
+error: Failed to resolve symbol plugin_hooks: /usr/lib64/rpm-plugins/systemd_inhibit.so: undefined symbol: plugin_hooks
+```
+
+删除该文件之后可正常工作
+
 ----
 
 # 最新转换方法的各种探索折腾（仅做记录，整理见上文）
