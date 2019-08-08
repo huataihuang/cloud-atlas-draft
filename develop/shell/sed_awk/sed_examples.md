@@ -338,7 +338,26 @@ a=`cat input_filename | tr '\n' ','`
 echo "${a::-1}"
 ```
 
-* 占位符替换思路
+# 匹配行修改
+
+例如我需要修改 `/etc/fstab` ，将包含 `swap` 行注释掉。参考 [sed - Commenting a line matching a specific string AND that is not already commented out](https://stackoverflow.com/questions/17998763/sed-commenting-a-line-matching-a-specific-string-and-that-is-not-already-comme)
+
+原先的 `/etc/fstab` 内容如下：
+
+```
+...
+UUID=57e88efb-83f7-42a3-8080-f943626bd7f7 swap                    swap    defaults        0 0
+```
+
+修改命令如下：
+
+```
+sed -i -e '/swap/s/^UUID=/#UUID=/g' /etc/fstab
+```
+
+上述表示先匹配swap行，然后搜索 `UUID=` 开头的内容替换成 `#UUID=`
+
+# 占位符替换思路
 
 当需要向海量服务器部署配置脚本，但是配置脚本中某些字符串和服务器主机名相关（需要改成主机名），则可以模仿`puppet`之类的配置管理工具，采用配置文件中占位符方式来实现。
 

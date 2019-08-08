@@ -12,6 +12,8 @@ parted [OPTION]... [DEVICE [COMMAND [PARAMETERS]...]...]
 parted -a optimal /dev/sda mkpart primary 0% 256MB
 ```
 
+> 检查分区是否对齐4k，使用  `parted /dev/sda` 然后执行命令 `align-check opt 1`，如果对齐则显示 `1 aligned`
+
 如果直接使用`parted [OPTION]... [DEVICE]`就会进入交互模式。
 
 * 列出磁盘分区

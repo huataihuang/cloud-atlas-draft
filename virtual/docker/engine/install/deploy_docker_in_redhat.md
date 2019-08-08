@@ -93,4 +93,4 @@ ip addr add dev docker0 172.17.0.1/16
 # 参考
 
 * [Container runtimes](https://kubernetes.io/docs/setup/production-environment/container-runtimes/)
-* [ Error starting daemon: Error initializing network controller: list bridge addresses failed: no available network #123 ](https://github.com/docker/for-linux/issues/123#issuecomment-346546953)
+* [Error starting daemon: Error initializing network controller: list bridge addresses failed: no available network #123](https://github.com/docker/for-linux/issues/123#issuecomment-346546953)

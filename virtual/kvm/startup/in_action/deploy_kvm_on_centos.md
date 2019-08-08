@@ -123,6 +123,21 @@ virt-install \
   --extra-args="console=tty0 console=ttyS0,115200"
 ```
 
+以下配置更为精确（指定qcow2磁盘，并指定os-type):
+
+```
+virt-install \
+  --network bridge:virbr0 \
+  --name centos7 \
+  --ram=2048 \
+  --vcpus=1 \
+  --os-type=centos7.0 \
+  --disk path=/var/lib/libvirt/images/centos7.qcow2,format=qcow2,bus=virtio,cache=none,size=16 \
+  --graphics none \
+  --location=http://mirrors.163.com/centos/7/os/x86_64/ \
+  --extra-args="console=tty0 console=ttyS0,115200"
+```
+
 以下命令增加了磁盘类型`qcow2`，推荐使用：
 
 ```

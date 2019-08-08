@@ -45,6 +45,15 @@
 
     for i in {b..l};do (parted -s /dev/sd$i mkpart primary 0% 100% && parted -s /dev/sd$i set 1 raid on);done
 
+> 上述对磁盘进行分区并且加上raid这个FLAG很重要，我的同事在做Soft RAID的时候，操作命令中少了这步分区和设置flag步骤，虽然构建RAID时候没有报错，并且也能够对RAID设备进行文件系统创建。但是操作系统重启后，md设备丢失（无法挂载文件系统）。推测是没有标记raid分区，系统重启后就无法扫描到RAID标记来激活md设备。
+
+> 此外，我发现这里使用 `parted` 命令有没有使用 `-a optimal` 都没有区别，分区以后显示都是相同位置，不确定在底层是否需要这个参数。或许还是加上比较好。注意，可以使用以下命令检查分区是否对齐:
+
+```
+parted /dev/sda
+align-check opt n
+```
+
 * 创建RAID10
 
 > 这里 `/dev/sd{b..k}1` 是shell展开为 `/dev/sdb1 到 /dev/sdk1`

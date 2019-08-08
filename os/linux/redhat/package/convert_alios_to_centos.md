@@ -196,6 +196,16 @@ error: Failed to resolve symbol plugin_hooks: /usr/lib64/rpm-plugins/systemd_inh
 
 删除该文件之后可正常工作
 
+```
+rm -f /usr/lib64/rpm-plugins/systemd_inhibit.so
+```
+
+* 其他可能会有一些软件包需要降级，以便能够适配CentOS发行版提供的软件包，例如，安装kvm环境，会提示由于系统已经安装了高版本的rpm包，导致CentOS无法提供对应高版本依赖包，则需要降级系统已经安装的rpm包后才能使用CentOS软件包安装:
+
+```
+yum downgrade keyutils-libs-1.5.8-3.el7.x86_64 libverto-0.2.5-4.el7.x86_64
+```
+
 ----
 
 # 最新转换方法的各种探索折腾（仅做记录，整理见上文）
