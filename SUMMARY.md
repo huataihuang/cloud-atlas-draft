@@ -767,6 +767,7 @@
 		* [VMware虚拟机的计时](virtual/vmware/timekeeping_in_vmware.md)
 		* [VMware Fusion使用指南](virtual/vmware/vmware_fusion.md)
 		* [在VMware Fusion虚拟机CentOS Guest中安装Vmware Tool](virtual/vmware/install_vmware_tool_in_centos_guest.md)
+		* [在VMware Fusion虚拟机中安装macOS](virtual/vmware/setup_macos_in_vmware_fusion.md)
 		* [在VMware虚拟机中使用UEFI firmware](virtual/vmware/using_uefi_firmware_in_vmware.md)
 		* [在VMware Fusion中复制虚拟机](virtual/vmware/vmware_fusion_clone_vm.md)
 		* [备份VMware虚拟机](virtual/vmware/backup_vmware_vm.md)
