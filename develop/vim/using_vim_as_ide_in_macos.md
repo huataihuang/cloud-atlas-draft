@@ -13,6 +13,8 @@
 
 - The Awesome: 包含大量有用的插件，以及配置。推荐使用
 
+> [The Ultimate vimrc](https://github.com/amix/vimrc)配置非常方便，并且支持多种语言环境，会根据语言类型提示你安装不同的插件
+
 # 安装Awesome版本
 
 ## 只作为个人使用
