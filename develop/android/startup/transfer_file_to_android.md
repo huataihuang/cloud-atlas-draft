@@ -40,6 +40,8 @@ adb push C:\Users\Jonathan\Desktop\video.mp4 /sdcard/
 python -m SimpleHTTPServer 8000
 ```
 
+> `SimpleHTTPServer` 是Python 2模块，在Python 3中，对应是 `http.server` 即 `python -m http.server 8000`
+
 > 监听在端口`8000`上，在Android使用浏览器访问`http://<host_ip>:8000`就可以看到共享的目录下文件。
 
 注意：下载文件位于`Downloads`目录下，不能直接被Android中其他应用程序读取。例如，`.pdf`下载到`Downloads`目录下就不能直接通过`kindle`加载阅读。但是，只要把文件移动到`Documents`目录下就可以直接通过Kindle进行浏览。

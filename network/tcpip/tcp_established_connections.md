@@ -77,6 +77,39 @@ CurrEstab
 14738
 ```
 
+# 排查
+
+有一个docker容器，使用ss检查连接有37870个establish，使用 /proc/net/snmp 检查显示有 36683 个连接
+
+```
+#ss -s
+Total: 131624 (kernel 135251)
+TCP:   123582 (estab 37870, closed 85675, orphaned 182, synrecv 0, timewait 340/27776), ports 0
+
+Transport Total     IP        IPv6
+*   135251    -         -
+RAW   0         0         0
+UDP   4         4         0
+TCP   37907     37907     0
+INET    37911     37911     0
+FRAG    0         0         0
+
+#cat /proc/net/snmp | grep Tcp | awk '{print $10}'
+CurrEstab
+37683
+```
+
+但是，采用 netstat 检查却只有 21306
+
+```
+#netstat -tan | grep ESTABLISHED | wc -l
+21306
+```
+
+相差了1万个连接。
+
+
+
 # 参考
 
 * [Get number of TCP established connections](http://serverfault.com/questions/646729/get-number-of-tcp-established-connections)
