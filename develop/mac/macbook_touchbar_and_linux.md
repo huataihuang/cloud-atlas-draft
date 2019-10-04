@@ -14,3 +14,9 @@
 * 使用macOS可以充分发挥硬件性能，并且不需要折腾Linux图形界面。上帝的归上帝，凯撒的归凯撒，Linux最好的是服务端开发，图形工作界面使用macOS可以节约大量的时间。
 
 不过，我也准备采用双启动方式，在裸Linux下运行一个开发测试平台以便能够充分利用强大的MacBook Pro硬件性能和硬件特性。
+
+----
+
+参考 [How can you get any version of Linux to see the 2018 MacBook Pro SSD?](https://unix.stackexchange.com/questions/463422/how-can-you-get-any-version-of-linux-to-see-the-2018-macbook-pro-ssd/471124#471124):由于最新的Mac硬件配备了T2安全芯片，所以只有通过Boot Camp才能安装第三方操作系统，而Boot Camp只支持Windows 10。这就导致无法在MacBook Pro 2018上直接安装Linux操作系统，即使关闭[Secure Boot](https://support.apple.com/en-us/HT208330)也无法看到内置硬盘，所以无法安装系统。可能的解决方案是采用外接U盘来安装运行Linux系统，因为T2芯片不阻止外接U盘启动
+
+不过，最新的[NVMe驱动内核补丁(没有进入主线)](https://www.phoronix.com/scan.php?page=news_item&px=MacBook-Finally-Linux-SSD-RW)已经开始支持读写MacBook Pro硬盘，所以理论上可以安装Linux到最新的MacBook Pro笔记本。具体需要参考 [MacBookPro 15,1/2? #71](https://github.com/Dunedan/mbp-2016-linux/issues/71#issuecomment-507325112) 进展。这个issue中，TRPB提供了一个在MacBook Pro 2018上运行Linux的指南 [arch-macbook2018.md](https://gist.github.com/TRPB/437f663b545d23cc8a2073253c774be3)

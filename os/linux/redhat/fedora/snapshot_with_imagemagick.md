@@ -31,6 +31,22 @@ xclip -selection clipboard -t image/png -i $snapshot_file
 > * 脚本中对文件名要设置完全路径，不能使用类似`~`来指代用户home目录。
 > * 脚本开头必须使用`#!/usr/bin/bash`解释器，或者`#!/usr/bin/python`，否则快捷键无法生效。
 
+# 其台截图工具
+
+* scrot
+
+参考 [How to take screenshots on Linux using Scrot](https://www.howtoforge.com/tutorial/how-to-take-screenshots-in-linux-with-scrot/) ，scrot也是类似ImageMagick的命令行截图工具。 
+
+Deepin Scrot还做了增加，提供了直接编辑图片的功能。
+
+* flameshot
+
+[flameshot](https://github.com/lupoDharkael/flameshot)是一个非常轻量级的桌面截图和简单编辑功能应用程序，并且可以将截图进一步发送给其他桌面程序处理。
+
+![flameshot使用](../../../../img/os/linux/redhat/fedora/flameshot_use.gif)
+
+我在Xfce桌面环境使用发现和系统结合非常完善，提供了托盘驻留功能，并且截图可以直接修改，十分便捷。所以，最终在桌面环境使用flameshot作为截图工具。
+
 # 参考
 
 * [How to copy an image to the clipboard from a file using command line?](https://askubuntu.com/questions/759651/how-to-copy-an-image-to-the-clipboard-from-a-file-using-command-line)

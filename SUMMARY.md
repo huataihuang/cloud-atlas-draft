@@ -176,6 +176,7 @@
 				* [缩小lvm卷](os/linux/storage/lvm/decrease_lvm.md)
 				* [在Gentoo上使用LVM](os/linux/storage/lvm/using_lvm_on_gentoo.md)
 			* [文件系统](os/linux/storage/filesystem/README.md)
+				* [Linux文件系统的未来](os/linux/storage/filesystem/the_future_of_linux_filesystem.md)
 				* [EXT文件系统](os/linux/storage/filesystem/ext/README.md)
 					* [EXT文件系统文件数](os/linux/storage/filesystem/ext/ext_filesystem_file_limit.md)
 					* [EXT文件系统误删文件恢复](os/linux/storage/filesystem/ext/ext_filesystem_restore_delete_file.md)
