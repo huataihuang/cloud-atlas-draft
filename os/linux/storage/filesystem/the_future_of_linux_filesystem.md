@@ -28,6 +28,10 @@ clock throttled (total events = 73235)
 
 当前支持Btrfs的主流发行版本是SUSE，企业级应用案例是FaceBook。相信FaceBook这样的体量能够在内部针对btrfs进行深度定制和bug修复，以便能够充分发挥其特定优势。实际上大厂都有这样的开发团队来维护开源软件的特定分支，针对其业务特殊性定制。
 
+> [why redhat abandon btrfs where SUSE makes it default.?](https://access.redhat.com/discussions/3138231)，有用户和Red Hat工程师讨论，主要的观点有：
+> * btrfs长期处于技术预览阶段，功能稳定性一直没有达到生产级别；与此同时，其他文件系统的进步和发展已经逐步具备了btrfs的功能，并且正确组合现有稳定的存储技术，如ext4, XFS, LVM等，就可以实现btrfs承诺的特性
+> * 基于上述理由，Red Hat推出了结合XFS和LVM的存储管理解决方案[Stratis项目](https://stratis-storage.github.io/)，目前已经释出1.0版本，实现了阶段性目标。在RHEL 8中，已经包含了Stratis存储解决方案，并且被标记为"Technology Preview"。
+
 从 2017 年LWN讨论 [Btrfs has been deprecated?](https://lwn.net/Articles/729488/) 提到了btrfs的一些缺陷:
 
 * 不能稳定支持RAID5/6（官方wiki也这样说明）：
@@ -68,6 +72,36 @@ clock throttled (total events = 73235)
 ----
 
 Rad Hat有一篇技术介绍文档 [How to Choose Your Red Hat Enterprise Linux File System](https://access.redhat.com/articles/3129891):
+
+* 本地文件系统通常采用服务器内建的SATA和SAS磁盘，也包含通过SAN连接的存储(因为SAN输出的设备是不共享的)
+* 早期RHEL 4/5主要使用Ext2和Ext3文件系统，从RHEL 5.6开始全面支持Ext4
+* XFS是64位日志型文件系统，支持单机运行及非常巨大的文件，从RHEL 7开始成为默认文件系统
+* XFS是1990年代由SGI开发，经过漫长的发展已经成为成熟稳定的文件系统并提供了丰富的特性:
+    * 延迟分配
+    * 动态分配inode
+    * B叉树索引支持空闲空间管理的伸缩性
+    * 支持大量并发操作
+    * 充分的运行时元数据一致性检查
+    * 精巧的元数据预读算法
+    * 稳定集成的备份和回复工具
+    * 在线碎片整理
+    * 在线文件系统扩展
+    * 全面的诊断能力
+    * 可伸缩和快速的修复工具
+    * 针对流视频工作负载的优化
+* XFS已经被验证可以支持极高的企业级伏在，也能够在多线程、并发I/O负载下良好工作；但是XFS在单线程、元数据密负载环境下性能不佳：例如，在单线程情况下创建或删除大量的小文件。详细有关文件系统、文件和目录的限制，请参考 [Red Hat Enterprise Linux technology capabilities and limits](https://access.redhat.com/articles/rhel-limits)文档的File systems and storage章节。
+* Ext4是RHEL 6的默认文件系统，支持特性:
+    * 扩展元数据
+    * 延迟分配
+    * 日志教研
+    * 支持大型存储
+* 选择文件系统的建议:
+    * 根据操作系统版本的推荐默认文件系统选择
+    * Ext3/Ext4文件系统在有限的带宽(<200MB/s)和最多1000IOPS环境下性能较好；对于更高压力和性能要求，则适合使用XFS。
+    * XFS比Ext3/Ext4每个元数据操作消耗2倍的CPU，所以需要更多处理器资源：如果CPU负载能力有限，则Ext3/Ext4性能更好。总之，如果应用使用一个单一的读/写线程并且是小文件则Ext3或Ext4更合适；而XFS适合多线程读写和较大文件的应用程序。
+* RHEL 6开始较好支持了SSD trim，并且自动检测和对齐文件系统。
+* 共享型网络文件系统
+    * RHEL 6之前提供了GFS1，RHEL 6开始采用GFS2，最高支持16个节点。
 
 # 存储技术未来 - 数据删重和数据压缩
 
