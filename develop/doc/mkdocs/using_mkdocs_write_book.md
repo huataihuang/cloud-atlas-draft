@@ -38,7 +38,7 @@ cd my-project
 MkDocs自带了一个dev-server，可以用于预览文档：
 
 ```
-mkdocs serv
+mkdocs serve
 ```
 
 此时浏览器访问 http://127.0.0.1:8000 可以看到文档。并且 dev-server 支持自动重新加载，即对于配置文件中指定的文档目录，任何修改和theme变化都会重新渲染文档。
