@@ -368,6 +368,7 @@
 			* [向X window程序发送字符串](os/linux/x/send_string_to_x.md)
 			* [配置Ubuntu平台VNC服务](os/linux/x/vnc_on_ubuntu.md)
 			* [lightdm图形登陆管理器](os/linux/x/lightdm.md)
+			* [X无法启动'drmSetMaster failed'](os/linux/x/x_broken_as_drmsetmaster_failed.md)
 	* [FreeBSD](os/freebsd/README.md)
 	    * [FreeBSD介绍](os/freebsd/intruduce_freebsd.md)
 		* [FreeBSD安装](os/freebsd/install_freebsd.md)
