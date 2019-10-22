@@ -426,6 +426,8 @@
 			* [MySQL多线程复制](database/mysql/replication/mysql_multi-threaded_replication.md)
 		* [故障排查](database/mysql/troubleshooting/README.md)
 			* [MySQL Root用户密码重置](database/mysql/troubleshooting/reset_mysql_root_password.md)
+	* [Oracle](database/oracle/README.md)
+		* [ARM环境Oracle客户端](database/oracle/oracle_arm.md)
 * [网络](network/README.md)
 	* [TCP/IP](network/tcpip/README.md)
 		* [TCP连接数检查](network/tcpip/tcp_established_connections.md)
