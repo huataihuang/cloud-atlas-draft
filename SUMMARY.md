@@ -257,6 +257,7 @@
 					* [EFI系统分区](os/linux/redhat/system_administration/grub2/efi_system_partition.md)
 				* [OpenMLI](os/linux/redhat/system_administration/openlmi/README.md)
 				* [Systemd](os/linux/redhat/system_administration/systemd/README.md)
+					* [创建systemd服务单元](os/linux/redhat/system_administration/systemd/create_systemd_service_unit.md)
 					* [systemd修改主机名](os/linux/redhat/system_administration/systemd/change_hostname_by_systemd.md)
 					* [systemd清理journal日志](os/linux/redhat/system_administration/systemd/systemd_clear_journalctl.md)
 					* [systemd管理cpupower](os/linux/redhat/system_administration/systemd/cpupower.md)

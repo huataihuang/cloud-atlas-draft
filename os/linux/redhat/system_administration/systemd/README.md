@@ -1,13 +1,13 @@
 # systemd简介
 
-`Systemd`是Linux操作系统的系统和服务器管理器。它被设计成向后兼容`SysV` init脚本，并提供了一系列的注入并行启动服务，按需激活服务，系统状态快照，或者依赖的底层服务控制逻辑等功能。在Red Hat Enterprise Linux 7中，systemd替代了以前默认使用的`init`系统。
+`Systemd`是Linux操作系统的系统和服务器管理器。它被设计成向后兼容`SysV` init脚本，并提供了一系列的诸如并行启动服务，按需激活服务，系统状态快照，或者依赖的底层服务控制逻辑等功能。在Red Hat Enterprise Linux 7中，systemd替代了以前默认使用的`init`系统。
 
 Systemd引入了`systemd units`概念，这些通过位于目录中的单元配置文件表述并包装了有关系统服务，监听套接字，保存的系统状态快照，以及有关init系统的其他对象的信息。完整的systemd单元类型参考下表`可用的systemd单元类型`：
 
 | 单元类型 | 文件扩展 | 描述 |
 | ---- | ---- | ---- |
 | 服务单元(Service unit) | `.service` | 系统服务 |
-| 目标单元(Target unit) | `.target` | systed单元的组 | 
+| 目标单元(Target unit) | `.target` | systemd单元的组 | 
 | 自动挂载单元(Automount unit) | `.automount` | 文件系统自动挂载点 |
 | 设备单元(Device unit) | `.device` | 通过内核识别的一个设备文件 |
 | 挂载单元(Mount unit) | `.mount` | 一个文件系统的挂载点 |
