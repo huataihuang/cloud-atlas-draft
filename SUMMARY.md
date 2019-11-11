@@ -1267,6 +1267,7 @@
 		* [MkDocs](develop/doc/mkdocs/README.md)
 			* [使用MkDocs撰写书籍](develop/doc/mkdocs/using_mkdocs_write_book.md)
 		* [Hugo](develop/doc/hugo/README.md)
+			* [使用Hugo撰写文档](develop/doc/hugo/write_doc_with_hugo.md)
 		* [Hexo](develop/doc/hexo/README.md)
 			* [使用hexo撰写blog](develop/doc/hexo/write_blog_by_hexo.md)
 			* [使用hexo theme tranquilpeak](develop/doc/hexo/hexo_theme_tranquilpeak.md)
