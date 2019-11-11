@@ -206,7 +206,7 @@
 			* [iproute2](os/linux/network/iproute2/README.md)
 				* [ip](os/linux/network/iproute2/ip.md)
 			* [多网卡bonding](os/linux/network/bonding/README.md)
-				* [suse操作系统多网卡bonding](os/linux/network/bonding/)
+				* [suse操作系统多网卡bonding](os/linux/network/bonding/bonding_on_suse12.md)
 			* [可伸缩网络堆栈](os/linux/network/scaling/README.md)
 				* [RSS](os/linux/network/scaling/rss.md)
 			* [防火墙](os/linux/network/firewall/README.md)
