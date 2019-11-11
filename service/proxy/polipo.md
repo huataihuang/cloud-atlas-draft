@@ -1,6 +1,6 @@
 > 因特网是上天赐予的最好的礼物，是天赋人权，是生存的空气。
 
-[Polipo](http://www.pps.univ-paris-diderot.fr/~jch/software/polipo/)是一个非常小巧快速的缓存型web代理服务器。虽然Polipo被涉及成个人或者小型团队私用，但是也可以用于大型组织。
+[Polipo](http://www.pps.univ-paris-diderot.fr/~jch/software/polipo/)是一个非常小巧快速的缓存型web代理服务器。虽然Polipo被设计成个人或者小型团队私用，但是也可以用于大型组织。
 
 Polipo具有一下一些特点：
 
