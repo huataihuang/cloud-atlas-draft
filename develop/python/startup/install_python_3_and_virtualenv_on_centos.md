@@ -106,6 +106,97 @@ pip install sphinx
 pip install sphinx_rtd_theme
 ```
 
+# 重建virtualenv中python
+
+当操作系统的python版本升级之后，virtualenv中的python依赖的库文件可能不存在了，这样就导致sphinx运行 `make html` 等命令报错：
+
+```
+error while loading shared libraries: libpython3.7m.so.1.0: cannot open shared object file: No such file or directory
+```
+
+参考 [VirtualEnv issue after update to Python 3.7](https://forum.manjaro.org/t/virtualenv-issue-after-update-to-python-3-7/55462) 有几种解决方法：
+
+- 重建virtualenv环境
+- 在创建virtualenv环境是使用 `--always-copy` 参数，这样就会复制库文件到virtualenv中，而不是仅仅创建软链接
+- 使用pyenv，就可以安装不同的python版本，然后mkvirtualenv指向特定的python版本
+
+我决定结合方法一和方法二，首先重建virtualenv环境，并且在重建virtualenv环境时复制库文件，避免下次操作系统升级影响virtualenv。
+
+## 重建Virtualenv
+
+> 注意：由于系统升级导致无法运行virtualenv中的python，可以临时采用手工创建软链接来解决。也就是既然操作系统从 Python 3.7 升级到 Python 3.8 导致了virtualenv中库文件软链接找不到原先的 Python 3.7 库文件。我尝试做了库文件软链接
+
+```
+sudo ln -s /usr/lib/libpython3.8.so.1.0 /usr/lib/libpython3.7m.so.1.0
+```
+
+但是运行python程序还是出现报错:
+
+```
+/home/huatai/venv3/bin/python: symbol lookup error: /home/huatai/venv3/bin/python: undefined symbol: _Py_UnixMain
+```
+
+所以，我决定先回滚到3.7m版本，通过先备份当前virtualenv中运行的软件包，然后再升级Python，升级以后，立即重建virtualenv（使用新版本），并恢复安装包。
+
+* 参考 [Arch Linux 社区文档 - Downgrading packages](https://wiki.archlinux.org/index.php/downgrading_packages) 可以通过本地 `pacman cache` 现存的以前版本软件包降级系统当前版本，例如，在该目录下有:
+
+```
+python-3.7.4-2-x86_64.pkg.tar.xz
+python-3.8.0-1-x86_64.pkg.tar.xz
+```
+
+其中 3.8.0-1 就是当前版本(引起我的Python virtualenv出错)，而 3.7.4-2 就是上一个正确版本。所以我要回滚到上一个 3.7.4-2
+
+```
+sudo pacman -U /var/cache/pacman/pkg/python-3.7.4-2-x86_64.pkg.tar.xz
+```
+
+回滚以后，在 `virtualenv` 环境中验证 Sphinx 已经可以正常工作。则开始重建Python Virtualenv环境。
+
+* 注意，首先要激活Virtualenv，然后用 `requirements.txt` 文件记录下virtualenv中使用的软件包
+
+```
+. ~/venv3/bin/activate
+```
+
+```
+pip3.7 freeze > ~/venv3/requirements.txt
+```
+
+* 关闭virtualenv
+
+```
+deactivate
+```
+
+* 移除(备份)旧virtualenv:
+
+```
+mv ~/venv3 ~/venv3.bak
+```
+
+* 这里附加一个 `pacman -Syu` 再次将Python版本升级到 3.8 （因为实际系统中很多工具已经升级为3.8）
+
+* 创建新的virtualenv
+
+```
+cd ~
+virtualenv --always-copy venv3
+```
+
+* 重新安装packages
+
+```
+. ~/venv3/bin/activate
+pip install -r ~/venv3.bak/requirements.txt
+```
+
+此外，可以参考 [Pip upgrade all packages at once with a one-liner command](https://simpleit.rocks/python/upgrade-all-pip-requirements-package-console-commands/) 升级virtualenv中所有安装
+
+```
+pip3 list -o --format columns|  cut -d' ' -f1|xargs -n1 pip install -U
+```
+
 # 参考
 
 * [How to install pip in CentOS 7?](https://stackoverflow.com/questions/32618686/how-to-install-pip-in-centos-7)
