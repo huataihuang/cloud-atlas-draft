@@ -333,6 +333,7 @@
 		* [Arch](os/linux/arch/README.md)
 			* [Arch Linux包管理](os/linux/arch/pacman.md)
 			* [Arch Linux本地化](os/linux/arch/localization.md)
+            * [将Linux主机模拟成蓝牙键盘和鼠标](os/linux/arch/make_linux_as_bluetooth_keyboard.md)
 		* [Kali](os/linux/kali/README.md)
 			* [Kali Linux基础](os/linux/kali/foundations_of_kali_linux.md)
 			* [创建Kali镜像仓库](os/linux/kali/create_mirror_repository_from_kali.md)

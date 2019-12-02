@@ -1,4 +1,4 @@
-> 对于Android开发，是不需要Root Android就可以进行，只需要开启"Developr options"就可以了。Root Android的目的是为了增加可玩性，例如在Android上[部署Linux](../../../develop/android/linux/deploy_linux_on_android.md)
+> 对于Android开发，是不需要Root Android就可以进行，只需要开启"Developr options"就可以了。Root Android的目的是为了增加可玩性，例如在Android上[部署Linux](../linux/deploy_linux_on_android)
 
 Root Android和苹果设备的Jailbreak不是一个概念
 
