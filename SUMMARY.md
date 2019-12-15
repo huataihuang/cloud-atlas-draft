@@ -1399,6 +1399,7 @@
 		* [重置Kindle Paperwhite](learn/kindle/reset_kindle_paperwhite.md)
 		* [使用calibre去除kindle DRM](learn/kindle/calibre_remove_drm.md)
 		* [备份Kindle电子书](learn/kindle/back_up_kindle_books.md)
+		* [电子书阅读软件](learn/kindle/ebook_reader.md)
 * [附录：个人工作室构建](studio/README.md)
 	* [MacBook双操作系统启动macOS+Linux](studio/macbook_dual_boot_macos_linux.md)
 	* [使用Fedora作为开发平台](studio/fedora_develop_studio.md)

@@ -503,6 +503,38 @@ GitBook使用 `SUMMARY.md`来定义章节和子章节
 
 [GitBook + PlantUML 以 Markdown 快速製作 UML 教材](http://blog.lyhdev.com/2014/12/gitbook-plantuml-markdown-uml.html)
 
+# 生成电子书
+
+参考 [Generating eBooks and PDFs](https://github.com/GitbookIO/gitbook/blob/master/docs/ebook.md)
+
+GitBook可以生成不同格式的电子书(ePub,Mobi,PDF)，需要安装一个 ebook-convert 组件(属于[Calibre application](https://calibre-ebook.com/download)，在Linux平台可以通过发行版安装)。
+
+macOS可以安装[Calibre application](https://calibre-ebook.com/download)后用以下命令创建一个软链接：
+
+```
+sudo ln -s ~/Applications/calibre.app/Contents/MacOS/ebook-convert /usr/bin
+```
+
+* 生成电子书
+
+```
+# Generate a PDF file
+$ gitbook pdf ./ ./mybook.pdf
+
+# Generate an ePub file
+$ gitbook epub ./ ./mybook.epub
+
+# Generate a Mobi file
+$ gitbook mobi ./ ./mybook.mobi
+```
+
+* 电子书封面可以使用 [autocover plugin](https://plugins.gitbook.com/plugin/autocover)创建，只需要提供两种大小的 `cover.jpg` 和 `cover_small.jpg` ，建议：
+  * Size of 1800x2360 pixels for cover.jpg, 200x262 for cover_small.jpg
+  * No border
+  * Clearly visible book title
+  * Any important text should be visible in the small version
+
+
 # 升级
 
 升级到GitBook 3.x 时候，在执行 `gitbook serve` 命令的终端提示
