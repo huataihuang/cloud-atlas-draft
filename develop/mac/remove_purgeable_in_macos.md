@@ -2,6 +2,8 @@
 
 在使用macOS时，你会发现磁盘空间似乎很容易使用满，但是当你通过 Apple 菜单 `` 选择 `Storage` 面板检查，可以看到磁盘空间有一部分显示为 `Other Volumes` ，并且仔细观察可以看到可用存储空间 `Available` 显示值比实际可用空间 `Free` 要大一些，其中有一部分看不到的空间被标记为 `purgeable`。
 
+![other storage in macos](../../img/develop/mac/macos_storage_other.png)
+
 举例：
 
 60.46 GB的磁盘，显示的 `Free` 空间是 40.45 GB，这个free空间通过 `df -h` 命令也可以看到：
@@ -15,7 +17,7 @@ Filesystem      Size   Used  Avail Capacity iused               ifree %iused  Mo
 
 根据苹果官方的Help文档 [What is 'Other' and 'Purgeable' in About This Mac?](https://support.apple.com/en-us/HT202867) 说明如下:
 
-* 再OS X EI Capitan及早期版本， `Other` 文件只Mac认为不属于任何其他分类的文件，包括在磁盘镜像或者归档的文件，存储在应用（如Contacts或Calendar）中的数据，以及应用插件或扩展。当Mac处于[Safe Mode](https://support.apple.com/kb/HT201262)，所有这些文件都被认为是`Other`。
+* 在OS X EI Capitan及早期版本， `Other` 文件只Mac认为不属于任何其他分类的文件，包括在磁盘镜像或者归档的文件，存储在应用（如Contacts或Calendar）中的数据，以及应用插件或扩展。当Mac处于[Safe Mode](https://support.apple.com/kb/HT201262)，所有这些文件都被认为是`Other`。
 * 从macOS Sierra开始，`Purgeable`内容是指你开启了 [Optimize Mac Storage](https://support.apple.com/kb/HT206996) ，这些可以清除的空间会在需要存储空间的时候由macOS自动释放出来。实际上，当在macOS中删除文件，被删除的文件都会进入`Purgeable`状态，直到存储空间真正需要时候会自动释放出这部分隐含文件。
 
 # 手工清理'Purgeable'空间

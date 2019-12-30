@@ -35,9 +35,10 @@ openconnect vpnserver
 
 # Mac上使用OpenConnect
 
-通过[homebrew](http://mxcl.github.com/homebrew/)安装OpenConnect
+通过[homebrew](https://brew.sh)安装OpenConnect
 
 ```bash
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew update
 brew install openconnect
 ```

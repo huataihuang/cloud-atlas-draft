@@ -25,7 +25,7 @@ sudo /Applications/Install\ OS\ X\ El\ Capitan.app/Contents/Resources/createinst
 
 ![createinstallmedia](../../img/develop/mac/macos-mojave-createinstallmedia-terminal.jpg)
 
-* 然后在终端窗口中的命令继续输入`--volume`和一个宫格
+* 然后在终端窗口中的命令继续输入`--volume`和一个空格
 * 打开Finder -> Go -> Go To Folder...
 * 在Go to the folder窗口中，输入`/Volumes`并点击Go
 * 插入U盘，此时该U盘图标会显示在Finder窗口
@@ -37,7 +37,6 @@ sudo /Applications/Install\ OS\ X\ El\ Capitan.app/Contents/Resources/createinst
 
 * 启动`System Preferences`
 * 选择`Startup disk`然后选择刚才创建见U盘安装磁盘
-
 
 # 参考
 

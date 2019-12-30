@@ -55,7 +55,8 @@ hugo new site works
 - [Book](https://themes.gohugo.io//theme/hugo-book/) - 传统的3列文档网站，配色简洁，可能最接近Android官方文档，或许是定制的基础
 - [Hugo-theme-learn](https://themes.gohugo.io/theme/hugo-theme-learn/en) - 类似ReadTheDoc风格，比较规范，配色更为美观，可以作为书籍撰写
 - [docuapi](https://themes.gohugo.io/theme/docuapi/#introduction) - 可以作为对外技术型文档选择，三列风格，动态效果出色：注意这个theme会使用所有的pages来构建一个单页面API文档，使用页面素材 `weight` 来控制页面顺序 （不知道数据量大的情况下是否影响载入，有点类似我以前使用的 [Tidlywiki](https://tiddlywiki.com/) 使用一个页面来完成整个网站）
-- [Academic](https://themes.gohugo.io//theme/academic/) - 完善页面导航和各种风格展示的嵌入，可以构建复杂网站
+- [Academic](https://themes.gohugo.io/theme/academic/) - 完善页面导航和各种风格展示的嵌入，可以构建复杂网站
+- [Techdoc](https://themes.gohugo.io/hugo-theme-techdoc/) - 适合撰写技术文档，这个风格是Hugo的官方文档风格
 
 ## Blog类型
 
@@ -63,12 +64,15 @@ hugo new site works
 
 - [Hugo Initio](https://themes.gohugo.io/theme/hugo-initio/) - 非常具有现代气息的卡片型
 - [Universal](https://themes.gohugo.io/theme/hugo-universal-theme/) - 最具有商业气质的网站，可以用作企业WEB网站，美轮美奂
-- [Hugo future imperfect](https://themes.gohugo.io/theme/future-imperfect/) - 比较传统型风格，素雅
+- [Hugo future imperfect](https://themes.gohugo.io/theme/future-imperfect/) - 经典的blog风格，素雅，我感觉作为个人资料库也可以使用
 - [Ananke](https://themes.gohugo.io/theme/gohugo-theme-ananke/) - Hugo推荐的案例风格，简洁美观
+- [Swift](https://themes.gohugo.io/hugo-swift-theme/) - 首页结合了卡片
 
 > * 从美观角度我比较倾向 [docuapi](https://themes.gohugo.io/theme/docuapi/#introduction) 和 [Universal](https://themes.gohugo.io/theme/hugo-universal-theme/)
+> * 构建商业网站倾向于 [Academic](https://themes.gohugo.io//theme/academic/) 和 [Universal](https://themes.gohugo.io/theme/hugo-universal-theme/)
 > * 从定制性角度，我感觉 [Book](https://themes.gohugo.io//theme/hugo-book/) 比较适合文档
 > * 从阅读兼具一定美观，或许 [Hugo-theme-learn](https://themes.gohugo.io/theme/hugo-theme-learn/en) 比较合适
+> * 个人资料整理或许可以采用 [Academic](https://themes.gohugo.io//theme/academic/)
 
 # 我的选择
 
@@ -76,8 +80,94 @@ hugo new site works
 
 数据量有限情况下，采用 [docuapi](https://themes.gohugo.io/theme/docuapi/#introduction) 构建
 
+较为复杂的分类，建议采用 [Hugo官方网站的风格](https://gohugo.io/showcase/template/)，提供了良好的文档阅读结构
+
+> 其中使用饿了[asciinema](https://asciinema.org/)来记录终端操作，非常巧妙
+
 - 个人blog
 
 如果构建丰富展示个人不同方向的（如果人生比较精彩），可以选择 [Universal](https://themes.gohugo.io/theme/hugo-universal-theme/)
 
-如果人生简单明了，则选择 [Hugo Initio](https://themes.gohugo.io/theme/hugo-initio/) 小清新
+如果人生简单明了，则选择 [Hugo Initio](https://themes.gohugo.io/theme/hugo-initio/) 
+
+# Hugo site
+
+# 使用
+
+- 初始化仓库
+
+```
+cd works
+git init
+```
+
+- 注意：Hugo必须首先选择一个theme才能使用，你可以从 [Hugo themes](https://github.com/gohugoio/hugoThemes) 一次性下载所有theme
+
+```
+git clone --depth 1 --recursive https://github.com/gohugoio/hugoThemes.git themes
+```
+
+也可以只安装一个theme:
+
+```
+cd themes
+git clone URL_TO_THEME
+```
+
+可以定制自己的theme：
+
+```
+hugo new theme THEMENAME
+```
+
+- 生成第一个post
+
+```
+hugo new posts/my-first-post.md
+```
+
+> 此时会生成一个 `content/posts/my-first-post.md` 内容就是当前时间和标题
+
+```
+---
+title: "My First Post"
+date: 2019-11-11T21:02:51+08:00
+draft: true
+---
+```
+
+- 启动 Hugo服务
+
+```
+hugo server -D
+```
+
+- 浏览器访问 http://localhost:1313/
+
+# 源代码安装
+
+Hugo是使用Go编写的开源框架，可以从源代码编译，也可以直接下载可执行程序。
+
+- 从Github下载源代码安装:
+
+```
+brew install go
+
+git clone https://github.com/gohugoio/hugo
+
+mkdir -p src/github.com/gohugoio
+ln -sf $(pwd) src/github.com/gohugoio/hugo
+
+export GOPATH=$(pwd)
+go get  #获取依赖包的所有最新版本
+
+go build -o hugo main.go
+```
+
+- 升级Hugo
+
+- 安装Pygments (可选)
+
+# 参考
+
+- [Hugo静态网站生成器中文教程](http://nanshu.wang/post/2015-01-31/) - 这篇中文文档写得比较完善
