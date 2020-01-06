@@ -55,6 +55,31 @@ UTF-8
 localedef -i en_US -f UTF-8 en_US.UTF-8
 ```
 
+# `LC_CTYPE`触发`ping -i 0.1`的一个bug
+
+最近在测试服务器ping稳定性时，遇到一个奇怪的现象，在CentOS 7.4环境中，执行
+
+```
+ping -i 0.01 -c 100000 gateway > /dev/shm/2
+```
+
+提示错误
+
+```
+ping: bad timing interval
+```
+
+> 然而，同样的执行命令在`RHEL 7.5`上则没有问题。此外，之前也做过相同测试，同样都脚本命令都没有问题。
+
+参考 [Bug 1283277 - Decimal separator in ping -i <interval> is locale dependent](https://bugzilla.redhat.com/show_bug.cgi?id=1283277) ，有人提出设置 `LC_NUMERIC=en_US.utf8` 可以解决这问题。我的实践是：
+
+```
+export LC_CTYPE=en_US.utf8
+ping -i 0.01 -c 100000 gateway > /dev/shm/2
+```
+
+则可以正常工作。
+
 # 参考
 
 * [OS X Terminal: -bash: warning: setlocale: LC_CTYPE: cannot change locale (UTF-8): No such file or directory Fix](https://www.cyberciti.biz/faq/os-x-terminal-bash-warning-setlocale-lc_ctype-cannot-change-locale/)

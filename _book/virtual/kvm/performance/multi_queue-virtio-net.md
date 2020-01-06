@@ -28,7 +28,7 @@
 </interface>
 ```
 
-> 虚拟机需要关闭再使用多队列`virtio`皮质启动才能生效
+> 虚拟机需要关闭再使用多队列`virtio`配置启动才能生效
 
 * KVM guest虚拟机操作
 
@@ -39,6 +39,8 @@
 ```
 
 > ` -L --set-channels` - 设置指定网络设备的通道数量（the numbers of channels）
+
+在阿里云官网，提供了有关在[虚拟机内部启用多队列的参考文档](https://help.aliyun.com/document_detail/52559.html)
 
 # 实践
 

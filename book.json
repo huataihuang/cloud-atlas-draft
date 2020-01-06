@@ -1,5 +1,5 @@
 {
-  "plugins": ["disqus","toggle-chapters"],
+  "plugins": ["disqus"],
   "pluginsConfig": {
     "disqus": {
       "shortName": "huatai-gitbooks"

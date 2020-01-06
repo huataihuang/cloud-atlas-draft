@@ -1,3 +1,5 @@
+# resize错误码 49153
+
 为了[在Mac上双启动方式安装Linux](develop/mac/dual_boot_linux_on_mac.md)，需要调整Mac文件系统分区大小。
 
 在macOS High Sierra操作系统的APFS文件系统上，使用disk utility调整分区最后的收缩APFS数据结构遇到如下报错：
@@ -43,6 +45,16 @@ tmutil deletelocalsnapshots 2017-10-17-233642
 tmutil deletelocalsnapshots 2017-10-18-014202
 ...
 ```
+
+# resize错误码 -69742
+
+这次是我想清理掉Linux分区，把macOS分区恢复到完整磁盘，这次遇到报错:
+
+```
+The requested size change for the target disk or a related disk is too small. Please try a different disk or partition, or make a larger change. : (-69742)
+```
+
+不过，看分区已经完整占据了整个500G磁盘
 
 # 参考
 

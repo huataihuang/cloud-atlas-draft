@@ -2,27 +2,37 @@
 
 推荐`nvm`来管理`node.js`版本，请参考[nvm官方说明](https://github.com/creationix/nvm)
 
-    curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
 
-> 脚本在 `~/.nvm` 目录下clone了`nvm`的git仓库，并在`~/.bash_profile`， `~/.zshrc`， `~/.profile` 或 `~/.bashrc` 中添加了
+脚本在 `~/.nvm` 目录下clone了`nvm`的git仓库，并在`~/.bash_profile`， `~/.zshrc`， `~/.profile` 或 `~/.bashrc` 中添加了
 
 ```
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
 ```
 
+不过，如果你的用户目录下没有上述profile文件，则不会自动添加。例如，最新的macOS Catalina默认使用zsh，在用户目录下默认并没有自己的profile。请参考 [oh-my-zsh](../../shell/zsh/oh-my-zsh)进行设置。
+
 > 升级`nvm`也可以使用上述安装命令，会自动检测当前系统已经安装的`nvm`版本并使用git升级。
 
 > 如果在Mac OS X中执行`nvm`命令提示`nvm: command not found`，则可能在执行上述脚本的时候，系统中尚未有`~/.bash_profie`，请先执行`touch ~/.bash_profile`，然后再执行一遍安装脚本
 
-	nvm install 4.6.0
-	nvm alias default 4.6.0
+按照hexo官方文档，应该安装node.js的稳定版本
 
-> 2016年2月测试在一些插件兼容性上使用最细的 v5.x 会产生异常，此外，在gitbook的运行中发现，使用 node v5.x 出现cpu资源占用较高问题。不过，我在2016年10月采用最简单的typing模版时，使用最新的`6.7.0`系列发现无法正常显示，所以还是采用了4.6.0
+```
+nvm install stable
+```
+
+可以安装指定版本node（如果需要特定的兼容特性）
+
+```
+nvm install 4.6.0
+nvm alias default 4.6.0
+```
+
+> 早期使用nodejs，例如，2016年2月测试在一些插件兼容性上使用最细的 v5.x 会产生异常，此外，在gitbook的运行中发现，使用 node v5.x 出现cpu资源占用较高问题。不过，我在2016年10月采用最简单的typing模版时，使用最新的`6.7.0`系列发现无法正常显示，所以还是当时指定采用了4.6.0
 >
 > 如果使用[node.js官方pkg包](http://nodejs.org)安装，会在系统级别安装到`/usr/local`目录下，但是对于hexo安装，总是需要使用sudo权限，非常不方便。所以推荐使用`nvm`作为node.js的包管理。
-
-> `按照hexo官方文档，应该安装node.js的稳定版本` - `nvm install stable`
 
 ## 升级node.js
 

@@ -6,14 +6,14 @@
 
 > 参考 [在 Windows、Mac OS X 與 Linux 中安裝 Node.js 網頁應用程式開發環境](http://www.gtwang.org/2013/12/install-node-js-in-windows-mac-os-x-linux.html)
 >
-> 我前期[使用Hexo撰写boke](../write_blog_by_hexo)，已经安装了node，使用以下命令验证
+> 我前期[使用Hexo撰写blog](../hexo/write_blog_by_hexo)，已经安装了node，使用以下命令验证
 
     node -v
 
 > 如果没有安装，可以使用`nvm`来[管理node.js版本](../write_blog_by_hexo)。注意：安装稳定版本
 
 ```
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.5/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.2/install.sh | bash
 nvm install stable
 ```
 

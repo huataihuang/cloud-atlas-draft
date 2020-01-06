@@ -1,0 +1,1 @@
+从 macOS 10.15 Catalina 开始，默认使用的shell从[bash替换成了zsh](https://www.zhihu.com/question/327790745/answer/704874213)。既然久仰zsh大名，也见识过[Linux效率神器](https://zhuanlan.zhihu.com/p/63585679)，让我们一起学习把。

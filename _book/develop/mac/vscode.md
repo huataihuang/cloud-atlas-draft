@@ -4,6 +4,13 @@ Visual Studio Code微软开发的开源编辑器，及其轻简，同时支持�
 
 > 台湾微软blog的[Visual Studio Code 的 C/C++ 語言擴充功能](https://blogs.msdn.microsoft.com/msdntaiwan/2016/04/28/clang-extension-to-visual-studio-code/)介绍了C/C++扩展使用方法。
 
+# 安装VS Code
+
+> 参考 [Visual Studio Code on macOS](https://code.visualstudio.com/docs/setup/mac)
+
+* 启动VS Code，打开Command Palette ( `⇧⌘P` )，然后输入`shell command`，就搜索到 `Shell Command: Install 'code' command in PATH`
+* 确认安装到PATH之后，就可以命令行使用`code .`来启动当前目录下VS Code。
+
 # 开发C/C++
 
 参考 [C/C++ for VS Code](https://code.visualstudio.com/docs/languages/cpp)
@@ -75,6 +82,8 @@ Visual Studio Code微软开发的开源编辑器，及其轻简，同时支持�
 
 VS Code通过插件可以非常好支持Python开发。不过，很多时候，我们会通过virtualenv虚拟环境来构建python开发环境，此时需要告诉VS Code在哪里找到特定版本的python，否则会导致VS Code无法找到对应python模块，就会错误高亮显示一些提示（如开发Django程序时候，提示`[pylint] E0401:Unable to import 'django.conf.'`），带来不必要的困扰。
 
+## Linux平台配置
+
 举例，开发Django，先使用如下命令构建一个django开发虚拟环境：
 
 ```
@@ -104,6 +113,59 @@ pip install mysqlclient
 > 使用Python virtualenv虚拟环境开发Python有一个非常好的地方就是VS Code会根据Python代码的语法检查等功能安装对应插件模块，例如 `pylint`，就不需要安装到系统目录，避免了权限问题。
 
 > 参考 [Python Path and Version](https://github.com/DonJayamanne/pythonVSCode/wiki/Python-Path-and-Version)
+
+## Mac平台配置
+
+> 安装Python3环境参考 [在macOS上安装Python3和virtualenv环境](../python/startup/install_python_3_and_virtualenv_on_macos)
+
+> 参考 [Configuring Python environments](https://code.visualstudio.com/docs/python/environments)
+
+* 安装VS Code的[Python扩展](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
+
+* 在项目目录下启动VS Code
+
+```
+mkdir hello
+cd hello
+code .
+```
+
+* 对于打开Python程序文件，VS Code会引导进行Python解析器设置。也可以启动`Command Palette`（`⇧⌘P`），然后输入 `Python: Select Interpreter`选择解析器
+
+VS Code支持MacBook的Touch Bar，对于断点调试非常方便。
+
+## Sphinx文档
+
+在Python开发中，支持采用[Sphinx-doc](http://www.sphinx-doc.org/en/master/)作为开发文档。VS Code有一个[vscode-restructuredtext](https://github.com/vscode-restructuredtext/vscode-restructuredtext)支持reStructureText文档语法高亮和页面预览。
+
+需要注意的是，这个插件不是安装完就可以直接实现预览的，必须完成以下几个步骤：
+
+* 系统安装Sphinx支持 - 这里可以参考[使用Sphinx构建Python程序文档](../doc/sphinx/sphinx_for_python_doc)安装，以下是Mac上安装(切换到`root`用户)：
+
+```bash
+easy_install pip
+pip install --ignore-installed six
+pip install --ignore-installed pyparsing
+pip install sphinx
+pip install sphinx_rtd_theme
+```
+
+> 这里`--ignore-installed`两个模块是因为这两个模块是macOS内建的，不能通过`pip`卸载和升级
+
+* 在VS Code中配置添加
+
+```json
+{
+    "restructuredtext.builtDocumentationPath" : "${workspaceRoot}/build/html",
+    "restructuredtext.confPath"               : "${workspaceRoot}/source"
+}
+```
+
+> 参考 [nable to open 'Preview 'manual.rst'': Error #64](https://github.com/vscode-restructuredtext/vscode-restructuredtext/issues/64)
+
+完成之后即可以在VS Code中预览
+
+![预览resturcturedtext](../../img/develop/mac/vscode-restructuredtext.png)
 
 # 编辑代码
 

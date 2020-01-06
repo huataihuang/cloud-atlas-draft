@@ -1,0 +1,1 @@
+参考 tfindelkind.com 网站的系列教程[FIO (Flexible I/O Tester)](http://tfindelkind.com/2015/08/04/fio-flexible-io-tester-part1-installation-and-compiling-if-needed/)整理和实践
