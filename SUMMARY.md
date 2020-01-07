@@ -249,6 +249,7 @@
 				* [nVidia GT 750M显卡](os/linux/redhat/fedora/nvidia_gt_750m.md)
 				* [在Fedora中播放mp4视频](os/linux/redhat/fedora/play_with_mp4_in_fedora.md)
 				* [在Fedora的chromium中播放flash](os/linux/redhat/fedora/chromium_play_flash_in_fedora.md)
+			* [CentOS](os/linux/redhat/centos/README.md)
 			* [系统管理](os/linux/redhat/system_administration/README.md)
 				* [Grub 2 boot loader](os/linux/redhat/system_administration/grub2/README.md)
 					* [在grub2中切换默认启动内核](os/linux/redhat/system_administration/grub2/switch_default_kernel_in_grub2.md)

@@ -1,3 +1,5 @@
+经过实践发现，实际上VMware install macos from recovery partition还是需要先从App Store下载本机操作系统对应的安装程序才能进行。实际上并不能安装旧版本macOS，因为App Store压根就不允许下载比自己本机更低的macOS版本。
+
 * 启动VMware Fusion软件，然后选择 `install macOS from the recovery partition` 选项，然后点击 `Continue` 按钮：
 
 ![VMware从recovery分区安装](../../img/develop/mac/vmware_install_macos_from_recovery_partition.png)
