@@ -19,5 +19,8 @@ Gitbook是技术工作者协作撰写文档的利器（通过git管理协作）�
 * [GitBook多国语言](gitbook_multi_language.md)
 * [GitBook嵌入视频](gitbook_video.md)
 
+另外，在medium上有 [Publish Your Book Online with GitBook](https://medium.com/@rebeccapeltz/publish-your-book-online-with-gitbook-fc0ce9b7f12) 非常详细介绍了gitbook使用方法。
+
+![发布图书](../../../img/develop/doc/gitbook/publish_book_with_gitbook.jpg)
 
 

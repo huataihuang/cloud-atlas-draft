@@ -1126,6 +1126,7 @@
 	* [Mac](develop/mac/README.md)
 		* [在mac上从iso镜像创建启动U盘](develop/mac/create_boot_usb_from_iso_in_mac.md)
 		* [从macOS Recovery中重新安装macOS](develop/mac/reinstall_macos_from_recovery.md)
+		* [从Time Machine备份中恢复Mac数据](develop/mac/restore_mac_from_time_machine.md)
 		* [降级macOS](develop/mac/downgrade_macos.md)
 		* [在VMware虚拟机中运行Mavericks](develop/mac/run_mavericks_in_vmware.md)
 		* [中文输入法](develop/mac/chinese_input.md)

@@ -2,6 +2,18 @@
 
 总有一些情况下，我们需要回退到旧版本操作系统：或许因为有应用程序需要旧版本macOS支持，或者因为硬件性能有限，或者如我对旧版本的拟物化风格有一种怀旧的迷恋。
 
+# 经验总结
+
+实际上我折腾了好几天才把MacBook Air 2011的笔记本恢复到拟物化的Mavericks操作系统，去除掉很多弯路，摸索出的解决方法：
+
+* 从 [Mac OS X Mountain Lion 10.8.5 Free Download](http://allmacworld.com/mac-os-x-mountain-lion-10-8-5-free-download/) 下载到 Mountain Lion 10.8.5
+    * 选择Mountain Lion的原因是只有这个版本才能直接从安装包中直接复制出`InstallESD.dmg`光盘镜像；而更高的Mavericks则需要动用`createinstallmedia`镜像工具，可惜这个镜像工具必须在Mavericks操作系统中运行，并且需要从AppStore下载Installer软件包，这两个条件无法满足。
+* 使用`InstallESD.dmg`光盘镜像先在VMware Fusion中安装一个Mountain Lion的虚拟机，这样就具备了最初的低版本操作系统。
+* 在Mountain Lion的虚拟机中，支持使用`Disk Utility`来创建安装U盘：使用从ISORIVER下载[Mac OS X Mavericks 10.9 ISO and DMG Image Download](https://isoriver.com/mac-os-x-mavericks-10-9-iso-dmg-image/)的`Mavericks_ESD.dmg`恢复到U盘中，然后将U盘拿到物理主机MacBook Air 2011上安装。
+* 后来还找到了很久以前(2017年)通过Time Machine备份的笔记本完整操作系统，[从Time Machine备份中恢复Mac数据](restore_mac_from_time_machine)的方法也可以恢复旧版本OS X，甚至可以用来创建VMware虚拟机。
+
+----
+
 # 不同情况下降级macOS的思路
 
 ## 运行High Sierra
@@ -77,7 +89,67 @@ sudo /Volumes/OS\ X\ Base\ System/Install\ OS\ X\ Mavericks.app/Contents/Resourc
 
 例如，比 Mavericks 版本更低的 Mountain Lion，就直接提供了 `InstallESD.dmg` ，所以我改为下载 Mountain Lion 安装软件包(Google了以下，从 [Mac OS X Mountain Lion 10.8.5 Free Download](http://allmacworld.com/mac-os-x-mountain-lion-10-8-5-free-download/) 下载)，直接从该软件包解包出光盘镜像。
 
-> [Create Bootable Copies of the OS X Mountain Lion Installer](https://www.lifewire.com/create-bootable-copies-os-x-mountain-lion-installer-2260352)
+> [Create Bootable Copies of the OS X Mountain Lion Installer](https://www.lifewire.com/create-bootable-copies-os-x-mountain-lion-installer-2260352): 在 `Install OS X Mountain Lion.app` 中有一个 `SharedSupport` 目录，包含了一个 `InstallESD.dmg` ，直接刻录到光盘或者制作启动U盘就能够安装系统。
+
+* 通过Disk Utility工具格式化U盘，命名为`InstallESD`:
+
+![格式化U盘](../../img/develop/mac/format_udisk_InstallESD.png)
+
+* 然后命令行卸载掉这个U盘挂载(假设这里自动挂载为 `/dev/disk4s1` ，也就可以看到U盘的raw设备是 `/dev/rdisk4`):
+
+```
+sudo diskutil umount /Volumes/InstallESD
+```
+
+* 下载的文件是 `Mac_OS_X_Mountain_Lion_10.8.5.dmg`
+* 双击该文件打开挂载，然后右击`Install OS X Mountain Lion`，选择菜单`Show Package Contents`:
+
+![显示包内容](../../img/develop/mac/show_install_macos_content.png)
+
+* 找到目录`Contents/SharedSupport/`下的`InstallESD.dmg`文件，将这个文件复制出来（这个文件是用来创建光盘的镜像文件)
+
+> 参考 [How to make a bootable Lion install disc or drive](https://www.macworld.com/article/1161069/make-a-bootable-lion-installer.html) 将镜像文件写到U盘
+
+* 使用Disk Utility工具，使用该工具的菜单命令 `File > Open Disk Image...` 并选择文件 `InstallESD.dmg` 挂载这个磁盘镜像。此时在终端执行命令 `df -h` 可以看到
+
+```
+/dev/disk5s2   4.5Gi  4.2Gi  357Mi    93%    1196 4294966083    0%   /Volumes/Mac OS X Install ESD
+```
+
+* 在Disk Utility工具中，选择之前我们格式化过的U盘，注意标记名是 `InstallESD`，然后点击 `Restore` 按钮
+
+![恢复installESD](../../img/develop/mac/restore_installESD.png)
+
+* 选择从 `Mac OS X Install ESD` 恢复：
+
+![恢复installESD](../../img/develop/mac/rrestore_from_Mac_OS_X_install_ESD.png)
+
+这里出现报错 `Could not validate sizes - Operation not permitted`
+
+![恢复installESD错误](../../img/develop/mac/restore_from_Mac_OS_X_install_ESD_error.png)
+
+不过，我尝试dd命令制作磁盘，但是无法启动：
+
+```
+cd /Volumes/OS\ X\ Mountain\ Lion/Install\ OS\ X\ Mountain\ Lion.app/Contents/SharedSupport/
+sudo dd if=InstallESD.dmg of=/dev/rdisk4 bs=100m
+```
+
+> 我怀疑是在高版本Catalina系统中，使用这个Disk Utility不行。后来试了，若然在低版本Mountain Lion中，使用Disk Utility工具来restore磁盘是可行的。
+
+* 虽然前面通过Disk Utility工具（我是在Catalina上运行的）恢复失败，但是从`Mac_OS_X_Mountain_Lion_10.8.5.dmg`复制出来的`InstallESD.dmg`是可以直接用VMware来安装的，所以先安装低版本Mountain Lion Mac OS X。
+
+![VMware安装MountainLion](../../img/develop/mac/vmware_install_mountain_lion.png)
+
+* 以上在VMware虚拟机中安装完成后，就可以使用Mountain Lion的低版本Disk Utility来制作启动U盘，也就可以拿到物理笔记本MacBook Air 2011上进行安装。
+
+* 由于现在有了低版本的OS X，甚至就可以开始在虚拟机内部升级到Mavericks版本，然后再制作Mavericks的启动U盘，同样也可以拿到物理笔记本MacBook Air 2011上进行安装。
+
+* 例如，在Mountain Lion虚拟机中，使用Disk Utility工具就可以restore方式将[Mac OS X Mavericks 10.9 ISO and DMG Image Download](https://isoriver.com/mac-os-x-mavericks-10-9-iso-dmg-image/)下载的`Mavericks_ESD.dmg`恢复到U盘中，然后将U盘拿到物理主机MacBook Air 2011上安装。`终于成功！！！`
+
+![VMware中MontainLion制作Mavericks安装U盘](../../img/develop/mac/create_mavericks_udisk.png)
+
+> 真是非常不容易，这些VMware镜像需要好好保存，以便不时之需。
 
 # Apple ID
 
