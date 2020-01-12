@@ -7,7 +7,9 @@
 实际上我折腾了好几天才把MacBook Air 2011的笔记本恢复到拟物化的Mavericks操作系统，去除掉很多弯路，摸索出的解决方法：
 
 * 从 [Mac OS X Mountain Lion 10.8.5 Free Download](http://allmacworld.com/mac-os-x-mountain-lion-10-8-5-free-download/) 下载到 Mountain Lion 10.8.5
-    * 选择Mountain Lion的原因是只有这个版本才能直接从安装包中直接复制出`InstallESD.dmg`光盘镜像；而更高的Mavericks则需要动用`createinstallmedia`镜像工具，可惜这个镜像工具必须在Mavericks操作系统中运行，并且需要从AppStore下载Installer软件包，这两个条件无法满足。
+    * 选择Mountain Lion的原因是只有这个版本才能直接从安装包中直接复制出`InstallESD.dmg`光盘镜像；
+    * 而更高的Mavericks则需要动用`createinstallmedia`镜像工具，可惜这个镜像工具必须在Mavericks操作系统中运行，并且需要从AppStore下载Installer软件包，这两个条件无法满足；
+    * 比较奇特的是，在Mojave版本中使用`createinstallmedia`镜像工具则可以正常创建安装U盘。
 * 使用`InstallESD.dmg`光盘镜像先在VMware Fusion中安装一个Mountain Lion的虚拟机，这样就具备了最初的低版本操作系统。
 * 在Mountain Lion的虚拟机中，支持使用`Disk Utility`来创建安装U盘：使用从ISORIVER下载[Mac OS X Mavericks 10.9 ISO and DMG Image Download](https://isoriver.com/mac-os-x-mavericks-10-9-iso-dmg-image/)的`Mavericks_ESD.dmg`恢复到U盘中，然后将U盘拿到物理主机MacBook Air 2011上安装。
 * 后来还找到了很久以前(2017年)通过Time Machine备份的笔记本完整操作系统，[从Time Machine备份中恢复Mac数据](restore_mac_from_time_machine)的方法也可以恢复旧版本OS X，甚至可以用来创建VMware虚拟机。
@@ -80,7 +82,13 @@ sudo /Volumes/OS\ X\ Base\ System/Install\ OS\ X\ Mavericks.app/Contents/Resourc
 
 > 这里先格式化U盘（U盘文件系统命名为`Mavericks_Install`），格式化以后自动挂载成 `/Volumes/Mavericks_Install`
 
-不过，这里报错 `/Volumes/OS X Base System/Install OS X Mavericks.app/ does not appear to be a valid OS installer application.` ，还是没有解决问题。。。
+不过，这里报错 `/Volumes/OS X Base System/Install OS X Mavericks.app/ does not appear to be a valid OS installer application.` ，
+
+神奇的是，同样下载的Mojave版本dmg，挂载以后是可以正常创建安装U盘的：
+
+```
+/Volumes/macOS\ 10.13.1\ High\ Sierra/Install\ macOS\ High\ Sierra.app/Contents/Resources/createinstallmedia --volume /Volumes/Install\ macOS\ Mojave
+```
 
 ### 尝试从Mountain Lion安装
 
