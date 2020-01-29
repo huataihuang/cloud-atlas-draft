@@ -21,7 +21,7 @@ if __name__ == "__main__":
     main(sys.argv)
 ```
 
-为什么不是直接定义自己的函数，蕾丝
+为什么不是直接定义自己的函数，类似
 
 ```python
 def my_function()

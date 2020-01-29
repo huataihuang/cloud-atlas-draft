@@ -190,6 +190,8 @@ macOS降级到低于OS X El Capitan，iOS降级到低于iOS 9，都会面临一�
 
 申请到美区账号以后，实际上由于没有绑定信用卡，是不能直接购买收费软件的。不过，苹果支持Gift Card，可以直接在美亚上购买充值，就可以购买需要的软件的。
 
+> 美亚上提供 [App Store & iTunes Gift Cards - Email Delivery](https://www.amazon.com/gp/product/B075Y8WBTS/ref=ppx_yo_dt_b_asin_title_o00?ie=UTF8&psc=1) ，只需要苹果的接收账号的电子邮件地址。在美亚上通过信用卡购买Gift Card后，会直接向接受人的电子邮箱发送Gift Card激活邮件，只需要登录邮箱确认就可以使用。
+
 > 很遗憾，实际上由于苹果全面转向64位系统，并且平面化风格以后，大多数iOS软件已经无法在旧版本6.1.x上运行了。需要采用第三方平台通过越狱安装。不过，如果有一个古老的[Mac OS X Mavericks和iOS 6组合(体验最后的拟物化苹果生态)](mac_os_x_mavericks_and_ios_6)也是一个神奇的体验。
 
 # 参考

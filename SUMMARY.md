@@ -1307,6 +1307,8 @@
 		* [Office](develop/doc/office/README.md)
 			* [在Linux中使用Sozi制作PPT](develop/doc/office/write_ppt_in_linux_with_sozi.md)
 			* [Linux演示工具(PPT)](develop/doc/office/linxu_presentation_tools.md)
+		* [OmniGraffle](develop/doc/omnigraffle/README.md)
+		* [Sketch](develop/doc/sketch/README.md)
 	* [编程架构](develop/architecture/README.md)
 		* [统一建模语言UML](develop/architecture/uml/README.md)
 			* [看懂UML类图和时序图](develop/architecture/uml/read_uml.md)
