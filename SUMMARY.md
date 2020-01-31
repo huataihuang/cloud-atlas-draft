@@ -933,6 +933,7 @@
 		* [iPhone 3GS:十年后经典再现](develop/ios/iphone_3gs.md)
 		* [iOS6拟物化](develop/ios/ios6.md)
 		* [iPhone 4S越狱、降级和其他](develop/ios/iphone_4s_jailbreak_downgrade_and_other.md)
+                * [使用Phoenix越狱iOS9.3.5和9.3.6](develop/ios/jailbreak_ios9.3.6_using_phoenix.md)
 		* [新安装App提示"Verification Required"的解决](develop/ios/fix_verification_required.md)
 	* [Android](develop/android/README.md)
 		* [学习Android开发](develop/android/learning_android_program/README.md)
