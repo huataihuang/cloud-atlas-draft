@@ -5,7 +5,7 @@
 ```
 create database appdb character set utf8;
 
-grant usage on appdb.* to app@'%' identified by 'MyPass';
+create user app@'%' identified by 'MyPass';
 
 grant all privileges on appdb.* to app@'%';
 
@@ -15,7 +15,7 @@ flush privileges;
 检查验证权限使用命令
 
 ```
-mysql -u app -p'MyPass' appdb
+mysql -u'app' -p'MyPass' appdb
 ```
 
 > 参考 [How-To create a MySQL database and set privileges to a user](https://www.debuntu.org/how-to-create-a-mysql-database-and-set-privileges-to-a-user/)

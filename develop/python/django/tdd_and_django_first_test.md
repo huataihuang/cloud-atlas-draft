@@ -247,3 +247,7 @@ FAILED (failures=1)
 ```
 
 > `implicitly_wait`不适合所有情况，复杂测试需要显式等待
+
+# 参考
+
+* [Browser Automation Using Selenium](https://www.geeksforgeeks.org/browser-automation-using-selenium/)
