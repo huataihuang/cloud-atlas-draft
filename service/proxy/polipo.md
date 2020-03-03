@@ -47,6 +47,12 @@ polipo proxyAddress=0.0.0.0
 
 > **注意：监听所有网络接口存在被滥用的风险，请注意在内网安全环境下使用！**
 
+默认监听端口是 8123 ，可以指定监听到其他端口上
+
+```
+polipo proxyAddress=0.0.0.0 proxyPort=1080
+```
+
 # 配置Polipo
 
 > 在Ubuntu上安装部署polipo，配置参考`/usr/share/doc/polipo/examples/config.sample`
@@ -55,6 +61,7 @@ polipo proxyAddress=0.0.0.0
 
 ```ini
 proxyAddress = "0.0.0.0"
+proxyPort = 1080
 allowedClients = 127.0.0.1, 192.168.0.0/24
 
 # Uncomment this if you want to use a parent proxy:

@@ -5,9 +5,13 @@
 * 转发网关是一个面向internet的代理用于限制资源的范围
 * 反向代理是面向内部的代理，作为控制和保护私有网络服务器的代理服务器，通常执行负载均衡，授权和加密或缓存。
 
+# tunneling proxy
+
+请参考 [设置代理服务器和匿名上网](setup_linux_proxy_server_and_surf_anonymously)
+
 # Open proxies
 
-open proxy是转发服务器，匿名open proxy允许用户隐藏IP地址方式访问internet服务。
+open proxy是转发服务器，匿名open proxy允许用户隐藏IP地址方式访问internet服务。典型的代理Internet代理服务器是[squid](http://www.squid-cache.org)，默认可以作为正向代理服务器。此外squid也可以配置成反向代理，是一个非常稳定的Proxy解决方案。
 
 # 反向代理
 
@@ -18,6 +22,8 @@ open proxy是转发服务器，匿名open proxy允许用户隐藏IP地址方式�
 * 压缩
 * spoon feeding（喂食）：指反向代理负责处理缓慢响应客户端的资源发送，避免拖累应用服务器
 * 安全：范县给代理服务器是增加了安全防攻击的附加保护
+
+典型的反向代理服务器有： [varnish](http://varnish-cache.org) 和 [nginx](https://www.nginx.com)
 
 # 参考
 

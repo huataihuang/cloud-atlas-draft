@@ -7,7 +7,7 @@
 * [Linux on mid-2017 MacBookPro](https://nixaid.com/linux-on-macbookpro/)介绍了在MacBook Pro Core i7 2.9 15" Touch/Mid-2017 with AMD Radeon Pro 560硬件平台安装Ubuntu Linux的方法：
   * Ubuntu 18.04（Linux 4.15.0-22）提供了能够支持touchbar和键盘
 
-在最新款的[MacBook Pro上运行Linux最好通过VMware Fusion来实现](../../virtual/vmware/vmware_fusion)：
+在最新款的MacBook Pro上运行Linux最好通过[VMware Fusion](../../virtual/vmware/vmware_fusion)或者[HyperKit/xhyve](../../virtual/xhyve/README)
 
 * 使用macOS最新版本和VMware Fusion Pro来虚拟机运行Linux
 * Fusion支持高级虚拟化功能，可以透传硬件（virt-x/virt-d），所以可以直接在Linux中测试硬件虚拟化，构建OpenStack

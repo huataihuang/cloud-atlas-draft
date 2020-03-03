@@ -1,6 +1,8 @@
 Nexus 6P是Google在Nexus品牌转换到Pixel之前最后一款Nexus手机，可以说是Nexus的绝唱（虽然存在很多不足）。
 
 > 强烈建议你不要购买这款手机（即使二手非常便宜），在国内无法使用移动4G的volte。高版本的Android更新后会自动激活volte，然而运营商的volte配置没有包含，意味着这款手机只能通过2G语音通话（因为现在移动的2G/3G网络覆盖极差）升级到高版本自动启用的4G volte也是聋子的耳朵。
+>
+> 此外，Nexus 6P似乎有硬件隐患，会出现不断循环重启，可能是CPU虚焊或者CPU核心Big Cluster异常，不得不尝试 [修复Nexus 6P无限循环重启问题](fix_nexus_6p_bootloop_of_death) 。总之，实践使用下来小问题还是不断。
 > 
 > 以上为自己切身体验。
 
@@ -9,6 +11,19 @@ Nexus 6P是Google在Nexus品牌转换到Pixel之前最后一款Nexus手机，可
 > 我个人的使用体验来说：Nexus 6P国际版使用中国移动网络的LTE 4G功能完全没有问题，上网速度正常（较快）。但是不能开启VoLTE使得这款手机不适合作为主力机使用，如果电话量少且不在意因2G语音通话问题，可以考虑作为阅读、上网的备用机。
 
 警告：这款手机的电池消耗极大，由于用户投诉不断，Google已经对官网渠道购买的这款手机作出赔偿。然而，这个利好消息对海淘的我们没有用处，悲伤。
+
+# 硬件配置
+
+[Info about angler](https://wiki.lineageos.org/devices/angler)
+
+```
+SoC	Qualcomm MSM8994 Snapdragon 810
+RAM	3 GB
+CPU	Octa-core Cortex-A53 & Cortex-A57
+1.55 GHz & 2.0 GHz
+Architecture	arm64
+GPU	Adreno 430
+```
 
 # 优点
 
