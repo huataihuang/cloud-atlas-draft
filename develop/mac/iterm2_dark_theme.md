@@ -23,3 +23,4 @@ git clone https://github.com/dracula/iterm.git
   * 选择`Dracula.itermcolors`文件
   * 然后再次从`Color Presets...`中选择`Dracula`使风格生效
 
+> 如果没有安装Dracula theme，采用iTerm2的 `Pastel (Dark Background)` 也比较接近。

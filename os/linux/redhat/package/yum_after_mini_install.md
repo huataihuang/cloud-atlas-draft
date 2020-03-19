@@ -16,3 +16,21 @@ wget tar bzip2 screen sysstat unzip nfs-utils parted lsof man bind-utils \
 gcc gcc-c++ make telnet flex autoconf automake ncurses-devel crontabs \
 zlib-devel git
 ```
+
+----
+
+* CentOS 8 最小化安装：
+
+```
+yum install which sudo nmap-ncat mlocate net-tools rsyslog file \
+wget tar bzip2 sysstat unzip nfs-utils parted lsof man bind-utils \
+gcc gcc-c++ make telnet flex autoconf automake ncurses-devel crontabs \
+zlib-devel git
+```
+
+* CentOS 8 标准化安装:
+
+```
+yum install sysstat nfs-utils gcc gcc-c++ make \
+telnet flex autoconf automake ncurses-devel zlib-devel git
+```

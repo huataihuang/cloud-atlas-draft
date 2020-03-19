@@ -1,0 +1,1 @@
+[chromium os](https://www.chromium.org/chromium-os)是chrome os的开源社区版本，轻量级的Linux系统，专注于运行远程WEB应用。我非常看好这样的技术形式，特别是能够运行Android应用和Linux容器之后，使得chromebook非常具有吸引力。
