@@ -42,6 +42,9 @@ Type=forking
 ExecStart=/etc/rc.d/rc.local start
 TimeoutSec=0
 RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target
 ```
 
 然后再次执行`sudo systemctl enable rc-local`

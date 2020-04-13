@@ -35,6 +35,8 @@ else
 fi
 ```
 
+以下是一个巧妙的检查端口脚本方法，并且使用了timeout来限制超时：
+
 ```bash
 # Connection successful:
 $ timeout 1 bash -c 'cat < /dev/null > /dev/tcp/google.com/80'

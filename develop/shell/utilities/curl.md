@@ -20,6 +20,15 @@ curl -k https://<SERVER_IP>/API/xyz -H 'Content-Type: application/json' -d @/var
 curl -k -u user_name:user_password -H "Accept: version=2,application/json" -H "Content-Type: application/json" -X POST -d '{"name": "tom", "phone": null, "address": "x road, y room", "crash_time": "2018-07-26 06:48:02"}' http://myapp.com/api/contact/
 ```
 
+# 使用代理服务器
+
+在内网或者生产环境，往往会使用代理服务器来实现集中的internet访问以及缓存加速。curl命令也支持代理功能，只需要设置shell环境变量就可以：
+
+```bash
+export http_proxy=http://your.proxy.server:port/
+export https_proxy=https://your.proxy.server:port/
+```
+
 # 参考
 
 * [How to POST file contents using cURL?](https://superuser.com/questions/1054742/how-to-post-file-contents-using-curl)

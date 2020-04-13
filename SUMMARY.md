@@ -972,6 +972,7 @@
 			* [Nokia中端高可玩X7](develop/android/device/nokia_x7.md)
 			* [Nexus 6P](develop/android/device/nexus_6p.md)
 			* [真正原生Android: Pixel系列](develop/android/device/pixel.md)
+			* [Pixel设置VoLTE](develop/android/device/pixel_volte.md)
 		* [Android和Linux合体](develop/android/linux/README.md)
 			* [在Android中运行Linux](develop/android/linux/deploy_linux_on_android.md)
 			* [在Android中部署ssh服务](develop/android/linux/deploy_ssh_server_for_android.md)
