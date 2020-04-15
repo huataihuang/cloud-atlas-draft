@@ -1,6 +1,6 @@
 [UnixBench](https://github.com/kdlucas/byte-unixbench)始于BYTE UNIX benchmark suite，多年以来由很多人更新和修改，提供了对Unix系统对基本性能度量，用于对比不同系统对性能。
 
-UnixBench测试也包含了一些非常简单对徒刑测试，并且能够针对多处理器复制足够的副本进行多处理器性能压测。即首先运行一个单任务测试单个CPU性能，然后按照系统的处理器数量调用相应的多任务并发测试。
+UnixBench测试也包含了一些非常简单对图形测试，并且能够针对多处理器复制足够的副本进行多处理器性能压测。即首先运行一个单任务测试单个CPU性能，然后按照系统的处理器数量调用相应的多任务并发测试。
 
 * 安装
 
@@ -31,6 +31,14 @@ sudo apt-get install libx11-dev libgl1-mesa-dev libxext-dev perl perl-modules ma
 ```
 ./Run -c 2
 ```
+
+在ARM系统(128核心)上，执行 `./Run -c 128` 会出现报错:
+
+```
+0 CPUs in system; running 128 parallel copies of tests
+```
+
+----
 
 如果只测试部分测试案例，可以以参数传递测试用例：
 

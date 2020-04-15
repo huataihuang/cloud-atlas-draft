@@ -18,3 +18,12 @@
 | LMBench | 随机内存读写 |
 
 使用不同的工具链可能会得到不同的benchmark测试结果，并且测试工具受到编译参数的影响，例如编译优化界别，单核或多核，是否使用neon，以及是否使用浮点计算硬件等。
+
+# 压测工具
+
+我现在非常厌倦需要花费大量时间来寻找商用软件，所以首选采用开源软件来完成一切工作。在开源压测工具K6的网站上有一篇对比当前流行的压测软件的文章 [Open source load testing tool review 2020](https://k6.io/blog/comparing-best-open-source-load-testing-tools)介绍对比了很多开源压测工具(业务压测)，其中比较优秀的：
+
+* [k6](https://k6.io/) 使用Go语言编写，支持js的定制
+* [locust](https://locust.io/) 使用Python语言编写，支持python定制
+
+我觉得两者都是值得深入学习的开源软件

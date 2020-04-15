@@ -6,6 +6,8 @@ SPEC CPU 2006 benchmark是SPEC新一代的行业标准化的CPU测试基准套�
 
 # 工具获取
 
+[SPEC CPU® 2006](https://www.spec.org/cpu2006/) 下载不太容易找到，如果从第三方下载，请注意到官方网站做md5校验： [SPEC Software MD5 Checksums](https://www.spec.org/md5sums.html)
+
 # 工具安装
 
 * 标准安装
@@ -30,3 +32,4 @@ $./install.sh -d  /home/cpu2006
 
 * [Spec2006使用说明](http://www.vimlinux.com/lipeng/2014/10/10/linux/)
 * [SPEC benchmark 测试程序使用教程](https://blog.csdn.net/timesir/article/details/78157791)
+* [Installing SPEC CPU2006 Under Unix, Linux, and Mac OS X](https://www.spec.org/cpu2006/Docs/install-guide-unix.html)
