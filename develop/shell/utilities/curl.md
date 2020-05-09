@@ -10,7 +10,21 @@
 curl -k https://<SERVER_IP>/API/xyz -H 'Content-Type: application/json' -d @/var/log/example.log
 ```
 
-> `-k` 表示`--insecure`，不校验服务器SSL安全性
+> `-k` 表示`--insecure`，不校验服务器SSL安全性 ，请参考 [How to ignore invalid and self signed ssl connection errors with curl](https://www.cyberciti.biz/faq/how-to-curl-ignore-ssl-certificate-warnings-command-option/) 。特别适合很多内网部署服务，自己签发的非正式证书。
+
+# 通过curl检查https证书
+
+```bash
+curl -v https://www.baidu.com
+```
+
+如果服务器是自签名证书，则加上 `-k` 参数。如果想要禁止证书警告，例如你的自签名证书服务器，你需要下载文件，忽略证书告警，在使用参数 `-I` :
+
+```bash
+curl -k -O https://202.54.1.2/file.tar.gz
+```
+
+另外，如果你仅仅想截取证书信息，则参考 
 
 # 提交字段内容null
 
@@ -18,6 +32,38 @@ curl -k https://<SERVER_IP>/API/xyz -H 'Content-Type: application/json' -d @/var
 
 ```bash
 curl -k -u user_name:user_password -H "Accept: version=2,application/json" -H "Content-Type: application/json" -X POST -d '{"name": "tom", "phone": null, "address": "x road, y room", "crash_time": "2018-07-26 06:48:02"}' http://myapp.com/api/contact/
+```
+
+# 指定CA信任通过curl访问
+
+可以指定自签名证书
+
+```bash
+curl --cacert /pth/to/my/ca.pem https://url
+curl --header 'Host: www.cyberciti.biz' --cacert /pth/to/my/ca.pem https://207.5.1.10/nixcraft.tar.gz
+```
+
+# 脚本方式截取https证书信息
+
+参考 [how to use curl to verify if a site's certificate has been revoked?](https://superuser.com/questions/742393/how-to-use-curl-to-verify-if-a-sites-certificate-has-been-revoked)
+
+使用以下命令获取服务器证书信息（例如检查服务器证书到期时间）:
+
+```bash
+curl --insecure -v https://www.baidu.com 2>&1 | awk 'BEGIN { cert=0 } /^\* Server certificate:/ { cert=1 } /^\*/ { if (cert) print }'
+```
+
+输出可以看到：
+
+```
+* Server certificate:
+*  subject: C=CN; ST=beijing; L=beijing; OU=service operation department; O=Beijing Baidu Netcom Science Technology Co., Ltd; CN=baidu.com
+*  start date: May  9 01:22:02 2019 GMT
+*  expire date: Jun 25 05:31:02 2020 GMT
+*  issuer: C=BE; O=GlobalSign nv-sa; CN=GlobalSign Organization Validation CA - SHA256 - G2
+*  SSL certificate verify ok.
+* Connection #0 to host www.baidu.com left intact
+* Closing connection 0
 ```
 
 # 使用代理服务器
