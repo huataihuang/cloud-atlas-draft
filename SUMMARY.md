@@ -193,6 +193,7 @@
 				* [ZFS文件系统](os/linux/storage/filesystem/zfs/README.md)
 					* [ZFS dataset丢失排查](os/linux/storage/filesystem/zfs/zfs_dataset_lost.md)
 					* [ZFS替换故障磁盘](os/linux/storage/filesystem/zfs/zfs_replace_disk.md)
+					* [ZFS高速IO缓存配置](os/linux/storage/filesystem/zfs/zfs_cache_for_high_speed.md)
 				* [FAT文件系统](os/linux/storage/filesystem/fat/README.md)
 					* [在Fedora中访问ExFAT文系统](os/linux/storage/filesystem/fat/access_exfat_in_fedora.md)
 				* [性能](os/linux/storage/filesystem/performance/README.md)
