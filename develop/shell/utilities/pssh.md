@@ -78,6 +78,25 @@ pssh -ih ceph-hosts -l root -A "uptime"
 pssh -O StrictHostKeyChecking=no -ih sigma-eu95_ip -l huatai -A "uptime"
 ```
 
+# 终端tty
+
+在pssh执行 `sudo` 命令时候，会出现报错：
+
+```
+...
+[14] 14:45:00 [FAILURE] 192.168.1.11 Exited with error code 1
+Stderr: sudo: no tty present and no askpass program specified
+...
+```
+
+这个报错在ssh远程执行sudo命令时候也会遇到，原因是远程执行强制的基于screen的程序时，需要使用`-t`参数来分配一个tty，即使ssh没有本地tty。不过，我没有找到如何把这个参数传递给pssh的方法，所以遇到这个问题，我暂时使用循环方式使用ssh命令。举例：
+
+```bash
+for i in `cat host`;do ssh -t huatai@$i "echo PASSWORD | sudo -S cp /tmp/my_script.sh /usr/local/bin/my_script.sh";done
+```
+
+> 这里远程服务器sudo需要输入密码，采用了 [sudo工具](sudo) 中通过管道向sudo传输密码的方法，此时 sudo 需要使用参数 `-S` 从 `stdin` 获取密码。
+
 # 并发
 
 pssh和pscp支持并发，但是在macOS上并发执行，例如 `-p 100` 则出现报错

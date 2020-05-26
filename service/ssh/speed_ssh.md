@@ -1,3 +1,5 @@
+# 关闭DNS反向解析
+
 在使用ssh远程登陆服务器时候，经常会遇到ssh登陆缓慢问题，通常原因如下:
 
 * ssh服务器默认启用了DNS反向解析，对ssh client的IP反向解析无法完成，需要DNS反向解析超时后才能继续。
@@ -33,6 +35,25 @@ GSSAPIAuthentication no
 ```
 
 则后续采用密码认证就非常快速。
+
+# 跳过密码错误的节点
+
+我经常使用 for 循环来执行一些命令，例如一些环境不能使用pssh。但是有一个问题，就是遇到某些服务器无法直接登陆，会提示密码输入。而我需要忽略这个错误继续执行循环，反复敲击回车实在太垃圾了。
+
+参考 [How do I make ssh fail rather than prompt for a password if the public-key authentication fails?](https://serverfault.com/questions/61915/how-do-i-make-ssh-fail-rather-than-prompt-for-a-password-if-the-public-key-authe) 有一个解决方法，就是使用BatchMode，这个方式会忽略掉需要密码输入的ssh登陆。
+
+```
+ssh -oBatchMode=yes -l <user> <host> <dostuff>
+```
+
+另外通常还可以在客户端关闭掉密码认证，即配置 `~/.ssh/config` 添加:
+
+```
+Host host1 host2 host3...
+    PasswordAuthentication no
+```
+
+这样就会忽略密码认证节点
 
 # 参考
 

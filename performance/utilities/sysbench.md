@@ -77,4 +77,3 @@ Threads fairness:
 * [sysbench测试案例](https://wiki.mikejung.biz/Sysbench)
 * [How To Benchmark Your System (CPU, File IO, MySQL) With sysbench](https://www.howtoforge.com/how-to-benchmark-your-system-cpu-file-io-mysql-with-sysbench)
 * [Gentoo: Sysbench](https://wiki.gentoo.org/wiki/Sysbench)
-* [sysbench](https://github.com/akopytov/sysbench)
