@@ -1151,6 +1151,7 @@
 		* [中文输入法](develop/mac/chinese_input.md)
 		* [macOS内建的文本朗读（英语）](https://support.apple.com/kb/ph25639?locale=zh_CN)
 		* [Mac平台使用VLC播放器的中文字幕显示](develop/mac/vlc_on_mac_chinese_font.md)
+		* [Mac平台最佳视频播放器iina](develop/mac/best_video_player_iina.md)
 		* [TextMate 2使用Tips](develop/mac/textmate2_tips.md)
 		* [Sublime 3使用Tips](develop/mac/sublime_tips.md)
 		* [在Mac OS X上安装Java多个版本](develop/mac/multiple_versions_java_in_os_x.md)
