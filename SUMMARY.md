@@ -1187,6 +1187,8 @@
 		* [不能运行"not from a verified developer"程序](develop/mac/not_from_verified_developer.md)
 		* [Mac OS X Mavericks和iOS 6组合(体验最后的拟物化苹果生态)](develop/mac/mac_os_x_mavericks_and_ios_6.md)
 		* [将iPad作为Mac的第二块屏幕(sidecar)](develop/mac/use_ipad_as_sidecar_for_mac.md)
+		* [MacBook Pro 2018使用外接显示器](develop/mac/macbook_pro_2018_external_monitor.md)
+		* [macOS安装冻结问题处理](develop/mac/macos_install_freeze.md)
 	* [shell](develop/shell/README.md)
 		* [bash](develop/shell/bash/README.md)
 			* [bash快捷键](develop/shell/bash/bash_shortcuts.md)
