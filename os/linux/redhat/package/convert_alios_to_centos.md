@@ -22,12 +22,17 @@ libcap-ng-0.7.5-4.el7
 
 # 转换到CentOS 7.8.2003
 
-> 2020年6月，CentOS 7已经发布到 7.8.2003
+> 2020年6月，CentOS 7已经发布到 7.8.2003 。本段落是完整的操作步骤记录
 
 * 卸载alios版本包
 
 ```bash
 rpm -e --nodeps alios-release-server-7.2-23.alios7.x86_64
+rpm -e alios-base-setup-7.2-33.alios7.noarch
+rm -f /etc/yum.repos.d/epel.repo
+rm -f /etc/yum.repos.d/ops.repo
+rm -f /etc/yum.repos.d/RHEL.repo
+rm -f /etc/yum.repos.d/taobao.repo
 ```
 
 有一个warning，不过，软件包还是删除了
@@ -36,7 +41,118 @@ rpm -e --nodeps alios-release-server-7.2-23.alios7.x86_64
 warning: Unable to get systemd shutdown inhibition lock: Unit is masked.
 ```
 
+* 导入证书
 
+```bash
+rpm --import http://mirrors.163.com/centos/7.8.2003/os/x86_64/RPM-GPG-KEY-CentOS-7
+```
+
+* 安装CentOS系统配置
+
+```bash
+rpm -ivh http://mirrors.163.com/centos/7.8.2003/os/x86_64/Packages/centos-release-7-8.2003.0.el7.centos.x86_64.rpm
+```
+
+* 删除 `taobao-repo-utils` 否则centos 的 yum报错
+
+```
+rpm -e taobao-repo-utils-2.1.0-5.noarch
+```
+
+* 卸载dnf (alios 7.2引入了Fedora使用的dnf，但是和官方yum冲突)
+
+```
+rpm -e --nodeps \
+dnf-conf-2.7.6-6.alios7.noarch \
+libdnf-0.11.1-1.alios7.x86_64 \
+python2-dnf-plugins-core-2.1.5-9.alios7.noarch \
+python2-dnf-2.7.6-6.alios7.noarch \
+dnf-2.7.6-6.alios7.noarch \
+python2-dnf-plugin-show-leaves-2.1.5-9.alios7.noarch \
+dnf-plugins-p2p-0.1.0-1.alios7.noarch \
+dnf-plugins-core-2.1.5-9.alios7.noarch \
+python2-dnf-plugin-leaves-2.1.5-9.alios7.noarch \
+python2-dnf-plugin-versionlock-2.1.5-9.alios7.noarch \
+dnf-utils-2.1.5-8.alios7.noarch
+```
+
+* 卸载yum (alios 7.2由于使用了dnf，导致yum实际是dnf的软连接，并且有很多残留包需要一并删除)
+
+```
+rpm -e --nodeps \
+yum4-2.7.6-6.alios7.noarch \
+yum-metadata-parser-1.1.4-10.1.alios7.x86_64 \
+yum-baseline-hc-1.0.0-20200606.alios7.x86_64 \
+yum-langpacks-0.4.2-4.1.alios7.noarch \
+yum-plugin-fastestmirror-1.1.31-46.alios7.noarch \
+yum-adapter-0.1.0-7.alios7.noarch \
+python-urlgrabber-3.10-8.1.alios7.noarch
+```
+
+* 然后重新安装yum
+
+```
+rpm -ivh \
+http://mirrors.163.com/centos/7.8.2003/os/x86_64/Packages/yum-3.4.3-167.el7.centos.noarch.rpm \
+http://mirrors.163.com/centos/7.8.2003/os/x86_64/Packages/python-urlgrabber-3.10-10.el7.noarch.rpm \
+http://mirrors.163.com/centos/7.8.2003/os/x86_64/Packages/yum-plugin-fastestmirror-1.1.31-53.el7.noarch.rpm \
+http://mirrors.163.com/centos/7.8.2003/os/x86_64/Packages/yum-metadata-parser-1.1.4-10.el7.x86_64.rpm
+```
+
+* 恢复yum的packages目录
+
+```
+cp /var/lib/rpm.bdbbak/Packages /var/lib/rpm/Packages
+```
+
+* 修订yum配置中版本变量 `$releasever` （我不知道为何alios不能如centos一样获得这个变量，所以强制改为7）：
+
+```bash
+sed -i 's/\$releasever/7/g' *
+```
+
+> 但是，这里一定要注意，在完成升级之后，一定要把 `/etc/yum.conf.d` 目录下文件再恢复原样，即恢复 `$releasever` 。因为此时已经可以正常工作，并且后续升级大版本到entOS 8需要读取这个变量配置。如果不恢复标准配置，会导致大版本升级失败，因为升级CentOS大版本会检查 `/etc/yum.conf.d` 目录下配置，如果配置不是发行版无修改到配置，会导致升级拿不到正确到 `$releasever` 版本。
+>
+> 由于升级后，正确的新的yum配置文件会存储为类似 `CentOS-Base.repo.rpmnew` 这样的格式，所以采用如下方法覆盖:
+
+```
+cd /etc/yum.repos.d
+for i in `ls *.rpmnew`;do (file=`echo $i | awk -F.rpmnew '{print $1}'`;yes | cp $file.rpmnew $file);done
+```
+
+* 清理以前残留的yum缓存
+
+```
+rm -rf /var/cache/yum
+```
+
+* 有残留文件 `/usr/lib64/rpm-plugins/systemd_inhibit.so` 会导致rpm卸载报错
+
+```
+error: Failed to resolve symbol plugin_hooks: /usr/lib64/rpm-plugins/systemd_inhibit.so: undefined symbol: plugin_hooks
+```
+
+删除该文件之后可正常工作
+
+```
+rm -f /usr/lib64/rpm-plugins/systemd_inhibit.so
+```
+
+> 不过建议直接卸载
+
+```
+rpm -e rpm-plugin-systemd-inhibit-4.14.1-14.alios7.x86_64
+```
+
+* 执行 `yum update` 有提示 `warning: Found BDB Packages database while attempting lmdb backend: using bdb backend.` ，不过完成升级后这个报错不再出现
+
+现在可以执行升级
+
+```bash
+yum update
+```
+
+--------
 
 ## 如何降级软件包
 
