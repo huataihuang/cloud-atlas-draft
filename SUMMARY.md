@@ -295,6 +295,7 @@
 				* [执行"dnf upgrade"时报错"Error unpacking rpm package"处理](os/linux/redhat/package/error_unpacking_rpm_while_dnf_upgrade.md)
 				* [执行"rpm -Uvh --force xxx.rpm --nodeps"返回错误码135](os/linux/redhat/package/rpm_install_error_code_135.md)
 				* [rpm命令报错"error: Failed to initialize NSS library"](os/linux/redhat/package/rpm_fail_initialize_nss_library.md)
+				* [清理系统不使用的旧内核](os/linux/redhat/package/delete_old_unused_kernels_in_centos.md)
 			* [RHEL/CentOS启动服务Tips](os/linux/redhat/daemon_tips.md)
 		* [Debian](os/linux/debian/README.md)
 			* [deb软件包管理](os/linux/debian/package/README.md)
