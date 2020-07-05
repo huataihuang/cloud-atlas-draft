@@ -53,7 +53,11 @@ class2 NR=4 FNR=1 $4=90
 class2 NR=5 FNR=2 $4=92
 ```
 
+- 打印倒数第二列就是 `$(NF-1)` ，最后一列就是 `$NF`
 
+```bash
+cat file | awk '{print $(NF-1)}'
+```
 
 # 参考
 

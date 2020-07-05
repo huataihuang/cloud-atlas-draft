@@ -18,6 +18,26 @@
 
 不过，也有一些命令返回其他值，表示不同类型的错误。
 
+# 案例
+
+## 检查脚本参数
+
+假如我们有一个脚本，要求传递的参数是某个目录，我们的脚本逻辑需要检查：
+
+* 是不是传递了一个参数
+* 传递的参数是不是一个存在的目录
+
+```bash
+#!/bin/sh
+if [ "$#" -ne 1 ] || ! [ -d "$1" ]; then
+  echo "Usage: $0 DIRECTORY" >&2
+  exit 1
+fi
+```
+
+> 以上脚本逻辑简单清晰
+
 # 参考
 
 * [Shell特殊变量：Shell $0, $#, $*, $@, $?, $$和命令行参数](http://c.biancheng.net/cpp/view/2739.html)
+* [Checking for the correct number of arguments](https://stackoverflow.com/questions/4341630/checking-for-the-correct-number-of-arguments)

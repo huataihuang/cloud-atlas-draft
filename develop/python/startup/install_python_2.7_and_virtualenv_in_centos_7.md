@@ -9,11 +9,15 @@ yum -y install python-pip
 
 # 通过pip脚本安装
 
-* 安装升级pip
+* 安装升级pip - 这个方法是通用安装pip方法，适合所有python环境
+
+> 参考 [PyPA » pip 20.1.1 documentation » Installation](https://pip.pypa.io/en/stable/installing/)
+
+> 注意：如果系统没有setuptools和wheel，则get-pip.py会自动安装
 
 ```bash
 # First get the script:
-wget https://bootstrap.pypa.io/get-pip.py
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
 
 # Then execute it using Python 2.7 and/or Python 3.6:
 python2.7 get-pip.py

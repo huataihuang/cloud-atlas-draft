@@ -1,12 +1,14 @@
 在维护集群时，常常需要在大量服务器上执行相同的命令，虽然可以自己写循环执行脚本，但是不仅麻烦而且执行效率不高。此时我们通常会使用pssh工具来并发执行SSH指令。
 
+pssh是早期在Python 2上开发的工具，最早开源在google code上，后来代码库搬迁到github [robinbowes/pssh](https://github.com/robinbowes/pssh) 不过已经很久没有更新了(最后更新是2012年)，甚至在 [pssh · PyPI](https://pypi.org/project/pssh) 也没有说明这个软件包在Python 3上运行是存在兼容问题的。不过，Github上 [lilydjwg/pssh](https://github.com/lilydjwg/pssh) 提供了兼容Python 3的修正。
+
 # 安装pssh
 
 ## Ubuntu安装pssh
 
 在Ubuntu上， `pssh` 包安装之后，直接执行 `pssh` 命令会提示无法找到指令。实际上Ubuntu安装 `pssh` 软件包后实际的执行程序是采用了 `parallel-` 开头的命令，例如 `parallel-ssh` 和 `parallel-scp` 等。所以，为了方便使用，可以建立软链接:
 
-```
+```bash
 cd /usr/bin
 sudo ln -s parallel-ssh pssh
 sudo ln -s parallel-scp pscp
@@ -17,11 +19,39 @@ sudo ln -s parallel-slurp pslurp
 
 > 以下在Ubuntu上实践都直接使用 `pssh` 和 `pscp` 等命令，如果你在Ubuntu上看不到这个指令（并且已经安装好 `pssh` 软件包)，可以尝试先通过软链接修正。
 
-## 通过pip安装
+## CentOS安装mpssh
 
-pssh实际上是一个python程序，所以可以通过 Python pip方式安装
+CentOS可以使用EPEL安装pssh，但是现在(CentOS 8)只提供MPSSH(Mass Parallel Secure Shell)来并发执行SSH。
 
+```bash
+dnf --enablerepo=epel -y install mpssh
 ```
+
+使用方法和pssh类似，但是没有提供 `-A` 参数，也就是只能使用密钥认证，无法使用密码认证。这个问题我主要通过复用ssh连接方式解决，即在 `~/.ssh/confi` 中添加配置:
+
+```bash
+Host *
+    ServerAliveInterval 60
+    StrictHostKeyChecking no
+    # 以下3行配置提供了ssh复用，即只需要登陆一次服务器，后续ssh登陆将基于第一次登陆的通道
+    ControlMaster auto
+    ControlPath ~/.ssh/%h-%p-%r
+    ControlPersist yes
+```
+
+然后执行一次循环ssh登陆建立连接：
+
+```bash
+for i in `cat host`;do sshpass <password> ssh <username>@$i uptime;done
+```
+
+之后就可以通过 `mpssh` 并发执行ssh命令。
+
+## 通过pip安装(推荐使用这个通用方法安装)
+
+pssh实际上是一个python程序，所以可以通过 Python pip方式安装。通过pip安装可以用于Python 2环境通用，而且，通过Python virtualenv方式，可以自主在个人用户目录下安装，非常方便。
+
+```bash
 # 如果是RHEL/CentOS则使用以下yum安装命令
 yum install python-pip
 # 如果是Debian/Ubuntu则使用以下apt安装命令
@@ -30,6 +60,19 @@ apt install python-pip
 # 通过pip安装pssh
 pip install pssh
 ```
+
+我在Python 3的virtualenv中通过pip安装了pssh之后，执行报错
+
+```bash
+Traceback (most recent call last):
+  File "/Users/huatai/venv3/bin/pssh", line 26, in <module>
+    from psshlib.cli import common_parser, common_defaults
+  File "/Users/huatai/venv3/lib/python3.7/site-packages/psshlib/cli.py", line 9, in <module>
+    import version
+ModuleNotFoundError: No module named 'version'
+```
+
+参考 [pssh的安装和问题](https://blog.csdn.net/wjzholmes/article/details/102239639) 改为使用 Python 2的virtualenv环境就可以解决。
 
 # 命令说明
 
@@ -77,6 +120,10 @@ pssh -ih ceph-hosts -l root -A "uptime"
 ```
 pssh -O StrictHostKeyChecking=no -ih sigma-eu95_ip -l huatai -A "uptime"
 ```
+
+# 忽略错误密码
+
+对于部分主机密码错误，我们希望直接跳过错误密码的节点，可以使用ssh的批处理模式 `BatchMode=yes` ，可以配置在用户的 `~/.ssh/config` 中，这样执行pssh命令可以直接忽略错误密码的节点。
 
 # 终端tty
 

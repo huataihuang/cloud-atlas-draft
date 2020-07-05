@@ -1,34 +1,15 @@
 > 本文提供给需要将AliOS（类似CentOS的给予RHEL的发行版本）转换到标准社区CentOS的人做参考
 
-# 转换到CentOS 7.4(旧方法记录)
-
-```
-rpm -e --nodeps alios-release-server-7.2-9.alios7.x86_64
-rpm --import http://mirrors.163.com/centos/7.4.1708/os/x86_64/RPM-GPG-KEY-CentOS-7
-rpm -ivh http://mirrors.163.com/centos/7.4.1708/os/x86_64/Packages/centos-release-7-4.1708.el7.centos.x86_64.rpm
-```
-
-部分软件包版本号有冲突(AliOS采用了更高的版本编号)，需要做降级：
-
-```
-yum downgrade systemd-libs-219-42.el7_4.10 systemd-219-42.el7_4.10 systemd-sysv-219-42.el7_4.10
-
-yum downgrade libgpg-error-1.12-3.el7 \
-bzip2-libs-1.0.6-13.el7 bzip2-1.0.6-13.el7 \
-libattr-2.4.46-12.el7 attr-2.4.46-12.el7 \
-cracklib-2.9.0-11.el7 cracklib-dicts-2.9.0-11.el7 \
-libcap-ng-0.7.5-4.el7
-```
-
 # 转换到CentOS 7.8.2003
 
-> 2020年6月，CentOS 7已经发布到 7.8.2003 。本段落是完整的操作步骤记录
+> 2020年6月，CentOS 7已经发布到 7.8.2003 。本段落是完整的操作步骤记录，请参考这段记录
 
 * 卸载alios版本包
 
 ```bash
 rpm -e --nodeps alios-release-server-7.2-23.alios7.x86_64
 rpm -e alios-base-setup-7.2-33.alios7.noarch
+rm -f /etc/yum.repos.d/CentOS-Base.repo
 rm -f /etc/yum.repos.d/epel.repo
 rm -f /etc/yum.repos.d/ops.repo
 rm -f /etc/yum.repos.d/RHEL.repo
@@ -57,6 +38,7 @@ rpm -ivh http://mirrors.163.com/centos/7.8.2003/os/x86_64/Packages/centos-releas
 
 ```
 rpm -e taobao-repo-utils-2.1.0-5.noarch
+rpm -e taobao-repo-utils-1.1.2-10.1.alios7.noarch
 ```
 
 * 卸载dnf (alios 7.2引入了Fedora使用的dnf，但是和官方yum冲突)
@@ -82,7 +64,7 @@ dnf-utils-2.1.5-8.alios7.noarch
 rpm -e --nodeps \
 yum4-2.7.6-6.alios7.noarch \
 yum-metadata-parser-1.1.4-10.1.alios7.x86_64 \
-yum-baseline-hc-1.0.0-20200606.alios7.x86_64 \
+yum-baseline-hc-1.0.0-20200620.alios7.x86_64 \
 yum-langpacks-0.4.2-4.1.alios7.noarch \
 yum-plugin-fastestmirror-1.1.31-46.alios7.noarch \
 yum-adapter-0.1.0-7.alios7.noarch \
@@ -108,6 +90,7 @@ cp /var/lib/rpm.bdbbak/Packages /var/lib/rpm/Packages
 * 修订yum配置中版本变量 `$releasever` （我不知道为何alios不能如centos一样获得这个变量，所以强制改为7）：
 
 ```bash
+cd /etc/yum.repos.d
 sed -i 's/\$releasever/7/g' *
 ```
 
@@ -149,10 +132,34 @@ rpm -e rpm-plugin-systemd-inhibit-4.14.1-14.alios7.x86_64
 现在可以执行升级
 
 ```bash
-yum update
+yum update -y
 ```
 
 --------
+
+# 后面的记录是以前的历史记录，仅参考，2020年实际操作以上文为准
+
+--------
+
+# 转换到CentOS 7.4(旧方法记录)
+
+```
+rpm -e --nodeps alios-release-server-7.2-9.alios7.x86_64
+rpm --import http://mirrors.163.com/centos/7.4.1708/os/x86_64/RPM-GPG-KEY-CentOS-7
+rpm -ivh http://mirrors.163.com/centos/7.4.1708/os/x86_64/Packages/centos-release-7-4.1708.el7.centos.x86_64.rpm
+```
+
+部分软件包版本号有冲突(AliOS采用了更高的版本编号)，需要做降级：
+
+```
+yum downgrade systemd-libs-219-42.el7_4.10 systemd-219-42.el7_4.10 systemd-sysv-219-42.el7_4.10
+
+yum downgrade libgpg-error-1.12-3.el7 \
+bzip2-libs-1.0.6-13.el7 bzip2-1.0.6-13.el7 \
+libattr-2.4.46-12.el7 attr-2.4.46-12.el7 \
+cracklib-2.9.0-11.el7 cracklib-dicts-2.9.0-11.el7 \
+libcap-ng-0.7.5-4.el7
+```
 
 ## 如何降级软件包
 
