@@ -90,6 +90,8 @@ modprobe -r acpi_power_meter
 echo "blacklist acpi_power_meter" >>/etc/modprobe.d/hwmon.conf 
 ```
 
+> [Prometheus Node exporter](https://github.com/prometheus/node_exporter#collectors)是使用Go语言编写的metric采集插件，通过Unix内核输出硬件和OS metrics。
+
 # 参考
 
 * [Frequent ACPI errors in dmesg ring buffer #827](https://github.com/netdata/netdata/issues/827)

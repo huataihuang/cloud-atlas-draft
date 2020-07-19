@@ -35,6 +35,7 @@ ncurses-libs ncurses-compat-libs ImageMagick-devel libstdc++-devel bison gnupg l
 ```
 LineageOS 11.0-13.0: OpenJDK 1.7 (install openjdk-7-jdk)
 LineageOS 14.1-15.1: OpenJDK 1.8 (install openjdk-8-jdk)
+LineageOS 16.0: OpenJDK 1.9 (included by default)
 ```
 
 # 创建目录
