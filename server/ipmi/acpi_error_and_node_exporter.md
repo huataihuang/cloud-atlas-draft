@@ -55,7 +55,7 @@ chip "power_meter-acpi-0"
         ignore power1
 ```
 
-此时再次使用 `sensors` 命令检查，可以看到输出有所不同，一斤关闭了 `power1` :
+此时再次使用 `sensors` 命令检查，可以看到输出有所不同，已经关闭了 `power1` :
 
 ```
 power_meter-acpi-0

@@ -41,6 +41,12 @@ Running Intel® HAXM installer
 HAXM installation failed. To install HAXM follow the instructions found at: https://software.intel.com/android/articles/installation-instructions-for-intel-hardware-accelerated-execution-manager-mac-os-x
 ```
 
+# 配置离线构建环境
+
+Android Studio默认需要连接Google才能使用，因为使用过程中需要下载很多组件。但是在瓷器国，在线更新非常麻烦，需要搭建翻墙梯子，效率很低。
+
+Android Studio也提供了离线部署开发环境的方法，请参考 [配置离线构建依赖项](https://developer.android.com/studio/intro/studio-config#offline)
+
 # 参考
 
 * [怎么在安卓手机上注册谷歌账号? ](https://www.zhihu.com/question/26397758)

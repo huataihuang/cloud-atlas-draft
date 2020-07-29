@@ -1,0 +1,1 @@
+SR-IOV即sigle-root I/O virtualization，是虚拟化技术中将物理设备切分成多个隔离的虚拟设备提供给虚拟机或容器使用的技术。
