@@ -18,6 +18,25 @@ use(TimeCategory) {
 }
 ```
 
+* 日期格式化确实非常简单，先 `new Date()` ，然后使用 `new SimpleDateFormat` 使用JDK的方法
+
+```groovy
+import java.text.SimpleDateFormat
+def date = new Date()
+def sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss")
+println sdf.format(date)
+```
+
+在JRE 8中可以使用 `LocalDateTime` :
+
+```groovy
+import java.time.*
+
+LocalDateTime t = LocalDateTime.now();
+return t as String
+```
+
 # 参考
 
 * [how to add year or months from current date in groovy?](https://stackoverflow.com/questions/31707460/how-to-add-year-or-months-from-current-date-in-groovy)
+* [get current date and time in groovy?](https://stackoverflow.com/questions/39360085/get-current-date-and-time-in-groovy)

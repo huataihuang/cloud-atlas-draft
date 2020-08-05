@@ -8,6 +8,70 @@
 
 > `nmcli`是NetworkManager命令行管理工具。
 
+# NetworkManager
+
+* 首先检查NetworkManager服务
+
+```bash
+systemctl status NetworkManager
+```
+
+如果系统已经启动了NetworkManager服务，输出类似:
+
+```bash
+● NetworkManager.service - Network Manager
+   Loaded: loaded (/usr/lib/systemd/system/NetworkManager.service; enabled; vendor preset: enabled)
+   Active: active (running) since Thu 2020-07-30 15:14:18 CST; 5 days ago
+     Docs: man:NetworkManager(8)
+ Main PID: 837 (NetworkManager)
+    Tasks: 3 (limit: 204604)
+   Memory: 15.3M
+   CGroup: /system.slice/NetworkManager.service
+           └─837 /usr/sbin/NetworkManager --no-daemon
+
+Jul 30 15:14:22 server-1.example NetworkManager[837]: <info>  [1596093262.5698] device (br-bec47196ffd1): carrier: link connected
+Jul 30 15:14:22 server-1.example NetworkManager[837]: <info>  [1596093262.6066] device (veth72816e3): carrier: link connected
+Jul 30 15:14:22 server-1.example NetworkManager[837]: <info>  [1596093262.6439] device (vethf619d54): carrier: link connected
+Jul 30 15:14:22 server-1.example NetworkManager[837]: <info>  [1596093262.7125] device (vethdbd0a11): carrier: link connected
+Jul 30 15:14:22 server-1.example NetworkManager[837]: <info>  [1596093262.7469] device (veth34c8246): carrier: link connected
+Jul 30 15:14:22 server-1.example NetworkManager[837]: <info>  [1596093262.8019] device (veth01d22c7): carrier: link connected
+Jul 30 15:14:22 server-1.example NetworkManager[837]: <info>  [1596093262.8689] device (veth82295b4): carrier: link connected
+Jul 30 15:14:22 server-1.example NetworkManager[837]: <info>  [1596093262.9016] device (veth350c4f2): carrier: link connected
+Jul 30 15:15:05 worker7 NetworkManager[837]: <info>  [1596093305.5271] hostname: hostname changed from "server-1.example" to "worker7"
+Jul 30 15:15:05 worker7 NetworkManager[837]: <info>  [1596093305.5272] policy: set-hostname: current hostname was changed outside NetworkManager: 'worker7'
+```
+
+> 请注意：显示服务器的名字最初是 `server-1.example` ，但是最后改成了 `worker7` ，这是因为我使用了 `hostnamctl set-hostname worker` 修改了主机名。在NetworkManager启动时主机名是 `server-1.example` ，服务提示在NetworkManager管控之外主机名被修改。
+>
+> 在 `/etc/NetworkManager` 目录下搜索可以看到有一个配置文件 `/etc/Networker/dispatcher.d/11-dhclient` 内容有：
+
+```bash
+[ -f /etc/sysconfig/network ] && . /etc/sysconfig/network
+
+[ -f /etc/sysconfig/network-scripts/ifcfg-"${interface}" ] && \
+    . /etc/sysconfig/network-scripts/ifcfg-"${interface}"
+
+if [ -d $ETCDIR/dhclient.d ]; then
+...
+fi
+```
+
+你就可以理解NetworkManager兼容了很多传统的配置方式，例如以前 `network` 服务使用 `/etc/sysconfig/network-scripts/ifcfg-"${interface}"` 配置也可以由NetworkManager管理。
+
+检查 `/etc/sysconfig/network` 配置就可以看到原来NetworkManager是读取 `/etc/sysconfig/network` 来获取主机名配置的:
+
+```bash
+NETWORKING_IPV6=no
+PEERNTP=no
+HOSTNAME=server-1.example
+```
+
+上述主机名被 `hostnamectl set-hostname worker7` 命令的配置文件 `/etc/hostname` 覆盖，在 `/etc/hostname` 中内容是生效的主机名:
+
+```
+worker7
+```
+
 # NetworkManager状态
 
 * 显示NetworkManager状态
@@ -51,10 +115,27 @@ comlink      f771d330-1639-40a7-a705-842ebbc59939  802-11-wireless  --
 enp0s25      4ac9284e-d7e0-49e6-9f58-a9530cd5d36f  802-3-ethernet   --
 ```
 
-如果要详细显示某个配置，例如，我配置了`mylink`，需要详细查看：
+在服务器上 `worker7` 上检查，案例显示如下:
+
+```
+NAME             UUID                                  TYPE      DEVICE
+System eth0      5fb06bd0-0bb0-7ffb-45f1-d6edd65f3e03  ethernet  eth0
+br-bec47196ffd1  821f3b35-6528-410a-bb25-f7f065fadde2  bridge    br-bec47196ffd1
+docker0          693c9269-2d26-4a6f-a005-e99fb5841246  bridge    docker0
+```
+
+可以看到上述服务器配置了docker服务，所以有一个 `docker0` 的网桥，另外一个 `br-bec47196ffd1` 网桥是安装了 `kind` 单机运行多节点kubernetes集群的网桥。
+
+如果要详细显示某个配置，例如，我配置了`mylink`无线网卡，需要详细查看：
 
 ```
 nmcli connection show mylink
+```
+
+又比如，我在 `worker7` 服务器上默认的系统`eth0`配置
+
+```
+nmcli connection show "System eth0"
 ```
 
 # 连接或者断开已经已经配置的连接
@@ -128,7 +209,7 @@ nmcli device wifi connect <SSID|BSSID> password <password>
 nmcli device status
 ```
 
-显示如下
+在我的笔记本上显示如下：
 
 ```
 DEVICE   TYPE      STATE        CONNECTION
@@ -136,6 +217,21 @@ wlp3s0   wifi      connected    mylink
 enp0s25  ethernet  unavailable  --
 lo       loopback  unmanaged    --
 ```
+
+而在`worker7`服务器上显示：
+
+```
+DEVICE           TYPE      STATE      CONNECTION
+eth0             ethernet  connected  System eth0
+br-bec47196ffd1  bridge    connected  br-bec47196ffd1
+docker0          bridge    connected  docker0
+veth01d22c7      ethernet  unmanaged  --
+veth34c8246      ethernet  unmanaged  --
+veth350c4f2      ethernet  unmanaged  --
+...
+```
+
+这里后半部分输出的 `vethXXX` 是 `kind` 单机Kubernetes实现的docker容器的虚拟网卡，不属于NetworkManager管理。
 
 * 断开一个接口
 
@@ -554,3 +650,6 @@ password=YOUR_8021X_PASSWORD
 
 * [Networking/CLI](https://fedoraproject.org/wiki/Networking/CLI)
 * [2.4.2. Connecting to a Network Using nmcli](https://docs.fedoraproject.org/en-US/Fedora/25/html/Networking_Guide/sec-Connecting_to_a_Network_Using_nmcli.html)
+* [How To Configure A Static IP On Linux](https://cloudcone.com/docs/article/how-to-configure-a-static-ip-address-on-linux/)
+* [Adding a static IP to a DHCP-enabled NetworkManager connection](http://www.szakmeister.net/blog/2017/jun/1/static-ip-nmcli/)
+* [How to setup a static IP for network-manager in Virtual Box on Ubuntu Server](https://askubuntu.com/questions/246077/how-to-setup-a-static-ip-for-network-manager-in-virtual-box-on-ubuntu-server)
