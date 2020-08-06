@@ -1264,6 +1264,7 @@
 			* [shell中字符串大写和小写转换](develop/shell/bash/upcase_downcase_in_shell.md)
 			* [shell中处理json数据工具jq](develop/shell/bash/json_jq.md)
 			* [shell检查主机是否alive](develop/shell/bash/check_ip_alive.md)
+			* [shell中检查服务器进程使用cpu](develop/shell/bash/check_process_cpu.md)
 		* [zsh](develop/shell/zsh/REEADME.md)
 			* [oh-my-zsh](develop/shell/bash/oh-my-zsh.md)
 		* [sed和awk](develop/shell/sed_awk/README.md)

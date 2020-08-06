@@ -119,6 +119,23 @@ ipv4.routes:                            --
 ...
 ```
 
+`nmcli` 不仅可以通过交互命令设置，也可以直接命令行设置，上述交互设置可以通过一条命令:
+
+```bash
+nmcli con mod "System eth0" ipv4.address "192.168.122.17/24" ipv4.method "auto"
+```
+
+> 对于常规设置静态IP地址，在 [How to setup a static IP for network-manager in Virtual Box on Ubuntu Server](https://askubuntu.com/questions/246077/how-to-setup-a-static-ip-for-network-manager-in-virtual-box-on-ubuntu-server) 有一个案例非常简洁：
+
+```bash
+nmcli con mod "Wired connection 1"
+  ipv4.addresses "HOST_IP_ADDRESS/IP_NETMASK_BIT_COUNT"
+  ipv4.gateway "IP_GATEWAY"
+  ipv4.dns "PRIMARY_IP_DNS,SECONDARY_IP_DNS"
+  ipv4.dns-search "DOMAIN_NAME"
+  ipv4.method "manual"
+```
+
 * 此时检查 `/etc/sysconfig/network-scripts/ifcfg-eth0` 内容会看到添加了静态IP地址，但是同时保留了DHCP配置:
 
 ```bash
@@ -148,6 +165,11 @@ UUID=5fb06bd0-0bb0-7ffb-45f1-d6edd65f3e03
        valid_lft 315357604sec preferred_lft 315357604sec
 ```
 
+> NetworkManager也有图形交互界面命令 `nmtui` ，但是没有提供同时使用DHCP和静态指定IP地址功能，所以上述使用了命令行 `nmcli` 。
+>
+> 安装字符界面图形交互程序 `nmtui` 的安装命令 `dnf install NetworkManager-tui`
+
 # 参考
 
 * [Adding a static IP to a DHCP-enabled NetworkManager connection](http://www.szakmeister.net/blog/2017/jun/1/static-ip-nmcli/)
+* [https://cloudcone.com/docs/article/how-to-configure-a-static-ip-address-on-linux/](https://cloudcone.com/docs/article/how-to-configure-a-static-ip-address-on-linux/)
