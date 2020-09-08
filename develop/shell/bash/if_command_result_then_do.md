@@ -12,8 +12,26 @@ if [ `lsmod | grep example_mod` && `cat /etc/example_mod.conf | grep example_mod
 -bash: [: missing `]'
 ```
 
-这个报错参考 [How to conditionally do something if a command succeeded or failed](http://unix.stackexchange.com/questions/22726/how-to-conditionally-do-something-if-a-command-succeeded-or-failed) ，原来执行命令返回结果作为条件判断是不需要加 `[]` 的，`[`就是表示`test`指令（另外半边`]`只是为了配对，不用也可以）
+这个报错参考 [How to conditionally do something if a command succeeded or failed](http://unix.stackexchange.com/questions/22726/how-to-conditionally-do-something-if-a-command-succeeded-or-failed) ，原来执行命令返回结果作为条件判断是不需要加 `[]` 的，`[`就是表示`test`指令（另外半边`]`只是为了配对，不用也可以）。
 
+也就是说，如果你是判断一个文件或这目录是否存在，实际上就是隐含使用了 `test` 指令去检查文件是否存在，此时就需要使用 `[` ，例如：
+
+```bash
+if [ -d /etc/kubernetes ] && [ -f /usr/sbin/kubelet ]; then
+    echo "system has installed kubelet"
+else
+    echo "system without kubelt"
+fi
+```
+
+但是，如果你是检查命令执行是否成功，则不要加 `[`，例如:
+
+```bash
+if kubelet info ; then
+    echo "kubelet exceed success"
+else
+    else 
+```
 
 另外常用的方式
 
@@ -30,3 +48,7 @@ if (lsmod | grep example_mod && cat /etc/example_mod.conf | grep example_mod_ver
 ```
 
 > 这里`if`条件中不使用`()`也可以，加上是看上去清晰一些。
+
+# 参考
+
+* [How to conditionally do something if a command succeeded or failed](https://unix.stackexchange.com/questions/22726/how-to-conditionally-do-something-if-a-command-succeeded-or-failed)

@@ -116,6 +116,94 @@ gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-ovirt-3.5
 exclude=perl php python
 ```
 
+举例，如果要过滤掉所有32位软件包:
+
+```
+exclude=*.i?86 *.i686
+```
+
+----
+
+命令行也可以传递给yum需要屏蔽的软件包，例如:
+
+```
+yum --exclude=glibc\* update
+```
+
+就不会升级 glibc。并且 `--exclude=` 参数也可以使用 `-x` 来代替，上述命令就是
+
+```
+yum -x 'glibc\*' update
+```
+
+要传递多个不包含的包
+
+```
+yum --exclude=glibc\* --exclude=cloud-init\* update
+```
+
+----
+
+如果要比较好地管理不包含的软件包，则可以用分开的配置版本，例如 `/etc/yum.repos.d/mongodb.repo` 包含mangodb的管理配置
+
+```
+exclude=mongo*
+```
+
+----
+
+如果要临时关闭exclude，可以使用命令
+
+```
+yum --disableexcludes=all update
+```
+
+或者
+
+```
+yum --disableexcludes=mongodb update
+```
+
+## yum versionlock插件
+
+* 可以通过 `yum-versionlock` 实现版本锁定：
+
+```
+yum install -y yum-versionlock
+```
+
+* 然后检查 `/etc/yum/pluginconf.d/versionlock.conf` 有内容
+
+```
+[main]
+enabled = 1
+locklist = /etc/yum/pluginconf.d/versionlock.list
+#  Uncomment this to lock out "upgrade via. obsoletes" etc. (slower)
+# follow_obsoletes = 1
+```
+
+* 在 `/etc/yum/pluginconf.d/versionlock.list` 添加要锁定的版本:
+
+```
+kernel-3.10.0-693.2.2.el7
+```
+
+# 关闭repo仓库升级
+
+* 检查当前仓库
+
+```
+yum repolist
+```
+
+* 关闭某个仓库升级
+
+```
+yum --disablerepo=reponame update
+```
+
+当然也可以直接编辑仓库配置文件，将配置文件修改成 `enabled=0` 也就关闭了该仓库使用。
+
 # `yum update`和`yum upgrade`的差别
 
 > 参考 [yum update和upgrade的区别？](https://segmentfault.com/q/1010000008228111)
@@ -133,3 +221,11 @@ exclude=perl php python
 > 在线维护的服务器，通常求稳定，可能使用`yum update`较安全一些。此外，需要做好完整的兼容稳定性测试。
 
 如果希望`yum update`时避免更新内核，可以使用`yum --exclude=kernel* update`。见前述**避免升级部分软件包**，通过配置文件`yum.conf`也可以达到相同效果。
+
+
+# 参考
+
+* [CentOS / RHEL : How to exclude kernel or other packages from getting updated using YUM Versionlock Plugin](https://www.thegeekdiary.com/centos-rhel-how-to-exclude-kernel-or-other-packages-from-getting-updated-using-yum-versionlock-plugin/)
+* [How to lock a specific package version using yum](https://support.datastax.com/hc/en-us/articles/360020652451-How-to-lock-a-specific-package-version-using-yum)
+* [How to Exclude Specific Packages from Yum Update](https://linoxide.com/linux-how-to/exclude-specific-packages-yum-update/)
+* [10 Yum Exclude Examples to Skip Packages for Linux Yum Update (How to Yum Exclude Kernel Updates)](https://www.thegeekstuff.com/2014/11/yum-exclude-examples/)

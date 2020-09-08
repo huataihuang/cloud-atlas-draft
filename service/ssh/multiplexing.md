@@ -51,6 +51,8 @@ OpenSSH通过`ControlMaster`，`ControlPath`和`ControlPersist`配置来实现mu
 * `ControlPath`是控制套接字的位置
 * `ControlPersist`是配合`ControlMaster`设置，如果设置成`yes`则会在后台始终开启主连接来接受新的连接，只到被明确地杀死或者通过`-O`参数关闭。
 
+> `ControlPersist` 选项需要 OpenSSH 5.6 以上版本支持，否则会ssh时会提示错误: `Bad configuration option: ControlPersist`
+
 配置
 
 	Host machine1

@@ -43,3 +43,40 @@ KiB Swap:        0 total,        0 free,        0 used. 17871446+avail Mem
 103452 admin     20   0   16.8g  12.8g  29640 S 228.9  2.5   5013:20 java
 ...
 ```
+
+# 获取cpu的脚本案例
+
+参考 [Get CPU usage via SSH](https://stackoverflow.com/questions/20693089/get-cpu-usage-via-ssh) 提供了获取cpu利用率的案例，我做了一点修改来取样10次求平均值
+
+```bash
+top -b -n 10 -d.2 | grep 'Cpu' |  awk '{print $2}' | awk -F% '{ SUM += $1 } END { print SUM/10 }'
+```
+
+其中参数：
+
+- `-b` 表示 Batch模式，脚本模式
+- `-n 10` 表示取样10次
+- `-d.2` 表示显示间隔(Delay time)，数值格式是 `-d ss.tt` 即(`seconds.tenths`)
+
+上述脚本通过 `grep 'Cpu'` 可以过滤出每次top获得的cpu使用率
+
+```bash
+top -b -n 10 -d.2 | grep 'Cpu'
+```
+
+此时输出的内容类似如下：
+
+```
+Cpu(s):  0.8%us,  0.8%sy,  0.0%ni, 60.1%id,  0.5%wa,  0.0%hi,  0.0%si, 37.9%st
+Cpu(s):  0.0%us,  0.0%sy,  0.0%ni, 63.0%id,  0.0%wa,  0.0%hi,  0.0%si, 37.0%st
+Cpu(s):  1.2%us,  1.2%sy,  0.0%ni, 63.1%id,  0.0%wa,  0.0%hi,  0.0%si, 34.5%st
+Cpu(s):  0.0%us,  1.2%sy,  0.0%ni, 64.6%id,  0.0%wa,  0.0%hi,  0.0%si, 34.1%st
+Cpu(s):  0.0%us,  0.0%sy,  0.0%ni, 60.5%id,  0.0%wa,  0.0%hi,  0.0%si, 39.5%st
+Cpu(s):  1.2%us,  3.7%sy,  0.0%ni, 56.1%id,  0.0%wa,  0.0%hi,  0.0%si, 39.0%st
+Cpu(s):  1.2%us,  2.4%sy,  0.0%ni, 67.5%id,  0.0%wa,  0.0%hi,  0.0%si, 28.9%st
+Cpu(s):  1.2%us,  0.0%sy,  0.0%ni, 66.3%id,  0.0%wa,  0.0%hi,  0.0%si, 32.5%st
+Cpu(s):  0.0%us,  1.2%sy,  0.0%ni, 68.3%id,  0.0%wa,  0.0%hi,  0.0%si, 30.5%st
+Cpu(s):  1.2%us,  0.0%sy,  0.0%ni, 68.3%id,  0.0%wa,  0.0%hi,  0.0%si, 30.5%st
+```
+
+通用 `|  awk '{print $2}' | awk -F% '{ SUM += $1 } END { print SUM/10 }'` 过滤出第2列数据，并以`%`分隔符取出cpu利用率数值进行累加并除以10计算出平均值。

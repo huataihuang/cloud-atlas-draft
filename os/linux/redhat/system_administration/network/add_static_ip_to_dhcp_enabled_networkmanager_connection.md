@@ -11,6 +11,8 @@
 * 虽然上述IP网段无法路由，但是我准备将这个网段模拟成数据中心网段，模拟成公司的内部私有网络，对外部是隔离的
 * 当需要访问Kubernetes集群时，采用VPN方式(模拟真实世界中企业内网都是通过VPN访问的)，只要VPN能构建起来，即使是内部局域网不可路由网段也可以访问到
 
+> 不过，虽然我实践能够实现在DHCP接口上同时实现静态配置IP地址，但是在阿里云的VPC环境中，如果没有配置vswitch，静态分配的IP地址端是不能互通的，所以这个方案放弃。本方案仅作为今后的参考。
+
 # 部署
 
 * 首先，服务器的网络是通过 [NetworkManager](networkmanager_nmcli) 管理的，检查如下：
@@ -27,6 +29,8 @@ System eth0      5fb06bd0-0bb0-7ffb-45f1-d6edd65f3e03  ethernet  eth0
 br-bec47196ffd1  12d4c311-642e-4440-9847-3177d3cddbdc  bridge    br-bec47196ffd1
 docker0          ab97d267-8b64-4acf-b6d5-0ff6d6cb489e  bridge    docker0
 ```
+
+> `br-bec47196ffd1` 是我部署[kind (docker in docker)](https://kind.sigs.k8s.io)附加的网桥。
 
 * 检查 `System eth0` 配置
 
@@ -95,6 +99,8 @@ Do you also want to set 'ipv4.method' to 'manual'? [yes]: no
 注意：上述设置IP地址非常简单，就是命令 `set ipv4.address 192.168.122.17/24`
 
 但是有一个诀窍，就是系统提示问题 `Do you also want to set 'ipv4.method' to 'manual'? [yes]:` 一定要回答 **`no`** ，这是因为我们希望保留原来的dhcp分配IP地址方式。
+
+> 由于后来又决定取消这个方案，见前述，则再次执行 `set ipv4.address` 但是没有任何参数，则会抹去配置，也就是去除静态分配地址。
 
 * 然后保存配置，并打印检查
 
