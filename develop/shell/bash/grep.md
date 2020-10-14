@@ -31,7 +31,62 @@ grep -n "pattern" filename.txt
 grep -rI --exclude-dir="_book" "centos5" *
 ```
 
+# grep结合OR, AND, NOT
+
+在做grep的时候，实际上有很多条件是 `或` `与` `非` ，虽然也能够使用管道来结合多个grep完成，但是实在太不优雅了。grep已经提供了 `OR` 和 `NOT` 操作，虽然没有直接提供 `AND` 操作，但是可以模拟。
+
+## grep或操作
+
+* 使用 `\|` 作为或操作
+
+```bash
+grep 'pattern1\|pattern2' filename
+```
+
+* grep也提供了一个 `-E` 参数启用扩容的regexp，当使用 `-E` 参数时候，就可以使用 `|` 作为多个匹配的分隔符号:
+
+```bash
+grep -E 'pattern1|pattern2' filename
+```
+
+* 此外，`egrep` 命令提供了和 `grep -E` 相同的功能:
+
+```bash
+egrep 'pattern1|pattern2' filename
+```
+
+* 而 `grep` 命令提供了参数 `-e` 可以用来传递多个匹配关键字：
+
+```bash
+grep -e pattern1 -e pattern2 filename
+```
+
+## grep与操作
+
+* 虽然没有直接的AND操作福，但是可以使用 `grep -E` 来模拟AND
+
+```bash
+grep -E 'pattern1.*pattern2' filename
+```
+
+> 实际上就是占位符生效
+
+* 当然比较简单明了的还是串行使用多个grep
+
+```
+grep -E 'pattern1' filename | grep -E 'pattern2'
+```
+
+## grep NOT就是 `grep -v`
+
+`grep -v` 就表示非操作，也就是反匹配：
+
+```
+grep -v 'pattern1' filename
+```
+
 # 参考
 
 * [GREP如何提取文件中第一个相关匹配](http://bbs.chinaunix.net/thread-3590779-1-1.html)
 * [grep 能否给出搜到行的行号＋内容？](http://bbs.chinaunix.net/thread-286265-1-1.html)
+* [7 Linux Grep OR, Grep AND, Grep NOT Operator Examples](https://www.thegeekstuff.com/2011/10/grep-or-and-not-operators/)
