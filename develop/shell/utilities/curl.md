@@ -2,15 +2,34 @@
 
 # 从文本获取数据内容
 
-如果要通过curl将文本文件内容发送给网站，使用`@`符号：
+如果要通过curl将文本文件内容发送给网站( ``post`` )，使用`@`符号：
 
-> `-d`表示数据
+> `-d`表示数据，也可以是 ``--data`` 。注意，文件名前面一定要加上 `@` 符号。
 
 ```bash
 curl -k https://<SERVER_IP>/API/xyz -H 'Content-Type: application/json' -d @/var/log/example.log
 ```
 
 > `-k` 表示`--insecure`，不校验服务器SSL安全性 ，请参考 [How to ignore invalid and self signed ssl connection errors with curl](https://www.cyberciti.biz/faq/how-to-curl-ignore-ssl-certificate-warnings-command-option/) 。特别适合很多内网部署服务，自己签发的非正式证书。
+
+如果是使用curl上传文件，则使用:
+
+```bash
+curl --from "fileupload=@filename.txt" http://hostname/resource
+```
+
+使用RESTful HTTP post:
+
+```bash
+curl -X POST -d @filename http://hostname/resource
+```
+
+登录网站(auth)：将登录信息记录到headers，后续curl都使用headers
+
+```bash
+curl -d "username=admin&password=admin&submit=Login" --dump-header headers http://localhost/Login
+curl -L -b headers http://localhost/
+```
 
 # 通过curl检查https证书
 
@@ -75,6 +94,11 @@ export http_proxy=http://your.proxy.server:port/
 export https_proxy=https://your.proxy.server:port/
 ```
 
+# 通过钉钉机器人发信息
+
+
+
 # 参考
 
 * [How to POST file contents using cURL?](https://superuser.com/questions/1054742/how-to-post-file-contents-using-curl)
+* [How to send a header using a HTTP request through a curl call?](https://stackoverflow.com/questions/356705/how-to-send-a-header-using-a-http-request-through-a-curl-call)

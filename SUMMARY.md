@@ -263,6 +263,7 @@
 			* [CentOS](os/linux/redhat/centos/README.md)
 			* [系统管理](os/linux/redhat/system_administration/README.md)
 				* [CentOS/RHEL周期性自动清理/tmp目录](os/linux/redhat/system_administration/tmp_directory_cleanup_periodically.md)
+                * [Linux操作系统登录超时设置](os/linux/redhat/system_administration/tmout.md)
 				* [Grub 2 boot loader](os/linux/redhat/system_administration/grub2/README.md)
 					* [在grub2中切换默认启动内核](os/linux/redhat/system_administration/grub2/switch_default_kernel_in_grub2.md)
 					* [修改grub2启动内核参数](os/linux/redhat/system_administration/grub2/change_kernel_parameter_in_grub2.md)

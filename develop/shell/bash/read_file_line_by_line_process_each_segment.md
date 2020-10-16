@@ -1,9 +1,36 @@
+# 问题
+
 经常需要处理多列的文本文件，需要一行行读取，然后处理每个字段内容。例如文本`data.txt`内容如下
 
 ```
 server1.example.com     file_name_1
 server2.example.com     file_name_2
 server3.example.com     file_name_3
+```
+
+在bash,ksh,zsh以及各种shell中，都可以使用 while + read 循环来完成文件按行读取：
+
+```bash
+while read -r line; do COMMAND; done < input.file
+```
+
+参数 `-r` 是为了避免反斜扛`\`命令执行。
+
+此外，`read` 还支持一个 `IFS=` 选项来指定分隔符号，例如使用`,` 的csv文件，就可以使用 `IFS=,` 来指定分隔符号::
+
+```bash
+#!/bin/bash
+input="/path/to/txt/file"
+while IFS= read -r line
+do
+  echo "$line"
+done < "$input"
+```
+
+另外，参考 [Linux bash: Multiple variable assignment](https://stackoverflow.com/questions/1952404/linux-bash-multiple-variable-assignment) 有一个类似变量读取案例:
+
+```bash
+read -r a b c <<<$(echo 1 2 3) ; echo "$a|$b|$c"
 ```
 
 # 方法一
@@ -33,7 +60,7 @@ done < "$input"
 
 `$input` 是你读取的文件名。一行行读取文件，并赋值给 `$line` 变量。内部 `字段分隔符` `IFS` 被设置成空白字符串以避免空白问题。这是一个fail-safe功能。
 
-此外可以从其他命令输出读取：
+此外可以从其他命令输出读取（这种方式特别适合检查进程，并从进程中区分出字段进行处理）：
 
 ```bash
 while IFS= read -r line
@@ -57,14 +84,18 @@ do
   # take action on $line #
   echo "$line"
 done <<< $(command)
- 
+```
+
+
+```bash
 while IFS= read -r line
 do
-  # take action on $line #
   echo "$line"
 done <<< $(ps aux)
- 
-## shell script to purge urls from Cloudflare ##
+```
+
+
+```bash
 t="10"
 I="/home/vivek/.data/tags.deleted.410"
 url=""
@@ -131,3 +162,4 @@ done <"$file"
 # 参考
 
 * [Bash: read a file line-by-line and process each segment as parameters to other prog](https://stackoverflow.com/questions/7619438/bash-read-a-file-line-by-line-and-process-each-segment-as-parameters-to-other-p)
+* [Syntax: Read file line by line on a Bash Unix & Linux shell: ](https://www.cyberciti.biz/faq/unix-howto-read-line-by-line-from-file/)
