@@ -18,13 +18,23 @@ curl -k https://<SERVER_IP>/API/xyz -H 'Content-Type: application/json' -d @/var
 curl --from "fileupload=@filename.txt" http://hostname/resource
 ```
 
-使用RESTful HTTP post:
+* 使用RESTful HTTP post:
 
 ```bash
 curl -X POST -d @filename http://hostname/resource
 ```
 
-登录网站(auth)：将登录信息记录到headers，后续curl都使用headers
+* 提交json数据案例:
+
+```bash
+curl -XPOST --data '{"data": 123}' api.example.com/data
+```
+
+```bash
+curl -XPOST --data @data.json api.example.com/data
+```
+
+* 登录网站(auth)：将登录信息记录到headers，后续curl都使用headers
 
 ```bash
 curl -d "username=admin&password=admin&submit=Login" --dump-header headers http://localhost/Login
@@ -95,8 +105,6 @@ export https_proxy=https://your.proxy.server:port/
 ```
 
 # 通过钉钉机器人发信息
-
-
 
 # 参考
 
