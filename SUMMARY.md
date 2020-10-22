@@ -196,6 +196,7 @@
 					* [EXT文件系统坏超级块恢复](os/linux/storage/filesystem/ext/recover_from_bad_superblock.md)
 					* [EXT4根文件系统resize](os/linux/storage/filesystem/ext/resize_ext4_root_file_system.md)
 					* [EXT4文件系统dioread_nolock + nodelalloc 挂载选项异步写性能问题](os/linux/storage/filesystem/ext/ext4_dioread_nolock_and_nodelalloc.md)
+					* [disk label](os/linux/storage/filesystem/ext/disklabel.md)
 				* [Btrfs文件系统](os/linux/storage/filesystem/btrfs/README.md)
 					* [Btrfs文件系统快速起步](os/linux/storage/filesystem/btrfs/btrfs_startup.md)
 				* [XFS文件系统](os/linux/storage/filesystem/xfs/README.md)
