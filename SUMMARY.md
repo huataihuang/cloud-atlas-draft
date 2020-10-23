@@ -232,6 +232,8 @@
 					* [使用ufw配置NAT masquerade](os/linux/network/firewall/ufw/nat_masquerade_in_ufw.md)
 			* [交换机](os/linux/network/switch/README.md)
 				* [构建Linux三层交换机](os/linux/network/switch/build_l3_switch/README.md)
+				* [USB over IP](os/linux/network/switch/build_l3_switch/usb_over_ip.md)
+				* [Ethernet over USB](os/linux/network/switch/build_l3_switch/usbnet.md)
 		* [备份](os/linux/backup/README.md)
 			* [使用tar备份完整Linux操作系统](os/linux/backup/full_system_backup_with_tar.md)
 			* [使用rsync备份完整Linux操作系统](os/linux/backup/full_system_backup_with_rsync.md)
