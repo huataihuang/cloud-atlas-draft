@@ -297,6 +297,7 @@
 			* [rpm软件包管理](os/linux/redhat/package/README.md)
 				* ["无法获得metalink"错误](os/linux/redhat/package/cannot_retrieve_metalink_for_repository.md)
 				* [rpm使用tips](os/linux/redhat/package/rpm_tips.md)
+				* [检查和解压缩rpm包内容](os/linux/redhat/package/inspect_extract_rpm_content.md)
 				* [定时yum更新系统](os/linux/redhat/package/auto_yum_upgrade.md)
 				* [最小化安装后的yum安装](os/linux/redhat/package/yum_after_mini_install.md)
 				* [yum使用tips](os/linux/redhat/package/yum_tips.md)

@@ -307,3 +307,4 @@ ffffffff,00000000
 
 * [Introduction to Linux Interrupts and CPU SMP Affinity](http://www.thegeekstuff.com/2014/01/linux-interrupts/)
 * [中断和 IRQ 调节](https://access.redhat.com/documentation/zh-CN/Red_Hat_Enterprise_Linux/6/html/Performance_Tuning_Guide/s-cpu-irq.html)
+* [How do I kill an IRQ process in Linux?](https://unix.stackexchange.com/questions/387096/how-do-i-kill-an-irq-process-in-linux)
