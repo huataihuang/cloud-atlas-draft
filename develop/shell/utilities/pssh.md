@@ -118,7 +118,7 @@ pssh -ih ceph-hosts -l root -A "uptime"
 在批量处理主机时，如果需要每个服务器都确认服务器密钥是不现实的，这里就需要使用ssh的一个参数 `-O StrictHostKeyChecking=no` ，这个参数也可以传递给pssh
 
 ```
-pssh -O StrictHostKeyChecking=no -ih sigma-eu95_ip -l huatai -A "uptime"
+pssh -O StrictHostKeyChecking=no -ih hosts_ip -l huatai -A "uptime"
 ```
 
 # 忽略错误密码
