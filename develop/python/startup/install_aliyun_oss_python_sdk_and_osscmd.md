@@ -41,9 +41,32 @@ NameError: name 'AtomicInt' is not defined
 
 > 晕倒，`pip安装的oss不是最新版本`，还是需要从官网手工下载[Python SDK开发包(2016-04-19) 版本 0.4.6](https://help.aliyun.com/document_detail/32171.html?spm=5176.doc32184.2.7.0NDCn6)进行安装。即上述方法二！！！
 
+----
+
+# ossutil安装
+
+> 当前阿里云已经不再提供python版本osscmd，这个工具功能已经整合到 ossutil 中(GO) ，所以之前的osscmd安装步骤可能已经无法进行。这里补充一下ossutil安装(其实就是下载，修改执行权限，运行)
+
+[阿里云命令行工具ossutil > 下载和安装](https://help.aliyun.com/document_detail/120075.html?spm=a2c4g.11186623.6.844.5a381bd2BviixZ)
+
+* [ossutil在github开源](https://github.com/aliyun/ossutil)
+* 二进制执行提供Windows/Linux/Mac平台
+* 支持架构：x86（32bit、64bit）、ARM（32bit、64bit）
+
+- 安装
+
+```
+wget http://gosspublic.alicdn.com/ossutil/1.6.19/ossutil64
+chmod 755 ossutil64
+sudo mv ossutil64 /usr/bin/ossutil
+```
+
+- 执行配置
+
+```
+./ossutil config
+```
 
 # 参考
 
 * [osscmd 快速安装](https://help.aliyun.com/document_detail/32184.html?spm=5176.doc32171.2.6.kcTPtw)
-
-colorama-0.3.3 jmespath

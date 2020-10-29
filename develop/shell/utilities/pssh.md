@@ -27,7 +27,7 @@ CentOS可以使用EPEL安装pssh，但是现在(CentOS 8)只提供MPSSH(Mass Par
 dnf --enablerepo=epel -y install mpssh
 ```
 
-使用方法和pssh类似，但是没有提供 `-A` 参数，也就是只能使用密钥认证，无法使用密码认证。这个问题我主要通过复用ssh连接方式解决，即在 `~/.ssh/confi` 中添加配置:
+使用方法和pssh类似，但是没有提供 `-A` 参数，也就是只能使用密钥认证，无法使用密码认证。这个问题我主要通过复用ssh连接方式解决，即在 `~/.ssh/config` 中添加配置:
 
 ```bash
 Host *

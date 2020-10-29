@@ -70,7 +70,7 @@ rpm -q --scripts <packagename>
 
 # 显示远程仓库中rpm包内容
 
-在 `yum-utils` 工具包中又一个 `repoquery` 可以提供查询远程仓库信息的能力。默认情况下， `repoquery` 会下载 yum repo metadata和update缓存。如果不想更新缓存，而是直接使用缓存信息，则加一个 `-c` 参数或者 `--cache` 参数。要列出软件包的内容，使用 `--list` 参数：
+在 `yum-utils` 工具包中有一个 `repoquery` 可以提供查询远程仓库信息的能力。默认情况下， `repoquery` 会下载 yum repo metadata和update缓存。如果不想更新缓存，而是直接使用缓存信息，则加一个 `-c` 参数或者 `--cache` 参数。要列出软件包的内容，使用 `--list` 参数：
 
 ```bash
 repoquery --list <packagename>
