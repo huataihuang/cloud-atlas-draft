@@ -1035,6 +1035,8 @@
 		* [树莓派快速起步](develop/raspberry_pi/raspberry_pi_quick_start.md)
 		* [树莓派计算模块](develop/raspberry_pi/compute_module.md)
 		* [从USB存储启动树莓派](develop/raspberry_pi/boot_from_usb_storage_on_raspberry_pi.md)
+		* [树莓派4的USB接口问题汇总](develop/raspberry_pi/raspberry_pi_usb_problem.md)
+		* [树莓派视频输出配置](develop/raspberry_pi/raspberry_pi_video_option.md)
 		* [树莓派作为Cisco Console服务器](develop/raspberry_pi/raspberry_pi_as_cisco_console_server.md)
 		* [树莓派Zero设置USB网络通讯(Ethernet Gadget)](develop/raspberry_pi/raspberry_pi_zero_ethernet_gadget.md)
 		* [在树莓派Zero W上运行Kali Linux](develop/raspberry_pi/running_kali_linux_on_raspberry_pi_zero_w.md)

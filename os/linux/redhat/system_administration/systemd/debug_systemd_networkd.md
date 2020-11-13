@@ -503,6 +503,8 @@ ioctl[SIOCSIWENCODEEXT]: Invalid argument
 wpa_supplicant -D nl80211 -c /run/netplan/wpa-wlan0.conf -i wlan0
 ```
 
+> 后来我查了arch linux资料，原来wpa_supplicant有两种驱动，默认是使用 `nl80211` ，只有这个驱动无法支持的硬件才需要使用已经停止开发的 `wext` 驱动。所以，如果强制指定 `-D wext` 就是会有上述报错，可以忽略。
+
 提示信息
 
 ```
@@ -522,6 +524,71 @@ wlan0: CTRL-EVENT-DISCONNECTED bssid=80:a2:35:45:83:28 reason=3 locally_generate
 nl80211: deinit ifname=wlan0 disabled_11b_rates=0
 wlan0: CTRL-EVENT-TERMINATING
 ```
+
+## 改为纯手工设置 wpa_supplicant
+
+* 移除 `/etc/netplan/02-wifi.yaml` ，然后执行一次 `netplan apply` 可以看到现在 `ifconfig` 已经不再包含无线网卡 `wlan0`
+
+* 检查rfkill是否block了无线网卡
+
+```
+rfkill list
+```
+
+显示正常
+
+```
+0: phy0: Wireless LAN
+	Soft blocked: no
+	Hard blocked: no
+```
+
+* 检查无线网卡 `iwconfig` 输出:
+
+```
+wlan0     IEEE 802.11  ESSID:off/any  
+          Mode:Managed  Frequency:5.32 GHz  Access Point: Not-Associated   
+          Retry short limit:7   RTS thr:off   Fragment thr:off
+          Encryption key:off
+          Power Management:on
+          
+lo        no wireless extensions.
+
+eth0      no wireless extensions.
+```
+
+* 使用 `ifconfig` 命令启用无线网卡
+
+```
+sudo ifconfig wlan0 up
+```
+
+- 扫描周边无线网络
+
+```
+iwlist wlan0 scan | grep ESSID
+```
+
+
+我找到archlinux的wiki文档，指出有些硬件不支持驱动会有类似错误。例如，我前面看到
+
+```
+wlan0: Authentication with XX:XX:XX:XX:XX:XX timed out.
+```
+
+文档说明：
+
+On some (especially old) hardware, wpa_supplicant may fail with the following error:
+
+```
+Successfully initialized wpa_supplicant
+nl80211: Driver does not support authentication/association or connect commands
+wlan0: Failed to initialize driver interface
+```
+
+This indicates that the standard nl80211 driver does not support the given hardware. The deprecated wext driver might still support the device:
+
+(判断错误）我怀疑我复制树莓派firmware文件覆盖ubuntu的firmware来支持USB移动硬盘启动破坏了firmware加载。但是我测试了从正常的树莓派主机上(没有使用USB存储)复制.dat和.elf文件到异常服务器上，重启系统无线依然无法工作。
 
 ## 脚本启动
 
@@ -640,77 +707,153 @@ overscan_top=24
 overscan_bottom=24
 ```
 
-# 改为纯手工设置 wpa_supplicant
+但是我设置了 `hdmi_mode=51` 或者 `hdmi_safe=1` 都没有解决这个问题
 
-* 移除 `/etc/netplan/02-wifi.yaml` ，然后执行一次 `netplan apply` 可以看到现在 `ifconfig` 已经不再包含无线网卡 `wlan0`
+## 尝试raspbian
 
-* 检查rfkill是否block了无线网卡
+我尝试通过TF卡启动到raspbian系统中，使用同样的启动脚本来启动，发现还是出现相同的报错信息。并且这次我是没有外接USB设备，仅仅使用TF卡。我要不要在raspbian中也使用 `hdmi_safe=1` 呢？
 
-```
-rfkill list
-```
+实际测试下来还是失败，看来这个问题和直接外接SSD存储没有关系，但是确实和树莓派系统更新有关。
 
-显示正常
+## 可能找到解决方法了
 
-```
-0: phy0: Wireless LAN
-	Soft blocked: no
-	Hard blocked: no
-```
+我在树莓派4上通过Raspberry OS官方系统启动，只使用TF卡不使用外接SSD移动硬盘，排除了USB3.0影响因素，所以导致问题的原因应该是wpa_supplicant配置问题。
 
-* 检查无线网卡 `iwconfig` 输出:
+由于我发现执行 `sudo wpa_supplicant -c /etc/wpa_supplicant/wpa_supplicant-office.conf -i wlan0` 命令提示信息显示 wpa_suuplicant 尝试连接MAC地址 `bssid=00:00:00:00:00:00` ，这明显是错误的不存在MAC，所以我尝试在 `wpa_supplicant-office.conf` 配置中添加指定 bssid 参数，类似如下
 
 ```
-wlan0     IEEE 802.11  ESSID:off/any  
-          Mode:Managed  Frequency:5.32 GHz  Access Point: Not-Associated   
-          Retry short limit:7   RTS thr:off   Fragment thr:off
-          Encryption key:off
-          Power Management:on
-          
-lo        no wireless extensions.
-
-eth0      no wireless extensions.
+...
+  ssid="SSID-OFFICE"
+  bssid=xx:yy:zz:aa:bb:cc
+...
 ```
 
-* 使用 `ifconfig` 命令启用无线网卡
-
-```
-sudo ifconfig wlan0 up
-```
-
-- 扫描周边无线网络
-
-```
-iwlist wlan0 scan | grep ESSID
-```
-
-
-我找到archlinux的wiki文档，指出有些硬件不支持驱动会有类似错误。例如，我前面看到
-
-```
-wlan0: Authentication with XX:XX:XX:XX:XX:XX timed out.
-```
-
-文档说明：
-
-On some (especially old) hardware, wpa_supplicant may fail with the following error:
+但是发现此时报错
 
 ```
 Successfully initialized wpa_supplicant
-nl80211: Driver does not support authentication/association or connect commands
-wlan0: Failed to initialize driver interface
+wlan0: Failed to initiate sched scan
+wlan0: Failed to initiate sched scan
+...
 ```
 
-This indicates that the standard nl80211 driver does not support the given hardware. The deprecated wext driver might still support the device:
+经过多次对比参数，我发现原来不能同时指定 `ssid=` 和 `bssid=` ，同时设置上述两个参数就会导致无法发起iwlist scan。所以，把上述 `ssid="SSID-OFFICE"` 注释掉就能够正常运行。
 
-我怀疑我复制树莓派firmware文件覆盖ubuntu的firmware来支持USB移动硬盘启动破坏了firmware加载。但是我测试了从正常的树莓派主机上(没有使用USB存储)复制.dat和.elf文件到异常服务器上，重启系统无线依然无法工作。
+另外，还有一个非常奇特的参数必须在`wpa_supplicant.conf`中指定，就是 `country=US` ，这个参数是表明无线使用的国家，因为每个国家的2,4GHz使用了不同的通道 [List_of_WLAN_channels](https://en.wikipedia.org/wiki/List_of_WLAN_channels) (参考 [Raspbian - wpa_supplicant.conf Country meaning](https://raspberrypi.stackexchange.com/questions/93679/raspbian-wpa-supplicant-conf-country-meaning) ) 。有可能你需要根据你的路由器来设置这个参数(或者可以在配置中指定channel?)
 
+我测试了如果不指定这个 `country=US` ，就会导致wpa_supplicant启动时候显示 `wlan0: Failed to initiate sched scan` ，使用了这个参数就能正常发起扫描。看起来，应该是某次升级过 wpa_supplicant 版本导致默认的country失效了，就会去连接 `00:00:00:00:00:00` ，但是如果你强制同时指定 ssid 和 bssid ，也会导致 `wlan0: Failed to initiate sched scan` 。
 
-非常非常郁闷...
+> [Setup WiFi on a Pi Manually using wpa_supplicant.conf](https://www.raspberrypi-spy.co.uk/2017/04/manually-setting-up-pi-wifi-using-wpa_supplicant-conf/) 提供了country解释：
+>
+> The Country Code should be set the [ISO/IEC alpha2 code](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements) for the country in which you are using your Pi. Common codes include :
+>
+> * gb (United Kingdom)
+> * fr (France)
+> * de (Germany)
+> * us (United States)
+> * se (Sweden)
 
-我暂时放弃，绕开这个问题，等以后再排查解决
+经过验证，指定 `bssid=` 参数可以正常启动`wpa_supplicant`客户端，然后完成连接认证。存在的问题是，会反复出现EAP认证，显示认证成功，然后又断开重新认证成功。不过，反复多次以后，终于不再断开，也就完成认证，稳定连接，最终就能够完成无线认证并通过dhcpcd获得IP地址。
 
+总之，最终的 `wpa_supplicant-office.conf` 如下:
 
+```bash
+ctrl_interface=/var/run/wpa_supplicant
+#update_config=1
+#ap_scan=1
+country=US
+network={
+#  ssid="alibaba-inc"
+  bssid=xx:yy:zz:aa:bb:cc
+  key_mgmt=WPA-EAP
+  eap=PEAP
+  phase1="peaplabel=0"
+  phase2="auth=MSCHAPV2"
+  identity="user_name"
+  password="user_password"
+}
+```
+
+折腾了好几天，终于能够完成无线连接。
+
+不过，我在设置netplan中没有找到设置 `country` 的参数，例如配置 `02-wifi.yaml` 配置
+
+```yaml
+network:
+  version: 2
+  renderer: networkd
+  wifis:
+    wlan0:
+      optional: true
+      dhcp4: yes
+      dhcp6: no
+      accept-ra: yes
+      macaddress: 11:22:33:zz:yy:xx
+      access-points:
+        "SSID-HOME":
+          password: "user_password"
+        "":
+          bssid: xx:yy:zz:aa:bb:cc
+          band: 5GHz
+          channel: 149
+          auth:
+            key-management: eap
+            method: peap
+            phase2-auth: MSCHAPV2
+            identity: "user_name"
+            password: "user_password"
+```
+
+但是 `netplan apply` 生成的配置 `/run/netplan/wpa-wlan0.conf` 内容并没有country参数
+
+```
+ctrl_interface=/run/wpa_supplicant
+
+network={
+  ssid=""
+  bssid=xx:yy:zz:aa:bb:cc
+  key_mgmt=WPA-EAP
+  eap=PEAP
+  identity="user_name"
+  password="user_password"
+  phase2="auth=MSCHAPV2"
+}
+```
+
+`journalctl -u netplan-wpa-wlan0.service` 还是看到如下报错
+
+```
+Nov 13 15:56:48 pi-worker2 wpa_supplicant[2520]: Successfully initialized wpa_supplicant
+Nov 13 15:57:05 pi-worker2 wpa_supplicant[2520]: wlan0: Failed to initiate sched scan
+Nov 13 15:57:12 pi-worker2 wpa_supplicant[2520]: wlan0: Failed to initiate sched scan
+...
+```
+
+不过，既然已经知道是 country 导致的问题，我进一步搜索找到了 [Help: Unable to connect to 5G Wifi on raspberry pi 4 using ubuntu server 18.04](https://askubuntu.com/questions/1214902/help-unable-to-connect-to-5g-wifi-on-raspberry-pi-4-using-ubuntu-server-18-04) ，关键点就是country code，因为5GHz是一个受控频率，需要根据不同国家进行调整country code，否则无法连接。临时的解决方法就是使用 `wireless-tools` 工具设置:
+
+```
+sudo apt update
+sudo apt install network-manager wireless-tools
+sudo iw reg set CN
+```
+
+然后就能够正常连接。
+
+要持久化上述country配置，修改 `/etc/default/crda` 配置，将默认的
+
+```
+REGDOMAIN=
+```
+
+修改成
+
+```
+REGDOMAIN=CN
+```
+
+然后重启就可以看到5GHz的WiFi正常工作了。
+
+**OMG** 这真是一个折磨人的故障问题，我估计我断断续续花了一周时间才解决这个问题。
 
 # 参考
 
