@@ -1,3 +1,38 @@
+# 小结
+
+树莓派连接公司wifi的问题困扰了我很久，最初是时好时不好，后来就是根本连接不上。配置完全相同情况下(百分百肯定账号及配置正确)，在ThinkPad笔记本上工作正常，但是树莓派会奇怪地连接并不存在的 `bssid=00:00:00:00:00:00` 无线AP：
+
+```bash
+Nov 05 16:18:51 pi-worker2 wpa_supplicant[1932]: wlan0: CTRL-EVENT-ASSOC-REJECT bssid=00:00:00:00:00:00 status_code=16
+Nov 05 16:10:27 pi-worker2 wpa_supplicant[1849]: wlan0: Trying to associate with SSID 'SSID-OFFICE'
+Nov 05 16:10:30 pi-worker2 wpa_supplicant[1849]: wlan0: CTRL-EVENT-ASSOC-REJECT bssid=00:00:00:00:00:00 status_code=16
+Nov 05 16:10:30 pi-worker2 wpa_supplicant[1849]: wlan0: CTRL-EVENT-SSID-TEMP-DISABLED id=0 ssid="SSID-OFFICE" auth_failures=1 duration=23 reason=CONN_FAILED
+```
+
+下面的排查过程很长，反复折腾走了很多弯路，但是实际上解决方法很简单：
+
+* 由于5G频段是一个受控频率，需要根据不同国家进行调整country code，否则无法连接。在 `wpa_supplicant.conf` 中需要明确指定 `country=CN` 参数(其他国家代码，如US可能也行)
+* ubuntu server使用netplan配置网络目前没有提供`country`参数，所以可以通过 `iw reg set CN` 命令动态设置。
+* 要持久化上述country配置，修改 `/etc/default/crda` 配置，将默认的
+
+```
+REGDOMAIN=
+```
+
+修改成
+
+```
+REGDOMAIN=CN
+```
+
+然后重启就可以看到5GHz的WiFi正常工作了。
+
+----
+
+`以下是我一周多折腾的笔记，仅供参考`
+
+# 问题
+
 我在使用Ubuntu for Raspberry Pi 2020.4.1时候，采用服务器版本，所以默认的网络配置是采用netplan。netplan可以使用NetworkManager作为后端，也可以使用systemd-networkd作为后端。为了减少服务组件，我采用 netplan 调用默认的 systemd-networkd 来配置无线网络。
 
 我有2个树莓派，安装操作系统一致，并且采用了相同的 netplan 配置，即在 `/etc/netplan` 目录下创建2个配置文件：
