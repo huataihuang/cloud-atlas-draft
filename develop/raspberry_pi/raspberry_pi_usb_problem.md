@@ -11,6 +11,8 @@
 
 - [Problems adding a USB 3.0 SSD to PI4](https://www.raspberrypi.org/forums/viewtopic.php?f=36&t=266353) 提到了当USB 3.0 SSD存储连接到树莓派上会影响无线游戏手柄，我感觉这个问题极有可能和我的case相似。此外这个问题也是和2.4GHz有关
 
+- [Pi4, USB3, and Wireless 2.4Ghz interference](https://www.indilib.org/forum/general/6576-pi4-usb3-and-wireless-2-4ghz-interference.html)
+
 - [STICKY: If you have a Raspberry Pi 4 and are getting bad speeds transferring data to/from USB3.0 SSDs, read this](https://www.raspberrypi.org/forums/viewtopic.php?f=28&t=245931) 说明了USB固态存储和树莓派4的匹配情况，有可能某些设备会速度非常慢
 
 

@@ -33,7 +33,36 @@ echo <password> | sudo -S <command>
 ./configure && make && echo <password> | sudo -S make install && halt
 ```
 
+另外还有一种更好的加入sudo密码的方法参考 [How to supply sudo with password from script?](https://stackoverflow.com/questions/24892382/how-to-supply-sudo-with-password-from-script) ，不需要使用管道符号，更方便编写脚本
+
+```bash
+sudo -S < <(echo "<password>") pouch ps
+```
+
+使用sudo密码参数的方法非常适合远程使用pssh执行需要root权限的脚本：
+
+```bash
+pssh -p 50 -l <username> -h host_ip 'sudo -S < <(echo "<password>") /path/script.sh' | tee -a script.log
+```
+
+> 有一种不需要sudo密码的方法执行应用程序，是将应用程序 `chmod +s` ，但是，这种方式如果脚本中包含的执行程序没有同样处理的话，还是不能完整以root身份执行，所以只能作为备用手段。
+
+# sudoers文件配置
+
+在 `/etc/sudoers` 配置文件中添加以下行可以不用密码执行(举例，用户名huatai)
+
+```
+huatai ALL=(ALL) NOPASSWD:ALL
+```
+
+如何修订 `/etc/sudoers` 配置呢？ 系统提供了一个 `visudo` 工具，可以用来在脚本中添加行内容
+
+```bash
+echo 'foobar ALL=(ALL:ALL) ALL' | sudo EDITOR='tee -a' visudo
+```
+
 # 参考
 
 * [Run a shell script as another user that has no password](https://askubuntu.com/questions/294736/run-a-shell-script-as-another-user-that-has-no-password)
 * [sudo with password in one command line?](https://superuser.com/questions/67765/sudo-with-password-in-one-command-line)
+* [How do I edit /etc/sudoers from a script?](https://stackoverflow.com/questions/323957/how-do-i-edit-etc-sudoers-from-a-script)

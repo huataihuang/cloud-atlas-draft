@@ -4,7 +4,7 @@ pssh是早期在Python 2上开发的工具，最早开源在google code上，后
 
 # 安装pssh
 
-## Ubuntu安装pssh
+## Ubuntu/debain 安装pssh
 
 在Ubuntu上， `pssh` 包安装之后，直接执行 `pssh` 命令会提示无法找到指令。实际上Ubuntu安装 `pssh` 软件包后实际的执行程序是采用了 `parallel-` 开头的命令，例如 `parallel-ssh` 和 `parallel-scp` 等。所以，为了方便使用，可以建立软链接:
 
@@ -18,6 +18,23 @@ sudo ln -s parallel-slurp pslurp
 ```
 
 > 以下在Ubuntu上实践都直接使用 `pssh` 和 `pscp` 等命令，如果你在Ubuntu上看不到这个指令（并且已经安装好 `pssh` 软件包)，可以尝试先通过软链接修正。
+
+## arch linux 安装pssh
+
+arch的软件包仓库没有提供pssh，但是可以通过 [pssh AUR package](https://aur.archlinux.org/packages/python-pssh/) 安装:
+
+```
+sudo pacman -S base-devel git
+git clone https://aur.archlinux.org/python-pssh.git
+cd python-pssh
+makepkg -sri
+```
+
+## Fedora安装pssh
+
+```
+sudo dnf install pssh -y
+```
 
 ## CentOS安装mpssh
 
@@ -46,6 +63,12 @@ for i in `cat host`;do sshpass <password> ssh <username>@$i uptime;done
 ```
 
 之后就可以通过 `mpssh` 并发执行ssh命令。
+
+## OpenSUSE
+
+```
+sudo zypper install pssh
+```
 
 ## 通过pip安装(推荐使用这个通用方法安装)
 
@@ -221,3 +244,4 @@ keychain --clear $HOME/.ssh/id_rsa
 * [parallel-ssh](http://manpages.ubuntu.com/manpages/precise/man1/parallel-ssh.1.html)
 * [pssh-howto.md](https://gist.github.com/carlessanagustin/c5e70c8edfa8408547545e26b61ab783)
 * [parallel-ssh with Passphrase Protected SSH Key](https://unix.stackexchange.com/questions/128974/parallel-ssh-with-passphrase-protected-ssh-key)
+* [How to use multiple SSH connections on Linux with Pssh](https://www.addictivetips.com/ubuntu-linux-tips/use-multiple-ssh-connections-with-pssh/)
