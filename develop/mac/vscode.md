@@ -193,3 +193,7 @@ VS Code支持工作文件案的对比，并且允许以不同模式对比更改�
 
 * `C_Cpp.clang_format_formatOnSave` - to format when you save your file.
 * `editor.formatOnType` - to format as you type (triggered on the ; character).
+
+## theme
+
+默认的vscode配色比较淡雅，如果需要色彩艳丽对比强烈的风格，可以搜索安装 ``hopscotch`` ，比较有视觉冲击。(我同事的推荐)
