@@ -11,6 +11,14 @@ mount  -oremount,noatime,nodiratime,logbufs=8,logbsize=256k,largeio,inode64,swal
 
 对于数据库+SSD存储，建议使用XFS文件系统。
 
+* 其他EXT4文件系统挂载参数组合
+
+```
+defaults,noatime,nodiratime,nodelalloc,barrier=0,dioread_nolock,grpjquota=aquota.group,jqfmt=vfsv1
+```
+
+> 具体我再撰文解析
+
 # 参考
 
 * [High load average, but low CPU/IO figures - how to diagnose? ](http://serverfault.com/questions/757546/high-load-average-but-low-cpu-io-figures-how-to-diagnose-dmesg-output-inclu)
