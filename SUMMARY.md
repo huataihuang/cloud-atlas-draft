@@ -1417,6 +1417,7 @@
 		* [从git仓库中清理敏感信息(如密码))](devops/git/remove_sensitive_data_from_repository.md)
 		* [git通过SSH Tunnel代理访问](devops/git/git_ssh_tunnel_proxy.md)
 		* [git文件的执行属性](devops/git/git_exec_mode_file.md)
+		* [修改git commit消息](devops/git/change_git_commit_message.md)
 	* [Gerrit](devops/gerrit/README.md)
 	* [Gitlab](devops/gitlab/README.md)
 		* [部署使用的ssh key](devops/gitlab/deploy_key.md)
