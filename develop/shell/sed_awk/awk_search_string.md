@@ -90,6 +90,49 @@ awk -F, '/Medicine/ && $2>500' file
 awk -F, '/Medicine/ || $2>600' file
 ```
 
+## 案例（找出磁盘大于某个规格)
+
+上述大于值的过滤在 [print line only if number in third field is greater than X [duplicate]](https://unix.stackexchange.com/questions/395588/print-line-only-if-number-in-third-field-is-greater-than-x) 也有一个类似查看磁盘容量大于某个值的查询
+
+```bash
+lsblk -bio KNAME,TYPE,SIZE,MODEL| awk '/disk/ && $3> 300000000000 || NR==1'
+```
+
+> 上述 `NR==1` 是为了保留输出的头部第一行
+
+举例，我的虚拟机
+
+```bash
+$lsblk -bio KNAME,TYPE,SIZE,MODEL
+KNAME TYPE         SIZE MODEL
+vda   disk  42949672960
+vda1  part  42948607488
+vdb   disk 536870912000
+vdb1  part 249999392768
+```
+
+则执行
+
+```bash
+lsblk -bio KNAME,TYPE,SIZE,MODEL | awk '/disk/ && $3> 300000000000 || NR==1'
+```
+
+输出结果
+
+```
+KNAME TYPE         SIZE MODEL
+vdb   disk 536870912000
+```
+
+[remove lines where a field's value is less than or equal to 3 - sed or awk?](https://unix.stackexchange.com/questions/188095/remove-lines-where-a-fields-value-is-less-than-or-equal-to-3-sed-or-awk)
+
+```bash
+ awk '(NR>1) && ($8 > 2 ) ' foo > bar
+```
+
+对于
+
+
 # 忽略大小写
 
 类似`grep -i linux file`可以匹配`Linux`和`lINux`这样的字符串，`awk`也提供内建的变量表达：

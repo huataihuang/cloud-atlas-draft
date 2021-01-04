@@ -61,6 +61,20 @@ drive-virtio-disk1: removable=0 io-status=ok file=/var/lib/libvirt/images/dev7-d
 virsh qemu-monitor-command dev7 --hmp "block_resize drive-virtio-disk1 30G"
 ```
 
+注意：最近我在arch linux上执行上述 `info block` 命令并没有正确显示出磁盘镜像名称，显示的是类似:
+
+```
+libvirt-3-format: /var/lib/libvirt/images/sles12_data.qcow2 (qcow2)
+    Attached to:      /machine/peripheral/virtio-disk1/virtio-backend
+    Cache mode:       writeback
+```
+
+这导致 `block_resize` 命令不能针对设备执行。所以我改为直接采用 `qemu-img` 命令进行resize，类似命令:
+
+```bash
+sudo qemu-img resize /var/lib/libvirt/images/rhel8.qcow2 +10G
+```
+
 * 在`dev7虚拟机内部`
 
 此时在`dev7`虚拟机内部`fdisk -l /dev/vbd`可以看到磁盘设备已经增长到30G
