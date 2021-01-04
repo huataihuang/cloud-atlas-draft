@@ -60,7 +60,7 @@ hugo new site works
 
 ## Blog类型
 
-参考 [Hugo Document Tag]() ，我感觉比较完善的:
+参考 [Hugo Document Tag](https://themes.gohugo.io/tags/documentation/) ，我感觉比较完善的:
 
 - [Hugo Initio](https://themes.gohugo.io/theme/hugo-initio/) - 非常具有现代气息的卡片型
 - [Universal](https://themes.gohugo.io/theme/hugo-universal-theme/) - 最具有商业气质的网站，可以用作企业WEB网站，美轮美奂
