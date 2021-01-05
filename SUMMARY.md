@@ -1506,6 +1506,8 @@
 		* [备份Kindle电子书](learn/kindle/back_up_kindle_books.md)
 		* [电子书阅读软件](learn/kindle/ebook_reader.md)
 		* [Kindle个人文档](learn/kindle/kindle_personal_doc.md)
+		* [制作合适kindle的pdf：pdf切边和重排](learn/kindle/pdf_for_kindle.md)
+		* [使用Kindle阅读pdf文档](learn/kindle/use_kindle_read_pdf.md)
 	* [GTD: Getting Things Done](learn/gtd/README.md)
 * [附录：个人工作室构建](studio/README.md)
 	* [MacBook双操作系统启动macOS+Linux](studio/macbook_dual_boot_macos_linux.md)
