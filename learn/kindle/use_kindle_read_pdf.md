@@ -2,7 +2,7 @@ Kindle是非常简约的电子书阅读器，它的功能单一给使用者一�
 
 在很多年前，当我第一次看到 [Kindle DX](https://baike.baidu.com/item/kindle%20DX/5033313) 能够完整阅读A4纸大小的pdf文档，我确实非常心动。然而，Kindle DX高昂的售价和沉重的使用体验，让人望而却步。
 
-到了2016年，终于入手了Kindle Paper White，但是6英寸的屏幕适合阅读 `.azw3` 文档(Kindle专用)，对已经排版好的pdf文档非常不友好。特别是对于很多留有页面空白的pdf文档，在Kindle上阅读的字体实在太小了，阅读体验极差。
+到了2016年，终于入手了Kindle Paper White，但是6英寸的屏幕适合阅读 `.azw3` 文档(Kindle专用)，却对已经排版好的pdf文档非常不友好。特别是对于很多留有页面空白的pdf文档，在Kindle上阅读的字体实在太小了，阅读体验极差。
 
 不过经过多次折腾，渐渐我也摸索出如何在6英寸屏幕Kindle上阅读pdf的方法：
 
@@ -12,7 +12,7 @@ Kindle是非常简约的电子书阅读器，它的功能单一给使用者一�
 
 解决的方法是使用操作系统的pdf 打印功能：
 
-- 对于macOS内建的打印功能就支持直接输出保存为pdf：在 ``Preview`` (macOS的pdf阅读器) 中按下 ``command + p`` ，然后点击 ``PDF`` 下拉菜单，选择 ``save as PDF`` ，这样生成的PDF文件就会内嵌中文字体。
+- 对于macOS内建的打印功能就支持直接输出保存为pdf：在 `Preview` (macOS的pdf阅读器) 中按下 `command + p` ，然后点击 `PDF` 下拉菜单，选择 `save as PDF` ，这样生成的PDF文件就会内嵌中文字体。
 
 - 对于Windows操作系统，可以安装 [Foxit Reader](https://www.foxitsoftware.com/pdf-reader/) 就会得到一个PDF打印驱动。这样也能够通过打印获得内嵌中文字体的pdf文档。
 

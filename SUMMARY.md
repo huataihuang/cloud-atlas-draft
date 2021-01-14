@@ -542,6 +542,7 @@
 		* [Sendmail队列异常处理](service/sendmail/sendmail_mqueue_error.md)
 	* [ssh](service/ssh/README.md)
 		* [ssh密钥](service/ssh/ssh_key.md)
+		* [ssh-keygen生成新的SSH密钥](service/ssh/ssh-keygen.md)
 		* [ssh指定私钥和生成无密码密钥](service/ssh/ssh_use_specific_key_and_ssh-keygen.md)
 		* [ssh端口转发](service/ssh/ssh_port_forwarding.md)
 		* [ssh多路传输multiplexing加速](service/ssh/multiplexing.md)

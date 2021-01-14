@@ -2,13 +2,17 @@
 
 对于实用官方pkg安装包，使用如下命令卸载
 
-	lsbom -f -l -s -pf /var/db/receipts/org.nodejs.pkg.bom \
+	cd /
+	lsbom -f -l -s -pf /var/db/receipts/org.nodejs.node.pkg.bom \
 	| while read i; do
-	  sudo rm /usr/local/${i}
+	  sudo rm ${i}
 	done
 	sudo rm -rf /usr/local/lib/node \
 	     /usr/local/lib/node_modules \
 	     /var/db/receipts/org.nodejs.*
+
+> 注意，首先要检查一下 `lsbom -f -l -s -pf /var/db/receipts/org.nodejs.node.pkg.bom` ，确保删除掉的文件是 `/usr/local/include/node/...` 这样的文件，避免误删
+
 
 # 参考
 
