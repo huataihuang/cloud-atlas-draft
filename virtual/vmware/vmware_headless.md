@@ -22,19 +22,27 @@ vmrun -T fusion start "/path/to/vm.vmx" nogui
 >
 > 指令可以是 `start|stop|reset|suspend|pause|unpause`
 
-不过，我启动虚拟机遇到报错：
+启动虚拟机案例：
 
-```
-vmrun -T fusion start "/Users/huatai/Virtual\ Machines.localized/centos7_base.vmwarevm/centos7_base.vmx" nogui
+```bash
+vmrun -T fusion start "/Users/huatai/Virtual Machines.localized/centos7_base.vmwarevm/centos7_base.vmx" nogui
 ```
 
-提示错误
+由于VMware的虚拟机文件存储目录 `Virtual Machines.localized` 中间有一个空格，所以指定文件时可以通过引号来扩起上述文件路径。如果不使用引号，则可以通过使用 `\` 来转义，即使用命令:
+
+```bash
+vmrun -T fusion start /Users/huatai/Virtual\ Machines.localized/centos7_base.vmwarevm/centos7_base.vmx nogui
+```
+
+但是需要注意，引号和空格前转义符`\`不能同时使用，否则会报错
+
 
 ```
 Error: Cannot open VM: /Users/huatai/Virtual\ Machines.localized/centos7_base.vmwarevm/centos7_base.vmx, The virtual machine cannot be found
 ```
 
-但是，实际上这个虚拟机文件是存在的，暂时没有解决这个问题
+> 感谢 [dysl357085918](https://github.com/dysl357085918) 指正 [关于vmware后台运行 #2](https://github.com/huataihuang/cloud-atlas-draft/issues/2)
+
 
 # 快捷键隐藏VMware窗口
 

@@ -130,7 +130,7 @@ udp-fragmentation-offload: off
 
 再次检查，发现`rx`和`tx`的`checksum`被同时关闭了
 
-````
+```
 ethtool -k eth1
 Features for eth1:
 rx-checksumming: off
@@ -190,6 +190,64 @@ tx-checksumming: on
 ```
 
 **注意：为了避免性能问题，完成测试后需要恢复开启`TCO`功能**
+
+# 开关tso的方法推荐
+
+`ethtool` 大写参数 `-K` 可以用来切换，而消协参数 `-k` 则用来显示
+
+```bash
+ethtool -K eth0 tso on
+
+ethtool -K eth0 tso off
+```
+
+上述命令可以组合参数，举例
+
+```
+ethtool -K eth0 tso on sg on tx on
+
+ethtool -K eth0 tso off sg off tx off
+```
+
+然后检查：
+
+```
+ethtool -k eth0
+```
+
+可以看到修改后的参数
+
+[Disable TCP-Offloading {completely, generically and easily}](https://serverfault.com/questions/421995/disable-tcp-offloading-completely-generically-and-easily) 有一些设置脚本案例
+
+```bash
+#!/bin/bash
+
+RUN=true
+case "${IF_NO_TOE,,}" in
+    no|off|false|disable|disabled)
+        RUN=false
+    ;;
+esac
+
+if [ "$MODE" = start -a "$RUN" = true ]; then
+  TOE_OPTIONS="rx tx sg tso ufo gso gro lro rxvlan txvlan rxhash"
+  for TOE_OPTION in $TOE_OPTIONS; do
+    /sbin/ethtool --offload "$IFACE" "$TOE_OPTION" off &>/dev/null || true
+  done
+fi
+```
+
+此外，debian的配置文件 `/etc/network/interfaces` 提供了接口设置offload:
+
+```bash
+auto eth0
+iface eth0 inet static
+    address 10.0.3.1/255.255.248.0
+    gateway 10.0.2.10
+    offload-tx  off
+    offload-sg  off
+    offload-tso off
+```
 
 # 原理
 

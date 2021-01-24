@@ -11,7 +11,7 @@ mount /dev/sdb1 /data
 使用以下命令安装 NFS 支持
 
 ```
-yum install nfs-utils nfs-utils-lib
+yum install nfs-utils
 ```
 
 设置nfs相关服务在操作系统启动时启动

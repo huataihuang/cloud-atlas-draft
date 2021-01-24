@@ -175,9 +175,39 @@ mount.nfs: mount(2): Connection timed out
 ...
 ```
 
-初步判断存在网络问题，比较类似防火墙阻塞，因为防火墙后的NFS服务器要求NFS对外输出的RPCbind是固定端口，这样才能确保客户端能够正确连接访问。
+不过，根据 `telnet 192.168.1.53 4046` 可以看到NAS服务器端口是可以访问的，后来根据tcpdump查看，客户端发出端口4046的SYN请求后，NAS服务器端没有返回对应的ACK。
 
-这个排查还有一些疑点，需要继续...
+> 实际上这个抓包对比过程比较曲折，我花费了几天时间才找出导致这个NFS无法挂载的真正原因，涉及的问题和内核相关，使我对NFS以及网络问题排查有了一些心得，我会重新写几篇文档来总结。
+
+# tcpdump抓包
+
+* 使用以下命令抓包
+
+```
+tcpdump -i eth0 -n host 192.168.1.53
+
+tcpdump -i eth0 -nn -vv -e host 192.168.1.53
+```
+
+显示信息
+
+```
+16:03:24.164520 IP 192.168.0.187.33763 > 192.168.1.53.acp-proto: Flags [.], ack 30, win 502, options [nop,nop,TS val 1341343592 ecr 766772696], length 0
+16:03:24.164838 IP 192.168.0.187.1020 > 192.168.1.53.acp-proto: Flags [S], seq 2722685289, win 64240, options [mss 1460,sackOK,TS val 1341343592 ecr 0,nop,wscale 7], length 0
+16:03:25.184372 IP 192.168.0.187.1020 > 192.168.1.53.acp-proto: Flags [S], seq 2722685289, win 64240, options [mss 1460,sackOK,TS val 1341344612 ecr 0,nop,wscale 7], length 0
+16:03:27.232376 IP 192.168.0.187.1020 > 192.168.1.53.acp-proto: Flags [S], seq 2722685289, win 64240, options [mss 1460,sackOK,TS val 1341346660 ecr 0,nop,wscale 7], length 0
+...
+```
+
+* 抓包对比
+
+```
+tcpdump -w /tmp/nfs.pcap -nni eth0 host 192.168.1.53
+```
+
+在wireshark中查看，可以看到 `192.168.0.187.33763 > 192.168.1.53.acp-proto` 第一次发出 `[S](Syn)` 之后，NAS服务器端没有任何ACK包，所以后面都是重复的 `[S](Syn)` 
+
+
 
 # 参考
 
