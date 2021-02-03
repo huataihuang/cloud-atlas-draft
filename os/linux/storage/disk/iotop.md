@@ -49,6 +49,18 @@ Actual DISK READ:      15.50 M/s | Actual DISK WRITE:	   15.62 M/s
 * `-t, --time` - 在每一行添加一个时间戳
 * `-q, --quiet`- 去除头部一些行：这个参数可以设置最多3次来移除头部行：`-q`列头部只在最初交互显示一次；`-qq`列头部不显示；`-qqq`，I/O的总结不显示。
 
+我比较推荐使用:
+
+```bash
+iotop -o
+
+iotop -ao
+```
+
+通过 `iotop -ao` 可以找出不断读写磁盘的进程，累积起来最大的进程，比较容易找到活跃的读写进程。这样找到可以的进程以后，在使用 `iotop -P xxx` 单独观察。
+
+对于进程到底在读写什么文件，可能也会比较容易排查出问题。你要定位某个进程在读写什么文件，可以采用 [找出瞬间消失的TCP网络连接进程](../../security/audit/find_short_lived_tcp_connections_owner_process) 中采用的方法，即使用 [系统审核架构](../../security/audit/audit_architecture) 来定位。
+
 # 参考
 
 * [Linux iotop: Check What’s Stressing And Increasing Load On Your Hard Disks](http://www.cyberciti.biz/hardware/linux-iotop-simple-top-like-io-monitor/)
