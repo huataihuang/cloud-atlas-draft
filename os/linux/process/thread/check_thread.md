@@ -10,7 +10,7 @@
 ps -T -p <pid>
 ```
 
-![ps_thread.jpg](/img/os/linux/process/thread/ps_thread.jpg)
+![ps_thread.jpg](../../../..//img/os/linux/process/thread/ps_thread.jpg)
 
 在显示输出中，`PID`列就是进程，`SPID`列就是线程
 
@@ -49,7 +49,7 @@ ps xao pid,ppid,pgid,sid,comm
 
 > 当`H`按键切换进程视图到线程视图时，可以看到`top`显示左上角`Tasks`（表示进程）转换成显示`Threads`（表示线程），并且数量倍数增加。
 
-![ps_thread.jpg](/img/os/linux/process/thread/top_thread.jpg)
+![ps_thread.jpg](../../../..//img/os/linux/process/thread/top_thread.jpg)
 
 要检查某个进程`<pid>`对应的线程，可以使用
 
@@ -57,17 +57,17 @@ ps xao pid,ppid,pgid,sid,comm
 top -H -p <pid>
 ```
 
-![ps_thread.jpg](/img/os/linux/process/thread/top_thread_for_process.jpg)
+![ps_thread.jpg](../../../..//img/os/linux/process/thread/top_thread_for_process.jpg)
 
 # 通过`htop`
 
 [htop](http://ask.xmodulo.com/install-htop-centos-rhel.html)是一个加强的进程观察工具。进入`htop`之后，按下`<F2>`可以进入设置菜单，选择`Display option`，并选择`Three View`和`Show custom thread names`选项，然后按下`<F10>`推出设置。
 
-![ps_thread.jpg](/img/os/linux/process/thread/htop_setup.jpg)
+![ps_thread.jpg](../../../../img/os/linux/process/thread/htop_setup.jpg)
 
 然后就可以观察每个进程的线程
 
-![ps_thread.jpg](/img/os/linux/process/thread/htop_thread.jpg)
+![ps_thread.jpg](../../../..//img/os/linux/process/thread/htop_thread.jpg)
 
 # 参考
 

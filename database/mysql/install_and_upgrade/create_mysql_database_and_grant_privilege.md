@@ -12,6 +12,14 @@ grant all privileges on appdb.* to app@'%';
 flush privileges;
 ```
 
+> 我发现有的版本mariadb(5.5.68)，如果只设置允许 `%` 主机访问，并没有包含 `localhost` ，所以可能需要补充命令
+
+```sql
+grant all privileges on appdb.* to app@'localhost';
+update user set Password=password('MyPass') where user='app';
+flush privileges;
+```
+
 检查验证权限使用命令
 
 ```
