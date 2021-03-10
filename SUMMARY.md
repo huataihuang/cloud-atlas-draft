@@ -1506,6 +1506,8 @@
 	* [GPU计算](machine_learning/gpu/README.md)
 		* [nVidia CUDA](machine_learning/gpu/cuda.md)
 		* [AMD ROCm](machine_learning/gpu/rocm.md)
+	* [Jetson Nano](machine_learning/jetson/README.md)
+		* [vpi1-demos报错可忽略](machine_learning/jetson/vpi1-demos_err.md)
 * [学习](learn/README.md)
 	* [慕课(mooc)](learn/mooc/README.md)
 		* [我的慕课](learn/mooc/my_mooc.md)

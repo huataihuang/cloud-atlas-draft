@@ -112,6 +112,51 @@ from django.utils import timezone
 timezone.localtime(timezone.now())
 ```
 
+在 [“django filter by date range” Code Answer’s](https://www.codegrepper.com/code-examples/python/django+filter+by+date+range) 提供了案例参考，片段如下：
+
+```python
+        now = timezone.now()
+        # When time zone support is enabled, convert "now" to the user's time
+        # zone so Django's definition of "Today" matches what the user expects.
+        if timezone.is_aware(now):
+            now = timezone.localtime(now)
+```
+
+完整代码如下:
+
+```python
+import datetime
+
+from django.contrib import admin
+from django.contrib.admin.filters import DateFieldListFilter
+from django.utils.translation import gettext_lazy as _
+
+
+class MyDateTimeFilter(DateFieldListFilter):
+    def __init__(self, *args, **kwargs):
+        super(MyDateTimeFilter, self).__init__(*args, **kwargs)
+
+        now = timezone.now()
+        # When time zone support is enabled, convert "now" to the user's time
+        # zone so Django's definition of "Today" matches what the user expects.
+        if timezone.is_aware(now):
+            now = timezone.localtime(now)
+
+        today = now.date()
+
+        self.links += ((
+            (_('Next 7 days'), {
+                self.lookup_kwarg_since: str(today),
+                self.lookup_kwarg_until: str(today + datetime.timedelta(days=7)),
+            }),
+        ))
+
+class BookAdmin(admin.ModelAdmin):
+    list_filter = (
+        ('published_at', MyDateTimeFilter),
+    )
+```
+
 # Django REST Framework使用UTC时间
 
 我尝试了 `views.py`
