@@ -85,8 +85,51 @@ grep -E 'pattern1' filename | grep -E 'pattern2'
 grep -v 'pattern1' filename
 ```
 
+我们在使用 `grep` 命令过滤进程的时候通常就使用 `-v` 参数来过滤掉 `grep` 命令自身：
+
+```
+ps aux | grep sshd | grep -v grep
+```
+
+这样输出内容就不会包含 `grep sshd` 这个命令。不过，实际上 `grep` 命令还有一个小技巧，就是直接使用:
+
+```
+ps aux | grep [s]shd
+```
+
+上述表达式是的 `grep` 只会匹配 `sshd` 而不会匹配 `[s]shd` (后者是grep命令自己使用不显示在进程列表中)
+
+# pgrep
+
+如果要找到一个进程名对应的进程PID，我以前是结合使用 `awk` 命令:
+
+```
+ps aux | grep [s]shd | awk '{print $1}'
+```
+
+实际上，系统还提供了一个 `pgrep` 命令方便过滤进程pid：
+
+```
+pgrep sshd
+```
+
+就可以找到系统中所有 `sshd` 对应的pid
+
+* 通过 `pgrep` 命令还可以获得完整的进程命令 `-a` :
+
+```
+pgrep -a sshd
+```
+
+* 使用 `-l` 参数可以同时获得 PID 和进程名
+
+```
+pgrep -l firefox
+```
+
 # 参考
 
 * [GREP如何提取文件中第一个相关匹配](http://bbs.chinaunix.net/thread-3590779-1-1.html)
 * [grep 能否给出搜到行的行号＋内容？](http://bbs.chinaunix.net/thread-286265-1-1.html)
 * [7 Linux Grep OR, Grep AND, Grep NOT Operator Examples](https://www.thegeekstuff.com/2011/10/grep-or-and-not-operators/)
+* [Remove grep command while grepping using ps command](https://www.cyberciti.biz/tips/grepping-ps-output-without-getting-grep.html)
