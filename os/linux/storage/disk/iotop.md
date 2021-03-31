@@ -44,7 +44,7 @@ Actual DISK READ:      15.50 M/s | Actual DISK WRITE:	   15.62 M/s
 * `-p PID, --pid=PID` - 列出要监控的一组进程/线程（默认是所有）
 * `-u USER, --user=USER` - 监控的用户列表（默认是所有）
 * `-P, --processes` - 只显示进程。
-* `-a, --accumulated` - 显示积累的（accumulated）I/O代替带宽。在这个模式下，iotop显示从iotop启动依赖已经完成的I/O进程数量
+* `-a, --accumulated` - 显示积累的（accumulated）I/O代替带宽。在这个模式下，iotop显示从iotop启动以来已经完成的I/O进程数量
 * `-k, --kilobytes` - 使用KB来显示而不是使用人容易理解的计算单位。这个模式比较适合在脚本中使用iotop。
 * `-t, --time` - 在每一行添加一个时间戳
 * `-q, --quiet`- 去除头部一些行：这个参数可以设置最多3次来移除头部行：`-q`列头部只在最初交互显示一次；`-qq`列头部不显示；`-qqq`，I/O的总结不显示。
@@ -57,10 +57,27 @@ iotop -o
 iotop -ao
 ```
 
-通过 `iotop -ao` 可以找出不断读写磁盘的进程，累积起来最大的进程，比较容易找到活跃的读写进程。这样找到可以的进程以后，在使用 `iotop -P xxx` 单独观察。
+# iotop经验
+
+* iotop交互经验
+
+通过 `iotop -ao` 可以找出不断读写磁盘的进程，累积起来最大的进程，比较容易找到活跃的读写进程。
+
+这样找到可以的进程以后，再结合使用 `iotop -P xxx` 单独观察。
 
 对于进程到底在读写什么文件，可能也会比较容易排查出问题。你要定位某个进程在读写什么文件，可以采用 [找出瞬间消失的TCP网络连接进程](../../security/audit/find_short_lived_tcp_connections_owner_process) 中采用的方法，即使用 [系统审核架构](../../security/audit/audit_architecture) 来定位。
+
+此外，通过脚本结合 `/proc` 系统，可以实现 [排查磁盘IO读写](check_disk_io)
+
+* iotop脚本命令
+
+```bash
+sudo nice -20 sudo iotop -tbod10 > ~/iotop.log
+```
+
+通过上述命令可以记录日志提供后续检查分析
 
 # 参考
 
 * [Linux iotop: Check What’s Stressing And Increasing Load On Your Hard Disks](http://www.cyberciti.biz/hardware/linux-iotop-simple-top-like-io-monitor/)
+* [Make iotop show only the most disk-intensive item](https://unix.stackexchange.com/questions/22407/make-iotop-show-only-the-most-disk-intensive-item)

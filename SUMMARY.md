@@ -1311,6 +1311,7 @@
 			* [获取网卡IP地址](develop/shell/bash/get_eth0_ip.md)
 			* [高效清理文件系统大量文件的方法](develop/shell/bash/remove_massive_amounts_of_file.md)
             * [找出系统端口监听服务进程](develop/shell/bash/check_process_use_port.md)
+			* [判断文件是否为空](develop/shell/bash/check_file_empty.md)
 		* [zsh](develop/shell/zsh/REEADME.md)
 			* [oh-my-zsh](develop/shell/bash/oh-my-zsh.md)
 		* [sed和awk](develop/shell/sed_awk/README.md)
