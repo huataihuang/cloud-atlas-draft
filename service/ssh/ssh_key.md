@@ -166,6 +166,16 @@ fi
 
 以上脚本会维护一个 `~/.agent.env`文件以及指向当前运行的`ssh-agent`的环境。如果代理失败，将会自动打开一个新的终端窗口并添加密钥，所有后续的终端窗口都可以共享这个窗口。
 
+# 使用指定ssh key
+
+有时候我们访问不同的SSH服务器需要使用不同的ssh密钥对，可以通过以下命令方法来指定私钥:
+
+```bash
+ssh -o "IdentitiesOnly=yes" -i <private key filename> <hostname>
+```
+
+这个方法适合存储不同的ssh私钥登陆不同的系统
+
 # 参考
 
 * [OpenSSH 密钥管理，第 1 部分](http://www.ibm.com/developerworks/cn/linux/security/openssh/part1/index.html)
@@ -174,3 +184,4 @@ fi
 * [An Illustrated Guide to SSH Agent Forwarding](http://www.unixwiz.net/techtips/ssh-agent-forwarding.html)
 * [SSH Agent](http://en.wikipedia.org/wiki/Ssh-agent)
 * [SSH](http://mah.everybody.org/docs/ssh)
+* [Howto force ssh to use a specific private key?](https://superuser.com/questions/772660/howto-force-ssh-to-use-a-specific-private-key)
