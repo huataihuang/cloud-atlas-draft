@@ -4,10 +4,12 @@
 
 > 2020年6月，CentOS 7已经发布到 7.8.2003 。本段落是完整的操作步骤记录，请参考这段记录
 
+> 2021年4月，CentOS 7可以使用 7.9.2009
+
 * 卸载alios版本包
 
 ```bash
-rpm -e --nodeps alios-release-server-7.2-23.alios7.x86_64
+rpm -e --nodeps alios-release-server-7.2-24.alios7.x86_64
 rpm -e alios-base-setup-7.2-33.alios7.noarch
 rm -f /etc/yum.repos.d/CentOS-Base.repo
 rm -f /etc/yum.repos.d/epel.repo
@@ -25,13 +27,17 @@ warning: Unable to get systemd shutdown inhibition lock: Unit is masked.
 * 导入证书
 
 ```bash
-rpm --import http://mirrors.163.com/centos/7.8.2003/os/x86_64/RPM-GPG-KEY-CentOS-7
+#rpm --import http://mirrors.163.com/centos/7.8.2003/os/x86_64/RPM-GPG-KEY-CentOS-7
+
+rpm --import http://mirrors.163.com/centos/7.9.2009/os/x86_64/RPM-GPG-KEY-CentOS-7
 ```
 
 * 安装CentOS系统配置
 
 ```bash
-rpm -ivh http://mirrors.163.com/centos/7.8.2003/os/x86_64/Packages/centos-release-7-8.2003.0.el7.centos.x86_64.rpm
+#rpm -ivh http://mirrors.163.com/centos/7.8.2003/os/x86_64/Packages/centos-release-7-8.2003.0.el7.centos.x86_64.rpm
+
+rpm -ivh http://mirrors.163.com/centos/7.9.2009/os/x86_64/Packages/centos-release-7-9.2009.0.el7.centos.x86_64.rpm
 ```
 
 * 删除 `taobao-repo-utils` 否则centos 的 yum报错
@@ -74,11 +80,18 @@ python-urlgrabber-3.10-8.1.alios7.noarch
 * 然后重新安装yum
 
 ```
+#rpm -ivh \
+#http://mirrors.163.com/centos/7.8.2003/os/x86_64/Packages/yum-3.4.3-167.el7.centos.noarch.rpm \
+#http://mirrors.163.com/centos/7.8.2003/os/x86_64/Packages/python-urlgrabber-3.10-10.el7.noarch.rpm \
+#http://mirrors.163.com/centos/7.8.2003/os/x86_64/Packages/yum-plugin-fastestmirror-1.1.31-53.el7.noarch.rpm \
+#http://mirrors.163.com/centos/7.8.2003/os/x86_64/Packages/yum-metadata-parser-1.1.4-10.el7.x86_64.rpm
+
+
 rpm -ivh \
-http://mirrors.163.com/centos/7.8.2003/os/x86_64/Packages/yum-3.4.3-167.el7.centos.noarch.rpm \
-http://mirrors.163.com/centos/7.8.2003/os/x86_64/Packages/python-urlgrabber-3.10-10.el7.noarch.rpm \
-http://mirrors.163.com/centos/7.8.2003/os/x86_64/Packages/yum-plugin-fastestmirror-1.1.31-53.el7.noarch.rpm \
-http://mirrors.163.com/centos/7.8.2003/os/x86_64/Packages/yum-metadata-parser-1.1.4-10.el7.x86_64.rpm
+http://mirrors.163.com/centos/7.9.2009/os/x86_64/Packages/yum-3.4.3-168.el7.centos.noarch.rpm \
+http://mirrors.163.com/centos/7.9.2009/os/x86_64/Packages/python-urlgrabber-3.10-10.el7.noarch.rpm \
+http://mirrors.163.com/centos/7.9.2009/os/x86_64/Packages/yum-plugin-fastestmirror-1.1.31-54.el7_8.noarch.rpm \
+http://mirrors.163.com/centos/7.9.2009/os/x86_64/Packages/yum-metadata-parser-1.1.4-10.el7.x86_64.rpm
 ```
 
 * 恢复yum的packages目录

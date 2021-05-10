@@ -194,6 +194,28 @@ cat backup.tar.gz | nc -q 0 <receiving host> 1024
 
 > 备份文件解压缩通过管道经`nc`发送给远程服务器的1024端口
 
+# dd命令结合ssh
+
+对于服务器磁盘完全一致(磁盘规格和分区都一致)，则还可以通过 `dd` 命令来完成clone，并且通过SSH通道可以实现远程复制:
+
+```bash
+dd if=/dev/sda | ssh user@<receiving host> dd of=/dev/sda
+```
+> 注意：上述 `/dev/sda` 非系统磁盘
+
+备份可以采用压缩方式
+
+```bash
+dd if=/dev/sda | gzip -1 - | ssh user@<receiving host> dd of=image.gz
+```
+
+或者反向执行（从远程备份到本地）
+
+```bash
+ssh user@remote "dd if=/dev/sda | gzip -1 -" | dd of=image.gz
+```
+
 # 参考
 
 * [BackupYourSystem/TAR](https://help.ubuntu.com/community/BackupYourSystem/TAR)
+* [ssh user@remote "dd if=/dev/sda | gzip -1 -" | dd of=image.gz](https://unix.stackexchange.com/questions/132797/how-to-dd-a-remote-disk-using-ssh-on-local-machine-and-save-to-a-local-disk)
