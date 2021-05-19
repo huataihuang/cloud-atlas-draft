@@ -1,3 +1,15 @@
+# 基本功能：按修改时间查找和删除
+
+在使用 `find` 命令时，最常用的场景是清理日志，即删除指定n天之前的旧日志。
+
+以下案例删除指定目录下最后修改时间5天以上的文件
+
+```bash
+find /path/to/files* -mtime +5 -exec rm {} \;
+```
+
+> 参考 [Delete Files Older Than x Days on Linux](https://www.howtogeek.com/howto/ubuntu/delete-files-older-than-x-days-on-linux/)
+
 # find查找时忽略某些目录
 
 当使用`find .`查找当前目录中某个文件时，有时候需要忽略或跳过某些子目录。`find`指令提供了一个`-not -path "./directory/*"` 的方法来忽略当前目录下的子目录`./directory/`及其递归子目录。

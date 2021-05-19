@@ -113,7 +113,42 @@ echo '{"user": {"id": 1, "name": "Cameron"}}' | jq '{ name: .user.name  }'
 }
 ```
 
+# 去除引号
+
+默认jq输出的结果有双引号，这时候我们存储到字符串变量中会多出这对引号，虽然可以通过 `tr` 命令剥离，但是太麻烦了。实际上， `jq` 就有这个内置功能，参数 `-r` 会移除引号:
+
+```bash
+jq -r '.name' <json.txt
+```
+
+# 多字段提取方法
+
+```json
+{
+    "users": [
+        {
+            "first": "Stevie",
+            "last": "Wonder"
+        },
+        {
+            "first": "Michael",
+            "last": "Jackson"
+        }
+    ]
+}
+```
+
+如果需要一次提出多个字段，可以使用以下方法
+
+```bash
+jq '.users[] | .first + " " + .last'
+```
+
+这个方法非常优秀，我用它来处理一些非常复杂的嵌套json效率极高
+
 # 参考
 
 * [Working with JSON in bash using `jq`](https://medium.com/cameron-nokes/working-with-json-in-bash-using-jq-13d76d307c4)
 * [Working with JSON in bash using jq](https://cameronnokes.com/blog/working-with-json-in-bash-using-jq/)
+* [How to remove double-quotes in jq output for parsing json files in bash? ](https://stackoverflow.com/questions/44656515/how-to-remove-double-quotes-in-jq-output-for-parsing-json-files-in-bash)
+* [Using jq to parse and display multiple fields in a json serially](https://stackoverflow.com/questions/28164849/using-jq-to-parse-and-display-multiple-fields-in-a-json-serially)
