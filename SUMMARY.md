@@ -606,6 +606,7 @@
 		* [CentOS 7 Samba配置](service/samba/setup_samba_on_centos7.md)
 	* [NTP](service/ntp/README.md)
 		* [NTP服务基础配置](service/ntp/basic_ntp_config.md)
+		* [快速校准时间](service/ntp/correct_time_with_gap.md)
 		* [ntpq错误"Request timed out"排查](service/ntp/ntpq_timed_out_nothing_received.md)
 		* [ntp_gettime() returns code 5 (ERROR)](service/ntp/ntp_gettime_returns_code_5_error.md)
 		* [在Ubuntu系统部署NTP服务](service/ntp/deploy_ntp_daemon_on_ubuntu.md)

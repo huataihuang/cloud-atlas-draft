@@ -37,13 +37,20 @@ fudge 127.127.1.0 stratum 10
 
 ## NTP配置解析
 
-* `server`
+* `server` 配置
 
-# `restrict default ignore`的问题
+在 `ntp.conf` 配置中，最基本有2行 `server` 的配置，其中一个 `server` 是本地的 `pseudo IP` 地址，也就是回环地址 `127.127.1.0` ，这个伪IP是为了确保ntpd服务在远程NTP服务器宕机情况下，NTP能够和自己进行同步，直到远程服务器恢复服务就可以开始再次和远程服务器进行同步。
 
-* 如果设置成
+建议至少确保配置两台远程服务器进行同步，以便能够在其中某台服务器宕机情况下依然能够继续和backup服务器同步。不过，实际生产环境，强烈建议至少配置4台NTP服务器，原因见 [Upstream Time Server Quantity](http://support.ntp.org/bin/view/Support/SelectingOffsiteNTPServers#Section_5.3.3.):
 
-1
+  * 采用4台NTP服务器的好处是：当一台NTP服务器宕机情况下，剩余3台服务器依然能够提供冗余，并且如果3台服务器之间时钟不一致，依然能够按照`少数服从多数`方式计算判断出哪些NTP服务器时间是较为准确的，以便能够进行同步。
+  * 如果采用3台NTP服务器，则宕机1台就会只有2台NTP服务器，而2台NTP服务器是无法判断选择哪个NTP服务器时间更为准确
+  * 如果只使用2台NTP服务器，即使没有服务器宕机，也可能无法判断哪个NTP服务器时间更准确
+  * 如果使用1台NTP服务器，没有冗余是不能接受的
+
+* `restrict` 配置
+
+`restrict` 配置限制了访问你配置的NTP服务器的客户端，提供了一定的安全保护
 
 # NTP实践问题排查
 
@@ -69,3 +76,4 @@ restrict 127.0.0.1 mask 255.0.0.0
 # 参考
 
 * [Basic NTP configuration](http://www.tldp.org/LDP/sag/html/basic-ntp-config.html)
+* [Best practices for NTP](https://access.redhat.com/solutions/778603)
