@@ -19,7 +19,7 @@ done < "$input"
 
 * 案例
 
-```
+```bash
 #!/bin/bash
 file="/home/vivek/data.txt"
 while IFS= read -r line
@@ -31,7 +31,7 @@ done <"$file"
 
 * 如果要按照列来读取
 
-```
+```bash
 #!/bin/bash
 file="/etc/passwd"
 while IFS=: read -r f1 f2 f3 f4 f5 f6 f7

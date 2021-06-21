@@ -144,7 +144,60 @@ jq -r '.name' <json.txt
 jq '.users[] | .first + " " + .last'
 ```
 
+输出是：
+
+```
+Stevie Wonder
+Michael Jackson
+```
+
 这个方法非常优秀，我用它来处理一些非常复杂的嵌套json效率极高
+
+类似也可以采用，输出效果相同
+
+```bash
+jq '.users[] | "\(.first) \(.last)"'
+```
+
+另外一种多字段输出会换行：
+
+```bash
+jq '.users[] | ".first , .last'
+```
+
+# json字符串错误`INvalid string`
+
+我在使用脚本生成的json文件，发现 `jq` 解析报错
+
+```bash
+parse error: Invalid string: control characters from U+0000 through U+001F must be escaped at line 264, column 1
+```
+
+在vs code中观察，可以看到报错提示: `Unexpected end of string.json(258)`
+
+原因是我想在 "text" 中传递大段的markdown文本，但是很不幸，json规范不支持真正的行回车，只能通过 `\n` 来打断行。 - 参考 [Unexpected end of string.json(258)](https://stackoverflow.com/questions/2392766/are-multi-line-strings-allowed-in-json) 可以看到:
+
+> structure your data: break the multiline string into an array of strings, and then join them later on.
+
+所以要将
+
+```json
+{
+    "text" : "line 1
+    line 2
+    line 3
+    "
+}
+```
+
+修订为:
+
+```json
+{
+    "text" : "line 1\nline 2\nline 3"
+}
+```
+
 
 # 参考
 

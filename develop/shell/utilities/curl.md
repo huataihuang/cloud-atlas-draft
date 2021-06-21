@@ -164,7 +164,18 @@ myurl=`curl -q --location --request GET 'http://api.example.com/generatePresigne
 curl ${myurl}
 ```
 
+# 安静模式
+
+直接使用 `curl` 命令get，会显示一个进度过程输出。不过对于脚本而言不是很好，所以我们需要使用 `-s` 或者 `--silent` 参数，以静默方式下载。如果不希望任何输出，则重定向到null设备
+
+```
+curl -s 'http://example.com' > /dev/null
+
+curl --silent --output /dev/null http://example.com
+```
+
 # 参考
 
 * [How to POST file contents using cURL?](https://superuser.com/questions/1054742/how-to-post-file-contents-using-curl)
 * [How to send a header using a HTTP request through a curl call?](https://stackoverflow.com/questions/356705/how-to-send-a-header-using-a-http-request-through-a-curl-call)
+* [Hide curl output](https://unix.stackexchange.com/questions/196549/hide-curl-output)
