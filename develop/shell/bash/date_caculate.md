@@ -23,6 +23,41 @@ echo $Sys_data
 echo $interval
 ```
 
+如果要计算日期差异，可以使用 `bc` 命令计算：
+
+```bash
+echo "$interval / 3600 /24" | bc
+```
+
+参考 [Convert date time string to epoch in Bash](https://stackoverflow.com/questions/10990949/convert-date-time-string-to-epoch-in-bash/10990961) 和 [How to convert DATE to UNIX TIMESTAMP in shell script on MacOS](https://stackoverflow.com/questions/3817750/how-to-convert-date-to-unix-timestamp-in-shell-script-on-macos) 需要注意不同平台转换格式有区别：
+
+* Linux平台希望输入的日期格式是 US 或 ISO860 格式，类似 `mm/dd/yyyy` 或者 `yyyy-mm-dd` ，素以你可以使用 `date --date='06/12/2012 07:21:22' +"%s"`
+* macOS平台采用的格式是 `date -j -f "%a %b %d %T %Z %Y" "Tue Sep 28 19:35:15 EDT 2010" "+%s"`  或者 
+
+```bash
+date -j -f "%a %b %d %T %Z %Y" "`date`" "+%s"
+```
+
+需要注意macOS需要提供格式参数 `-f` 否则会报错，举例:
+
+```bash
+date -j -f "%Y-%m-%d" "2010-10-02" "+%s"
+```
+
+则输出 `1286009053`
+
+或者:
+
+```bash
+date -j -f "%m/%d/%Y" '07/06/2021' +"%s"
+```
+
+输出 `1625561120`
+
+很不幸，macOS的转换方法和Linux不能兼容（linux不支持 `-j` 并且一定要使用 `-d`），所以如果要脚本通用，需要判断平台，否则报错
+
+----
+
 时间差计算可以使用上述 `expr $Sys_data - $In_data` ，也可以使用单括号运算符`$()`：
 
 ```bash

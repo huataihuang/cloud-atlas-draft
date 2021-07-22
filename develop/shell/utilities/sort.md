@@ -28,6 +28,12 @@ POS是`F[.C][OPTS]`，`F`是字段编号，`C`是该字段的字符位置。
 
 sort默认是按照ASCII码排序，如果要按照数值排序，则使用参数 `-n`
 
+上述结合 `-k` `-n` 非常常用的排查场景，例如我们统计IP地址(原日志 `ip.log` 的第5列)出现频率并排序:
+
+```bash
+cat ip.log | awk '{print $5}' | sort | uniq -c | sort -k 1 -n
+```
+
 # 参考
 
 * [Linux shell sort file according to the second column?](https://stackoverflow.com/questions/4262650/linux-shell-sort-file-according-to-the-second-column)

@@ -94,6 +94,97 @@ echo "MEMORY: $MEMORY"
 
 第一个 `<` 是定向  第二个`<()`是进程替换
 
+# 循环读取多变量赋值
+
+将日志中pod状态统计记录到 `pod_status`：
+
+```bash
+cat pod.log | awk '{print $3}' | grep -v STATUS | sort | uniq -c > pod_status
+```
+
+此时 pod_status 文件内容
+
+```
+    289 Completed
+     10 ContainerCreating
+      1 Error
+    105 Running
+```
+
+然后想用 `read` 命令赋值给 `pod_statu` 和 `pod_num` 变量
+
+```bash
+for line in `cat pod_status`;do
+    IFS=" " read -r pod_num pod_status <<< $line
+    echo "${pod_status}: $pod_num"
+done
+```
+
+但是发现无法正确赋值
+
+```
+: 289
+: Completed
+: 10
+: ContainerCreating
+: 1
+: Error
+: 105
+: Running
+```
+
+我验证了单行数据是正确的：
+
+```bash
+IFS=" " read -r pod_num pod_status <<< "    289 Completed"
+echo "${pod_status}: $pod_num"
+```
+
+显示输出正确
+
+```
+Completed: 289
+```
+
+所以改为上述 awk 整形后，将分隔符替换成 `,`
+
+奇怪，单行测试正常：
+
+```bash
+IFS="," read -r pod_num pod_status < <(echo "    289 Completed"| awk '{print $1","$2}')
+echo "${pod_status}: $pod_num"
+```
+
+输出是
+
+```
+Completed: 289
+```
+
+但是，采用循环读取行脚本
+
+```bash
+for line in `cat pod_status`;do
+    IFS="," read -r pod_num pod_status < <(echo $line | awk '{print $1","$2}')
+    echo "${pod_status}: $pod_num"
+done
+```
+
+输出却也是错误的：
+
+```
+: 289
+: Completed
+: 10
+: ContainerCreating
+: 1
+: Error
+: 105
+: Running
+```
+
+看起来每次 `pod_status`都没有读取到记录，所有记录都在 `pod_num`
+
 # 参考
 
 * [Linux bash: Multiple variable assignment](https://stackoverflow.com/questions/1952404/linux-bash-multiple-variable-assignment)
