@@ -165,7 +165,7 @@ echo 0 > /proc/sys/kernel/sysrq
 
 如果未经授权人可以访问你的系统键盘，则考虑到防止故障或危险，应关闭这个功能。一些早期内核版本默认就关闭了sysrq，所以你需要在运行时通过写入`1`到相同的`/proc/sys/kernel/sysrq`来激活。
 
-sysrq操作非常游泳，所以对于系统管理员无法访问控制台，有一个`/proc/sysrq-trigger`只写的入口文件，可以通过写入相应的命令字符来触发特定的sysrq动作；这样就可以搜集到任何内核日志输出数据。这个sysrq入口始终工作的，哪怕`sysrq`在控制台disable。
+sysrq操作非常有用，所以对于系统管理员无法访问控制台，有一个`/proc/sysrq-trigger`只写的入口文件，可以通过写入相应的命令字符来触发特定的sysrq动作；这样就可以搜集到任何内核日志输出数据。这个sysrq入口始终工作的，哪怕`sysrq`在控制台disable。
 
 如果你经历了一个"live hang"，也就是驱动陷入循环但是系统整体上依旧工作，则有很多技术可用。通常SysRq `p`功能可以指出错误规则。失败时，你也可以使用内核`profiling`功能。激活`profiling`方式编译内核并启动内核使用`profile=2`。使用`readprofile`工具重置profile计数器，然后将驱动陷入到循环。过一会，再次使用`readprofile`来查看内核花费时间。另一个有用的工具是`oprofile`，文档`Documentation/basic_profilling.txt`可以告诉你使用profileer的方法。
 

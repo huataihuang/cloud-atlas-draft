@@ -214,4 +214,3 @@ crash ./usr/lib/debug/lib/modules/2.6.32-431.20.5.el6.x86_64/vmlinux /var/crash/
 
 * [How To Diagnose High Sys CPU On Linux](https://newspaint.wordpress.com/2013/07/24/how-to-diagnose-high-sys-cpu-on-linux/)
 * [Debugging High CPU Usage Using Perf Tool and vmcore Analysis](https://www.pythian.com/blog/debugging-high-cpu-usage-using-perf-tool-and-vmcore-analysis/)
-* [Debugging High CPU Usage Using Perf Tool and vmcore Analysis](https://www.pythian.com/blog/debugging-high-cpu-usage-using-perf-tool-and-vmcore-analysis/)

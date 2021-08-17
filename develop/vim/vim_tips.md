@@ -12,6 +12,12 @@
 :saveas /tmp/what_is_it.txt
 ```
 
+* 打开语法高亮显示
+
+```bash
+:syntax on
+```
+
 * 语法高亮为`.xml`文件语法 - 对于文件格式有很好的
 
 ```bash
