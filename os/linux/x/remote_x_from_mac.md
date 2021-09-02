@@ -103,6 +103,35 @@ X11UseLocalhost yes
 X11 forwarding request failed
 ```
 
+在最新的macOS系统中，使用 `ssh -XC SERVER_IP` 会遇到X11安全检查导致实际上没有生效，甚至都不出现上述报错(说明根本没有启用X11转发)。参考 [X11 from ssh on Mac OSX to Linux server doesn't work — Gtk-WARNING **: cannot open display](https://serverfault.com/questions/137090/x11-from-ssh-on-mac-osx-to-linux-server-doesnt-work-gtk-warning-cannot) 可以看到，应该将 `-X` 改成 `-Y` 可以绕过X11安全检查。
+
+此时就会在终端显示信息 `X11 forwarding request failed` 接下来就是解决认证。
+
+这个认证是需要在服务器上安装 `xauth` 程序来完成，所以在CentOS服务器上执行安装 `yum install xauth` ，安装完成后，再次执行:
+
+```bash
+ssh -YC <SERVER_IP>
+```
+
+就可以看到X终端显示一个提示 `/usr/bin/xauth: file /home/huatai/.Xauthority does not exist` ，不过这个文件会自动创建。
+
+此时在通过 `XQuartz` 的 `xterm` 登陆的服务器上执行：
+
+```bash
+env | grep DISPLAY
+```
+
+就会看到正确输出
+
+```
+DISPLAY=localhost:10.0
+```
+
+此时远程服务器上执行X程序都会在本地macOS桌面显示
+
+----
+以下两个方法验证不行：
+
 [How to fix “X11 forwarding request failed on channel 0”](http://ask.xmodulo.com/fix-broken-x11-forwarding-ssh.html)提供了两种可能的解决方法：
 
 * 方法一
