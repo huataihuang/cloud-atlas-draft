@@ -71,3 +71,36 @@ awk '$2 == "gmail.com"{$1 = "ggg"}{print}' test
 ```bash
 awk '{IGNORECASE=1;if($2 ~/^[a-z]/&& $2~/net$/){print $0}}' test
 ```
+
+# 根据文件中某列进行判断grep出对应行
+
+`ls -l` 命令输出案例:
+
+```
+-rw-r--r--   1 root root       1866 Feb 14 07:47 rahmu.file
+-rw-r--r--   1 rahmu user     95653 Feb 14 07:47 foo.file
+-rw-r--r--   1 rahmu user   1073822 Feb 14 21:01 bar.file
+```
+
+要根据第3列内容，判读属于 `rahmu` 则打印出这样内容:
+
+```
+ls -l | awk '{if ($3 == "rahmu") print $0;}'
+```
+
+更简单的命令
+
+```bash
+ls -l | awk '$3 == "rahmu"'
+```
+
+输出结果是:
+
+```
+-rw-r--r--   1 rahmu user     95653 Feb 14 07:47 foo.file
+-rw-r--r--   1 rahmu user   1073822 Feb 14 21:01 bar.file
+```
+
+# 参考
+
+- [How to run grep on a single column?](https://unix.stackexchange.com/questions/31753/how-to-run-grep-on-a-single-column)
