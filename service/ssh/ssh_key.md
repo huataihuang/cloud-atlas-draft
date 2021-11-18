@@ -176,6 +176,22 @@ ssh -o "IdentitiesOnly=yes" -i <private key filename> <hostname>
 
 这个方法适合存储不同的ssh私钥登陆不同的系统
 
+# 忽略服务器key验证
+
+在使用脚本命令ssh登陆到服务器执行命令，如果是第一次访问服务器(例如需要扫描大量服务器)，默认ssh会通过交互方式让你确认接受服务器key。这对于批量脚本非常不方便，解决方法是默认接受服务器key不验证。
+
+```bash
+ssh -o StrictHostKeyChecking=no username@hostname
+```
+
+这样服务器的key就会自动接受存入 `~/.ssh/known_hosts` 
+
+另外一种情况是用户目录不能修改，例如不能保存和修改 `~/.ssh/known_hosts` ，则再加上 `UserKnownHostsFile` 参数指定另一个文件(例如指向null文件):
+
+```bash
+ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no username@hostname
+```
+
 # 参考
 
 * [OpenSSH 密钥管理，第 1 部分](http://www.ibm.com/developerworks/cn/linux/security/openssh/part1/index.html)
@@ -185,3 +201,4 @@ ssh -o "IdentitiesOnly=yes" -i <private key filename> <hostname>
 * [SSH Agent](http://en.wikipedia.org/wiki/Ssh-agent)
 * [SSH](http://mah.everybody.org/docs/ssh)
 * [Howto force ssh to use a specific private key?](https://superuser.com/questions/772660/howto-force-ssh-to-use-a-specific-private-key)
+* [HowTo Avoid Host Key Verification When Using SSH](https://community.mellanox.com/s/article/howto-avoid-host-key-verification-when-using-ssh)
