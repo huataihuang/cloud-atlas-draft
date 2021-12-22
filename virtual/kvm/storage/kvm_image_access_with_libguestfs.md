@@ -165,7 +165,7 @@ yum install "*guestf*"
 
 # `guestfish` SHELL
 
-`guestfish`是命令好或者shell脚本中用于访问guest虚拟机文件系统的交互shell。这个shell提供了所有`libguestfs` API的功能。
+`guestfish`是命令行或者shell脚本中用于访问guest虚拟机文件系统的交互shell。这个shell提供了所有`libguestfs` API的功能。
 
 > 以下案例以`centos6.img`为案例实践
 
@@ -251,7 +251,7 @@ LVM2_member
 >
 > 在`guestfish`中没有当前工作目录这个概念。和原始的shell不同，不能使用`cd`命令更改目录。所有路径必须是从顶部开始带有一个`/`字符的完全路径。可以使用`TAB`键来补完路径。
 
-要退出`guestfish` 设立了，可以输入`exit`或者`Ctrl+d`。
+要退出`guestfish` ，可以输入`exit`或者`Ctrl+d`。
 
 ### 通过`guestfish`检查(inspection)
 
@@ -299,7 +299,7 @@ guestfish --ro -d centos6 -i
 
 ### 使用`guestfish`添加文件
 
-要使用`guestfish`添加一个文件，需要使用完整的URI。被访问的虚拟机磁盘文件必须是本地文件，或者是一个网络块设备（NBD）或者一个远程块设备(RBD)。
+要使用`guestfish`添加一个文件，需要使用完整的URI。被访问的虚拟机磁盘文件必须是本地文件，或者是一个网络块设备（NBD）或者一个远程块设备(RBD)。
 
 以下是一些URI例子，对于本地文件，使用`///`：
 
@@ -338,13 +338,13 @@ guestfish -d centos6 -i
 
 ```
 #!/bin/bash -
- set -e
- guestname="$1"
+set -e
+guestname="$1"
 
- guestfish -d "$guestname" -i <<'EOF'
-   write /etc/motd "Welcome to Acme Incorporated."
-   chmod 0644 /etc/motd
- EOF
+guestfish -d "$guestname" -i <<'EOF'
+  write /etc/motd "Welcome to Acme Incorporated."
+  chmod 0644 /etc/motd
+EOF
 ```
 
 ### Augeas 和 `libguestfs` 脚本

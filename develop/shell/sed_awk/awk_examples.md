@@ -6,6 +6,27 @@ ls -l php* | awk '{ SUM += $5} END { print SUM/1024/1024 }'
 
 > 参考 [Sum using awk](http://www.liamdelahunty.com/tips/linux_ls_awk_totals.php)
 
+一个累加案例
+
+```
+    a,a,aa,1
+    a,a,aa,2
+    d,d,dd,7
+    d,d,dd,9
+    d,dd,d,0
+    d,d,dd,23
+    d,d,dd,152
+    d,d,dd,7
+    d,d,dd,5
+    f2,f2,f2,5.5
+```
+
+计算第4列数据:
+
+```bash
+awk -F',' '{sum+=$4;}END{print sum;}' testawk.txt
+```
+
 # 字符串大小写转换
 
 * 字符转为大写
