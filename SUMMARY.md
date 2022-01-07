@@ -1339,6 +1339,7 @@
 			* [sed替换行首和行尾](develop/shell/sed_awk/sed_replace_line_head_tail.md)
 			* [使用sed修改配置文件到键值](develop/shell/sed_awk/sed_edit_configuration_file_key_value.md)
 			* [Mac平台sed命令使用-i参数失败及解决方法](develop/shell/sed_awk/sed_-i_option_fail_on_mac.md)
+			* [删除文件的首行和尾行](develop/shell/sed_awk/remove_header_and_footer.md)
 		* [实用工具](develop/shell/utilities/README.md)
 			* [sudo切换账号运行程序](develop/shell/utilities/sudo.md)
 			* [修改用户帐号名/uid/gid的工具usermod和groupmod](develop/shell/utilities/usermod_groupmod.md)
