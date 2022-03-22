@@ -1328,6 +1328,7 @@
 			* [删除字符串的最后字符](develop/shell/bash/delete_last_char_of_string.md)
 			* [补全字符串](develop/shell/bash/pad_string.md)
 			* [检查数字是偶数还是奇数](develop/shell/bash/check_number_even_or_odd.md)
+			* [转换Linux uptime时间到易于理解的格式](develop/shell/bash/convert_uptime_to_well_format_date.md)
 		* [zsh](develop/shell/zsh/REEADME.md)
 			* [oh-my-zsh](develop/shell/bash/oh-my-zsh.md)
 		* [sed和awk](develop/shell/sed_awk/README.md)

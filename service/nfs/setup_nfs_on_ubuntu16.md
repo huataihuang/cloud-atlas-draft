@@ -160,7 +160,7 @@ COMMIT
 
 Linux上用户目录的`uid/gid`是`505`（admin），而本地Mac上的用户`uid/gid`是`501`，使用NFS认证的时候采用的是`uid`对应授权。强制去修改用户`uid`和`gid`会带来其他应用风险。
 
-由于NFS服务器可以管理，所以修改服务器NFS输出，将服务器上账号`admin`的`uid`和`gid`映射成`anonuid`和`anongid`，
+由于NFS服务器可以管理，所以修改服务器NFS输出，将服务器上账号`admin`的`uid`和`gid`映射成`anonuid`和`anongid`，
 
 实际操作如下：
 
