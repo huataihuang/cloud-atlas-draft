@@ -27,9 +27,23 @@ Swap:        0k total,        0k used,        0k free, 30298168k cached
   * `sy`
   * `ni` - `nice` 表示CPU调度优先级，数值越高（+19）表示的优先级越低，而数值越低（-20）则表示优先级越高。可以通过`nice`命令来启动一个进程或者在进程运行时通过`renice`命令来调整。只有`root`用户可以增加一个进程的优先级。
 
+* 第7行字段
+  * `PID` 进程唯一ID
+  * `USER` 进程owner
+  * `PR` 进程优先级(priority)
+  * `NI` 进程NICE值
+  * `VIRT` 进程使用的虚拟内存大小
+  * `RES` 进程使用的物理内存大小
+  * `SHR` 进程使用的共享内存(shared memory)大小
+  * `S` 进程的状态(status): S=sleep R=running Z=zombie
+  * `%CPU` 进程使用的CPU百分比
+  * `%MEM` 进程使用的内存百分比
+  * `TIME+` 进程运行的时间
+  * `COMMAND` 进程的命令
+
 # `batch mode`
 
-`batch mode`是指[批量处理](https://en.wikipedia.org/wiki/Batch_processing)无需人工交互的模式，适合脚本调用以及将输出记录到日志文件或通过其他工具进一步处理。
+`batch mode`是指[批量处理](https://en.wikipedia.org/wiki/Batch_processing)无需人工交互的模式，适合脚本调用以及将输出记录到日志文件或通过其他工具进一步处理。 `-b` 就是Batch mode
 
 ```bash
 top -b -n 5 > top.log
@@ -129,6 +143,7 @@ top -u tecmint
 
 # 参考
 
+* [How to check high CPU usage process in Linux](https://www.2daygeek.com/check-high-cpu-usage-process-linux/)
 * [What does “batch mode” mean for the top command?](http://unix.stackexchange.com/questions/138484/what-does-batch-mode-mean-for-the-top-command)
 * [Linux and Unix top command](http://www.computerhope.com/unix/top.htm)
 * [Change top's sorting back to CPU](http://unix.stackexchange.com/questions/158584/change-tops-sorting-back-to-cpu)

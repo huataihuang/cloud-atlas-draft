@@ -25,6 +25,12 @@ Swap:        0k total,        0k used,        0k free, 30639512k cached
 
 > 有关`top`的使用详解请参考 [top命令使用tips](../../../os/linux/process/management/top_tips)
 
+* 使用 `ps` 命令可以获得使用CPU较高进程(这个命令非常好，能够根据cpu使用量进行降序排序):
+
+```bash
+ps -eo pid,ppid,%me,%cpu,cmd --sort=-%cpu | head
+```
+
 * 由于`cpu 24`上的某个程序（如果我推测没有错的话）导致CPU大量消耗`sys`，并且导致运行队列过长，所以临时将所有的进程都迁移到另一个控制组`service`中（这个`service`控制组分配了多个CPU资源，可以承担较大负载）
 
 ```
@@ -213,4 +219,5 @@ crash ./usr/lib/debug/lib/modules/2.6.32-431.20.5.el6.x86_64/vmlinux /var/crash/
 # 参考
 
 * [How To Diagnose High Sys CPU On Linux](https://newspaint.wordpress.com/2013/07/24/how-to-diagnose-high-sys-cpu-on-linux/)
+* [How to check high CPU usage process in Linux](https://www.2daygeek.com/check-high-cpu-usage-process-linux/)
 * [Debugging High CPU Usage Using Perf Tool and vmcore Analysis](https://www.pythian.com/blog/debugging-high-cpu-usage-using-perf-tool-and-vmcore-analysis/)

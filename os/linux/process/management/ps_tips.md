@@ -55,6 +55,21 @@ ps axfw -eo -eo pid,user,cgroup,args
 ...
 ```
 
+# 找出消耗最多CPU的进程
+
+```bash
+ps -eo pid,ppid,%mem,%cpu,cmd --sort=-%cpu | head
+```
+
+上述命令非常好，按照CPU进行降序排序，方便找出消耗最多的进程。并且 `cmd` 可以显示完整的命令行，方便找出一些命令相同但是实际参数运行不同的进程
+
+如果不需要完整命令行，则可以使用 `comm` 简化输出命令行内容(只显示进程主命令)
+
+```bash
+ps -eo pid,ppid,%mem,%cpu,comm --sort=-%cpu | head
+```
+
 # 参考
 
+* [How to check high CPU usage process in Linux](https://www.2daygeek.com/check-high-cpu-usage-process-linux/)
 * [How to create an alias in Linux](https://www.redhat.com/sysadmin/how-create-alias-linux)

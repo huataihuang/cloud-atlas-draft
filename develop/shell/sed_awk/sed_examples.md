@@ -32,10 +32,16 @@ sed -i '3d' file
 
 > `sed`是将源文件复制后修改，所以`-i`参数实际是修改后覆盖源文件
 
-删除最后一行
+在 `sed` 中， `$` 代表最后一行，所以删除最后一行可以使用如下命令:
 
 ```bash
 sed '$d' file
+```
+
+此外， `head` 命令提供了一个更好的删除最后几行的方法， `-n -X` ：通常 `-n X` 表示打印前X行，当 `X` 前面加上 `-` 则表示倒过来，即打印所有行但不包括最后的X行，也就是输出内容少了最后 `X` 行，所以定向到新文件就能截断原文件的最后 `X` 行(以下案例去除了file.txt文件的最后3行生成new_file.txt):
+
+```bash
+cat file.txt | head -n -3 > new_file.txt
 ```
 
 删除第2行到第四行
@@ -407,3 +413,4 @@ sed 's/^M$//' disk_dos.txt > disk.txt
 * [sed - 25 examples to delete a line or pattern in a file](http://unix-school.blogspot.com/2012/06/sed-25-examples-to-delete-line-or.html)
 * [linux cut help - how to specify more spaces for the delimiter?](http://stackoverflow.com/questions/7142735/linux-cut-help-how-to-specify-more-spaces-for-the-delimiter)
 * [How can I replace a newline (\n) using sed?](http://stackoverflow.com/questions/1251999/how-can-i-replace-a-newline-n-using-sed)
+* [Delete last line from the file](https://unix.stackexchange.com/questions/52779/delete-last-line-from-the-file)
