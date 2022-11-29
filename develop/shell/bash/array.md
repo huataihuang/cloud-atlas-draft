@@ -133,6 +133,49 @@ done
 array=([0]="/bin/sh" [1]="/bin/bash" [2]="/sbin/nologin" [3]="/bin/tcsh" [4]="/bin/csh" [5]="/bin/dash")
 ```
 
+# 数组使用的常用方法
+
+目前我在脚本中使用数组非常简单:
+
+```bash
+#申明数组
+ARRAY=()
+#填写数据
+ARRAY+=('foo')
+ARRAY+=('bar')
+```
+
+此外，如果有一行数据从文件中读出，默认空格分隔，则可以直接复制为数组。以下脚本获取系统中所有D住进程的pid和执行进程名字
+
+```bash
+# D进程pid和command   分隔符用,
+# 举例: 213912,./test_uninterruptible
+dPidCmd=()
+dPidCmd=`ps r -A | grep " D" | grep -v "\[load_calc\]" | awk '{print $1","$5}'`
+```
+
+打印数组:
+
+```bash
+echo ${array[@]}
+```
+
+其他简单案例
+
+```bash
+#!/bin/bash
+array=("A" "B" "ElementC" "ElementE")
+for element in "${array[@]}"
+do
+    echo "$element"
+done
+
+echo
+echo "Number of elements: ${#array[@]}"
+echo
+echo "${array[@]}"
+```
+
 # 案例
 
 * 构建数组
@@ -247,3 +290,4 @@ download_package "$(echo ${package_list[@]})"
 # 参考
 
 * [shell数组的定义与应用](http://www.361way.com/shell-array/4965.html)
+* [Arrays in unix shell?](https://stackoverflow.com/questions/1878882/arrays-in-unix-shell)
